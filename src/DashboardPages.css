@@ -89,3 +89,52 @@
 .dark-theme .diary-paper-top{background:#263329;border-color:var(--line);color:#b1bfb0}.dark-theme .diary-writing textarea{color:#e1e9df;background:repeating-linear-gradient(to bottom,transparent 0,transparent 32px,#344337 33px,#344337 34px);background-position:0 16px}.dark-theme .diary-title-label input{color:#e1e9df;border-color:var(--line)}.dark-theme .diary-prompt-card{background:linear-gradient(150deg,#293a2c,#263329);border-color:var(--line);color:#e1e9df}.dark-theme .diary-reminder{background:#302c23;border-color:#4a4030;color:#e1d5c4}.dark-theme .diary-saved-card>p,.dark-theme .diary-writing textarea::placeholder,.dark-theme .diary-title-label input::placeholder{color:#b1bfb0}.dark-theme .diary-empty{background:#202c23;border-color:var(--line)}.dark-theme .diary-empty h3{color:#e1e9df}.dark-theme .mindful-intro-card,.dark-theme .insight-kind-note{background:#29392c;border-color:var(--line)}.dark-theme .mindful-intro-card h2,.dark-theme .mindful-intro-card p,.dark-theme .insight-kind-note p{color:#d6e4d2}
 @media(max-width:850px){.diary-layout{grid-template-columns:1fr}.diary-side{display:grid;grid-template-columns:1fr 1fr}.mindful-tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.mindora-section-page{padding:20px 14px}.section-page-brand{top:43px;font-size:19px}.section-page-title{margin-top:67px}.section-page-title h1{font-size:38px}.diary-paper-top{align-items:flex-start;flex-direction:column;padding:13px 17px}.diary-writing{padding:22px 18px}.diary-writing h2{font-size:31px}.diary-side{grid-template-columns:1fr}.diary-entry-grid,.insight-stat-grid,.mindful-tool-grid{grid-template-columns:1fr}.insight-stat-grid article{padding:19px}.mindful-big-spark{font-size:55px}.section-page-footer{align-items:flex-start;flex-wrap:wrap}.section-page-footer>span{width:100%;margin-left:0}}
+
+
+/* Interactive clothbound diary and floating pull-out page */
+.journal-diary-scene{position:relative;display:flex;align-items:center;justify-content:center;min-height:430px;max-width:1160px;margin:0 auto 25px;padding:28px;perspective:1200px;isolation:isolate}
+.journal-diary-cover{position:relative;z-index:1;width:min(100%,650px);min-height:390px;overflow:hidden;border:1px solid #526d50;border-radius:9px 18px 18px 9px;background:linear-gradient(115deg,#334f38 0%,#6c8966 9%,#526f50 15%,#405d43 100%);box-shadow:inset 5px 0 9px #263d2a, inset -3px 0 5px #9ab08b, 0 22px 42px rgba(46,67,42,.2);transition:transform .7s cubic-bezier(.2,.75,.25,1),filter .5s}
+.journal-diary-cover:before{content:"";position:absolute;inset:13px;border:1px solid rgba(228,231,202,.52);border-radius:5px 12px 12px 5px;pointer-events:none}
+.journal-cover-spine{position:absolute;inset:0 auto 0 25px;width:18px;border-left:1px solid rgba(236,236,211,.25);border-right:1px solid rgba(25,50,30,.35);background:linear-gradient(90deg,rgba(25,48,29,.32),rgba(222,230,200,.09),rgba(25,48,29,.23))}
+.journal-cover-decoration{position:absolute;right:28px;top:18px;color:rgba(231,234,207,.6);font-size:45px}
+.journal-cover-content{position:relative;display:flex;min-height:390px;flex-direction:column;align-items:center;justify-content:center;padding:35px 48px 30px 65px;text-align:center;color:#f4f0dd}
+.journal-cover-kicker{margin-bottom:24px;color:#d5dfc5;font-size:9px;font-weight:700;letter-spacing:2px}
+.journal-cover-content>svg{margin-bottom:13px;color:#d7dfc4}
+.journal-cover-content h2{margin:0;font:600 clamp(36px,5vw,51px)/1.1 'Playfair Display',serif;letter-spacing:-1px}
+.journal-cover-content h2 em{color:#c9d8b8;font-weight:500}
+.journal-cover-content p{margin:15px 0 19px;color:#e0e5d3;font:400 14px/1.8 'Playfair Display',serif}
+.journal-cover-rule{width:64px;height:1px;background:#aebf9d}
+.journal-cover-small{margin-top:15px;color:#c4d1b7;font-size:8px;letter-spacing:1.8px}
+.journal-open-button{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:24px;padding:12px 17px;border:1px solid rgba(239,241,218,.4);border-radius:8px;background:rgba(241,242,221,.1);color:#fff9e8;font-size:11px;font-weight:600;transition:background .2s,transform .2s}
+.journal-open-button:hover{transform:translateY(-2px);background:rgba(241,242,221,.2)}
+.journal-loose-page{position:absolute;z-index:3;top:50%;left:50%;width:min(83%,610px);min-height:390px;max-height:calc(100% - 20px);overflow:auto;transform:translate(-50%,-50%);border:1px solid #e5e0d1;border-radius:4px 12px 12px 4px;background:linear-gradient(90deg,#e9e3d3 0,#fffdf5 4%,#fffdf7 100%);box-shadow:0 25px 60px rgba(39,54,36,.22),inset 8px 0 12px rgba(137,125,96,.09);color:#405340;transform-origin:left center}
+.journal-loose-page.page-in-motion{animation:journalPagePull .85s cubic-bezier(.2,.7,.25,1) both}
+@keyframes journalPagePull{0%{opacity:0;transform:translate(-34%,-45%) rotate(-5deg) scale(.82);box-shadow:0 0 0 rgba(39,54,36,0)}55%{opacity:1;transform:translate(-52%,-53%) rotate(2deg) scale(1.025);box-shadow:0 30px 65px rgba(39,54,36,.2)}100%{opacity:1;transform:translate(-50%,-50%) rotate(0) scale(1)}}
+.journal-page-top{display:flex;justify-content:space-between;gap:10px;padding:17px 23px;border-bottom:1px solid #e7e4d8;background:#f8f5eb;color:#7b8975;font-size:8px;font-weight:700;letter-spacing:1px}
+.journal-page-top span{display:flex;align-items:center;gap:7px}
+.journal-page-body{padding:25px clamp(20px,4vw,38px) 28px}
+.journal-page-number{color:#9a9f87;font-size:8px;font-weight:700;letter-spacing:1.8px}
+.journal-page-body h2{margin:9px 0 5px;color:#405540;font:600 32px 'Playfair Display',serif}
+.journal-page-body>p{margin:0 0 22px;color:#778372;font-size:11px;line-height:1.7}
+.journal-page-body .diary-title-label input{color:#3c503d}
+.journal-page-body textarea{display:block;width:100%;min-height:160px;margin-top:15px;padding:14px 0;resize:vertical;border:0;outline:none;background:repeating-linear-gradient(to bottom,transparent 0,transparent 29px,#e7e6da 30px,#e7e6da 31px);background-position:0 13px;color:#455744;font:400 13px/31px 'DM Sans',sans-serif}
+.journal-page-actions{display:flex;align-items:center;gap:10px;margin-top:16px}
+.journal-page-actions .diary-save-button{margin-top:0;flex:1}
+.journal-close-button{min-height:45px;padding:0 14px;border:1px solid #d9dfd1;border-radius:9px;background:transparent;color:#61745d;font-size:11px;font-weight:600;white-space:nowrap}
+.journal-saved-message{max-width:1160px;margin:0 auto 18px}
+.journal-lower-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;max-width:1160px;margin:0 auto}
+.journal-lower-grid .diary-prompt-card{min-height:220px}
+.journal-page-card{background:linear-gradient(135deg,#fffdf8,#f8f6ed);cursor:default}
+.journal-saved-actions{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.journal-saved-actions .diary-entry-flourish{margin-top:18px}
+.journal-saved-actions button{display:flex;align-items:center;gap:6px;padding:7px 9px;border:1px solid #dfe4d7;border-radius:8px;background:#f4f6ed;color:#557653;font-size:10px;font-weight:600}
+.dark-theme .journal-diary-cover{border-color:#435c43;background:linear-gradient(115deg,#263c2b 0%,#49654a 12%,#354f39 100%)}
+.dark-theme .journal-loose-page{border-color:#3d4c3e;background:linear-gradient(90deg,#202b22 0,#253127 4%,#263329 100%);color:#e1e9df}
+.dark-theme .journal-page-top{background:#202b22;border-color:#3b493c;color:#b1bfb0}
+.dark-theme .journal-page-body h2,.dark-theme .journal-page-body .diary-title-label input,.dark-theme .journal-page-body textarea{color:#e1e9df}
+.dark-theme .journal-page-body textarea{background:repeating-linear-gradient(to bottom,transparent 0,transparent 29px,#3b493c 30px,#3b493c 31px);background-position:0 13px}
+.dark-theme .journal-page-actions .journal-close-button{border-color:#465647;color:#d5e2d2}
+.dark-theme .journal-page-card{background:linear-gradient(135deg,#202c23,#253127)}
+.dark-theme .journal-saved-actions button{background:#29392c;border-color:#435543;color:#c7ddc2}
+@media(max-width:700px){.journal-diary-scene{min-height:380px;padding:10px 0}.journal-diary-cover,.journal-cover-content{min-height:350px}.journal-cover-content{padding:28px 25px 25px 42px}.journal-cover-content h2{font-size:38px}.journal-cover-content p{font-size:12px}.journal-cover-kicker{font-size:7px;letter-spacing:1.3px}.journal-loose-page{width:96%;max-height:100%;min-height:340px}.journal-page-top{flex-direction:column;padding:13px 16px}.journal-page-body{padding:20px 17px}.journal-page-body h2{font-size:28px}.journal-page-body textarea{min-height:130px}.journal-page-actions{align-items:stretch;flex-direction:column}.journal-page-actions .diary-save-button{width:100%}.journal-lower-grid{grid-template-columns:1fr}.journal-cover-decoration{right:20px;font-size:34px}}
+@media(prefers-reduced-motion:reduce){.journal-loose-page.page-in-motion{animation:none}.journal-diary-cover,.journal-open-button{transition:none}}
