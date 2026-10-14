@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Heart, Leaf, ArrowRight, Eye, EyeOff, Mail, Lock, UserRound } from "lucide-react";
+import { Heart, Leaf, ArrowRight, Eye, EyeOff, Mail, Lock, UserRound, X } from "lucide-react";
 import "./AuthPage.css";
 
 export default function AuthPage({ mode = "login" }) {
@@ -86,7 +86,7 @@ export default function AuthPage({ mode = "login" }) {
         <div className="auth-visual-footer"><span>✳</span> Your pace. Your space. Your journey.</div>
       </section>
 
-      <section className="auth-form-side">
+      <section className="auth-form-side">\n        <Link to="/" className="auth-close-home" aria-label="Skip login and return to landing page" title="Back to landing page"><X size={20} /></Link>
         <Link className="auth-mobile-brand" to="/"><Leaf size={20} /> mindora</Link>
         <div className="auth-form-wrap">
           <span className="auth-form-kicker">{isRegister ? "YOUR JOURNEY STARTS HERE" : "GOOD TO HAVE YOU BACK"}</span>
