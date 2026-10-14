@@ -46,3 +46,20 @@
 .auth-back-home:hover{color:#52765a}
 @media(max-width:900px){.auth-page{grid-template-columns:minmax(0,1fr) minmax(380px,.9fr)}.auth-visual{padding:30px}.auth-visual-copy h1{font-size:47px}.auth-quote{margin-top:30px}}
 @media(max-width:700px){.auth-page{display:block}.auth-visual{display:none}.auth-form-side{min-height:100vh;padding:26px 22px}.auth-mobile-brand{display:flex;margin:0 auto 42px;font-size:21px}.auth-mobile-brand svg{color:#648868}.auth-form-wrap{max-width:440px}.auth-form-wrap h2{font-size:31px}.auth-back-home{margin-top:35px}}
+
+
+/* Stronger contrast and quick exit to the landing page */
+.auth-form-side{position:relative}
+.auth-close-home{position:absolute;top:24px;right:28px;display:grid;place-items:center;width:42px;height:42px;border:1px solid #d7e0d2;border-radius:50%;background:#fff;color:#344b38;text-decoration:none;box-shadow:0 5px 18px rgba(39,61,40,.08);transition:background .2s,transform .2s}
+.auth-close-home:hover{background:#edf3e9;transform:translateY(-1px)}
+.auth-eyebrow,.auth-form-kicker{color:#527457}
+.auth-visual-copy h1 em{color:#5f805f}
+.auth-visual-copy>p{color:#526653}
+.auth-quote small,.auth-visual-footer,.auth-quote>span{color:#627c61}
+.auth-subtitle,.auth-switch,.auth-back-home{color:#657361}
+.auth-tabs a{color:#596956}
+.auth-field{color:#3d503e}
+.auth-input-wrap input::placeholder{color:#737f70}
+.auth-privacy{color:#657761}
+.auth-demo-note{color:#687565}
+@media(max-width:700px){.auth-close-home{top:18px;right:18px;width:38px;height:38px}}
