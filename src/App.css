@@ -1966,3 +1966,49 @@ textarea:focus-visible {
 .dark-theme .journal-entry-count{background:#304333;color:#d3e6ce}
 @keyframes journal-page-in{from{opacity:0}to{opacity:1}}
 @media(max-width:600px){.journal-page{padding:24px 16px}.journal-page-header{flex-direction:column;align-items:stretch}.journal-back-button{align-self:flex-start}.journal-page .journal-modal-footer{align-items:stretch;flex-direction:column}.journal-page .journal-modal-footer .primary-button{width:100%}.journal-entry-list{grid-template-columns:1fr}}
+
+
+/* Light-theme readability pass: darker secondary text on pale backgrounds */
+.app-shell:not(.dark-theme) .sidebar-label,
+.app-shell:not(.dark-theme) .quote-caption,
+.app-shell:not(.dark-theme) .profile-copy span,
+.app-shell:not(.dark-theme) .breadcrumb,
+.app-shell:not(.dark-theme) .section-heading p,
+.app-shell:not(.dark-theme) .step-label,
+.app-shell:not(.dark-theme) .gentle-note,
+.app-shell:not(.dark-theme) .empty-history p,
+.app-shell:not(.dark-theme) .history-details span,
+.app-shell:not(.dark-theme) .stat-label,
+.app-shell:not(.dark-theme) .activity-copy span,
+.app-shell:not(.dark-theme) .activity-arrow,
+.app-shell:not(.dark-theme) .dashboard-footer,
+.app-shell:not(.dark-theme) .modal-description,
+.app-shell:not(.dark-theme) .privacy-note,
+.app-shell:not(.dark-theme) .breathing-description,
+.app-shell:not(.dark-theme) .breathing-hint,
+.app-shell:not(.dark-theme) .breathing-footer,
+.app-shell:not(.dark-theme) .journal-page-header p,
+.app-shell:not(.dark-theme) .journal-prompt p,
+.app-shell:not(.dark-theme) .journal-modal-footer>span,
+.app-shell:not(.dark-theme) .journal-privacy-note,
+.app-shell:not(.dark-theme) .journal-empty-state p,
+.app-shell:not(.dark-theme) .journal-entry-date {
+  color: #5f6f5d;
+}
+.app-shell:not(.dark-theme) .nav-item,
+.app-shell:not(.dark-theme) .search-box,
+.app-shell:not(.dark-theme) .icon-button,
+.app-shell:not(.dark-theme) .subtle-link,
+.app-shell:not(.dark-theme) .text-action {
+  color: #4b634d;
+}
+.app-shell:not(.dark-theme) .search-box input::placeholder,
+.app-shell:not(.dark-theme) .journal-modal textarea::placeholder {
+  color: #687765;
+}
+.app-shell:not(.dark-theme) .welcome-copy p,
+.app-shell:not(.dark-theme) .mindful-panel>p,
+.app-shell:not(.dark-theme) .reflection-panel>p,
+.app-shell:not(.dark-theme) .chart-note {
+  color: #5b6b58;
+}
