@@ -136,7 +136,8 @@ function Dashboard() {
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);\n  const [bookPage, setBookPage] = useState(0);
+  const [showSettings, setShowSettings] = useState(false);
+  const [bookPage, setBookPage] = useState(0);
 
   const [darkMode, setDarkMode] = useState(() => {
     try {
