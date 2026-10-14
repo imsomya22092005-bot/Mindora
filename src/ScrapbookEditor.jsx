@@ -18,7 +18,7 @@ async function fetchPhoto(id) {
   const db = await openDB();
   return new Promise((resolve, reject) => { const tx = db.transaction("photos", "readonly"); const req = tx.objectStore("photos").get(id); req.onsuccess = () => { db.close(); resolve(req.result?.blob || null); }; req.onerror = () => { db.close(); reject(new Error("Could not load photo.")); }; });
 }
-async function erasePhoto(id) {
+export async function deleteScrapbookPage(pageId) {\n  const layouts = readLayouts();\n  const items = layouts[String(pageId)] || [];\n  for (const item of items) if (item.type === "photo") { try { await erasePhoto(item.id); } catch {} }\n  delete layouts[String(pageId)];\n  writeLayouts(layouts);\n}\nasync function erasePhoto(id) {
   const db = await openDB();
   return new Promise((resolve, reject) => { const tx = db.transaction("photos", "readwrite"); tx.objectStore("photos").delete(id); tx.oncomplete = () => { db.close(); resolve(); }; tx.onerror = () => { db.close(); reject(new Error("Could not delete photo.")); }; });
 }
