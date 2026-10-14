@@ -900,31 +900,26 @@ function Dashboard() {
       </main>
 
       {showJournal && (
-        <div
-          className="modal-overlay"
-          onClick={() => setShowJournal(false)}
-        >
-          <div
-            className="journal-modal"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              className="modal-close"
-              onClick={() => setShowJournal(false)}
-              aria-label="Close journal"
-            >
-              <X size={19} />
-            </button>
-
-            <span className="modal-icon">
-              <BookOpen size={22} />
-            </span>
-            <div className="section-kicker">YOUR PRIVATE SPACE</div>
-            <h2>A note to yourself</h2>
-            <p className="journal-description">
-              What has been on your mind lately? Write without worrying
-              about getting it right.
-            </p>
+        <div className="journal-page-overlay">
+          <div className="journal-page">
+            <div className="journal-page-header">
+              <div>
+                <div className="journal-page-eyebrow"><BookOpen size={16} /> YOUR PRIVATE SPACE</div>
+                <h1>Your journal</h1>
+                <p>A quiet place for the thoughts you don't need to explain.</p>
+              </div>
+              <button className="journal-back-button" onClick={() => setShowJournal(false)}>
+                <ArrowRight size={16} /> Back to overview
+              </button>
+            </div>
+            <div className="journal-writing-card">
+              <div className="journal-prompt">
+                <span className="journal-prompt-icon"><Sparkles size={18} /></span>
+                <div>
+                  <strong>A gentle prompt for today</strong>
+                  <p>What is taking up space in your mind right now?</p>
+                </div>
+              </div>
 
             <textarea
               className="journal-textarea"
@@ -948,10 +943,33 @@ function Dashboard() {
               </button>
             </div>
 
-            <p className="privacy-note">
-              Your entries are stored locally in this browser, not on a
-              server. Clearing browser data may remove them.
-            </p>
+            </div>
+            <section className="journal-entries-section">
+              <div className="journal-entries-heading">
+                <div>
+                  <div className="section-kicker">LOOKING BACK WITH KINDNESS</div>
+                  <h2>Your saved reflections</h2>
+                </div>
+                <span className="journal-entry-count">{journalEntries.length} {journalEntries.length === 1 ? "entry" : "entries"}</span>
+              </div>
+              {journalEntries.length === 0 ? (
+                <div className="journal-empty-state">
+                  <span><BookOpen size={22} /></span>
+                  <strong>Your first reflection can start here.</strong>
+                  <p>When you save a note, it will be waiting for you in this space.</p>
+                </div>
+              ) : (
+                <div className="journal-entry-list">
+                  {journalEntries.map((entry) => (
+                    <article className="journal-entry-card" key={entry.id}>
+                      <div className="journal-entry-date"><CalendarDays size={14} /> {entry.date}</div>
+                      <p>{entry.text}</p>
+                    </article>
+                  ))}
+                </div>
+              )}
+            </section>
+            <p className="journal-privacy-note"><Heart size={13} /> Your entries are stored locally in this browser. Clearing browser data may remove them.</p>
           </div>
         </div>
       )}
