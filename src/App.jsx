@@ -377,7 +377,18 @@ function Dashboard() {
 
         {showSettings && (
           <div className="settings-popover">
-            <strong>Appearance</strong>
+            <div className="settings-popover-heading">
+              <strong>Appearance</strong>
+              <button
+                className="settings-close"
+                type="button"
+                onClick={() => setShowSettings(false)}
+                aria-label="Close settings"
+                title="Close settings"
+              >
+                <X size={16} />
+              </button>
+            </div>
             <button
               className="theme-setting"
               onClick={() => setDarkMode((value) => !value)}
