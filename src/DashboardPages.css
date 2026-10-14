@@ -166,3 +166,33 @@
   .section-page-title{margin-top:38px}
   .section-page-eyebrow{font-size:9px;letter-spacing:1.2px}
 }
+
+
+/* Strong, page-scoped contrast fix for the journal heading and eyebrow */
+main.mindora-section-page .section-page-title .section-page-eyebrow {
+  color: #365b38 !important;
+  opacity: 1 !important;
+  text-shadow: none;
+}
+main.mindora-section-page .section-page-title h1 {
+  color: #263c2b !important;
+}
+main.mindora-section-page .section-page-title h1 em {
+  color: #426d45 !important;
+  opacity: 1 !important;
+}
+main.mindora-section-page .section-page-title p {
+  color: #536650 !important;
+}
+main.mindora-section-page.dark-theme .section-page-title .section-page-eyebrow {
+  color: #c2ddb9 !important;
+}
+main.mindora-section-page.dark-theme .section-page-title h1 {
+  color: #edf4e9 !important;
+}
+main.mindora-section-page.dark-theme .section-page-title h1 em {
+  color: #b8d7ae !important;
+}
+main.mindora-section-page.dark-theme .section-page-title p {
+  color: #c2cfbe !important;
+}
