@@ -642,6 +642,9 @@ function Dashboard() {
             </div>
 
             <div className="panel history-panel">
+              <span className="history-emoji-float float-emoji-two" aria-hidden="true">🦋</span>
+              <span className="history-emoji-float float-emoji-three" aria-hidden="true">🌼</span>
+              <span className="history-emoji-float float-emoji-four" aria-hidden="true">💫</span>
               {moodHistory.length === 0 ? (
                 <div className="empty-history">
                   <span className="history-empty-icon">
