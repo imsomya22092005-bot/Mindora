@@ -35,7 +35,7 @@ export default function LandingPage() {
         </a>
 
         <nav className="landing-nav-links">
-          <a href="#home">Home</a>
+          <a href="/dashboard">Home</a>
           <a href="#features">Features</a>
           <a href="#how-it-works">How it works</a>
           <a href="#about">About</a>
