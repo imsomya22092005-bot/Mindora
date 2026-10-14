@@ -150,3 +150,19 @@
 .dark-theme .diary-entries .diary-empty:before,.dark-theme .diary-entries .diary-empty:after{border-color:#4a6249;background:linear-gradient(145deg,#304332,#253328);color:#b5d0aa}
 @media(max-width:700px){.diary-entries .diary-empty{width:min(100%,310px);min-height:285px;padding:34px 27px}.diary-entries .diary-empty:before{left:-12px;top:-20px;width:49px;height:49px;font-size:23px}.diary-entries .diary-empty:after{right:-12px;bottom:-14px;width:49px;height:49px;font-size:21px}.diary-entries .diary-empty h3{font-size:22px}}
 @media(prefers-reduced-motion:reduce){.diary-entries .diary-empty:before,.diary-entries .diary-empty:after{animation:none}}
+
+
+/* Improve header spacing and make the small eyebrow text readable */
+.section-page-header{padding-top:42px}
+.section-page-brand{top:0;z-index:2}
+.section-page-title{margin-top:24px}
+.section-page-eyebrow{color:#496b48;font-weight:800}
+.dark-theme .section-page-eyebrow{color:#b4d0a9}
+@media(max-width:600px){
+  .section-page-header{padding-top:0}
+  .section-page-brand{top:0;left:auto;right:0;transform:none;font-size:18px;gap:6px}
+  .section-brand-mark{width:29px;height:29px}
+  .section-back{max-width:calc(100% - 125px);min-height:32px}
+  .section-page-title{margin-top:38px}
+  .section-page-eyebrow{font-size:9px;letter-spacing:1.2px}
+}
