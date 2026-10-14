@@ -37,6 +37,14 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./LandingPage";
 
+import {
+  CalmCorner,
+  InnerGarden,
+  LittleComfortBox,
+  MoodSoundscape,
+  LetItOutJournal,
+} from "./WellnessPages";
+
 const moods = [
   { label: "Low", emoji: "😔", value: 2, color: "#dce6f3" },
   { label: "Meh", emoji: "😕", value: 4, color: "#e9e4f4" },
@@ -1077,8 +1085,30 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Landing page */}
         <Route path="/" element={<LandingPage />} />
+
+        {/* Main dashboard — existing features preserved */}
         <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Mindora wellness pages */}
+        <Route path="/calm-corner" element={<CalmCorner />} />
+        <Route path="/inner-garden" element={<InnerGarden />} />
+        <Route
+          path="/comfort-box"
+          element={<LittleComfortBox />}
+        />
+        <Route
+          path="/soundscape"
+          element={<MoodSoundscape />}
+        />
+        <Route
+          path="/let-it-out"
+          element={<LetItOutJournal />}
+        />
+
+        {/* Fallback for unknown routes */}
+        <Route path="*" element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,691 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap");
+
+.wellness-page {
+  --wellness-bg: #f5f6ef;
+  --wellness-card: #ffffff;
+  --wellness-text: #263b30;
+  --wellness-muted: #758276;
+  --wellness-green: #55775e;
+  --wellness-light: #e6ede2;
+  --wellness-border: #e2e7dc;
+
+  min-height: 100vh;
+  padding: 24px 7%;
+  background: var(--wellness-bg);
+  color: var(--wellness-text);
+  font-family: "DM Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+.wellness-page *,
+.wellness-page *::before,
+.wellness-page *::after {
+  box-sizing: border-box;
+}
+
+.wellness-page button,
+.wellness-page textarea,
+.wellness-page input {
+  font: inherit;
+}
+
+.wellness-page button {
+  cursor: pointer;
+}
+
+.wellness-topbar {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.wellness-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--wellness-muted);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.wellness-back:hover {
+  color: var(--wellness-green);
+}
+
+.wellness-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--wellness-green);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+.wellness-heading {
+  max-width: 750px;
+  margin: 64px auto 42px;
+  text-align: center;
+}
+
+.wellness-heading-icon {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 20px;
+  border-radius: 22px;
+  color: var(--wellness-green);
+  background: var(--wellness-light);
+}
+
+.wellness-eyebrow {
+  color: var(--wellness-green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.wellness-heading h1 {
+  margin: 12px 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.wellness-heading > p:last-child {
+  max-width: 520px;
+  margin: 0 auto;
+  color: var(--wellness-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.wellness-content {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+}
+
+.wellness-panel,
+.calm-card,
+.garden-summary,
+.comfort-note,
+.rain-card,
+.journal-editor {
+  padding: 30px;
+  border: 1px solid var(--wellness-border);
+  border-radius: 24px;
+  background: var(--wellness-card);
+  box-shadow: 0 10px 35px rgba(48, 67, 46, 0.035);
+}
+
+.wellness-panel h2,
+.garden-summary h2,
+.rain-card h2,
+.journal-editor h2 {
+  margin: 8px 0 12px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 27px;
+  font-weight: 500;
+}
+
+.wellness-panel > p:not(.wellness-eyebrow),
+.garden-summary > p,
+.rain-card > p:not(.wellness-eyebrow),
+.journal-editor > p:not(.wellness-eyebrow) {
+  color: var(--wellness-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.wellness-muted {
+  color: var(--wellness-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.wellness-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 12px 22px;
+  border: 1px solid var(--wellness-green);
+  border-radius: 30px;
+  background: var(--wellness-green);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.wellness-button:hover {
+  background: #3f6048;
+  transform: translateY(-1px);
+}
+
+.wellness-button.secondary {
+  margin-top: 12px;
+  border-color: var(--wellness-border);
+  background: var(--wellness-light);
+  color: var(--wellness-text);
+}
+
+.wellness-button.secondary:hover {
+  background: #dce7d8;
+}
+
+.calm-card {
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 45%, #e8f0e2 0%, #f8f9f4 65%);
+}
+
+.breathing-orb {
+  display: grid;
+  place-items: center;
+  width: 220px;
+  height: 220px;
+  margin: 25px auto;
+  border: 1px solid #c5d7bf;
+  border-radius: 50%;
+  background: rgba(210, 228, 201, 0.45);
+  box-shadow: 0 0 0 15px rgba(210, 228, 201, 0.18);
+  transition: transform 4s ease-in-out;
+}
+
+.breathing-active {
+  animation: mindful-breathe 8s ease-in-out infinite;
+}
+
+.breathing-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--wellness-green);
+}
+
+.breathing-inner span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@keyframes mindful-breathe {
+  0%,
+  100% {
+    transform: scale(0.82);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.grounding-dots {
+  display: flex;
+  gap: 8px;
+  margin: 22px 0 10px;
+}
+
+.grounding-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #dfe5da;
+}
+
+.grounding-dots .dot-active {
+  background: var(--wellness-green);
+}
+
+.garden-summary {
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(145deg, #e7efdf, #f9f8ef);
+}
+
+.garden-illustration {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: 16px;
+  min-height: 100px;
+  margin-bottom: 18px;
+  font-size: 36px;
+}
+
+.garden-illustration span:nth-child(odd) {
+  animation: garden-float 3s ease-in-out infinite;
+}
+
+.garden-illustration span:nth-child(even) {
+  animation: garden-float 3.5s ease-in-out infinite reverse;
+}
+
+@keyframes garden-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #d6e0ce;
+}
+
+.progress-track > div {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--wellness-green);
+  transition: width 0.3s ease;
+}
+
+.care-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.care-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--wellness-border);
+  border-radius: 15px;
+  background: #fff;
+  color: var(--wellness-text);
+  text-align: left;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.care-item:hover {
+  border-color: #9db69a;
+}
+
+.care-emoji {
+  font-size: 23px;
+}
+
+.care-item > span:nth-child(2) {
+  flex: 1;
+  font-size: 13px;
+}
+
+.care-check {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--wellness-border);
+  border-radius: 50%;
+  color: var(--wellness-green);
+}
+
+.care-done {
+  border-color: #c7d9c0;
+  background: #edf4e9;
+}
+
+.care-done .care-check {
+  border-color: var(--wellness-green);
+  background: var(--wellness-green);
+  color: white;
+}
+
+.care-done > span:nth-child(2) {
+  color: var(--wellness-muted);
+  text-decoration: line-through;
+}
+
+.mood-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.mood-chip {
+  padding: 10px 17px;
+  border: 1px solid var(--wellness-border);
+  border-radius: 25px;
+  background: white;
+  color: var(--wellness-text);
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.mood-chip:hover,
+.mood-chip.mood-selected {
+  border-color: var(--wellness-green);
+  background: var(--wellness-light);
+  color: var(--wellness-green);
+}
+
+.comfort-note {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(150deg, #e6eee1, #f8f4e9);
+}
+
+.comfort-note > svg {
+  margin: 5px 0 12px;
+  color: var(--wellness-green);
+}
+
+.comfort-note blockquote {
+  max-width: 540px;
+  margin: 25px auto;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.6;
+}
+
+.note-flower {
+  display: block;
+  margin: 12px 0 22px;
+  color: #7d9a75;
+  font-size: 32px;
+}
+
+.rain-card {
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(180deg, #e7efec, #fdfdf9);
+}
+
+.rain-scene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  margin: -30px -30px 26px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #b9d0d0, #e1ebe3);
+}
+
+.rain-cloud {
+  position: relative;
+  z-index: 1;
+  color: #718b8d;
+  font-size: 90px;
+  line-height: 1;
+}
+
+.rain-drop {
+  position: absolute;
+  top: 95px;
+  color: #608c9a;
+  font-size: 25px;
+  animation: rain-fall 1.1s linear infinite;
+}
+
+.drop-one {
+  left: 30%;
+}
+
+.drop-two {
+  left: 43%;
+  animation-delay: 0.25s;
+}
+
+.drop-three {
+  left: 57%;
+  animation-delay: 0.45s;
+}
+
+.drop-four {
+  left: 70%;
+  animation-delay: 0.65s;
+}
+
+.rain-hill {
+  position: absolute;
+  right: 12px;
+  bottom: -15px;
+  font-size: 65px;
+}
+
+@keyframes rain-fall {
+  from {
+    transform: translateY(-8px);
+    opacity: 0.3;
+  }
+  to {
+    transform: translateY(35px);
+    opacity: 1;
+  }
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 25px 0;
+}
+
+.audio-play,
+.audio-stop {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+}
+
+.audio-play {
+  background: var(--wellness-green);
+  color: white;
+}
+
+.audio-stop {
+  background: var(--wellness-light);
+  color: var(--wellness-green);
+}
+
+.audio-controls > span {
+  color: var(--wellness-muted);
+  font-size: 12px;
+}
+
+.volume-control {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+  color: var(--wellness-text);
+  font-size: 13px;
+  text-align: left;
+}
+
+.volume-control span {
+  color: var(--wellness-muted);
+}
+
+.volume-control input {
+  grid-column: 1 / -1;
+  width: 100%;
+  accent-color: var(--wellness-green);
+}
+
+.audio-error {
+  color: #a43f36 !important;
+}
+
+.journal-editor textarea {
+  display: block;
+  width: 100%;
+  min-height: 170px;
+  margin: 20px 0;
+  padding: 17px;
+  resize: vertical;
+  border: 1px solid var(--wellness-border);
+  border-radius: 16px;
+  outline: none;
+  background: #fbfcf8;
+  color: var(--wellness-text);
+  line-height: 1.8;
+}
+
+.journal-editor textarea:focus {
+  border-color: #91ad8d;
+  box-shadow: 0 0 0 3px rgba(85, 119, 94, 0.09);
+}
+
+.journal-editor textarea::placeholder {
+  color: #9ba69a;
+}
+
+.journal-privacy {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 20px;
+  font-size: 11px !important;
+}
+
+.journal-privacy svg {
+  flex-shrink: 0;
+}
+
+.journal-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.journal-entry {
+  padding: 18px;
+  border: 1px solid var(--wellness-border);
+  border-radius: 16px;
+  background: #fbfcf8;
+}
+
+.journal-entry time {
+  color: var(--wellness-muted);
+  font-size: 11px;
+}
+
+.journal-entry > p {
+  margin: 12px 0;
+  overflow-wrap: anywhere;
+  color: var(--wellness-text);
+  font-size: 14px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.journal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.journal-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 11px;
+  border: 1px solid var(--wellness-border);
+  border-radius: 20px;
+  background: white;
+  color: var(--wellness-green);
+  font-size: 12px;
+}
+
+.journal-actions button:last-child {
+  color: #a34f46;
+}
+
+.wellness-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 45px auto 15px;
+  color: var(--wellness-muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.wellness-footer svg {
+  color: #b17b78;
+}
+
+@media (max-width: 600px) {
+  .wellness-page {
+    padding: 18px 16px;
+  }
+
+  .wellness-heading {
+    margin: 44px auto 28px;
+  }
+
+  .wellness-heading h1 {
+    font-size: 38px;
+  }
+
+  .wellness-panel,
+  .calm-card,
+  .garden-summary,
+  .comfort-note,
+  .rain-card,
+  .journal-editor {
+    padding: 22px;
+    border-radius: 19px;
+  }
+
+  .breathing-orb {
+    width: 190px;
+    height: 190px;
+  }
+
+  .rain-scene {
+    margin: -22px -22px 22px;
+  }
+
+  .garden-illustration {
+    gap: 9px;
+    font-size: 29px;
+  }
+
+  .wellness-brand {
+    font-size: 19px;
+  }
+
+  .wellness-back {
+    font-size: 12px;
+  }
+
+  .wellness-footer {
+    line-height: 1.8;
+  }
+}
