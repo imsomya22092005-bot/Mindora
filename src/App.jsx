@@ -37,6 +37,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./LandingPage";
 import AuthPage from "./AuthPage";
+import { JournalPage, InsightsPage, MindfulMomentsPage } from "./DashboardPages";
 
 import {
   CalmCorner,
@@ -131,6 +132,7 @@ function Dashboard() {
   const [breathingSeconds, setBreathingSeconds] = useState(60);
 
   const [activeNav, setActiveNav] = useState("Overview");
+  const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -309,27 +311,10 @@ function Dashboard() {
 
   function navigateTo(section) {
     setActiveNav(section);
-
-    if (section === "Journal") {
-      setShowJournal(true);
-      return;
-    }
-
-    if (section === "Mindful moments") {
-      setShowBreathing(true);
-      return;
-    }
-
-    if (section === "Insights") {
-      document
-        .getElementById("mood-insights")
-        ?.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-
-    if (section === "Overview") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    if (section === "Overview") navigate("/dashboard");
+    if (section === "Journal") navigate("/journal");
+    if (section === "Insights") navigate("/insights");
+    if (section === "Mindful moments") navigate("/mindful-moments");
   }
 
   const navItems = [
@@ -1095,6 +1080,9 @@ function App() {
 
         {/* Main dashboard — existing features preserved */}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/journal" element={<JournalPage />} />
+        <Route path="/insights" element={<InsightsPage />} />
+        <Route path="/mindful-moments" element={<MindfulMomentsPage />} />
 
         {/* Mindora wellness pages */}
         <Route path="/calm-corner" element={<CalmCorner />} />
