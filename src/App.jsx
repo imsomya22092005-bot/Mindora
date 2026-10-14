@@ -136,7 +136,7 @@ function Dashboard() {
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);\n  const [bookPage, setBookPage] = useState(0);
 
   const [darkMode, setDarkMode] = useState(() => {
     try {
@@ -535,63 +535,91 @@ function Dashboard() {
             className="section-block mood-section"
             id="daily-checkin"
           >
-            <div className="section-heading">
+            <div className="section-heading mood-book-heading">
               <div>
-                <div className="section-kicker">YOUR DAILY CHECK-IN</div>
-                <h2>How are you feeling today?</h2>
-                <p>Take a breath and choose what feels closest right now.</p>
+                <div className="section-kicker">A MOMENT JUST FOR YOU</div>
+                <h2>Your mood today</h2>
+                <p>Turn a page, take a breath, and meet yourself where you are.</p>
               </div>
-              <span className="step-label">
-                <Sparkles size={14} /> No judgement, just you
-              </span>
             </div>
 
-            <div className="panel mood-panel">
-              <div className="mood-options">
-                {moods.map((mood) => (
-                  <button
-                    key={mood.label}
-                    className={`mood-option ${
-                      selectedMood?.label === mood.label ? "selected" : ""
-                    }`}
-                    onClick={() => {
-                      setSelectedMood(mood);
-                      setShowMoodMessage(false);
-                    }}
-                    aria-pressed={selectedMood?.label === mood.label}
-                  >
-                    <span
-                      className="mood-emoji"
-                      style={{ backgroundColor: mood.color }}
-                    >
-                      {mood.emoji}
-                    </span>
-                    <span className="mood-label">{mood.label}</span>
-                    {selectedMood?.label === mood.label && (
-                      <span className="mood-check">
-                        <Check size={12} />
+            <div className="mood-book-wrap">
+              <div className="mood-book">
+                <div className="mood-book-spine" aria-hidden="true" />
+                <div className="mood-book-page">
+                  {bookPage === 0 ? (
+                    <div className="book-cover-content">
+                      <span className="book-eyebrow">MINDORA · DAILY REFLECTION</span>
+                      <span className="book-cover-icon"><BookOpen size={34} strokeWidth={1.4} /></span>
+                      <h3>Your mood today</h3>
+                      <p>There is no right way to feel.<br />Let’s make a little room for yours.</p>
+                      <span className="book-page-number">A LITTLE CHECK-IN · 01</span>
+                    </div>
+                  ) : bookPage <= moods.length ? (
+                    <div className="mood-book-entry" key={bookPage}>
+                      <span className="book-eyebrow">PAGE {String(bookPage + 1).padStart(2, "0")} · YOUR FEELINGS ARE WELCOME</span>
+                      <span className="book-mood-emoji" style={{ backgroundColor: moods[bookPage - 1].color }}>
+                        {moods[bookPage - 1].emoji}
                       </span>
-                    )}
-                  </button>
-                ))}
+                      <h3>{moods[bookPage - 1].label}</h3>
+                      <p className="book-quote">
+                        {[
+                          "You don’t have to be okay to deserve kindness. Take today one small breath at a time.",
+                          "It’s alright to feel a little out of sorts. You don’t need to have all the answers today.",
+                          "Some days are simply days. You can meet this moment exactly as it is.",
+                          "Let yourself enjoy the good that’s here, without needing to explain it or hold onto it.",
+                          "Let this moment be yours. You’re allowed to feel joy and let it gently fill your day."
+                        ][bookPage - 1]}
+                      </p>
+                      <button
+                        className={selectedMood?.label === moods[bookPage - 1].label ? "book-feeling-button selected" : "book-feeling-button"}
+                        onClick={() => {
+                          setSelectedMood(moods[bookPage - 1]);
+                          setShowMoodMessage(false);
+                        }}
+                      >
+                        {selectedMood?.label === moods[bookPage - 1].label ? <><Check size={16} /> This is how I feel</> : <>This feels like me <Heart size={16} /></>}
+                      </button>
+                      <span className="book-page-number">MINDORA · {String(bookPage + 1).padStart(2, "0")}</span>
+                    </div>
+                  ) : (
+                    <div className="book-goodbye">
+                      <span className="book-goodbye-heart"><Heart size={30} /></span>
+                      <h3>Thank you for showing up for yourself.</h3>
+                      <p>Whatever today held, you made space for it.<br />We’ll be right here when tomorrow comes.</p>
+                      <span className="book-goodbye-script">See you tomorrow.</span>
+                      <span className="book-page-number">UNTIL NEXT TIME · 07</span>
+                    </div>
+                  )}
+                </div>
               </div>
-
-              <div className="mood-panel-footer">
-                <span className="gentle-note">
-                  <Heart size={14} />
-                  Every feeling is welcome here.
-                </span>
+              <div className="mood-book-controls">
                 <button
-                  className="primary-button"
-                  onClick={saveMood}
-                  disabled={!selectedMood}
+                  className="book-turn-button secondary"
+                  onClick={() => setBookPage((page) => Math.max(0, page - 1))}
+                  disabled={bookPage === 0}
                 >
-                  Save check-in <ArrowRight size={15} />
+                  <ArrowRight className="book-back-arrow" size={16} /> Previous page
+                </button>
+                {bookPage > 0 && bookPage <= moods.length && (
+                  <button
+                    className="book-save-button"
+                    onClick={saveMood}
+                    disabled={!selectedMood}
+                    title={!selectedMood ? "Choose this feeling first" : "Save your daily check-in"}
+                  >
+                    Save check-in <Heart size={15} />
+                  </button>
+                )}
+                <button
+                  className="book-turn-button"
+                  onClick={() => setBookPage((page) => page >= moods.length + 1 ? 0 : page + 1)}
+                >
+                  {bookPage === moods.length + 1 ? "Read again" : "Turn the page"} <ArrowRight size={16} />
                 </button>
               </div>
-
               {showMoodMessage && savedMood && (
-                <div className="success-message">
+                <div className="success-message book-success">
                   <Check size={16} />
                   Check-in saved. Thank you for taking a moment for yourself.
                 </div>
