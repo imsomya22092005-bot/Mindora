@@ -2751,10 +2751,10 @@ textarea:focus-visible {
 }
 
 
-/* Soft floating mood doodles in the open space of the history panel */
+/* Five bright, natural emoji accents floating above the history card */
 .mood-section + .section-block .history-panel {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
 }
 .mood-section + .section-block .history-panel > * {
@@ -2764,47 +2764,58 @@ textarea:focus-visible {
 .history-panel::before,
 .history-panel::after {
   position: absolute;
-  z-index: 0;
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border: 1px solid rgba(128, 157, 116, .22);
-  border-radius: 50%;
-  background: rgba(235, 243, 228, .72);
-  box-shadow: 0 5px 14px rgba(62, 87, 59, .06);
-  font-size: 17px;
+  z-index: 3;
+  display: block;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: 25px;
   line-height: 1;
   pointer-events: none;
-  animation: historyEmojiFloat 5s ease-in-out infinite;
+  filter: drop-shadow(0 3px 4px rgba(42, 54, 39, .13));
+  animation: historyEmojiFloat 4.8s ease-in-out infinite;
 }
 .history-panel::before {
-  content: "✦";
-  top: 22px;
-  left: 20px;
-  color: #8ca77d;
+  content: "✨";
+  top: -17px;
+  left: 11%;
 }
 .history-panel::after {
-  content: "☁";
-  right: 20px;
-  bottom: 20px;
-  color: #91a98a;
-  animation-delay: -2.4s;
+  content: "🌸";
+  right: 10%;
+  bottom: -15px;
+  animation-delay: -2.2s;
+}
+/* Three extra accents use the same gentle, drifting motion */
+.mood-section + .section-block .history-panel .history-emoji-float {
+  position: absolute;
+  z-index: 3;
+  display: block;
+  pointer-events: none;
+  font-size: 23px;
+  line-height: 1;
+  filter: drop-shadow(0 3px 4px rgba(42, 54, 39, .13));
+  animation: historyEmojiFloat 5.3s ease-in-out infinite;
 }
 @keyframes historyEmojiFloat {
-  0%, 100% { transform: translateY(0) rotate(-5deg); }
-  50% { transform: translateY(-7px) rotate(5deg); }
+  0%, 100% { transform: translateY(0) rotate(-7deg); }
+  50% { transform: translateY(-10px) rotate(7deg); }
 }
 .dark-theme .history-panel::before,
 .dark-theme .history-panel::after {
-  border-color: rgba(176, 204, 163, .22);
-  background: rgba(53, 76, 56, .78);
-  box-shadow: 0 5px 14px rgba(0, 0, 0, .12);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .history-panel::before, .history-panel::after { animation: none; }
+  .history-panel::before, .history-panel::after,
+  .mood-section + .section-block .history-panel .history-emoji-float { animation: none; }
 }
 @media (max-width: 700px) {
-  .history-panel::before { top: 12px; left: 12px; width: 27px; height: 27px; font-size: 14px; }
-  .history-panel::after { right: 12px; bottom: 12px; width: 27px; height: 27px; font-size: 14px; }
+  .history-panel::before { top: -13px; left: 7%; font-size: 21px; }
+  .history-panel::after { right: 7%; bottom: -12px; font-size: 21px; }
+  .mood-section + .section-block .history-panel .history-emoji-float { font-size: 19px; }
 }
