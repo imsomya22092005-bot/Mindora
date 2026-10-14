@@ -2012,3 +2012,65 @@ textarea:focus-visible {
 .app-shell:not(.dark-theme) .chart-note {
   color: #5b6b58;
 }
+
+
+/* Site-wide accessibility and spacing polish */
+:root {
+  --green: #42664d;
+  --green-dark: #263f30;
+  --green-soft: #e6eee4;
+  --muted: #59685d;
+  --border: #dce4da;
+}
+.app-shell {
+  color: #26382d;
+}
+.app-shell p,
+.app-shell small,
+.app-shell label,
+.app-shell .muted,
+.app-shell .subtitle,
+.app-shell .description,
+.app-shell .helper-text {
+  color: #58675c;
+}
+.app-shell h1,
+.app-shell h2,
+.app-shell h3,
+.app-shell h4 {
+  color: #20372a;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.app-shell section,
+.app-shell .page-section {
+  min-width: 0;
+}
+.app-shell input,
+.app-shell textarea,
+.app-shell select {
+  color: #26382d;
+}
+.app-shell input::placeholder,
+.app-shell textarea::placeholder {
+  color: #66746a;
+  opacity: 1;
+}
+.app-shell button:focus-visible,
+.app-shell a:focus-visible,
+.app-shell input:focus-visible,
+.app-shell textarea:focus-visible,
+.app-shell select:focus-visible {
+  outline: 3px solid #8baa8d;
+  outline-offset: 3px;
+}
+.app-shell img,
+.app-shell svg {
+  flex-shrink: 0;
+}
+@media (max-width: 760px) {
+  .app-shell h1 { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+  .app-shell h2 { font-size: clamp(1.45rem, 5.5vw, 2rem); }
+  .app-shell p { line-height: 1.65; }
+}
