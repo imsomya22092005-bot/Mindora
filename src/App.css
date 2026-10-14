@@ -2317,3 +2317,47 @@ textarea:focus-visible {
   .mood-emoji { width: 42px; height: 42px; font-size: 24px; }
   .mood-label { font-size: 12px; }
 }
+
+
+/* Use the available content width intentionally — avoid narrow centered panels */
+.mood-panel,
+.history-panel {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+}
+.mood-options {
+  width: 100%;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  justify-content: stretch;
+}
+.mood-option {
+  width: 100%;
+  min-width: 0;
+}
+.history-panel {
+  min-height: 190px;
+}
+.empty-history {
+  min-height: 145px;
+}
+.sidebar-quote {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+.sidebar-quote p {
+  max-width: 24ch;
+  margin-inline: auto;
+  font-size: 15px !important;
+  line-height: 1.85 !important;
+}
+@media (max-width: 900px) {
+  .mood-panel,
+  .history-panel {
+    width: 100%;
+    max-width: none;
+  }
+}
