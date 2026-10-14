@@ -41,40 +41,88 @@ export function JournalPage() {
   const [title, setTitle] = useState("");
   const [activePrompt, setActivePrompt] = useState(0);
   const [savedNotice, setSavedNotice] = useState(false);
+  const [diaryOpen, setDiaryOpen] = useState(false);
+  const [pageFlying, setPageFlying] = useState(false);
+  const [viewEntry, setViewEntry] = useState(null);
   useEffect(() => { try { localStorage.setItem("mindora-journal-entries", JSON.stringify(entries)); } catch {} }, [entries]);
+
+  function openFreshPage() {
+    setViewEntry(null);
+    setTitle("");
+    setText("");
+    setDiaryOpen(true);
+    setPageFlying(true);
+    window.setTimeout(() => setPageFlying(false), 850);
+  }
+  function openSavedPage(entry) {
+    setViewEntry(entry);
+    setTitle(entry.title || "");
+    setText(entry.text || "");
+    setDiaryOpen(true);
+    setPageFlying(true);
+    window.setTimeout(() => setPageFlying(false), 850);
+  }
   function saveEntry() {
     const body = text.trim();
     if (!body) return;
-    const entry = { id: Date.now(), title: title.trim() || "A page from today", text: body, preview: body.length > 90 ? body.slice(0,90)+"…" : body, date: new Date().toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}), timestamp: Date.now() };
-    setEntries(previous => [entry, ...previous]);
-    setText(""); setTitle(""); setSavedNotice(true);
-    window.setTimeout(() => setSavedNotice(false), 2600);
+    if (viewEntry) {
+      const updated = { ...viewEntry, title: title.trim() || "A page from today", text: body, preview: body.length > 90 ? body.slice(0,90)+"…" : body };
+      setEntries(previous => previous.map(entry => entry.id === viewEntry.id ? updated : entry));
+    } else {
+      const entry = { id: Date.now(), title: title.trim() || "A page from today", text: body, preview: body.length > 90 ? body.slice(0,90)+"…" : body, date: new Date().toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}), timestamp: Date.now() };
+      setEntries(previous => [entry, ...previous]);
+    }
+    setPageFlying(true);
+    setSavedNotice(true);
+    window.setTimeout(() => { setPageFlying(false); setDiaryOpen(false); setViewEntry(null); setTitle(""); setText(""); }, 850);
+    window.setTimeout(() => setSavedNotice(false), 3000);
   }
   function deleteEntry(id) { setEntries(previous => previous.filter(entry => entry.id !== id)); }
   return <main className={theme}>
-    <PageHeader eyebrow="YOUR PRIVATE PAGES" title={<>A little space to <em>let it out.</em></>} subtitle="A journal that asks for nothing but honesty. Come as you are." icon={BookHeart}/>
-    <div className="diary-layout">
-      <section className="diary-editor">
-        <div className="diary-paper-top"><span><Feather size={15}/> THE DAILY JOURNAL</span><span>{new Date().toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long"})}</span></div>
-        <div className="diary-writing">
-          <div className="diary-chapter"><span>✳</span> A MOMENT WITH YOURSELF</div>
-          <h2>Dear, you...</h2>
-          <p className="diary-intro">There is no right way to write this. Start wherever your thoughts are.</p>
-          <label className="diary-title-label">GIVE THIS PAGE A TITLE <input value={title} onChange={e=>setTitle(e.target.value)} placeholder="A thought I want to remember..." /></label>
-          <textarea value={text} onChange={e=>setText(e.target.value)} placeholder={"Today, my mind has been full of...\n\nWhat I wish I could say is...\n\nWhat I need right now is..."} />
-          <div className="diary-editor-footer"><span><LockKeyhole size={14}/> Saved privately on this device</span><span>{text.trim() ? text.trim().split(/\s+/).length : 0} words</span></div>
-          <button className="diary-save-button" onClick={saveEntry} disabled={!text.trim()}><Save size={16}/> Save this page <ArrowUpRight size={16}/></button>
-          {savedNotice && <p className="diary-success"><Heart size={14}/> Your words have been tucked safely into your journal.</p>}
+    <PageHeader eyebrow="YOUR PRIVATE PAGES" title={<>A little space to <em>let it out.</em></>} subtitle="A diary for the things you want to remember, release, or simply understand." icon={BookHeart}/>
+
+    <section className={`journal-diary-scene ${diaryOpen ? "diary-is-open" : ""}`}>
+      <div className="journal-diary-cover">
+        <div className="journal-cover-spine" />
+        <div className="journal-cover-decoration">✳</div>
+        <div className="journal-cover-content">
+          <span className="journal-cover-kicker">MINDORA · YOUR PRIVATE PAGES</span>
+          <BookHeart size={38} strokeWidth={1.3}/>
+          <h2>Dear, <em>you.</em></h2>
+          <p>A little place for everything<br/>you don't always say out loud.</p>
+          <span className="journal-cover-rule" />
+          <span className="journal-cover-small">ONE DAY · ONE PAGE · YOUR STORY</span>
+          <button className="journal-open-button" onClick={openFreshPage}><BookHeart size={16}/> {entries.length ? "Write a new page" : "Open your diary"} <ArrowUpRight size={16}/></button>
         </div>
-      </section>
-      <aside className="diary-side">
-        <div className="diary-prompt-card"><span className="diary-side-icon"><Sparkles size={19}/></span><span className="diary-side-kicker">A GENTLE PROMPT</span><p>“{prompts[activePrompt]}”</p><button onClick={()=>setActivePrompt(i=>(i+1)%prompts.length)}>Another prompt <ArrowUpRight size={14}/></button><div className="diary-flower">✿</div></div>
-        <div className="diary-reminder"><Heart size={17}/><p>You don't have to make sense of every feeling today. Some things just need a place to land.</p><span>— a reminder for you</span></div>
-      </aside>
+      </div>
+
+      {diaryOpen && <section className={`journal-loose-page ${pageFlying ? "page-in-motion" : ""}`} aria-label="Diary writing page">
+        <div className="journal-page-top"><span><Feather size={14}/> A MOMENT WITH YOURSELF</span><span>{new Date().toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</span></div>
+        <div className="journal-page-body">
+          <span className="journal-page-number">TODAY'S PAGE</span>
+          <h2>Dear, you...</h2>
+          <p>There is no right way to write this. Start wherever your thoughts are.</p>
+          <label className="diary-title-label">GIVE THIS PAGE A TITLE<input value={title} onChange={e=>setTitle(e.target.value)} placeholder="A thought I want to remember..." /></label>
+          <textarea autoFocus value={text} onChange={e=>setText(e.target.value)} placeholder={"Today, my mind has been full of...\n\nWhat I wish I could say is...\n\nWhat I need right now is..."} />
+          <div className="diary-editor-footer"><span><LockKeyhole size={14}/> Saved privately on this device</span><span>{text.trim() ? text.trim().split(/\s+/).length : 0} words</span></div>
+          <div className="journal-page-actions">
+            <button className="journal-close-button" onClick={()=>{setDiaryOpen(false);setViewEntry(null);}}>Put page back</button>
+            <button className="diary-save-button" onClick={saveEntry} disabled={!text.trim()}><Save size={16}/> {viewEntry ? "Save changes" : "Tuck page into diary"} <ArrowUpRight size={16}/></button>
+          </div>
+        </div>
+      </section>}
+    </section>
+
+    {savedNotice && <p className="diary-success journal-saved-message"><Heart size={14}/> Your words have been tucked safely into your journal.</p>}
+
+    <div className="journal-lower-grid">
+      <aside className="diary-prompt-card"><span className="diary-side-icon"><Sparkles size={19}/></span><span className="diary-side-kicker">A GENTLE PROMPT</span><p>“{prompts[activePrompt]}”</p><button onClick={()=>setActivePrompt(i=>(i+1)%prompts.length)}>Another prompt <ArrowUpRight size={14}/></button><div className="diary-flower">✿</div></aside>
+      <aside className="diary-reminder"><Heart size={17}/><p>You don't have to make sense of every feeling today. Some things just need a place to land.</p><span>— a reminder for you</span></aside>
     </div>
+
     <section className="diary-entries">
-      <div className="diary-entries-head"><div><span className="section-page-eyebrow">YOUR STORY, IN YOUR WORDS</span><h2>Pages you've kept</h2><p>Little pieces of your life, held with care.</p></div><span className="diary-count">{entries.length} {entries.length===1?"page":"pages"}</span></div>
-      {!entries.length ? <div className="diary-empty"><BookHeart size={27}/><h3>Your story starts here.</h3><p>When you save your first page, it will find a home here.</p></div> : <div className="diary-entry-grid">{entries.map(entry=><article className="diary-saved-card" key={entry.id}><div className="diary-saved-meta"><CalendarDays size={14}/>{entry.date}<button aria-label="Delete journal entry" onClick={()=>deleteEntry(entry.id)}><Trash2 size={15}/></button></div><h3>{entry.title || "A page from today"}</h3><p>{entry.text}</p><span className="diary-entry-flourish">with kindness, always ✳</span></article>)}</div>}
+      <div className="diary-entries-head"><div><span className="section-page-eyebrow">YOUR STORY, IN YOUR WORDS</span><h2>Pages you've kept</h2><p>Your saved pages, resting safely inside your diary.</p></div><span className="diary-count">{entries.length} {entries.length===1?"page":"pages"}</span></div>
+      {!entries.length ? <div className="diary-empty"><BookHeart size={27}/><h3>Your story starts here.</h3><p>Write your first page and tuck it safely away for another day.</p></div> : <div className="diary-entry-grid">{entries.map(entry=><article className="diary-saved-card journal-page-card" key={entry.id}><div className="diary-saved-meta"><CalendarDays size={14}/>{entry.date}<button aria-label="Delete journal entry" onClick={()=>deleteEntry(entry.id)}><Trash2 size={15}/></button></div><h3>{entry.title || "A page from today"}</h3><p>{entry.text}</p><div className="journal-saved-actions"><span className="diary-entry-flourish">with kindness, always ✳</span><button onClick={()=>openSavedPage(entry)}><Feather size={14}/> Open page</button></div></article>)}</div>}
     </section>
     <footer className="section-page-footer"><Heart size={13}/> This is your space. Your pace. Your story. <span>Mindora · made for your softer days</span></footer>
   </main>;
