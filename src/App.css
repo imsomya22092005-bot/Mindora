@@ -2749,3 +2749,62 @@ textarea:focus-visible {
   .history-list { grid-template-columns: minmax(0, 1fr); gap: 9px; }
   .history-row { min-height: 70px; padding: 11px 12px; }
 }
+
+
+/* Soft floating mood doodles in the open space of the history panel */
+.mood-section + .section-block .history-panel {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.mood-section + .section-block .history-panel > * {
+  position: relative;
+  z-index: 1;
+}
+.history-panel::before,
+.history-panel::after {
+  position: absolute;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(128, 157, 116, .22);
+  border-radius: 50%;
+  background: rgba(235, 243, 228, .72);
+  box-shadow: 0 5px 14px rgba(62, 87, 59, .06);
+  font-size: 17px;
+  line-height: 1;
+  pointer-events: none;
+  animation: historyEmojiFloat 5s ease-in-out infinite;
+}
+.history-panel::before {
+  content: "✦";
+  top: 22px;
+  left: 20px;
+  color: #8ca77d;
+}
+.history-panel::after {
+  content: "☁";
+  right: 20px;
+  bottom: 20px;
+  color: #91a98a;
+  animation-delay: -2.4s;
+}
+@keyframes historyEmojiFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-7px) rotate(5deg); }
+}
+.dark-theme .history-panel::before,
+.dark-theme .history-panel::after {
+  border-color: rgba(176, 204, 163, .22);
+  background: rgba(53, 76, 56, .78);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, .12);
+}
+@media (prefers-reduced-motion: reduce) {
+  .history-panel::before, .history-panel::after { animation: none; }
+}
+@media (max-width: 700px) {
+  .history-panel::before { top: 12px; left: 12px; width: 27px; height: 27px; font-size: 14px; }
+  .history-panel::after { right: 12px; bottom: 12px; width: 27px; height: 27px; font-size: 14px; }
+}
