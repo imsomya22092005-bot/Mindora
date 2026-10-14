@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ScrapbookEditor from "./ScrapbookEditor";
+import ScrapbookEditor, { deleteScrapbookPage } from "./ScrapbookEditor";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookHeart, CalendarDays, Feather, Heart, Leaf, LockKeyhole, Plus, Save, Sparkles, Trash2, Wind, BarChart3, Sprout, CloudRain, HeartHandshake, ArrowUpRight } from "lucide-react";
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
@@ -82,7 +82,7 @@ export function JournalPage() {
     window.setTimeout(() => { setPageFlying(false); setDiaryOpen(false); setViewEntry(null); setTitle(""); setText(""); }, 850);
     window.setTimeout(() => setSavedNotice(false), 3000);
   }
-  function deleteEntry(id) { setEntries(previous => previous.filter(entry => entry.id !== id)); }
+  function deleteEntry(id) { setEntries(previous => previous.filter(entry => entry.id !== id)); deleteScrapbookPage(id); }
   return <main className={theme}>
     <PageHeader eyebrow="YOUR PRIVATE PAGES" title={<>A little space to <em>let it out.</em></>} subtitle="A diary for the things you want to remember, release, or simply understand." icon={BookHeart}/>
 
