@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap');
+.mindora-section-page{--page-bg:#f7f6f0;--paper:#fffdf8;--ink:#344637;--muted:#687865;--line:#e5e6da;min-height:100vh;padding:clamp(22px,4vw,56px);background:radial-gradient(ellipse at 7% 5%,#edf2e7 0,transparent 32%),var(--page-bg);color:var(--ink);font-family:'DM Sans',sans-serif}
+.section-page-header{position:relative;max-width:1160px;margin:0 auto 38px;padding-bottom:26px;border-bottom:1px solid var(--line)}
+.section-back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;text-decoration:none}
+.section-back:hover{color:#456b4b}
+.section-page-brand{position:absolute;top:0;left:50%;display:flex;align-items:center;gap:9px;transform:translateX(-50%);font:800 22px Manrope,sans-serif;letter-spacing:-.8px}
+.section-brand-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:12px;background:#dfe9d9;color:#4e7454}
+.section-page-title{max-width:700px;margin:42px auto 0;text-align:center}
+.section-page-eyebrow{display:inline-flex;align-items:center;gap:7px;color:#658364;font-size:10px;font-weight:700;letter-spacing:1.7px}
+.section-page-title h1{margin:15px 0 12px;font:600 clamp(36px,5.2vw,62px)/1.12 'Playfair Display',serif;letter-spacing:-1.2px}
+.section-page-title h1 em{color:#789575;font-weight:500}
+.section-page-title p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
+.diary-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(250px,.75fr);gap:24px;max-width:1160px;margin:0 auto}
+.diary-editor{overflow:hidden;border:1px solid #e8e2d5;border-radius:18px;background:var(--paper);box-shadow:0 18px 55px rgba(66,73,52,.07)}
+.diary-paper-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 24px;border-bottom:1px solid #eee9de;background:#f8f5ec;color:#7d8976;font-size:9px;font-weight:700;letter-spacing:1.1px}
+.diary-paper-top span:first-child{display:flex;align-items:center;gap:8px;color:#637d60}
+.diary-writing{padding:clamp(22px,4vw,42px)}
+.diary-chapter{display:flex;align-items:center;gap:8px;color:#8b987f;font-size:9px;font-weight:700;letter-spacing:1.6px}
+.diary-chapter span{color:#c2a77c;font-size:18px}
+.diary-writing h2{margin:15px 0 6px;font:600 36px 'Playfair Display',serif;color:#3b503d}
+.diary-intro{margin:0 0 29px;color:#778372;font-size:12px;line-height:1.8}
+.diary-title-label{display:grid;gap:8px;color:#8a9680;font-size:9px;font-weight:700;letter-spacing:1.2px}
+.diary-title-label input{width:100%;padding:11px 0;border:0;border-bottom:1px solid #e7e7dc;outline:none;background:transparent;color:#3c503d;font:500 16px 'Playfair Display',serif}
+.diary-title-label input::placeholder{color:#a0a797}
+.diary-writing textarea{display:block;width:100%;min-height:255px;margin-top:18px;padding:17px 0;resize:vertical;border:0;outline:none;background:repeating-linear-gradient(to bottom,transparent 0,transparent 32px,#e9e9df 33px,#e9e9df 34px);background-position:0 16px;color:#455744;font:400 14px/34px 'DM Sans',sans-serif}
+.diary-writing textarea::placeholder{color:#9ba394}
+.diary-editor-footer{display:flex;justify-content:space-between;gap:12px;margin-top:15px;color:#788774;font-size:10px}
+.diary-editor-footer span:first-child{display:flex;align-items:center;gap:7px}
+.diary-save-button{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:47px;margin-top:21px;border:0;border-radius:10px;background:#527557;color:white;font-size:12px;font-weight:700;transition:background .2s,transform .2s}
+.diary-save-button:hover:not(:disabled){background:#3e6245;transform:translateY(-1px)}
+.diary-save-button:disabled{opacity:.45;cursor:not-allowed}
+.diary-success{display:flex;align-items:center;gap:8px;margin:14px 0 0;color:#527557;font-size:11px}
+.diary-side{display:flex;flex-direction:column;gap:18px}
+.diary-prompt-card{position:relative;overflow:hidden;min-height:270px;padding:27px;border:1px solid #e3e7d9;border-radius:17px;background:linear-gradient(150deg,#edf2e6,#e5ecde);color:#3e583f}
+.diary-side-icon{display:grid;place-items:center;width:39px;height:39px;border-radius:13px;background:#dbe7d5;color:#5e805d}
+.diary-side-kicker{display:block;margin-top:24px;color:#71866b;font-size:9px;font-weight:700;letter-spacing:1.5px}
+.diary-prompt-card>p{position:relative;z-index:1;margin:13px 0 20px;font:500 21px/1.5 'Playfair Display',serif}
+.diary-prompt-card button{position:relative;z-index:1;display:flex;align-items:center;gap:7px;padding:0;border:0;background:transparent;color:#557653;font-size:11px;font-weight:700}
+.diary-flower{position:absolute;right:-14px;bottom:-45px;color:rgba(107,142,101,.12);font-size:155px}
+.diary-reminder{padding:23px;border:1px solid #eadfd1;border-radius:16px;background:#f5eee4;color:#6d5a46}
+.diary-reminder>svg{color:#b89972}
+.diary-reminder p{margin:13px 0;font:500 17px/1.65 'Playfair Display',serif}
+.diary-reminder span{color:#8f7c66;font-size:10px}
+.diary-entries{max-width:1160px;margin:47px auto 0}
+.diary-entries-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:19px}
+.diary-entries-head h2{margin:9px 0 5px;font:600 29px 'Playfair Display',serif}
+.diary-entries-head p{margin:0;color:var(--muted);font-size:12px}
+.diary-count{padding:8px 12px;border:1px solid var(--line);border-radius:20px;background:var(--paper);color:#61785f;font-size:10px}
+.diary-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:190px;padding:25px;border:1px dashed #d9dfd2;border-radius:15px;background:rgba(255,253,248,.55);text-align:center;color:#71866d}
+.diary-empty h3{margin:13px 0 5px;color:#465a43;font:600 21px 'Playfair Display',serif}
+.diary-empty p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
+.diary-entry-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.diary-saved-card{padding:23px;border:1px solid #e8e4d9;border-radius:14px;background:var(--paper);box-shadow:0 8px 26px rgba(66,73,52,.04)}
+.diary-saved-meta{display:flex;align-items:center;gap:7px;color:#71866d;font-size:10px}
+.diary-saved-meta button{display:grid;place-items:center;width:29px;height:29px;margin-left:auto;border:1px solid #e8e3d9;border-radius:8px;background:transparent;color:#927e6b}
+.diary-saved-card h3{margin:17px 0 9px;font:600 21px 'Playfair Display',serif;color:#405540}
+.diary-saved-card>p{margin:0;color:#536450;font-size:12px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere}
+.diary-entry-flourish{display:block;margin-top:18px;color:#9a9d83;font:italic 12px 'Playfair Display',serif}
+.section-page-footer{display:flex;align-items:center;gap:8px;max-width:1160px;margin:35px auto 0;padding-top:20px;border-top:1px solid var(--line);color:#778572;font-size:10px}
+.section-page-footer>span{margin-left:auto}
+.insight-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:1160px;margin:0 auto 22px}
+.insight-stat-grid article,.insight-chart-card{padding:25px;border:1px solid var(--line);border-radius:16px;background:var(--paper)}
+.insight-stat-grid article>span{color:#75856f;font-size:9px;font-weight:700;letter-spacing:1.3px}
+.insight-stat-grid strong{display:block;margin-top:18px;color:#405540;font:700 29px Manrope,sans-serif}
+.insight-stat-grid strong small{font-size:13px}
+.insight-stat-grid p,.insight-chart-card>p{color:var(--muted);font-size:12px;line-height:1.7}
+.insight-chart-card{max-width:1160px;margin:auto}
+.insight-chart-card h2{margin:10px 0 5px;font:600 27px 'Playfair Display',serif}
+.insight-chart{height:300px;margin-top:20px}
+.insight-chart-card .diary-empty a{display:flex;align-items:center;gap:7px;margin-top:14px;color:#527557;font-size:12px;text-decoration:none}
+.insight-kind-note{display:flex;align-items:flex-start;gap:13px;max-width:1160px;margin:20px auto;padding:19px;border-radius:13px;background:#eaf0e5;color:#527557}
+.insight-kind-note p{margin:0;color:#596e56;font-size:12px;line-height:1.8}
+.mindful-intro-card{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1160px;margin:0 auto 22px;padding:clamp(24px,4vw,40px);border:1px solid #e1e8d9;border-radius:18px;background:linear-gradient(115deg,#e9f0e3,#f2f1e6)}
+.mindful-intro-card h2{margin:13px 0 8px;color:#3c563e;font:600 clamp(25px,3.5vw,36px) 'Playfair Display',serif}
+.mindful-intro-card p{max-width:540px;margin:0;color:#63755e;font-size:12px;line-height:1.8}
+.mindful-big-spark{color:#b5c9a9;font-size:86px}
+.mindful-tool-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:1160px;margin:0 auto}
+.mindful-tool-card{display:block;padding:24px;border:1px solid var(--line);border-radius:15px;background:var(--paper);color:var(--ink);text-decoration:none;transition:transform .2s,box-shadow .2s}
+.mindful-tool-card:hover{transform:translateY(-3px);box-shadow:0 13px 32px rgba(55,73,50,.08)}
+.mindful-tool-icon{display:grid;place-items:center;width:43px;height:43px;margin-bottom:21px;border-radius:14px}
+.mindful-tool-icon.sage{background:#e5eee0;color:#5d805d}.mindful-tool-icon.moss{background:#e7ecda;color:#6f8053}.mindful-tool-icon.peach{background:#f5e8dc;color:#a67c5a}.mindful-tool-icon.blue{background:#e4edf0;color:#67838a}.mindful-tool-icon.rose{background:#f3e5e1;color:#ad7c72}
+.mindful-tool-title{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#405540;font:600 21px 'Playfair Display',serif}
+.mindful-tool-title svg{color:#7e9578}
+.mindful-tool-card p{min-height:43px;color:var(--muted);font-size:12px;line-height:1.8}
+.mindful-tool-open{display:inline-block;margin-top:9px;color:#557a57;font-size:10px;font-weight:700}
+.dark-theme.mindora-section-page{--page-bg:#17211a;--paper:#202c23;--ink:#e1e9df;--muted:#b1bfb0;--line:#344337;background:radial-gradient(ellipse at 7% 5%,#26372a 0,transparent 32%),var(--page-bg);color:var(--ink)}
+.dark-theme .section-page-title h1,.dark-theme .diary-writing h2,.dark-theme .diary-entries-head h2,.dark-theme .diary-saved-card h3,.dark-theme .insight-stat-grid strong,.dark-theme .insight-chart-card h2,.dark-theme .mindful-tool-title{color:#e1e9df}
+.dark-theme .section-page-title h1 em{color:#a9c7a4}.dark-theme .diary-editor,.dark-theme .diary-saved-card,.dark-theme .insight-stat-grid article,.dark-theme .insight-chart-card,.dark-theme .mindful-tool-card{background:var(--paper);border-color:var(--line)}
+.dark-theme .diary-paper-top{background:#263329;border-color:var(--line);color:#b1bfb0}.dark-theme .diary-writing textarea{color:#e1e9df;background:repeating-linear-gradient(to bottom,transparent 0,transparent 32px,#344337 33px,#344337 34px);background-position:0 16px}.dark-theme .diary-title-label input{color:#e1e9df;border-color:var(--line)}.dark-theme .diary-prompt-card{background:linear-gradient(150deg,#293a2c,#263329);border-color:var(--line);color:#e1e9df}.dark-theme .diary-reminder{background:#302c23;border-color:#4a4030;color:#e1d5c4}.dark-theme .diary-saved-card>p,.dark-theme .diary-writing textarea::placeholder,.dark-theme .diary-title-label input::placeholder{color:#b1bfb0}.dark-theme .diary-empty{background:#202c23;border-color:var(--line)}.dark-theme .diary-empty h3{color:#e1e9df}.dark-theme .mindful-intro-card,.dark-theme .insight-kind-note{background:#29392c;border-color:var(--line)}.dark-theme .mindful-intro-card h2,.dark-theme .mindful-intro-card p,.dark-theme .insight-kind-note p{color:#d6e4d2}
+@media(max-width:850px){.diary-layout{grid-template-columns:1fr}.diary-side{display:grid;grid-template-columns:1fr 1fr}.mindful-tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.mindora-section-page{padding:20px 14px}.section-page-brand{top:43px;font-size:19px}.section-page-title{margin-top:67px}.section-page-title h1{font-size:38px}.diary-paper-top{align-items:flex-start;flex-direction:column;padding:13px 17px}.diary-writing{padding:22px 18px}.diary-writing h2{font-size:31px}.diary-side{grid-template-columns:1fr}.diary-entry-grid,.insight-stat-grid,.mindful-tool-grid{grid-template-columns:1fr}.insight-stat-grid article{padding:19px}.mindful-big-spark{font-size:55px}.section-page-footer{align-items:flex-start;flex-wrap:wrap}.section-page-footer>span{width:100%;margin-left:0}}
