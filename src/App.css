@@ -2361,3 +2361,206 @@ textarea:focus-visible {
     max-width: none;
   }
 }
+
+
+/* Editorial mood journal — a calm, book-like check-in experience */
+.mood-book-heading {
+  padding-inline: 0 !important;
+  margin-bottom: 24px;
+}
+.mood-book-wrap {
+  width: min(100%, 960px);
+  margin: 0 auto;
+}
+.mood-book {
+  position: relative;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  min-height: 390px;
+  overflow: hidden;
+  border: 1px solid #d6dfd1;
+  border-radius: 20px 24px 24px 20px;
+  background: #f4f1e7;
+  box-shadow: 0 16px 35px rgba(43, 62, 44, .09), 0 3px 0 #e0e4d9;
+}
+.mood-book-spine {
+  background: linear-gradient(90deg, #d5dfcf, #e6e9dc 70%, #d5dfcf);
+  border-right: 1px solid rgba(71, 98, 72, .12);
+}
+.mood-book-page {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 42px 48px 38px;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0, transparent 39px, rgba(98, 120, 91, .055) 40px),
+    #fffdf7;
+}
+.book-cover-content,
+.mood-book-entry,
+.book-goodbye {
+  width: min(100%, 580px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: bookPageIn .28s ease both;
+}
+@keyframes bookPageIn {
+  from { opacity: .35; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.book-eyebrow {
+  color: #6b8269;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 2px;
+}
+.book-cover-icon {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin: 30px 0 18px;
+  border: 1px solid #d7e1d1;
+  border-radius: 50%;
+  background: #edf2e8;
+  color: #4f7154;
+}
+.book-cover-content h3,
+.mood-book-entry h3,
+.book-goodbye h3 {
+  margin: 0;
+  color: #2e4734;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(30px, 3vw, 40px);
+  font-weight: 500;
+  letter-spacing: -.8px;
+  line-height: 1.18;
+}
+.book-cover-content p,
+.book-goodbye p {
+  margin: 16px 0 0;
+  color: #647466;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.book-page-number {
+  margin-top: 30px;
+  color: #8a9a85;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+}
+.book-mood-emoji {
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  margin: 22px 0 16px;
+  border: 7px solid rgba(255,255,255,.72);
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(53, 73, 52, .08);
+  font-size: 48px;
+}
+.mood-book-entry h3 { font-size: 34px; }
+.book-quote {
+  max-width: 480px;
+  margin: 18px auto 22px;
+  color: #536657;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(17px, 1.8vw, 21px);
+  font-style: italic;
+  line-height: 1.75;
+}
+.book-feeling-button,
+.book-save-button,
+.book-turn-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid #47684e;
+  border-radius: 999px;
+  background: #47684e;
+  color: #fffdf7;
+  font-size: 13px;
+  font-weight: 650;
+  transition: background .18s, transform .18s, border-color .18s;
+}
+.book-feeling-button:hover,
+.book-save-button:hover,
+.book-turn-button:hover:not(:disabled) {
+  background: #35543c;
+  transform: translateY(-1px);
+}
+.book-feeling-button.selected {
+  border-color: #b9cfb4;
+  background: #eaf1e5;
+  color: #36563c;
+}
+.book-goodbye-heart {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  background: #eaf1e5;
+  color: #527755;
+}
+.book-goodbye h3 { max-width: 460px; font-size: clamp(28px, 2.6vw, 36px); }
+.book-goodbye-script {
+  margin-top: 24px;
+  color: #55775a;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 27px;
+  font-style: italic;
+}
+.mood-book-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+.book-turn-button.secondary {
+  border-color: #d9e2d5;
+  background: #fffdf7;
+  color: #4c664f;
+}
+.book-turn-button:disabled {
+  cursor: not-allowed;
+  opacity: .4;
+}
+.book-back-arrow { transform: rotate(180deg); }
+.book-success { margin-top: 14px; }
+.dark-theme .mood-book {
+  border-color: #506252;
+  background: #27392d;
+}
+.dark-theme .mood-book-page {
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 39px, rgba(210, 225, 204, .04) 40px), #1f2f25;
+}
+.dark-theme .book-cover-content h3,
+.dark-theme .mood-book-entry h3,
+.dark-theme .book-goodbye h3 { color: #e7eee2; }
+.dark-theme .book-cover-content p,
+.dark-theme .book-goodbye p,
+.dark-theme .book-quote { color: #c2d0c0; }
+.dark-theme .book-turn-button.secondary { background: #26382c; color: #e2ebdf; border-color: #526755; }
+@media (max-width: 640px) {
+  .mood-book { grid-template-columns: 10px minmax(0, 1fr); min-height: 410px; }
+  .mood-book-page { padding: 32px 18px 26px; }
+  .book-eyebrow { font-size: 9px; letter-spacing: 1.3px; }
+  .book-mood-emoji { width: 78px; height: 78px; font-size: 40px; }
+  .book-cover-content h3, .mood-book-entry h3 { font-size: 29px; }
+  .book-quote { font-size: 17px; }
+  .mood-book-controls { gap: 8px; }
+  .book-turn-button, .book-save-button { min-height: 42px; padding-inline: 13px; font-size: 12px; }
+}
