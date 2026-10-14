@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ScrapbookEditor from "./ScrapbookEditor";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookHeart, CalendarDays, Feather, Heart, Leaf, LockKeyhole, Plus, Save, Sparkles, Trash2, Wind, BarChart3, Sprout, CloudRain, HeartHandshake, ArrowUpRight } from "lucide-react";
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
@@ -44,10 +45,12 @@ export function JournalPage() {
   const [diaryOpen, setDiaryOpen] = useState(false);
   const [pageFlying, setPageFlying] = useState(false);
   const [viewEntry, setViewEntry] = useState(null);
+  const [pageId, setPageId] = useState(null);
   useEffect(() => { try { localStorage.setItem("mindora-journal-entries", JSON.stringify(entries)); } catch {} }, [entries]);
 
   function openFreshPage() {
     setViewEntry(null);
+    setPageId("draft-" + Date.now());
     setTitle("");
     setText("");
     setDiaryOpen(true);
@@ -56,6 +59,7 @@ export function JournalPage() {
   }
   function openSavedPage(entry) {
     setViewEntry(entry);
+    setPageId(String(entry.id));
     setTitle(entry.title || "");
     setText(entry.text || "");
     setDiaryOpen(true);
@@ -71,6 +75,7 @@ export function JournalPage() {
     } else {
       const entry = { id: Date.now(), title: title.trim() || "A page from today", text: body, preview: body.length > 90 ? body.slice(0,90)+"…" : body, date: new Date().toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}), timestamp: Date.now() };
       setEntries(previous => [entry, ...previous]);
+      if (pageId) { try { const all = JSON.parse(localStorage.getItem("mindora-scrapbook-layouts") || "{}"); all[String(entry.id)] = all[String(pageId)] || []; delete all[String(pageId)]; localStorage.setItem("mindora-scrapbook-layouts", JSON.stringify(all)); } catch {} }
     }
     setPageFlying(true);
     setSavedNotice(true);
@@ -105,6 +110,7 @@ export function JournalPage() {
           <label className="diary-title-label">GIVE THIS PAGE A TITLE<input value={title} onChange={e=>setTitle(e.target.value)} placeholder="A thought I want to remember..." /></label>
           <textarea autoFocus value={text} onChange={e=>setText(e.target.value)} placeholder={"Today, my mind has been full of...\n\nWhat I wish I could say is...\n\nWhat I need right now is..."} />
           <div className="diary-editor-footer"><span><LockKeyhole size={14}/> Saved privately on this device</span><span>{text.trim() ? text.trim().split(/\s+/).length : 0} words</span></div>
+          {pageId && <ScrapbookEditor key={pageId} pageId={pageId} />}
           <div className="journal-page-actions">
             <button className="journal-close-button" onClick={()=>{setDiaryOpen(false);setViewEntry(null);}}>Put page back</button>
             <button className="diary-save-button" onClick={saveEntry} disabled={!text.trim()}><Save size={16}/> {viewEntry ? "Save changes" : "Tuck page into diary"} <ArrowUpRight size={16}/></button>
