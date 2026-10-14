@@ -1923,3 +1923,46 @@ textarea:focus-visible {
     transition-duration: .01ms !important;
   }
 }
+
+/* Journal page refresh */
+.journal-page-overlay{position:fixed;inset:0;z-index:100;overflow-y:auto;background:#f7f8f3;color:#344637;animation:journal-page-in .22s ease-out}
+.journal-page{width:min(100%,1100px);min-height:100vh;margin:0 auto;padding:clamp(24px,5vw,64px)}
+.journal-page-header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid #e2e9de}
+.journal-page-eyebrow{display:flex;align-items:center;gap:8px;color:#6c896e;font-size:11px;font-weight:700;letter-spacing:1.4px}
+.journal-page-header h1{margin:17px 0 9px;color:#304a35;font-family:Manrope,sans-serif;font-size:clamp(32px,5vw,48px);letter-spacing:-1.5px}
+.journal-page-header p{margin:0;color:#7d8b7b;font-size:14px;line-height:1.7}
+.journal-back-button{display:inline-flex;align-items:center;gap:8px;flex-shrink:0;padding:11px 14px;border:1px solid #dfe8da;border-radius:10px;background:#fff;color:#4f7054;font-size:12px;font-weight:600}
+.journal-back-button svg{transform:rotate(180deg)}
+.journal-writing-card{padding:clamp(20px,4vw,36px);border:1px solid #e3e9df;border-radius:20px;background:#fff;box-shadow:0 14px 40px rgba(47,68,48,.05)}
+.journal-prompt{display:flex;align-items:center;gap:13px;margin-bottom:22px;padding:16px;border-radius:13px;background:#f1f5ec}
+.journal-prompt-icon{display:grid;place-items:center;width:40px;height:40px;flex-shrink:0;border-radius:12px;background:#e1ebdc;color:#5c7d60}
+.journal-prompt strong{color:#405a43;font-size:13px}
+.journal-prompt p{margin:5px 0 0;color:#788875;font-size:12px;line-height:1.6}
+.journal-writing-card .journal-textarea,.journal-page .journal-textarea{width:100%;min-height:220px;resize:vertical;padding:20px;border:1px solid #e2e9de;border-radius:13px;background:#fcfdf9;color:#344637;font:400 14px/1.9 'DM Sans',sans-serif;outline:none}
+.journal-writing-card .journal-textarea:focus{border-color:#9bb99a;box-shadow:0 0 0 3px rgba(130,166,128,.12)}
+.journal-page .journal-modal-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px}
+.journal-page .journal-modal-footer>span{display:flex;align-items:center;gap:7px;color:#899589;font-size:11px}
+.journal-entries-section{margin-top:42px}
+.journal-entries-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:17px}
+.journal-entries-heading h2{margin:0;color:#344a37;font:700 22px Manrope,sans-serif}
+.journal-entry-count{padding:7px 10px;border-radius:9px;background:#e8f0e4;color:#547657;font-size:11px;font-weight:700}
+.journal-empty-state{display:flex;flex-direction:column;align-items:center;gap:10px;padding:36px 20px;border:1px dashed #d9e4d5;border-radius:16px;background:rgba(255,255,255,.55);text-align:center}
+.journal-empty-state>span{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;background:#e8f0e4;color:#5c7d60}
+.journal-empty-state strong{color:#4a5f4b;font-size:13px}
+.journal-empty-state p{margin:0;color:#899589;font-size:12px;line-height:1.7}
+.journal-entry-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.journal-entry-card{padding:20px;border:1px solid #e3e9df;border-radius:15px;background:#fff}
+.journal-entry-date{display:flex;align-items:center;gap:7px;color:#7e927c;font-size:11px}
+.journal-entry-card>p{margin:13px 0 0;color:#4d5f4e;font-size:13px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}
+.journal-privacy-note{display:flex;align-items:center;gap:7px;margin:24px 0 0;color:#899589;font-size:11px;line-height:1.7}
+.dark-theme .journal-page-overlay{background:#17211a;color:#e1e9df}
+.dark-theme .journal-page-header{border-color:#344337}
+.dark-theme .journal-page-header h1,.dark-theme .journal-entries-heading h2{color:#e1e9df}
+.dark-theme .journal-page-header p,.dark-theme .journal-prompt p,.dark-theme .journal-modal-footer>span,.dark-theme .journal-privacy-note{color:#b1bfb0}
+.dark-theme .journal-writing-card,.dark-theme .journal-entry-card,.dark-theme .journal-back-button{background:#202c23;border-color:#344337;color:#e1e9df}
+.dark-theme .journal-prompt,.dark-theme .journal-empty-state{background:#263329;border-color:#3b4a3b}
+.dark-theme .journal-prompt strong,.dark-theme .journal-empty-state strong,.dark-theme .journal-entry-card>p{color:#dce7d9}
+.dark-theme .journal-writing-card .journal-textarea{background:#1b271e;border-color:#3b4a3b;color:#e1e9df}
+.dark-theme .journal-entry-count{background:#304333;color:#d3e6ce}
+@keyframes journal-page-in{from{opacity:0}to{opacity:1}}
+@media(max-width:600px){.journal-page{padding:24px 16px}.journal-page-header{flex-direction:column;align-items:stretch}.journal-back-button{align-self:flex-start}.journal-page .journal-modal-footer{align-items:stretch;flex-direction:column}.journal-page .journal-modal-footer .primary-button{width:100%}.journal-entry-list{grid-template-columns:1fr}}
