@@ -196,3 +196,74 @@ main.mindora-section-page.dark-theme .section-page-title h1 em {
 main.mindora-section-page.dark-theme .section-page-title p {
   color: #c2cfbe !important;
 }
+
+
+/* Mood insights: stronger contrast and a more editorial, illustrated chart panel */
+.insight-chart-card{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 94% 7%,rgba(190,211,174,.36),transparent 24%),
+    linear-gradient(135deg,#fffdf8 0%,#f6f8ef 100%);
+  border-color:#d8e3d1;
+  box-shadow:0 18px 48px rgba(52,70,55,.07);
+}
+.insight-chart-card > .section-page-eyebrow{
+  color:#365f3b !important;
+  font-weight:800;
+  position:relative;
+  z-index:1;
+}
+.insight-chart-card h2{color:#293f2e}
+.insight-chart-card>p{color:#52664f;font-size:13px}
+.insight-chart{position:relative;height:320px;margin-top:24px;padding:12px 8px 4px;border:1px solid rgba(207,220,198,.8);border-radius:15px;background:rgba(255,255,250,.74)}
+.insight-chart-card::after{
+  content:"✿";
+  position:absolute;
+  right:32px;
+  top:28px;
+  color:#86a77e;
+  opacity:.35;
+  font-size:62px;
+  line-height:1;
+  transform:rotate(14deg);
+  pointer-events:none;
+}
+.insight-stat-grid article{
+  position:relative;
+  overflow:hidden;
+  border-color:#dfe7d8;
+  background:linear-gradient(145deg,#fffdf8,#f4f7ee);
+  box-shadow:0 10px 28px rgba(52,70,55,.045);
+}
+.insight-stat-grid article>span{color:#496a46;font-weight:800}
+.insight-stat-grid article p{color:#586c55}
+.insight-stat-grid article:nth-child(1)::after,
+.insight-stat-grid article:nth-child(2)::after,
+.insight-stat-grid article:nth-child(3)::after{
+  position:absolute;right:17px;top:14px;font-size:23px;opacity:.65;pointer-events:none
+}
+.insight-stat-grid article:nth-child(1)::after{content:"☘"}
+.insight-stat-grid article:nth-child(2)::after{content:"☀"}
+.insight-stat-grid article:nth-child(3)::after{content:"♡"}
+.dark-theme .insight-stat-grid article{
+  background:linear-gradient(145deg,#26372a,#202e24);
+  border-color:#405744;
+}
+.dark-theme .insight-stat-grid article>span{color:#c0d9b7}
+.dark-theme .insight-stat-grid article p{color:#c0cdbb}
+.dark-theme .insight-chart-card{
+  background:radial-gradient(circle at 94% 7%,rgba(106,142,96,.17),transparent 24%),linear-gradient(135deg,#26372a,#202e24);
+  border-color:#405744;
+}
+.dark-theme .insight-chart-card h2{color:#edf4e9}
+.dark-theme .insight-chart-card>p{color:#c0cdbb}
+.dark-theme .insight-chart-card>.section-page-eyebrow{color:#c0d9b7 !important}
+.dark-theme .insight-chart{background:rgba(21,32,24,.55);border-color:#405744}
+.dark-theme .insight-chart-card::after{color:#a9c99f;opacity:.25}
+@media(max-width:600px){
+ .insight-chart-card{padding:20px}
+ .insight-chart{height:270px;padding:8px 2px}
+ .insight-chart-card::after{right:18px;top:22px;font-size:42px}
+}
