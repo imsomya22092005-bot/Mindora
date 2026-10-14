@@ -831,3 +831,90 @@
     transition: none !important;
   }
 }
+
+/* Premium polish pass: consistent rhythm, readable contrast, no accidental clipping */
+.mindora-landing {
+  --text: #24372c;
+  --muted: #536458;
+  --cream: #f7f5ed;
+  color: var(--text);
+  overflow-x: clip;
+}
+.mindora-landing p,
+.mindora-landing .landing-section-copy,
+.mindora-landing .landing-feature p,
+.mindora-landing .landing-step p,
+.mindora-landing .landing-subtitle {
+  color: #536458;
+  line-height: 1.7;
+}
+.mindora-landing section {
+  scroll-margin-top: 96px;
+}
+.mindora-landing .landing-navbar {
+  min-height: 84px;
+  padding-block: 16px;
+  gap: clamp(18px, 3vw, 40px);
+}
+.mindora-landing .landing-nav-links {
+  align-items: center;
+  gap: clamp(18px, 2.5vw, 36px);
+}
+.mindora-landing .landing-hero {
+  align-items: center;
+  gap: clamp(28px, 5vw, 72px);
+}
+.mindora-landing .landing-hero h1,
+.mindora-landing .landing-section h2,
+.mindora-landing .landing-steps h2 {
+  text-wrap: balance;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+.mindora-landing .landing-hero p,
+.mindora-landing .landing-section p {
+  max-width: 62ch;
+}
+.mindora-landing .landing-cta,
+.mindora-landing .landing-button {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.mindora-landing .landing-features {
+  gap: 0;
+}
+.mindora-landing .landing-feature,
+.mindora-landing .landing-step {
+  min-width: 0;
+}
+.mindora-landing .landing-feature p,
+.mindora-landing .landing-step p {
+  max-width: 30ch;
+  margin-inline: auto;
+}
+.mindora-landing a:focus-visible,
+.mindora-landing button:focus-visible {
+  outline: 3px solid #6f9275;
+  outline-offset: 4px;
+}
+@media (max-width: 760px) {
+  .mindora-landing .landing-navbar {
+    flex-wrap: wrap;
+    padding: 16px 5%;
+    gap: 16px;
+  }
+  .mindora-landing .landing-nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 12px;
+  }
+  .mindora-landing .landing-hero {
+    gap: 28px;
+  }
+  .mindora-landing .landing-hero h1 {
+    font-size: clamp(2.35rem, 10vw, 3.5rem);
+  }
+}
