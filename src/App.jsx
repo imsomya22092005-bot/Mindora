@@ -36,6 +36,7 @@ import {
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./LandingPage";
+import AuthPage from "./AuthPage";
 
 import {
   CalmCorner,
@@ -1087,6 +1088,10 @@ function App() {
       <Routes>
         {/* Landing page */}
         <Route path="/" element={<LandingPage />} />
+
+        {/* Account pages */}
+        <Route path="/login" element={<AuthPage mode="login" />} />
+        <Route path="/signup" element={<AuthPage mode="register" />} />
 
         {/* Main dashboard — existing features preserved */}
         <Route path="/dashboard" element={<Dashboard />} />
