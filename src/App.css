@@ -2751,10 +2751,10 @@ textarea:focus-visible {
 }
 
 
-/* Five bright, natural emoji accents floating above the history card */
+/* Two butterflies gently flying inside the sage mood-history card */
 .mood-section + .section-block .history-panel {
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   isolation: isolate;
 }
 .mood-section + .section-block .history-panel > * {
@@ -2764,48 +2764,44 @@ textarea:focus-visible {
 .history-panel::before,
 .history-panel::after {
   position: absolute;
-  z-index: 3;
+  z-index: 2;
   display: block;
-  width: auto;
-  height: auto;
+  width: 42px;
+  height: 42px;
   border: 0;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
-  font-size: 25px;
+  font-size: 32px;
   line-height: 1;
   pointer-events: none;
-  filter: drop-shadow(0 3px 4px rgba(42, 54, 39, .13));
-  animation: historyEmojiFloat 4.8s ease-in-out infinite;
+  filter: drop-shadow(0 3px 4px rgba(42, 54, 39, .14));
+  animation: historyButterflyFly 7s ease-in-out infinite;
 }
 .history-panel::before {
-  content: "✨";
-  top: -17px;
-  left: 11%;
+  content: "🦋";
+  top: 16px;
+  left: 16px;
+  animation-name: historyButterflyLeft;
 }
 .history-panel::after {
-  content: "🌸";
-  right: 10%;
-  bottom: -15px;
-  animation-delay: -2.2s;
+  content: "🦋";
+  top: 18px;
+  right: 16px;
+  animation-name: historyButterflyRight;
+  animation-delay: -3.5s;
 }
-/* Three extra accents use the same gentle, drifting motion */
-.mood-section + .section-block .history-panel .history-emoji-float {
-  position: absolute;
-  z-index: 3;
-  display: block;
-  pointer-events: none;
-  font-size: 23px;
-  line-height: 1;
-  filter: drop-shadow(0 3px 4px rgba(42, 54, 39, .13));
-  animation: historyEmojiFloat 5.3s ease-in-out infinite;
+@keyframes historyButterflyLeft {
+  0%, 100% { transform: translate(0, 0) rotate(-12deg); }
+  25% { transform: translate(13px, 10px) rotate(8deg); }
+  50% { transform: translate(5px, 22px) rotate(-5deg); }
+  75% { transform: translate(20px, 8px) rotate(12deg); }
 }
-.history-panel .float-emoji-two { top: -12px; right: 34%; animation-delay: -1.1s; }
-.history-panel .float-emoji-three { bottom: -14px; left: 34%; animation-delay: -3.3s; }
-.history-panel .float-emoji-four { top: 45%; right: -10px; animation-delay: -2s; }
-@keyframes historyEmojiFloat {
-  0%, 100% { transform: translateY(0) rotate(-7deg); }
-  50% { transform: translateY(-10px) rotate(7deg); }
+@keyframes historyButterflyRight {
+  0%, 100% { transform: translate(0, 0) rotate(12deg); }
+  25% { transform: translate(-15px, 12px) rotate(-8deg); }
+  50% { transform: translate(-6px, 24px) rotate(6deg); }
+  75% { transform: translate(-20px, 7px) rotate(-12deg); }
 }
 .dark-theme .history-panel::before,
 .dark-theme .history-panel::after {
@@ -2814,11 +2810,9 @@ textarea:focus-visible {
   box-shadow: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .history-panel::before, .history-panel::after,
-  .mood-section + .section-block .history-panel .history-emoji-float { animation: none; }
+  .history-panel::before, .history-panel::after { animation: none; }
 }
 @media (max-width: 700px) {
-  .history-panel::before { top: -13px; left: 7%; font-size: 21px; }
-  .history-panel::after { right: 7%; bottom: -12px; font-size: 21px; }
-  .mood-section + .section-block .history-panel .history-emoji-float { font-size: 19px; }
+  .history-panel::before { top: 10px; left: 8px; font-size: 25px; }
+  .history-panel::after { top: 12px; right: 8px; font-size: 25px; }
 }
