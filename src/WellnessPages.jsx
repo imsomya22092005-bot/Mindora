@@ -322,6 +322,8 @@ export function MoodSoundscape() {
 
     audio.loop = true;
     audio.volume = volume / 100;
+    audio.preload = "auto";
+    audio.onerror = () => setError("This sound is temporarily unavailable. Please try another sound.");
     audioRef.current = audio;
 
     return () => {
