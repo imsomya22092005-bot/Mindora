@@ -304,7 +304,7 @@ export function MoodSoundscape() {
   const audioRef = useRef(null);
   const sounds = [
     { id: "birds", name: "Birdsong", emoji: "🐦", desc: "Morning birds chirping", url: "https://actions.google.com/sounds/v1/ambiences/birds_in_forest.ogg" },
-    { id: "rain", name: "Gentle Rain", emoji: "🌧️", desc: "Soft rainfall", url: sound.url },
+    { id: "rain", name: "Gentle Rain", emoji: "🌧️", desc: "Soft rainfall", url: "https://actions.google.com/sounds/v1/weather/rain_heavy_loud.ogg" },
     { id: "ocean", name: "Ocean Waves", emoji: "🌊", desc: "Waves rolling ashore", url: "https://actions.google.com/sounds/v1/water/ocean_waves.ogg" },
     { id: "forest", name: "Forest Ambience", emoji: "🌲", desc: "Peaceful forest sounds", url: "https://actions.google.com/sounds/v1/ambiences/forest_ambience.ogg" },
     { id: "stream", name: "Flowing Stream", emoji: "💧", desc: "Water bubbling over stones", url: "https://actions.google.com/sounds/v1/water/river.ogg" },
@@ -317,7 +317,7 @@ export function MoodSoundscape() {
 
   useEffect(() => {
     const audio = new Audio(
-      "https://actions.google.com/sounds/v1/weather/rain_heavy_loud.ogg"
+      sound.url
     );
 
     audio.loop = true;
@@ -327,7 +327,7 @@ export function MoodSoundscape() {
     return () => {
       audio.pause();
       audio.src = "";
-      audioRef.current = null;
+      if (audioRef.current === audio) audioRef.current = null;
     };
   }, [selected]);
 
@@ -353,7 +353,7 @@ export function MoodSoundscape() {
       setPlaying(true);
     } catch {
       setError(
-        "Rain audio could not load. Check your internet connection and try again."
+        "This sound could not load. Check your internet connection or try another sound."
       );
     }
   }
@@ -399,12 +399,12 @@ export function MoodSoundscape() {
           <button
             className="audio-stop"
             onClick={stopAudio}
-            aria-label="Stop rain"
+            aria-label="Stop sound"
           >
             <Square size={18} />
           </button>
 
-          <span>{playing ? "{sound.name} is playing" : "Ready when you are"}</span>
+          <span>{playing ? `${sound.name} is playing` : "Ready when you are"}</span>
         </div>
 
         <label className="volume-control">
