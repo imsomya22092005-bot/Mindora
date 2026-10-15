@@ -86,10 +86,11 @@ export default function AuthPage({ mode = "login" }) {
         <div className="auth-visual-footer"><span>✳</span> Your pace. Your space. Your journey.</div>
       </section>
 
-      <section className="auth-form-side">\n        <Link to="/" className="auth-close-home" aria-label="Skip login and return to landing page" title="Back to landing page"><X size={20} /></Link>
+      <section className="auth-form-side">
+        <Link to="/" className="auth-close-home" aria-label="Skip login and return to landing page" title="Back to landing page"><X size={20} /></Link>
         <Link className="auth-mobile-brand" to="/"><img src="/favicon.svg" alt="" /> mindora</Link>
         <div className="auth-form-wrap">
-          <h2>{isRegister ? "Create your space" : "Welcome back"}</h2>
+          {!isRegister && <h2>Welcome back</h2>}
           <p className="auth-subtitle">{isRegister ? "Make a little room for yourself, every day." : "Take a breath. Your space is right here."}</p>
 
           <div className="auth-tabs" role="tablist" aria-label="Account options">
