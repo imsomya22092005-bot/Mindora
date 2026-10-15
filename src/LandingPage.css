@@ -1102,3 +1102,37 @@
   -webkit-text-fill-color: #263e30 !important;
   text-shadow: none !important;
 }
+
+
+/* Fix invisible headings in intro and how-it-works sections */
+.mindora-landing .landing-intro,
+.mindora-landing .landing-how,
+.mindora-landing .how-copy {
+  color: #263e30 !important;
+}
+.mindora-landing .landing-intro h2,
+.mindora-landing .landing-intro h2 span,
+.mindora-landing .how-copy h2,
+.mindora-landing .how-copy h2 span {
+  color: #263e30 !important;
+  -webkit-text-fill-color: #263e30 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+.mindora-landing .landing-intro h2 span,
+.mindora-landing .how-copy h2 span {
+  color: #587653 !important;
+  -webkit-text-fill-color: #587653 !important;
+}
+.mindora-landing .landing-intro > p,
+.mindora-landing .how-copy > p {
+  color: #4a5f4d !important;
+  -webkit-text-fill-color: #4a5f4d !important;
+  opacity: 1 !important;
+}
+.mindora-landing .landing-intro .section-eyebrow,
+.mindora-landing .how-copy .section-eyebrow {
+  color: #587653 !important;
+  -webkit-text-fill-color: #587653 !important;
+  opacity: 1 !important;
+}
