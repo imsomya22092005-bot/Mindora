@@ -360,3 +360,21 @@ main.mindora-section-page:has(.insight-chart-card) .section-page-title h1 em{
 /* Match section-page branding to the custom Mindora favicon */
 .section-brand-mark{overflow:hidden;border-radius:8px}
 .section-brand-mark img{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+
+/* Four mindful tools: balanced 2 × 2 layout on desktop */
+.mindful-tool-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 20px;
+}
+.mindful-tool-card {
+  min-height: 205px;
+  display: flex;
+  flex-direction: column;
+}
+.mindful-tool-card p { flex: 1; }
+@media (max-width: 600px) {
+  .mindful-tool-grid { grid-template-columns: minmax(0, 1fr); }
+}
