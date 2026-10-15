@@ -1634,3 +1634,57 @@
     transform: none !important;
   }
 }
+
+
+/* Replay entrance motion whenever a landing section scrolls back into view */
+.mindora-landing .landing-hero.motion-active .hero-eyebrow,
+.mindora-landing .landing-hero.motion-active .hero-content h1,
+.mindora-landing .landing-hero.motion-active .hero-content > p,
+.mindora-landing .landing-hero.motion-active .hero-actions,
+.mindora-landing .landing-hero.motion-active .hero-note,
+.mindora-landing .landing-intro.motion-active > .section-eyebrow,
+.mindora-landing .landing-intro.motion-active h2,
+.mindora-landing .landing-intro.motion-active > p,
+.mindora-landing .landing-why.motion-active .landing-why-heading > *,
+.mindora-landing .landing-features.motion-active .features-heading > *,
+.mindora-landing .landing-features.motion-active .landing-feature-card,
+.mindora-landing .landing-preview.motion-active .preview-copy > *,
+.mindora-landing .landing-how.motion-active .how-copy > *,
+.mindora-landing .landing-difference.motion-active > * {
+  animation: mindoraScrollReveal .8s cubic-bezier(.2,.7,.2,1) both;
+}
+.mindora-landing .landing-hero.motion-active .hero-content h1 { animation-delay: .1s; }
+.mindora-landing .landing-hero.motion-active .hero-content > p { animation-delay: .2s; }
+.mindora-landing .landing-hero.motion-active .hero-actions { animation-delay: .3s; }
+.mindora-landing .landing-hero.motion-active .hero-note { animation-delay: .4s; }
+.mindora-landing .landing-hero.motion-active .hero-floating-card {
+  animation: mindoraCardEnter .85s .25s cubic-bezier(.2,.7,.2,1) both,
+             mindoraFloat 6s 1.2s ease-in-out infinite;
+}
+.mindora-landing .landing-why.motion-active .landing-why-heading > *:nth-child(2) { animation-delay: .1s; }
+.mindora-landing .landing-why.motion-active .landing-why-heading > *:nth-child(3) { animation-delay: .2s; }
+.mindora-landing .landing-why.motion-active .landing-why-grid article:nth-child(1) { animation: mindoraScrollReveal .75s .1s both; }
+.mindora-landing .landing-why.motion-active .landing-why-grid article:nth-child(2) { animation: mindoraScrollReveal .75s .22s both; }
+.mindora-landing .landing-why.motion-active .landing-why-grid article:nth-child(3) { animation: mindoraScrollReveal .75s .34s both; }
+.mindora-landing .landing-features.motion-active .landing-feature-card:nth-child(2) { animation-delay: .12s; }
+.mindora-landing .landing-features.motion-active .landing-feature-card:nth-child(3) { animation-delay: .24s; }
+.mindora-landing .landing-preview.motion-active .preview-window {
+  animation: mindoraCardEnter .9s .15s both, mindoraFloat 6s 1.2s ease-in-out infinite;
+}
+.mindora-landing .landing-how.motion-active .how-visual {
+  animation: mindoraCardEnter .9s .2s both;
+}
+.mindora-landing .landing-cta.motion-active > * {
+  animation: mindoraScrollReveal .8s .12s both;
+}
+@keyframes mindoraScrollReveal {
+  from { opacity: 0; transform: translateY(28px); filter: blur(3px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mindora-landing .motion-active *,
+  .mindora-landing .motion-active > * {
+    animation: none !important;
+    filter: none !important;
+  }
+}
