@@ -44,7 +44,6 @@ import {
   CalmCorner,
   InnerGarden,
   LittleComfortBox,
-  MoodSoundscape,
 } from "./WellnessPages";
 
 const moods = [
@@ -1128,10 +1127,6 @@ function App() {
         <Route
           path="/comfort-box"
           element={<LittleComfortBox />}
-        />
-        <Route
-        />
-        <Route
         />
 
         {/* Fallback for unknown routes */}
