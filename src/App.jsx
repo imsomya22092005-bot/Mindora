@@ -24,6 +24,7 @@ import {
   RotateCcw,
   Leaf,
   Check,
+  CloudRain,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -317,6 +318,7 @@ function Dashboard() {
     if (section === "Journal") navigate("/journal");
     if (section === "Insights") navigate("/insights");
     if (section === "Mindful moments") navigate("/mindful-moments");
+    if (section === "Mood Soundscape") navigate("/soundscape");
   }
 
   const navItems = [
@@ -324,6 +326,7 @@ function Dashboard() {
     { label: "Journal", icon: BookOpen },
     { label: "Insights", icon: BarChart3 },
     { label: "Mindful moments", icon: Wind },
+    { label: "Mood Soundscape", icon: CloudRain },
   ];
 
   return (
