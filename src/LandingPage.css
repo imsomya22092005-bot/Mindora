@@ -989,3 +989,80 @@
   color: #203b2a !important;
   border-color: rgba(32,59,42,.7) !important;
 }
+
+
+/* Landing CTA: stronger contrast and one balanced horizontal row */
+.mindora-landing .landing-cta {
+  width: 100%;
+  padding: 34px clamp(24px, 2.5vw, 44px);
+  display: grid;
+  grid-template-columns: max-content minmax(300px, 1fr) minmax(240px, auto) max-content;
+  align-items: center;
+  gap: clamp(18px, 2vw, 32px);
+  text-align: left;
+  background: #dfe8d7;
+}
+.mindora-landing .landing-cta > .section-eyebrow {
+  color: #536c54 !important;
+  white-space: nowrap;
+}
+.mindora-landing .landing-cta h2 {
+  margin: 0;
+  color: #263e30 !important;
+  -webkit-text-fill-color: #263e30 !important;
+  font-size: clamp(26px, 3vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  text-wrap: nowrap;
+}
+.mindora-landing .landing-cta > p {
+  margin: 0;
+  color: #435a46 !important;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.mindora-landing .landing-cta .landing-cta-button {
+  min-height: 54px;
+  white-space: nowrap;
+}
+@media (max-width: 1180px) {
+  .mindora-landing .landing-cta {
+    grid-template-columns: max-content minmax(0, 1fr) max-content;
+    gap: 16px 22px;
+  }
+  .mindora-landing .landing-cta h2 {
+    white-space: normal;
+    font-size: clamp(25px, 3.2vw, 38px);
+  }
+  .mindora-landing .landing-cta > p {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .mindora-landing .landing-cta .landing-cta-button {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+  }
+}
+@media (max-width: 700px) {
+  .mindora-landing .landing-cta {
+    grid-template-columns: 1fr;
+    padding: 44px 24px;
+    text-align: center;
+    gap: 14px;
+  }
+  .mindora-landing .landing-cta > .section-eyebrow,
+  .mindora-landing .landing-cta > p {
+    white-space: normal;
+  }
+  .mindora-landing .landing-cta h2 {
+    font-size: clamp(29px, 8vw, 38px);
+    white-space: normal;
+  }
+  .mindora-landing .landing-cta > p,
+  .mindora-landing .landing-cta .landing-cta-button {
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: center;
+  }
+}
