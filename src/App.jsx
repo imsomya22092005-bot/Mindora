@@ -337,9 +337,7 @@ function Dashboard() {
           onClick={() => navigateTo("Overview")}
           aria-label="Mindora home"
         >
-          <span className="brand-mark">
-            <Leaf size={23} />
-          </span>
+          <span className="brand-mark"><img src="/favicon.svg" alt="" /></span>
           <span className="brand-name">mindora</span>
         </button>
 
