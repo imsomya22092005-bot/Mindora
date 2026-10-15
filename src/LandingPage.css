@@ -920,3 +920,32 @@
 }
 
 .brand-symbol img{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+
+
+/* Readable contrast for landing-page wellbeing copy */
+.mindora-landing .hero-content > p,
+.mindora-landing .landing-section p,
+.mindora-landing .landing-section-copy,
+.mindora-landing .landing-subtitle,
+.mindora-landing .landing-steps p,
+.mindora-landing .landing-feature p,
+.mindora-landing .landing-feature-card > p,
+.mindora-landing .features-heading > p,
+.mindora-landing .landing-quote,
+.mindora-landing .landing-quote p,
+.mindora-landing .landing-section h2,
+.mindora-landing .landing-steps h2,
+.mindora-landing .landing-feature h3,
+.mindora-landing .landing-feature-card h3 {
+  color: #293d2d !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+.mindora-landing .hero-content > p { color: #344a37 !important; }
+.mindora-landing .landing-section,
+.mindora-landing .landing-features,
+.mindora-landing .landing-steps { color: #293d2d; }
+@media (prefers-reduced-motion: reduce) {
+  .garden-plants .garden-flower,
+  .garden-plants .garden-flower-core { animation: none !important; }
+}
