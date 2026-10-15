@@ -286,3 +286,29 @@ main.mindora-section-page.dark-theme .section-page-title p {
 .dark-theme .scrapbook-editor{background:#202e24;border-color:#405744}.dark-theme .scrapbook-kicker{color:#c0d9b7}.dark-theme .scrapbook-tools h3{color:#e1e9df}.dark-theme .scrapbook-tools p,.dark-theme .scrapbook-storage-note{color:#bdcbb8}.dark-theme .scrapbook-tool-button,.dark-theme .scrapbook-decoration-tools button{background:#29392c;border-color:#435543;color:#d4e3ce}.dark-theme .scrapbook-tool-button.primary{background:#527557;color:#fff}
 .dark-theme .scrapbook-canvas{background-color:#293329;background-image:radial-gradient(#3e4c3b .8px,transparent .8px);border-color:#52674e}.dark-theme .scrapbook-canvas-empty,.dark-theme .scrapbook-canvas-empty small{color:#b5c9ae}.dark-theme .scrapbook-polaroid{background:#f5f2e8;border-color:#d6d3c8}
 @media(max-width:600px){.scrapbook-editor{padding:11px}.scrapbook-tools{align-items:flex-start;flex-direction:column}.scrapbook-canvas{min-height:285px}.scrapbook-polaroid{width:96px}.scrapbook-polaroid img,.scrapbook-photo-missing{height:70px}.scrapbook-polaroid.size-large{width:112px}}
+
+
+/* Diary + scrapbook sit side-by-side like a real memory spread */
+.journal-writing-scrapbook{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(245px,.9fr);
+  align-items:start;
+  gap:22px;
+  margin-top:18px;
+}
+.journal-writing-column{min-width:0;display:flex;flex-direction:column}
+.journal-writing-column .diary-title-label{margin-top:0}
+.journal-writing-column textarea{min-height:280px}
+.journal-writing-scrapbook .scrapbook-editor{margin-top:0;min-width:0;padding:13px}
+.journal-writing-scrapbook .scrapbook-canvas{min-height:350px}
+.journal-writing-scrapbook .scrapbook-tools{align-items:flex-start;flex-direction:column}
+.journal-writing-scrapbook .scrapbook-tools h3{font-size:17px}
+.journal-writing-scrapbook .scrapbook-tool-button.primary{min-height:32px}
+.scrapbook-remove-decor{display:none}
+.scrapbook-item.is-selected .scrapbook-remove-decor{display:grid}
+.scrapbook-item:not(.is-selected) .scrapbook-remove-decor{display:none}
+@media(max-width:760px){
+  .journal-writing-scrapbook{grid-template-columns:minmax(0,1fr);gap:20px}
+  .journal-writing-column textarea{min-height:220px}
+  .journal-writing-scrapbook .scrapbook-canvas{min-height:300px}
+}
