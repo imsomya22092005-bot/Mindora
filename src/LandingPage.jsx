@@ -88,11 +88,11 @@ export default function LandingPage() {
           </span>
 
           <h1>
-            Find calm.
+            <span className="hero-line"><span className="hero-line-inner">Find calm.</span></span>
             <br />
-            Restore balance.
+            <span className="hero-line"><span className="hero-line-inner">Restore balance.</span></span>
             <br />
-            <span>Feel like yourself again.</span>
+            <span className="hero-line"><span className="hero-line-inner"><span>Feel like yourself again.</span></span></span>
           </h1>
 
           <p>
