@@ -123,39 +123,36 @@ export function InnerGarden() {
     try { return JSON.parse(localStorage.getItem("mindora-garden-progress")) || []; }
     catch { return []; }
   });
-  const [bloomed, setBloomed] = useState(false);
   useEffect(() => { localStorage.setItem("mindora-garden-progress", JSON.stringify(completed)); }, [completed]);
-  useEffect(() => {
-    if (!completed.length) { setBloomed(false); return undefined; }
-    const timer = window.setTimeout(() => setBloomed(true), 1800);
-    return () => window.clearTimeout(timer);
-  }, [completed.length]);
   function toggleAction(index) {
     setCompleted((previous) => previous.includes(index) ? previous.filter((item) => item !== index) : [...previous, index]);
   }
   return (
     <Shell title="Your Inner Garden" subtitle="Small acts of care help beautiful things grow." icon={<Sprout size={28} />}>
       <div className="garden-summary">
-        <div className="garden-landscape" aria-label="A little illustrated garden">
+        <div className="garden-landscape" aria-label="Six little plants, one for each act of care">
           <span className="garden-sun">☀</span><span className="garden-cloud garden-cloud-one">☁</span><span className="garden-cloud garden-cloud-two">☁</span>
-          <div className={"garden-plant " + (completed.length ? "garden-plant-growing " : "") + (bloomed ? "garden-plant-bloomed" : "")}>
-            <span className="garden-flower">✿</span><span className="garden-flower-core">♥</span><span className="garden-stem" /><span className="garden-leaf garden-leaf-left" /><span className="garden-leaf garden-leaf-right" />
-          </div>
-          <div className="garden-ground"><span>✿</span><span>·</span><span>✿</span><span>·</span><span>✿</span></div><span className="garden-butterfly">🦋</span>
+          <div className="garden-plants">{careActions.map((action, index) => (
+            <div className={"garden-plant " + (completed.includes(index) ? "garden-plant-growing garden-plant-bloomed" : "")} key={action.title} title={action.title}>
+              <span className="garden-flower">✿</span><span className="garden-flower-core">♥</span><span className="garden-stem" /><span className="garden-leaf garden-leaf-left" /><span className="garden-leaf garden-leaf-right" />
+              <span className="garden-plant-number">{index + 1}</span>
+            </div>
+          ))}</div>
+          <div className="garden-ground"><span>✿</span><span>·</span><span>✿</span><span>·</span><span>✿</span><span>·</span><span>✿</span></div><span className="garden-butterfly">🦋</span>
         </div>
-        <h2>{completed.length === 0 ? "Your garden is waiting" : "Look how you are growing!"}</h2>
+        <h2>{completed.length === 0 ? "Your garden is waiting" : completed.length === careActions.length ? "Your garden is in full bloom!" : "Look how you're growing!"}</h2>
         <p>{completed.length} of {careActions.length} little acts of care completed.</p>
         <div className="progress-track"><div style={{ width: `${(completed.length / careActions.length) * 100}%` }} /></div>
-        <p className="garden-growth-note">{completed.length === 0 ? "Choose a little act of care and watch your garden begin to bloom." : bloomed ? "A little kindness, a little growth. Your flower is blooming." : "Your little plant is growing… a flower is on its way."}</p>
+        <p className="garden-growth-note">{completed.length === 0 ? "Choose a little act of care and watch a new flower bloom." : completed.length === careActions.length ? "Every little act of care helped your garden bloom." : "Each kind thing you do helps another little flower grow."}</p>
       </div>
       <div className="wellness-panel">
-        <p className="wellness-eyebrow">TODAY’S CARE LIST</p><h2>Choose one thing for yourself</h2>
+        <p className="wellness-eyebrow">TODAY'S CARE LIST</p><h2>Choose one thing for yourself</h2>
         <div className="care-list">{careActions.map((action, index) => (
           <button type="button" key={action.title} className={"care-item " + (completed.includes(index) ? "care-done" : "")} onClick={() => toggleAction(index)}>
             <span className="care-emoji">{action.emoji}</span><span>{action.title}</span><span className="care-check">{completed.includes(index) ? "✓" : "+"}</span>
           </button>
         ))}</div>
-        <button className="wellness-button secondary" onClick={() => setCompleted([])}>Reset today’s garden</button>
+        <button className="wellness-button secondary" onClick={() => setCompleted([])}>Reset today's garden</button>
       </div>
     </Shell>
   );
