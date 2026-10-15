@@ -24,7 +24,6 @@ import {
   RotateCcw,
   Leaf,
   Check,
-  CloudRain,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -46,7 +45,6 @@ import {
   InnerGarden,
   LittleComfortBox,
   MoodSoundscape,
-  LetItOutJournal,
 } from "./WellnessPages";
 
 const moods = [
@@ -318,7 +316,6 @@ function Dashboard() {
     if (section === "Journal") navigate("/journal");
     if (section === "Insights") navigate("/insights");
     if (section === "Mindful moments") navigate("/mindful-moments");
-    if (section === "Mood Soundscape") navigate("/soundscape");
   }
 
   const navItems = [
@@ -326,7 +323,6 @@ function Dashboard() {
     { label: "Journal", icon: BookOpen },
     { label: "Insights", icon: BarChart3 },
     { label: "Mindful moments", icon: Wind },
-    { label: "Mood Soundscape", icon: CloudRain },
   ];
 
   return (
@@ -1134,12 +1130,8 @@ function App() {
           element={<LittleComfortBox />}
         />
         <Route
-          path="/soundscape"
-          element={<MoodSoundscape />}
         />
         <Route
-          path="/let-it-out"
-          element={<LetItOutJournal />}
         />
 
         {/* Fallback for unknown routes */}
