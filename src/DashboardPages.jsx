@@ -150,6 +150,7 @@ const mindfulTools=[
  {title:"Calm Corner",description:"A quiet reset when the day feels like too much.",icon:Wind,href:"/calm-corner",tone:"sage"},
  {title:"Inner Garden",description:"Small acts of care, one little step at a time.",icon:Sprout,href:"/inner-garden",tone:"moss"},
  {title:"Little Comfort Box",description:"Find a kind reminder for the feeling you're carrying.",icon:HeartHandshake,href:"/comfort-box",tone:"peach"},
+  {title:"Mood Soundscape",description:"Let gentle rain create a little breathing room.",icon:CloudRain,href:"/soundscape",tone:"blue"},
 ];
 export function MindfulMomentsPage(){
  const theme=useThemeClass();
