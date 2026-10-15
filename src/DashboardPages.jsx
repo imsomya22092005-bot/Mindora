@@ -107,10 +107,14 @@ export function JournalPage() {
           <span className="journal-page-number">TODAY'S PAGE</span>
           <h2>Dear, you...</h2>
           <p>There is no right way to write this. Start wherever your thoughts are.</p>
-          <label className="diary-title-label">GIVE THIS PAGE A TITLE<input value={title} onChange={e=>setTitle(e.target.value)} placeholder="A thought I want to remember..." /></label>
-          <textarea autoFocus value={text} onChange={e=>setText(e.target.value)} placeholder={"Today, my mind has been full of...\n\nWhat I wish I could say is...\n\nWhat I need right now is..."} />
-          <div className="diary-editor-footer"><span><LockKeyhole size={14}/> Saved privately on this device</span><span>{text.trim() ? text.trim().split(/\s+/).length : 0} words</span></div>
-          {pageId && <ScrapbookEditor key={pageId} pageId={pageId} />}
+          <div className="journal-writing-scrapbook">
+            <div className="journal-writing-column">
+              <label className="diary-title-label">GIVE THIS PAGE A TITLE<input value={title} onChange={e=>setTitle(e.target.value)} placeholder="A thought I want to remember..." /></label>
+              <textarea autoFocus value={text} onChange={e=>setText(e.target.value)} placeholder={"Today, my mind has been full of...\n\nWhat I wish I could say is...\n\nWhat I need right now is..."} />
+              <div className="diary-editor-footer"><span><LockKeyhole size={14}/> Saved privately on this device</span><span>{text.trim() ? text.trim().split(/\s+/).length : 0} words</span></div>
+            </div>
+            {pageId && <ScrapbookEditor key={pageId} pageId={pageId} />}
+          </div>
           <div className="journal-page-actions">
             <button className="journal-close-button" onClick={()=>{setDiaryOpen(false);setViewEntry(null);}}>Put page back</button>
             <button className="diary-save-button" onClick={saveEntry} disabled={!text.trim()}><Save size={16}/> {viewEntry ? "Save changes" : "Tuck page into diary"} <ArrowUpRight size={16}/></button>
