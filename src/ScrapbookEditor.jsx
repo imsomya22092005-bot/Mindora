@@ -24,7 +24,8 @@ export async function deleteScrapbookPage(pageId) {
   for (const item of items) if (item.type === "photo") { try { await erasePhoto(item.id); } catch {} }
   delete layouts[String(pageId)];
   writeLayouts(layouts);
-}\nasync function erasePhoto(id) {
+}
+async function erasePhoto(id) {
   const db = await openDB();
   return new Promise((resolve, reject) => { const tx = db.transaction("photos", "readwrite"); tx.objectStore("photos").delete(id); tx.oncomplete = () => { db.close(); resolve(); }; tx.onerror = () => { db.close(); reject(new Error("Could not delete photo.")); }; });
 }
