@@ -951,50 +951,41 @@
 }
 
 
-/* Final high-specificity contrast fix for the home/landing page copy */
-.mindora-landing .landing-hero .hero-content > p,
+
+
+/* Keep the original full-bleed photo hero; only darken the copy */
+.mindora-landing .landing-hero .hero-content,
+.mindora-landing .landing-hero .hero-floating-card {
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+.mindora-landing .landing-hero .hero-content {
+  margin: 0 !important;
+  padding: 65px 0 64px 5% !important;
+  width: min(650px, 68%) !important;
+}
 .mindora-landing .landing-hero .hero-content h1,
 .mindora-landing .landing-hero .hero-content h1 span,
+.mindora-landing .landing-hero .hero-content > p,
 .mindora-landing .landing-hero .hero-note,
 .mindora-landing .landing-hero .hero-note-icon,
 .mindora-landing .landing-hero .hero-floating-card p,
 .mindora-landing .landing-hero .floating-card-subtitle,
-.mindora-landing .landing-intro h2,
-.mindora-landing .landing-intro h2 span,
-.mindora-landing .landing-intro > p,
-.mindora-landing .features-heading h2,
-.mindora-landing .features-heading > p,
-.mindora-landing .landing-feature-card h3,
-.mindora-landing .landing-feature-card > p,
-.mindora-landing .landing-how .how-copy h2,
-.mindora-landing .landing-how .how-copy h2 span,
-.mindora-landing .landing-how .how-copy > p,
-.mindora-landing .landing-cta h2,
-.mindora-landing .landing-cta > p {
-  color: #263b2a !important;
+.mindora-landing .landing-hero .hero-eyebrow {
+  color: #203b2a !important;
   opacity: 1 !important;
-  -webkit-text-fill-color: #263b2a !important;
-  text-shadow: none !important;
-}
-.mindora-landing .landing-hero .hero-content,
-.mindora-landing .landing-hero .hero-floating-card {
-  background: rgba(246, 245, 238, .9);
-  border-radius: 18px;
-}
-.mindora-landing .landing-hero .hero-content { margin: 0 0 28px 28px; padding: 30px; }
-.mindora-landing .landing-hero .hero-eyebrow,
-.mindora-landing .landing-intro .section-eyebrow,
-.mindora-landing .landing-features .section-eyebrow,
-.mindora-landing .landing-how .section-eyebrow,
-.mindora-landing .landing-cta .section-eyebrow {
-  color: #365b38 !important;
-  opacity: 1 !important;
+  -webkit-text-fill-color: #203b2a !important;
+  text-shadow: 0 1px 2px rgba(245,244,233,.35) !important;
 }
 .mindora-landing .landing-hero .hero-floating-card {
-  background: rgba(246,245,238,.95);
+  background: rgba(246,245,238,.94) !important;
+  border-radius: 22px !important;
 }
-.mindora-landing .landing-hero .floating-card-label { color: #365b38 !important; }
-.mindora-landing .landing-hero .floating-card-icon { color: #426d45 !important; }
-@media(max-width:700px) {
-  .mindora-landing .landing-hero .hero-content { margin: 0 14px 16px; padding: 22px; width: calc(100% - 28px); }
+.mindora-landing .landing-hero .hero-primary-button {
+  background: #f7f6ee !important;
+  color: #203b2a !important;
+}
+.mindora-landing .landing-hero .hero-secondary-button {
+  color: #203b2a !important;
+  border-color: rgba(32,59,42,.7) !important;
 }
