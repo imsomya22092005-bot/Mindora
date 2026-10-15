@@ -68,7 +68,7 @@ export default function AuthPage({ mode = "login" }) {
     <main className="auth-page">
       <section className="auth-visual">
         <Link className="auth-brand" to="/" aria-label="Mindora home">
-          <span className="auth-brand-mark"><Leaf size={21} /></span>
+          <span className="auth-brand-mark"><img src="/favicon.svg" alt="" /></span>
           <span>mindora</span>
         </Link>
         <div className="auth-visual-copy">
@@ -87,9 +87,8 @@ export default function AuthPage({ mode = "login" }) {
       </section>
 
       <section className="auth-form-side">\n        <Link to="/" className="auth-close-home" aria-label="Skip login and return to landing page" title="Back to landing page"><X size={20} /></Link>
-        <Link className="auth-mobile-brand" to="/"><Leaf size={20} /> mindora</Link>
+        <Link className="auth-mobile-brand" to="/"><img src="/favicon.svg" alt="" /> mindora</Link>
         <div className="auth-form-wrap">
-          <span className="auth-form-kicker">{isRegister ? "YOUR JOURNEY STARTS HERE" : "GOOD TO HAVE YOU BACK"}</span>
           <h2>{isRegister ? "Create your space" : "Welcome back"}</h2>
           <p className="auth-subtitle">{isRegister ? "Make a little room for yourself, every day." : "Take a breath. Your space is right here."}</p>
 
@@ -126,7 +125,6 @@ export default function AuthPage({ mode = "login" }) {
 
           <p className="auth-switch">{isRegister ? "Already have an account?" : "New to Mindora?"} <Link to={isRegister ? "/login" : "/signup"}>{isRegister ? "Log in" : "Create an account"}</Link></p>
           <p className="auth-privacy"><Heart size={13} /> Your wellbeing matters. Take it one day at a time.</p>
-          <p className="auth-demo-note">Demo mode: account details are saved only in this browser. This is not secure production authentication.</p>
         </div>
         <Link to="/" className="auth-back-home">← Back to Mindora home</Link>
       </section>
