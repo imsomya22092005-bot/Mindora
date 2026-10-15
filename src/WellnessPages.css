@@ -689,3 +689,14 @@
     line-height: 1.8;
   }
 }
+
+/* Mood Soundscape: nine selectable nature sounds */
+.soundscape-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:24px}
+.soundscape-option{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0;padding:14px;border:1px solid var(--wellness-border);border-radius:16px;background:var(--wellness-card);color:var(--wellness-text);text-align:left;transition:transform .2s,border-color .2s,background .2s}
+.soundscape-option:hover{transform:translateY(-2px);border-color:#9db69a}
+.soundscape-option-active{border-color:var(--wellness-green);background:var(--wellness-light);box-shadow:0 0 0 1px var(--wellness-green)}
+.soundscape-option-emoji{font-size:24px}
+.soundscape-option-copy{display:grid;gap:4px}
+.soundscape-option-copy strong{font-size:13px;line-height:1.35}
+.soundscape-option-copy small{font-size:11px;line-height:1.5;color:var(--wellness-muted)}
+@media(max-width:560px){.soundscape-options{grid-template-columns:repeat(2,minmax(0,1fr))}.soundscape-option{padding:12px}}
