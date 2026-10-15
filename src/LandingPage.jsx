@@ -30,7 +30,7 @@ export default function LandingPage() {
     <main className="mindora-landing">
       <header className="landing-navbar">
         <a className="landing-brand" href="#home" aria-label="Mindora home">
-          <span className="brand-symbol">〰</span>
+          <span className="brand-symbol"><img src="/favicon.svg" alt="" /></span>
           <span>Mindora</span>
         </a>
 
