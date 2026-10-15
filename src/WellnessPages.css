@@ -727,3 +727,8 @@
 .dark-theme .rain-card > p:not(.wellness-eyebrow):not(.audio-error) {
   color: #d2dfcd !important;
 }
+
+
+/* Keep the Mood-Based Soundscape page title clearly readable */
+.wellness-heading h1{color:#263b2a!important;opacity:1!important;text-shadow:none!important}
+.dark-theme .wellness-heading h1{color:#263b2a!important;}
