@@ -303,123 +303,151 @@ export function MoodSoundscape() {
   const [error, setError] = useState("");
   const audioRef = useRef(null);
   const sounds = [
-    { id: "birds", name: "Birdsong", emoji: "🐦", desc: "Morning birds chirping", url: "https://actions.google.com/sounds/v1/ambiences/birds_in_forest.ogg" },
-    { id: "rain", name: "Gentle Rain", emoji: "🌧️", desc: "Soft rainfall", url: "https://actions.google.com/sounds/v1/weather/rain_heavy_loud.ogg" },
-    { id: "ocean", name: "Ocean Waves", emoji: "🌊", desc: "Waves rolling ashore", url: "https://actions.google.com/sounds/v1/water/ocean_waves.ogg" },
-    { id: "forest", name: "Forest Ambience", emoji: "🌲", desc: "Peaceful forest sounds", url: "https://actions.google.com/sounds/v1/ambiences/forest_ambience.ogg" },
-    { id: "stream", name: "Flowing Stream", emoji: "💧", desc: "Water bubbling over stones", url: "https://actions.google.com/sounds/v1/water/river.ogg" },
-    { id: "wind", name: "Wind in the Trees", emoji: "🍃", desc: "Breeze through leaves", url: "https://actions.google.com/sounds/v1/weather/wind_in_trees.ogg" },
-    { id: "night", name: "Night Crickets", emoji: "🌙", desc: "Quiet evening crickets", url: "https://actions.google.com/sounds/v1/ambiences/crickets_chirping.ogg" },
-    { id: "fire", name: "Crackling Fireplace", emoji: "🔥", desc: "Warm, cosy crackles", url: "https://actions.google.com/sounds/v1/ambiences/fireplace.ogg" },
-    { id: "thunder", name: "Distant Thunder", emoji: "⛈️", desc: "A distant, gentle storm", url: "https://actions.google.com/sounds/v1/weather/thunderstorm.ogg" },
+    { id: "birds", name: "Birdsong", emoji: "🐦", desc: "Morning birds chirping" },
+    { id: "rain", name: "Gentle Rain", emoji: "🌧️", desc: "Soft rainfall" },
+    { id: "ocean", name: "Ocean Waves", emoji: "🌊", desc: "Waves rolling ashore" },
+    { id: "forest", name: "Forest Ambience", emoji: "🌲", desc: "Peaceful forest sounds" },
+    { id: "stream", name: "Flowing Stream", emoji: "💧", desc: "Water bubbling over stones" },
+    { id: "wind", name: "Wind in the Trees", emoji: "🍃", desc: "Breeze through leaves" },
+    { id: "night", name: "Night Crickets", emoji: "🌙", desc: "Quiet evening crickets" },
+    { id: "fire", name: "Crackling Fireplace", emoji: "🔥", desc: "Warm, cosy crackles" },
+    { id: "thunder", name: "Distant Thunder", emoji: "⛈️", desc: "A distant, gentle storm" },
   ];
   const sound = sounds.find((item) => item.id === selected) || sounds[1];
 
-  useEffect(() => {
-    const audio = new Audio(
-      sound.url
-    );
-
-    audio.loop = true;
-    audio.volume = volume / 100;
-    audio.preload = "auto";
-    audio.onerror = () => setError("This sound is temporarily unavailable. Please try another sound.");
-    audioRef.current = audio;
-
-    return () => {
-      audio.pause();
-      audio.src = "";
-      if (audioRef.current === audio) audioRef.current = null;
-    };
-  }, [selected]);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume / 100;
-    }
-  }, [volume]);
-
-  async function togglePlayback() {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (playing) {
-      audio.pause();
-      setPlaying(false);
-      return;
-    }
-
-    try {
-      setError("");
-      await audio.play();
-      setPlaying(true);
-    } catch {
-      setError(
-        "This sound could not load. Check your internet connection or try another sound."
-      );
-    }
-  }
-
   function stopAudio() {
-    if (!audioRef.current) return;
-
-    audioRef.current.pause();
-    audioRef.current.currentTime = 0;
+    const engine = audioRef.current;
+    if (engine) {
+      engine.nodes.forEach((node) => { try { node.stop?.(); node.disconnect?.(); } catch {} });
+      engine.context.close().catch(() => {});
+      audioRef.current = null;
+    }
     setPlaying(false);
   }
+
+  function startSound() {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) {
+      setError("Audio playback is not supported in this browser. Please try an updated browser.");
+      return;
+    }
+    const context = new AudioContextClass();
+    const master = context.createGain();
+    master.gain.value = volume / 100 * 0.22;
+    master.connect(context.destination);
+    const nodes = [];
+    const addTone = (frequency, type, gainValue, detune = 0) => {
+      const oscillator = context.createOscillator();
+      const gain = context.createGain();
+      oscillator.type = type;
+      oscillator.frequency.value = frequency;
+      oscillator.detune.value = detune;
+      gain.gain.value = gainValue;
+      oscillator.connect(gain); gain.connect(master); oscillator.start();
+      nodes.push(oscillator, gain);
+      return { oscillator, gain };
+    };
+    const noise = (filterType, frequency, gainValue) => {
+      const buffer = context.createBuffer(1, context.sampleRate * 3, context.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+      const source = context.createBufferSource(); source.buffer = buffer; source.loop = true;
+      const filter = context.createBiquadFilter(); filter.type = filterType; filter.frequency.value = frequency;
+      const gain = context.createGain(); gain.gain.value = gainValue;
+      source.connect(filter); filter.connect(gain); gain.connect(master); source.start();
+      nodes.push(source, filter, gain);
+      return { source, filter, gain };
+    };
+    if (selected === "birds") {
+      [1800, 2300, 1450].forEach((freq, i) => {
+        const tone = addTone(freq, "sine", 0.0001);
+        tone.gain.gain.setValueAtTime(0.0001, context.currentTime + i * 0.7);
+        tone.gain.gain.linearRampToValueAtTime(0.25, context.currentTime + i * 0.7 + 0.08);
+        tone.gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + i * 0.7 + 0.35);
+        tone.oscillator.frequency.setValueAtTime(freq, context.currentTime + i * 0.7);
+        tone.oscillator.frequency.linearRampToValueAtTime(freq * 1.35, context.currentTime + i * 0.7 + 0.18);
+      });
+    } else if (selected === "rain" || selected === "stream" || selected === "ocean" || selected === "forest" || selected === "wind") {
+      const profile = {
+        rain: ["lowpass", 1400, 0.65], stream: ["highpass", 450, 0.28],
+        ocean: ["lowpass", 500, 0.85], forest: ["lowpass", 1900, 0.22],
+        wind: ["lowpass", 380, 0.8],
+      }[selected];
+      const bed = noise(profile[0], profile[1], profile[2]);
+      if (selected === "ocean" || selected === "wind") {
+        const lfo = context.createOscillator(); const depth = context.createGain();
+        lfo.frequency.value = selected === "ocean" ? 0.12 : 0.06; depth.gain.value = 0.22;
+        lfo.connect(depth); depth.connect(bed.gain.gain); lfo.start(); nodes.push(lfo, depth);
+      }
+      if (selected === "forest") {
+        [210, 270, 340].forEach((freq) => addTone(freq, "sine", 0.025, Math.random() * 8));
+      }
+    } else if (selected === "night") {
+      [2400, 2750, 2200].forEach((freq, i) => {
+        const tone = addTone(freq, "sine", 0.0001);
+        const pulse = context.createOscillator(); const pulseGain = context.createGain();
+        pulse.frequency.value = 3 + i; pulseGain.gain.value = 0.045;
+        pulse.connect(pulseGain); pulseGain.connect(tone.gain.gain); pulse.start(); nodes.push(pulse, pulseGain);
+      });
+    } else if (selected === "fire") {
+      noise("lowpass", 900, 0.42);
+      const crackle = context.createOscillator(); crackle.type = "square"; crackle.frequency.value = 17;
+      const crackleGain = context.createGain(); crackleGain.gain.value = 0.012;
+      crackle.connect(crackleGain); crackleGain.connect(master); crackle.start(); nodes.push(crackle, crackleGain);
+    } else if (selected === "thunder") {
+      const rumble = noise("lowpass", 100, 0.8);
+      const lfo = context.createOscillator(); const depth = context.createGain();
+      lfo.frequency.value = 0.18; depth.gain.value = 0.3;
+      lfo.connect(depth); depth.connect(rumble.gain.gain); lfo.start(); nodes.push(lfo, depth);
+    }
+    audioRef.current = { context, master, nodes };
+    context.resume().then(() => setPlaying(true)).catch(() => {
+      setError("Tap play again to allow audio playback in your browser.");
+      stopAudio();
+    });
+    setError("");
+  }
+
+  function togglePlayback() {
+    if (playing) { stopAudio(); return; }
+    startSound();
+  }
+
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.master.gain.value = volume / 100 * 0.22;
+  }, [volume]);
+
+  useEffect(() => () => {
+    const engine = audioRef.current;
+    if (engine) {
+      engine.nodes.forEach((node) => { try { node.stop?.(); node.disconnect?.(); } catch {} });
+      engine.context.close().catch(() => {});
+      audioRef.current = null;
+    }
+  }, [selected]);
 
   return (
     <Shell
       title="Mood-Based Soundscape"
-      subtitle="Let the sound of rain give your thoughts a little room."
+      subtitle="Choose a sound to soften the noise of the day and make a little room to breathe."
       icon={<CloudRain size={28} />}
     >
       <div className="rain-card">
-        <div className="soundscape-options">{sounds.map((item) => <button type="button" key={item.id} className={selected === item.id ? "soundscape-option soundscape-option-active" : "soundscape-option"} onClick={() => { setSelected(item.id); setPlaying(false); setError(""); }}><span className="soundscape-option-emoji">{item.emoji}</span><span className="soundscape-option-copy"><strong>{item.name}</strong><small>{item.desc}</small></span></button>)}</div>
+        <div className="soundscape-options">{sounds.map((item) => <button type="button" key={item.id} className={selected === item.id ? "soundscape-option soundscape-option-active" : "soundscape-option"} onClick={() => { stopAudio(); setSelected(item.id); setError(""); }}><span className="soundscape-option-emoji">{item.emoji}</span><span className="soundscape-option-copy"><strong>{item.name}</strong><small>{item.desc}</small></span></button>)}</div>
         <div className="rain-scene">
           <span className="rain-cloud">{sound.emoji}</span>
-          <span className="rain-drop drop-one">╱</span>
-          <span className="rain-drop drop-two">╱</span>
-          <span className="rain-drop drop-three">╱</span>
-          <span className="rain-drop drop-four">╱</span>
+          <span className="rain-drop drop-one">╱</span><span className="rain-drop drop-two">╱</span><span className="rain-drop drop-three">╱</span><span className="rain-drop drop-four">╱</span>
           <span className="rain-hill">🌿</span>
         </div>
-
         <p className="wellness-eyebrow">YOUR CURRENT SOUNDSCAPE</p>
         <h2>{sound.name}</h2>
         <p>{sound.desc} for reading, resting, or simply being.</p>
-
         <div className="audio-controls">
-          <button
-            className="audio-play"
-            onClick={togglePlayback}
-            aria-label={playing ? "Pause sound" : "Play sound"}
-          >
-            {playing ? <Pause size={23} /> : <Play size={23} />}
-          </button>
-
-          <button
-            className="audio-stop"
-            onClick={stopAudio}
-            aria-label="Stop sound"
-          >
-            <Square size={18} />
-          </button>
-
+          <button className="audio-play" onClick={togglePlayback} aria-label={playing ? "Stop sound" : "Play sound"}>{playing ? <Pause size={23} /> : <Play size={23} />}</button>
+          <button className="audio-stop" onClick={stopAudio} aria-label="Stop sound"><Square size={18} /></button>
           <span>{playing ? `${sound.name} is playing` : "Ready when you are"}</span>
         </div>
-
-        <label className="volume-control">
-          Volume <span>{volume}%</span>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={volume}
-            onChange={(event) => setVolume(Number(event.target.value))}
-          />
-        </label>
-
+        <label className="volume-control">Volume <span>{volume}%</span><input type="range" min="0" max="100" value={volume} onChange={(event) => setVolume(Number(event.target.value))} /></label>
         {error && <p className="audio-error">{error}</p>}
       </div>
     </Shell>
