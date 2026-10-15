@@ -312,3 +312,46 @@ main.mindora-section-page.dark-theme .section-page-title p {
   .journal-writing-column textarea{min-height:220px}
   .journal-writing-scrapbook .scrapbook-canvas{min-height:300px}
 }
+
+
+/* Insights page: prevent header overlap and make all key text readable */
+main.mindora-section-page:has(.insight-chart-card) .section-page-header{
+  padding-top:18px;
+  margin-bottom:30px;
+}
+main.mindora-section-page:has(.insight-chart-card) .section-page-brand{
+  left:50%;
+  transform:translateX(-50%);
+}
+main.mindora-section-page:has(.insight-chart-card) .section-back{
+  max-width:130px;
+  white-space:nowrap;
+}
+main.mindora-section-page:has(.insight-chart-card) .section-page-title{
+  margin-top:34px;
+}
+main.mindora-section-page:has(.insight-chart-card) .section-page-title .section-page-eyebrow{
+  color:#315b35!important;
+  font-weight:800;
+}
+main.mindora-section-page:has(.insight-chart-card) .section-page-title h1{
+  color:#263b2a!important;
+  line-height:1.25;
+}
+main.mindora-section-page:has(.insight-chart-card) .section-page-title h1 em{
+  color:#356d3e!important;
+}
+.insight-chart-card h2{color:#243c29!important;font-weight:700}
+.insight-chart-card>p{color:#405640!important}
+.insight-chart-card>.section-page-eyebrow{color:#315b35!important}
+.dark-theme:has(.insight-chart-card) .section-page-title .section-page-eyebrow,
+.dark-theme .insight-chart-card>.section-page-eyebrow{color:#c9e3bd!important}
+.dark-theme:has(.insight-chart-card) .section-page-title h1{color:#f1f5ed!important}
+.dark-theme:has(.insight-chart-card) .section-page-title h1 em{color:#c1e0b5!important}
+.dark-theme .insight-chart-card h2{color:#f1f5ed!important}
+.dark-theme .insight-chart-card>p{color:#d2dfcd!important}
+@media(max-width:600px){
+  main.mindora-section-page:has(.insight-chart-card) .section-page-header{padding-top:0;margin-bottom:24px}
+  main.mindora-section-page:has(.insight-chart-card) .section-page-brand{left:auto;right:0;transform:none}
+  main.mindora-section-page:has(.insight-chart-card) .section-page-title{margin-top:40px}
+}
