@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import "./LandingPage.css";
 
 const features = [
@@ -26,6 +27,30 @@ const features = [
 ];
 
 export default function LandingPage() {
+  useEffect(() => {
+    const root = document.querySelector(".mindora-landing");
+    if (!root || !("IntersectionObserver" in window)) return;
+
+    const animatedSections = root.querySelectorAll(
+      ".landing-hero, .landing-intro, .landing-why, .landing-features, .landing-preview, .landing-how, .landing-difference, .landing-cta"
+    );
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("motion-active");
+          void entry.target.offsetWidth;
+          entry.target.classList.add("motion-active");
+        } else {
+          entry.target.classList.remove("motion-active");
+        }
+      });
+    }, { threshold: 0.18 });
+
+    animatedSections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main className="mindora-landing">
       <header className="landing-navbar">
