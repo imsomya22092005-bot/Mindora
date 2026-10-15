@@ -15,7 +15,7 @@ function useThemeClass() {
 function PageHeader({ eyebrow, title, subtitle, icon: Icon }) {
   return <header className="section-page-header">
     <Link className="section-back" to="/dashboard"><ArrowLeft size={16}/> {eyebrow === "GENTLE SELF-AWARENESS" ? "Insights" : "Dashboard"}</Link>
-    <div className="section-page-brand"><span className="section-brand-mark"><Leaf size={20}/></span><span>mindora</span></div>
+    <div className="section-page-brand"><span className="section-brand-mark"><img src="/favicon.svg" alt="" /></span><span>mindora</span></div>
     <div className="section-page-title">
       <span className="section-page-eyebrow">{Icon && <Icon size={14}/>} {eyebrow}</span>
       <h1>{title}</h1><p>{subtitle}</p>
