@@ -135,7 +135,7 @@ exports.verifyOTP = async (req, res) => {
       user = await User.create({
         name: name || 'Wellness User',
         email: cleanEmail,
-        authProvider: 'local',
+        authProvider: 'otp',
         isVerified: true
       });
     } else {
