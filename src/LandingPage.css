@@ -949,3 +949,52 @@
   .garden-plants .garden-flower,
   .garden-plants .garden-flower-core { animation: none !important; }
 }
+
+
+/* Final high-specificity contrast fix for the home/landing page copy */
+.mindora-landing .landing-hero .hero-content > p,
+.mindora-landing .landing-hero .hero-content h1,
+.mindora-landing .landing-hero .hero-content h1 span,
+.mindora-landing .landing-hero .hero-note,
+.mindora-landing .landing-hero .hero-note-icon,
+.mindora-landing .landing-hero .hero-floating-card p,
+.mindora-landing .landing-hero .floating-card-subtitle,
+.mindora-landing .landing-intro h2,
+.mindora-landing .landing-intro h2 span,
+.mindora-landing .landing-intro > p,
+.mindora-landing .features-heading h2,
+.mindora-landing .features-heading > p,
+.mindora-landing .landing-feature-card h3,
+.mindora-landing .landing-feature-card > p,
+.mindora-landing .landing-how .how-copy h2,
+.mindora-landing .landing-how .how-copy h2 span,
+.mindora-landing .landing-how .how-copy > p,
+.mindora-landing .landing-cta h2,
+.mindora-landing .landing-cta > p {
+  color: #263b2a !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #263b2a !important;
+  text-shadow: none !important;
+}
+.mindora-landing .landing-hero .hero-content,
+.mindora-landing .landing-hero .hero-floating-card {
+  background: rgba(246, 245, 238, .9);
+  border-radius: 18px;
+}
+.mindora-landing .landing-hero .hero-content { margin: 0 0 28px 28px; padding: 30px; }
+.mindora-landing .landing-hero .hero-eyebrow,
+.mindora-landing .landing-intro .section-eyebrow,
+.mindora-landing .landing-features .section-eyebrow,
+.mindora-landing .landing-how .section-eyebrow,
+.mindora-landing .landing-cta .section-eyebrow {
+  color: #365b38 !important;
+  opacity: 1 !important;
+}
+.mindora-landing .landing-hero .hero-floating-card {
+  background: rgba(246,245,238,.95);
+}
+.mindora-landing .landing-hero .floating-card-label { color: #365b38 !important; }
+.mindora-landing .landing-hero .floating-card-icon { color: #426d45 !important; }
+@media(max-width:700px) {
+  .mindora-landing .landing-hero .hero-content { margin: 0 14px 16px; padding: 22px; width: calc(100% - 28px); }
+}
