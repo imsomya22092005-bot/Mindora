@@ -297,10 +297,23 @@ export function LittleComfortBox() {
 }
 
 export function MoodSoundscape() {
+  const [selected, setSelected] = useState("rain");
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(50);
   const [error, setError] = useState("");
   const audioRef = useRef(null);
+  const sounds = [
+    { id: "birds", name: "Birdsong", emoji: "🐦", desc: "Morning birds chirping", url: "https://actions.google.com/sounds/v1/ambiences/birds_in_forest.ogg" },
+    { id: "rain", name: "Gentle Rain", emoji: "🌧️", desc: "Soft rainfall", url: sound.url },
+    { id: "ocean", name: "Ocean Waves", emoji: "🌊", desc: "Waves rolling ashore", url: "https://actions.google.com/sounds/v1/water/ocean_waves.ogg" },
+    { id: "forest", name: "Forest Ambience", emoji: "🌲", desc: "Peaceful forest sounds", url: "https://actions.google.com/sounds/v1/ambiences/forest_ambience.ogg" },
+    { id: "stream", name: "Flowing Stream", emoji: "💧", desc: "Water bubbling over stones", url: "https://actions.google.com/sounds/v1/water/river.ogg" },
+    { id: "wind", name: "Wind in the Trees", emoji: "🍃", desc: "Breeze through leaves", url: "https://actions.google.com/sounds/v1/weather/wind_in_trees.ogg" },
+    { id: "night", name: "Night Crickets", emoji: "🌙", desc: "Quiet evening crickets", url: "https://actions.google.com/sounds/v1/ambiences/crickets_chirping.ogg" },
+    { id: "fire", name: "Crackling Fireplace", emoji: "🔥", desc: "Warm, cosy crackles", url: "https://actions.google.com/sounds/v1/ambiences/fireplace.ogg" },
+    { id: "thunder", name: "Distant Thunder", emoji: "⛈️", desc: "A distant, gentle storm", url: "https://actions.google.com/sounds/v1/weather/thunderstorm.ogg" },
+  ];
+  const sound = sounds.find((item) => item.id === selected) || sounds[1];
 
   useEffect(() => {
     const audio = new Audio(
@@ -316,7 +329,7 @@ export function MoodSoundscape() {
       audio.src = "";
       audioRef.current = null;
     };
-  }, []);
+  }, [selected]);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -359,9 +372,9 @@ export function MoodSoundscape() {
       subtitle="Let the sound of rain give your thoughts a little room."
       icon={<CloudRain size={28} />}
     >
-      <div className="rain-card">
+      <div className="rain-card">\n        <div className="soundscape-options">{sounds.map((item) => <button type="button" key={item.id} className={selected === item.id ? "soundscape-option soundscape-option-active" : "soundscape-option"} onClick={() => { setSelected(item.id); setPlaying(false); setError(""); }}><span className="soundscape-option-emoji">{item.emoji}</span><span className="soundscape-option-copy"><strong>{item.name}</strong><small>{item.desc}</small></span></button>)}</div>
         <div className="rain-scene">
-          <span className="rain-cloud">☁</span>
+          <span className="rain-cloud">{sound.emoji}</span>
           <span className="rain-drop drop-one">╱</span>
           <span className="rain-drop drop-two">╱</span>
           <span className="rain-drop drop-three">╱</span>
@@ -370,14 +383,14 @@ export function MoodSoundscape() {
         </div>
 
         <p className="wellness-eyebrow">YOUR CURRENT SOUNDSCAPE</p>
-        <h2>Gentle Rain</h2>
-        <p>Softly falling rain for reading, resting, or simply being.</p>
+        <h2>{sound.name}</h2>
+        <p>{sound.desc} for reading, resting, or simply being.</p>
 
         <div className="audio-controls">
           <button
             className="audio-play"
             onClick={togglePlayback}
-            aria-label={playing ? "Pause rain" : "Play rain"}
+            aria-label={playing ? "Pause sound" : "Play sound"}
           >
             {playing ? <Pause size={23} /> : <Play size={23} />}
           </button>
@@ -390,7 +403,7 @@ export function MoodSoundscape() {
             <Square size={18} />
           </button>
 
-          <span>{playing ? "Rain is playing" : "Ready when you are"}</span>
+          <span>{playing ? "{sound.name} is playing" : "Ready when you are"}</span>
         </div>
 
         <label className="volume-control">
