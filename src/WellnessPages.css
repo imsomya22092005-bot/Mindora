@@ -700,3 +700,30 @@
 .soundscape-option-copy strong{font-size:13px;line-height:1.35}
 .soundscape-option-copy small{font-size:11px;line-height:1.5;color:var(--wellness-muted)}
 @media(max-width:560px){.soundscape-options{grid-template-columns:repeat(2,minmax(0,1fr))}.soundscape-option{padding:12px}}
+
+
+/* Strong, consistent contrast for every selected sound category */
+.rain-card > .wellness-eyebrow {
+  color: #365b38 !important;
+  font-weight: 800;
+  letter-spacing: .12em;
+  opacity: 1;
+}
+.rain-card > h2 {
+  color: #263b2a !important;
+  font-weight: 700;
+  opacity: 1;
+}
+.rain-card > p:not(.wellness-eyebrow):not(.audio-error) {
+  color: #405640 !important;
+  opacity: 1;
+}
+.dark-theme .rain-card > .wellness-eyebrow {
+  color: #c9e3bd !important;
+}
+.dark-theme .rain-card > h2 {
+  color: #f1f5ed !important;
+}
+.dark-theme .rain-card > p:not(.wellness-eyebrow):not(.audio-error) {
+  color: #d2dfcd !important;
+}
