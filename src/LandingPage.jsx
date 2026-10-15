@@ -36,9 +36,10 @@ export default function LandingPage() {
 
         <nav className="landing-nav-links">
           <a href="/dashboard">Home</a>
+          <a href="#why-mindora">Why Mindora</a>
           <a href="#features">Features</a>
           <a href="#how-it-works">How it works</a>
-          <a href="#about">About</a>
+          <a href="#preview">Preview</a>
         </nav>
 
         <div className="landing-auth">
@@ -119,6 +120,20 @@ export default function LandingPage() {
         </p>
       </section>
 
+
+      <section className="landing-why" id="why-mindora">
+        <div className="landing-why-heading">
+          <span className="section-eyebrow">A SPACE THAT MEETS YOU WHERE YOU ARE</span>
+          <h2>Not another thing to keep up with.<br /><em>A little support, when you need it.</em></h2>
+          <p>Some days feel clear. Others feel like a lot. Mindora gives you gentle, practical ways to check in with yourself — without pressure to have it all figured out.</p>
+        </div>
+        <div className="landing-why-grid">
+          <article><span className="why-number">01 / PAUSE</span><span className="why-symbol">◌</span><h3>Make room to breathe</h3><p>Step away from the noise and take a moment that belongs just to you.</p></article>
+          <article><span className="why-number">02 / UNDERSTAND</span><span className="why-symbol">↗</span><h3>Put feelings into words</h3><p>Notice what you're feeling and reflect on it, without judging yourself.</p></article>
+          <article><span className="why-number">03 / GROW</span><span className="why-symbol">✳</span><h3>Build your own rhythm</h3><p>Find small rituals that fit real life — not a perfect version of it.</p></article>
+        </div>
+      </section>
+
       <section className="landing-features" id="features">
         <div className="features-heading">
           <div>
@@ -143,6 +158,26 @@ export default function LandingPage() {
               </a>
             </article>
           ))}
+        </div>
+      </section>
+
+
+      <section className="landing-preview" id="preview">
+        <div className="preview-copy">
+          <span className="section-eyebrow">A LOOK INSIDE</span>
+          <h2>Your space, thoughtfully made.</h2>
+          <p>From a quick mood check-in to a page in your journal, Mindora keeps your everyday wellbeing tools in one calm, welcoming place.</p>
+          <a href="/signup" className="landing-dark-button">Explore your space <span>↗</span></a>
+        </div>
+        <div className="preview-window" aria-label="Illustrative preview of the Mindora experience">
+          <div className="preview-window-top"><span className="preview-dots"><i></i><i></i><i></i></span><span>your mindful space</span><span>✳</span></div>
+          <div className="preview-welcome"><span>YOUR PERSONAL SPACE</span><h3>Hello, there.</h3><p>How are you feeling today?</p></div>
+          <div className="preview-moods"><span>☁<small>Low</small></span><span>☾<small>Meh</small></span><span>◡<small>Okay</small></span><span>☀<small>Good</small></span><span>✳<small>Great</small></span></div>
+          <div className="preview-lower">
+            <div><span className="preview-mini-icon">✎</span><b>Your journal</b><small>A page just for your thoughts</small></div>
+            <div><span className="preview-mini-icon">❋</span><b>Take a pause</b><small>A softer moment, whenever</small></div>
+          </div>
+          <span className="preview-note">A gentle reminder: you can start again.</span>
         </div>
       </section>
 
@@ -179,6 +214,18 @@ export default function LandingPage() {
         </div>
       </section>
 
+
+      <section className="landing-difference">
+        <span className="section-eyebrow">A DIFFERENT KIND OF WELLBEING SPACE</span>
+        <h2>Made for real life.<br /><em>Not perfect days.</em></h2>
+        <div className="difference-points">
+          <p><span>✓</span> No pressure to feel a certain way</p>
+          <p><span>✓</span> Small steps, at your own pace</p>
+          <p><span>✓</span> Space for every kind of day</p>
+        </div>
+        <p className="difference-footnote">Mindora isn't about fixing who you are. It's about making a little more room to understand yourself.</p>
+      </section>
+
       <section className="landing-cta">
         <span className="section-eyebrow">THIS IS YOUR REMINDER</span>
         <h2>You deserve a moment of peace.</h2>
@@ -199,6 +246,7 @@ export default function LandingPage() {
         <div className="footer-links">
           <a href="#features">Features</a>
           <a href="#about">About</a>
+          <a href="#why-mindora">Why Mindora</a>
           <a href="/login">Log in</a>
         </div>
 
