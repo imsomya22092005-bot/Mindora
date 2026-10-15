@@ -1066,3 +1066,39 @@
     justify-self: center;
   }
 }
+
+
+/* Hero text contrast fix: dark photo needs light copy, not dark green */
+.mindora-landing .landing-hero .hero-content h1,
+.mindora-landing .landing-hero .hero-content h1 span,
+.mindora-landing .landing-hero .hero-content > p,
+.mindora-landing .landing-hero .hero-note,
+.mindora-landing .landing-hero .hero-note-icon,
+.mindora-landing .landing-hero .hero-eyebrow {
+  color: #fffdf4 !important;
+  -webkit-text-fill-color: #fffdf4 !important;
+  text-shadow: 0 2px 8px rgba(12, 25, 16, .78) !important;
+}
+.mindora-landing .landing-hero .hero-eyebrow { color: #e6efdc !important; -webkit-text-fill-color: #e6efdc !important; }
+.mindora-landing .landing-hero .hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(15, 35, 22, .82) 0%, rgba(19, 39, 26, .62) 48%, rgba(17, 32, 23, .18) 100%),
+    linear-gradient(0deg, rgba(12, 27, 17, .5), transparent 68%) !important;
+}
+.mindora-landing .landing-hero .hero-secondary-button {
+  color: #fffdf4 !important;
+  -webkit-text-fill-color: #fffdf4 !important;
+  border-color: rgba(255, 253, 244, .88) !important;
+  background: rgba(18, 39, 26, .32) !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.mindora-landing .landing-hero .hero-floating-card .floating-card-label {
+  color: #344b37 !important;
+  -webkit-text-fill-color: #344b37 !important;
+}
+.mindora-landing .landing-hero .hero-floating-card p,
+.mindora-landing .landing-hero .hero-floating-card .floating-card-subtitle {
+  color: #263e30 !important;
+  -webkit-text-fill-color: #263e30 !important;
+  text-shadow: none !important;
+}
