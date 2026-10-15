@@ -1460,3 +1460,117 @@
   .mindora-landing .landing-why-grid article::after,
   .mindora-landing .landing-why-grid .why-symbol { transition: none !important; }
 }
+
+
+/* A little more life: warm accents, floating details and scroll-in reveals */
+.mindora-landing {
+  --mindora-forest: #263e30;
+  --mindora-sage: #6e8967;
+  --mindora-peach: #f0d8bd;
+  --mindora-butter: #f4e9b9;
+}
+.mindora-landing .landing-intro {
+  background:
+    radial-gradient(ellipse at 12% 30%, rgba(237, 216, 183, .42), transparent 30%),
+    radial-gradient(ellipse at 88% 75%, rgba(196, 216, 185, .55), transparent 34%),
+    #f7f5ed;
+}
+.mindora-landing .landing-intro h2 span {
+  background: linear-gradient(90deg, #67835f, #9a8458, #67835f);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  animation: mindoraShimmer 7s ease-in-out infinite;
+}
+.mindora-landing .landing-intro::before {
+  animation: mindoraOrbit 24s linear infinite;
+}
+.mindora-landing .landing-intro::after {
+  animation: mindoraOrbit 30s linear infinite reverse;
+}
+.mindora-landing .landing-why-grid article {
+  animation: mindoraRiseIn .75s both;
+}
+.mindora-landing .landing-why-grid article:nth-child(2) { animation-delay: .12s; }
+.mindora-landing .landing-why-grid article:nth-child(3) { animation-delay: .24s; }
+.mindora-landing .landing-why-grid article:nth-child(1) .why-symbol {
+  background: linear-gradient(135deg, #e5edda, #f4e8d2);
+}
+.mindora-landing .landing-why-grid article:nth-child(2) .why-symbol {
+  background: linear-gradient(135deg, #f4e4d2, #f6edc8);
+}
+.mindora-landing .landing-why-grid article:nth-child(3) .why-symbol {
+  background: linear-gradient(135deg, #dcebe2, #e8edcf);
+}
+.mindora-landing .landing-preview {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 95% 10%, rgba(244, 233, 185, .48), transparent 30%),
+    linear-gradient(135deg, #e8eee2 0%, #e2ece6 100%);
+}
+.mindora-landing .preview-window {
+  animation: mindoraFloat 6s ease-in-out infinite;
+  border-color: rgba(93, 120, 82, .22);
+}
+.mindora-landing .preview-moods > span {
+  transition: transform .22s ease, box-shadow .22s ease;
+  cursor: default;
+}
+.mindora-landing .preview-moods > span:hover {
+  transform: translateY(-5px) rotate(-2deg);
+  box-shadow: 0 9px 18px rgba(38, 62, 48, .1);
+}
+.mindora-landing .landing-difference {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 0% 100%, rgba(240, 216, 189, .38), transparent 35%),
+    #f7f5ed;
+}
+.mindora-landing .difference-points p {
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.mindora-landing .difference-points p:hover {
+  transform: translateY(-3px);
+  background: #f0f3e8;
+  box-shadow: 0 8px 18px rgba(38, 62, 48, .06);
+}
+.mindora-landing .landing-cta {
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(205, 220, 184, .22), transparent 35%),
+    #263e30;
+}
+.mindora-landing .landing-dark-button {
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+.mindora-landing .landing-dark-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(25, 47, 32, .16);
+}
+@keyframes mindoraShimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+@keyframes mindoraOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes mindoraRiseIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes mindoraFloat {
+  0%, 100% { transform: rotate(1deg) translateY(0); }
+  50% { transform: rotate(0deg) translateY(-8px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mindora-landing .landing-intro h2 span,
+  .mindora-landing .landing-intro::before,
+  .mindora-landing .landing-intro::after,
+  .mindora-landing .landing-why-grid article,
+  .mindora-landing .preview-window {
+    animation: none !important;
+  }
+}
