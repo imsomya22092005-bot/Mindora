@@ -372,7 +372,8 @@ export function MoodSoundscape() {
       subtitle="Let the sound of rain give your thoughts a little room."
       icon={<CloudRain size={28} />}
     >
-      <div className="rain-card">\n        <div className="soundscape-options">{sounds.map((item) => <button type="button" key={item.id} className={selected === item.id ? "soundscape-option soundscape-option-active" : "soundscape-option"} onClick={() => { setSelected(item.id); setPlaying(false); setError(""); }}><span className="soundscape-option-emoji">{item.emoji}</span><span className="soundscape-option-copy"><strong>{item.name}</strong><small>{item.desc}</small></span></button>)}</div>
+      <div className="rain-card">
+        <div className="soundscape-options">{sounds.map((item) => <button type="button" key={item.id} className={selected === item.id ? "soundscape-option soundscape-option-active" : "soundscape-option"} onClick={() => { setSelected(item.id); setPlaying(false); setError(""); }}><span className="soundscape-option-emoji">{item.emoji}</span><span className="soundscape-option-copy"><strong>{item.name}</strong><small>{item.desc}</small></span></button>)}</div>
         <div className="rain-scene">
           <span className="rain-cloud">{sound.emoji}</span>
           <span className="rain-drop drop-one">╱</span>
