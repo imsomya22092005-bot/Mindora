@@ -156,3 +156,63 @@ export function MindfulMomentsPage(){
  const theme=useThemeClass();
  return <main className={theme}><PageHeader eyebrow="SMALL PAUSES, SOFTER DAYS" title={<>Find your own kind of <em>calm.</em></>} subtitle="Choose what you need in this moment. Nothing here needs to be earned." icon={Wind}/><div className="mindful-intro-card"><div><span className="section-page-eyebrow">A NOTE TO YOURSELF</span><h2>You are allowed to pause.</h2><p>Rest is not falling behind. Take the smallest step that feels kind to you.</p></div><span className="mindful-big-spark">✳</span></div><div className="mindful-tool-grid">{mindfulTools.map(tool=>{const Icon=tool.icon;return <Link to={tool.href} className="mindful-tool-card" key={tool.title}><span className={"mindful-tool-icon "+tool.tone}><Icon size={22}/></span><span className="mindful-tool-title">{tool.title}<ArrowUpRight size={15}/></span><p>{tool.description}</p><span className="mindful-tool-open">Explore gently →</span></Link>})}</div><footer className="section-page-footer"><Heart size={13}/> No pressure. No perfect days. Just you.</footer></main>;
 }
+
+
+const heatmapMoodColors = [
+  { label: "Low", color: "#f6a6a6", text: "#783d46" },
+  { label: "Meh", color: "#c7b8f4", text: "#4c3d78" },
+  { label: "Okay", color: "#f7d889", text: "#785b19" },
+  { label: "Good", color: "#a8dfbd", text: "#245d43" },
+  { label: "Great", color: "#75d9d1", text: "#155c60" },
+];
+
+export function MoodHeatmapPage() {
+  const theme = useThemeClass();
+  const [history] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("mindora-mood-history") || "[]"); }
+    catch { return []; }
+  });
+  const [selectedDay, setSelectedDay] = useState(null);
+  const today = new Date();
+  const days = Array.from({ length: 84 }, (_, index) => {
+    const date = new Date(today);
+    date.setDate(today.getDate() - (83 - index));
+    const key = date.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+    const record = history.find(item => item.date === key);
+    const moodIndex = record ? Math.max(0, Math.min(4, Math.round((Number(record.value) - 2) / 2))) : -1;
+    return { date, key, record, moodIndex };
+  });
+  const moodCounts = heatmapMoodColors.map((mood, index) => ({
+    ...mood,
+    count: history.filter(item => Math.max(0, Math.min(4, Math.round((Number(item.value) - 2) / 2))) === index).length,
+  }));
+  const loggedDays = days.filter(day => day.record).length;
+  const average = history.length ? (history.reduce((sum, item) => sum + Number(item.value || 0), 0) / history.length).toFixed(1) : "—";
+  const bestMood = history.length ? history.reduce((best, item) => Number(item.value) > Number(best.value) ? item : best, history[0]) : null;
+  const monthLabels = [];
+  days.forEach((day, index) => {
+    if (index === 0 || day.date.getDate() === 1) monthLabels.push({ label: day.date.toLocaleDateString("en-US", { month: "short" }), index });
+  });
+  return <main className={theme + " mood-heatmap-page"}>
+    <PageHeader eyebrow="YOUR MOOD, IN COLOUR" title={<>Every feeling leaves a <em>little colour.</em></>} subtitle="A gentle look at your emotional rhythm. No grades, no judgement — just you, noticing." icon={Sparkles}/>
+    <section className="mood-hero-card">
+      <div className="mood-hero-orb mood-orb-one"/><div className="mood-hero-orb mood-orb-two"/><div className="mood-hero-orb mood-orb-three"/>
+      <div className="mood-hero-copy"><span className="mood-hero-kicker"><Sparkles size={14}/> YOUR PERSONAL MOOD MAP</span><h2>Your days, in <em>full colour.</em></h2><p>Each little square is a day in your story. Choose any coloured day to remember how you felt.</p></div>
+      <div className="mood-hero-stat"><strong>{loggedDays}</strong><span>days checked in<br/>over the last 12 weeks</span></div>
+    </section>
+    <section className="mood-heatmap-card">
+      <div className="mood-card-heading"><div><span className="section-page-eyebrow">THE LAST 12 WEEKS</span><h2>Your mood calendar</h2><p>Tap a day to see your check-in.</p></div><span className="mood-total-pill"><span/> {history.length} check-ins saved</span></div>
+      <div className="mood-heatmap-scroll"><div className="mood-month-row">{monthLabels.map((month,i)=><span key={month.index} style={{gridColumn: `${Math.floor(month.index / 7) + 1} / span ${Math.max(1, Math.ceil((84-month.index)/7))}`}}>{month.label}</span>)}</div>
+        <div className="mood-heatmap-layout"><div className="mood-weekdays"><span>Mon</span><span>Wed</span><span>Fri</span></div><div className="mood-heatmap-grid">{days.map((day,index)=>{const color=day.record?heatmapMoodColors[day.moodIndex]:null;return <button key={day.key+index} type="button" className={`mood-heat-cell ${color?"has-mood":"no-mood"} ${selectedDay?.key===day.key?"selected":""}`} style={color?{"--cell-color":color.color,"--cell-text":color.text}:undefined} title={day.record?`${day.key}: ${day.record.label}`:`${day.key}: no check-in`} aria-label={day.record?`${day.key}, mood ${day.record.label}`:`${day.key}, no mood recorded`} onClick={()=>setSelectedDay(day)}>{day.record?day.record.emoji:""}</button>})}</div></div>
+      </div>
+      <div className="mood-heatmap-legend"><span className="mood-legend-label">Less</span>{heatmapMoodColors.map(m=><span className="mood-legend-item" key={m.label}><i style={{background:m.color}}/>{m.label}</span>)}<span className="mood-legend-label">More</span><span className="mood-legend-item"><i className="mood-empty-swatch"/>No check-in</span></div>
+      {selectedDay&&<div className="mood-selected-day" key={selectedDay.key}><div className="mood-selected-emoji" style={selectedDay.record?{"background":heatmapMoodColors[selectedDay.moodIndex].color}:undefined}>{selectedDay.record?.emoji||"♡"}</div><div><span>{selectedDay.key}</span><strong>{selectedDay.record?selectedDay.record.label:"A day without a check-in"}</strong><p>{selectedDay.record?"You showed up for yourself. That counts.":"No mood was saved for this date. That’s okay, too."}</p></div><button type="button" onClick={()=>setSelectedDay(null)} aria-label="Close selected day"><Heart size={16}/></button></div>}
+    </section>
+    <section className="mood-insight-grid">
+      <article className="mood-insight-card mood-average-card"><span className="mood-insight-icon">✦</span><span className="mood-insight-label">AVERAGE MOOD</span><strong>{average}<small>{average!=="—"?"/10":""}</small></strong><p>A snapshot, not a score.</p><div className="mood-mini-spectrum"><i/><i/><i/><i/><i/></div></article>
+      <article className="mood-insight-card mood-best-card"><span className="mood-insight-icon">☀</span><span className="mood-insight-label">A BRIGHT SPOT</span><strong>{bestMood?bestMood.emoji+" "+bestMood.label:"Waiting for you"}</strong><p>{bestMood?bestMood.date:"Your first check-in will appear here."}</p><div className="mood-floating-dots"><i/><i/><i/><i/></div></article>
+      <article className="mood-insight-card mood-frequency-card"><span className="mood-insight-icon">✿</span><span className="mood-insight-label">YOUR MOOD MIX</span><div className="mood-frequency-bars">{moodCounts.map(m=><div key={m.label} title={`${m.label}: ${m.count}`}><span>{m.label}</span><div><i style={{width:`${history.length?Math.max(m.count?5:0,m.count/history.length*100):0}%`,background:m.color}}/></div><b>{m.count}</b></div>)}</div></article>
+    </section>
+    <footer className="section-page-footer"><Heart size={13}/> Every colour belongs. Every kind of day counts. <span>Mindora · made for your softer days</span></footer>
+  </main>;
+}
