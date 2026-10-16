@@ -36,6 +36,7 @@ import {
 } from "recharts";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { apiRequest } from "./api";
 import LandingPage from "./LandingPage";
 import AuthPage from "./AuthPage";
 import { JournalPage, InsightsPage, MindfulMomentsPage } from "./DashboardPages";
@@ -253,9 +254,11 @@ function Dashboard() {
     );
   });
 
-  function saveMood() {
+  async function saveMood() {
     if (!selectedMood) return;
 
+    const token = localStorage.getItem("mindora-token");
+    const moodValues = { Low: "bad", Meh: "neutral", Okay: "neutral", Good: "good", Great: "rad" };
     const entry = {
       id: Date.now(),
       label: selectedMood.label,
@@ -264,6 +267,24 @@ function Dashboard() {
       date: getTodayDate(),
       timestamp: Date.now(),
     };
+
+    if (token) {
+      try {
+        await apiRequest("/api/mood/entry", {
+          method: "POST",
+          token,
+          body: JSON.stringify({
+            date: new Date().toISOString().slice(0, 10),
+            mood: moodValues[selectedMood.label] || "neutral",
+            intensity: Math.max(1, Math.min(5, Math.round(selectedMood.value / 2))),
+          }),
+        });
+      } catch (error) {
+        setShowMoodMessage(false);
+        window.alert(error.message || "Your mood could not be synced. Please try again.");
+        return;
+      }
+    }
 
     setMoodHistory((previous) => [entry, ...previous]);
     setSavedMood(selectedMood);
