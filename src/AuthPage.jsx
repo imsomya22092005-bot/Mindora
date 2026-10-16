@@ -41,7 +41,7 @@ export default function AuthPage({ mode = "login" }) {
         setOtpSent(true);
         setSuccess(result.message || "Verification code sent. Check your inbox.");
       } else {
-        if (!/^\\d{6}$/.test(otp.trim())) {
+        if (!/^\d{6}$/.test(otp.trim())) {
           setError("Enter the 6-digit verification code from your email.");
           return;
         }
