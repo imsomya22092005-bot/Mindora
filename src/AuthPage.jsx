@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { apiRequest } from "./api";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Heart, ArrowRight, Mail, UserRound, X, ShieldCheck } from "lucide-react";
@@ -15,6 +15,73 @@ export default function AuthPage({ mode = "login" }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const googleButtonRef = useRef(null);
+
+  async function handleGoogleCredential(response) {
+    setError("");
+    setSuccess("");
+    if (!response?.credential) {
+      setError("Google did not return a credential. Please try again.");
+      return;
+    }
+    setBusy(true);
+    try {
+      const result = await apiRequest("/api/auth/google", {
+        method: "POST",
+        body: JSON.stringify({ idToken: response.credential }),
+      });
+      localStorage.setItem("mindora-token", result.token);
+      localStorage.setItem("mindora-user", JSON.stringify(result.user));
+      setSuccess("Signed in with Google. Opening your space…");
+      window.setTimeout(() => navigate(location.state?.from || "/dashboard"), 450);
+    } catch (requestError) {
+      setError(requestError.message || "Google sign-in failed. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  useEffect(() => {
+    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+    if (!clientId || !googleButtonRef.current) return;
+
+    const renderGoogleButton = () => {
+      if (!window.google?.accounts?.id || !googleButtonRef.current) return;
+      googleButtonRef.current.innerHTML = "";
+      window.google.accounts.id.initialize({
+        client_id: clientId,
+        callback: handleGoogleCredential,
+      });
+      window.google.accounts.id.renderButton(googleButtonRef.current, {
+        type: "standard",
+        theme: "outline",
+        size: "large",
+        text: isRegister ? "signup_with" : "signin_with",
+        shape: "rectangular",
+        width: Math.min(420, googleButtonRef.current.clientWidth || 320),
+        logo_alignment: "left",
+      });
+    };
+
+    if (window.google?.accounts?.id) {
+      renderGoogleButton();
+      return;
+    }
+
+    let script = document.querySelector('script[src="https://accounts.google.com/gsi/client"]');
+    const onLoad = () => renderGoogleButton();
+    if (!script) {
+      script = document.createElement("script");
+      script.src = "https://accounts.google.com/gsi/client";
+      script.async = true;
+      script.defer = true;
+      script.addEventListener("load", onLoad);
+      document.head.appendChild(script);
+    } else {
+      script.addEventListener("load", onLoad);
+    }
+    return () => script?.removeEventListener("load", onLoad);
+  }, [isRegister]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -113,6 +180,12 @@ export default function AuthPage({ mode = "login" }) {
             <Link role="tab" aria-selected={isRegister} className={isRegister ? "active" : ""} to="/signup">Create account</Link>
           </div>
 
+          <div className="auth-google-area">
+            <div ref={googleButtonRef} className="auth-google-button" aria-label={isRegister ? "Sign up with Google" : "Sign in with Google"} />
+            {!import.meta.env.VITE_GOOGLE_CLIENT_ID && <p className="auth-google-config-note">Google sign-in needs VITE_GOOGLE_CLIENT_ID in your environment settings.</p>}
+          </div>
+          <div className="auth-divider"><span>or continue with email</span></div>
+
           <form className="auth-form" onSubmit={handleSubmit}>
             {isRegister && !otpSent && (
               <label className="auth-field">
@@ -135,7 +208,7 @@ export default function AuthPage({ mode = "login" }) {
             <button className="auth-submit" type="submit" disabled={busy}>{busy ? "Please wait…" : otpSent ? "Verify and continue" : "Email me a verification code"} <ArrowRight size={17} /></button>
             {otpSent && <button className="auth-back-home" type="button" onClick={() => { setOtpSent(false); setOtp(""); setError(""); setSuccess(""); }}>Use a different email</button>}
           </form>
-          <button className="auth-submit auth-guest-button" type="button" onClick={handleGuestLogin} disabled={busy}>Continue as a guest <ArrowRight size={17} /></button>>
+          <button className="auth-submit auth-guest-button" type="button" onClick={handleGuestLogin} disabled={busy}>Continue as a guest <ArrowRight size={17} /></button>
 
           <p className="auth-switch">{isRegister ? "Already have an account?" : "New to Mindora?"} <Link to={isRegister ? "/login" : "/signup"}>{isRegister ? "Log in" : "Create an account"}</Link></p>
           <p className="auth-privacy"><Heart size={13} /> Your wellbeing matters. Take it one day at a time.</p>
