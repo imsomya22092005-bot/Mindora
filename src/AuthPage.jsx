@@ -163,7 +163,14 @@ export default function AuthPage({ mode = "login" }) {
           </div>
 
           <div className="auth-google-area">
-            <div ref={googleButtonRef} className="auth-google-button" aria-label={isRegister ? "Sign up with Google" : "Sign in with Google"} />
+            {import.meta.env.VITE_GOOGLE_CLIENT_ID ? (
+              <div ref={googleButtonRef} className="auth-google-button" aria-label={isRegister ? "Sign up with Google" : "Sign in with Google"} />
+            ) : (
+              <button className="auth-google-fallback" type="button" onClick={() => setError("Google sign-in is not configured for this deployment yet.")}>
+                <span className="auth-google-g" aria-hidden="true">G</span>
+                {isRegister ? "Sign up with Google" : "Sign in with Google"}
+              </button>
+            )}
           </div>
 
           <form className="auth-form" onSubmit={handleSubmit}>
