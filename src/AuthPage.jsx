@@ -10,8 +10,8 @@ export default function AuthPage({ mode = "login" }) {
   const location = useLocation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState("");
-  const [otpSent, setOtpSent] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -89,38 +89,37 @@ export default function AuthPage({ mode = "login" }) {
     setSuccess("");
     const normalizedEmail = email.trim().toLowerCase();
 
-    if (!normalizedEmail) {
-      setError("Please enter your email address.");
+    if (!normalizedEmail || !password) {
+      setError("Please enter your email and password.");
       return;
     }
-    if (isRegister && !name.trim()) {
-      setError("Please enter your name.");
-      return;
+    if (isRegister) {
+      if (!name.trim()) {
+        setError("Please enter your name.");
+        return;
+      }
+      if (password.length < 8) {
+        setError("Your password must be at least 8 characters long.");
+        return;
+      }
+      if (password !== confirmPassword) {
+        setError("Passwords do not match. Please check them.");
+        return;
+      }
     }
 
     setBusy(true);
     try {
-      if (!otpSent) {
-        const result = await apiRequest("/api/auth/otp/send", {
-          method: "POST",
-          body: JSON.stringify({ email: normalizedEmail }),
-        });
-        setOtpSent(true);
-        setSuccess(result.message || "Verification code sent. Check your inbox.");
-      } else {
-        if (!/^\d{6}$/.test(otp.trim())) {
-          setError("Enter the 6-digit verification code from your email.");
-          return;
-        }
-        const result = await apiRequest("/api/auth/otp/verify", {
-          method: "POST",
-          body: JSON.stringify({ email: normalizedEmail, otp: otp.trim(), name: name.trim() }),
-        });
-        localStorage.setItem("mindora-token", result.token);
-        localStorage.setItem("mindora-user", JSON.stringify(result.user));
-        setSuccess("You're verified. Opening your space…");
-        window.setTimeout(() => navigate(location.state?.from || "/dashboard"), 450);
-      }
+      const result = await apiRequest(isRegister ? "/api/auth/register" : "/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify(isRegister
+          ? { name: name.trim(), email: normalizedEmail, password }
+          : { email: normalizedEmail, password }),
+      });
+      localStorage.setItem("mindora-token", result.token);
+      localStorage.setItem("mindora-user", JSON.stringify(result.user));
+      setSuccess(isRegister ? "Your account is ready. Opening your space…" : "Welcome back. Opening your space…");
+      window.setTimeout(() => navigate(location.state?.from || "/dashboard"), 450);
     } catch (requestError) {
       setError(requestError.message || "Unable to connect to Mindora. Please try again.");
     } finally {
@@ -174,7 +173,7 @@ export default function AuthPage({ mode = "login" }) {
           </div>
 
           <form className="auth-form" onSubmit={handleSubmit}>
-            {isRegister && !otpSent && (
+            {isRegister && (
               <label className="auth-field">
                 <span>Your name</span>
                 <div className="auth-input-wrap"><UserRound size={17} /><input autoComplete="name" value={name} onChange={(event) => setName(event.target.value)} placeholder="How should we call you?" required /></div>
@@ -182,18 +181,19 @@ export default function AuthPage({ mode = "login" }) {
             )}
             <label className="auth-field">
               <span>Email address</span>
-              <div className="auth-input-wrap"><Mail size={17} /><input type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" required disabled={otpSent} /></div>
+              <div className="auth-input-wrap"><Mail size={17} /><input type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" required /></div>
             </label>
-            {otpSent && (
-              <label className="auth-field">
-                <span>6-digit verification code</span>
-                <div className="auth-input-wrap"><ShieldCheck size={17} /><input inputMode="numeric" autoComplete="one-time-code" value={otp} onChange={(event) => setOtp(event.target.value.replace(/\D/g, "").slice(0, 6))} placeholder="Enter code from your email" required maxLength={6} /></div>
-              </label>
-            )}
             {error && <p className="auth-message auth-error" role="alert">{error}</p>}
             {success && <p className="auth-message auth-success" role="status">{success}</p>}
-            <button className="auth-submit" type="submit" disabled={busy}>{busy ? "Please wait…" : otpSent ? "Verify and continue" : "Email me a verification code"} <ArrowRight size={17} /></button>
-            {otpSent && <button className="auth-back-home" type="button" onClick={() => { setOtpSent(false); setOtp(""); setError(""); setSuccess(""); }}>Use a different email</button>}
+            <label className="auth-field">
+              <span>Password</span>
+              <div className="auth-input-wrap"><ShieldCheck size={17} /><input type="password" autoComplete={isRegister ? "new-password" : "current-password"} value={password} onChange={(event) => setPassword(event.target.value)} placeholder={isRegister ? "Create a password (min. 8 characters)" : "Enter your password"} required minLength={isRegister ? 8 : undefined} /></div>
+            </label>
+            {isRegister && <label className="auth-field">
+              <span>Confirm password</span>
+              <div className="auth-input-wrap"><ShieldCheck size={17} /><input type="password" autoComplete="new-password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} placeholder="Re-enter your password" required minLength={8} /></div>
+            </label>}
+            <button className="auth-submit" type="submit" disabled={busy}>{busy ? "Please wait…" : isRegister ? "Create account" : "Log in"} <ArrowRight size={17} /></button>
           </form>
 
           <p className="auth-switch">{isRegister ? "Already have an account?" : "New to Mindora?"} <Link to={isRegister ? "/login" : "/signup"}>{isRegister ? "Log in" : "Create an account"}</Link></p>
