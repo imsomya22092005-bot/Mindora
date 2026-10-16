@@ -1893,3 +1893,20 @@
     gap: 12px;
   }
 }
+
+
+/* Hard override for the final reminder headline: visible in every theme/state */
+.mindora-landing section.landing-cta h2,
+.mindora-landing section.landing-cta h2 *,
+.mindora-landing section.landing-cta h2 em,
+.mindora-landing section.landing-cta h2 span {
+  color: #fffdf4 !important;
+  -webkit-text-fill-color: #fffdf4 !important;
+  background: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .12) !important;
+}
+.mindora-landing section.landing-cta {
+  background: #263e30 !important;
+}
