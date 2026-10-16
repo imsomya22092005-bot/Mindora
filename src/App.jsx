@@ -24,6 +24,7 @@ import {
   RotateCcw,
   Leaf,
   Check,
+  ShieldCheck,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -40,6 +41,7 @@ import { apiRequest } from "./api";
 import LandingPage from "./LandingPage";
 import AuthPage from "./AuthPage";
 import { JournalPage, InsightsPage, MindfulMomentsPage } from "./DashboardPages";
+import IncognitoCheckinPage from "./IncognitoCheckinPage";
 
 import {
   CalmCorner,
@@ -336,6 +338,7 @@ function Dashboard() {
     if (section === "Journal") navigate("/journal");
     if (section === "Insights") navigate("/insights");
     if (section === "Mindful moments") navigate("/mindful-moments");
+    if (section === "Incognito check-in") navigate("/incognito-checkin");
   }
 
   const navItems = [
@@ -343,6 +346,7 @@ function Dashboard() {
     { label: "Journal", icon: BookOpen },
     { label: "Insights", icon: BarChart3 },
     { label: "Mindful moments", icon: Wind },
+    { label: "Incognito check-in", icon: ShieldCheck },
   ];
 
   return (
@@ -1141,6 +1145,7 @@ function App() {
         <Route path="/journal" element={<JournalPage />} />
         <Route path="/insights" element={<InsightsPage />} />
         <Route path="/mindful-moments" element={<MindfulMomentsPage />} />
+        <Route path="/incognito-checkin" element={<IncognitoCheckinPage />} />
 
         {/* Mindora wellness pages */}
         <Route path="/calm-corner" element={<CalmCorner />} />
