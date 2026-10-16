@@ -128,24 +128,6 @@ export default function AuthPage({ mode = "login" }) {
     }
   }
 
-  async function handleGuestLogin() {
-    setError("");
-    setBusy(true);
-    try {
-      const result = await apiRequest("/api/auth/guest", {
-        method: "POST",
-        body: JSON.stringify({}),
-      });
-      localStorage.setItem("mindora-token", result.token);
-      localStorage.setItem("mindora-user", JSON.stringify(result.user));
-      navigate("/dashboard");
-    } catch (requestError) {
-      setError(requestError.message || "Guest access is unavailable right now.");
-    } finally {
-      setBusy(false);
-    }
-  }
-
   return (
     <main className="auth-page">
       <section className="auth-visual">
@@ -182,9 +164,7 @@ export default function AuthPage({ mode = "login" }) {
 
           <div className="auth-google-area">
             <div ref={googleButtonRef} className="auth-google-button" aria-label={isRegister ? "Sign up with Google" : "Sign in with Google"} />
-            {!import.meta.env.VITE_GOOGLE_CLIENT_ID && <p className="auth-google-config-note">Google sign-in needs VITE_GOOGLE_CLIENT_ID in your environment settings.</p>}
           </div>
-          <div className="auth-divider"><span>or continue with email</span></div>
 
           <form className="auth-form" onSubmit={handleSubmit}>
             {isRegister && !otpSent && (
@@ -208,7 +188,6 @@ export default function AuthPage({ mode = "login" }) {
             <button className="auth-submit" type="submit" disabled={busy}>{busy ? "Please wait…" : otpSent ? "Verify and continue" : "Email me a verification code"} <ArrowRight size={17} /></button>
             {otpSent && <button className="auth-back-home" type="button" onClick={() => { setOtpSent(false); setOtp(""); setError(""); setSuccess(""); }}>Use a different email</button>}
           </form>
-          <button className="auth-submit auth-guest-button" type="button" onClick={handleGuestLogin} disabled={busy}>Continue as a guest <ArrowRight size={17} /></button>
 
           <p className="auth-switch">{isRegister ? "Already have an account?" : "New to Mindora?"} <Link to={isRegister ? "/login" : "/signup"}>{isRegister ? "Log in" : "Create an account"}</Link></p>
           <p className="auth-privacy"><Heart size={13} /> Your wellbeing matters. Take it one day at a time.</p>
