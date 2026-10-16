@@ -65,3 +65,11 @@
 @media(max-width:700px){.auth-close-home{top:18px;right:18px;width:38px;height:38px}}
 
 .auth-brand-mark img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}.auth-mobile-brand img{width:28px;height:28px;object-fit:cover;border-radius:7px}
+
+
+/* Backend OTP flow controls */
+.auth-submit:disabled{opacity:.68;cursor:wait;transform:none}
+.auth-guest-button{margin-top:12px;background:transparent!important;color:#3b5b43!important;border:1px solid #cbd8c7!important;box-shadow:none!important}
+.auth-guest-button:hover{background:#edf3e9!important;box-shadow:0 8px 20px rgba(39,61,40,.08)!important}
+.auth-form .auth-back-home{display:block;width:100%;margin:12px 0 0;padding:10px;border:0;background:transparent;text-align:center;font:inherit;font-size:13px;cursor:pointer}
+.auth-form .auth-back-home:hover{text-decoration:underline}
