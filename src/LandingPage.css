@@ -1808,3 +1808,88 @@
     filter: none !important;
   }
 }
+
+
+/* Fix low-contrast copy in the feature heading and final reminder CTA */
+.mindora-landing .landing-features .features-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+}
+.mindora-landing .landing-features .features-heading h2 {
+  color: #263e30 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+.mindora-landing .landing-features .features-heading > p {
+  color: #455d4b !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+.mindora-landing .landing-cta {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+  color: #fffdf5 !important;
+  min-height: 340px;
+  padding: clamp(56px, 8vw, 96px) 24px;
+  background:
+    radial-gradient(ellipse at 12% 15%, rgba(214, 229, 193, .23), transparent 36%),
+    radial-gradient(ellipse at 88% 90%, rgba(226, 194, 155, .2), transparent 34%),
+    #263e30 !important;
+}
+.mindora-landing .landing-cta .section-eyebrow {
+  color: #e3e9d6 !important;
+  opacity: 1 !important;
+  border-color: rgba(242, 244, 229, .38);
+  background: rgba(255, 255, 255, .07);
+}
+.mindora-landing .landing-cta h2 {
+  max-width: 900px;
+  margin: 0;
+  color: #fffdf5 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+  font-size: clamp(32px, 4.5vw, 58px);
+  line-height: 1.12;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+.mindora-landing .landing-cta > p {
+  max-width: 620px;
+  margin: 0;
+  color: #e6eadf !important;
+  opacity: 1 !important;
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.8;
+  text-shadow: none !important;
+}
+.mindora-landing .landing-cta .landing-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 16px 25px;
+  border-radius: 999px;
+  background: #f7f5ed;
+  color: #263e30 !important;
+  font-weight: 650;
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.mindora-landing .landing-cta .landing-cta-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .18);
+}
+@media (max-width: 760px) {
+  .mindora-landing .landing-features .features-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
