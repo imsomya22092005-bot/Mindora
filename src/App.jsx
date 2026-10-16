@@ -40,7 +40,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { apiRequest } from "./api";
 import LandingPage from "./LandingPage";
 import AuthPage from "./AuthPage";
-import { JournalPage, InsightsPage, MindfulMomentsPage } from "./DashboardPages";
+import { JournalPage, InsightsPage, MindfulMomentsPage, MoodHeatmapPage } from "./DashboardPages";
 import IncognitoCheckinPage from "./IncognitoCheckinPage";
 
 import {
@@ -339,6 +339,7 @@ function Dashboard() {
     if (section === "Insights") navigate("/insights");
     if (section === "Mindful moments") navigate("/mindful-moments");
     if (section === "Incognito check-in") navigate("/incognito-checkin");
+    if (section === "Mood heatmap") navigate("/mood-heatmap");
   }
 
   const navItems = [
@@ -347,6 +348,7 @@ function Dashboard() {
     { label: "Insights", icon: BarChart3 },
     { label: "Mindful moments", icon: Wind },
     { label: "Incognito check-in", icon: ShieldCheck },
+    { label: "Mood heatmap", icon: Sparkles },
   ];
 
   return (
@@ -1146,6 +1148,7 @@ function App() {
         <Route path="/insights" element={<InsightsPage />} />
         <Route path="/mindful-moments" element={<MindfulMomentsPage />} />
         <Route path="/incognito-checkin" element={<IncognitoCheckinPage />} />
+        <Route path="/mood-heatmap" element={<MoodHeatmapPage />} />
 
         {/* Mindora wellness pages */}
         <Route path="/calm-corner" element={<CalmCorner />} />
