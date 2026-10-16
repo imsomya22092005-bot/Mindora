@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { apiRequest } from "./api";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Heart, Leaf, ArrowRight, Eye, EyeOff, Mail, Lock, UserRound, X } from "lucide-react";
+import { Heart, ArrowRight, Mail, UserRound, X, ShieldCheck } from "lucide-react";
 import "./AuthPage.css";
 
 export default function AuthPage({ mode = "login" }) {
@@ -9,58 +10,72 @@ export default function AuthPage({ mode = "login" }) {
   const location = useLocation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+  const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     setError("");
     setSuccess("");
-
     const normalizedEmail = email.trim().toLowerCase();
-    if (!normalizedEmail || !password) {
-      setError("Please enter your email and password.");
+
+    if (!normalizedEmail) {
+      setError("Please enter your email address.");
       return;
     }
     if (isRegister && !name.trim()) {
       setError("Please enter your name.");
       return;
     }
-    if (password.length < 6) {
-      setError("Your password must be at least 6 characters.");
-      return;
-    }
-    if (isRegister && password !== confirmPassword) {
-      setError("Your passwords do not match.");
-      return;
-    }
 
+    setBusy(true);
     try {
-      const users = JSON.parse(localStorage.getItem("mindora-demo-users") || "[]");
-      if (isRegister) {
-        if (users.some((user) => user.email === normalizedEmail)) {
-          setError("An account with this email already exists. Please log in.");
-          return;
-        }
-        users.push({ name: name.trim(), email: normalizedEmail, password });
-        localStorage.setItem("mindora-demo-users", JSON.stringify(users));
-        localStorage.setItem("mindora-user", JSON.stringify({ name: name.trim(), email: normalizedEmail }));
-        setSuccess("Your account is ready. Opening your space…");
+      if (!otpSent) {
+        const result = await apiRequest("/api/auth/otp/send", {
+          method: "POST",
+          body: JSON.stringify({ email: normalizedEmail }),
+        });
+        setOtpSent(true);
+        setSuccess(result.message || "Verification code sent. Check your inbox.");
       } else {
-        const user = users.find((item) => item.email === normalizedEmail && item.password === password);
-        if (!user) {
-          setError("We couldn't find a matching account. Check your details or create an account.");
+        if (!/^\\d{6}$/.test(otp.trim())) {
+          setError("Enter the 6-digit verification code from your email.");
           return;
         }
-        localStorage.setItem("mindora-user", JSON.stringify({ name: user.name, email: user.email }));
-        setSuccess("Welcome back. Opening your space…");
+        const result = await apiRequest("/api/auth/otp/verify", {
+          method: "POST",
+          body: JSON.stringify({ email: normalizedEmail, otp: otp.trim(), name: name.trim() }),
+        });
+        localStorage.setItem("mindora-token", result.token);
+        localStorage.setItem("mindora-user", JSON.stringify(result.user));
+        setSuccess("You're verified. Opening your space…");
+        window.setTimeout(() => navigate(location.state?.from || "/dashboard"), 450);
       }
-      window.setTimeout(() => navigate(location.state?.from || "/dashboard"), 450);
-    } catch {
-      setError("Your browser couldn't save this demo account. Please check your browser storage settings.");
+    } catch (requestError) {
+      setError(requestError.message || "Unable to connect to Mindora. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function handleGuestLogin() {
+    setError("");
+    setBusy(true);
+    try {
+      const result = await apiRequest("/api/auth/guest", {
+        method: "POST",
+        body: JSON.stringify({}),
+      });
+      localStorage.setItem("mindora-token", result.token);
+      localStorage.setItem("mindora-user", JSON.stringify(result.user));
+      navigate("/dashboard");
+    } catch (requestError) {
+      setError(requestError.message || "Guest access is unavailable right now.");
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -99,7 +114,7 @@ export default function AuthPage({ mode = "login" }) {
           </div>
 
           <form className="auth-form" onSubmit={handleSubmit}>
-            {isRegister && (
+            {isRegister && !otpSent && (
               <label className="auth-field">
                 <span>Your name</span>
                 <div className="auth-input-wrap"><UserRound size={17} /><input autoComplete="name" value={name} onChange={(event) => setName(event.target.value)} placeholder="How should we call you?" required /></div>
@@ -107,22 +122,20 @@ export default function AuthPage({ mode = "login" }) {
             )}
             <label className="auth-field">
               <span>Email address</span>
-              <div className="auth-input-wrap"><Mail size={17} /><input type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" required /></div>
+              <div className="auth-input-wrap"><Mail size={17} /><input type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" required disabled={otpSent} /></div>
             </label>
-            <label className="auth-field">
-              <span>Password</span>
-              <div className="auth-input-wrap"><Lock size={17} /><input type={showPassword ? "text" : "password"} autoComplete={isRegister ? "new-password" : "current-password"} value={password} onChange={(event) => setPassword(event.target.value)} placeholder="At least 6 characters" minLength={6} required /><button className="auth-show-password" type="button" onClick={() => setShowPassword((value) => !value)} aria-label={showPassword ? "Hide password" : "Show password"}>{showPassword ? <EyeOff size={17} /> : <Eye size={17} />}</button></div>
-            </label>
-            {isRegister && (
+            {otpSent && (
               <label className="auth-field">
-                <span>Confirm password</span>
-                <div className="auth-input-wrap"><Lock size={17} /><input type={showPassword ? "text" : "password"} autoComplete="new-password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} placeholder="Enter your password again" required /></div>
+                <span>6-digit verification code</span>
+                <div className="auth-input-wrap"><ShieldCheck size={17} /><input inputMode="numeric" autoComplete="one-time-code" value={otp} onChange={(event) => setOtp(event.target.value.replace(/\\D/g, "").slice(0, 6))} placeholder="Enter code from your email" required maxLength={6} /></div>
               </label>
             )}
             {error && <p className="auth-message auth-error" role="alert">{error}</p>}
             {success && <p className="auth-message auth-success" role="status">{success}</p>}
-            <button className="auth-submit" type="submit">{isRegister ? "Create my account" : "Log in to Mindora"} <ArrowRight size={17} /></button>
+            <button className="auth-submit" type="submit" disabled={busy}>{busy ? "Please wait…" : otpSent ? "Verify and continue" : "Email me a verification code"} <ArrowRight size={17} /></button>
+            {otpSent && <button className="auth-back-home" type="button" onClick={() => { setOtpSent(false); setOtp(""); setError(""); setSuccess(""); }}>Use a different email</button>}
           </form>
+          <button className="auth-submit auth-guest-button" type="button" onClick={handleGuestLogin} disabled={busy}>Continue as a guest <ArrowRight size={17} /></button>>
 
           <p className="auth-switch">{isRegister ? "Already have an account?" : "New to Mindora?"} <Link to={isRegister ? "/login" : "/signup"}>{isRegister ? "Log in" : "Create an account"}</Link></p>
           <p className="auth-privacy"><Heart size={13} /> Your wellbeing matters. Take it one day at a time.</p>
