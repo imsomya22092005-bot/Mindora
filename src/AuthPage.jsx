@@ -127,7 +127,7 @@ export default function AuthPage({ mode = "login" }) {
             {otpSent && (
               <label className="auth-field">
                 <span>6-digit verification code</span>
-                <div className="auth-input-wrap"><ShieldCheck size={17} /><input inputMode="numeric" autoComplete="one-time-code" value={otp} onChange={(event) => setOtp(event.target.value.replace(/\\D/g, "").slice(0, 6))} placeholder="Enter code from your email" required maxLength={6} /></div>
+                <div className="auth-input-wrap"><ShieldCheck size={17} /><input inputMode="numeric" autoComplete="one-time-code" value={otp} onChange={(event) => setOtp(event.target.value.replace(/\D/g, "").slice(0, 6))} placeholder="Enter code from your email" required maxLength={6} /></div>
               </label>
             )}
             {error && <p className="auth-message auth-error" role="alert">{error}</p>}
