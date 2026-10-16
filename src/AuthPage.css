@@ -76,9 +76,7 @@
 
 
 /* Google sign-in on both login and create-account screens */
-.auth-google-area{width:100%;margin-top:20px}
-.auth-google-button{display:flex;justify-content:center;width:100%;min-height:42px}
-.auth-google-button>div{max-width:100%}
-.auth-divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:#899588;font-size:11px}
-.auth-divider::before,.auth-divider::after{content:"";height:1px;flex:1;background:#e4e9df}
-.auth-google-config-note{margin:8px 0 0;color:#8b6b43;font-size:10px;line-height:1.5;text-align:center}
+.auth-google-area{width:100%;margin:20px 0 24px}
+.auth-google-button{display:flex;justify-content:center;width:100%;min-height:44px}
+.auth-google-button>div{width:100%;max-width:100%}
+.auth-google-button iframe{max-width:100%}
