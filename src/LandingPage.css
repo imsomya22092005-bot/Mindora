@@ -2040,3 +2040,34 @@
     letter-spacing: -1px;
   }
 }
+
+
+/* Full-bleed landing canvas and centered page copy. */
+.mindora-landing {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.mindora-landing .landing-intro,
+.mindora-landing .landing-why-heading,
+.mindora-landing .features-heading,
+.mindora-landing .landing-preview-heading,
+.mindora-landing .how-copy,
+.mindora-landing .landing-difference,
+.mindora-landing .landing-cta {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mindora-landing .landing-intro > p,
+.mindora-landing .landing-why-heading > p,
+.mindora-landing .features-heading > p,
+.mindora-landing .how-copy > p,
+.mindora-landing .landing-cta > p {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
