@@ -847,3 +847,36 @@
 .garden-summary h2{color:#263b2a!important;opacity:1!important}
 .garden-summary>p,.garden-growth-note{color:#405640!important;opacity:1!important}
 @media(max-width:600px){.garden-landscape{height:210px}.garden-plants{inset-left:2%;inset-right:2%;gap:0}.garden-plants .garden-plant{height:130px}.garden-plants .garden-flower{font-size:42px;left:calc(50% - 25px)}.garden-plants .garden-flower-core{left:calc(50% - 6px);top:35px}}
+
+
+/* Calm Corner motion refresh: CSS-only ambient breathing animations */
+.wellness-heading{animation:wellnessFadeUp .7s cubic-bezier(.2,.75,.25,1) both}
+.wellness-heading-icon{animation:wellnessIconFloat 4.5s ease-in-out infinite;box-shadow:0 8px 24px rgba(87,124,91,.12)}
+.calm-card{position:relative;isolation:isolate;overflow:hidden;animation:wellnessFadeUp .75s .12s both;background:linear-gradient(145deg,#fffdf6 0%,#f3f7ed 48%,#e9f5ed 100%);box-shadow:0 16px 42px rgba(60,92,65,.08);transition:transform .3s,box-shadow .3s}
+.calm-card::before,.calm-card::after{content:"";position:absolute;z-index:-1;pointer-events:none;border-radius:50%;filter:blur(2px)}
+.calm-card::before{width:240px;height:240px;top:-115px;right:-55px;background:radial-gradient(circle,#f8dce9 0%,rgba(248,220,233,0) 70%);animation:wellnessAmbient 9s ease-in-out infinite alternate}
+.calm-card::after{width:210px;height:210px;bottom:-115px;left:-45px;background:radial-gradient(circle,#d4e9dc 0%,rgba(212,233,220,0) 70%);animation:wellnessAmbient 11s ease-in-out infinite alternate-reverse}
+.calm-card:hover{transform:translateY(-3px);box-shadow:0 22px 48px rgba(60,92,65,.12)}
+.breathing-orb{position:relative;isolation:isolate;box-shadow:0 0 0 12px rgba(190,216,190,.18),0 0 0 28px rgba(190,216,190,.09),0 18px 45px rgba(77,119,83,.16);background:radial-gradient(circle at 32% 25%,#fff7fb 0%,#d9e9d4 42%,#a9c9ad 72%,#80aa88 100%);transition:transform .7s cubic-bezier(.2,.8,.2,1),box-shadow .7s,background .7s;animation:wellnessOrbRest 5s ease-in-out infinite}
+.breathing-orb::before,.breathing-orb::after{content:"";position:absolute;inset:-12px;border:1px solid rgba(106,151,112,.28);border-radius:50%;pointer-events:none}
+.breathing-orb::before{animation:wellnessRing 5s ease-out infinite}
+.breathing-orb::after{inset:-25px;border-color:rgba(154,190,154,.2);animation:wellnessRing 5s 1.6s ease-out infinite}
+.breathing-active{animation:wellnessBreathing 8s ease-in-out infinite;background:radial-gradient(circle at 32% 25%,#fff8fb 0%,#dcebd8 40%,#9ec9a7 74%,#72a77f 100%);box-shadow:0 0 0 15px rgba(190,216,190,.22),0 0 0 35px rgba(190,216,190,.12),0 20px 55px rgba(77,119,83,.2)}
+.breathing-inner{animation:wellnessInnerFloat 8s ease-in-out infinite}
+.wellness-panel{animation:wellnessFadeUp .75s .24s both;transition:transform .28s,box-shadow .28s}
+.wellness-panel:hover{box-shadow:0 15px 35px rgba(60,92,65,.08)}
+.wellness-button{position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s,background .2s}
+.wellness-button::after{content:"";position:absolute;top:-50%;left:-65%;width:35%;height:200%;transform:rotate(22deg);background:rgba(255,255,255,.2);transition:left .55s ease}
+.wellness-button:hover{transform:translateY(-2px);box-shadow:0 9px 20px rgba(52,87,65,.18)}
+.wellness-button:hover::after{left:140%}
+.grounding-dots span{transition:transform .25s,background .25s,box-shadow .25s}
+.grounding-dots .dot-active{transform:scale(1.22);box-shadow:0 0 0 4px rgba(120,158,121,.14)}
+.wellness-footer{animation:wellnessFadeUp .8s .32s both}
+@keyframes wellnessFadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes wellnessIconFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+@keyframes wellnessAmbient{from{transform:translate3d(-8px,-4px,0) scale(.95)}to{transform:translate3d(10px,12px,0) scale(1.08)}}
+@keyframes wellnessOrbRest{0%,100%{transform:scale(.98)}50%{transform:scale(1.025)}}
+@keyframes wellnessBreathing{0%,100%{transform:scale(.88)}50%{transform:scale(1.12)}}
+@keyframes wellnessInnerFloat{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes wellnessRing{0%{transform:scale(.9);opacity:.65}100%{transform:scale(1.18);opacity:0}}
+@media(prefers-reduced-motion:reduce){.wellness-heading,.wellness-heading-icon,.calm-card,.calm-card::before,.calm-card::after,.breathing-orb,.breathing-orb::before,.breathing-orb::after,.breathing-inner,.wellness-panel,.wellness-footer{animation:none!important;transition:none!important}}
