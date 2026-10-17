@@ -62,15 +62,15 @@ const initialActivity = [
   {
     id: 1,
     icon: "journal",
-    title: "Your space to reflect",
-    description: "{t("Write down what's on your mind.", "अपने मन की बातें लिखें।")}",
-    time: "{t("Whenever you're ready", "जब भी आप तैयार हों")}",
+    title: t("Your space to reflect", "खुद से जुड़ने की आपकी जगह"),
+    description: t("Write down what's on your mind.", "अपने मन की बातें लिखें।"),
+    time: t("Whenever you're ready", "जब भी आप तैयार हों"),
   },
   {
     id: 2,
     icon: "breathing",
-    title: "A little breathing room",
-    description: "{t("Take a moment to slow down.", "एक पल ठहरकर सुकून से साँस लें।")}",
+    title: t("A little breathing room", "साँस लेने का एक सुकून भरा पल"),
+    description: t("Take a moment to slow down.", "एक पल ठहरकर सुकून से साँस लें।"),
     time: "1 minute",
   },
 ];
@@ -917,7 +917,7 @@ function Dashboard() {
             <span>
               <Heart size={13} /> {t("Made for your softer days.", "आपके सुकून भरे दिनों के लिए।")}
             </span>
-            <span>Your feelings deserve space.</span>
+            <span>{t("Your feelings deserve space.", "आपकी भावनाओं को जगह मिलनी चाहिए।")}</span>
           </footer>
         </div>
       </main>
