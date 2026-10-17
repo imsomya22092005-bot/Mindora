@@ -354,7 +354,8 @@ function Dashboard() {
     ];
     const match = destinations.find((item) => item.keys.some((key) => key.includes(query) || query.includes(key)));
     if (match) {
-      navigate(match.path);
+      if (match.path === "/settings") setShowSettings(true);
+      else navigate(match.path);
       setSearchText("");
     } else {
       const activityMatch = filteredActivity.find((item) => item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query));
