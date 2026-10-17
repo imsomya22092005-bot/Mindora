@@ -84,3 +84,17 @@
 .auth-google-fallback{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:48px;padding:0 16px;border:1px solid #d8ded5;border-radius:10px;background:#fff;color:#303b32;font:600 13px 'DM Sans',sans-serif;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s}
 .auth-google-fallback:hover{background:#f8faf7;border-color:#b7c7b3;box-shadow:0 4px 12px rgba(39,61,40,.06)}
 .auth-google-g{font:bold 20px Arial,sans-serif;color:#4285f4}
+
+
+.auth-preference-controls{position:absolute;z-index:5;top:22px;right:22px;display:flex;gap:7px}
+.auth-preference-controls select,.auth-preference-controls button{height:36px;border:1px solid #dbe5d8;border-radius:10px;background:#fffdf7;color:#38553d;padding:0 10px;font:600 11px 'DM Sans',sans-serif;cursor:pointer}
+.auth-preference-controls button{width:36px;padding:0;font-size:18px}
+.auth-dark{background:#17251b;color:#e5eee1}
+.auth-dark .auth-form-side{background:#1b2a20;color:#e5eee1}
+.auth-dark .auth-form-side h2,.auth-dark .auth-subtitle,.auth-dark .auth-field,.auth-dark .auth-tabs a{color:#e5eee1}
+.auth-dark .auth-input-wrap{background:#25372a;border-color:#405844}
+.auth-dark .auth-input-wrap input{color:#f2f5ef}
+.auth-dark .auth-tabs{background:#25372a}
+.auth-dark .auth-tabs a.active{background:#45664a}
+.auth-dark .auth-google-fallback{background:#25372a;color:#e5eee1;border-color:#405844}
+@media(max-width:760px){.auth-preference-controls{top:12px;right:12px}.auth-preference-controls select{max-width:88px}}
