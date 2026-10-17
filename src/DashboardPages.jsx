@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiRequest } from "./api";
 import ScrapbookEditor, { deleteScrapbookPage } from "./ScrapbookEditor";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookHeart, CalendarDays, Feather, Heart, Leaf, LockKeyhole, Plus, Save, Sparkles, Trash2, Wind, BarChart3, Sprout, CloudRain, HeartHandshake, ArrowUpRight } from "lucide-react";
@@ -168,10 +169,41 @@ const heatmapMoodColors = [
 
 export function MoodHeatmapPage() {
   const theme = useThemeClass();
-  const [history] = useState(() => {
+  const [history, setHistory] = useState(() => {
     try { return JSON.parse(localStorage.getItem("mindora-mood-history") || "[]"); }
     catch { return []; }
   });
+  const [loadingHeatmap, setLoadingHeatmap] = useState(false);
+  const [heatmapError, setHeatmapError] = useState("");
+  useEffect(() => {
+    const token = localStorage.getItem("mindora-token");
+    if (!token) return;
+    let cancelled = false;
+    async function loadHeatmap() {
+      setLoadingHeatmap(true);
+      setHeatmapError("");
+      try {
+        const year = new Date().getFullYear();
+        const result = await apiRequest("/api/mood/heatmap?year=" + year, { token });
+        const map = result.data || {};
+        const labelByMood = { terrible: "Low", bad: "Meh", neutral: "Okay", good: "Good", rad: "Great" };
+        const emojiByMood = { terrible: "😔", bad: "😕", neutral: "😐", good: "🙂", rad: "😁" };
+        const valueByMood = { terrible: 2, bad: 4, neutral: 6, good: 8, rad: 10 };
+        const remoteHistory = Object.entries(map).map(([isoDate, item]) => {
+          const mood = String(item.mood || "neutral").toLowerCase();
+          const date = new Date(isoDate + "T12:00:00").toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+          return { id: "api-" + isoDate, isoDate, date, label: labelByMood[mood] || "Okay", emoji: emojiByMood[mood] || "😐", value: valueByMood[mood] || 6, intensity: item.intensity };
+        }).sort((a, b) => b.isoDate.localeCompare(a.isoDate));
+        if (!cancelled) setHistory(remoteHistory);
+      } catch (error) {
+        if (!cancelled) setHeatmapError(error.message || "Could not load saved moods from the backend.");
+      } finally {
+        if (!cancelled) setLoadingHeatmap(false);
+      }
+    }
+    loadHeatmap();
+    return () => { cancelled = true; };
+  }, []);
   const [selectedDay, setSelectedDay] = useState(null);
   const today = new Date();
   const days = Array.from({ length: 84 }, (_, index) => {
@@ -201,7 +233,7 @@ export function MoodHeatmapPage() {
       <div className="mood-hero-stat"><strong>{loggedDays}</strong><span>days checked in<br/>over the last 12 weeks</span></div>
     </section>
     <section className="mood-heatmap-card">
-      <div className="mood-card-heading"><div><span className="section-page-eyebrow">THE LAST 12 WEEKS</span><h2>Your mood calendar</h2><p>Tap a day to see your check-in.</p></div><span className="mood-total-pill"><span/> {history.length} check-ins saved</span></div>
+      <div className="mood-card-heading"><div><span className="section-page-eyebrow">THE LAST 12 WEEKS</span><h2>Your mood calendar</h2><p>Tap a day to see your check-in.</p>{loadingHeatmap && <p>Syncing your saved moods...</p>}{heatmapError && <p role="status">Could not sync from backend: {heatmapError}</p>}</div><span className="mood-total-pill"><span/> {history.length} check-ins saved</span></div>
       <div className="mood-heatmap-scroll"><div className="mood-month-row">{monthLabels.map((month,i)=><span key={month.index} style={{gridColumn: `${Math.floor(month.index / 7) + 1} / span ${Math.max(1, Math.ceil((84-month.index)/7))}`}}>{month.label}</span>)}</div>
         <div className="mood-heatmap-layout"><div className="mood-weekdays"><span>Mon</span><span>Wed</span><span>Fri</span></div><div className="mood-heatmap-grid">{days.map((day,index)=>{const color=day.record?heatmapMoodColors[day.moodIndex]:null;return <button key={day.key+index} type="button" className={`mood-heat-cell ${color?"has-mood":"no-mood"} ${selectedDay?.key===day.key?"selected":""}`} style={color?{"--cell-color":color.color,"--cell-text":color.text}:undefined} title={day.record?`${day.key}: ${day.record.label}`:`${day.key}: no check-in`} aria-label={day.record?`${day.key}, mood ${day.record.label}`:`${day.key}, no mood recorded`} onClick={()=>setSelectedDay(day)}>{day.record?day.record.emoji:""}</button>})}</div></div>
       </div>
