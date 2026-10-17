@@ -433,7 +433,6 @@ function Dashboard() {
           </div>
         )}
 
-div>
       </aside>
 
       <main className="main-content">
