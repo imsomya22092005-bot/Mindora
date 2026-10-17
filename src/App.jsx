@@ -42,6 +42,7 @@ import LandingPage from "./LandingPage";
 import AuthPage from "./AuthPage";
 import { JournalPage, InsightsPage, MindfulMomentsPage, MoodHeatmapPage } from "./DashboardPages";
 import IncognitoCheckinPage from "./IncognitoCheckinPage";
+import ProfilePage from "./ProfilePage";
 
 import {
   CalmCorner,
@@ -138,6 +139,9 @@ function Dashboard() {
   const [searchText, setSearchText] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [language, setLanguage] = useState(() => localStorage.getItem("mindora-language") || "en");
+  const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+  const currentUser = (() => { try { return JSON.parse(localStorage.getItem("mindora-user") || "{}"); } catch { return {}; } })();
   const [bookPage, setBookPage] = useState(0);
 
   const [darkMode, setDarkMode] = useState(() => {
@@ -341,6 +345,7 @@ function Dashboard() {
     if (section === "Incognito check-in") navigate("/incognito-checkin");
     if (section === "Mood heatmap") navigate("/mood-heatmap");
     if (section === "Calm Corner") navigate("/calm-corner");
+    if (section === "My profile") navigate("/profile");
   }
 
   const navItems = [
@@ -351,6 +356,7 @@ function Dashboard() {
     { label: "Incognito check-in", icon: ShieldCheck },
     { label: "Mood heatmap", icon: Sparkles },
     { label: "Calm Corner", icon: Wind },
+    { label: "My profile", icon: Heart },
   ];
 
   return (
@@ -427,12 +433,7 @@ function Dashboard() {
         )}
 
         <div className="sidebar-profile">
-          <div className="profile-avatar">M</div>
-          <div className="profile-copy">
-            <strong>Your safe space</strong>
-            <span>One day at a time</span>
-          </div>
-          <Heart size={17} className="profile-heart" />
+          <button className="sidebar-profile-button" onClick={() => navigate("/profile")} aria-label="Open my profile"><div className="profile-avatar">{(currentUser.name || currentUser.email || "M").trim().charAt(0).toUpperCase()}</div><div className="profile-copy"><strong>{currentUser.name || (currentUser.authProvider === "guest" ? "Guest explorer" : "My profile")}</strong><span>{currentUser.email || "View your account"}</span></div><Heart size={17} className="profile-heart" /></button>
         </div>
       </aside>
 
