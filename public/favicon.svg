@@ -1,1 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#254333"/><stop offset="1" stop-color="#10291d"/></linearGradient><linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c7d6b7"/><stop offset="1" stop-color="#779a78"/></linearGradient></defs><rect width="128" height="128" rx="22" fill="url(#bg)"/><rect x="10" y="10" width="108" height="108" rx="16" fill="#f4f1e6" stroke="#d7ddce" stroke-width="2"/><path d="M65 83C37 86 26 65 31 35c27 2 43 16 42 39 8-24 23-31 36-27-2 29-18 45-44 43Z" fill="url(#leaf)" stroke="#294b35" stroke-width="4" stroke-linejoin="round"/><path d="M43 46c12 15 22 26 35 36" fill="none" stroke="#294b35" stroke-width="3" stroke-linecap="round"/><path d="M70 27c12-8 26-3 29 9 3 13-8 24-21 24" fill="none" stroke="#294b35" stroke-width="5" stroke-linecap="round"/><path d="M66 95h-9l-4 15m4-15 4 15m9-15 4 15m-13-7h12" fill="none" stroke="#163321" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6f806d"/><stop offset=".42" stop-color="#183c2b"/><stop offset=".72" stop-color="#345740"/><stop offset="1" stop-color="#0f281c"/></linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d1dfc3"/><stop offset=".55" stop-color="#8da98a"/><stop offset="1" stop-color="#496d50"/></linearGradient>
+  </defs>
+  <rect width="128" height="128" fill="#f8f8f6"/>
+  <circle cx="64" cy="58" r="52" fill="#f8f8f6" stroke="url(#ring)" stroke-width="5.5"/>
+  <circle cx="64" cy="58" r="48.5" fill="none" stroke="#a7b09f" stroke-width="1"/>
+  <path d="M66 27c15-16 36-7 35 10-1 17-16 29-29 27 11-7 17-17 15-25-2-7-9-9-15-4" fill="none" stroke="url(#ring)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M62 80C38 81 24 61 29 31c24 2 39 15 39 38 8-18 18-25 29-23-3 23-17 37-35 37Z" fill="url(#leaf)" stroke="#203d2c" stroke-width="3.3" stroke-linejoin="round"/>
+  <path d="M39 43c10 15 20 25 31 33" fill="none" stroke="#203d2c" stroke-width="2.7" stroke-linecap="round"/>
+  <path d="M46 102l4-20q1-3 4 0l10 15 10-15q3-3 4 0l4 20" fill="none" stroke="#183b2a" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
