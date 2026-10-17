@@ -2016,3 +2016,27 @@
 .landing-dark .landing-feature-card,.landing-dark .landing-why-grid article{background:#223528;border-color:#3b5240;color:#e7eee2}
 .landing-dark .landing-preference-controls select,.landing-dark .landing-theme-toggle{background:#263a2b;color:#e7eee2;border-color:#49644c}
 @media(max-width:760px){.landing-preference-controls select{max-width:90px;padding:0 5px}.landing-preference-controls{gap:4px}.landing-theme-toggle{height:32px;width:32px}}
+
+
+/* Keep the landing intro headline fully visible, including descenders like j and g. */
+.landing-intro h2 {
+  font-size: clamp(34px, 4.1vw, 60px);
+  line-height: 1.24;
+  padding: 0.08em 0 0.14em;
+  overflow: visible;
+  overflow-wrap: normal;
+}
+
+.landing-intro h2 span {
+  display: inline-block;
+  padding-bottom: 0.08em;
+  line-height: 1.24;
+}
+
+@media (max-width: 640px) {
+  .landing-intro h2 {
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.22;
+    letter-spacing: -1px;
+  }
+}
