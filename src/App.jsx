@@ -62,15 +62,15 @@ const initialActivity = [
   {
     id: 1,
     icon: "journal",
-    title: t("Your space to reflect", "खुद से जुड़ने की आपकी जगह"),
-    description: t("Write down what's on your mind.", "अपने मन की बातें लिखें।"),
-    time: t("Whenever you're ready", "जब भी आप तैयार हों"),
+    title: "Your space to reflect",
+    description: "Write down what's on your mind.",
+    time: "Whenever you're ready",
   },
   {
     id: 2,
     icon: "breathing",
-    title: t("A little breathing room", "साँस लेने का एक सुकून भरा पल"),
-    description: t("Take a moment to slow down.", "एक पल ठहरकर सुकून से साँस लें।"),
+    title: "A little breathing room",
+    description: "Take a moment to slow down.",
     time: "1 minute",
   },
 ];
