@@ -10,8 +10,8 @@ export default function AuthPage({ mode = "login" }) {
   const location = useLocation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [otp, setOtp] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -88,40 +88,50 @@ export default function AuthPage({ mode = "login" }) {
     setError("");
     setSuccess("");
     const normalizedEmail = email.trim().toLowerCase();
-
-    if (!normalizedEmail || !password) {
-      setError("Please enter your email and password.");
-      return;
-    }
-    if (isRegister) {
-      if (!name.trim()) {
-        setError("Please enter your name.");
-        return;
-      }
-      if (password.length < 8) {
-        setError("Your password must be at least 8 characters long.");
-        return;
-      }
-      if (password !== confirmPassword) {
-        setError("Passwords do not match. Please check them.");
-        return;
-      }
-    }
-
+    if (!normalizedEmail) { setError("Please enter your email address."); return; }
+    if (isRegister && !name.trim()) { setError("Please enter your name."); return; }
     setBusy(true);
     try {
-      const result = await apiRequest(isRegister ? "/api/auth/register" : "/api/auth/login", {
-        method: "POST",
-        body: JSON.stringify(isRegister
-          ? { name: name.trim(), email: normalizedEmail, password }
-          : { email: normalizedEmail, password }),
-      });
-      localStorage.setItem("mindora-token", result.token);
-      localStorage.setItem("mindora-user", JSON.stringify(result.user));
-      setSuccess(isRegister ? "Your account is ready. Opening your space…" : "Welcome back. Opening your space…");
-      window.setTimeout(() => navigate(location.state?.from || "/dashboard"), 450);
+      if (!otpSent) {
+        await apiRequest("/api/auth/otp/send", {
+          method: "POST",
+          body: JSON.stringify({ email: normalizedEmail }),
+        });
+        setOtpSent(true);
+        setSuccess("Verification code sent. Check your email and enter the OTP below.");
+      } else {
+        if (!/^\d{4,8}$/.test(otp.trim())) {
+          setError("Enter the verification code from your email.");
+          return;
+        }
+        const result = await apiRequest("/api/auth/otp/verify", {
+          method: "POST",
+          body: JSON.stringify({ email: normalizedEmail, otp: otp.trim(), name: name.trim() || undefined }),
+        });
+        localStorage.setItem("mindora-token", result.token);
+        localStorage.setItem("mindora-user", JSON.stringify(result.user));
+        setSuccess("Verified successfully. Opening your space…");
+        window.setTimeout(() => navigate(location.state?.from || "/dashboard"), 450);
+      }
     } catch (requestError) {
       setError(requestError.message || "Unable to connect to Mindora. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function handleGuestLogin() {
+    setError("");
+    setSuccess("");
+    setBusy(true);
+    try {
+      const result = await apiRequest("/api/auth/guest", { method: "POST", body: JSON.stringify({}) });
+      localStorage.setItem("mindora-token", result.token);
+      localStorage.setItem("mindora-user", JSON.stringify(result.user));
+      setSuccess("Your guest space is ready. Opening dashboard…");
+      window.setTimeout(() => navigate("/dashboard"), 450);
+    } catch (requestError) {
+      setError(requestError.message || "Guest login failed. Please try again.");
     } finally {
       setBusy(false);
     }
@@ -185,15 +195,13 @@ export default function AuthPage({ mode = "login" }) {
             </label>
             {error && <p className="auth-message auth-error" role="alert">{error}</p>}
             {success && <p className="auth-message auth-success" role="status">{success}</p>}
-            <label className="auth-field">
-              <span>Password</span>
-              <div className="auth-input-wrap"><ShieldCheck size={17} /><input type="password" autoComplete={isRegister ? "new-password" : "current-password"} value={password} onChange={(event) => setPassword(event.target.value)} placeholder={isRegister ? "Create a password (min. 8 characters)" : "Enter your password"} required minLength={isRegister ? 8 : undefined} /></div>
-            </label>
-            {isRegister && <label className="auth-field">
-              <span>Confirm password</span>
-              <div className="auth-input-wrap"><ShieldCheck size={17} /><input type="password" autoComplete="new-password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} placeholder="Re-enter your password" required minLength={8} /></div>
+            {otpSent && <label className="auth-field">
+              <span>Email verification code</span>
+              <div className="auth-input-wrap"><ShieldCheck size={17} /><input inputMode="numeric" autoComplete="one-time-code" value={otp} onChange={(event) => setOtp(event.target.value.replace(/\D/g, "").slice(0, 8))} placeholder="Enter OTP from your email" required /></div>
             </label>}
-            <button className="auth-submit" type="submit" disabled={busy}>{busy ? "Please wait…" : isRegister ? "Create account" : "Log in"} <ArrowRight size={17} /></button>
+            <button className="auth-submit" type="submit" disabled={busy}>{busy ? "Please wait…" : otpSent ? "Verify & continue" : "Send verification code"} <ArrowRight size={17} /></button>
+            {otpSent && <button className="auth-google-fallback" type="button" disabled={busy} onClick={() => { setOtpSent(false); setOtp(""); setSuccess(""); }}>Change email / resend code</button>}
+            <button className="auth-google-fallback" type="button" disabled={busy} onClick={handleGuestLogin}>Continue as guest</button>
           </form>
 
           <p className="auth-switch">{isRegister ? "Already have an account?" : "New to Mindora?"} <Link to={isRegister ? "/login" : "/signup"}>{isRegister ? "Log in" : "Create an account"}</Link></p>
