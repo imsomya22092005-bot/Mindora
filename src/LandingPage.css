@@ -2004,3 +2004,15 @@
     transform: none !important;
   }
 }
+
+
+.landing-preference-controls{display:flex;align-items:center;gap:7px;margin-right:4px}
+.landing-preference-controls select,.landing-theme-toggle{height:36px;border:1px solid rgba(75,105,78,.24);border-radius:10px;background:#fffdf7;color:#38553d;padding:0 10px;font:600 11px 'DM Sans',sans-serif;cursor:pointer}
+.landing-theme-toggle{width:36px;padding:0;font-size:18px}
+.landing-preference-controls select:focus-visible,.landing-theme-toggle:focus-visible{outline:2px solid #6e9271;outline-offset:2px}
+.mindora-landing.landing-dark{background:#17251b;color:#e7eee2}
+.landing-dark .landing-navbar,.landing-dark .landing-intro,.landing-dark .landing-why,.landing-dark .landing-features,.landing-dark .landing-preview,.landing-dark .landing-how,.landing-dark .landing-difference,.landing-dark .landing-cta{background:#17251b;color:#e7eee2}
+.landing-dark .landing-navbar a,.landing-dark h2,.landing-dark h3,.landing-dark p{color:inherit}
+.landing-dark .landing-feature-card,.landing-dark .landing-why-grid article{background:#223528;border-color:#3b5240;color:#e7eee2}
+.landing-dark .landing-preference-controls select,.landing-dark .landing-theme-toggle{background:#263a2b;color:#e7eee2;border-color:#49644c}
+@media(max-width:760px){.landing-preference-controls select{max-width:90px;padding:0 5px}.landing-preference-controls{gap:4px}.landing-theme-toggle{height:32px;width:32px}}
