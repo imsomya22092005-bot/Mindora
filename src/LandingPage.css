@@ -2071,3 +2071,71 @@
   margin-right: auto;
   text-align: center;
 }
+
+
+/* True viewport-wide landing page with the hero copy centered precisely. */
+html, body, #root {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.mindora-landing {
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+  left: auto;
+  right: auto;
+  overflow-x: clip;
+}
+
+.mindora-landing .landing-navbar,
+.mindora-landing .landing-hero,
+.mindora-landing .landing-intro,
+.mindora-landing .landing-why,
+.mindora-landing .landing-features,
+.mindora-landing .landing-preview,
+.mindora-landing .landing-how,
+.mindora-landing .landing-difference,
+.mindora-landing .landing-cta,
+.mindora-landing .landing-footer {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.mindora-landing .landing-intro,
+.mindora-landing .landing-intro h2,
+.mindora-landing .landing-intro > p,
+.mindora-landing .landing-intro .section-eyebrow,
+.mindora-landing .hero-content,
+.mindora-landing .hero-content h1,
+.mindora-landing .hero-content p,
+.mindora-landing .hero-content .hero-eyebrow {
+  text-align: center;
+}
+
+.mindora-landing .hero-content {
+  width: min(900px, 92%);
+  margin: 0 auto;
+  padding: 65px 20px 64px;
+}
+
+.mindora-landing .landing-intro > p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 640px) {
+  .mindora-landing .hero-content {
+    width: 100%;
+    padding: 52px 22px;
+  }
+}
