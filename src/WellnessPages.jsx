@@ -20,8 +20,8 @@ function Shell({ title, subtitle, icon, children }) {
   return (
     <main className="wellness-page">
       <header className="wellness-topbar">
-        <Link to="/" className="wellness-back">
-          <ArrowLeft size={18} /> Back to Home
+        <Link to="/dashboard" className="wellness-back">
+          <ArrowLeft size={18} /> Back to Dashboard
         </Link>
         <span className="wellness-brand">
           <Sprout size={22} /> Mindora
