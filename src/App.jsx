@@ -337,6 +337,34 @@ function Dashboard() {
     resetBreathing();
   }
 
+  function handleSearchSubmit(event) {
+    if (event.key !== "Enter") return;
+    const query = searchText.trim().toLowerCase();
+    if (!query) return;
+    const destinations = [
+      { path: "/dashboard", keys: ["dashboard", "overview", "home", "डैशबोर्ड", "मुख्य पृष्ठ", "mood", "मूड", "check in", "check-in", "चेक इन", "चेक-इन"] },
+      { path: "/journal", keys: ["journal", "diary", "diaries", "write", "writing", "notes", "डायरी", "जर्नल", "लिखना", "नोट्स"] },
+      { path: "/insights", keys: ["insight", "insights", "chart", "average", "trend", "patterns", "history", "जानकारी", "मूड इतिहास", "चार्ट", "पैटर्न", "रुझान"] },
+      { path: "/mindful-moments", keys: ["mindful", "breathing", "breath", "calm", "pause", "सुकून", "साँस", "सांस", "ध्यान", "विराम"] },
+      { path: "/incognito-checkin", keys: ["incognito", "private", "burnout", "stress", "निजी", "तनाव", "बर्नआउट"] },
+      { path: "/mood-heatmap", keys: ["heatmap", "mind map", "mood map", "calendar", "मूड मैप", "हीटमैप", "कैलेंडर"] },
+      { path: "/calm-corner", keys: ["calm corner", "comfort", "comfort box", "शांति", "सुकून कोना", "आराम"] },
+      { path: "/profile", keys: ["profile", "account", "my profile", "प्रोफ़ाइल", "खाता"] },
+      { path: "/settings", keys: ["settings", "setting", "सेटिंग", "सेटिंग्स"] },
+    ];
+    const match = destinations.find((item) => item.keys.some((key) => key.includes(query) || query.includes(key)));
+    if (match) {
+      navigate(match.path);
+      setSearchText("");
+    } else {
+      const activityMatch = filteredActivity.find((item) => item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query));
+      if (activityMatch?.id.startsWith("journal-")) {
+        navigate("/journal");
+        setSearchText("");
+      }
+    }
+  }
+
   function navigateTo(section) {
     setActiveNav(section);
     if (section === "Overview") navigate("/dashboard");
@@ -451,6 +479,8 @@ function Dashboard() {
                 placeholder={t("Search your space...", "अपनी जगह में खोजें...")}
                 value={searchText}
                 onChange={(event) => setSearchText(event.target.value)}
+                onKeyDown={handleSearchSubmit}
+                aria-label={t("Search your space", "अपनी जगह में खोजें")}
               />
             </label>
 
