@@ -6,21 +6,21 @@ const features = [
   {
     number: "01",
     icon: "♡",
-    title: "{hi ? "अपने मूड को समझें" : "Understand your mood"}",
+    title: hi ? "अपने मूड को समझें" : "Understand your mood",
     description:
       "Check in with yourself and make space for every emotion.",
   },
   {
     number: "02",
     icon: "✎",
-    title: "{hi ? "लिखकर मन हल्का करें" : "Write it out"}",
+    title: hi ? "लिखकर मन हल्का करें" : "Write it out",
     description:
       "Put your thoughts into words with your personal journal.",
   },
   {
     number: "03",
     icon: "◎",
-    title: "{hi ? "अपना सुकून पाएँ" : "Find your calm"}",
+    title: hi ? "अपना सुकून पाएँ" : "Find your calm",
     description:
       "Take a mindful pause with simple guided breathing exercises.",
   },
@@ -138,7 +138,7 @@ export default function LandingPage() {
       </section>
 
       <section className="landing-intro" id="about">
-        <span className="section-eyebrow">{hi ? "आगे बढ़ने का एक सहज तरीका" : "{hi ? "आगे बढ़ने का एक सहज तरीका" : "A GENTLER WAY FORWARD"}"}</span>
+        <span className="section-eyebrow">{hi ? "आगे बढ़ने का एक सहज तरीका" : "A GENTLER WAY FORWARD"}</span>
         <h2>
           Your wellbeing isn't a destination.
           <br />
@@ -197,7 +197,7 @@ export default function LandingPage() {
           <span className="section-eyebrow">{hi ? "एक झलक" : "A LOOK INSIDE"}</span>
           <h2>{hi ? "आपके लिए सोच-समझकर बनाई गई जगह।" : "Your space, thoughtfully made."}</h2>
           <p>From a quick mood check-in to a page in your journal, Mindora keeps your everyday wellbeing tools in one calm, welcoming place.</p>
-          <a href="/signup" className="landing-dark-button">{hi ? "देखें" : "Explore"} your space <span>↗</span></a>
+          <a href="/signup" className="landing-dark-button">{hi ? "अपनी जगह देखें" : "Explore your space"} <span>↗</span></a>
         </div>
         <div className="preview-window" aria-label="Illustrative preview of the Mindora experience">
           <div className="preview-window-top"><span className="preview-dots"><i></i><i></i><i></i></span><span>your mindful space</span><span>✳</span></div>
