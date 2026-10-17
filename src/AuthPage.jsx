@@ -167,8 +167,8 @@ export default function AuthPage({ mode = "login" }) {
         <Link to="/" className="auth-close-home" aria-label="Skip login and return to landing page" title="Back to landing page"><X size={20} /></Link>
         <Link className="auth-mobile-brand" to="/"><img src="/favicon.svg" alt="" /> mindora</Link>
         <div className="auth-form-wrap">
-          <h2>{isRegister ? "{hi ? "अपनी जगह बनाएँ" : "Create your space"}" : "{hi ? "वापसी पर स्वागत है" : "Welcome back"}"}</h2>
-          <p className="auth-subtitle">{isRegister ? "{hi ? "हर दिन खुद के लिए थोड़ी जगह बनाएँ।" : "Make a little room for yourself, every day."}" : "{hi ? "एक गहरी साँस लें। आपकी जगह यहीं है।" : "Take a breath. Your space is right here."}"}</p>
+          <h2>{isRegister ? (hi ? "अपनी जगह बनाएँ" : "Create your space") : (hi ? "वापसी पर स्वागत है" : "Welcome back")}</h2>
+          <p className="auth-subtitle">{isRegister ? (hi ? "हर दिन खुद के लिए थोड़ी जगह बनाएँ।" : "Make a little room for yourself, every day.") : (hi ? "एक गहरी साँस लें। आपकी जगह यहीं है।" : "Take a breath. Your space is right here.")}</p>
 
           <div className="auth-tabs" role="tablist" aria-label="Account options">
             <Link role="tab" aria-selected={!isRegister} className={!isRegister ? "active" : ""} to="/login">{hi ? "लॉग इन" : "Log in"}</Link>
@@ -177,11 +177,11 @@ export default function AuthPage({ mode = "login" }) {
 
           <div className="auth-google-area">
             {import.meta.env.VITE_GOOGLE_CLIENT_ID ? (
-              <div ref={googleButtonRef} className="auth-google-button" aria-label={isRegister ? "{hi ? "Google से साइन अप करें" : "Sign up with Google"}" : "{hi ? "Google से लॉग इन करें" : "Sign in with Google"}"} />
+              <div ref={googleButtonRef} className="auth-google-button" aria-label={isRegister ? (hi ? "Google से साइन अप करें" : "Sign up with Google") : (hi ? "Google से लॉग इन करें" : "Sign in with Google")} />
             ) : (
               <button className="auth-google-fallback" type="button" onClick={() => setError("Google sign-in is not configured for this deployment yet.")}>
                 <span className="auth-google-g" aria-hidden="true">G</span>
-                {isRegister ? "{hi ? "Google से साइन अप करें" : "Sign up with Google"}" : "{hi ? "Google से लॉग इन करें" : "Sign in with Google"}"}
+                {isRegister ? (hi ? "Google से साइन अप करें" : "Sign up with Google") : (hi ? "Google से लॉग इन करें" : "Sign in with Google")}
               </button>
             )}
           </div>
@@ -190,7 +190,7 @@ export default function AuthPage({ mode = "login" }) {
             {isRegister && (
               <label className="auth-field">
                 <span>{hi ? "आपका नाम" : "Your name"}</span>
-                <div className="auth-input-wrap"><UserRound size={17} /><input autoComplete="name" value={name} onChange={(event) => setName(event.target.value)} placeholder="{hi ? "हम आपको किस नाम से बुलाएँ?" : "How should we call you?"}" required /></div>
+                <div className="auth-input-wrap"><UserRound size={17} /><input autoComplete="name" value={name} onChange={(event) => setName(event.target.value)} placeholder={hi ? "हम आपको किस नाम से बुलाएँ?" : "How should we call you?"} required /></div>
               </label>
             )}
             <label className="auth-field">
@@ -203,15 +203,15 @@ export default function AuthPage({ mode = "login" }) {
               <span>{hi ? "ईमेल सत्यापन कोड" : "Email verification code"}</span>
               <div className="auth-input-wrap"><ShieldCheck size={17} /><input inputMode="numeric" autoComplete="one-time-code" value={otp} onChange={(event) => setOtp(event.target.value.replace(/\D/g, "").slice(0, 8))} placeholder="Enter OTP from your email" required /></div>
             </label>}
-            <button className="auth-submit" type="submit" disabled={busy}>{busy ? "Please wait…" : otpSent ? "Verify & continue" : "Send verification code"} <ArrowRight size={17} /></button>
-            {otpSent && <button className="auth-google-fallback" type="button" disabled={busy} onClick={() => { setOtpSent(false); setOtp(""); setSuccess(""); }}>Change email / resend code</button>}
-            <button className="auth-google-fallback" type="button" disabled={busy} onClick={handleGuestLogin}>{hi ? "आगे बढ़ें" : "Continue"} as guest</button>
+            <button className="auth-submit" type="submit" disabled={busy}>{busy ? (hi ? "कृपया प्रतीक्षा करें…" : "Please wait…") : otpSent ? (hi ? "सत्यापित करें और आगे बढ़ें" : "Verify & continue") : (hi ? "सत्यापन कोड भेजें" : "Send verification code")} <ArrowRight size={17} /></button>
+            {otpSent && <button className="auth-google-fallback" type="button" disabled={busy} onClick={() => { setOtpSent(false); setOtp(""); setSuccess(""); }}>{hi ? "ईमेल बदलें / कोड दोबारा भेजें" : "Change email / resend code"}</button>}
+            <button className="auth-google-fallback" type="button" disabled={busy} onClick={handleGuestLogin}>{hi ? "अतिथि के रूप में आगे बढ़ें" : "Continue as guest"}</button>
           </form>
 
-          <p className="auth-switch">{isRegister ? "Already have an account?" : "New to Mindora?"} <Link to={isRegister ? "/login" : "/signup"}>{isRegister ? "{hi ? "लॉग इन" : "Log in"}" : "Create an account"}</Link></p>
-          <p className="auth-privacy"><Heart size={13} /> Your wellbeing matters. Take it one day at a time.</p>
+          <p className="auth-switch">{isRegister ? (hi ? "पहले से खाता है?" : "Already have an account?") : (hi ? "Mindora पर नए हैं?" : "New to Mindora?")} <Link to={isRegister ? "/login" : "/signup"}>{isRegister ? (hi ? "लॉग इन" : "Log in") : (hi ? "खाता बनाएँ" : "Create an account")}</Link></p>
+          <p className="auth-privacy"><Heart size={13} /> {hi ? "आपका सुकून ज़रूरी है। हर दिन एक कदम आगे बढ़ें।" : "Your wellbeing matters. Take it one day at a time."}</p>
         </div>
-        <Link to="/" className="auth-back-home">← Back to Mindora home</Link>
+        <Link to="/" className="auth-back-home">{hi ? "← माइंडोरा के होम पेज पर वापस जाएँ" : "← Back to Mindora home"}</Link>
       </section>
     </main>
   );
