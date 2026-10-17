@@ -482,7 +482,7 @@ function Dashboard() {
           {showNotifications && (
             <div className="notification-popover">
               <div className="popover-heading">
-                <strong>A little reminder</strong>
+                <strong>{t("A little reminder", "एक छोटी-सी याद")}</strong>
                 <button
                   className="plain-icon"
                   onClick={() => setShowNotifications(false)}
@@ -491,15 +491,14 @@ function Dashboard() {
                   <X size={16} />
                 </button>
               </div>
-              <p>You deserve a moment of care today.</p>
+              <p>{t("You deserve a moment of care today.", "आज आप देखभाल और सुकून के एक पल के हक़दार हैं।")}</p>
               <button
                 className="text-action"
                 onClick={() => {
                   setShowNotifications(false);
                   setShowBreathing(true);
                 }}
-              >
-                Take a breathing break <ArrowRight size={14} />
+              >{t("Take a breathing break", "साँसों के लिए एक विराम लें")}<ArrowRight size={14} />
               </button>
             </div>
           )}
@@ -519,14 +518,10 @@ function Dashboard() {
                 </span>
               </div>
 
-              <h1>
-                {getGreeting()}, <span>beautiful soul.</span>
+              <h1>{t("{getGreeting()},", "{t(getGreeting(), getGreeting() === \"Good morning\" ? \"सुप्रभात\" : getGreeting() === \"Good afternoon\" ? \"नमस्कार\" : \"शुभ संध्या\")},")}<span>beautiful soul.</span>
               </h1>
 
-              <p>
-                This is your space to pause, reflect, and reconnect with
-                yourself. There's no right or wrong way to feel.
-              </p>
+              <p>{t("This is your space to pause, reflect, and reconnect with\n                yourself. There's no right or wrong way to feel.", "{t(\"This is your space to pause, reflect, and reconnect with yourself. There's no right or wrong way to feel.\", \"यह आपकी जगह है—ठहरने, सोचने और खुद से फिर जुड़ने की। महसूस करने का कोई सही या गलत तरीका नहीं है।\")}")}</p>
 
               <button
                 className="welcome-button"
@@ -535,8 +530,7 @@ function Dashboard() {
                     .getElementById("daily-checkin")
                     ?.scrollIntoView({ behavior: "smooth", block: "center" });
                 }}
-              >
-                Check in with yourself <ArrowRight size={16} />
+              >{t("Check in with yourself", "खुद का हाल जानें")}<ArrowRight size={16} />
               </button>
             </div>
 
@@ -557,7 +551,7 @@ function Dashboard() {
 
             <div className="welcome-bottom-note">
               <Heart size={15} />
-              <span>Small steps still move you forward.</span>
+              <span>{t("Small steps still move you forward.", "छोटे कदम भी आपको आगे बढ़ाते हैं।")}</span>
             </div>
           </section>
 
@@ -567,9 +561,9 @@ function Dashboard() {
           >
             <div className="section-heading mood-book-heading">
               <div>
-                <div className="section-kicker">A MOMENT JUST FOR YOU</div>
-                <h2>Your mood today</h2>
-                <p>Turn a page, take a breath, and meet yourself where you are.</p>
+                <div className="section-kicker">{t("A MOMENT JUST FOR YOU", "सिर्फ़ आपके लिए एक पल")}</div>
+                <h2>{t("Your mood today", "आज आपका मूड")}</h2>
+                <p>{t("Turn a page, take a breath, and meet yourself where you are.", "एक पन्ना पलटें, साँस लें और खुद को वैसे ही स्वीकारें जैसे आप हैं।")}</p>
               </div>
             </div>
 
@@ -579,11 +573,11 @@ function Dashboard() {
                 <div className="mood-book-page">
                   {bookPage === 0 ? (
                     <div className="book-cover-content">
-                      <span className="book-eyebrow">MINDORA · DAILY REFLECTION</span>
+                      <span className="book-eyebrow">{t("MINDORA · DAILY REFLECTION", "माइंडोरा · रोज़ाना आत्मचिंतन")}</span>
                       <span className="book-cover-icon"><BookOpen size={34} strokeWidth={1.4} /></span>
                       <h3>Your mood today</h3>
-                      <p>There is no right way to feel.<br />Let’s make a little room for yours.</p>
-                      <span className="book-page-number">A LITTLE CHECK-IN · 01</span>
+                      <p>{t("There is no right way to feel.", "महसूस करने का कोई सही तरीका नहीं है।")}<br />{t("Let’s make a little room for yours.", "आपकी भावनाओं के लिए थोड़ी जगह बनाएँ।")}</p>
+                      <span className="book-page-number">{t("A LITTLE CHECK-IN · 01", "एक छोटा हालचाल · ०१")}</span>
                     </div>
                   ) : bookPage <= moods.length ? (
                     <div className="mood-book-entry" key={bookPage}>
@@ -591,14 +585,14 @@ function Dashboard() {
                       <span className="book-mood-emoji" style={{ backgroundColor: moods[bookPage - 1].color }}>
                         {moods[bookPage - 1].emoji}
                       </span>
-                      <h3>{moods[bookPage - 1].label}</h3>
+                      <h3>{t(moods[bookPage - 1].label, ["कम", "ठीक-ठाक", "ठीक", "अच्छा", "बहुत अच्छा"][bookPage - 1])}</h3>
                       <p className="book-quote">
                         {[
                           "You don’t have to be okay to deserve kindness. Take today one small breath at a time.",
-                          "It’s alright to feel a little out of sorts. You don’t need to have all the answers today.",
-                          "Some days are simply days. You can meet this moment exactly as it is.",
-                          "Let yourself enjoy the good that’s here, without needing to explain it or hold onto it.",
-                          "Let this moment be yours. You’re allowed to feel joy and let it gently fill your day."
+                          t("It’s alright to feel a little out of sorts. You don’t need to have all the answers today.", "थोड़ा उलझा हुआ महसूस करना ठीक है। आज आपके पास हर जवाब होना ज़रूरी नहीं।"),
+                          t("Some days are simply days. You can meet this moment exactly as it is.", "कुछ दिन बस ऐसे ही होते हैं। इस पल को जैसा है, वैसा स्वीकारें।"),
+                          t("Let yourself enjoy the good that’s here, without needing to explain it or hold onto it.", "जो अच्छा है, उसे बिना समझाए या थामे रखने की कोशिश किए महसूस करें।"),
+                          t("Let this moment be yours. You’re allowed to feel joy and let it gently fill your day.", "इस पल को अपना होने दें। आपको खुशी महसूस करने और उसे अपने दिन में जगह देने का हक़ है।")
                         ][bookPage - 1]}
                       </p>
                       <button
@@ -608,17 +602,17 @@ function Dashboard() {
                           setShowMoodMessage(false);
                         }}
                       >
-                        {selectedMood?.label === moods[bookPage - 1].label ? <><Check size={16} /> This is how I feel</> : <>This feels like me <Heart size={16} /></>}
+                        {selectedMood?.label === moods[bookPage - 1].label ? <><Check size={16} />{t("This is how I feel", "मैं ऐसा ही महसूस कर रहा/रही हूँ")}</> : <>{t("This feels like me", "यह एहसास मेरा है")}<Heart size={16} /></>}
                       </button>
                       <span className="book-page-number">MINDORA · {String(bookPage + 1).padStart(2, "0")}</span>
                     </div>
                   ) : (
                     <div className="book-goodbye">
                       <span className="book-goodbye-heart"><Heart size={30} /></span>
-                      <h3>Thank you for showing up for yourself.</h3>
-                      <p>Whatever today held, you made space for it.<br />We’ll be right here when tomorrow comes.</p>
-                      <span className="book-goodbye-script">See you tomorrow.</span>
-                      <span className="book-page-number">UNTIL NEXT TIME · 07</span>
+                      <h3>{t("Thank you for showing up for yourself.", "खुद के लिए समय निकालने के लिए शुक्रिया।")}</h3>
+                      <p>{t("Whatever today held, you made space for it.", "आज जो भी हुआ, आपने उसके लिए जगह बनाई।")}<br />{t("We’ll be right here when tomorrow comes.", "कल फिर मिलेंगे, हम यहीं होंगे।")}</p>
+                      <span className="book-goodbye-script">{t("See you tomorrow.", "कल फिर मिलेंगे।")}</span>
+                      <span className="book-page-number">{t("UNTIL NEXT TIME · 07", "अगली मुलाक़ात तक · ०७")}</span>
                     </div>
                   )}
                 </div>
@@ -629,16 +623,14 @@ function Dashboard() {
                   onClick={() => setBookPage((page) => Math.max(0, page - 1))}
                   disabled={bookPage === 0}
                 >
-                  <ArrowRight className="book-back-arrow" size={16} /> Previous page
-                </button>
+                  <ArrowRight className="book-back-arrow" size={16} />{t("Previous page", "पिछला पन्ना")}</button>
                 {bookPage > 0 && bookPage <= moods.length && (
                   <button
                     className="book-save-button"
                     onClick={saveMood}
                     disabled={!selectedMood}
                     title={!selectedMood ? "Choose this feeling first" : "Save your daily check-in"}
-                  >
-                    Save check-in <Heart size={15} />
+                  >{t("Save check-in", "मूड सेव करें")}<Heart size={15} />
                   </button>
                 )}
                 <button
@@ -650,9 +642,7 @@ function Dashboard() {
               </div>
               {showMoodMessage && savedMood && (
                 <div className="success-message book-success">
-                  <Check size={16} />
-                  Check-in saved. Thank you for taking a moment for yourself.
-                </div>
+                  <Check size={16} />{t("Check-in saved. Thank you for taking a moment for yourself.", "आपका हाल सेव हो गया। खुद के लिए एक पल निकालने का शुक्रिया।")}</div>
               )}
             </div>
           </section>
@@ -660,9 +650,9 @@ function Dashboard() {
           <section className="section-block">
             <div className="section-heading">
               <div>
-                <div className="section-kicker">LOOKING BACK WITH KINDNESS</div>
-                <h2>Your mood history</h2>
-                <p>Your previous check-ins, saved on this device.</p>
+                <div className="section-kicker">{t("LOOKING BACK WITH KINDNESS", "प्यार से पीछे मुड़कर देखें")}</div>
+                <h2>{t("Your mood history", "आपके मूड का इतिहास")}</h2>
+                <p>{t("Your previous check-ins, saved on this device.", "आपके पिछले मूड चेक-इन इस डिवाइस पर सेव हैं।")}</p>
               </div>
               <span className="step-label">
                 {moodHistory.length} check-in
@@ -676,8 +666,8 @@ function Dashboard() {
                   <span className="history-empty-icon">
                     <Heart size={21} />
                   </span>
-                  <strong>Your story starts with one check-in.</strong>
-                  <p>Choose a mood above and it will appear here.</p>
+                  <strong>{t("Your story starts with one check-in.", "आपकी कहानी एक छोटे से चेक-इन से शुरू होती है।")}</strong>
+                  <p>{t("Choose a mood above and it will appear here.", "ऊपर अपना मूड चुनें, वह यहाँ दिखाई देगा।")}</p>
                 </div>
               ) : (
                 <div className="history-list">
@@ -704,7 +694,7 @@ function Dashboard() {
                 <span className="stat-icon green-icon">
                   <Smile size={19} />
                 </span>
-                <span className="stat-label">Today's mood</span>
+                <span className="stat-label">{t("Today's mood", "आज का मूड")}</span>
               </div>
               <div className="stat-value">
                 {todayMood ? (
@@ -726,10 +716,10 @@ function Dashboard() {
                 <span className="stat-icon peach-icon">
                   <CalendarDays size={19} />
                 </span>
-                <span className="stat-label">Check-ins saved</span>
+                <span className="stat-label">{t("Check-ins saved", "सेव किए गए चेक-इन")}</span>
               </div>
               <div className="stat-value">{moodHistory.length}</div>
-              <span className="stat-footnote">Every check-in counts.</span>
+              <span className="stat-footnote">{t("Every check-in counts.", "हर चेक-इन मायने रखता है।")}</span>
             </div>
 
             <div className="panel stat-card">
@@ -737,7 +727,7 @@ function Dashboard() {
                 <span className="stat-icon lavender-icon">
                   <Heart size={19} />
                 </span>
-                <span className="stat-label">Average mood</span>
+                <span className="stat-label">{t("Average mood", "औसत मूड")}</span>
               </div>
               <div className="stat-value">
                 {averageMood}
@@ -745,22 +735,19 @@ function Dashboard() {
                   <span className="stat-suffix"> / 10</span>
                 )}
               </div>
-              <span className="stat-footnote">
-                A reflection, not a rating.
-              </span>
+              <span className="stat-footnote">{t("A reflection, not a rating.", "यह आत्मचिंतन है, कोई रेटिंग नहीं।")}</span>
             </div>
           </section>
 
           <section className="section-block" id="mood-insights">
             <div className="section-heading">
               <div>
-                <div className="section-kicker">GENTLE SELF-AWARENESS</div>
-                <h2>Your mood, over time</h2>
-                <p>Notice patterns without judging yourself.</p>
+                <div className="section-kicker">{t("GENTLE SELF-AWARENESS", "खुद को प्यार से समझें")}</div>
+                <h2>{t("Your mood, over time", "समय के साथ आपका मूड")}</h2>
+                <p>{t("Notice patterns without judging yourself.", "बिना खुद को आँके अपने मूड के पैटर्न समझें।")}</p>
               </div>
               <span className="step-label">
-                <BarChart3 size={14} /> Mood insights
-              </span>
+                <BarChart3 size={14} />{t("Mood insights", "मूड की जानकारी")}</span>
             </div>
 
             <div className="panel chart-panel">
@@ -822,7 +809,7 @@ function Dashboard() {
                         border: "1px solid #e7ebdf",
                         fontSize: 12,
                       }}
-                      formatter={(value) => [`${value}/10`, "Mood"]}
+                      formatter={(value) => [`${value}/10`, t("Mood", "मूड")]}
                     />
                     <Area
                       type="monotone"
@@ -856,8 +843,8 @@ function Dashboard() {
             <div className="section-block">
               <div className="section-heading">
                 <div>
-                  <div className="section-kicker">LITTLE MOMENTS MATTER</div>
-                  <h2>Recently in your space</h2>
+                  <div className="section-kicker">{t("LITTLE MOMENTS MATTER", "छोटे पल भी मायने रखते हैं")}</div>
+                  <h2>{t("Recently in your space", "हाल ही में आपकी जगह पर")}</h2>
                 </div>
                 <Clock size={17} className="heading-muted-icon" />
               </div>
@@ -866,7 +853,7 @@ function Dashboard() {
                 {filteredActivity.length === 0 ? (
                   <div className="empty-activity">
                     <Search size={21} />
-                    <p>No matching activity found.</p>
+                    <p>{t("No matching activity found.", "मिलती-जुलती गतिविधि नहीं मिली।")}</p>
                   </div>
                 ) : (
                   filteredActivity.slice(0, 4).map((item) => (
