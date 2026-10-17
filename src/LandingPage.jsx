@@ -6,21 +6,21 @@ const features = [
   {
     number: "01",
     icon: "♡",
-    title: hi ? "अपने मूड को समझें" : "Understand your mood",
+    title: "Understand your mood",
     description:
       "Check in with yourself and make space for every emotion.",
   },
   {
     number: "02",
     icon: "✎",
-    title: hi ? "लिखकर मन हल्का करें" : "Write it out",
+    title: "Write it out",
     description:
       "Put your thoughts into words with your personal journal.",
   },
   {
     number: "03",
     icon: "◎",
-    title: hi ? "अपना सुकून पाएँ" : "Find your calm",
+    title: "Find your calm",
     description:
       "Take a mindful pause with simple guided breathing exercises.",
   },
@@ -181,8 +181,8 @@ export default function LandingPage() {
                 <span className="feature-number">{feature.number}</span>
               </div>
 
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
+              <h3>{hi ? ({ "Understand your mood": "अपने मूड को समझें", "Write it out": "लिखकर मन हल्का करें", "Find your calm": "अपना सुकून पाएँ" }[feature.title] || feature.title) : feature.title}</h3>
+              <p>{hi ? ({ "Check in with yourself and make space for every emotion.": "खुद का हाल जानें और हर भावना को जगह दें।", "Put your thoughts into words with your personal journal.": "अपनी डायरी में विचारों को शब्द दें।", "Take a mindful pause with simple guided breathing exercises.": "आसान साँस अभ्यास के साथ सुकून भरा विराम लें।" }[feature.description] || feature.description) : feature.description}</p>
               <a href="/signup" className="feature-link">
                 {hi ? "देखें" : "Explore"} <span>↗</span>
               </a>
