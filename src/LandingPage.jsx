@@ -1,32 +1,36 @@
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./LandingPage.css";
 
 const features = [
   {
     number: "01",
     icon: "♡",
-    title: "Understand your mood",
+    title: "{hi ? "अपने मूड को समझें" : "Understand your mood"}",
     description:
       "Check in with yourself and make space for every emotion.",
   },
   {
     number: "02",
     icon: "✎",
-    title: "Write it out",
+    title: "{hi ? "लिखकर मन हल्का करें" : "Write it out"}",
     description:
       "Put your thoughts into words with your personal journal.",
   },
   {
     number: "03",
     icon: "◎",
-    title: "Find your calm",
+    title: "{hi ? "अपना सुकून पाएँ" : "Find your calm"}",
     description:
       "Take a mindful pause with simple guided breathing exercises.",
   },
 ];
 
 export default function LandingPage() {
+  const [language, setLanguage] = useState(() => localStorage.getItem("mindora-language") || "en");
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("mindora-theme") === "dark");
+  const hi = language === "hi";
+  useEffect(() => { localStorage.setItem("mindora-theme", darkMode ? "dark" : "light"); }, [darkMode]);
   useEffect(() => {
     const root = document.querySelector(".mindora-landing");
     if (!root || !("IntersectionObserver" in window)) return;
@@ -52,7 +56,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <main className="mindora-landing">
+    <main className={`mindora-landing ${darkMode ? "landing-dark" : ""}`}>
       <header className="landing-navbar">
         <a className="landing-brand" href="#home" aria-label="Mindora home">
           <span className="brand-symbol"><img src="/favicon.svg" alt="" /></span>
@@ -68,11 +72,12 @@ export default function LandingPage() {
         </nav>
 
         <div className="landing-auth">
+          <div className="landing-preference-controls"><select aria-label="Language" value={language} onChange={event => { setLanguage(event.target.value); localStorage.setItem("mindora-language", event.target.value); }}><option value="en">English</option><option value="hi">हिन्दी</option></select><button type="button" className="landing-theme-toggle" onClick={() => setDarkMode(value => !value)} aria-label="Toggle theme">{darkMode ? "☀" : "☾"}</button></div>
           <a className="landing-login" href="/login">
             Log in
           </a>
           <a className="landing-signup" href="/signup">
-            Get started <span>↗</span>
+            {hi ? "शुरू करें" : "Get started"} <span>↗</span>
           </a>
         </div>
       </header>
@@ -84,15 +89,15 @@ export default function LandingPage() {
 
         <div className="hero-content">
           <span className="hero-eyebrow">
-            YOUR SPACE. YOUR PACE.
+            {hi ? "आपकी जगह। आपकी गति।" : "YOUR SPACE. YOUR PACE."}
           </span>
 
           <h1>
-            <span className="hero-line"><span className="hero-line-inner">Find calm.</span></span>
+            <span className="hero-line"><span className="hero-line-inner">{hi ? "सुकून पाएँ।" : "Find calm."}</span></span>
             <br />
-            <span className="hero-line"><span className="hero-line-inner">Restore balance.</span></span>
+            <span className="hero-line"><span className="hero-line-inner">{hi ? "संतुलन लौटाएँ।" : "Restore balance."}</span></span>
             <br />
-            <span className="hero-line"><span className="hero-line-inner"><span>Feel like yourself again.</span></span></span>
+            <span className="hero-line"><span className="hero-line-inner"><span>{hi ? "फिर से खुद जैसा महसूस करें।" : "Feel like yourself again."}</span></span></span>
           </h1>
 
           <p>
@@ -102,38 +107,38 @@ export default function LandingPage() {
 
           <div className="hero-actions">
             <a href="/signup" className="hero-primary-button">
-              Begin your journey <span>↗</span>
+              {hi ? "अपनी यात्रा शुरू करें" : "Begin your journey"} <span>↗</span>
             </a>
 
             <a href="#how-it-works" className="hero-secondary-button">
-              Discover Mindora <span>→</span>
+              {hi ? "माइंडोरा जानें" : "Discover Mindora"} <span>→</span>
             </a>
           </div>
 
           <div className="hero-note">
             <span className="hero-note-icon">✳</span>
-            No pressure. No perfect days. Just you.
+            {hi ? "कोई दबाव नहीं। हर दिन परिपूर्ण होना ज़रूरी नहीं। बस आप।" : "No pressure. No perfect days. Just you."}
           </div>
         </div>
 
         <div className="hero-floating-card">
           <span className="floating-card-label">
-            A MOMENT FOR YOU
+            {hi ? "आपके लिए एक पल" : "A MOMENT FOR YOU"}
           </span>
           <div className="floating-card-icon">☀</div>
-          <p>Take a breath.</p>
+          <p>{hi ? "एक गहरी साँस लें।" : "Take a breath."}</p>
           <span className="floating-card-subtitle">
             You can begin again, anytime.
           </span>
         </div>
 
         <div className="hero-image-caption">
-          MAKE SPACE FOR YOURSELF
+          {hi ? "खुद के लिए जगह बनाएँ" : "MAKE SPACE FOR YOURSELF"}
         </div>
       </section>
 
       <section className="landing-intro" id="about">
-        <span className="section-eyebrow">A GENTLER WAY FORWARD</span>
+        <span className="section-eyebrow">{hi ? "आगे बढ़ने का एक सहज तरीका" : "{hi ? "आगे बढ़ने का एक सहज तरीका" : "A GENTLER WAY FORWARD"}"}</span>
         <h2>
           Your wellbeing isn't a destination.
           <br />
@@ -148,7 +153,7 @@ export default function LandingPage() {
 
       <section className="landing-why" id="why-mindora">
         <div className="landing-why-heading">
-          <span className="section-eyebrow">A SPACE THAT MEETS YOU WHERE YOU ARE</span>
+          <span className="section-eyebrow">{hi ? "एक ऐसी जगह जो आपको समझे" : "A SPACE THAT MEETS YOU WHERE YOU ARE"}</span>
           <h2>Not another thing to keep up with.<br /><em>A little support, when you need it.</em></h2>
           <p>Some days feel clear. Others feel like a lot. Mindora gives you gentle, practical ways to check in with yourself — without pressure to have it all figured out.</p>
         </div>
@@ -162,8 +167,8 @@ export default function LandingPage() {
       <section className="landing-features" id="features">
         <div className="features-heading">
           <div>
-            <span className="section-eyebrow">YOUR DAILY RITUALS</span>
-            <h2>Small steps. Meaningful moments.</h2>
+            <span className="section-eyebrow">{hi ? "आपके रोज़ के छोटे कदम" : "YOUR DAILY RITUALS"}</span>
+            <h2>{hi ? "छोटे कदम। मायने भरे पल।" : "Small steps. Meaningful moments."}</h2>
           </div>
           <p>Make a little room for yourself every day.</p>
         </div>
@@ -179,7 +184,7 @@ export default function LandingPage() {
               <h3>{feature.title}</h3>
               <p>{feature.description}</p>
               <a href="/signup" className="feature-link">
-                Explore <span>↗</span>
+                {hi ? "देखें" : "Explore"} <span>↗</span>
               </a>
             </article>
           ))}
@@ -189,10 +194,10 @@ export default function LandingPage() {
 
       <section className="landing-preview" id="preview">
         <div className="preview-copy">
-          <span className="section-eyebrow">A LOOK INSIDE</span>
-          <h2>Your space, thoughtfully made.</h2>
+          <span className="section-eyebrow">{hi ? "एक झलक" : "A LOOK INSIDE"}</span>
+          <h2>{hi ? "आपके लिए सोच-समझकर बनाई गई जगह।" : "Your space, thoughtfully made."}</h2>
           <p>From a quick mood check-in to a page in your journal, Mindora keeps your everyday wellbeing tools in one calm, welcoming place.</p>
-          <a href="/signup" className="landing-dark-button">Explore your space <span>↗</span></a>
+          <a href="/signup" className="landing-dark-button">{hi ? "देखें" : "Explore"} your space <span>↗</span></a>
         </div>
         <div className="preview-window" aria-label="Illustrative preview of the Mindora experience">
           <div className="preview-window-top"><span className="preview-dots"><i></i><i></i><i></i></span><span>your mindful space</span><span>✳</span></div>
@@ -272,7 +277,7 @@ export default function LandingPage() {
           <a href="#features">Features</a>
           <a href="#about">About</a>
           <a href="#why-mindora">Why Mindora</a>
-          <a href="/login">Log in</a>
+          <a href="/login">{hi ? "लॉग इन" : "Log in"}</a>
         </div>
 
         <span className="footer-copyright">
