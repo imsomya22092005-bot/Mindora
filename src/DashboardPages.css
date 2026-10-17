@@ -424,3 +424,12 @@ main.mindora-section-page:has(.insight-chart-card) .section-page-title h1 em{
 @keyframes journalCardRise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
 @keyframes journalFlowerSway{from{transform:rotate(-8deg) scale(.98)}to{transform:rotate(8deg) scale(1.04)}}
 @media(prefers-reduced-motion:reduce){.journal-diary-cover,.journal-cover-decoration,.journal-cover-content>svg,.journal-loose-page,.diary-prompt-card,.diary-reminder,.diary-entry-grid>.journal-page-card,.diary-flower{animation:none!important;transition:none!important}}
+
+
+/* Keep the diary writing sheet above the cover, with enough room to breathe */
+.journal-diary-scene.diary-is-open{display:block;min-height:0;padding:0;margin-top:10px;margin-bottom:38px;perspective:none;isolation:auto}
+.journal-diary-scene.diary-is-open .journal-diary-cover{width:min(100%,760px);min-height:360px;margin:0 auto;transform:translateY(-14px) scale(.94);transform-origin:center top;filter:saturate(.88)}
+.journal-diary-scene.diary-is-open .journal-cover-content{min-height:360px}
+.journal-diary-scene.diary-is-open .journal-loose-page{position:relative;top:auto;left:auto;width:min(100%,900px);min-height:0;max-height:none;margin:-48px auto 0;overflow:visible;transform:none;box-shadow:0 22px 55px rgba(46,67,42,.17)}
+.journal-diary-scene.diary-is-open .journal-loose-page.page-in-motion{animation:journalPageLift .7s cubic-bezier(.2,.8,.2,1) both}
+@media(max-width:760px){.journal-diary-scene.diary-is-open .journal-diary-cover{min-height:300px;transform:translateY(-8px) scale(.97)}.journal-diary-scene.diary-is-open .journal-cover-content{min-height:300px;padding:28px 25px 25px 45px}.journal-diary-scene.diary-is-open .journal-loose-page{margin:-20px auto 0;width:100%}.journal-diary-scene.diary-is-open .journal-page-body{padding:22px 18px}.journal-diary-scene.diary-is-open .journal-writing-scrapbook{grid-template-columns:1fr}}
