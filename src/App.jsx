@@ -340,6 +340,7 @@ function Dashboard() {
     if (section === "Mindful moments") navigate("/mindful-moments");
     if (section === "Incognito check-in") navigate("/incognito-checkin");
     if (section === "Mood heatmap") navigate("/mood-heatmap");
+    if (section === "Calm Corner") navigate("/calm-corner");
   }
 
   const navItems = [
@@ -349,6 +350,7 @@ function Dashboard() {
     { label: "Mindful moments", icon: Wind },
     { label: "Incognito check-in", icon: ShieldCheck },
     { label: "Mood heatmap", icon: Sparkles },
+    { label: "Calm Corner", icon: Wind },
   ];
 
   return (
@@ -850,39 +852,6 @@ function Dashboard() {
             <div className="section-block">
               <div className="section-heading">
                 <div>
-                  <div className="section-kicker">A SPACE FOR YOUR THOUGHTS</div>
-                  <h2>Gentle reflections</h2>
-                </div>
-                <button
-                  className="small-text-button"
-                  onClick={() => setShowJournal(true)}
-                >
-                  Write a note <Plus size={14} />
-                </button>
-              </div>
-
-              <div className="panel reflection-panel">
-                <div className="reflection-icon">
-                  <BookOpen size={20} />
-                </div>
-                <h3>What's on your mind?</h3>
-                <p>
-                  You don't need perfect words. Let your thoughts find a
-                  little room to breathe.
-                </p>
-                <button
-                  className="reflection-button"
-                  onClick={() => setShowJournal(true)}
-                >
-                  Open your journal <ArrowRight size={15} />
-                </button>
-                <div className="reflection-decoration">✳</div>
-              </div>
-            </div>
-
-            <div className="section-block">
-              <div className="section-heading">
-                <div>
                   <div className="section-kicker">LITTLE MOMENTS MATTER</div>
                   <h2>Recently in your space</h2>
                 </div>
@@ -921,31 +890,6 @@ function Dashboard() {
                 )}
               </div>
             </div>
-          </section>
-
-          <section className="mindful-banner">
-            <div className="mindful-art" aria-hidden="true">
-              <div className="mindful-circle">
-                <Wind size={30} />
-              </div>
-              <span className="mindful-star">✦</span>
-            </div>
-
-            <div className="mindful-copy">
-              <span className="section-kicker">A SOFTER KIND OF PAUSE</span>
-              <h2>A little breathing room?</h2>
-              <p>
-                Take 60 seconds just for yourself. No pressure, no
-                expectations. Just you and your breath.
-              </p>
-            </div>
-
-            <button
-              className="mindful-button"
-              onClick={() => setShowBreathing(true)}
-            >
-              Find your calm <ArrowRight size={16} />
-            </button>
           </section>
 
           <footer className="app-footer">
