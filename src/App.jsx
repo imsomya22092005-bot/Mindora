@@ -63,14 +63,14 @@ const initialActivity = [
     id: 1,
     icon: "journal",
     title: "Your space to reflect",
-    description: "Write down what's on your mind.",
-    time: "Whenever you're ready",
+    description: "{t("Write down what's on your mind.", "अपने मन की बातें लिखें।")}",
+    time: "{t("Whenever you're ready", "जब भी आप तैयार हों")}",
   },
   {
     id: 2,
     icon: "breathing",
     title: "A little breathing room",
-    description: "Take a moment to slow down.",
+    description: "{t("Take a moment to slow down.", "एक पल ठहरकर सुकून से साँस लें।")}",
     time: "1 minute",
   },
 ];
@@ -397,7 +397,7 @@ function Dashboard() {
             <Sparkles size={18} />
           </span>
           <p>“You don't have to have it all figured out today.”</p>
-          <span className="quote-caption">A gentle reminder</span>
+          <span className="quote-caption">{t("A gentle reminder", "एक प्यारी-सी याद")}</span>
         </div>
 
         <button
@@ -405,7 +405,7 @@ function Dashboard() {
           onClick={() => setShowSettings((value) => !value)}
         >
           <Settings size={18} />
-          <span>Settings</span>
+          <span>{t("Settings", "सेटिंग्स")}</span>
         </button>
 
         {showSettings && (
@@ -438,7 +438,7 @@ function Dashboard() {
       <main className="main-content">
         <header className="topbar">
           <div className="breadcrumb">
-            <span>Your space</span>
+            <span>{t("Your space", "आपकी जगह")}</span>
             <span className="breadcrumb-slash">/</span>
             <strong>{activeNav}</strong>
           </div>
@@ -448,7 +448,7 @@ function Dashboard() {
               <Search size={16} />
               <input
                 type="search"
-                placeholder="Search your space..."
+                placeholder={t("Search your space...", "अपनी जगह में खोजें...")}
                 value={searchText}
                 onChange={(event) => setSearchText(event.target.value)}
               />
@@ -519,7 +519,6 @@ function Dashboard() {
               </div>
 
               <h1>{t(getGreeting(), getGreeting() === "Good morning" ? "सुप्रभात" : getGreeting() === "Good afternoon" ? "नमस्कार" : "शुभ संध्या")}, <span>{t("beautiful soul.", "खूबसूरत इंसान।")}</span></h1>
-              </h1>
               <p>
                 {t("This is your space to pause, reflect, and reconnect with yourself. There's no right or wrong way to feel.", "यह आपकी जगह है—ठहरने, सोचने और खुद से फिर जुड़ने की। महसूस करने का कोई सही या गलत तरीका नहीं है।")}
               </p>
@@ -575,7 +574,7 @@ function Dashboard() {
                     <div className="book-cover-content">
                       <span className="book-eyebrow">{t("MINDORA · DAILY REFLECTION", "माइंडोरा · रोज़ाना आत्मचिंतन")}</span>
                       <span className="book-cover-icon"><BookOpen size={34} strokeWidth={1.4} /></span>
-                      <h3>Your mood today</h3>
+                      <h3>{t("Your mood today", "आज आपका मूड")}</h3>
                       <p>{t("There is no right way to feel.", "महसूस करने का कोई सही तरीका नहीं है।")}<br />{t("Let’s make a little room for yours.", "आपकी भावनाओं के लिए थोड़ी जगह बनाएँ।")}</p>
                       <span className="book-page-number">{t("A LITTLE CHECK-IN · 01", "एक छोटा हालचाल · ०१")}</span>
                     </div>
@@ -637,7 +636,7 @@ function Dashboard() {
                   className="book-turn-button"
                   onClick={() => setBookPage((page) => page >= moods.length + 1 ? 0 : page + 1)}
                 >
-                  {bookPage === moods.length + 1 ? "Read again" : "Turn the page"} <ArrowRight size={16} />
+                  {bookPage === moods.length + 1 ? t("Read again", "फिर से पढ़ें") : t("Turn the page", "पन्ना पलटें")} <ArrowRight size={16} />
                 </button>
               </div>
               {showMoodMessage && savedMood && (
@@ -703,7 +702,7 @@ function Dashboard() {
                     {todayMood.label}
                   </>
                 ) : (
-                  "Not checked in"
+                  t("Not checked in", "अभी मूड नहीं बताया")
                 )}
               </div>
               <span className="stat-footnote">
@@ -833,7 +832,7 @@ function Dashboard() {
                 <span>
                   {moodHistory.length > 0
                     ? "Your saved check-ins"
-                    : "Example mood pattern"}
+                    : t("Example mood pattern", "मूड का उदाहरण")}
                 </span>
               </div>
             </div>
@@ -885,7 +884,7 @@ function Dashboard() {
 
           <footer className="app-footer">
             <span>
-              <Heart size={13} /> Made for your softer days.
+              <Heart size={13} /> {t("Made for your softer days.", "आपके सुकून भरे दिनों के लिए।")}
             </span>
             <span>Your feelings deserve space.</span>
           </footer>
