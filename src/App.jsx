@@ -433,9 +433,7 @@ function Dashboard() {
           </div>
         )}
 
-        <div className="sidebar-profile">
-          <button className="sidebar-profile-button" onClick={() => navigate("/profile")} aria-label="Open my profile"><div className="profile-avatar">{(currentUser.name || currentUser.email || "M").trim().charAt(0).toUpperCase()}</div><div className="profile-copy"><strong>{currentUser.name || (currentUser.authProvider === "guest" ? "Guest explorer" : "My profile")}</strong><span>{currentUser.email || "View your account"}</span></div><Heart size={17} className="profile-heart" /></button>
-        </div>
+div>
       </aside>
 
       <main className="main-content">
