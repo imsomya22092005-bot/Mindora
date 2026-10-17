@@ -143,6 +143,7 @@ function Dashboard() {
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const currentUser = (() => { try { return JSON.parse(localStorage.getItem("mindora-user") || "{}"); } catch { return {}; } })();
   const [bookPage, setBookPage] = useState(0);
+  const t = (en, hi) => language === "hi" ? hi : en;
 
   const [darkMode, setDarkMode] = useState(() => {
     try {
@@ -349,14 +350,14 @@ function Dashboard() {
   }
 
   const navItems = [
-    { label: "Overview", icon: LayoutDashboard },
-    { label: "Journal", icon: BookOpen },
-    { label: "Insights", icon: BarChart3 },
-    { label: "Mindful moments", icon: Wind },
-    { label: "Incognito check-in", icon: ShieldCheck },
-    { label: "Mood heatmap", icon: Sparkles },
-    { label: "Calm Corner", icon: Wind },
-    { label: "My profile", icon: Heart },
+    { label: t("Overview", "डैशबोर्ड"), icon: LayoutDashboard, routeLabel: "Overview" },
+    { label: t("Journal", "डायरी"), icon: BookOpen, routeLabel: "Journal" },
+    { label: t("Insights", "जानकारियाँ"), icon: BarChart3, routeLabel: "Insights" },
+    { label: t("Mindful moments", "सुकून के पल"), icon: Wind, routeLabel: "Mindful moments" },
+    { label: t("Incognito check-in", "निजी चेक-इन"), icon: ShieldCheck, routeLabel: "Incognito check-in" },
+    { label: t("Mood heatmap", "मूड मैप"), icon: Sparkles, routeLabel: "Mood heatmap" },
+    { label: t("Calm Corner", "सुकून कोना"), icon: Wind, routeLabel: "Calm Corner" },
+    { label: t("My profile", "मेरी प्रोफ़ाइल"), icon: Heart, routeLabel: "My profile" },
   ];
 
   return (
@@ -371,14 +372,14 @@ function Dashboard() {
           <span className="brand-name">mindora</span>
         </button>
 
-        <div className="sidebar-label">YOUR SPACE</div>
+        <div className="sidebar-label">{t("YOUR SPACE", "आपकी जगह")}</div>
 
         <nav className="sidebar-nav">
-          {navItems.map(({ label, icon: Icon }) => (
+          {navItems.map(({ label, icon: Icon, routeLabel }) => (
             <button
               key={label}
               className={`nav-item ${activeNav === label ? "active" : ""}`}
-              onClick={() => navigateTo(label)}
+              onClick={() => navigateTo(routeLabel)}
             >
               <Icon size={18} strokeWidth={1.8} />
               <span>{label}</span>
@@ -410,7 +411,7 @@ function Dashboard() {
         {showSettings && (
           <div className="settings-popover">
             <div className="settings-popover-heading">
-              <strong>Appearance</strong>
+              <strong>{t("Settings", "सेटिंग्स")}</strong>
               <button
                 className="settings-close"
                 type="button"
@@ -426,9 +427,9 @@ function Dashboard() {
               onClick={() => setDarkMode((value) => !value)}
             >
               {darkMode ? <Sun size={17} /> : <Moon size={17} />}
-              {darkMode ? "Switch to light mode" : "Switch to dark mode"}
+              {darkMode ? t("Switch to light mode", "लाइट मोड करें") : t("Switch to dark mode", "डार्क मोड करें")}
             </button>
-            <p>Your preference is saved on this device.</p>
+            <p>{t("Your preference is saved on this device.", "आपकी पसंद इस डिवाइस पर सेव है।")}</p><button className="theme-setting" onClick={() => { setShowSettings(false); navigate("/profile"); }}><Heart size={17}/>{t("My profile", "मेरी प्रोफ़ाइल")}</button><button className="theme-setting logout-setting" onClick={() => { localStorage.removeItem("mindora-token"); localStorage.removeItem("mindora-user"); setShowSettings(false); navigate("/login", { replace: true }); }}><X size={17}/>{t("Log out", "लॉग आउट")}</button>
           </div>
         )}
 
@@ -467,11 +468,16 @@ function Dashboard() {
               )}
             </button>
 
-            <button
-              className="icon-button theme-toggle"
-              onClick={() => setDarkMode((value) => !value)}
-              aria-label="Toggle dark mode"
-            >
+            <div className="language-picker">
+              <button className="language-toggle" type="button" onClick={() => setShowLanguageMenu(value => !value)} aria-expanded={showLanguageMenu}>
+                <span className="language-globe">文</span><span>{language === "hi" ? "हिन्दी" : "English"}</span><span className="language-chevron">⌄</span>
+              </button>
+              {showLanguageMenu && <div className="language-dropdown">
+                <button type="button" className={language === "en" ? "selected" : ""} onClick={() => { setLanguage("en"); localStorage.setItem("mindora-language","en"); setShowLanguageMenu(false); }}>🇬🇧 English {language === "en" ? "✓" : ""}</button>
+                <button type="button" className={language === "hi" ? "selected" : ""} onClick={() => { setLanguage("hi"); localStorage.setItem("mindora-language","hi"); setShowLanguageMenu(false); }}>🇮🇳 हिन्दी {language === "hi" ? "✓" : ""}</button>
+              </div>}
+            </div>
+            <button className="icon-button theme-toggle" onClick={() => setDarkMode(value => !value)} aria-label="Toggle dark mode">
               {darkMode ? <Sun size={19} /> : <Moon size={19} />}
             </button>
           </div>
@@ -1094,6 +1100,7 @@ function App() {
         <Route path="/mindful-moments" element={<MindfulMomentsPage />} />
         <Route path="/incognito-checkin" element={<IncognitoCheckinPage />} />
         <Route path="/mood-heatmap" element={<MoodHeatmapPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
 
         {/* Mindora wellness pages */}
         <Route path="/calm-corner" element={<CalmCorner />} />
