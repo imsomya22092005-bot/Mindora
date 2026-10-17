@@ -518,11 +518,11 @@ function Dashboard() {
                 </span>
               </div>
 
-              <h1>{t("{getGreeting()},", "{t(getGreeting(), getGreeting() === \"Good morning\" ? \"सुप्रभात\" : getGreeting() === \"Good afternoon\" ? \"नमस्कार\" : \"शुभ संध्या\")},")}<span>beautiful soul.</span>
+              <h1>{t(getGreeting(), getGreeting() === "Good morning" ? "सुप्रभात" : getGreeting() === "Good afternoon" ? "नमस्कार" : "शुभ संध्या")}, <span>{t("beautiful soul.", "खूबसूरत इंसान।")}</span></h1>
               </h1>
-
-              <p>{t("This is your space to pause, reflect, and reconnect with\n                yourself. There's no right or wrong way to feel.", "{t(\"This is your space to pause, reflect, and reconnect with yourself. There's no right or wrong way to feel.\", \"यह आपकी जगह है—ठहरने, सोचने और खुद से फिर जुड़ने की। महसूस करने का कोई सही या गलत तरीका नहीं है।\")}")}</p>
-
+              <p>
+                {t("This is your space to pause, reflect, and reconnect with yourself. There's no right or wrong way to feel.", "यह आपकी जगह है—ठहरने, सोचने और खुद से फिर जुड़ने की। महसूस करने का कोई सही या गलत तरीका नहीं है।")}
+              </p>
               <button
                 className="welcome-button"
                 onClick={() => {
@@ -588,7 +588,7 @@ function Dashboard() {
                       <h3>{t(moods[bookPage - 1].label, ["कम", "ठीक-ठाक", "ठीक", "अच्छा", "बहुत अच्छा"][bookPage - 1])}</h3>
                       <p className="book-quote">
                         {[
-                          "You don’t have to be okay to deserve kindness. Take today one small breath at a time.",
+                          t("You don’t have to be okay to deserve kindness. Take today one small breath at a time.", "आपको ठीक महसूस करना ज़रूरी नहीं, आप फिर भी दयालुता के हक़दार हैं। आज एक-एक साँस लेकर आगे बढ़ें।"),
                           t("It’s alright to feel a little out of sorts. You don’t need to have all the answers today.", "थोड़ा उलझा हुआ महसूस करना ठीक है। आज आपके पास हर जवाब होना ज़रूरी नहीं।"),
                           t("Some days are simply days. You can meet this moment exactly as it is.", "कुछ दिन बस ऐसे ही होते हैं। इस पल को जैसा है, वैसा स्वीकारें।"),
                           t("Let yourself enjoy the good that’s here, without needing to explain it or hold onto it.", "जो अच्छा है, उसे बिना समझाए या थामे रखने की कोशिश किए महसूस करें।"),
