@@ -201,6 +201,7 @@ const comfortMessages = {
 };
 
 export function LittleComfortBox() {
+  const hi = localStorage.getItem("mindora-language") === "hi";
   const [mood, setMood] = useState("Anxious");
   const [messageIndex, setMessageIndex] = useState(0);
 
@@ -208,12 +209,12 @@ export function LittleComfortBox() {
 
   return (
     <Shell
-      title="Little Comfort Box"
-      subtitle="A gentle reminder, just for the way you're feeling today."
+      title={hi ? "सुकून का छोटा-सा डिब्बा" : "Little Comfort Box"}
+      subtitle={hi ? "आज आप जैसा महसूस कर रहे हैं, उसके लिए एक प्यार भरी याद दिलाने वाली बात।" : "A gentle reminder, just for the way you're feeling today."}
       icon={<Heart size={28} />}
     >
       <div className="wellness-panel">
-        <p className="wellness-eyebrow">HOW ARE YOU FEELING?</p>
+        <p className="wellness-eyebrow">{hi ? "आप कैसा महसूस कर रहे हैं?" : "HOW ARE YOU FEELING?"}</p>
 
         <div className="mood-options">
           {Object.keys(comfortMessages).map((item) => (
@@ -227,7 +228,7 @@ export function LittleComfortBox() {
                 setMessageIndex(0);
               }}
             >
-              {item}
+              {hi ? ({ Anxious: "बेचैन", Sad: "उदास", Tired: "थके हुए", Happy: "खुश", Overwhelmed: "परेशान", Lonely: "अकेलापन" }[item]) : item}
             </button>
           ))}
         </div>
@@ -235,8 +236,15 @@ export function LittleComfortBox() {
 
       <div className="comfort-note">
         <Sparkles size={25} />
-        <p className="wellness-eyebrow">A NOTE FOR YOU</p>
-        <blockquote>“{messages[messageIndex]}”</blockquote>
+        <p className="wellness-eyebrow">{hi ? "आपके लिए एक संदेश" : "A NOTE FOR YOU"}</p>
+        <blockquote>“{hi ? ({
+          Anxious: ["आपको अभी सब कुछ सुलझाने की ज़रूरत नहीं है। बस अगला छोटा कदम उठाएँ।", "कोई विचार भविष्यवाणी नहीं होता। इस पल को बस एक पल रहने दें।", "थोड़ा धीरे चलें। आपको अपना समय लेने की पूरी छूट है।"],
+          Sad: ["हर मुश्किल दिन को किसी सीख में बदलना ज़रूरी नहीं है।", "ऐसा महसूस करना ठीक है। खासकर अभी, आप नरमी और अपनापन पाने के हक़दार हैं।", "आपका दिन मुश्किल हो सकता है, फिर भी आप आगे बढ़ रहे हैं।"],
+          Tired: ["आराम भी सफ़र का हिस्सा है, कोई ऐसा इनाम नहीं जिसे कमाना पड़े।", "आज आप कम काम कर सकते हैं—यह बिल्कुल ठीक है।", "आपकी अहमियत इस बात पर निर्भर नहीं करती कि आप कितना काम करते हैं।"],
+          Happy: ["इस पल का आनंद लें, बिना किसी सफ़ाई या वजह के।", "आपके जीवन में आने वाली अच्छी चीज़ों के आप हक़दार हैं।", "इस एहसास की एक प्यारी-सी याद सँभालकर रखें, किसी उदास दिन के लिए।"],
+          Overwhelmed: ["एक बार में बस एक काम। अभी आपको केवल अगला कदम उठाना है।", "दुनिया को जवाब देने से पहले आप थोड़ा ठहर सकते हैं।", "अगले कदम को और छोटा कर लें। छोटा कदम भी आगे बढ़ना है।"],
+          Lonely: ["जब अपनापन दूर लगे, तब भी आप मायने रखते हैं।", "आप ऐसे रिश्तों के हक़दार हैं जहाँ आप खुलकर अपने जैसे रह सकें।", "अपने लोगों को ढूँढ़ते हुए, खुद के अच्छे दोस्त बनें।"]
+        }[mood][messageIndex]) : messages[messageIndex]}”</blockquote>
         <span className="note-flower">✿</span>
 
         <button
@@ -245,7 +253,7 @@ export function LittleComfortBox() {
             setMessageIndex((messageIndex + 1) % messages.length)
           }
         >
-          Another little reminder
+          {hi ? "एक और प्यारी-सी याद दिलाने वाली बात" : "Another little reminder"}
         </button>
       </div>
     </Shell>
