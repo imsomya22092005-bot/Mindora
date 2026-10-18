@@ -46,6 +46,7 @@ function Shell({ title, subtitle, icon, children }) {
 }
 
 export function CalmCorner() {
+  const hi = localStorage.getItem("mindora-language") === "hi";
   const [breathing, setBreathing] = useState(false);
   const [grounding, setGrounding] = useState(0);
 
