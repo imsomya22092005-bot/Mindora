@@ -115,7 +115,7 @@ export function JournalPage() {
               <textarea autoFocus value={text} onChange={e=>setText(e.target.value)} placeholder={hi ? "आज मेरे मन में बहुत-सी बातें हैं...\n\nजो मैं कहना चाहता/चाहती हूँ...\n\nइस समय मुझे ज़रूरत है..." : "Today, my mind has been full of...\n\nWhat I wish I could say is...\n\nWhat I need right now is..."} />
               <div className="diary-editor-footer"><span><LockKeyhole size={14}/> {hi ? "इस डिवाइस पर निजी रूप से सेव है" : "Saved privately on this device"}</span><span>{text.trim() ? text.trim().split(/\s+/).length : 0} words</span></div>
             </div>
-            {pageId && <ScrapbookEditor key={pageId} pageId={pageId} />}
+            {pageId && <ScrapbookEditor key={pageId} pageId={pageId} hi={hi} />}
           </div>
           <div className="journal-page-actions">
             <button className="journal-close-button" onClick={()=>{setDiaryOpen(false);setViewEntry(null);}}>{hi ? "पन्ना वापस रखें" : "Put page back"}</button>
@@ -125,7 +125,7 @@ export function JournalPage() {
       </section>}
     </section>
 
-    {savedNotice && <p className="diary-success journal-saved-message"><Heart size={14}/> Your words have been tucked safely into your journal.</p>}
+    {savedNotice && <p className="diary-success journal-saved-message"><Heart size={14}/> {hi ? "आपकी बातें डायरी में सुरक्षित रख दी गई हैं।" : "Your words have been tucked safely into your journal."}</p>}
 
     <div className="journal-lower-grid">
       <aside className="diary-prompt-card"><span className="diary-side-icon"><Sparkles size={19}/></span><span className="diary-side-kicker">{hi ? "एक कोमल-सा सवाल" : "A GENTLE PROMPT"}</span><p>“{hi ? ["आज क्या सामान्य से ज़्यादा भारी लगा, और उसे संभालने में किस चीज़ ने मदद की?","आज ऐसी कौन-सी छोटी-सी बात है जिसके लिए आप आभारी हैं?","आप चाहते हैं कि कोई आपके बारे में कौन-सी बात समझे?","आज आपको थोड़ा-सा सुकून कहाँ मिला?"][activePrompt] : prompts[activePrompt]}”</p><button onClick={()=>setActivePrompt(i=>(i+1)%prompts.length)}>{hi ? "एक और सवाल" : "Another prompt"} <ArrowUpRight size={14}/></button><div className="diary-flower">✿</div></aside>
@@ -133,8 +133,8 @@ export function JournalPage() {
     </div>
 
     <section className="diary-entries">
-      <div className="diary-entries-head"><div><span className="section-page-eyebrow">{hi ? "आपकी कहानी, आपके शब्दों में" : "YOUR STORY, IN YOUR WORDS"}</span><h2>{hi ? "आपके सहेजे हुए पन्ने" : "Pages you've kept"}</h2><p>{hi ? "आपके सहेजे हुए पन्ने, आपकी डायरी में सुरक्षित।" : "Your saved pages, resting safely inside your diary."}</p></div><span className="diary-count">{entries.length} {entries.length===1?"page":"pages"}</span></div>
-      {!entries.length ? <div className="diary-empty"><BookHeart size={27}/><h3>{hi ? "आपकी कहानी यहाँ से शुरू होती है।" : "Your story starts here."}</h3><p>{hi ? "अपना पहला पन्ना लिखें और उसे किसी और दिन के लिए सहेज लें।" : "Write your first page and tuck it safely away for another day."}</p></div> : <div className="diary-entry-grid">{entries.map(entry=><article className="diary-saved-card journal-page-card" key={entry.id}><div className="diary-saved-meta"><CalendarDays size={14}/>{entry.date}<button aria-label="Delete journal entry" onClick={()=>deleteEntry(entry.id)}><Trash2 size={15}/></button></div><h3>{entry.title || "A page from today"}</h3><p>{entry.text}</p><div className="journal-saved-actions"><span className="diary-entry-flourish">with kindness, always ✳</span><button onClick={()=>openSavedPage(entry)}><Feather size={14}/> Open page</button></div></article>)}</div>}
+      <div className="diary-entries-head"><div><span className="section-page-eyebrow">{hi ? "आपकी कहानी, आपके शब्दों में" : "YOUR STORY, IN YOUR WORDS"}</span><h2>{hi ? "आपके सहेजे हुए पन्ने" : "Pages you've kept"}</h2><p>{hi ? "आपके सहेजे हुए पन्ने, आपकी डायरी में सुरक्षित।" : "Your saved pages, resting safely inside your diary."}</p></div><span className="diary-count">{entries.length} {hi ? "पन्ने" : entries.length===1?"page":"pages"}</span></div>
+      {!entries.length ? <div className="diary-empty"><BookHeart size={27}/><h3>{hi ? "आपकी कहानी यहाँ से शुरू होती है।" : "Your story starts here."}</h3><p>{hi ? "अपना पहला पन्ना लिखें और उसे किसी और दिन के लिए सहेज लें।" : "Write your first page and tuck it safely away for another day."}</p></div> : <div className="diary-entry-grid">{entries.map(entry=><article className="diary-saved-card journal-page-card" key={entry.id}><div className="diary-saved-meta"><CalendarDays size={14}/>{entry.date}<button aria-label="Delete journal entry" onClick={()=>deleteEntry(entry.id)}><Trash2 size={15}/></button></div><h3>{entry.title || (hi ? "आज का एक पन्ना" : "A page from today")}</h3><p>{entry.text}</p><div className="journal-saved-actions"><span className="diary-entry-flourish">with kindness, always ✳</span><button onClick={()=>openSavedPage(entry)}><Feather size={14}/> Open page</button></div></article>)}</div>}
     </section>
     <footer className="section-page-footer"><Heart size={13}/> {hi ? "यह आपकी जगह है। आपकी गति है। आपकी कहानी है।" : "This is your space. Your pace. Your story."} <span>{hi ? "माइंडोरा · आपके सुकून भरे दिनों के लिए" : "Mindora · made for your softer days"}</span></footer>
   </main>;
