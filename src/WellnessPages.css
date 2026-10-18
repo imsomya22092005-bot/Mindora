@@ -880,3 +880,51 @@
 @keyframes wellnessInnerFloat{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
 @keyframes wellnessRing{0%{transform:scale(.9);opacity:.65}100%{transform:scale(1.18);opacity:0}}
 @media(prefers-reduced-motion:reduce){.wellness-heading,.wellness-heading-icon,.calm-card,.calm-card::before,.calm-card::after,.breathing-orb,.breathing-orb::before,.breathing-orb::after,.breathing-inner,.wellness-panel,.wellness-footer{animation:none!important;transition:none!important}}
+
+
+/* Draggable layered reminder cards for Little Comfort Box */
+.comfort-deck {
+  position: relative;
+  width: 100%;
+  min-height: 440px;
+  isolation: isolate;
+  touch-action: pan-y;
+}
+.comfort-note-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(100%, 760px);
+  min-height: 390px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 34px 30px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transition: box-shadow .2s ease;
+  background: linear-gradient(145deg, #e8f0e4 0%, #f7f3e9 100%);
+}
+.comfort-note-layer:active { cursor: grabbing; }
+.comfort-note-layer-1 { background: #eef2e8; }
+.comfort-note-layer-2 { background: #f4f0e6; }
+.comfort-note-layer blockquote {
+  max-width: 610px;
+  margin: 20px auto;
+  color: var(--wellness-text);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(23px, 3vw, 38px);
+  line-height: 1.55;
+}
+.comfort-note-layer-1 blockquote,
+.comfort-note-layer-2 blockquote { font-size: clamp(20px, 2.5vw, 29px); }
+.comfort-note-layer .wellness-button { position: relative; z-index: 5; cursor: pointer; }
+.comfort-drag-hint { margin: -4px 0 0; text-align: center; color: var(--wellness-muted); font-size: 12px; }
+@media (max-width: 640px) {
+  .comfort-deck { min-height: 400px; }
+  .comfort-note-layer { min-height: 350px; padding: 25px 18px; }
+  .comfort-note-layer blockquote { font-size: 22px; }
+}
