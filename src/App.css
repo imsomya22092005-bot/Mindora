@@ -2892,3 +2892,39 @@ textarea:focus-visible {
 @media (max-width: 900px) { .mindful-focus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .mindful-focus-card { min-height: 280px; } }
 @media (max-width: 560px) { .mindful-focus-grid { grid-template-columns: 1fr; gap: 14px; } .mindful-focus-card { min-height: 290px; } }
 @media (prefers-reduced-motion: reduce) { .mindful-focus-card { animation: none; transition: none; } }
+
+
+/* Correct FocusCards-style image stacking and guided practice screen */
+.mindful-focus-card { isolation: isolate; background-image: none !important; }
+.mindful-focus-card::after { z-index: -1 !important; }
+.mindful-focus-card::before { z-index: 0 !important; }
+.mindful-focus-card .mindful-card-content { position: relative; z-index: 1; }
+.mindful-focus-card:hover::after, .mindful-focus-card:focus-visible::after { transform: scale(1.12); }
+.mindful-focus-grid:has(.mindful-focus-card:hover) .mindful-focus-card:not(:hover) { opacity: .55; filter: saturate(.7); transform: scale(.975); }
+
+.practice-page { max-width: 1120px; margin: 0 auto; padding: 30px 28px 56px; color: var(--text, #304536); }
+.practice-back { display: inline-flex; align-items: center; gap: 8px; border: 0; background: transparent; color: var(--green, #527a60); font: inherit; font-weight: 700; padding: 10px 0 22px; cursor: pointer; }
+.practice-hero { min-height: 290px; border-radius: 28px; overflow: hidden; background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: clamp(24px, 5vw, 52px); color: #fff; box-shadow: 0 16px 38px rgba(35,52,38,.12); }
+.practice-kicker { font-size: 11px; font-weight: 800; letter-spacing: .16em; }
+.practice-hero h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.1; margin: 12px 0; color: #fff; }
+.practice-hero p { max-width: 540px; margin: 0; color: rgba(255,255,255,.92); line-height: 1.65; }
+.practice-instructions { max-width: 760px; margin: 26px auto 0; padding: clamp(22px, 4vw, 42px); border: 1px solid #e0e7dc; border-radius: 24px; background: #fff; box-shadow: 0 12px 32px rgba(35,52,38,.05); }
+.practice-progress-row { display: flex; justify-content: space-between; gap: 12px; color: #607763; font-size: 11px; font-weight: 800; letter-spacing: .12em; }
+.practice-progress { height: 6px; margin: 12px 0 32px; overflow: hidden; border-radius: 99px; background: #edf1e9; }
+.practice-progress span { display: block; height: 100%; border-radius: inherit; background: #63866a; transition: width .25s ease; }
+.practice-step-number { color: #8aa28a; font: 500 48px/1 Georgia, serif; }
+.practice-instructions h2 { margin: 14px 0 12px; font-size: clamp(23px, 3vw, 31px); color: #304536; }
+.practice-step-text { min-height: 70px; color: #536657; font-size: 17px; line-height: 1.8; }
+.practice-step-actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+.practice-primary, .practice-secondary { display: inline-flex; justify-content: center; align-items: center; gap: 8px; border-radius: 999px; padding: 13px 20px; font: inherit; font-weight: 700; cursor: pointer; }
+.practice-primary { border: 1px solid #527a60; background: #527a60; color: white; }
+.practice-secondary { border: 1px solid #dce5d9; background: #fff; color: #47624d; }
+.practice-secondary:disabled { opacity: .4; cursor: not-allowed; }
+.practice-safety { margin: 24px 0 0; padding-top: 18px; border-top: 1px solid #edf0e9; color: #79877b; font-size: 12px; line-height: 1.7; }
+@media (max-width: 600px) {
+ .practice-page { padding: 18px 14px 36px; }
+ .practice-hero { min-height: 250px; border-radius: 20px; }
+ .practice-instructions { margin-top: 16px; border-radius: 20px; }
+ .practice-step-actions { flex-direction: column-reverse; }
+ .practice-primary, .practice-secondary { width: 100%; }
+}
