@@ -203,11 +203,15 @@ const comfortMessages = {
 export function LittleComfortBox() {
   const hi = localStorage.getItem("mindora-language") === "hi";
   const [mood, setMood] = useState("Anxious");
-  const [messageIndex, setMessageIndex] = useState(0);
-  const [dragOffsets, setDragOffsets] = useState([{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }]);
+  const [seenByMood, setSeenByMood] = useState({});
+  const [swipeOffset, setSwipeOffset] = useState({ x: 0, y: 0 });
+  const [isLeaving, setIsLeaving] = useState(false);
   const dragRef = useRef(null);
 
-  const messages = comfortMessages[mood];
+  const messages = comfortMessages[mood] || comfortMessages.Anxious;
+  const seen = seenByMood[mood] || [];
+  const remaining = messages.map((_, index) => index).filter((index) => !seen.includes(index));
+  const currentIndex = remaining[0];
   const note = hi ? ({
     Anxious: ["आपको अभी सब कुछ सुलझाने की ज़रूरत नहीं है। बस अगला छोटा कदम उठाएँ।", "कोई विचार भविष्यवाणी नहीं होता। इस पल को बस एक पल रहने दें।", "थोड़ा धीरे चलें। आपको अपना समय लेने की पूरी छूट है।"],
     Sad: ["हर मुश्किल दिन को किसी सीख में बदलना ज़रूरी नहीं है।", "ऐसा महसूस करना ठीक है। आप नरमी और अपनापन पाने के हक़दार हैं।", "आपका दिन मुश्किल हो सकता है, फिर भी आप आगे बढ़ रहे हैं।"],
@@ -215,28 +219,50 @@ export function LittleComfortBox() {
     Happy: ["इस पल का आनंद लें, बिना किसी सफ़ाई या वजह के।", "आपके जीवन में आने वाली अच्छी चीज़ों के आप हक़दार हैं।", "इस एहसास की एक प्यारी-सी याद सँभालकर रखें।"],
     Overwhelmed: ["एक बार में बस एक काम। अभी आपको केवल अगला कदम उठाना है।", "दुनिया को जवाब देने से पहले आप थोड़ा ठहर सकते हैं।", "छोटा कदम भी आगे बढ़ना है।"],
     Lonely: ["जब अपनापन दूर लगे, तब भी आप मायने रखते हैं।", "आप ऐसे रिश्तों के हक़दार हैं जहाँ आप खुलकर अपने जैसे रह सकें।", "अपने लोगों को ढूँढ़ते हुए, खुद के अच्छे दोस्त बनें।"]
-  }[mood][messageIndex]) : messages[messageIndex];
+  }[mood][currentIndex]) : messages[currentIndex];
 
-  function startDrag(event, index) {
+  function startDrag(event) {
     if (event.button !== undefined && event.button !== 0) return;
-    event.preventDefault();
-    dragRef.current = { index, startX: event.clientX, startY: event.clientY, baseX: dragOffsets[index].x, baseY: dragOffsets[index].y };
+    if (currentIndex === undefined) return;
+    dragRef.current = { startX: event.clientX, startY: event.clientY, moved: false };
     event.currentTarget.setPointerCapture?.(event.pointerId);
   }
 
   function moveDrag(event) {
-    if (!dragRef.current) return;
-    const { index, startX, startY, baseX, baseY } = dragRef.current;
-    setDragOffsets((previous) => previous.map((offset, i) => i === index ? { x: baseX + event.clientX - startX, y: baseY + event.clientY - startY } : offset));
+    if (!dragRef.current || isLeaving) return;
+    const x = event.clientX - dragRef.current.startX;
+    const y = event.clientY - dragRef.current.startY;
+    if (Math.abs(x) > 4 || Math.abs(y) > 4) dragRef.current.moved = true;
+    setSwipeOffset({ x, y });
   }
 
   function stopDrag() {
+    if (!dragRef.current) return;
+    const { moved } = dragRef.current;
     dragRef.current = null;
+    if (moved && (Math.abs(swipeOffset.x) > 110 || Math.abs(swipeOffset.y) > 100)) {
+      dismissCurrent();
+      return;
+    }
+    setSwipeOffset({ x: 0, y: 0 });
   }
 
-  function nextReminder() {
-    setMessageIndex((index) => (index + 1) % messages.length);
-    setDragOffsets([{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }]);
+  function dismissCurrent() {
+    if (currentIndex === undefined || isLeaving) return;
+    setIsLeaving(true);
+    window.setTimeout(() => {
+      setSeenByMood((previous) => ({
+        ...previous,
+        [mood]: [...new Set([...(previous[mood] || []), currentIndex])]
+      }));
+      setSwipeOffset({ x: 0, y: 0 });
+      setIsLeaving(false);
+    }, 180);
+  }
+
+  function restoreCards() {
+    setSeenByMood((previous) => ({ ...previous, [mood]: [] }));
+    setSwipeOffset({ x: 0, y: 0 });
   }
 
   return (
@@ -249,37 +275,46 @@ export function LittleComfortBox() {
         <p className="wellness-eyebrow">{hi ? "आप कैसा महसूस कर रहे हैं?" : "HOW ARE YOU FEELING?"}</p>
         <div className="mood-options">
           {Object.keys(comfortMessages).map((item) => (
-            <button key={item} className={`mood-chip ${mood === item ? "mood-selected" : ""}`} onClick={() => { setMood(item); setMessageIndex(0); setDragOffsets([{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }]); }}>
+            <button key={item} className={`mood-chip ${mood === item ? "mood-selected" : ""}`} onClick={() => { setMood(item); setSwipeOffset({ x: 0, y: 0 }); setIsLeaving(false); }}>
               {hi ? ({ Anxious: "बेचैन", Sad: "उदास", Tired: "थके हुए", Happy: "खुश", Overwhelmed: "परेशान", Lonely: "अकेलापन" }[item]) : item}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="comfort-deck" onPointerMove={moveDrag} onPointerUp={stopDrag} onPointerCancel={stopDrag}>
-        {[2, 1, 0].map((layer) => {
-          const rotation = [-5, 4, 0][layer];
-          const offset = dragOffsets[layer];
-          const isFront = layer === 0;
-          return (
-            <div
-              key={layer}
-              className={`comfort-note comfort-note-layer comfort-note-layer-${layer}`}
-              style={{ transform: `translate(calc(-50% + ${offset.x}px), calc(-50% + ${offset.y}px)) rotate(${rotation}deg)`, zIndex: 3 - layer }}
-              onPointerDown={(event) => startDrag(event, layer)}
-              role="group"
-              aria-label={hi ? "खींचकर हिलाया जा सकने वाला संदेश कार्ड" : "Draggable reminder card"}
-            >
-              <Sparkles size={25} />
-              <p className="wellness-eyebrow">{hi ? "आपके लिए एक संदेश" : "A NOTE FOR YOU"}</p>
-              <blockquote>“{isFront ? note : (hi ? "धीरे चलना भी आगे बढ़ना है। अपने साथ नरमी रखें।" : layer === 1 ? "You are allowed to take things one small step at a time." : "You don't have to solve everything right now.")}”</blockquote>
-              <span className="note-flower">✿</span>
-              {isFront && <button className="wellness-button" onPointerDown={(event) => event.stopPropagation()} onClick={nextReminder}>{hi ? "एक और प्यारी-सी याद" : "Another little reminder"}</button>}
-            </div>
-          );
-        })}
-      </div>
-      <p className="comfort-drag-hint">{hi ? "कार्ड को पकड़कर धीरे से खिसकाएँ" : "Grab a card and gently move it around"}</p>
+      {currentIndex !== undefined ? (
+        <div className="comfort-deck">
+          {[2, 1].map((layer) => (
+            <div key={layer} aria-hidden="true" className={`comfort-note comfort-note-layer comfort-note-layer-${layer}`} />
+          ))}
+          <div
+            className={`comfort-note comfort-note-layer comfort-note-layer-0 ${isLeaving ? "comfort-card-leaving" : ""}`}
+            style={{ transform: `translate(calc(-50% + ${swipeOffset.x}px), calc(-50% + ${swipeOffset.y}px)) rotate(${swipeOffset.x * 0.035}deg)` }}
+            onPointerDown={startDrag}
+            onPointerMove={moveDrag}
+            onPointerUp={stopDrag}
+            onPointerCancel={stopDrag}
+            role="group"
+            aria-label={hi ? "कार्ड को स्वाइप करके हटाएँ" : "Swipe the card away to dismiss it"}
+          >
+            <Sparkles size={25} />
+            <p className="wellness-eyebrow">{hi ? "आपके लिए एक संदेश" : "A NOTE FOR YOU"}</p>
+            <blockquote>“{note}”</blockquote>
+            <span className="note-flower">✿</span>
+            <p className="comfort-count">{hi ? `बाकी संदेश: ${remaining.length}` : `${remaining.length} reminder${remaining.length === 1 ? "" : "s"} left for ${mood}`}</p>
+            <button className="wellness-button" onPointerDown={(event) => event.stopPropagation()} onClick={dismissCurrent}>{hi ? "अगला संदेश" : "Next reminder"}</button>
+          </div>
+        </div>
+      ) : (
+        <div className="comfort-restored">
+          <Sparkles size={28} />
+          <p className="wellness-eyebrow">{hi ? "सभी संदेश देख लिए!" : "YOU'VE SEEN THEM ALL"}</p>
+          <h2>{hi ? "आपने इस मूड के सारे संदेश देख लिए।" : `You've seen all reminders for ${mood.toLowerCase()}.`}</h2>
+          <p>{hi ? "जब चाहें, इन्हें फिर से देख सकते हैं।" : "Whenever you need them, you can bring these reminders back."}</p>
+          <button className="wellness-button" onClick={restoreCards}>{hi ? "संदेश फिर से दिखाएँ" : "Restore reminders"}</button>
+        </div>
+      )}
+      <p className="comfort-drag-hint">{hi ? "कार्ड को साइड में स्वाइप करें या अगला संदेश दबाएँ" : "Swipe the card sideways to dismiss it, or tap Next reminder."}</p>
     </Shell>
   );
 }
