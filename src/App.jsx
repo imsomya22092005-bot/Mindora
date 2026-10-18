@@ -48,6 +48,7 @@ import {
   CalmCorner,
   InnerGarden,
   LittleComfortBox,
+  MoodSoundscape,
 } from "./WellnessPages";
 
 const moods = [
@@ -1119,6 +1120,7 @@ function App() {
         {/* Mindora wellness pages */}
         <Route path="/calm-corner" element={<CalmCorner />} />
         <Route path="/inner-garden" element={<InnerGarden />} />
+        <Route path="/soundscape" element={<MoodSoundscape />} />
         <Route
           path="/comfort-box"
           element={<LittleComfortBox />}
