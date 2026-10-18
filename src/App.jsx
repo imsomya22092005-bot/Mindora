@@ -868,50 +868,45 @@ function Dashboard() {
             </div>
           </section>
 
-          <section className="lower-grid">
-            <div className="section-block">
-              <div className="section-heading">
-                <div>
-                  <div className="section-kicker">{t("LITTLE MOMENTS MATTER", "छोटे पल भी मायने रखते हैं")}</div>
-                  <h2>{t("Recently in your space", "हाल ही में आपकी जगह पर")}</h2>
-                </div>
-                <Clock size={17} className="heading-muted-icon" />
-              </div>
-
-              <div className="panel activity-panel">
-                {filteredActivity.length === 0 ? (
-                  <div className="empty-activity">
-                    <Search size={21} />
-                    <p>{t("No matching activity found.", "मिलती-जुलती गतिविधि नहीं मिली।")}</p>
-                  </div>
-                ) : (
-                  filteredActivity.slice(0, 4).map((item) => (
-                    <div className="activity-row" key={item.id}>
-                      <span
-                        className={`activity-icon ${
-                          item.icon === "journal"
-                            ? "activity-journal"
-                            : "activity-breathing"
-                        }`}
-                      >
-                        {item.icon === "journal" ? (
-                          <BookOpen size={17} />
-                        ) : (
-                          <Wind size={17} />
-                        )}
-                      </span>
-                      <div className="activity-copy">
-                        <strong>{item.title}</strong>
-                        <span>{item.description}</span>
-                      </div>
-                      <span className="activity-time">{item.time}</span>
-                    </div>
-                  ))
-                )}
+          <section className="mindful-movement-section">
+            <div className="section-heading mindful-movement-heading">
+              <div>
+                <div className="section-kicker">{t("MOVE GENTLY, FEEL BETTER", "धीरे चलें, बेहतर महसूस करें")}</div>
+                <h2>{t("A little space to unwind", "सुकून पाने के लिए एक छोटा-सा पल")}</h2>
+                <p>{t("Explore gentle yoga and calming movements. Choose what feels right for you today.", "हल्के योग और मन को शांत करने वाली गतिविधियाँ चुनें। आज जो अच्छा लगे, वही करें।")}</p>
               </div>
             </div>
+            <div className="mindful-focus-grid">
+              {[
+                { title: "Child’s Pose", hindi: "बालासन", type: "Rest & release", duration: "2 min", image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=85&w=1400&auto=format&fit=crop", description: "A gentle resting pose to ease tension." },
+                { title: "Mountain Pose", hindi: "ताड़ासन", type: "Grounding", duration: "1 min", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=85&w=1400&auto=format&fit=crop", description: "Stand tall, breathe slowly, feel steady." },
+                { title: "Seated Breathing", hindi: "बैठकर श्वास", type: "Breathwork", duration: "2 min", image: "https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=85&w=1400&auto=format&fit=crop", description: "Make room for a slower, softer breath." },
+                { title: "Tree Pose", hindi: "वृक्षासन", type: "Balance", duration: "1 min", image: "https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=85&w=1400&auto=format&fit=crop", description: "Find a calm point and build gentle focus." },
+                { title: "Easy Neck Release", hindi: "गर्दन को आराम", type: "Desk reset", duration: "1 min", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=85&w=1400&auto=format&fit=crop", description: "Let your shoulders soften after a long day." },
+                { title: "Legs Up the Wall", hindi: "दीवार के सहारे पैर", type: "Unwind", duration: "3 min", image: "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?q=85&w=1400&auto=format&fit=crop", description: "Pause and give yourself a quiet moment." },
+                { title: "Cat–Cow Stretch", hindi: "मार्जरी आसन", type: "Gentle stretch", duration: "2 min", image: "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=85&w=1400&auto=format&fit=crop", description: "Move slowly with the rhythm of your breath." },
+                { title: "Mindful Walking", hindi: "ध्यान से चलना", type: "Reset outdoors", duration: "5 min", image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=85&w=1400&auto=format&fit=crop", description: "Notice each step and the world around you." },
+                { title: "Savasana", hindi: "शवासन", type: "Deep rest", duration: "3 min", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=85&w=1400&auto=format&fit=crop", description: "Lie comfortably and let your body rest." }
+              ].map((card, index) => (
+                <button
+                  type="button"
+                  className="mindful-focus-card"
+                  key={card.title}
+                  style={{ "--focus-image": `url("${card.image}")`, "--focus-delay": `${index * 35}ms` }}
+                  onClick={() => navigate("/mindful-moments")}
+                  aria-label={`${card.title}, ${card.duration}`}
+                >
+                  <span className="mindful-card-shade" />
+                  <span className="mindful-card-content">
+                    <span className="mindful-card-type">{card.type} · {card.duration}</span>
+                    <strong>{t(card.title, card.hindi)}</strong>
+                    <span className="mindful-card-description">{t(card.description, card.description)}</span>
+                    <span className="mindful-card-action">{t("Explore practice", "अभ्यास देखें")} <ArrowRight size={15} /></span>
+                  </span>
+                </button>
+              ))}
+            </div>
           </section>
-
           <footer className="app-footer">
             <span>
               <Heart size={13} /> {t("Made for your softer days.", "आपके सुकून भरे दिनों के लिए।")}
