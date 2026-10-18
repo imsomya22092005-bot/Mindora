@@ -2854,15 +2854,33 @@ textarea:focus-visible {
   position: relative; isolation: isolate; display: flex; align-items: flex-end;
   width: 100%; min-height: 300px; overflow: hidden; padding: 22px; border: 1px solid rgba(255,255,255,.32);
   border-radius: 22px; text-align: left; color: #fff; cursor: pointer;
-  background-color: #637967; background-image: var(--focus-image); background-size: cover; background-position: center;
-  box-shadow: 0 10px 26px rgba(37,54,40,.10);
-  transition: transform .28s ease, box-shadow .28s ease, filter .28s ease;
+  background: #637967; box-shadow: 0 10px 26px rgba(37,54,40,.10);
+  transition: transform .35s cubic-bezier(.2,.75,.25,1), box-shadow .35s ease, opacity .35s ease, filter .35s ease;
   animation: mindfulCardEnter .45s both; animation-delay: var(--focus-delay, 0ms);
 }
-.mindful-focus-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(12,24,17,.04) 10%, rgba(12,24,17,.25) 42%, rgba(12,24,17,.82) 100%); transition: background .25s ease; }
-.mindful-focus-card:hover, .mindful-focus-card:focus-visible { transform: translateY(-5px) scale(1.015); box-shadow: 0 18px 34px rgba(37,54,40,.22); outline: none; }
-.mindful-focus-card:hover::before, .mindful-focus-card:focus-visible::before { background: linear-gradient(180deg, rgba(12,24,17,.10), rgba(12,24,17,.28) 30%, rgba(12,24,17,.88)); }
-.mindful-focus-grid:has(.mindful-focus-card:hover) .mindful-focus-card:not(:hover) { filter: saturate(.78); transform: scale(.985); }
+.mindful-focus-card::after {
+  content: ""; position: absolute; inset: 0; z-index: -2;
+  background-image: var(--focus-image); background-size: cover; background-position: center;
+  transform: scale(1); transition: transform .65s cubic-bezier(.2,.75,.25,1), filter .35s ease;
+}
+.mindful-focus-card::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(12,24,17,.02) 0%, rgba(12,24,17,.12) 32%, rgba(12,24,17,.84) 100%);
+  transition: background .35s ease;
+}
+.mindful-focus-card:hover, .mindful-focus-card:focus-visible {
+  transform: translateY(-7px) scale(1.025); box-shadow: 0 22px 42px rgba(37,54,40,.26); outline: none;
+}
+.mindful-focus-card:hover::after, .mindful-focus-card:focus-visible::after { transform: scale(1.12); }
+.mindful-focus-card:hover::before, .mindful-focus-card:focus-visible::before {
+  background: linear-gradient(180deg, rgba(12,24,17,.08), rgba(12,24,17,.2) 30%, rgba(12,24,17,.9));
+}
+.mindful-focus-grid:has(.mindful-focus-card:hover) .mindful-focus-card:not(:hover) {
+  opacity: .58; filter: saturate(.72) scale(.975);
+}
+.mindful-focus-card:focus-visible { outline: 3px solid #9dbba0; outline-offset: 3px; }
+.mindful-card-content { position: relative; z-index: 1; transform: translateY(7px); transition: transform .35s ease; }
+.mindful-focus-card:hover .mindful-card-content, .mindful-focus-card:focus-visible .mindful-card-content { transform: translateY(0); }
 .mindful-card-content { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; width: 100%; }
 .mindful-card-type { font-size: 10px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: rgba(255,255,255,.82); }
 .mindful-card-content strong { font-size: clamp(20px, 2vw, 25px); line-height: 1.2; font-weight: 600; letter-spacing: -.02em; }
