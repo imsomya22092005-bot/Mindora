@@ -261,6 +261,7 @@ export function LittleComfortBox() {
 }
 
 export function MoodSoundscape() {
+  const hi = localStorage.getItem("mindora-language") === "hi";
   const [selected, setSelected] = useState("rain");
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(50);
