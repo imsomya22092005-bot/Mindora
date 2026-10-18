@@ -386,8 +386,6 @@ function Dashboard() {
     { label: t("Mindful moments", "सुकून के पल"), icon: Wind, routeLabel: "Mindful moments" },
     { label: t("Incognito check-in", "निजी चेक-इन"), icon: ShieldCheck, routeLabel: "Incognito check-in" },
     { label: t("Mood heatmap", "मूड मैप"), icon: Sparkles, routeLabel: "Mood heatmap" },
-    { label: t("Calm Corner", "सुकून कोना"), icon: Wind, routeLabel: "Calm Corner" },
-    { label: t("My profile", "मेरी प्रोफ़ाइल"), icon: Heart, routeLabel: "My profile" },
   ];
 
   return (
