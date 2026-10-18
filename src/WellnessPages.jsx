@@ -204,8 +204,40 @@ export function LittleComfortBox() {
   const hi = localStorage.getItem("mindora-language") === "hi";
   const [mood, setMood] = useState("Anxious");
   const [messageIndex, setMessageIndex] = useState(0);
+  const [dragOffsets, setDragOffsets] = useState([{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }]);
+  const dragRef = useRef(null);
 
   const messages = comfortMessages[mood];
+  const note = hi ? ({
+    Anxious: ["आपको अभी सब कुछ सुलझाने की ज़रूरत नहीं है। बस अगला छोटा कदम उठाएँ।", "कोई विचार भविष्यवाणी नहीं होता। इस पल को बस एक पल रहने दें।", "थोड़ा धीरे चलें। आपको अपना समय लेने की पूरी छूट है।"],
+    Sad: ["हर मुश्किल दिन को किसी सीख में बदलना ज़रूरी नहीं है।", "ऐसा महसूस करना ठीक है। आप नरमी और अपनापन पाने के हक़दार हैं।", "आपका दिन मुश्किल हो सकता है, फिर भी आप आगे बढ़ रहे हैं।"],
+    Tired: ["आराम भी सफ़र का हिस्सा है, कोई ऐसा इनाम नहीं जिसे कमाना पड़े।", "आज आप कम काम कर सकते हैं—यह बिल्कुल ठीक है।", "आपकी अहमियत इस बात पर निर्भर नहीं करती कि आप कितना काम करते हैं।"],
+    Happy: ["इस पल का आनंद लें, बिना किसी सफ़ाई या वजह के।", "आपके जीवन में आने वाली अच्छी चीज़ों के आप हक़दार हैं।", "इस एहसास की एक प्यारी-सी याद सँभालकर रखें।"],
+    Overwhelmed: ["एक बार में बस एक काम। अभी आपको केवल अगला कदम उठाना है।", "दुनिया को जवाब देने से पहले आप थोड़ा ठहर सकते हैं।", "छोटा कदम भी आगे बढ़ना है।"],
+    Lonely: ["जब अपनापन दूर लगे, तब भी आप मायने रखते हैं।", "आप ऐसे रिश्तों के हक़दार हैं जहाँ आप खुलकर अपने जैसे रह सकें।", "अपने लोगों को ढूँढ़ते हुए, खुद के अच्छे दोस्त बनें।"]
+  }[mood][messageIndex]) : messages[messageIndex];
+
+  function startDrag(event, index) {
+    if (event.button !== undefined && event.button !== 0) return;
+    event.preventDefault();
+    dragRef.current = { index, startX: event.clientX, startY: event.clientY, baseX: dragOffsets[index].x, baseY: dragOffsets[index].y };
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+  }
+
+  function moveDrag(event) {
+    if (!dragRef.current) return;
+    const { index, startX, startY, baseX, baseY } = dragRef.current;
+    setDragOffsets((previous) => previous.map((offset, i) => i === index ? { x: baseX + event.clientX - startX, y: baseY + event.clientY - startY } : offset));
+  }
+
+  function stopDrag() {
+    dragRef.current = null;
+  }
+
+  function nextReminder() {
+    setMessageIndex((index) => (index + 1) % messages.length);
+    setDragOffsets([{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }]);
+  }
 
   return (
     <Shell
@@ -215,47 +247,39 @@ export function LittleComfortBox() {
     >
       <div className="wellness-panel">
         <p className="wellness-eyebrow">{hi ? "आप कैसा महसूस कर रहे हैं?" : "HOW ARE YOU FEELING?"}</p>
-
         <div className="mood-options">
           {Object.keys(comfortMessages).map((item) => (
-            <button
-              key={item}
-              className={`mood-chip ${
-                mood === item ? "mood-selected" : ""
-              }`}
-              onClick={() => {
-                setMood(item);
-                setMessageIndex(0);
-              }}
-            >
+            <button key={item} className={`mood-chip ${mood === item ? "mood-selected" : ""}`} onClick={() => { setMood(item); setMessageIndex(0); setDragOffsets([{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }]); }}>
               {hi ? ({ Anxious: "बेचैन", Sad: "उदास", Tired: "थके हुए", Happy: "खुश", Overwhelmed: "परेशान", Lonely: "अकेलापन" }[item]) : item}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="comfort-note">
-        <Sparkles size={25} />
-        <p className="wellness-eyebrow">{hi ? "आपके लिए एक संदेश" : "A NOTE FOR YOU"}</p>
-        <blockquote>“{hi ? ({
-          Anxious: ["आपको अभी सब कुछ सुलझाने की ज़रूरत नहीं है। बस अगला छोटा कदम उठाएँ।", "कोई विचार भविष्यवाणी नहीं होता। इस पल को बस एक पल रहने दें।", "थोड़ा धीरे चलें। आपको अपना समय लेने की पूरी छूट है।"],
-          Sad: ["हर मुश्किल दिन को किसी सीख में बदलना ज़रूरी नहीं है।", "ऐसा महसूस करना ठीक है। खासकर अभी, आप नरमी और अपनापन पाने के हक़दार हैं।", "आपका दिन मुश्किल हो सकता है, फिर भी आप आगे बढ़ रहे हैं।"],
-          Tired: ["आराम भी सफ़र का हिस्सा है, कोई ऐसा इनाम नहीं जिसे कमाना पड़े।", "आज आप कम काम कर सकते हैं—यह बिल्कुल ठीक है।", "आपकी अहमियत इस बात पर निर्भर नहीं करती कि आप कितना काम करते हैं।"],
-          Happy: ["इस पल का आनंद लें, बिना किसी सफ़ाई या वजह के।", "आपके जीवन में आने वाली अच्छी चीज़ों के आप हक़दार हैं।", "इस एहसास की एक प्यारी-सी याद सँभालकर रखें, किसी उदास दिन के लिए।"],
-          Overwhelmed: ["एक बार में बस एक काम। अभी आपको केवल अगला कदम उठाना है।", "दुनिया को जवाब देने से पहले आप थोड़ा ठहर सकते हैं।", "अगले कदम को और छोटा कर लें। छोटा कदम भी आगे बढ़ना है।"],
-          Lonely: ["जब अपनापन दूर लगे, तब भी आप मायने रखते हैं।", "आप ऐसे रिश्तों के हक़दार हैं जहाँ आप खुलकर अपने जैसे रह सकें।", "अपने लोगों को ढूँढ़ते हुए, खुद के अच्छे दोस्त बनें।"]
-        }[mood][messageIndex]) : messages[messageIndex]}”</blockquote>
-        <span className="note-flower">✿</span>
-
-        <button
-          className="wellness-button"
-          onClick={() =>
-            setMessageIndex((messageIndex + 1) % messages.length)
-          }
-        >
-          {hi ? "एक और प्यारी-सी याद दिलाने वाली बात" : "Another little reminder"}
-        </button>
+      <div className="comfort-deck" onPointerMove={moveDrag} onPointerUp={stopDrag} onPointerCancel={stopDrag}>
+        {[2, 1, 0].map((layer) => {
+          const rotation = [-5, 4, 0][layer];
+          const offset = dragOffsets[layer];
+          const isFront = layer === 0;
+          return (
+            <div
+              key={layer}
+              className={`comfort-note comfort-note-layer comfort-note-layer-${layer}`}
+              style={{ transform: `translate(calc(-50% + ${offset.x}px), calc(-50% + ${offset.y}px)) rotate(${rotation}deg)`, zIndex: 3 - layer }}
+              onPointerDown={(event) => startDrag(event, layer)}
+              role="group"
+              aria-label={hi ? "खींचकर हिलाया जा सकने वाला संदेश कार्ड" : "Draggable reminder card"}
+            >
+              <Sparkles size={25} />
+              <p className="wellness-eyebrow">{hi ? "आपके लिए एक संदेश" : "A NOTE FOR YOU"}</p>
+              <blockquote>“{isFront ? note : (hi ? "धीरे चलना भी आगे बढ़ना है। अपने साथ नरमी रखें।" : layer === 1 ? "You are allowed to take things one small step at a time." : "You don't have to solve everything right now.")}”</blockquote>
+              <span className="note-flower">✿</span>
+              {isFront && <button className="wellness-button" onPointerDown={(event) => event.stopPropagation()} onClick={nextReminder}>{hi ? "एक और प्यारी-सी याद" : "Another little reminder"}</button>}
+            </div>
+          );
+        })}
       </div>
+      <p className="comfort-drag-hint">{hi ? "कार्ड को पकड़कर धीरे से खिसकाएँ" : "Grab a card and gently move it around"}</p>
     </Shell>
   );
 }
