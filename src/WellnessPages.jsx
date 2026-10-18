@@ -292,7 +292,7 @@ export function MoodSoundscape() {
   function startSound() {
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
     if (!AudioContextClass) {
-      setError("Audio playback is not supported in this browser. Please try an updated browser.");
+      setError(hi ? "इस ब्राउज़र में ऑडियो चलाने की सुविधा उपलब्ध नहीं है। कृपया ब्राउज़र अपडेट करके कोशिश करें।" : "Audio playback is not supported in this browser. Please try an updated browser.");
       return;
     }
     const context = new AudioContextClass();
@@ -366,7 +366,7 @@ export function MoodSoundscape() {
     }
     audioRef.current = { context, master, nodes };
     context.resume().then(() => setPlaying(true)).catch(() => {
-      setError("Tap play again to allow audio playback in your browser.");
+      setError(hi ? "ब्राउज़र में ऑडियो चलाने की अनुमति देने के लिए फिर से प्ले दबाएँ।" : "Tap play again to allow audio playback in your browser.");
       stopAudio();
     });
     setError("");
@@ -392,26 +392,26 @@ export function MoodSoundscape() {
 
   return (
     <Shell
-      title="Mood-Based Soundscape"
-      subtitle="Choose a sound to soften the noise of the day and make a little room to breathe."
+      title={hi ? "मूड के अनुसार सुकून भरी ध्वनियाँ" : "Mood-Based Soundscape"}
+      subtitle={hi ? "दिन के शोर को हल्का करने और सुकून से साँस लेने के लिए एक ध्वनि चुनें।" : "Choose a sound to soften the noise of the day and make a little room to breathe."}
       icon={<CloudRain size={28} />}
     >
       <div className="rain-card">
-        <div className="soundscape-options">{sounds.map((item) => <button type="button" key={item.id} className={selected === item.id ? "soundscape-option soundscape-option-active" : "soundscape-option"} onClick={() => { stopAudio(); setSelected(item.id); setError(""); }}><span className="soundscape-option-emoji">{item.emoji}</span><span className="soundscape-option-copy"><strong>{item.name}</strong><small>{item.desc}</small></span></button>)}</div>
+        <div className="soundscape-options">{sounds.map((item) => <button type="button" key={item.id} className={selected === item.id ? "soundscape-option soundscape-option-active" : "soundscape-option"} onClick={() => { stopAudio(); setSelected(item.id); setError(""); }}><span className="soundscape-option-emoji">{item.emoji}</span><span className="soundscape-option-copy"><strong>{hi ? ({ birds: "पक्षियों की चहचहाहट", rain: "हल्की बारिश", ocean: "समुद्र की लहरें", forest: "जंगल की शांत ध्वनियाँ", stream: "बहती जलधारा", wind: "पेड़ों में बहती हवा", night: "रात के झींगुर", fire: "चटकती आग", thunder: "दूर की गरज" }[item.id]) : item.name}</strong><small>{hi ? ({ birds: "सुबह पक्षियों की चहचहाहट", rain: "हल्की बारिश की बूँदें", ocean: "किनारे पर आती लहरें", forest: "शांत जंगल की आवाज़ें", stream: "पत्थरों पर बहता पानी", wind: "पत्तों से गुजरती हवा", night: "शाम के झींगुरों की आवाज़", fire: "आग की गर्म, सुकूनभरी चटख", thunder: "दूर कहीं हल्के तूफ़ान की गरज" }[item.id]) : item.desc}</small></span></button>)}</div>
         <div className="rain-scene">
           <span className="rain-cloud">{sound.emoji}</span>
           <span className="rain-drop drop-one">╱</span><span className="rain-drop drop-two">╱</span><span className="rain-drop drop-three">╱</span><span className="rain-drop drop-four">╱</span>
           <span className="rain-hill">🌿</span>
         </div>
-        <p className="wellness-eyebrow">YOUR CURRENT SOUNDSCAPE</p>
-        <h2>{sound.name}</h2>
-        <p>{sound.desc} for reading, resting, or simply being.</p>
+        <p className="wellness-eyebrow">{hi ? "आपकी चुनी हुई ध्वनि" : "YOUR CURRENT SOUNDSCAPE"}</p>
+        <h2>{hi ? ({ birds: "पक्षियों की चहचहाहट", rain: "हल्की बारिश", ocean: "समुद्र की लहरें", forest: "जंगल की शांत ध्वनियाँ", stream: "बहती जलधारा", wind: "पेड़ों में बहती हवा", night: "रात के झींगुर", fire: "चटकती आग", thunder: "दूर की गरज" }[sound.id]) : sound.name}</h2>
+        <p>{hi ? ({ birds: "पढ़ने, आराम करने या बस इस पल में रहने के लिए सुबह की चहचहाहट।", rain: "पढ़ने, आराम करने या बस इस पल में रहने के लिए हल्की बारिश।", ocean: "पढ़ने, आराम करने या बस इस पल में रहने के लिए किनारे पर आती लहरें।", forest: "पढ़ने, आराम करने या बस इस पल में रहने के लिए जंगल की शांत आवाज़ें।", stream: "पढ़ने, आराम करने या बस इस पल में रहने के लिए पत्थरों पर बहता पानी।", wind: "पढ़ने, आराम करने या बस इस पल में रहने के लिए पत्तों से गुजरती हवा।", night: "पढ़ने, आराम करने या बस इस पल में रहने के लिए शाम के झींगुरों की आवाज़।", fire: "पढ़ने, आराम करने या बस इस पल में रहने के लिए आग की सुकूनभरी चटख।", thunder: "पढ़ने, आराम करने या बस इस पल में रहने के लिए दूर की हल्की गरज।" }[sound.id]) : `${sound.desc} for reading, resting, or simply being.`}</p>
         <div className="audio-controls">
-          <button className="audio-play" onClick={togglePlayback} aria-label={playing ? "Stop sound" : "Play sound"}>{playing ? <Pause size={23} /> : <Play size={23} />}</button>
-          <button className="audio-stop" onClick={stopAudio} aria-label="Stop sound"><Square size={18} /></button>
-          <span>{playing ? `${sound.name} is playing` : "Ready when you are"}</span>
+          <button className="audio-play" onClick={togglePlayback} aria-label={playing ? (hi ? "ध्वनि रोकें" : "Stop sound") : (hi ? "ध्वनि चलाएँ" : "Play sound")}>{playing ? <Pause size={23} /> : <Play size={23} />}</button>
+          <button className="audio-stop" onClick={stopAudio} aria-label={hi ? "ध्वनि रोकें" : "Stop sound"}><Square size={18} /></button>
+          <span>{playing ? (hi ? "ध्वनि चल रही है" : `${sound.name} is playing`) : (hi ? "जब चाहें, शुरू करें" : "Ready when you are")}</span>
         </div>
-        <label className="volume-control">Volume <span>{volume}%</span><input type="range" min="0" max="100" value={volume} onChange={(event) => setVolume(Number(event.target.value))} /></label>
+        <label className="volume-control">{hi ? "आवाज़ की तीव्रता" : "Volume"} <span>{volume}%</span><input type="range" min="0" max="100" value={volume} onChange={(event) => setVolume(Number(event.target.value))} /></label>
         {error && <p className="audio-error">{error}</p>}
       </div>
     </Shell>
