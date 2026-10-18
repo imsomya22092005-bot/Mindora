@@ -17,11 +17,12 @@ import { Link } from "react-router-dom";
 import "./WellnessPages.css";
 
 function Shell({ title, subtitle, icon, children }) {
+  const hi = localStorage.getItem("mindora-language") === "hi";
   return (
     <main className="wellness-page">
       <header className="wellness-topbar">
         <Link to="/dashboard" className="wellness-back">
-          <ArrowLeft size={18} /> Back to Dashboard
+          <ArrowLeft size={18} /> {hi ? "डैशबोर्ड पर वापस जाएँ" : "Back to Dashboard"}
         </Link>
         <span className="wellness-brand">
           <Sprout size={22} /> Mindora
@@ -30,7 +31,7 @@ function Shell({ title, subtitle, icon, children }) {
 
       <section className="wellness-heading">
         <div className="wellness-heading-icon">{icon}</div>
-        <p className="wellness-eyebrow">YOUR LITTLE SPACE OF PEACE</p>
+        <p className="wellness-eyebrow">{hi ? "आपके सुकून की छोटी-सी जगह" : "YOUR LITTLE SPACE OF PEACE"}</p>
         <h1>{title}</h1>
         <p>{subtitle}</p>
       </section>
@@ -38,7 +39,7 @@ function Shell({ title, subtitle, icon, children }) {
       <section className="wellness-content">{children}</section>
 
       <footer className="wellness-footer">
-        Take a breath. You are doing better than you think. <Heart size={15} />
+        {hi ? "एक गहरी साँस लें। आप जितना सोचते हैं, उससे बेहतर कर रहे हैं।" : "Take a breath. You are doing better than you think."} <Heart size={15} />
       </footer>
     </main>
   );
@@ -48,7 +49,13 @@ export function CalmCorner() {
   const [breathing, setBreathing] = useState(false);
   const [grounding, setGrounding] = useState(0);
 
-  const prompts = [
+  const prompts = hi ? [
+    "अपने आसपास ऐसी 5 चीज़ें देखें जिन्हें आप देख सकते हैं।",
+    "ऐसी 4 चीज़ों पर ध्यान दें जिन्हें आप छूकर महसूस कर सकते हैं।",
+    "ऐसी 3 आवाज़ों पर ध्यान दें जिन्हें आप सुन सकते हैं।",
+    "ऐसी 2 खुशबुओं पर ध्यान दें जिन्हें आप महसूस कर सकते हैं।",
+    "इस पल ऐसी 1 बात सोचें जिसकी आप कद्र करते हैं।",
+  ] : [
     "Notice 5 things you can see around you.",
     "Notice 4 things you can physically feel.",
     "Notice 3 things you can hear.",
@@ -58,35 +65,35 @@ export function CalmCorner() {
 
   return (
     <Shell
-      title="Calm Corner"
-      subtitle="Pause for a moment. There's nowhere else you need to be."
+      title={hi ? "सुकून का कोना" : "Calm Corner"}
+      subtitle={hi ? "एक पल ठहरें। आपको कहीं और जाने की जल्दी नहीं है।" : "Pause for a moment. There's nowhere else you need to be."}
       icon={<Wind size={28} />}
     >
       <div className="calm-card">
-        <p className="wellness-eyebrow">BREATHE WITH ME</p>
+        <p className="wellness-eyebrow">{hi ? "मेरे साथ साँस लें" : "BREATHE WITH ME"}</p>
 
         <div className={`breathing-orb ${breathing ? "breathing-active" : ""}`}>
           <div className="breathing-inner">
             <Wind size={30} />
-            <span>{breathing ? "Breathe slowly" : "Find your rhythm"}</span>
+            <span>{breathing ? (hi ? "धीरे-धीरे साँस लें" : "Breathe slowly") : (hi ? "अपनी साँसों की लय पाएँ" : "Find your rhythm")}</span>
           </div>
         </div>
 
         <p className="wellness-muted">
-          Follow the circle and take slow, comfortable breaths.
+          {hi ? "गोले के साथ अपनी साँसों को धीरे और आराम से लें।" : "Follow the circle and take slow, comfortable breaths."}
         </p>
 
         <button
           className="wellness-button"
           onClick={() => setBreathing(!breathing)}
         >
-          {breathing ? "Pause breathing" : "Begin breathing"}
+          {breathing ? (hi ? "साँसों का अभ्यास रोकें" : "Pause breathing") : (hi ? "साँसों का अभ्यास शुरू करें" : "Begin breathing")}
         </button>
       </div>
 
       <div className="wellness-panel">
-        <p className="wellness-eyebrow">GROUND YOURSELF</p>
-        <h2>Come back to the present</h2>
+        <p className="wellness-eyebrow">{hi ? "खुद को वर्तमान में लाएँ" : "GROUND YOURSELF"}</p>
+        <h2>{hi ? "इस पल में लौटें" : "Come back to the present"}</h2>
         <p>{prompts[grounding]}</p>
 
         <div className="grounding-dots">
@@ -102,7 +109,7 @@ export function CalmCorner() {
           className="wellness-button secondary"
           onClick={() => setGrounding((grounding + 1) % prompts.length)}
         >
-          Next gentle prompt
+          {hi ? "अगला सहज सुझाव" : "Next gentle prompt"}
         </button>
       </div>
     </Shell>
