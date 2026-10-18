@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Heart,
   LayoutDashboard,
@@ -50,6 +50,18 @@ import {
   LittleComfortBox,
   MoodSoundscape,
 } from "./WellnessPages";
+
+const mindfulPractices = [
+  { id: "child-pose", title: "Child’s Pose", hindi: "बालासन", type: "Rest & release", typeHi: "आराम और तनाव से राहत", duration: "2 min", durationHi: "2 मिनट", image: "https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=85&w=1600&auto=format&fit=crop", description: "A gentle resting pose to ease tension.", descriptionHi: "तनाव कम करने के लिए आरामदायक आसन।", steps: ["Kneel on the mat and bring your big toes together.", "Gently widen your knees to a comfortable position.", "Sit your hips back toward your heels.", "Fold forward and rest your forehead on the mat or a cushion.", "Let your arms rest forward or alongside your body and take 5 slow breaths."] },
+  { id: "mountain-pose", title: "Mountain Pose", hindi: "ताड़ासन", type: "Grounding", typeHi: "स्थिरता", duration: "1 min", durationHi: "1 मिनट", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=85&w=1600&auto=format&fit=crop", description: "Stand tall, breathe slowly, feel steady.", descriptionHi: "सीधे खड़े होकर धीरे साँस लें और स्थिरता महसूस करें।", steps: ["Stand with your feet hip-width apart and toes facing forward.", "Spread your weight evenly across both feet.", "Keep your knees soft, shoulders relaxed and arms by your sides.", "Lengthen your spine and let your gaze rest straight ahead.", "Take 5 calm breaths without forcing your posture."] },
+  { id: "seated-breathing", title: "Seated Breathing", hindi: "बैठकर श्वास", type: "Breathwork", typeHi: "श्वास अभ्यास", duration: "2 min", durationHi: "2 मिनट", image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=85&w=1600&auto=format&fit=crop", description: "Make room for a slower, softer breath.", descriptionHi: "धीमी और सहज साँसों के लिए थोड़ा समय निकालें।", steps: ["Sit comfortably on a chair or cushion with your back supported.", "Relax your jaw and lower your shoulders.", "Breathe in gently through your nose, only as deeply as feels comfortable.", "Breathe out slowly without holding or forcing your breath.", "Continue for 1–2 minutes; return to normal breathing if you feel dizzy."] },
+  { id: "tree-pose", title: "Tree Pose", hindi: "वृक्षासन", type: "Balance", typeHi: "संतुलन", duration: "1 min", durationHi: "1 मिनट", image: "https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=85&w=1600&auto=format&fit=crop", description: "Find a calm point and build gentle focus.", descriptionHi: "एक बिंदु पर ध्यान रखकर सहज संतुलन बनाएँ।", steps: ["Stand tall near a wall or chair for support.", "Shift your weight onto one foot while keeping that knee soft.", "Place the other foot on your ankle or calf—never directly on your knee.", "Bring your hands together at your chest if comfortable and look at one steady point.", "Hold for a few breaths, then change sides. Skip the balance challenge if it feels unsafe."] },
+  { id: "neck-release", title: "Easy Neck Release", hindi: "गर्दन को आराम", type: "Desk reset", typeHi: "डेस्क से छोटा विराम", duration: "1 min", durationHi: "1 मिनट", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=85&w=1600&auto=format&fit=crop", description: "Let your shoulders soften after a long day.", descriptionHi: "लंबे दिन के बाद कंधों को आराम दें।", steps: ["Sit or stand comfortably with your shoulders relaxed.", "Keep your face forward and slowly tilt one ear toward its shoulder.", "Hold for 2–3 easy breaths without pulling your head.", "Return to centre and repeat on the other side.", "Make small, pain-free movements only; stop if you feel pain, tingling or dizziness."] },
+  { id: "legs-up-wall", title: "Legs Up the Wall", hindi: "दीवार के सहारे पैर", type: "Unwind", typeHi: "आराम", duration: "3 min", durationHi: "3 मिनट", image: "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?q=85&w=1600&auto=format&fit=crop", description: "Pause and give yourself a quiet moment.", descriptionHi: "रुकें और खुद को शांत पल दें।", steps: ["Sit sideways close to a wall, with a folded blanket nearby if needed.", "Lower your upper body to the floor as you gently swing your legs up the wall.", "Move farther from the wall if your hamstrings feel strained.", "Rest your arms by your sides and breathe naturally.", "Stay only while comfortable, then bend your knees and roll gently onto your side to get up. Avoid this pose if it is unsuitable for your medical condition."] },
+  { id: "cat-cow", title: "Cat–Cow Stretch", hindi: "मार्जरी आसन", type: "Gentle stretch", typeHi: "हल्का स्ट्रेच", duration: "2 min", durationHi: "2 मिनट", image: "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=85&w=1600&auto=format&fit=crop", description: "Move slowly with the rhythm of your breath.", descriptionHi: "साँसों की लय के साथ धीरे-धीरे हिलें।", steps: ["Come onto hands and knees, with wrists under shoulders and knees under hips.", "As you breathe in, gently lift your chest and tailbone without forcing your back.", "As you breathe out, round your spine softly and let your head lower naturally.", "Repeat slowly for 5–8 comfortable cycles.", "Keep the movement small and stop if your wrists, neck or back hurt."] },
+  { id: "mindful-walking", title: "Mindful Walking", hindi: "ध्यान से चलना", type: "Reset outdoors", typeHi: "बाहर एक नया विराम", duration: "5 min", durationHi: "5 मिनट", image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=85&w=1600&auto=format&fit=crop", description: "Notice each step and the world around you.", descriptionHi: "हर कदम और आसपास की चीज़ों पर ध्यान दें।", steps: ["Choose a safe, familiar path and walk at an easy pace.", "Notice the feeling of your feet touching the ground.", "Let your arms move naturally and keep breathing normally.", "Gently notice sounds, colours and the air around you.", "When your mind wanders, return your attention to the next few steps without judging yourself."] },
+  { id: "savasana", title: "Savasana", hindi: "शवासन", type: "Deep rest", typeHi: "गहरा आराम", duration: "3 min", durationHi: "3 मिनट", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=85&w=1600&auto=format&fit=crop", description: "Lie comfortably and let your body rest.", descriptionHi: "आराम से लेटें और शरीर को विश्राम दें।", steps: ["Lie on your back on a comfortable mat or bed.", "Let your legs rest naturally apart and arms rest by your sides.", "Adjust a pillow under your head or knees if that feels better.", "Soften your face and let your breathing return to its natural rhythm.", "Rest for a few minutes, then wiggle your fingers and toes and roll onto your side before sitting up."] }
+];
 
 const moods = [
   { label: "Low", emoji: "😔", value: 2, color: "#dce6f3" },
@@ -118,6 +130,47 @@ function getGreeting() {
   if (hour < 12) return "Good morning";
   if (hour < 17) return "Good afternoon";
   return "Good evening";
+}
+
+function MindfulPracticePage() {
+  const { practiceId } = useParams();
+  const navigate = useNavigate();
+  const [step, setStep] = useState(0);
+  const hi = localStorage.getItem("mindora-language") === "hi";
+  const practice = mindfulPractices.find((item) => item.id === practiceId);
+
+  if (!practice) {
+    return <main className="practice-page"><button className="practice-back" onClick={() => navigate("/dashboard")}>← {hi ? "डैशबोर्ड पर वापस" : "Back to dashboard"}</button><h1>{hi ? "अभ्यास नहीं मिला" : "Practice not found"}</h1></main>;
+  }
+
+  const steps = practice.steps;
+  return (
+    <main className="practice-page">
+      <button className="practice-back" onClick={() => navigate("/dashboard")}>← {hi ? "डैशबोर्ड पर वापस" : "Back to dashboard"}</button>
+      <div className="practice-hero" style={{ backgroundImage: `linear-gradient(90deg, rgba(18,35,25,.72), rgba(18,35,25,.08)), url("${practice.image}")` }}>
+        <span className="practice-kicker">{hi ? "आपका निर्देशित अभ्यास" : "YOUR GUIDED PRACTICE"} · {hi ? practice.durationHi : practice.duration}</span>
+        <h1>{hi ? practice.hindi : practice.title}</h1>
+        <p>{hi ? practice.descriptionHi : practice.description}</p>
+      </div>
+      <section className="practice-instructions">
+        <div className="practice-progress-row">
+          <span>{hi ? `कदम ${step + 1} / ${steps.length}` : `STEP ${step + 1} OF ${steps.length}`}</span>
+          <span>{Math.round(((step + 1) / steps.length) * 100)}%</span>
+        </div>
+        <div className="practice-progress"><span style={{ width: `${((step + 1) / steps.length) * 100}%` }} /></div>
+        <div className="practice-step-number">{String(step + 1).padStart(2, "0")}</div>
+        <h2>{hi ? "धीरे-धीरे करें" : "Take it one step at a time"}</h2>
+        <p className="practice-step-text">{hi ? steps[step] : steps[step]}</p>
+        <div className="practice-step-actions">
+          <button className="practice-secondary" disabled={step === 0} onClick={() => setStep((current) => Math.max(0, current - 1))}>{hi ? "पिछला कदम" : "Previous step"}</button>
+          {step < steps.length - 1
+            ? <button className="practice-primary" onClick={() => setStep((current) => Math.min(steps.length - 1, current + 1))}>{hi ? "अगला कदम" : "Next step"} <ArrowRight size={16} /></button>
+            : <button className="practice-primary" onClick={() => { setStep(0); navigate("/dashboard"); }}>{hi ? "अभ्यास पूरा · डैशबोर्ड" : "Finish practice · Dashboard"} <Check size={16} /></button>}
+        </div>
+        <p className="practice-safety">{hi ? "आराम से करें और दर्द या चक्कर आने पर रुक जाएँ। यह सामान्य wellness guidance है, चिकित्सा सलाह नहीं।" : "Move gently and stop if you feel pain, dizziness or discomfort. This is general wellness guidance, not medical advice."}</p>
+      </section>
+    </main>
+  );
 }
 
 function Dashboard() {
@@ -877,30 +930,19 @@ function Dashboard() {
               </div>
             </div>
             <div className="mindful-focus-grid">
-              {[
-                { title: "Child’s Pose", hindi: "बालासन", type: "Rest & release", duration: "2 min", image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=85&w=1400&auto=format&fit=crop", description: "A gentle resting pose to ease tension." },
-                { title: "Mountain Pose", hindi: "ताड़ासन", type: "Grounding", duration: "1 min", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=85&w=1400&auto=format&fit=crop", description: "Stand tall, breathe slowly, feel steady." },
-                { title: "Seated Breathing", hindi: "बैठकर श्वास", type: "Breathwork", duration: "2 min", image: "https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=85&w=1400&auto=format&fit=crop", description: "Make room for a slower, softer breath." },
-                { title: "Tree Pose", hindi: "वृक्षासन", type: "Balance", duration: "1 min", image: "https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=85&w=1400&auto=format&fit=crop", description: "Find a calm point and build gentle focus." },
-                { title: "Easy Neck Release", hindi: "गर्दन को आराम", type: "Desk reset", duration: "1 min", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=85&w=1400&auto=format&fit=crop", description: "Let your shoulders soften after a long day." },
-                { title: "Legs Up the Wall", hindi: "दीवार के सहारे पैर", type: "Unwind", duration: "3 min", image: "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?q=85&w=1400&auto=format&fit=crop", description: "Pause and give yourself a quiet moment." },
-                { title: "Cat–Cow Stretch", hindi: "मार्जरी आसन", type: "Gentle stretch", duration: "2 min", image: "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=85&w=1400&auto=format&fit=crop", description: "Move slowly with the rhythm of your breath." },
-                { title: "Mindful Walking", hindi: "ध्यान से चलना", type: "Reset outdoors", duration: "5 min", image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=85&w=1400&auto=format&fit=crop", description: "Notice each step and the world around you." },
-                { title: "Savasana", hindi: "शवासन", type: "Deep rest", duration: "3 min", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=85&w=1400&auto=format&fit=crop", description: "Lie comfortably and let your body rest." }
-              ].map((card, index) => (
+              {mindfulPractices.map((card, index) => (
                 <button
                   type="button"
                   className="mindful-focus-card"
-                  key={card.title}
+                  key={card.id}
                   style={{ "--focus-image": `url("${card.image}")`, "--focus-delay": `${index * 35}ms` }}
-                  onClick={() => navigate("/mindful-moments")}
+                  onClick={() => navigate(`/practice/${card.id}`)}
                   aria-label={`${card.title}, ${card.duration}`}
                 >
-                  <span className="mindful-card-shade" />
                   <span className="mindful-card-content">
-                    <span className="mindful-card-type">{card.type} · {card.duration}</span>
+                    <span className="mindful-card-type">{t(card.type, card.typeHi)} · {t(card.duration, card.durationHi)}</span>
                     <strong>{t(card.title, card.hindi)}</strong>
-                    <span className="mindful-card-description">{t(card.description, card.description)}</span>
+                    <span className="mindful-card-description">{t(card.description, card.descriptionHi)}</span>
                     <span className="mindful-card-action">{t("Explore practice", "अभ्यास देखें")} <ArrowRight size={15} /></span>
                   </span>
                 </button>
@@ -1103,6 +1145,7 @@ function App() {
 
         {/* Main dashboard — existing features preserved */}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/practice/:practiceId" element={<MindfulPracticePage />} />
         <Route path="/journal" element={<JournalPage />} />
         <Route path="/insights" element={<InsightsPage />} />
         <Route path="/mindful-moments" element={<MindfulMomentsPage />} />
