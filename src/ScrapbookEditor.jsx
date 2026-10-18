@@ -32,7 +32,7 @@ async function erasePhoto(id) {
 function readLayouts() { try { return JSON.parse(localStorage.getItem("mindora-scrapbook-layouts") || "{}"); } catch { return {}; } }
 function writeLayouts(value) { try { localStorage.setItem("mindora-scrapbook-layouts", JSON.stringify(value)); return true; } catch { return false; } }
 
-export default function ScrapbookEditor({ pageId }) {
+export default function ScrapbookEditor({ pageId, hi = false }) {
   const [items, setItems] = useState([]);
   const [urls, setUrls] = useState({});
   const [notice, setNotice] = useState("");
@@ -64,14 +64,14 @@ export default function ScrapbookEditor({ pageId }) {
   async function addPhoto(event) {
     const file = event.target.files?.[0]; event.target.value = "";
     if (!file) return;
-    if (!file.type.startsWith("image/")) { setNotice("Please choose an image file."); return; }
-    if (file.size > 5 * 1024 * 1024) { setNotice("Please choose a photo under 5 MB."); return; }
+    if (!file.type.startsWith("image/")) { setNotice((hi ? "कृपया तस्वीर वाली फ़ाइल चुनें।" : "Please choose an image file.")); return; }
+    if (file.size > 5 * 1024 * 1024) { setNotice((hi ? "कृपया 5 MB से छोटी तस्वीर चुनें।" : "Please choose a photo under 5 MB.")); return; }
     setBusy(true); setNotice("");
     const id = "memory-" + Date.now() + "-" + Math.random().toString(36).slice(2, 7);
     try {
       await storePhoto(id, file);
       setUrls(old => ({ ...old, [id]: URL.createObjectURL(file) }));
-      const item = { id, type: "photo", x: 5 + (items.length % 3) * 9, y: 5 + (items.length % 3) * 8, size: "medium", rotation: items.length % 2 ? 3 : -3, caption: "A little memory" };
+      const item = { id, type: "photo", x: 5 + (items.length % 3) * 9, y: 5 + (items.length % 3) * 8, size: "medium", rotation: items.length % 2 ? 3 : -3, caption: (hi ? "एक प्यारी-सी याद" : "A little memory") };
       persist([...items, item]); setSelected(id);
     } catch (error) { setNotice(error.message || "Could not save this photo."); }
     finally { setBusy(false); }
@@ -107,13 +107,13 @@ export default function ScrapbookEditor({ pageId }) {
     }
     setSelected(null);
   }
-  return <section className="scrapbook-editor" aria-label="Memory scrapbook">
-    <div className="scrapbook-tools"><div><span className="scrapbook-kicker">YOUR MEMORY CORNER</span><h3>Add little pieces of life</h3><p>Drag photos and decorations anywhere on this page.</p></div><input ref={input} className="scrapbook-file-input" type="file" accept="image/*" onChange={addPhoto}/><button type="button" className="scrapbook-tool-button primary" disabled={busy} onClick={() => input.current?.click()}><Plus size={15}/>{busy ? "Saving…" : "Add photo"}</button></div>
-    <div className="scrapbook-decoration-tools"><button type="button" onClick={() => addDecor("flower")}>✿ Flower</button><button type="button" onClick={() => addDecor("heart")}>♡ Heart</button><button type="button" onClick={() => addDecor("tape")}>▰ Washi tape</button></div>
+  return <section className="scrapbook-editor" aria-label={hi ? "यादों की स्क्रैपबुक" : "Memory scrapbook"}>
+    <div className="scrapbook-tools"><div><span className="scrapbook-kicker">{hi ? "आपकी यादों का कोना" : "YOUR MEMORY CORNER"}</span><h3>{hi ? "ज़िंदगी के छोटे-छोटे पल जोड़ें" : "Add little pieces of life"}</h3><p>{hi ? "तस्वीरों और सजावट को इस पन्ने पर कहीं भी खींचकर रखें।" : "Drag photos and decorations anywhere on this page."}</p></div><input ref={input} className="scrapbook-file-input" type="file" accept="image/*" onChange={addPhoto}/><button type="button" className="scrapbook-tool-button primary" disabled={busy} onClick={() => input.current?.click()}><Plus size={15}/>{busy ? (hi ? "सेव हो रहा है…" : "Saving…") : (hi ? "तस्वीर जोड़ें" : "Add photo")}</button></div>
+    <div className="scrapbook-decoration-tools"><button type="button" onClick={() => addDecor("flower")}>✿ फूल</button><button type="button" onClick={() => addDecor("heart")}>♡ दिल</button><button type="button" onClick={() => addDecor("tape")}>▰ सजावटी टेप</button></div>
     <div className="scrapbook-canvas" ref={canvas} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag}>
-      {!items.length && <div className="scrapbook-canvas-empty"><span>✿</span><strong>Your memories go here</strong><small>Add a photo or decoration to begin.</small></div>}
+      {!items.length && <div className="scrapbook-canvas-empty"><span>✿</span><strong>{hi ? "आपकी यादें यहाँ आएँगी" : "Your memories go here"}</strong><small>{hi ? "शुरू करने के लिए तस्वीर या सजावट जोड़ें।" : "Add a photo or decoration to begin."}</small></div>}
       {items.map(item => <div key={item.id} className={"scrapbook-item scrapbook-item-" + item.type + (selected === item.id ? " is-selected" : "")} style={{ left: item.x + "%", top: item.y + "%", transform: "rotate(" + (item.rotation || 0) + "deg)" }} onPointerDown={event => startDrag(event, item)}>
-        {item.type === "photo" ? <div className={"scrapbook-polaroid size-" + item.size}>{urls[item.id] ? <img draggable="false" src={urls[item.id]} alt={item.caption || "Personal memory"}/> : <div className="scrapbook-photo-missing">Photo unavailable</div>}<input aria-label="Photo caption" value={item.caption || ""} maxLength={80} placeholder="Write a caption…" onPointerDown={event => event.stopPropagation()} onChange={event => updateItem(item.id, { caption: event.target.value })}/><div className="scrapbook-photo-controls"><button type="button" aria-label="Smaller photo" onPointerDown={event => event.stopPropagation()} onClick={() => updateItem(item.id, { size: "small" })}>−</button><button type="button" aria-label="Larger photo" onPointerDown={event => event.stopPropagation()} onClick={() => updateItem(item.id, { size: item.size === "small" ? "medium" : "large" })}>+</button><button type="button" aria-label="Rotate photo" onPointerDown={event => event.stopPropagation()} onClick={() => updateItem(item.id, { rotation: (item.rotation || 0) + 4 })}>↻</button><button type="button" aria-label="Remove photo" onPointerDown={event => event.stopPropagation()} onClick={() => removeItem(item)}>×</button></div></div> : <><div className={"scrapbook-sticker sticker-" + item.type}>{item.type === "flower" ? "✿" : item.type === "heart" ? "♡" : <span>WASHI</span>}</div>{selected === item.id && <button type="button" className="scrapbook-remove-decor" aria-label="Remove decoration" onPointerDown={event => event.stopPropagation()} onClick={() => removeItem(item)}>×</button>}</>}
+        {item.type === "photo" ? <div className={"scrapbook-polaroid size-" + item.size}>{urls[item.id] ? <img draggable="false" src={urls[item.id]} alt={item.caption || "Personal memory"}/> : <div className="scrapbook-photo-missing">तस्वीर उपलब्ध नहीं है</div>}<input aria-label="Photo caption" value={item.caption || ""} maxLength={80} placeholder={hi ? "तस्वीर के बारे में लिखें…" : "Write a caption…"} onPointerDown={event => event.stopPropagation()} onChange={event => updateItem(item.id, { caption: event.target.value })}/><div className="scrapbook-photo-controls"><button type="button" aria-label="Smaller photo" onPointerDown={event => event.stopPropagation()} onClick={() => updateItem(item.id, { size: "small" })}>−</button><button type="button" aria-label="Larger photo" onPointerDown={event => event.stopPropagation()} onClick={() => updateItem(item.id, { size: item.size === "small" ? "medium" : "large" })}>+</button><button type="button" aria-label="Rotate photo" onPointerDown={event => event.stopPropagation()} onClick={() => updateItem(item.id, { rotation: (item.rotation || 0) + 4 })}>↻</button><button type="button" aria-label="Remove photo" onPointerDown={event => event.stopPropagation()} onClick={() => removeItem(item)}>×</button></div></div> : <><div className={"scrapbook-sticker sticker-" + item.type}>{item.type === "flower" ? "✿" : item.type === "heart" ? "♡" : <span>WASHI</span>}</div>{selected === item.id && <button type="button" className="scrapbook-remove-decor" aria-label="Remove decoration" onPointerDown={event => event.stopPropagation()} onClick={() => removeItem(item)}>×</button>}</>}
       </div>)}
     </div>
     <p className="scrapbook-storage-note"><LockKeyhole size={13}/> Photos and layout stay in this browser on this device.</p>{notice && <p className="scrapbook-notice" role="status">{notice}</p>}
