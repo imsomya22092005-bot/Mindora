@@ -2139,3 +2139,24 @@ body {
     padding: 52px 22px;
   }
 }
+
+
+/* Landing header fix: never show language/theme controls above the auth links. */
+.mindora-landing .landing-navbar .landing-preference-controls,
+.mindora-landing .landing-navbar .language-picker,
+.mindora-landing .landing-navbar .theme-toggle,
+.mindora-landing .landing-navbar .landing-theme-toggle {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.mindora-landing .landing-navbar .landing-auth {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 16px !important;
+  margin-left: auto !important;
+  position: relative !important;
+  z-index: 20 !important;
+}
