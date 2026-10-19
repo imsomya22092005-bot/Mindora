@@ -73,6 +73,7 @@ export default function LandingPage() {
         </nav>
 
         <div className="landing-auth">
+          <div className="landing-preference-controls"><select aria-label="Language" value={language} onChange={event => { setLanguage(event.target.value); localStorage.setItem("mindora-language", event.target.value); }}><option value="en">English</option><option value="hi">हिन्दी</option></select><button type="button" className="landing-theme-toggle" onClick={() => setDarkMode(value => !value)} aria-label="Toggle theme">{darkMode ? "☀" : "☾"}</button></div>
           <a className="landing-login" href="/login">{hi ? "लॉग इन" : "Log in"}</a>
           <a className="landing-signup" href="/signup">
             {hi ? "शुरू करें" : "Get started"} <span>↗</span>
