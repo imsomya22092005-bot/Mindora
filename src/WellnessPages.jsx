@@ -15,9 +15,11 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./WellnessPages.css";
+import { useLanguage } from "./language";
 
 function Shell({ title, subtitle, icon, children }) {
-  const hi = localStorage.getItem("mindora-language") === "hi";
+  const [language] = useLanguage();
+  const hi = language === "hi";
   return (
     <main className="wellness-page">
       <header className="wellness-topbar">
