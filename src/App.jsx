@@ -531,7 +531,7 @@ function Dashboard() {
           <span className="quote-sparkle">
             <Sparkles size={18} />
           </span>
-          <p>“आज सब कुछ समझ लेना ज़रूरी नहीं है।”</p>
+          <p>{t("You don\u2019t have to have it all figured out today.", "आज सब कुछ समझ लेना ज़रूरी नहीं है।")}</p>
           <span className="quote-caption">{t("A gentle reminder", "एक प्यारी-सी याद")}</span>
         </div>
 
