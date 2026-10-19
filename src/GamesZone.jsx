@@ -90,6 +90,8 @@ export default function GamesZone() {
   const [soundOn, setSoundOn] = useState(true);
   const [burnThought, setBurnThought] = useState("");
   const [burning, setBurning] = useState(false);
+  const [candleMoved, setCandleMoved] = useState(false);
+  const [candleLitPaper, setCandleLitPaper] = useState(false);
   const [burnComplete, setBurnComplete] = useState(false);
   const [penColour, setPenColour] = useState("#45536c");
   const canvasRef = useRef(null);
@@ -331,16 +333,16 @@ export default function GamesZone() {
 
     {activeGame === "let-it-burn" ? <section className="burn-experience">
       <div className="burn-hero"><span className="burn-eyebrow">{hi?"आपके लिए एक शांत पल":"A QUIET RITUAL FOR YOU"}</span><h2>{hi?"जो मन में है, उसे लिखें।":"Some things are lighter when let go."}</h2><p>{hi?"बिना किसी डर या फैसले के, अपने मन की बात इस पन्ने पर उतारें।":"A gentle space to put your thoughts down, without judgement or pressure."}</p></div>
-      <div className="burn-scene"><div className="burn-candle" aria-hidden="true"><span/></div><div className={"burn-letter"+(burning?" burning":"")}>
+      <div className={"burn-scene"+(candleLitPaper?" paper-ignited":"")}><button className={"burn-candle"+(candleMoved?" candle-at-paper":"")+(candleLitPaper?" candle-used":"")} aria-label={hi?"मोमबत्ती को पन्ने तक ले जाएँ":"Move candle to the page"} onClick={()=>{if(!burning&&!burnComplete)setCandleMoved(v=>!v)}}><span/></button><div className={"burn-letter"+(burning?" burning":"")+(candleLitPaper?" catching-fire":"")}>
         <div className="burn-letter-top"><span>{hi?"आज का पन्ना":"A LETTER TO MYSELF"}</span><span>✧</span></div>
         <div className="burn-date">{hi?"अपने लिए, प्यार से":"WITH KINDNESS, ALWAYS"}</div>
-        {burnComplete ? <div className="burn-after"><span>☀</span><h3>{hi?"अब इसे जाने दें।":"You can let it go now."}</h3><p>{hi?"हर विचार को हमेशा अपने साथ रखना ज़रूरी नहीं। धीरे से साँस लें।":"You don't have to carry every thought with you. Take one slow breath."}</p><button onClick={()=>{setBurnThought("");setBurnComplete(false);setBurning(false)}}>{hi?"नया पन्ना खोलें":"Begin with a fresh page"}</button></div> : <>
+        {burnComplete ? <div className="burn-after"><span>☀</span><h3>{hi?"अब इसे जाने दें।":"You can let it go now."}</h3><p>{hi?"हर विचार को हमेशा अपने साथ रखना ज़रूरी नहीं। धीरे से साँस लें।":"You don't have to carry every thought with you. Take one slow breath."}</p><button onClick={()=>{setBurnThought("");setBurnComplete(false);setBurning(false);setCandleMoved(false);setCandleLitPaper(false)}}>{hi?"नया पन्ना खोलें":"Begin with a fresh page"}</button></div> : <>
           <textarea value={burnThought} onChange={e=>setBurnThought(e.target.value)} disabled={burning} maxLength={600} placeholder={hi?"प्रिय मन, आज मैं यह बात छोड़ना चाहता/चाहती हूँ…":"Dear mind, today I’m ready to release…"} style={{color:penColour}} aria-label={hi?"अपनी बात लिखें":"Write your thoughts"}/>
           <div className="burn-letter-foot"><span>{hi?"यह पन्ना सेव नहीं किया जाएगा":"Your words aren't saved"}</span><span>{burnThought.length}/600</span></div>
         </>}
-      </div></div>
+      {candleLitPaper&&<><span className="burn-fire-flare"/><span className="burn-smoke smoke-one"/><span className="burn-smoke smoke-two"/><span className="burn-smoke smoke-three"/></>}</div>
       {!burnComplete && <div className="burn-actions"><div className="burn-pen-row"><span>{hi?"अपनी स्याही चुनें":"CHOOSE YOUR INK"}</span>{[{c:"#45536c",label:hi?"नीली":"Blue"},{c:"#a45d70",label:hi?"गुलाबी":"Rose"},{c:"#607c66",label:hi?"हरी":"Sage"}].map(p=><button key={p.c} title={p.label} aria-label={p.label} className={penColour===p.c?"active":""} onClick={()=>setPenColour(p.c)}><i style={{background:p.c}}/></button>)}</div>
-      {burning ? <div className="burn-confirm"><p>{hi?"एक गहरी साँस लें। जब तैयार हों, इसे छोड़ दें।":"Take a breath. When you're ready, let this thought go."}</p><button onClick={()=>{setBurnComplete(true);setBurning(false);setBurnThought("")}}>{hi?"इसे छोड़ दें ✧":"Release it ✧"}</button><button className="burn-keep" onClick={()=>setBurning(false)}>{hi?"अभी नहीं":"Not yet, keep writing"}</button></div> : <button className="burn-button" disabled={!burnThought.trim()} onClick={()=>setBurning(true)}>{hi?"पन्ने को जलाकर छोड़ दें":"Burn this page & release"} <span>✦</span></button>}
+      {burning ? <div className="burn-confirm"><p>{hi?"पन्ना जल रहा है… धीरे से साँस लें।":"The page is burning away… take one slow breath."}</p></div> : <><button className="burn-button" disabled={!burnThought.trim()} onClick={()=>{if(!candleMoved){setCandleMoved(true);return;}setCandleLitPaper(true);setBurning(true);window.setTimeout(()=>{setBurnComplete(true);setBurning(false);setBurnThought("");setCandleLitPaper(false);setCandleMoved(false)},2600)}}>{!candleMoved?(hi?"मोमबत्ती को पन्ने तक ले जाएँ":"Move candle to the page"):(hi?"पन्ने में आग लगाएँ":"Light the page")} <span>✦</span></button><button className="burn-keep" onClick={()=>{setCandleMoved(false);setCandleLitPaper(false)}}>{hi?"मोमबत्ती वापस रखें":"Reset candle"}</button></>}
       <p className="burn-note">{hi?"यह एक डिजिटल प्रतीकात्मक अनुभव है — कोई वास्तविक आग नहीं।":"A symbolic digital ritual. No real fire, just a little room to breathe."}</p></div>}
     </section> : null}
     {activeGame && activeGame !== "color-pop" && activeGame !== "let-it-burn" ? <section className="game-coming-card"><span className="coming-emoji">{games.find(g=>g.id===activeGame)?.emoji}</span><span className="colorpop-kicker">{hi?"जल्द आ रहा है":"COMING SOON"}</span><h2>{hi?games.find(g=>g.id===activeGame)?.hi:games.find(g=>g.id===activeGame)?.title}</h2><p>{hi?games.find(g=>g.id===activeGame)?.hiDescription:games.find(g=>g.id===activeGame)?.description}</p><button onClick={()=>setActiveGame(null)}>{hi?"गेम चुनें":"Choose another game"}</button></section> : null}
