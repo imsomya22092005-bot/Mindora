@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, BookHeart, CalendarDays, Feather, Heart, Leaf, LockKeyhole, Plus, Save, Sparkles, Trash2, Wind, BarChart3, Sprout, CloudRain, HeartHandshake, ArrowUpRight } from "lucide-react";
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 import "./DashboardPages.css";
+import { useLanguage } from "./language";
 
 function useThemeClass() {
   const [dark] = useState(() => {
@@ -38,7 +39,8 @@ const prompts = [
 
 export function JournalPage() {
   const theme = useThemeClass();
-  const hi = localStorage.getItem("mindora-language") === "hi";
+  const [language] = useLanguage();
+  const hi = language === "hi";
   const [entries, setEntries] = useState(loadEntries);
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
@@ -173,7 +175,7 @@ const heatmapMoodColors = [
 
 export function MoodHeatmapPage() {
   const theme = useThemeClass();
-  const [language] = useState(() => localStorage.getItem("mindora-language") || "en");
+  const [language] = useLanguage();
   const t = (en, hi) => language === "hi" ? hi : en;
   const [history, setHistory] = useState(() => {
     try { return JSON.parse(localStorage.getItem("mindora-mood-history") || "[]"); }
