@@ -525,3 +525,20 @@ main.mindora-section-page:has(.insight-chart-card) .section-page-title h1 em{
 .dark-theme.mindora-section-page .incognito-options button.selected { background: #ff9a86; border-color: #ff9a86; color: #382623; }
 .dark-theme.mindora-section-page .insight-chart { background: #302624; border-color: #674a41; }
 
+
+/* Butter Peach palette refresh */
+
+.mindora-section-page{--page-bg:#fffbda;--paper:#fffdf0;--ink:#49342e;--muted:#806b61;--line:#f1d6b4;background:radial-gradient(ellipse at 7% 5%,#ffec9e 0,transparent 32%),var(--page-bg);color:var(--ink)}
+.mindora-section-page .section-page-title h1,.mindora-section-page .diary-writing h2,.mindora-section-page .diary-entries-head h2,.mindora-section-page .diary-saved-card h3,.mindora-section-page .insight-stat-grid strong,.mindora-section-page .insight-chart-card h2,.mindora-section-page .mindful-tool-title{color:#49342e}
+.mindora-section-page .diary-editor,.mindora-section-page .diary-saved-card,.mindora-section-page .insight-stat-grid article,.mindora-section-page .insight-chart-card,.mindora-section-page .mindful-tool-card{background:#fffdf0;border-color:#f1d6b4;color:#49342e}
+.mindora-section-page .diary-writing textarea,.mindora-section-page .diary-title-label input{background:#fffdf0;color:#49342e;border-color:#e8c9a8}.mindora-section-page textarea::placeholder,.mindora-section-page input::placeholder{color:#8a756a;opacity:1}
+.mindora-section-page .diary-prompt-card,.mindora-section-page .mindful-intro-card,.mindora-section-page .insight-kind-note{background:#ffec9e;border-color:#f1d6b4;color:#65473e}.mindora-section-page .diary-reminder{background:#fffbda;border-color:#f1d6b4;color:#65473e}
+.mindora-section-page .diary-writing button,.mindora-section-page .incognito-submit,.mindora-section-page .scrapbook-tool-button.primary{background:#ed9455;border-color:#ed9455;color:#39271e}
+.dark-theme.mindora-section-page{--page-bg:#292323;--paper:#382d2a;--ink:#fff3df;--muted:#d0b9a7;--line:#59443b;background:radial-gradient(ellipse at 7% 5%,#49342e 0,transparent 32%),var(--page-bg);color:var(--ink)}
+.dark-theme.mindora-section-page .section-page-title h1,.dark-theme.mindora-section-page .diary-writing h2,.dark-theme.mindora-section-page .diary-entries-head h2,.dark-theme.mindora-section-page .diary-saved-card h3,.dark-theme.mindora-section-page .insight-stat-grid strong,.dark-theme.mindora-section-page .insight-chart-card h2,.dark-theme.mindora-section-page .mindful-tool-title{color:#fffbda}
+.dark-theme.mindora-section-page .diary-editor,.dark-theme.mindora-section-page .diary-saved-card,.dark-theme.mindora-section-page .insight-stat-grid article,.dark-theme.mindora-section-page .insight-chart-card,.dark-theme.mindora-section-page .mindful-tool-card{background:#382d2a;border-color:#59443b;color:#fff3df}
+.dark-theme.mindora-section-page .diary-writing textarea,.dark-theme.mindora-section-page .diary-title-label input{background:#45352f;color:#fffbda;border-color:#705242}.dark-theme.mindora-section-page textarea::placeholder,.dark-theme.mindora-section-page input::placeholder{color:#d0b9a7;opacity:1}
+.dark-theme.mindora-section-page .diary-paper-top{background:#45352f;border-color:#59443b;color:#e6d4c3}.dark-theme.mindora-section-page .diary-prompt-card,.dark-theme.mindora-section-page .mindful-intro-card,.dark-theme.mindora-section-page .insight-kind-note{background:#49342e;border-color:#705242;color:#fff3df}
+.dark-theme.mindora-section-page .diary-prompt-card p,.dark-theme.mindora-section-page .mindful-intro-card p,.dark-theme.mindora-section-page .insight-kind-note p,.dark-theme.mindora-section-page .diary-saved-card>p{color:#e6d4c3}
+.dark-theme.mindora-section-page .diary-reminder,.dark-theme.mindora-section-page .incognito-options button{background:#45352f;border-color:#705242;color:#fff3df}.dark-theme.mindora-section-page .incognito-options button.selected{background:#ed9455;border-color:#ed9455;color:#39271e}.dark-theme.mindora-section-page .insight-chart{background:#302624;border-color:#705242}
+
