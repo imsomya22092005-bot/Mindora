@@ -15,7 +15,7 @@ export default function ProfilePage() {
   }, []);
   const name = user.name || user.displayName || ((user.authProvider === "guest" || user.isGuest) ? t("Guest explorer", "अतिथि") : t("Mindora member", "माइंडोरा सदस्य"));
   const email = user.email || t("No email added", "ईमेल नहीं जोड़ा गया");
-  const initials = name.split(/\\s+/).filter(Boolean).slice(0, 2).map(x => x[0].toUpperCase()).join("") || "M";
+  const initials = name.trim().split(" ").filter(Boolean).slice(0, 2).map(x => x[0].toUpperCase()).join("") || "M";
   const joined = user.createdAt
     ? new Date(user.createdAt).toLocaleDateString(hi ? "hi-IN" : "en-IN", { month: "long", year: "numeric" })
     : t("Your journey starts here", "आपकी यात्रा यहाँ से शुरू होती है");
