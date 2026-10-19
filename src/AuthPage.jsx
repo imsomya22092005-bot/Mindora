@@ -3,12 +3,13 @@ import { apiRequest } from "./api";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Heart, ArrowRight, Mail, UserRound, X, ShieldCheck } from "lucide-react";
 import "./AuthPage.css";
+import { useLanguage } from "./language";
 
 export default function AuthPage({ mode = "login" }) {
   const isRegister = mode === "register";
   const navigate = useNavigate();
   const location = useLocation();
-  const [language, setLanguage] = useState(() => localStorage.getItem("mindora-language") || "en");
+  const [language, setLanguage] = useLanguage();
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("mindora-theme") === "dark");
   const hi = language === "hi";
   useEffect(() => { localStorage.setItem("mindora-theme", darkMode ? "dark" : "light"); }, [darkMode]);
