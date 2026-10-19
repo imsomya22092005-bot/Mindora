@@ -38,7 +38,7 @@ import {
 } from "recharts";
 import "./App.css";
 import { useLanguage } from "./language";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { apiRequest } from "./api";
 import LandingPage from "./LandingPage";
 import AuthPage from "./AuthPage";
@@ -1193,10 +1193,13 @@ function Dashboard() {
 }
 
 function GlobalPagePreferences() {
+  const location = useLocation();
   const [language, setLanguage] = useLanguage();
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("mindora-theme") === "dark");
   const [open, setOpen] = useState(false);
   const hi = language === "hi";
+  // The landing page already has its own header; hide only this global duplicate there.
+  if (location.pathname === "/") return null;
   useEffect(() => {
     localStorage.setItem("mindora-language", language);
     localStorage.setItem("mindora-theme", darkMode ? "dark" : "light");
