@@ -1199,13 +1199,13 @@ function GlobalPagePreferences() {
   const [open, setOpen] = useState(false);
   const hi = language === "hi";
   // The landing page already has its own header; hide only this global duplicate there.
-  if (location.pathname === "/") return null;
   useEffect(() => {
     localStorage.setItem("mindora-language", language);
     localStorage.setItem("mindora-theme", darkMode ? "dark" : "light");
     document.documentElement.dataset.mindoraTheme = darkMode ? "dark" : "light";
     document.documentElement.dataset.mindoraLanguage = language;
   }, [language, darkMode]);
+  if (location.pathname === "/") return null;
   return <div className="global-page-preferences">
     <label><span>{hi ? "भाषा" : "Language"}</span><select aria-label={hi ? "भाषा" : "Language"} value={language} onChange={e => setLanguage(e.target.value)}><option value="en">English</option><option value="hi">हिन्दी</option></select></label>
     <button type="button" onClick={() => setDarkMode(v => !v)}>{darkMode ? <Sun size={16}/> : <Moon size={16}/>}<span>{darkMode ? (hi ? "लाइट मोड" : "Light mode") : (hi ? "डार्क मोड" : "Dark mode")}</span></button>
