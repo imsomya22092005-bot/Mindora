@@ -111,3 +111,34 @@
 
 /* Keep language/theme controls on the landing page only, never over the login/register form. */
 .auth-page .auth-preference-controls { display: none !important; }
+
+
+
+/* Peach Sunrise authentication palette; form fields retain strong contrast. */
+.auth-page { background: #fff0be; color: #49342e; }
+.auth-visual { background: linear-gradient(145deg,#ffd6a6 0%,#ffb399 58%,#ff9a86 100%); color: #49342e; }
+.auth-form-side { background: #fffaf0; color: #49342e; }
+.auth-form-side h1, .auth-form-side h2, .auth-field, .auth-subtitle, .auth-tabs a { color: #49342e; }
+.auth-input-wrap { background: #fffdf8; border-color: #e8c7ad; }
+.auth-input-wrap input { color: #49342e; }
+.auth-input-wrap input::placeholder { color: #8a756a; opacity: 1; }
+.auth-tabs { background: #ffe7d5; }
+.auth-tabs a.active { background: #ff9a86; color: #49342e; }
+.auth-google-fallback { background: #fffaf0; color: #49342e; border-color: #e8c7ad; }
+.auth-preference-controls select, .auth-preference-controls button, .auth-close-home {
+  background: #fffaf0; color: #49342e; border-color: #e8c7ad;
+}
+.auth-dark { background: #292323; color: #f7e9df; }
+.auth-dark .auth-visual { background: linear-gradient(145deg,#49342e 0%,#57382f 58%,#68433a 100%); color: #fff0be; }
+.auth-dark .auth-form-side { background: #382d2a; color: #f7e9df; }
+.auth-dark .auth-form-side h1, .auth-dark .auth-form-side h2,
+.auth-dark .auth-subtitle, .auth-dark .auth-field, .auth-dark .auth-tabs a { color: #f7e9df; }
+.auth-dark .auth-input-wrap { background: #453431; border-color: #674a41; }
+.auth-dark .auth-input-wrap input { color: #fff0be; }
+.auth-dark .auth-input-wrap input::placeholder { color: #cbb5a9; opacity: 1; }
+.auth-dark .auth-tabs { background: #453431; }
+.auth-dark .auth-tabs a.active { background: #ff9a86; color: #382623; }
+.auth-dark .auth-google-fallback { background: #453431; color: #f7e9df; border-color: #674a41; }
+.auth-dark .auth-preference-controls select, .auth-dark .auth-preference-controls button,
+.auth-dark .auth-close-home { background: #453431; color: #fff0be; border-color: #674a41; }
+
