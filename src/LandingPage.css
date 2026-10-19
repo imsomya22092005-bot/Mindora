@@ -2221,3 +2221,22 @@ body {
 .landing-dark .landing-feature-card p,
 .landing-dark .landing-why-grid article p { color: #e2cfc4; }
 
+
+
+/* Latest Butter Peach palette across all landing sections. */
+.mindora-landing{--sage:#a95d32;--sage-dark:#49342e;--sage-light:#ffec9e;--cream:#fffbda;--text:#49342e;--muted:#806b61;background:#fffbda;color:#49342e}
+.mindora-landing .landing-feature-card,.mindora-landing .landing-why-grid article{background:#fffdf0;border-color:#f1d6b4;color:#49342e}
+.mindora-landing .landing-dark-button,.mindora-landing .landing-primary-button,.mindora-landing .landing-cta a{background:#ed9455;border-color:#ed9455;color:#39271e}
+.mindora-landing .landing-dark-button:hover,.mindora-landing .landing-primary-button:hover,.mindora-landing .landing-cta a:hover{background:#ffbb70;border-color:#ffbb70;color:#39271e}
+.mindora-landing .landing-preference-controls select,.mindora-landing .landing-theme-toggle{background:#fffdf0;color:#49342e;border-color:#e8c9a8}
+.mindora-landing .landing-intro{background:linear-gradient(135deg,#fffbda 0%,#ffec9e 55%,#ffbb70 100%)}
+.mindora-landing .landing-intro h2,.mindora-landing .landing-intro h2 span{color:#49342e}
+.mindora-landing .landing-intro p,.mindora-landing .landing-feature-card p,.mindora-landing .landing-why-grid article p{color:#65473e}
+.mindora-landing.landing-dark{background:#292323;color:#fff3df}
+.landing-dark .landing-feature-card,.landing-dark .landing-why-grid article{background:#382d2a;border-color:#59443b;color:#fff3df}
+.landing-dark .landing-preference-controls select,.landing-dark .landing-theme-toggle{background:#45352f;color:#fffbda;border-color:#705242}
+.landing-dark .landing-dark-button,.landing-dark .landing-primary-button,.landing-dark .landing-cta a{background:#ed9455;border-color:#ed9455;color:#39271e}
+.landing-dark .landing-dark-button:hover,.landing-dark .landing-primary-button:hover,.landing-dark .landing-cta a:hover{background:#ffbb70;border-color:#ffbb70;color:#39271e}
+.landing-dark .landing-intro{background:linear-gradient(135deg,#292323 0%,#382d2a 55%,#49342e 100%)}
+.landing-dark .landing-intro h2,.landing-dark .landing-intro h2 span,.landing-dark h2,.landing-dark h3{color:#fffbda}
+.landing-dark .landing-intro p,.landing-dark .landing-feature-card p,.landing-dark .landing-why-grid article p,.landing-dark p{color:#e6d4c3}
