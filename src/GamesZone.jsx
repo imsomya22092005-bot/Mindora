@@ -119,7 +119,8 @@ export default function GamesZone() {
     const state = gameRef.current;
     let frame = 0;
     const selectedLevel = levels[state.difficulty];
-    const targetColor = state.targetColour;
+    // gameRef stores the target colour as a name string; resolve it to the palette object.
+    const targetColor = palette.find((colour) => colour.name === state.targetColour) || palette[0];
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
