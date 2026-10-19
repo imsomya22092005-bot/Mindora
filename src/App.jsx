@@ -1186,9 +1186,27 @@ function Dashboard() {
   );
 }
 
+function GlobalPagePreferences() {
+  const [language, setLanguage] = useState(() => localStorage.getItem("mindora-language") || "en");
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("mindora-theme") === "dark");
+  const [open, setOpen] = useState(false);
+  const hi = language === "hi";
+  useEffect(() => {
+    localStorage.setItem("mindora-language", language);
+    localStorage.setItem("mindora-theme", darkMode ? "dark" : "light");
+    document.documentElement.dataset.mindoraTheme = darkMode ? "dark" : "light";
+    document.documentElement.dataset.mindoraLanguage = language;
+  }, [language, darkMode]);
+  return <div className="global-page-preferences">
+    <label><span>{hi ? "भाषा" : "Language"}</span><select aria-label={hi ? "भाषा" : "Language"} value={language} onChange={e => setLanguage(e.target.value)}><option value="en">English</option><option value="hi">हिन्दी</option></select></label>
+    <button type="button" onClick={() => setDarkMode(v => !v)}>{darkMode ? <Sun size={16}/> : <Moon size={16}/>}<span>{darkMode ? (hi ? "लाइट मोड" : "Light mode") : (hi ? "डार्क मोड" : "Dark mode")}</span></button>
+  </div>;
+}
+
 function App() {
   return (
     <BrowserRouter>
+      <GlobalPagePreferences />
       <Routes>
         {/* Landing page */}
         <Route path="/" element={<LandingPage />} />
