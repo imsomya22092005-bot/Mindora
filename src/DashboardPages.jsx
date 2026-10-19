@@ -144,7 +144,8 @@ export function JournalPage() {
 
 export function InsightsPage() {
   const theme=useThemeClass();
-  const hi = localStorage.getItem("mindora-language") === "hi";
+  const [language] = useLanguage();
+  const hi = language === "hi";
   const t = (en, hindi) => hi ? hindi : en;
   const [history]=useState(()=>{try{return JSON.parse(localStorage.getItem("mindora-mood-history")||"[]")}catch{return[]}});
   const data=history.slice(0,7).reverse().map(item=>({day:item.date,mood:item.value,label:item.label}));
@@ -154,7 +155,8 @@ export function InsightsPage() {
 
 export function MindfulMomentsPage(){
  const theme=useThemeClass();
- const hi = localStorage.getItem("mindora-language") === "hi";
+ const [language] = useLanguage();
+  const hi = language === "hi";
  const mindfulTools=[
  {title:hi ? "शांत कोना" : "Calm Corner",description:hi ? "जब दिन बहुत भारी लगे, तो सुकून का एक पल।" : "A quiet reset when the day feels like too much.",icon:Wind,href:"/calm-corner",tone:"sage"},
  {title:hi ? "भीतर का बगीचा" : "Inner Garden",description:hi ? "छोटे-छोटे कदमों से अपना ख्याल रखें।" : "Small acts of care, one little step at a time.",icon:Sprout,href:"/inner-garden",tone:"moss"},
