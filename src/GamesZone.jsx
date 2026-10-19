@@ -52,19 +52,24 @@ function playSound(type, enabled) {
 }
 
 function makeTargets(width, height, speed = 1) {
-  return Array.from({ length: 13 }, (_, i) => {
-    const bubble = palette[Math.floor(Math.random() * palette.length)];
-    return {
-      x: 35 + Math.random() * Math.max(40, width - 70),
-      y: 35 + Math.random() * Math.max(70, height * 0.64),
-      r: 17 + Math.random() * 13,
-      color: bubble.color,
-      colorName: bubble.name,
-      dx: (Math.random() - 0.5) * speed * 1.5,
-      dy: (Math.random() - 0.5) * speed * 1.2,
-      phase: Math.random() * 6,
-    };
-  });
+  // Start with a balanced set so every colour is available in useful quantity.
+  // Then shuffle it so the colours are not arranged in a predictable order.
+  const colourSet = Array.from({ length: 4 }, () => palette).flat();
+  for (let i = colourSet.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [colourSet[i], colourSet[j]] = [colourSet[j], colourSet[i]];
+  }
+
+  return colourSet.map((bubble) => ({
+    x: 35 + Math.random() * Math.max(40, width - 70),
+    y: 35 + Math.random() * Math.max(70, height * 0.64),
+    r: 17 + Math.random() * 13,
+    color: bubble.color,
+    colorName: bubble.name,
+    dx: (Math.random() - 0.5) * speed * 1.5,
+    dy: (Math.random() - 0.5) * speed * 1.2,
+    phase: Math.random() * 6,
+  }));
 }
 
 export default function GamesZone() {
@@ -194,7 +199,17 @@ export default function GamesZone() {
             playSound("wrong", state.soundOn);
           }
           const rect = canvas.getBoundingClientRect();
-          state.targets.push(...makeTargets(rect.width, rect.height, selectedLevel.speed).slice(0, 1));
+          const nextBubble = palette[state.shots % palette.length];
+          state.targets.push({
+            x: 35 + Math.random() * Math.max(40, rect.width - 70),
+            y: 35 + Math.random() * Math.max(70, rect.height * 0.64),
+            r: 17 + Math.random() * 13,
+            color: nextBubble.color,
+            colorName: nextBubble.name,
+            dx: (Math.random() - 0.5) * selectedLevel.speed * 1.5,
+            dy: (Math.random() - 0.5) * selectedLevel.speed * 1.2,
+            phase: Math.random() * 6,
+          });
           state.shot = null;
           if (state.correct >= selectedLevel.target) {
             state.finished = true;
