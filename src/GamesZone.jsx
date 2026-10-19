@@ -7,7 +7,7 @@ import "./GamesZone.css";
 const games = [
   { id: "color-pop", title: "Color Pop", hi: "कलर पॉप", description: "Pop only the colour you are asked to find.", hiDescription: "दिए गए रंग के बबल्स ही पॉप करें।", emoji: "🌈", tone: "rainbow", ready: true },
   { id: "starweave", title: "Starweave", hi: "स्टारवीव", description: "Connect stars and create your own constellations.", hiDescription: "तारों को जोड़कर अपनी आकृतियाँ बनाएँ।", emoji: "🌌", tone: "night" },
-  { id: "let-it-burn", title: "Let It Burn", hi: "लेट इट बर्न", description: "Write a thought and release it symbolically.", hiDescription: "अपने विचार लिखें और उन्हें प्रतीकात्मक रूप से छोड़ें।", emoji: "🕯️", tone: "paper" },
+  { id: "let-it-burn", title: "Let It Burn", hi: "लेट इट बर्न", description: "Write it down, light the page, and let it go.", hiDescription: "लिखें, पन्ने को जलाएँ और मन हल्का करें।", emoji: "🕯️", tone: "paper", ready: true },
   { id: "light-jar", title: "The Little Light Jar", hi: "छोटी रोशनी का जार", description: "Collect little moments of hope.", hiDescription: "उम्मीद के छोटे-छोटे पल इकट्ठा करें।", emoji: "✨", tone: "glow" },
   { id: "rainy-window", title: "Rainy Window", hi: "बारिश वाली खिड़की", description: "Watch the rain and take a quiet pause.", hiDescription: "बारिश को देखें और एक शांत पल लें।", emoji: "🌧️", tone: "rain" },
 ];
