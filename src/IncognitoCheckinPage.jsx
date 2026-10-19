@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, ShieldCheck, Heart, Sparkles, RotateCcw, Sun, Moon } from "lucide-react";
 import "./DashboardPages.css";
+import { useLanguage } from "./language";
 
 const questions = [
   { id: "stress", question: "How has your stress felt lately?", questionHi: "हाल ही में आपका तनाव कैसा रहा है?", options: ["Manageable", "Up and down", "Overwhelming"], optionsHi: ["संभालने योग्य", "कभी कम, कभी ज़्यादा", "बहुत ज़्यादा"] },
@@ -15,7 +16,7 @@ const questions = [
 export default function IncognitoCheckinPage() {
   const [answers, setAnswers] = useState({});
   const [showResult, setShowResult] = useState(false);
-  const [language, setLanguage] = useState(() => localStorage.getItem("mindora-language") || "en");
+  const [language, setLanguage] = useLanguage();
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("mindora-theme") === "dark");
   const hi = language === "hi";
   const t = (en, hindi) => hi ? hindi : en;
