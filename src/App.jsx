@@ -531,7 +531,7 @@ function Dashboard() {
           <span className="quote-sparkle">
             <Sparkles size={18} />
           </span>
-          <p>“You don't have to have it all figured out today.”</p>
+          <p>“आज सब कुछ समझ लेना ज़रूरी नहीं है।”</p>
           <span className="quote-caption">{t("A gentle reminder", "एक प्यारी-सी याद")}</span>
         </div>
 
@@ -564,7 +564,7 @@ function Dashboard() {
               {darkMode ? <Sun size={17} /> : <Moon size={17} />}
               {darkMode ? t("Switch to light mode", "लाइट मोड करें") : t("Switch to dark mode", "डार्क मोड करें")}
             </button>
-            <p>{t("Your preference is saved on this device.", "आपकी पसंद इस डिवाइस पर सेव है।")}</p><button className="theme-setting" onClick={() => { setShowSettings(false); navigate("/profile"); }}><Heart size={17}/>{t("My profile", "मेरी प्रोफ़ाइल")}</button><button className="theme-setting logout-setting" onClick={() => { localStorage.removeItem("mindora-token"); localStorage.removeItem("mindora-user"); setShowSettings(false); navigate("/login", { replace: true }); }}><X size={17}/>{t("Log out", "लॉग आउट")}</button>
+            <button className="theme-setting" onClick={() => { setShowSettings(false); navigate("/profile"); }}><Heart size={17}/>{t("My profile", "मेरी प्रोफ़ाइल")}</button><button className="theme-setting logout-setting" onClick={() => { localStorage.removeItem("mindora-token"); localStorage.removeItem("mindora-user"); setShowSettings(false); navigate("/login", { replace: true }); }}><X size={17}/>{t("Log out", "लॉग आउट")}</button>
           </div>
         )}
 
