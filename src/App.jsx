@@ -52,15 +52,69 @@ import {
 } from "./WellnessPages";
 
 const mindfulPractices = [
-  { id: "child-pose", title: "Child’s Pose", hindi: "बालासन", type: "Rest & release", typeHi: "आराम और तनाव से राहत", duration: "2 min", durationHi: "2 मिनट", image: "https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=85&w=1600&auto=format&fit=crop", description: "A gentle resting pose to ease tension.", descriptionHi: "तनाव कम करने के लिए आरामदायक आसन।", steps: ["Kneel on the mat and bring your big toes together.", "Gently widen your knees to a comfortable position.", "Sit your hips back toward your heels.", "Fold forward and rest your forehead on the mat or a cushion.", "Let your arms rest forward or alongside your body and take 5 slow breaths."] },
-  { id: "mountain-pose", title: "Mountain Pose", hindi: "ताड़ासन", type: "Grounding", typeHi: "स्थिरता", duration: "1 min", durationHi: "1 मिनट", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=85&w=1600&auto=format&fit=crop", description: "Stand tall, breathe slowly, feel steady.", descriptionHi: "सीधे खड़े होकर धीरे साँस लें और स्थिरता महसूस करें।", steps: ["Stand with your feet hip-width apart and toes facing forward.", "Spread your weight evenly across both feet.", "Keep your knees soft, shoulders relaxed and arms by your sides.", "Lengthen your spine and let your gaze rest straight ahead.", "Take 5 calm breaths without forcing your posture."] },
-  { id: "seated-breathing", title: "Seated Breathing", hindi: "बैठकर श्वास", type: "Breathwork", typeHi: "श्वास अभ्यास", duration: "2 min", durationHi: "2 मिनट", image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=85&w=1600&auto=format&fit=crop", description: "Make room for a slower, softer breath.", descriptionHi: "धीमी और सहज साँसों के लिए थोड़ा समय निकालें।", steps: ["Sit comfortably on a chair or cushion with your back supported.", "Relax your jaw and lower your shoulders.", "Breathe in gently through your nose, only as deeply as feels comfortable.", "Breathe out slowly without holding or forcing your breath.", "Continue for 1–2 minutes; return to normal breathing if you feel dizzy."] },
-  { id: "tree-pose", title: "Tree Pose", hindi: "वृक्षासन", type: "Balance", typeHi: "संतुलन", duration: "1 min", durationHi: "1 मिनट", image: "https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=85&w=1600&auto=format&fit=crop", description: "Find a calm point and build gentle focus.", descriptionHi: "एक बिंदु पर ध्यान रखकर सहज संतुलन बनाएँ।", steps: ["Stand tall near a wall or chair for support.", "Shift your weight onto one foot while keeping that knee soft.", "Place the other foot on your ankle or calf—never directly on your knee.", "Bring your hands together at your chest if comfortable and look at one steady point.", "Hold for a few breaths, then change sides. Skip the balance challenge if it feels unsafe."] },
-  { id: "neck-release", title: "Easy Neck Release", hindi: "गर्दन को आराम", type: "Desk reset", typeHi: "डेस्क से छोटा विराम", duration: "1 min", durationHi: "1 मिनट", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=85&w=1600&auto=format&fit=crop", description: "Let your shoulders soften after a long day.", descriptionHi: "लंबे दिन के बाद कंधों को आराम दें।", steps: ["Sit or stand comfortably with your shoulders relaxed.", "Keep your face forward and slowly tilt one ear toward its shoulder.", "Hold for 2–3 easy breaths without pulling your head.", "Return to centre and repeat on the other side.", "Make small, pain-free movements only; stop if you feel pain, tingling or dizziness."] },
-  { id: "legs-up-wall", title: "Legs Up the Wall", hindi: "दीवार के सहारे पैर", type: "Unwind", typeHi: "आराम", duration: "3 min", durationHi: "3 मिनट", image: "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?q=85&w=1600&auto=format&fit=crop", description: "Pause and give yourself a quiet moment.", descriptionHi: "रुकें और खुद को शांत पल दें।", steps: ["Sit sideways close to a wall, with a folded blanket nearby if needed.", "Lower your upper body to the floor as you gently swing your legs up the wall.", "Move farther from the wall if your hamstrings feel strained.", "Rest your arms by your sides and breathe naturally.", "Stay only while comfortable, then bend your knees and roll gently onto your side to get up. Avoid this pose if it is unsuitable for your medical condition."] },
-  { id: "cat-cow", title: "Cat–Cow Stretch", hindi: "मार्जरी आसन", type: "Gentle stretch", typeHi: "हल्का स्ट्रेच", duration: "2 min", durationHi: "2 मिनट", image: "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=85&w=1600&auto=format&fit=crop", description: "Move slowly with the rhythm of your breath.", descriptionHi: "साँसों की लय के साथ धीरे-धीरे हिलें।", steps: ["Come onto hands and knees, with wrists under shoulders and knees under hips.", "As you breathe in, gently lift your chest and tailbone without forcing your back.", "As you breathe out, round your spine softly and let your head lower naturally.", "Repeat slowly for 5–8 comfortable cycles.", "Keep the movement small and stop if your wrists, neck or back hurt."] },
-  { id: "mindful-walking", title: "Mindful Walking", hindi: "ध्यान से चलना", type: "Reset outdoors", typeHi: "बाहर एक नया विराम", duration: "5 min", durationHi: "5 मिनट", image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=85&w=1600&auto=format&fit=crop", description: "Notice each step and the world around you.", descriptionHi: "हर कदम और आसपास की चीज़ों पर ध्यान दें।", steps: ["Choose a safe, familiar path and walk at an easy pace.", "Notice the feeling of your feet touching the ground.", "Let your arms move naturally and keep breathing normally.", "Gently notice sounds, colours and the air around you.", "When your mind wanders, return your attention to the next few steps without judging yourself."] },
-  { id: "savasana", title: "Savasana", hindi: "शवासन", type: "Deep rest", typeHi: "गहरा आराम", duration: "3 min", durationHi: "3 मिनट", image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=85&w=1600&auto=format&fit=crop", description: "Lie comfortably and let your body rest.", descriptionHi: "आराम से लेटें और शरीर को विश्राम दें।", steps: ["Lie on your back on a comfortable mat or bed.", "Let your legs rest naturally apart and arms rest by your sides.", "Adjust a pillow under your head or knees if that feels better.", "Soften your face and let your breathing return to its natural rhythm.", "Rest for a few minutes, then wiggle your fingers and toes and roll onto your side before sitting up."] }
+  { id: "child-pose", title: "Child’s Pose", hindi: "बालासन", type: "Rest & release", typeHi: "आराम और तनाव से राहत", duration: "2 min", durationHi: "2 मिनट", image: "https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=85&w=1600&auto=format&fit=crop", description: "A gentle resting pose to ease tension.", descriptionHi: "तनाव कम करने के लिए आरामदायक आसन।", steps: ["Kneel on the mat and bring your big toes together.", "Gently widen your knees to a comfortable position.", "Sit your hips back toward your heels.", "Fold forward and rest your forehead on the mat or a cushion.", "Let your arms rest forward or alongside your body and take 5 slow breaths."], stepsHi: [
+        "घुटनों के बल मैट पर बैठें और पैरों के दोनों अंगूठों को आपस में मिलाएँ।",
+        "घुटनों को धीरे-धीरे आरामदायक दूरी तक फैलाएँ।",
+        "कूल्हों को पीछे की ओर एड़ियों के पास ले जाएँ।",
+        "आगे की ओर झुकें और माथे को मैट या कुशन पर टिकाएँ।",
+        "हाथों को आगे की ओर या शरीर के बगल में आराम से रखें और 5 धीमी साँसें लें।"
+      ], },
+  { id: "mountain-pose", title: "Mountain Pose", hindi: "ताड़ासन", type: "Grounding", typeHi: "स्थिरता", duration: "1 min", durationHi: "1 मिनट", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=85&w=1600&auto=format&fit=crop", description: "Stand tall, breathe slowly, feel steady.", descriptionHi: "सीधे खड़े होकर धीरे साँस लें और स्थिरता महसूस करें।", steps: ["Stand with your feet hip-width apart and toes facing forward.", "Spread your weight evenly across both feet.", "Keep your knees soft, shoulders relaxed and arms by your sides.", "Lengthen your spine and let your gaze rest straight ahead.", "Take 5 calm breaths without forcing your posture."], stepsHi: [
+        "पैरों के बीच कूल्हों जितनी दूरी रखकर सीधे खड़े हों और पंजों को आगे की ओर रखें।",
+        "दोनों पैरों पर शरीर का वज़न बराबर रखें।",
+        "घुटनों को सहज रखें, कंधों को ढीला छोड़ें और हाथों को शरीर के बगल में रखें।",
+        "रीढ़ को सीधा और लंबा रखें तथा सामने की ओर सहज नज़र रखें।",
+        "अपनी मुद्रा पर ज़ोर डाले बिना 5 शांत साँसें लें।"
+      ], },
+  { id: "seated-breathing", title: "Seated Breathing", hindi: "बैठकर श्वास", type: "Breathwork", typeHi: "श्वास अभ्यास", duration: "2 min", durationHi: "2 मिनट", image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=85&w=1600&auto=format&fit=crop", description: "Make room for a slower, softer breath.", descriptionHi: "धीमी और सहज साँसों के लिए थोड़ा समय निकालें।", steps: ["Sit comfortably on a chair or cushion with your back supported.", "Relax your jaw and lower your shoulders.", "Breathe in gently through your nose, only as deeply as feels comfortable.", "Breathe out slowly without holding or forcing your breath.", "Continue for 1–2 minutes; return to normal breathing if you feel dizzy."], stepsHi: [
+        "कुर्सी या कुशन पर आराम से बैठें और पीठ को सहारा दें।",
+        "जबड़े को ढीला छोड़ें और कंधों को नीचे रखें।",
+        "नाक से धीरे-धीरे साँस लें—उतनी ही गहरी, जितनी सहज लगे।",
+        "साँस रोके बिना या ज़ोर लगाए बिना धीरे-धीरे साँस छोड़ें।",
+        "1–2 मिनट तक जारी रखें। चक्कर आए तो सामान्य रूप से साँस लें।"
+      ], },
+  { id: "tree-pose", title: "Tree Pose", hindi: "वृक्षासन", type: "Balance", typeHi: "संतुलन", duration: "1 min", durationHi: "1 मिनट", image: "https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=85&w=1600&auto=format&fit=crop", description: "Find a calm point and build gentle focus.", descriptionHi: "एक बिंदु पर ध्यान रखकर सहज संतुलन बनाएँ।", steps: ["Stand tall near a wall or chair for support.", "Shift your weight onto one foot while keeping that knee soft.", "Place the other foot on your ankle or calf—never directly on your knee.", "Bring your hands together at your chest if comfortable and look at one steady point.", "Hold for a few breaths, then change sides. Skip the balance challenge if it feels unsafe."], stepsHi: [
+        "सहारे के लिए दीवार या कुर्सी के पास सीधे खड़े हों।",
+        "एक पैर पर अपना वज़न डालें और उस घुटने को सहज रखें।",
+        "दूसरे पैर को टखने या पिंडली पर रखें—घुटने पर सीधे कभी न रखें।",
+        "सहज लगे तो हाथों को छाती के सामने जोड़ें और किसी स्थिर बिंदु पर नज़र रखें।",
+        "कुछ साँसों तक इसी स्थिति में रहें, फिर दूसरी तरफ से दोहराएँ। असुरक्षित लगे तो संतुलन वाला यह अभ्यास छोड़ दें।"
+      ], },
+  { id: "neck-release", title: "Easy Neck Release", hindi: "गर्दन को आराम", type: "Desk reset", typeHi: "डेस्क से छोटा विराम", duration: "1 min", durationHi: "1 मिनट", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=85&w=1600&auto=format&fit=crop", description: "Let your shoulders soften after a long day.", descriptionHi: "लंबे दिन के बाद कंधों को आराम दें।", steps: ["Sit or stand comfortably with your shoulders relaxed.", "Keep your face forward and slowly tilt one ear toward its shoulder.", "Hold for 2–3 easy breaths without pulling your head.", "Return to centre and repeat on the other side.", "Make small, pain-free movements only; stop if you feel pain, tingling or dizziness."], stepsHi: [
+        "कंधों को ढीला रखते हुए आराम से बैठें या खड़े हों।",
+        "चेहरा सामने रखें और धीरे-धीरे एक कान को उसी तरफ के कंधे की ओर झुकाएँ।",
+        "सिर को खींचे बिना 2–3 सहज साँसों तक इसी स्थिति में रहें।",
+        "सिर को वापस बीच में लाएँ और दूसरी तरफ दोहराएँ।",
+        "केवल छोटे और दर्दरहित मूवमेंट करें। दर्द, झनझनाहट या चक्कर आने पर रुक जाएँ।"
+      ], },
+  { id: "legs-up-wall", title: "Legs Up the Wall", hindi: "दीवार के सहारे पैर", type: "Unwind", typeHi: "आराम", duration: "3 min", durationHi: "3 मिनट", image: "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?q=85&w=1600&auto=format&fit=crop", description: "Pause and give yourself a quiet moment.", descriptionHi: "रुकें और खुद को शांत पल दें।", steps: ["Sit sideways close to a wall, with a folded blanket nearby if needed.", "Lower your upper body to the floor as you gently swing your legs up the wall.", "Move farther from the wall if your hamstrings feel strained.", "Rest your arms by your sides and breathe naturally.", "Stay only while comfortable, then bend your knees and roll gently onto your side to get up. Avoid this pose if it is unsuitable for your medical condition."], stepsHi: [
+        "दीवार के पास करवट लेकर बैठें। ज़रूरत हो तो पास में एक मुड़ा हुआ कंबल रखें।",
+        "धीरे-से शरीर को फ़र्श पर लिटाएँ और पैरों को दीवार के सहारे ऊपर ले जाएँ।",
+        "अगर जाँघों के पीछे खिंचाव महसूस हो, तो दीवार से थोड़ा दूर खिसक जाएँ।",
+        "हाथों को शरीर के बगल में आराम से रखें और स्वाभाविक रूप से साँस लेते रहें।",
+        "जब तक सहज लगे, इसी स्थिति में रहें। फिर घुटनों को मोड़ें, धीरे से करवट लें और उठें। यदि आपकी स्वास्थ्य स्थिति के लिए यह आसन उपयुक्त नहीं है, तो इसे न करें।"
+      ], },
+  { id: "cat-cow", title: "Cat–Cow Stretch", hindi: "मार्जरी आसन", type: "Gentle stretch", typeHi: "हल्का स्ट्रेच", duration: "2 min", durationHi: "2 मिनट", image: "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=85&w=1600&auto=format&fit=crop", description: "Move slowly with the rhythm of your breath.", descriptionHi: "साँसों की लय के साथ धीरे-धीरे हिलें।", steps: ["Come onto hands and knees, with wrists under shoulders and knees under hips.", "As you breathe in, gently lift your chest and tailbone without forcing your back.", "As you breathe out, round your spine softly and let your head lower naturally.", "Repeat slowly for 5–8 comfortable cycles.", "Keep the movement small and stop if your wrists, neck or back hurt."], stepsHi: [
+        "हाथों और घुटनों के बल आएँ। कलाइयाँ कंधों के नीचे और घुटने कूल्हों के नीचे रखें।",
+        "साँस लेते समय पीठ पर ज़ोर डाले बिना छाती और रीढ़ के निचले हिस्से को धीरे-से ऊपर उठाएँ।",
+        "साँस छोड़ते समय रीढ़ को धीरे से गोल करें और सिर को स्वाभाविक रूप से नीचे आने दें।",
+        "आराम से 5–8 बार धीरे-धीरे दोहराएँ।",
+        "मूवमेंट छोटा रखें और कलाइयों, गर्दन या पीठ में दर्द होने पर रुक जाएँ।"
+      ], },
+  { id: "mindful-walking", title: "Mindful Walking", hindi: "ध्यान से चलना", type: "Reset outdoors", typeHi: "बाहर एक नया विराम", duration: "5 min", durationHi: "5 मिनट", image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=85&w=1600&auto=format&fit=crop", description: "Notice each step and the world around you.", descriptionHi: "हर कदम और आसपास की चीज़ों पर ध्यान दें।", steps: ["Choose a safe, familiar path and walk at an easy pace.", "Notice the feeling of your feet touching the ground.", "Let your arms move naturally and keep breathing normally.", "Gently notice sounds, colours and the air around you.", "When your mind wanders, return your attention to the next few steps without judging yourself."], stepsHi: [
+        "एक सुरक्षित और परिचित रास्ता चुनें और आरामदायक गति से चलें।",
+        "ज़मीन पर पड़ते अपने पैरों के स्पर्श को महसूस करें।",
+        "हाथों को स्वाभाविक रूप से हिलने दें और सामान्य रूप से साँस लेते रहें।",
+        "आसपास की आवाज़ों, रंगों और हवा को सहजता से महसूस करें।",
+        "जब ध्यान भटके, तो खुद को दोष दिए बिना अगले कुछ कदमों पर ध्यान वापस लाएँ।"
+      ], },
+  { id: "savasana", title: "Savasana", hindi: "शवासन", type: "Deep rest", typeHi: "गहरा आराम", duration: "3 min", durationHi: "3 मिनट", image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=85&w=1600&auto=format&fit=crop", description: "Lie comfortably and let your body rest.", descriptionHi: "आराम से लेटें और शरीर को विश्राम दें।", steps: ["Lie on your back on a comfortable mat or bed.", "Let your legs rest naturally apart and arms rest by your sides.", "Adjust a pillow under your head or knees if that feels better.", "Soften your face and let your breathing return to its natural rhythm.", "Rest for a few minutes, then wiggle your fingers and toes and roll onto your side before sitting up."], stepsHi: [
+        "आरामदायक मैट या बिस्तर पर पीठ के बल लेट जाएँ।",
+        "पैरों को स्वाभाविक रूप से थोड़ा अलग रखें और हाथों को शरीर के बगल में रखें।",
+        "आराम लगे तो सिर या घुटनों के नीचे तकिया रख लें।",
+        "चेहरे की मांसपेशियों को ढीला छोड़ें और साँसों को उनकी स्वाभाविक गति में लौटने दें।",
+        "कुछ मिनट आराम करें। फिर उँगलियों और पैरों की उँगलियों को धीरे-से हिलाएँ, करवट लें और उसके बाद बैठें।"
+      ], }
 ];
 
 const moods = [
@@ -143,7 +197,7 @@ function MindfulPracticePage() {
     return <main className="practice-page"><button className="practice-back" onClick={() => navigate("/dashboard")}>← {hi ? "डैशबोर्ड पर वापस" : "Back to dashboard"}</button><h1>{hi ? "अभ्यास नहीं मिला" : "Practice not found"}</h1></main>;
   }
 
-  const steps = practice.steps;
+  const steps = hi ? (practice.stepsHi || practice.steps) : practice.steps;
   return (
     <main className="practice-page">
       <button className="practice-back" onClick={() => navigate("/dashboard")}>← {hi ? "डैशबोर्ड पर वापस" : "Back to dashboard"}</button>
@@ -160,7 +214,7 @@ function MindfulPracticePage() {
         <div className="practice-progress"><span style={{ width: `${((step + 1) / steps.length) * 100}%` }} /></div>
         <div className="practice-step-number">{String(step + 1).padStart(2, "0")}</div>
         <h2>{hi ? "धीरे-धीरे करें" : "Take it one step at a time"}</h2>
-        <p className="practice-step-text">{hi ? steps[step] : steps[step]}</p>
+        <p className="practice-step-text">{steps[step]}</p>
         <div className="practice-step-actions">
           <button className="practice-secondary" disabled={step === 0} onClick={() => setStep((current) => Math.max(0, current - 1))}>{hi ? "पिछला कदम" : "Previous step"}</button>
           {step < steps.length - 1
