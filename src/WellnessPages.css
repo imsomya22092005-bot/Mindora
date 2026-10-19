@@ -1065,3 +1065,13 @@
 .dark-theme .wellness-heading h1,.dark-theme .garden-summary h2,.dark-theme .wellness-page .wellness-panel h2{color:#fffbda!important}
 .dark-theme .garden-summary>p,.dark-theme .garden-growth-note{color:#e6d4c3!important}
 
+
+/* Global dark-theme contrast fixes */
+
+html[data-mindora-theme="dark"] .wellness-page{--wellness-bg:#292323;--wellness-card:#382d2a;--wellness-text:#fff3df;--wellness-muted:#d0b9a7;--wellness-border:#59443b;background:radial-gradient(ellipse at 8% 4%,#49342e 0,transparent 30%),#292323;color:#fff3df}
+html[data-mindora-theme="dark"] .wellness-page .wellness-panel,html[data-mindora-theme="dark"] .wellness-page .rain-card,html[data-mindora-theme="dark"] .wellness-page .garden-summary{background:#382d2a;border-color:#59443b;color:#fff3df}
+html[data-mindora-theme="dark"] .wellness-page h1,html[data-mindora-theme="dark"] .wellness-page h2,html[data-mindora-theme="dark"] .wellness-page h3{color:#fffbda}
+html[data-mindora-theme="dark"] .wellness-page p,html[data-mindora-theme="dark"] .wellness-page .wellness-muted{color:#e6d4c3}
+html[data-mindora-theme="dark"] .wellness-page input,html[data-mindora-theme="dark"] .wellness-page textarea,html[data-mindora-theme="dark"] .wellness-page select{background:#45352f;color:#fffbda;border-color:#705242}
+html[data-mindora-theme="dark"] .wellness-page input::placeholder,html[data-mindora-theme="dark"] .wellness-page textarea::placeholder{color:#d0b9a7;opacity:1}
+
