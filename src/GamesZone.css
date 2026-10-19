@@ -228,3 +228,28 @@ html[data-mindora-theme="dark"] .colorpop-result-stats>div { background: #453431
 html[data-mindora-theme="dark"] .colorpop-result-stats span { color: #e2cfc4; }
 html[data-mindora-theme="dark"] .colorpop-canvas-wrap, html[data-mindora-theme="dark"] .colorpop-canvas-wrap canvas { border-color: #674a41; background: #302624; }
 
+
+/* Butter Peach palette refresh */
+
+.games-page{background:radial-gradient(ellipse at 8% 8%,rgba(237,148,85,.18),transparent 32%),radial-gradient(ellipse at 92% 12%,rgba(255,236,158,.48),transparent 32%),linear-gradient(135deg,#fffbda 0%,#fff9e8 55%,#ffec9e 100%);color:#49342e}
+.games-brand>span{background:linear-gradient(135deg,#ffbb70,#ffec9e);color:#49342e}
+.games-brand h1,.games-welcome h2,.game-card-copy strong,.colorpop-top h2,.colorpop-level strong,.colorpop-preview strong,.colorpop-results h2,.colorpop-result-stats strong,.game-coming-card h2{color:#49342e}
+.games-brand small,.colorpop-kicker{color:#a95d32}.games-header>p,.games-welcome p,.game-card-copy>span,.games-footer,.colorpop-top p,.colorpop-progress-row,.colorpop-results>p,.game-coming-card p{color:#806b61}
+.games-welcome,.game-card,.colorpop-shell,.game-coming-card{background:rgba(255,253,240,.95);border-color:#f1d6b4}
+.game-rainbow .game-card-art{background:linear-gradient(135deg,#ffbb70,#ffec9e,#fffbda)}.game-night .game-card-art{background:linear-gradient(135deg,#49342e,#a95d32,#ed9455)}.game-paper .game-card-art{background:linear-gradient(135deg,#fffbda,#ffec9e,#ffbb70)}.game-glow .game-card-art{background:linear-gradient(135deg,#49342e,#a95d32,#ffbb70)}.game-rain .game-card-art{background:linear-gradient(135deg,#fffbda,#ffec9e,#ffbb70)}
+.colorpop-level.selected{border-color:#ed9455;box-shadow:0 0 0 3px rgba(237,148,85,.18);background:linear-gradient(145deg,#fffdf0,#ffec9e)}.colorpop-preview{background:linear-gradient(110deg,rgba(255,187,112,.42),rgba(255,236,158,.55),rgba(255,251,218,.8))}.colorpop-progress span{background:linear-gradient(90deg,#ed9455,#ffbb70,#ffec9e)}
+.colorpop-controls .colorpop-soft{background:#ed9455;color:#39271e;border-color:#ed9455}
+html[data-mindora-theme="dark"] .games-page{background:radial-gradient(ellipse at 8% 8%,rgba(237,148,85,.12),transparent 32%),linear-gradient(135deg,#292323 0%,#302624 55%,#382d2a 100%);color:#fff3df}
+html[data-mindora-theme="dark"] .games-back,html[data-mindora-theme="dark"] .colorpop-shell,html[data-mindora-theme="dark"] .games-welcome,html[data-mindora-theme="dark"] .game-card,html[data-mindora-theme="dark"] .game-coming-card{background:rgba(56,45,42,.97);border-color:#59443b;color:#fff3df}
+html[data-mindora-theme="dark"] .games-brand h1,html[data-mindora-theme="dark"] .games-welcome h2,html[data-mindora-theme="dark"] .game-card-copy strong,html[data-mindora-theme="dark"] .colorpop-top h2,html[data-mindora-theme="dark"] .colorpop-level strong,html[data-mindora-theme="dark"] .colorpop-preview strong,html[data-mindora-theme="dark"] .colorpop-results h2,html[data-mindora-theme="dark"] .colorpop-result-stats strong,html[data-mindora-theme="dark"] .game-coming-card h2{color:#fffbda}
+html[data-mindora-theme="dark"] .games-header>p,html[data-mindora-theme="dark"] .games-welcome p,html[data-mindora-theme="dark"] .game-card-copy>span,html[data-mindora-theme="dark"] .games-footer,html[data-mindora-theme="dark"] .colorpop-top p,html[data-mindora-theme="dark"] .colorpop-progress-row,html[data-mindora-theme="dark"] .colorpop-results>p,html[data-mindora-theme="dark"] .game-coming-card p{color:#e6d4c3}
+html[data-mindora-theme="dark"] .games-brand small,html[data-mindora-theme="dark"] .colorpop-kicker{color:#ffbb70}
+html[data-mindora-theme="dark"] .colorpop-level,html[data-mindora-theme="dark"] .colorpop-target-label,html[data-mindora-theme="dark"] .colorpop-stats span,html[data-mindora-theme="dark"] .colorpop-controls button,html[data-mindora-theme="dark"] .game-coming-card button{background:#45352f;border-color:#705242;color:#fff3df}
+html[data-mindora-theme="dark"] .colorpop-level.selected{background:#49342e;border-color:#ed9455}
+html[data-mindora-theme="dark"] .colorpop-stats b,html[data-mindora-theme="dark"] .colorpop-progress-row b{color:#fffbda}
+html[data-mindora-theme="dark"] .colorpop-controls .colorpop-soft{background:#ed9455;border-color:#ed9455;color:#39271e}
+html[data-mindora-theme="dark"] .colorpop-progress{background:#59443b}
+html[data-mindora-theme="dark"] .colorpop-result-stats>div{background:#45352f;border-color:#705242}
+html[data-mindora-theme="dark"] .colorpop-result-stats span{color:#e6d4c3}
+html[data-mindora-theme="dark"] .colorpop-canvas-wrap,html[data-mindora-theme="dark"] .colorpop-canvas-wrap canvas{border-color:#705242;background:#302624}
+
