@@ -32,3 +32,14 @@
 .dark-theme .profile-bottom-card p { color: #e2cfc4; }
 .dark-theme .profile-bottom-card button { background: #ff9a86; color: #382623; }
 
+
+/* Butter Peach palette refresh */
+
+.profile-page{background:radial-gradient(ellipse at 50% 0%,#ffec9e 0,transparent 42%),#fffbda;color:#49342e}.profile-back,.profile-wordmark{color:#a95d32}
+.profile-hero{background:linear-gradient(125deg,#ffec9e,#ffbb70 58%,#ed9455);color:#49342e}.profile-eyebrow,.profile-hero p{color:#65473e}.profile-big-avatar{background:linear-gradient(145deg,#fffbda,#ffec9e);color:#49342e}
+.profile-detail-card{border-color:#f1d6b4;background:#fffdf0}.profile-detail-icon{background:#ffec9e;color:#a95d32}.profile-detail-icon.peach{background:#ffbb70;color:#65402c}.profile-detail-icon.yellow{background:#fffbda;color:#65402c}
+.profile-detail-label,.profile-detail-card small,.profile-bottom-card p{color:#806b61}.profile-detail-card strong{color:#49342e}.profile-bottom-card{border-color:#f1d6b4;background:#ffec9e}.profile-bottom-card>div,.profile-bottom-card strong{color:#65473e}.profile-bottom-card button{background:#ed9455;color:#39271e}
+.dark-theme .profile-page{background:radial-gradient(ellipse at 50% 0%,#49342e 0,transparent 42%),#292323;color:#fff3df}.dark-theme .profile-back,.dark-theme .profile-wordmark{color:#ffbb70}
+.dark-theme .profile-hero{background:linear-gradient(125deg,#49342e,#62402f 58%,#75503a);color:#fffbda}.dark-theme .profile-eyebrow,.dark-theme .profile-hero p{color:#f0d8c9}.dark-theme .profile-big-avatar{background:linear-gradient(145deg,#fffbda,#ffbb70);color:#49342e}
+.dark-theme .profile-detail-card{border-color:#59443b;background:#382d2a}.dark-theme .profile-detail-label,.dark-theme .profile-detail-card small{color:#d0b9a7}.dark-theme .profile-detail-card strong{color:#fffbda}.dark-theme .profile-bottom-card{border-color:#59443b;background:#382d2a}.dark-theme .profile-bottom-card>div,.dark-theme .profile-bottom-card strong{color:#fffbda}.dark-theme .profile-bottom-card p{color:#e6d4c3}.dark-theme .profile-bottom-card button{background:#ed9455;color:#39271e}
+
