@@ -54,7 +54,7 @@ function playSound(type, enabled) {
 function makeTargets(width, height, speed = 1) {
   // Start with a balanced set so every colour is available in useful quantity.
   // Then shuffle it so the colours are not arranged in a predictable order.
-  const colourSet = Array.from({ length: 4 }, () => palette).flat();
+  const colourSet = Array.from({ length: 5 }, () => palette).flat();
   for (let i = colourSet.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [colourSet[i], colourSet[j]] = [colourSet[j], colourSet[i]];
@@ -199,7 +199,15 @@ export default function GamesZone() {
             playSound("wrong", state.soundOn);
           }
           const rect = canvas.getBoundingClientRect();
-          const nextBubble = palette[state.shots % palette.length];
+          // Refill whichever colour currently has the fewest bubbles.
+          // This keeps all six colours available throughout the round.
+          const colourCounts = palette.map((colour) => ({
+            colour,
+            count: state.targets.filter((bubble) => bubble.colorName === colour.name).length,
+          }));
+          const lowestCount = Math.min(...colourCounts.map((item) => item.count));
+          const leastAvailable = colourCounts.filter((item) => item.count === lowestCount);
+          const nextBubble = leastAvailable[Math.floor(Math.random() * leastAvailable.length)].colour;
           state.targets.push({
             x: 35 + Math.random() * Math.max(40, rect.width - 70),
             y: 35 + Math.random() * Math.max(70, rect.height * 0.64),
