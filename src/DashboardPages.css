@@ -451,3 +451,77 @@ main.mindora-section-page:has(.insight-chart-card) .section-page-title h1 em{
 .incognito-page.dark-theme .incognito-result>p,.incognito-page.dark-theme .incognito-disclaimer{color:#c4d0c0}
 .incognito-page.dark-theme .section-page-footer{color:#b1bfb0}
 @media(max-width:600px){.incognito-page{padding-top:76px}.incognito-page-controls{top:12px;left:14px;right:14px;justify-content:flex-end}.incognito-language-control{margin-right:auto}.incognito-theme-control{padding:0 9px}.incognito-theme-control span{font-size:10px}}
+
+
+
+/* Peach Sunrise theme for journal, insights, and mindfulness tools. */
+.mindora-section-page {
+  --page-bg: #fff0be;
+  --paper: #fffaf0;
+  --ink: #49342e;
+  --muted: #806b61;
+  --line: #f0d8bc;
+  background: radial-gradient(ellipse at 7% 5%,#ffe1d5 0,transparent 32%),var(--page-bg);
+  color: var(--ink);
+}
+.mindora-section-page .section-page-title h1,
+.mindora-section-page .diary-writing h2,
+.mindora-section-page .diary-entries-head h2,
+.mindora-section-page .diary-saved-card h3,
+.mindora-section-page .insight-stat-grid strong,
+.mindora-section-page .insight-chart-card h2,
+.mindora-section-page .mindful-tool-title { color: #49342e; }
+.mindora-section-page .diary-editor,
+.mindora-section-page .diary-saved-card,
+.mindora-section-page .insight-stat-grid article,
+.mindora-section-page .insight-chart-card,
+.mindora-section-page .mindful-tool-card { background: #fffaf0; border-color: #f0d8bc; }
+.mindora-section-page .diary-writing textarea,
+.mindora-section-page .diary-title-label input { color: #49342e; }
+.mindora-section-page textarea::placeholder,
+.mindora-section-page input::placeholder { color: #8a756a; opacity: 1; }
+.mindora-section-page .diary-prompt-card,
+.mindora-section-page .mindful-intro-card,
+.mindora-section-page .insight-kind-note { background: #ffe7d5; border-color: #f0d8bc; color: #65473e; }
+.mindora-section-page .diary-reminder { background: #fff0be; border-color: #f0d8bc; color: #65473e; }
+.mindora-section-page .diary-writing button,
+.mindora-section-page .incognito-submit,
+.mindora-section-page .scrapbook-tool-button.primary { background: #ff9a86; border-color: #ff9a86; color: #49342e; }
+.dark-theme.mindora-section-page {
+  --page-bg: #292323;
+  --paper: #382d2a;
+  --ink: #f7e9df;
+  --muted: #d1bdb2;
+  --line: #57413a;
+  background: radial-gradient(ellipse at 7% 5%,#49342e 0,transparent 32%),var(--page-bg);
+  color: var(--ink);
+}
+.dark-theme.mindora-section-page .section-page-title h1,
+.dark-theme.mindora-section-page .diary-writing h2,
+.dark-theme.mindora-section-page .diary-entries-head h2,
+.dark-theme.mindora-section-page .diary-saved-card h3,
+.dark-theme.mindora-section-page .insight-stat-grid strong,
+.dark-theme.mindora-section-page .insight-chart-card h2,
+.dark-theme.mindora-section-page .mindful-tool-title { color: #fff0be; }
+.dark-theme.mindora-section-page .diary-editor,
+.dark-theme.mindora-section-page .diary-saved-card,
+.dark-theme.mindora-section-page .insight-stat-grid article,
+.dark-theme.mindora-section-page .insight-chart-card,
+.dark-theme.mindora-section-page .mindful-tool-card { background: #382d2a; border-color: #57413a; color: #f7e9df; }
+.dark-theme.mindora-section-page .diary-writing textarea,
+.dark-theme.mindora-section-page .diary-title-label input { color: #fff0be; background-color: #453431; border-color: #674a41; }
+.dark-theme.mindora-section-page textarea::placeholder,
+.dark-theme.mindora-section-page input::placeholder { color: #cbb5a9; opacity: 1; }
+.dark-theme.mindora-section-page .diary-paper-top { background: #453431; border-color: #57413a; color: #e2cfc4; }
+.dark-theme.mindora-section-page .diary-prompt-card,
+.dark-theme.mindora-section-page .mindful-intro-card,
+.dark-theme.mindora-section-page .insight-kind-note { background: #49342e; border-color: #674a41; color: #f7e9df; }
+.dark-theme.mindora-section-page .diary-prompt-card p,
+.dark-theme.mindora-section-page .mindful-intro-card p,
+.dark-theme.mindora-section-page .insight-kind-note p,
+.dark-theme.mindora-section-page .diary-saved-card>p { color: #e2cfc4; }
+.dark-theme.mindora-section-page .diary-reminder { background: #453431; border-color: #674a41; color: #f7e9df; }
+.dark-theme.mindora-section-page .incognito-options button { background: #453431; border-color: #674a41; color: #f7e9df; }
+.dark-theme.mindora-section-page .incognito-options button.selected { background: #ff9a86; border-color: #ff9a86; color: #382623; }
+.dark-theme.mindora-section-page .insight-chart { background: #302624; border-color: #674a41; }
+
