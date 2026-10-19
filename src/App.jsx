@@ -25,6 +25,7 @@ import {
   Leaf,
   Check,
   ShieldCheck,
+  Gamepad2,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -44,6 +45,7 @@ import AuthPage from "./AuthPage";
 import { JournalPage, InsightsPage, MindfulMomentsPage, MoodHeatmapPage } from "./DashboardPages";
 import IncognitoCheckinPage from "./IncognitoCheckinPage";
 import ProfilePage from "./ProfilePage";
+import GamesZone from "./GamesZone";
 
 import {
   CalmCorner,
@@ -486,6 +488,7 @@ function Dashboard() {
     if (section === "Mood heatmap") navigate("/mood-heatmap");
     if (section === "Calm Corner") navigate("/calm-corner");
     if (section === "My profile") navigate("/profile");
+    if (section === "Play & Unwind") navigate("/games");
   }
 
   const navItems = [
@@ -495,6 +498,7 @@ function Dashboard() {
     { label: t("Mindful moments", "सुकून के पल"), icon: Wind, routeLabel: "Mindful moments" },
     { label: t("Incognito check-in", "निजी चेक-इन"), icon: ShieldCheck, routeLabel: "Incognito check-in" },
     { label: t("Mood heatmap", "मूड मैप"), icon: Sparkles, routeLabel: "Mood heatmap" },
+    { label: t("Play & Unwind", "खेलें और सुकून पाएँ"), icon: Gamepad2, routeLabel: "Play & Unwind" },
   ];
 
   return (
@@ -1226,6 +1230,7 @@ function App() {
         <Route path="/incognito-checkin" element={<IncognitoCheckinPage />} />
         <Route path="/mood-heatmap" element={<MoodHeatmapPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/games" element={<GamesZone />} />
 
         {/* Mindora wellness pages */}
         <Route path="/calm-corner" element={<CalmCorner />} />
