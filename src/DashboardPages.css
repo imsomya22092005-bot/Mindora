@@ -433,3 +433,21 @@ main.mindora-section-page:has(.insight-chart-card) .section-page-title h1 em{
 .journal-diary-scene.diary-is-open .journal-loose-page{position:relative;top:auto;left:auto;width:min(100%,900px);min-height:0;max-height:none;margin:-48px auto 0;overflow:visible;transform:none;box-shadow:0 22px 55px rgba(46,67,42,.17)}
 .journal-diary-scene.diary-is-open .journal-loose-page.page-in-motion{animation:journalPageLift .7s cubic-bezier(.2,.8,.2,1) both}
 @media(max-width:760px){.journal-diary-scene.diary-is-open .journal-diary-cover{min-height:300px;transform:translateY(-8px) scale(.97)}.journal-diary-scene.diary-is-open .journal-cover-content{min-height:300px;padding:28px 25px 25px 45px}.journal-diary-scene.diary-is-open .journal-loose-page{margin:-20px auto 0;width:100%}.journal-diary-scene.diary-is-open .journal-page-body{padding:22px 18px}.journal-diary-scene.diary-is-open .journal-writing-scrapbook{grid-template-columns:1fr}}
+
+/* Private check-in page preferences and contrast fixes */
+.incognito-page{position:relative;padding-top:72px}
+.incognito-page-controls{position:absolute;top:18px;right:max(22px,calc((100% - 1160px)/2));display:flex;align-items:center;gap:9px;z-index:5}
+.incognito-language-control{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:11px;font-weight:600}
+.incognito-language-control select,.incognito-theme-control{min-height:36px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);padding:0 11px;font:600 11px 'DM Sans',sans-serif}
+.incognito-theme-control{display:flex;align-items:center;gap:7px;cursor:pointer}
+.incognito-page .section-page-title p{color:var(--muted);opacity:1;visibility:visible}
+.incognito-page .incognito-question legend{color:var(--ink);opacity:1;visibility:visible}
+.incognito-page .incognito-privacy-note p,.incognito-page .incognito-suggestion p{opacity:1;visibility:visible}
+.incognito-page.dark-theme .incognito-checkin-card{background:var(--paper);border-color:var(--line)}
+.incognito-page.dark-theme .incognito-question legend{color:#edf4e9}
+.incognito-page.dark-theme .incognito-options button{color:#e1e9df;background:#202c23;border-color:#465747}
+.incognito-page.dark-theme .incognito-options button.selected{background:#35513a;color:#fff;border-color:#8aaf83}
+.incognito-page.dark-theme .incognito-result h2{color:#edf4e9}
+.incognito-page.dark-theme .incognito-result>p,.incognito-page.dark-theme .incognito-disclaimer{color:#c4d0c0}
+.incognito-page.dark-theme .section-page-footer{color:#b1bfb0}
+@media(max-width:600px){.incognito-page{padding-top:76px}.incognito-page-controls{top:12px;left:14px;right:14px;justify-content:flex-end}.incognito-language-control{margin-right:auto}.incognito-theme-control{padding:0 9px}.incognito-theme-control span{font-size:10px}}
