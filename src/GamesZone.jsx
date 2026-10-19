@@ -129,11 +129,23 @@ export default function GamesZone() {
       if (!state.targets.length) state.targets = makeTargets(rect.width, rect.height, selectedLevel.speed);
     };
     resize();
+    // Seed the bubbles immediately as well as in resize, so the first frame
+    // never starts with an empty target list.
+    if (!state.targets.length) {
+      const rect = canvas.getBoundingClientRect();
+      state.targets = makeTargets(rect.width || 600, rect.height || 360, selectedLevel.speed);
+    }
     window.addEventListener("resize", resize);
 
     const draw = () => {
       if (state.finished) return;
-      const w = canvas.clientWidth, h = canvas.clientHeight;
+      const w = canvas.clientWidth || canvas.getBoundingClientRect().width || 600;
+      const h = canvas.clientHeight || canvas.getBoundingClientRect().height || 360;
+      // Safety fallback: make sure targets exist even if the first resize happened
+      // before the canvas finished laying out in the browser.
+      if (!state.targets.length) {
+        state.targets = makeTargets(w, h, selectedLevel.speed);
+      }
       ctx.clearRect(0, 0, w, h);
       const bg = ctx.createLinearGradient(0, 0, w, h);
       bg.addColorStop(0, "#fff0e9"); bg.addColorStop(.34, "#f7edff"); bg.addColorStop(.68, "#e5f8f2"); bg.addColorStop(1, "#fff5ce");
