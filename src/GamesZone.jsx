@@ -221,6 +221,7 @@ export default function GamesZone() {
       const r = canvas.getBoundingClientRect();
       state.pointer = { x: e.clientX-r.left, y: e.clientY-r.top };
     };
+    draw();
     canvas.addEventListener("pointerdown", shoot);
     canvas.addEventListener("pointermove", move);
     return () => {
@@ -283,7 +284,7 @@ export default function GamesZone() {
     </section> : null}
 
     {activeGame === "color-pop" && playing ? <section className="colorpop-shell">
-      <div className="colorpop-top"><div><span className="colorpop-kicker">MINDORA ARCADE · {difficulty.toUpperCase()}</span><h2>Color Pop <span>✦</span></h2><p>{hi?"इस रंग के बबल्स पॉप करें:":"Pop this colour:"} <strong className="colorpop-target-label"><i style={{background:targetDetails.color}}/>{hi?targetDetails.hi:targetDetails.name}</strong></p></div>
+      <div className="colorpop-top"><div><span className="colorpop-kicker">{hi ? `मिंडोरा आर्केड · ${levels[difficulty].hi}` : `MINDORA ARCADE · ${difficulty.toUpperCase()}`}</span><h2>Color Pop <span>✦</span></h2><p>{hi?"इस रंग के बबल्स पॉप करें:":"Pop this colour:"} <strong className="colorpop-target-label"><i style={{background:targetDetails.color}}/>{hi?targetDetails.hi:targetDetails.name}</strong></p></div>
         <div className="colorpop-stats"><span><Star size={16}/>{hi?"स्कोर":"Score"} <b>{score}</b></span><span><Clock3 size={16}/>{hi?"समय":"Time"} <b>{remaining}s</b></span></div>
       </div>
       <div className="colorpop-progress-row"><span>{hi?"सही बबल्स":"Correct bubbles"} <b>{correct}/{levels[difficulty].target}</b></span><span>{hi?"गलत":"Wrong"} <b>{wrong}</b></span></div>
