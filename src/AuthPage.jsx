@@ -38,7 +38,7 @@ export default function AuthPage({ mode = "login" }) {
       localStorage.setItem("mindora-token", result.token);
       localStorage.setItem("mindora-user", JSON.stringify(result.user));
       setSuccess("Signed in with Google. Opening your space…");
-      window.setTimeout(() => navigate(location.state?.from || "/dashboard"), 450);
+      window.setTimeout(() => navigate("/dashboard"), 450);
     } catch (requestError) {
       setError(requestError.message || "Google sign-in failed. Please try again.");
     } finally {
@@ -116,7 +116,7 @@ export default function AuthPage({ mode = "login" }) {
         localStorage.setItem("mindora-token", result.token);
         localStorage.setItem("mindora-user", JSON.stringify(result.user));
         setSuccess("Verified successfully. Opening your space…");
-        window.setTimeout(() => navigate(location.state?.from || "/dashboard"), 450);
+        window.setTimeout(() => navigate("/dashboard"), 450);
       }
     } catch (requestError) {
       setError(requestError.message || "Unable to connect to Mindora. Please try again.");
