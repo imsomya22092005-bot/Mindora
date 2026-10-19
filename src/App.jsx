@@ -121,11 +121,11 @@ const mindfulPractices = [
 ];
 
 const moods = [
-  { label: "Low", emoji: "😔", value: 2, color: "#dce6f3" },
-  { label: "Meh", emoji: "😕", value: 4, color: "#e9e4f4" },
-  { label: "Okay", emoji: "😐", value: 6, color: "#f3e8c9" },
-  { label: "Good", emoji: "🙂", value: 8, color: "#dcebd9" },
-  { label: "Great", emoji: "😁", value: 10, color: "#cce5d0" },
+  { label: "Low", emoji: "😔", value: 2, color: "#ffec9e" },
+  { label: "Meh", emoji: "😕", value: 4, color: "#ffdfb5" },
+  { label: "Okay", emoji: "😐", value: 6, color: "#ffbb70" },
+  { label: "Good", emoji: "🙂", value: 8, color: "#ffd1a0" },
+  { label: "Great", emoji: "😁", value: 10, color: "#ed9455" },
 ];
 
 const initialActivity = [
@@ -917,12 +917,12 @@ function Dashboard() {
                       >
                         <stop
                           offset="0%"
-                          stopColor="#8cae89"
+                          stopColor="#ed9455"
                           stopOpacity={0.35}
                         />
                         <stop
                           offset="95%"
-                          stopColor="#8cae89"
+                          stopColor="#ed9455"
                           stopOpacity={0.02}
                         />
                       </linearGradient>
@@ -934,14 +934,14 @@ function Dashboard() {
                     />
                     <XAxis
                       dataKey="day"
-                      tick={{ fill: "#899487", fontSize: 10 }}
+                      tick={{ fill: "#806b61", fontSize: 10 }}
                       axisLine={false}
                       tickLine={false}
                     />
                     <YAxis
                       domain={[0, 10]}
                       ticks={[0, 2, 4, 6, 8, 10]}
-                      tick={{ fill: "#899487", fontSize: 10 }}
+                      tick={{ fill: "#806b61", fontSize: 10 }}
                       axisLine={false}
                       tickLine={false}
                     />
@@ -956,12 +956,12 @@ function Dashboard() {
                     <Area
                       type="monotone"
                       dataKey="mood"
-                      stroke="#729572"
+                      stroke="#ed9455"
                       strokeWidth={2.5}
                       fill="url(#moodFill)"
                       activeDot={{
                         r: 5,
-                        fill: "#729572",
+                        fill: "#ed9455",
                         stroke: "#ffffff",
                         strokeWidth: 2,
                       }}
