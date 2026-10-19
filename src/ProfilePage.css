@@ -43,3 +43,17 @@
 .dark-theme .profile-hero{background:linear-gradient(125deg,#49342e,#62402f 58%,#75503a);color:#fffbda}.dark-theme .profile-eyebrow,.dark-theme .profile-hero p{color:#f0d8c9}.dark-theme .profile-big-avatar{background:linear-gradient(145deg,#fffbda,#ffbb70);color:#49342e}
 .dark-theme .profile-detail-card{border-color:#59443b;background:#382d2a}.dark-theme .profile-detail-label,.dark-theme .profile-detail-card small{color:#d0b9a7}.dark-theme .profile-detail-card strong{color:#fffbda}.dark-theme .profile-bottom-card{border-color:#59443b;background:#382d2a}.dark-theme .profile-bottom-card>div,.dark-theme .profile-bottom-card strong{color:#fffbda}.dark-theme .profile-bottom-card p{color:#e6d4c3}.dark-theme .profile-bottom-card button{background:#ed9455;color:#39271e}
 
+
+/* Global dark-theme contrast fixes */
+
+html[data-mindora-theme="dark"] .profile-page{background:radial-gradient(ellipse at 50% 0%,#49342e 0,transparent 42%),#292323;color:#fff3df}
+html[data-mindora-theme="dark"] .profile-back,html[data-mindora-theme="dark"] .profile-wordmark{color:#ffbb70}
+html[data-mindora-theme="dark"] .profile-hero{background:linear-gradient(125deg,#49342e,#62402f 58%,#75503a);color:#fffbda}
+html[data-mindora-theme="dark"] .profile-eyebrow,html[data-mindora-theme="dark"] .profile-hero p{color:#f0d8c9}
+html[data-mindora-theme="dark"] .profile-detail-card{border-color:#59443b;background:#382d2a}
+html[data-mindora-theme="dark"] .profile-detail-label,html[data-mindora-theme="dark"] .profile-detail-card small{color:#d0b9a7}
+html[data-mindora-theme="dark"] .profile-detail-card strong,html[data-mindora-theme="dark"] .profile-bottom-card>div,html[data-mindora-theme="dark"] .profile-bottom-card strong{color:#fffbda}
+html[data-mindora-theme="dark"] .profile-bottom-card{border-color:#59443b;background:#382d2a}
+html[data-mindora-theme="dark"] .profile-bottom-card p{color:#e6d4c3}
+html[data-mindora-theme="dark"] .profile-bottom-card button{background:#ed9455;color:#39271e}
+
