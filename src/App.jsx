@@ -36,6 +36,7 @@ import {
   Tooltip,
 } from "recharts";
 import "./App.css";
+import { useLanguage } from "./language";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { apiRequest } from "./api";
 import LandingPage from "./LandingPage";
@@ -190,7 +191,8 @@ function MindfulPracticePage() {
   const { practiceId } = useParams();
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
-  const hi = localStorage.getItem("mindora-language") === "hi";
+  const [language] = useLanguage();
+  const hi = language === "hi";
   const practice = mindfulPractices.find((item) => item.id === practiceId);
 
   if (!practice) {
@@ -247,7 +249,7 @@ function Dashboard() {
   const [searchText, setSearchText] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [language, setLanguage] = useState(() => localStorage.getItem("mindora-language") || "en");
+  const [language, setLanguage] = useLanguage();
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const currentUser = (() => { try { return JSON.parse(localStorage.getItem("mindora-user") || "{}"); } catch { return {}; } })();
   const [bookPage, setBookPage] = useState(0);
