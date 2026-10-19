@@ -1189,7 +1189,7 @@ function Dashboard() {
 }
 
 function GlobalPagePreferences() {
-  const [language, setLanguage] = useState(() => localStorage.getItem("mindora-language") || "en");
+  const [language, setLanguage] = useLanguage();
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("mindora-theme") === "dark");
   const [open, setOpen] = useState(false);
   const hi = language === "hi";
