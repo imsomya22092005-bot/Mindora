@@ -24,3 +24,8 @@ html[data-mindora-theme="dark"] {
   color: #f7e9df;
   background: #292323;
 }
+
+/* Latest Mindora light palette: Butter, apricot and warm peach. */
+:root { color:#49342e; background:#fffbda; }
+body { background:#fffbda; color:#49342e; }
+html[data-mindora-theme="dark"] { background:#292323; color:#fff3df; }
