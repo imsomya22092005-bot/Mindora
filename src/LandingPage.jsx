@@ -65,7 +65,6 @@ export default function LandingPage() {
         </a>
 
         <nav className="landing-nav-links">
-          <a href="/dashboard">{hi ? "होम" : "Home"}</a>
           <a href="#why-mindora">{hi ? "माइंडोरा क्यों" : "Why Mindora"}</a>
           <a href="#features">{hi ? "सुविधाएँ" : "Features"}</a>
           <a href="#how-it-works">{hi ? "यह कैसे काम करता है" : "How it works"}</a>
