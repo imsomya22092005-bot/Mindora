@@ -90,3 +90,53 @@ html[data-mindora-theme="dark"] .colorpop-result-stats>div{background:#252f3e;bo
 html[data-mindora-theme="dark"] .colorpop-result-stats span{color:#b7c4d6}
 html[data-mindora-theme="dark"] .colorpop-canvas-wrap{border-color:#3a4658;background:#1c2532}
 html[data-mindora-theme="dark"] .colorpop-canvas-wrap canvas{background:#1c2532}
+
+
+/* Let It Burn — warm stationery, candlelight and a gentle release */
+.burn-experience{max-width:1050px;margin:0 auto;padding:clamp(22px,4vw,44px);border:1px solid rgba(255,255,255,.7);border-radius:32px;background:radial-gradient(ellipse at 8% 10%,rgba(224,177,135,.23),transparent 32%),radial-gradient(ellipse at 90% 85%,rgba(184,143,137,.18),transparent 32%),linear-gradient(145deg,rgba(255,250,242,.92),rgba(248,237,226,.9));box-shadow:0 24px 75px rgba(91,67,52,.11);overflow:hidden}
+.burn-hero{text-align:center;max-width:620px;margin:0 auto 30px}
+.burn-eyebrow{font-size:10px;letter-spacing:.2em;font-weight:800;color:#a27d68}
+.burn-hero h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(29px,4.5vw,46px);font-weight:500;line-height:1.18;letter-spacing:-.035em;color:#59483e;margin:14px 0}
+.burn-hero p{font-size:14px;line-height:1.9;color:#927f72;max-width:470px;margin:0 auto}
+.burn-scene{position:relative;max-width:760px;margin:0 auto;padding:20px 24px 28px;display:flex;justify-content:center;isolation:isolate}
+.burn-scene:before{content:"";position:absolute;inset:5% 7% 0;border-radius:50%;background:radial-gradient(ellipse,rgba(218,172,127,.22),rgba(218,172,127,0) 68%);z-index:-1}
+.burn-letter{position:relative;width:min(100%,610px);min-height:390px;padding:29px clamp(22px,4vw,43px) 22px;background:repeating-linear-gradient(to bottom,#fffaf0 0,#fffaf0 34px,#eadfce 35px);border:1px solid #e5d4b9;border-radius:3px 3px 10px 3px;box-shadow:0 22px 40px rgba(104,76,52,.16),inset 0 0 32px rgba(190,150,105,.09);transform:rotate(-.5deg);transition:opacity .3s}
+.burn-letter:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 0 0,rgba(184,139,92,.08),transparent 50%),radial-gradient(ellipse at 100% 100%,rgba(184,139,92,.1),transparent 45%)}
+.burn-letter-top{display:flex;justify-content:space-between;align-items:center;color:#b39a7c;font:700 10px Georgia,serif;letter-spacing:.19em}
+.burn-letter-top span:last-child{font-size:21px;color:#c69c6e}
+.burn-date{font:italic 12px Georgia,serif;color:#b49c80;margin:15px 0 8px}
+.burn-letter textarea{position:relative;z-index:1;display:block;width:100%;height:245px;resize:vertical;padding:0;border:0;outline:0;background:transparent;font-family:'Segoe Print','Bradley Hand','Comic Sans MS',cursive;font-size:clamp(16px,2vw,19px);line-height:35px;letter-spacing:.2px}
+.burn-letter textarea::placeholder{color:#c0ae98;opacity:1}
+.burn-letter-foot{position:relative;z-index:1;display:flex;justify-content:space-between;gap:10px;margin-top:8px;color:#b29c81;font-size:10px;letter-spacing:.02em}
+.burn-candle{position:absolute;right:calc(50% - 370px);bottom:0;width:42px;height:69px;border-radius:7px 7px 4px 4px;background:linear-gradient(90deg,#d8c0a3,#fff0d8 42%,#d7bda0);box-shadow:0 12px 18px rgba(115,78,46,.18);z-index:-1}
+.burn-candle:before{content:"";position:absolute;left:16px;top:-24px;width:10px;height:27px;border-radius:50% 50% 45% 45%;background:radial-gradient(ellipse at 50% 70%,#fff2b0 0 18%,#e9a45c 45%,rgba(222,123,57,0) 75%);filter:drop-shadow(0 0 10px rgba(226,153,78,.7));animation:candle-flicker 2.1s ease-in-out infinite alternate}
+.burn-candle:after{content:"";position:absolute;top:-3px;left:18px;width:5px;height:8px;background:#705343;border-radius:2px}
+@keyframes candle-flicker{from{transform:rotate(-5deg) scale(.92)}to{transform:rotate(5deg) scale(1.08)}}
+.burn-actions{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:3px}
+.burn-pen-row{display:flex;align-items:center;gap:12px;color:#a18b7a;font-size:10px;letter-spacing:.13em;font-weight:800}
+.burn-pen-row button{width:30px;height:30px;border:1px solid #e6d9c9;background:#fffaf3;border-radius:50%;display:grid;place-items:center;cursor:pointer}
+.burn-pen-row button.active{outline:2px solid #c9a98c;outline-offset:2px}
+.burn-pen-row i{width:15px;height:15px;border-radius:50%}
+.burn-button,.burn-confirm button,.burn-after button{border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:13px 23px;background:linear-gradient(135deg,#9d6954,#bd8a6a);color:#fffaf4;font-size:13px;font-weight:700;letter-spacing:.02em;box-shadow:0 9px 24px rgba(139,91,67,.2);cursor:pointer;transition:transform .2s,box-shadow .2s}
+.burn-button:hover,.burn-confirm button:hover,.burn-after button:hover{transform:translateY(-2px);box-shadow:0 13px 28px rgba(139,91,67,.25)}
+.burn-button:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.burn-button span{margin-left:8px;color:#ffe0a9}
+.burn-note{font-size:11px;color:#b19b88;text-align:center;margin:0}
+.burn-confirm{text-align:center;max-width:500px;padding:18px 24px;border:1px solid #e8d5c1;border-radius:20px;background:rgba(255,249,238,.75)}
+.burn-confirm p{font:italic 15px Georgia,serif;color:#8f7665;line-height:1.7;margin:0 0 14px}
+.burn-confirm .burn-keep{display:block;margin:8px auto 0;background:transparent;border:0;box-shadow:none;color:#9b8372;font-weight:500}
+.burn-letter.burning{animation:letter-release 1.8s ease-in forwards;pointer-events:none}
+@keyframes letter-release{0%{opacity:1;filter:none;transform:rotate(-.5deg) scale(1)}25%{filter:sepia(.55) brightness(.9);box-shadow:0 0 24px rgba(227,132,63,.38);transform:rotate(1deg) scale(.99)}55%{filter:sepia(.95) brightness(.7);opacity:.8;transform:rotate(-2deg) scale(.94) translateY(-8px)}100%{filter:sepia(1) brightness(.2);opacity:0;transform:rotate(4deg) scale(.72) translateY(-32px)}}
+.burn-after{position:relative;z-index:2;min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px 8px}
+.burn-after>span{font-size:38px;color:#c39b6c}
+.burn-after h3{font:500 27px Georgia,serif;color:#695244;margin:15px 0 8px}
+.burn-after p{max-width:350px;font:italic 14px Georgia,serif;color:#9c8470;line-height:1.8}
+.burn-after button{margin-top:12px}
+html[data-mindora-theme="dark"] .burn-experience{background:radial-gradient(ellipse at 8% 10%,rgba(159,103,77,.22),transparent 32%),radial-gradient(ellipse at 90% 85%,rgba(113,92,115,.2),transparent 32%),linear-gradient(145deg,#252733,#242a30);border-color:#42424a}
+html[data-mindora-theme="dark"] .burn-hero h2{color:#f0e5d8}
+html[data-mindora-theme="dark"] .burn-hero p{color:#c1b3a7}
+html[data-mindora-theme="dark"] .burn-eyebrow{color:#d5ad8c}
+html[data-mindora-theme="dark"] .burn-note{color:#b8a99d}
+html[data-mindora-theme="dark"] .burn-confirm{background:#343039;border-color:#625047}
+html[data-mindora-theme="dark"] .burn-confirm p{color:#ead7c5}
+@media(max-width:600px){.burn-experience{padding:23px 14px;border-radius:23px}.burn-scene{padding:15px 0 24px}.burn-letter{min-height:360px;padding:23px 18px 18px}.burn-letter textarea{height:220px;line-height:32px}.burn-candle{right:5px;transform:scale(.8);transform-origin:bottom right}.burn-letter-foot{font-size:9px}}
