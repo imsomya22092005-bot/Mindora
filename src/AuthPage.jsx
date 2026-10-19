@@ -164,7 +164,7 @@ export default function AuthPage({ mode = "login" }) {
         <div className="auth-visual-footer"><span>✳</span> {hi ? "आपकी गति। आपकी जगह। आपकी यात्रा।" : "Your pace. Your space. Your journey."}</div>
       </section>
 
-      <section className="auth-form-side"><div className="auth-preference-controls"><select aria-label="Language" value={language} onChange={event => {setLanguage(event.target.value);localStorage.setItem("mindora-language",event.target.value);}}><option value="en">English</option><option value="hi">हिन्दी</option></select><button type="button" onClick={()=>setDarkMode(v=>!v)} aria-label="Toggle theme">{darkMode?"☀":"☾"}</button></div>
+      <section className="auth-form-side">
         <Link to="/" className="auth-close-home" aria-label="Skip login and return to landing page" title="Back to landing page"><X size={20} /></Link>
         <Link className="auth-mobile-brand" to="/"><img src="/favicon.svg" alt="" /> mindora</Link>
         <div className="auth-form-wrap">
