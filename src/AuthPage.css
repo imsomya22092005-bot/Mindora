@@ -107,3 +107,7 @@
 .auth-close-home{position:absolute;z-index:11;top:20px;right:20px;display:grid;place-items:center;width:40px;height:40px;border:1px solid #dce5d8;border-radius:13px;background:#fffdf7;color:#304a35}
 .auth-dark .auth-preference-controls select,.auth-dark .auth-preference-controls button,.auth-dark .auth-close-home{background:#25372a;color:#e5eee1;border-color:#405844}
 @media(max-width:760px){.auth-preference-controls{top:14px;right:60px;gap:5px}.auth-preference-controls select{min-width:84px;width:90px;height:36px;padding:0 7px}.auth-preference-controls button,.auth-close-home{width:36px;height:36px}.auth-close-home{top:14px;right:14px}}
+
+
+/* Keep language/theme controls on the landing page only, never over the login/register form. */
+.auth-page .auth-preference-controls { display: none !important; }
