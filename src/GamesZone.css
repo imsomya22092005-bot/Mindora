@@ -164,3 +164,67 @@ html[data-mindora-theme="dark"] .burn-confirm p{color:#ead7c5}
 @keyframes smoke-rise{0%{opacity:0;transform:translate(0,15px) scale(.55)}20%{opacity:.65}100%{opacity:0;transform:translate(18px,-145px) scale(3.8)}}
 html[data-mindora-theme="dark"] .burn-instruction{color:#c3b2a4}
 @media(max-width:600px){.burn-scene{min-height:430px}.burn-candle{right:4px}.burn-candle.candle-at-paper{right:calc(50% + 125px);bottom:28px}.burn-smoke{bottom:80px}.burn-letter.catching-fire:before{height:32%}}
+
+
+
+/* Peach Sunrise games hub palette. Keep each game's gameplay logic unchanged. */
+.games-page {
+  background: radial-gradient(ellipse at 8% 8%,rgba(255,154,134,.22),transparent 32%),radial-gradient(ellipse at 92% 12%,rgba(255,214,166,.35),transparent 32%),linear-gradient(135deg,#fff0be 0%,#fff7e5 55%,#ffe1d5 100%);
+  color: #49342e;
+}
+.games-brand>span { background: linear-gradient(135deg,#ffb399,#ffd6a6); color: #49342e; }
+.games-brand h1, .games-welcome h2, .game-card-copy strong, .colorpop-top h2, .colorpop-level strong, .colorpop-preview strong, .colorpop-results h2, .colorpop-result-stats strong, .game-coming-card h2 { color: #49342e; }
+.games-brand small, .colorpop-kicker { color: #a95043; }
+.games-header>p, .games-welcome p, .game-card-copy>span, .games-footer, .colorpop-top p, .colorpop-progress-row, .colorpop-results>p, .game-coming-card p { color: #806b61; }
+.games-welcome, .game-card, .colorpop-shell, .game-coming-card { background: rgba(255,250,240,.92); border-color: #f0d8bc; }
+.game-rainbow .game-card-art { background: linear-gradient(135deg,#ffb399,#ffd6a6,#fff0be); }
+.game-night .game-card-art { background: linear-gradient(135deg,#49342e,#a95043,#ffb399); }
+.game-paper .game-card-art { background: linear-gradient(135deg,#fff0be,#ffd6a6,#ffb399); }
+.game-glow .game-card-art { background: linear-gradient(135deg,#49342e,#a95043,#ffd6a6); }
+.game-rain .game-card-art { background: linear-gradient(135deg,#fff0be,#ffe1d5,#ffb399); }
+.colorpop-level.selected { border-color: #ff9a86; box-shadow: 0 0 0 3px rgba(255,154,134,.18); background: linear-gradient(145deg,#fffaf0,#ffe7d5); }
+.colorpop-preview { background: linear-gradient(110deg,rgba(255,179,153,.42),rgba(255,214,166,.48),rgba(255,240,190,.75)); }
+.colorpop-progress span { background: linear-gradient(90deg,#ff9a86,#ffb399,#ffd6a6); }
+.colorpop-controls .colorpop-soft { background: #ff9a86; color: #49342e; border-color: #ff9a86; }
+html[data-mindora-theme="dark"] .games-page {
+  background: radial-gradient(ellipse at 8% 8%,rgba(255,154,134,.12),transparent 32%),radial-gradient(ellipse at 92% 12%,rgba(255,214,166,.09),transparent 32%),linear-gradient(135deg,#292323 0%,#302624 55%,#382d2a 100%);
+  color: #f7e9df;
+}
+html[data-mindora-theme="dark"] .games-back,
+html[data-mindora-theme="dark"] .colorpop-shell,
+html[data-mindora-theme="dark"] .games-welcome,
+html[data-mindora-theme="dark"] .game-card,
+html[data-mindora-theme="dark"] .game-coming-card { background: rgba(56,45,42,.97); border-color: #57413a; color: #f7e9df; }
+html[data-mindora-theme="dark"] .games-brand h1,
+html[data-mindora-theme="dark"] .games-welcome h2,
+html[data-mindora-theme="dark"] .game-card-copy strong,
+html[data-mindora-theme="dark"] .colorpop-top h2,
+html[data-mindora-theme="dark"] .colorpop-level strong,
+html[data-mindora-theme="dark"] .colorpop-preview strong,
+html[data-mindora-theme="dark"] .colorpop-results h2,
+html[data-mindora-theme="dark"] .colorpop-result-stats strong,
+html[data-mindora-theme="dark"] .game-coming-card h2 { color: #fff0be; }
+html[data-mindora-theme="dark"] .games-header>p,
+html[data-mindora-theme="dark"] .games-welcome p,
+html[data-mindora-theme="dark"] .game-card-copy>span,
+html[data-mindora-theme="dark"] .games-footer,
+html[data-mindora-theme="dark"] .colorpop-top p,
+html[data-mindora-theme="dark"] .colorpop-progress-row,
+html[data-mindora-theme="dark"] .colorpop-results>p,
+html[data-mindora-theme="dark"] .game-coming-card p { color: #e2cfc4; }
+html[data-mindora-theme="dark"] .games-brand small,
+html[data-mindora-theme="dark"] .colorpop-kicker { color: #ffb399; }
+html[data-mindora-theme="dark"] .colorpop-level,
+html[data-mindora-theme="dark"] .colorpop-target-label,
+html[data-mindora-theme="dark"] .colorpop-stats span,
+html[data-mindora-theme="dark"] .colorpop-controls button,
+html[data-mindora-theme="dark"] .game-coming-card button { background: #453431; border-color: #674a41; color: #f7e9df; }
+html[data-mindora-theme="dark"] .colorpop-level.selected { background: #49342e; border-color: #ff9a86; }
+html[data-mindora-theme="dark"] .colorpop-stats b,
+html[data-mindora-theme="dark"] .colorpop-progress-row b { color: #fff0be; }
+html[data-mindora-theme="dark"] .colorpop-controls .colorpop-soft { background: #ff9a86; border-color: #ff9a86; color: #382623; }
+html[data-mindora-theme="dark"] .colorpop-progress { background: #59413a; }
+html[data-mindora-theme="dark"] .colorpop-result-stats>div { background: #453431; border-color: #674a41; }
+html[data-mindora-theme="dark"] .colorpop-result-stats span { color: #e2cfc4; }
+html[data-mindora-theme="dark"] .colorpop-canvas-wrap, html[data-mindora-theme="dark"] .colorpop-canvas-wrap canvas { border-color: #674a41; background: #302624; }
+
