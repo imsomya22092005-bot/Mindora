@@ -48,7 +48,8 @@ function Shell({ title, subtitle, icon, children }) {
 }
 
 export function CalmCorner() {
-  const hi = localStorage.getItem("mindora-language") === "hi";
+  const [language] = useLanguage();
+  const hi = language === "hi";
   const [breathing, setBreathing] = useState(false);
   const [grounding, setGrounding] = useState(0);
 
@@ -129,7 +130,8 @@ const careActions = [
 ];
 
 export function InnerGarden() {
-  const hi = localStorage.getItem("mindora-language") === "hi";
+  const [language] = useLanguage();
+  const hi = language === "hi";
   const [completed, setCompleted] = useState(() => {
     try { return JSON.parse(localStorage.getItem("mindora-garden-progress")) || []; }
     catch { return []; }
@@ -203,7 +205,8 @@ const comfortMessages = {
 };
 
 export function LittleComfortBox() {
-  const hi = localStorage.getItem("mindora-language") === "hi";
+  const [language] = useLanguage();
+  const hi = language === "hi";
   const [mood, setMood] = useState("Anxious");
   const [seenByMood, setSeenByMood] = useState({});
   const [swipeOffset, setSwipeOffset] = useState({ x: 0, y: 0 });
@@ -322,7 +325,8 @@ export function LittleComfortBox() {
 }
 
 export function MoodSoundscape() {
-  const hi = localStorage.getItem("mindora-language") === "hi";
+  const [language] = useLanguage();
+  const hi = language === "hi";
   const [selected, setSelected] = useState("rain");
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(50);
