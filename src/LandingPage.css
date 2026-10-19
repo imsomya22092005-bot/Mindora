@@ -2160,3 +2160,64 @@ body {
   position: relative !important;
   z-index: 20 !important;
 }
+
+
+
+/* Peach Sunrise palette overrides — keep the existing layout and motion intact. */
+.mindora-landing {
+  --sage: #a95043;
+  --sage-dark: #49342e;
+  --sage-light: #ffe1d5;
+  --cream: #fff0be;
+  --text: #49342e;
+  --muted: #806b61;
+  background: #fff0be;
+  color: #49342e;
+}
+.mindora-landing .landing-navbar,
+.mindora-landing .landing-intro,
+.mindora-landing .landing-why,
+.mindora-landing .landing-features,
+.mindora-landing .landing-preview,
+.mindora-landing .landing-how,
+.mindora-landing .landing-difference,
+.mindora-landing .landing-cta { color: #49342e; }
+.mindora-landing .landing-feature-card,
+.mindora-landing .landing-why-grid article { background: #fffaf0; border-color: #f0d8bc; color: #49342e; }
+.mindora-landing .landing-dark-button,
+.mindora-landing .landing-primary-button,
+.mindora-landing .landing-cta a { background: #ff9a86; border-color: #ff9a86; color: #49342e; }
+.mindora-landing .landing-dark-button:hover,
+.mindora-landing .landing-primary-button:hover,
+.mindora-landing .landing-cta a:hover { background: #ffb399; border-color: #ffb399; color: #49342e; }
+.mindora-landing .landing-preference-controls select,
+.mindora-landing .landing-theme-toggle { background: #fffaf0; color: #49342e; border-color: #e8c7ad; }
+.mindora-landing.landing-dark { background: #292323; color: #f7e9df; }
+.landing-dark .landing-navbar,
+.landing-dark .landing-intro,
+.landing-dark .landing-why,
+.landing-dark .landing-features,
+.landing-dark .landing-preview,
+.landing-dark .landing-how,
+.landing-dark .landing-difference,
+.landing-dark .landing-cta { background-color: #292323; color: #f7e9df; }
+.landing-dark .landing-navbar a,
+.landing-dark h2,
+.landing-dark h3,
+.landing-dark p { color: inherit; }
+.landing-dark .landing-feature-card,
+.landing-dark .landing-why-grid article { background: #382d2a; border-color: #57413a; color: #f7e9df; }
+.landing-dark .landing-preference-controls select,
+.landing-dark .landing-theme-toggle { background: #453431; color: #fff0be; border-color: #674a41; }
+.landing-dark .landing-dark-button,
+.landing-dark .landing-primary-button,
+.landing-dark .landing-cta a { background: #ff9a86; border-color: #ff9a86; color: #382623; }
+.landing-dark .landing-dark-button:hover,
+.landing-dark .landing-primary-button:hover,
+.landing-dark .landing-cta a:hover { background: #ffb399; border-color: #ffb399; color: #382623; }
+.landing-dark .landing-intro h2,
+.landing-dark .landing-intro h2 span { color: #fff0be; }
+.landing-dark .landing-intro p,
+.landing-dark .landing-feature-card p,
+.landing-dark .landing-why-grid article p { color: #e2cfc4; }
+
