@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import "./LandingPage.css";
+import { useLanguage } from "./language";
 
 const features = [
   {
@@ -27,7 +28,7 @@ const features = [
 ];
 
 export default function LandingPage() {
-  const [language, setLanguage] = useState(() => localStorage.getItem("mindora-language") || "en");
+  const [language, setLanguage] = useLanguage();
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("mindora-theme") === "dark");
   const hi = language === "hi";
   useEffect(() => { localStorage.setItem("mindora-theme", darkMode ? "dark" : "light"); }, [darkMode]);
