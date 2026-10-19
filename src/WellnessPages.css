@@ -1050,3 +1050,18 @@
 .dark-theme .wellness-page .wellness-panel h2 { color: #fff0be !important; }
 .dark-theme .garden-summary > p, .dark-theme .garden-growth-note { color: #e2cfc4 !important; }
 
+
+/* Butter Peach palette refresh */
+
+.wellness-page{--wellness-bg:#fffbda;--wellness-card:#fffdf0;--wellness-text:#49342e;--wellness-muted:#806b61;--wellness-green:#ed9455;--wellness-light:#ffec9e;--wellness-border:#f1d6b4;background:radial-gradient(ellipse at 8% 4%,#ffec9e 0,transparent 30%),var(--wellness-bg);color:var(--wellness-text)}
+.wellness-page .wellness-panel,.wellness-page .rain-card,.wellness-page .garden-summary{background-color:#fffdf0;border-color:#f1d6b4;color:#49342e}.wellness-page h1,.wellness-page h2,.wellness-page h3{color:#49342e}.wellness-page p,.wellness-page .wellness-muted{color:#806b61}
+.wellness-page input,.wellness-page textarea,.wellness-page select{color:#49342e;background:#fffdf0;border-color:#e8c9a8}.wellness-page input::placeholder,.wellness-page textarea::placeholder{color:#8a756a;opacity:1}
+.dark-theme .wellness-page,.wellness-page.dark-theme{--wellness-bg:#292323;--wellness-card:#382d2a;--wellness-text:#fff3df;--wellness-muted:#d0b9a7;--wellness-green:#ed9455;--wellness-light:#49342e;--wellness-border:#59443b;background:radial-gradient(ellipse at 8% 4%,#49342e 0,transparent 30%),var(--wellness-bg);color:#fff3df}
+.dark-theme .wellness-page .wellness-panel,.dark-theme .wellness-page .rain-card,.dark-theme .wellness-page .garden-summary,.wellness-page.dark-theme .wellness-panel,.wellness-page.dark-theme .rain-card,.wellness-page.dark-theme .garden-summary{background:#382d2a;border-color:#59443b;color:#fff3df}
+.dark-theme .wellness-page h1,.dark-theme .wellness-page h2,.dark-theme .wellness-page h3,.wellness-page.dark-theme h1,.wellness-page.dark-theme h2,.wellness-page.dark-theme h3{color:#fffbda!important}
+.dark-theme .wellness-page p,.dark-theme .wellness-page .wellness-muted,.wellness-page.dark-theme p,.wellness-page.dark-theme .wellness-muted{color:#e6d4c3}
+.dark-theme .wellness-page input,.dark-theme .wellness-page textarea,.dark-theme .wellness-page select,.wellness-page.dark-theme input,.wellness-page.dark-theme textarea,.wellness-page.dark-theme select{background:#45352f;color:#fffbda;border-color:#705242}
+.dark-theme .wellness-page input::placeholder,.dark-theme .wellness-page textarea::placeholder,.wellness-page.dark-theme input::placeholder,.wellness-page.dark-theme textarea::placeholder{color:#d0b9a7;opacity:1}
+.dark-theme .wellness-heading h1,.dark-theme .garden-summary h2,.dark-theme .wellness-page .wellness-panel h2{color:#fffbda!important}
+.dark-theme .garden-summary>p,.dark-theme .garden-growth-note{color:#e6d4c3!important}
+
