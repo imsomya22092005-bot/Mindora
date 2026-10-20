@@ -110,17 +110,12 @@ export function JournalPage() {
       {diaryOpen && <section className={`journal-loose-page ${pageFlying ? "page-in-motion" : ""}`} aria-label="Diary writing page">
         <div className="journal-page-top"><span><Feather size={14}/> {hi ? "अपने साथ एक पल" : "A MOMENT WITH YOURSELF"}</span><span>{new Date().toLocaleDateString(hi ? "hi-IN" : "en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</span></div>
         <div className="journal-page-body">
-          <span className="journal-page-number">{hi ? "आज का पन्ना" : "TODAY'S PAGE"}</span>
-          <h2>{hi ? "प्रिय, आप..." : "Dear, you..."}</h2>
-          <p>{hi ? "इसे लिखने का कोई सही तरीका नहीं है। अपने विचारों से शुरुआत करें।" : "There is no right way to write this. Start wherever your thoughts are."}</p>
-          <div className="journal-writing-scrapbook">
-            <div className="journal-writing-column">
-              <label className="diary-title-label">{hi ? "इस पन्ने को एक नाम दें" : "GIVE THIS PAGE A TITLE"}<input value={title} onChange={e=>setTitle(e.target.value)} placeholder={hi ? "एक विचार जिसे मैं याद रखना चाहता/चाहती हूँ..." : "A thought I want to remember..."} /></label>
-              <textarea autoFocus value={text} onChange={e=>setText(e.target.value)} placeholder={hi ? "आज मेरे मन में बहुत-सी बातें हैं...\n\nजो मैं कहना चाहता/चाहती हूँ...\n\nइस समय मुझे ज़रूरत है..." : "Today, my mind has been full of...\n\nWhat I wish I could say is...\n\nWhat I need right now is..."} />
-              <div className="diary-editor-footer"><span><LockKeyhole size={14}/> {hi ? "इस डिवाइस पर निजी रूप से सेव है" : "Saved privately on this device"}</span><span>{text.trim() ? text.trim().split(/\s+/).length : 0} words</span></div>
-            </div>
-            {pageId && <ScrapbookEditor key={pageId} pageId={pageId} hi={hi} />}
-          </div>
+           <h2 className="journal-dear-diary-title">{hi ? "प्रिय डायरी" : "Dear Diary"}</h2>
+           <div className="journal-writing-scrapbook journal-writing-simple">
+             <div className="journal-writing-column">
+               <textarea autoFocus aria-label={hi ? "डायरी में लिखें" : "Write in your diary"} value={text} onChange={e=>setText(e.target.value)} placeholder="" />
+             </div>
+           </div>
           <div className="journal-page-actions">
             <button className="journal-close-button" onClick={()=>{setDiaryOpen(false);setViewEntry(null);}}>{hi ? "पन्ना वापस रखें" : "Put page back"}</button>
             <button className="diary-save-button" onClick={saveEntry} disabled={!text.trim()}><Save size={16}/> {hi ? (viewEntry ? "बदलाव सेव करें" : "पन्ने को डायरी में रखें") : (viewEntry ? "Save changes" : "Tuck page into diary")} <ArrowUpRight size={16}/></button>
