@@ -568,3 +568,59 @@ html[data-mindora-theme="dark"] .mindora-section-page .incognito-options button.
 .dark-theme.mindora-section-page h1,.dark-theme.mindora-section-page h2,.dark-theme.mindora-section-page h3,.dark-theme.mindora-section-page p,html[data-mindora-theme="dark"] .mindora-section-page h1,html[data-mindora-theme="dark"] .mindora-section-page h2,html[data-mindora-theme="dark"] .mindora-section-page h3,html[data-mindora-theme="dark"] .mindora-section-page p{color:#e6d4c3!important}
 .dark-theme.mindora-section-page input,.dark-theme.mindora-section-page textarea,.dark-theme.mindora-section-page select,html[data-mindora-theme="dark"] .mindora-section-page input,html[data-mindora-theme="dark"] .mindora-section-page textarea,html[data-mindora-theme="dark"] .mindora-section-page select{background:#45352f!important;color:#fffbda!important;border-color:#705242!important}
 .dark-theme.mindora-section-page input::placeholder,.dark-theme.mindora-section-page textarea::placeholder,html[data-mindora-theme="dark"] .mindora-section-page input::placeholder,html[data-mindora-theme="dark"] .mindora-section-page textarea::placeholder{color:#d0b9a7!important;opacity:1}
+
+
+/* Journal redesign: a real paper diary, using Mindora's butter/peach palette. */
+.journal-diary-scene{background:transparent!important}
+.journal-diary-cover{
+  border-color:#b96e3f!important;
+  background:linear-gradient(115deg,#a95d32 0%,#ed9455 10%,#c97845 17%,#b9693a 100%)!important;
+  box-shadow:inset 5px 0 9px rgba(91,48,27,.4),inset -3px 0 5px rgba(255,220,172,.35),0 22px 42px rgba(91,48,27,.16)!important;
+}
+.journal-diary-cover:before{border-color:rgba(255,243,223,.55)!important}
+.journal-cover-spine{border-color:rgba(255,243,223,.28)!important;background:linear-gradient(90deg,rgba(91,48,27,.3),rgba(255,243,223,.12),rgba(91,48,27,.22))!important}
+.journal-cover-content{color:#fff8e9!important}
+.journal-cover-kicker,.journal-cover-small{color:#fff0d5!important}
+.journal-cover-content h2 em{color:#ffec9e!important}
+.journal-cover-content p{color:#fff3df!important}
+.journal-cover-rule{background:#ffec9e!important}
+.journal-open-button{border-color:rgba(255,243,223,.65)!important;background:rgba(255,243,223,.12)!important;color:#fff8e9!important}
+.journal-loose-page{
+  border-color:#e8c9a8!important;
+  background:linear-gradient(90deg,#f2e4c7 0,#fffdf2 4%,#fffdf2 100%)!important;
+  color:#49342e!important;
+  box-shadow:0 25px 60px rgba(73,52,46,.2),inset 8px 0 12px rgba(169,93,50,.08)!important;
+}
+.journal-page-top{background:#ffec9e!important;border-color:#f1d6b4!important;color:#76523d!important}
+.journal-page-top span:first-child{color:#8f512f!important}
+.journal-dear-diary-title{margin:8px 0 18px!important;color:#49342e!important;font:600 35px/1.2 'Playfair Display',Georgia,serif!important}
+.journal-writing-simple{display:block!important;margin:0!important}
+.journal-writing-simple .journal-writing-column{width:100%!important}
+.journal-writing-simple textarea{
+  display:block!important;width:100%!important;min-height:390px!important;margin:0!important;padding:4px 8px 0 0!important;
+  resize:vertical!important;border:0!important;border-radius:0!important;outline:none!important;
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,#e7cba9 32px,#e7cba9 33px)!important;
+  background-position:0 2px!important;color:#49342e!important;
+  font:400 16px/33px 'Playfair Display',Georgia,serif!important;
+}
+.journal-writing-simple textarea::placeholder{color:#b99a81!important}
+.journal-page-actions{margin-top:20px!important}
+.journal-close-button{border-color:#e8c9a8!important;background:#fff9e8!important;color:#76523d!important}
+.journal-page-actions .diary-save-button{background:#ed9455!important;color:#39271e!important}
+.journal-page-actions .diary-save-button:hover:not(:disabled){background:#d98043!important}
+.mindora-section-page .journal-diary-scene{background:transparent!important}
+html[data-mindora-theme="dark"] .journal-diary-cover,.dark-theme .journal-diary-cover{
+  border-color:#705242!important;background:linear-gradient(115deg,#49342e 0%,#75503a 12%,#62402f 18%,#382d2a 100%)!important;
+}
+html[data-mindora-theme="dark"] .journal-loose-page,.dark-theme .journal-loose-page{
+  border-color:#705242!important;background:linear-gradient(90deg,#382d2a 0,#302725 4%,#302725 100%)!important;color:#fff3df!important;
+}
+html[data-mindora-theme="dark"] .journal-page-top,.dark-theme .journal-page-top{background:#45352f!important;border-color:#59443b!important;color:#e6d4c3!important}
+html[data-mindora-theme="dark"] .journal-page-top span:first-child,.dark-theme .journal-page-top span:first-child{color:#ffbb70!important}
+html[data-mindora-theme="dark"] .journal-dear-diary-title,.dark-theme .journal-dear-diary-title{color:#fffbda!important}
+html[data-mindora-theme="dark"] .journal-writing-simple textarea,.dark-theme .journal-writing-simple textarea{
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,#59443b 32px,#59443b 33px)!important;
+  color:#fff3df!important;
+}
+html[data-mindora-theme="dark"] .journal-close-button,.dark-theme .journal-close-button{background:#45352f!important;border-color:#705242!important;color:#fffbda!important}
+html[data-mindora-theme="dark"] .journal-page-actions .diary-save-button,.dark-theme .journal-page-actions .diary-save-button{background:#ed9455!important;color:#39271e!important}
