@@ -1107,3 +1107,11 @@ html[data-mindora-theme="dark"] .comfort-note-layer blockquote,.dark-theme .comf
 html[data-mindora-theme="dark"] .comfort-note-layer .wellness-eyebrow,.dark-theme .comfort-note-layer .wellness-eyebrow{color:#ffbb70!important}
 html[data-mindora-theme="dark"] .comfort-note-layer .comfort-count,.dark-theme .comfort-note-layer .comfort-count{color:#e6d4c3!important}
 html[data-mindora-theme="dark"] .comfort-restored,.dark-theme .comfort-restored{background:#382d2a!important;border-color:#705242!important;color:#fff3df!important}
+
+
+/* Burgundy dark theme override — Calm Corner, Inner Garden, Soundscape and comfort tools */
+html[data-mindora-theme="dark"] .wellness-page,html[data-mindora-theme="dark"] .wellness-page.dark-theme,.dark-theme .wellness-page{background:#800020!important;color:#fff9f2!important}
+html[data-mindora-theme="dark"] .wellness-page .wellness-panel,html[data-mindora-theme="dark"] .wellness-page .rain-card,html[data-mindora-theme="dark"] .wellness-page .garden-summary,html[data-mindora-theme="dark"] .wellness-page .comfort-card,.dark-theme .wellness-page .wellness-panel,.dark-theme .wellness-page .rain-card,.dark-theme .wellness-page .garden-summary{background:#f3e6d5!important;border-color:#d45060!important;color:#800020!important}
+html[data-mindora-theme="dark"] .wellness-page h1,html[data-mindora-theme="dark"] .wellness-page h2,html[data-mindora-theme="dark"] .wellness-page h3,html[data-mindora-theme="dark"] .wellness-page p,html[data-mindora-theme="dark"] .wellness-page label,html[data-mindora-theme="dark"] .wellness-page small,.dark-theme .wellness-page h1,.dark-theme .wellness-page h2,.dark-theme .wellness-page h3,.dark-theme .wellness-page p{color:#800020!important}
+html[data-mindora-theme="dark"] .wellness-page .wellness-heading h1,html[data-mindora-theme="dark"] .wellness-page .wellness-eyebrow{color:#fff9f2!important}
+html[data-mindora-theme="dark"] .wellness-page button{background:#d45060!important;color:#fff9f2!important;border-color:#d45060!important}
