@@ -1075,3 +1075,17 @@ html[data-mindora-theme="dark"] .wellness-page p,html[data-mindora-theme="dark"]
 html[data-mindora-theme="dark"] .wellness-page input,html[data-mindora-theme="dark"] .wellness-page textarea,html[data-mindora-theme="dark"] .wellness-page select{background:#45352f;color:#fffbda;border-color:#705242}
 html[data-mindora-theme="dark"] .wellness-page input::placeholder,html[data-mindora-theme="dark"] .wellness-page textarea::placeholder{color:#d0b9a7;opacity:1}
 
+
+/* Final theme pass for wellness activities and every interactive surface. */
+.wellness-page{--wellness-bg:#fffbda!important;--wellness-card:#fffdf0!important;--wellness-text:#49342e!important;--wellness-muted:#65473e!important;--wellness-border:#f1d6b4!important;background:radial-gradient(ellipse at 8% 4%,#ffec9e 0,transparent 30%),#fffbda!important;color:#49342e!important}
+.wellness-page .wellness-panel,.wellness-page .rain-card,.wellness-page .garden-summary{background:#fffdf0!important;border-color:#f1d6b4!important;color:#49342e!important}
+.wellness-page h1,.wellness-page h2,.wellness-page h3{color:#49342e!important}
+.wellness-page p,.wellness-page .wellness-muted{color:#65473e!important}
+.wellness-page input,.wellness-page textarea,.wellness-page select{background:#fffdf0!important;color:#49342e!important;border-color:#e8c9a8!important}
+.wellness-page input::placeholder,.wellness-page textarea::placeholder{color:#806b61!important;opacity:1}
+html[data-mindora-theme="dark"] .wellness-page{--wellness-bg:#292323!important;--wellness-card:#382d2a!important;--wellness-text:#fff3df!important;--wellness-muted:#d0b9a7!important;--wellness-border:#59443b!important;background:radial-gradient(ellipse at 8% 4%,#49342e 0,transparent 30%),#292323!important;color:#fff3df!important}
+html[data-mindora-theme="dark"] .wellness-page .wellness-panel,html[data-mindora-theme="dark"] .wellness-page .rain-card,html[data-mindora-theme="dark"] .wellness-page .garden-summary{background:#382d2a!important;border-color:#59443b!important;color:#fff3df!important}
+html[data-mindora-theme="dark"] .wellness-page h1,html[data-mindora-theme="dark"] .wellness-page h2,html[data-mindora-theme="dark"] .wellness-page h3{color:#fffbda!important}
+html[data-mindora-theme="dark"] .wellness-page p,html[data-mindora-theme="dark"] .wellness-page .wellness-muted{color:#e6d4c3!important}
+html[data-mindora-theme="dark"] .wellness-page input,html[data-mindora-theme="dark"] .wellness-page textarea,html[data-mindora-theme="dark"] .wellness-page select{background:#45352f!important;color:#fffbda!important;border-color:#705242!important}
+html[data-mindora-theme="dark"] .wellness-page input::placeholder,html[data-mindora-theme="dark"] .wellness-page textarea::placeholder{color:#d0b9a7!important;opacity:1}
