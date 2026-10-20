@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Gamepad2, Sparkles, RotateCcw, Play, Pause, Target, Star, Lock, Volume2, VolumeX, Trophy, Clock3 } from "lucide-react";
 import { useLanguage } from "./language";
 import "./GamesZone.css";
@@ -74,9 +74,20 @@ function makeTargets(width, height, speed = 1) {
 
 export default function GamesZone() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [language] = useLanguage();
   const hi = language === "hi";
-  const [activeGame, setActiveGame] = useState(null);
+  const [activeGame, setActiveGame] = useState(() => new URLSearchParams(window.location.search).get("game"));
+  useEffect(() => {
+    const requestedGame = new URLSearchParams(location.search).get("game");
+    if (requestedGame && games.some((game) => game.id === requestedGame)) {
+      setActiveGame(requestedGame);
+      setPlaying(false);
+      setFinished(false);
+    } else if (!requestedGame) {
+      setActiveGame(null);
+    }
+  }, [location.search]);
   const [difficulty, setDifficulty] = useState("Easy");
   const [targetColour, setTargetColour] = useState(palette[0]);
   const [score, setScore] = useState(0);
@@ -299,7 +310,7 @@ export default function GamesZone() {
 
   return <main className="games-page">
     <header className="games-header">
-      <button className="games-back" onClick={() => activeGame ? (setActiveGame(null), setPlaying(false), setFinished(false)) : navigate("/dashboard")}><ArrowLeft size={17}/>{hi ? "वापस" : "Back"}</button>
+      {activeGame && <button className="games-back" onClick={() => { setActiveGame(null); setPlaying(false); setFinished(false); navigate("/games"); }}><ArrowLeft size={17}/>{hi ? "सभी गेम" : "All games"}</button>}
       <div className="games-brand"><span><Gamepad2 size={20}/></span><div><small>MINDORA · YOUR SPACE</small><h1>{hi ? "खेलें और सुकून पाएँ" : "Play & Unwind"}</h1></div></div>
       <p>{hi ? "थोड़ा खेलें। साँस लें। अपने लिए एक पल निकालें।" : "A little play, a little pause, a moment just for you."}</p>
     </header>
