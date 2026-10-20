@@ -319,7 +319,7 @@ export function LittleComfortBox() {
           <button className="wellness-button" onClick={restoreCards}>{hi ? "संदेश फिर से दिखाएँ" : "Restore reminders"}</button>
         </div>
       )}
-      <p className="comfort-drag-hint">{hi ? "कार्ड को साइड में स्वाइप करें या अगला संदेश दबाएँ" : "Swipe the card sideways to dismiss it, or tap Next reminder."}</p>
+
     </Shell>
   );
 }
