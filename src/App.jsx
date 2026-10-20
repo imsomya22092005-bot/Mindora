@@ -46,6 +46,7 @@ import { JournalPage, InsightsPage, MindfulMomentsPage, MoodHeatmapPage } from "
 import IncognitoCheckinPage from "./IncognitoCheckinPage";
 import ProfilePage from "./ProfilePage";
 import GamesZone from "./GamesZone";
+import SharedSidebarLayout from "./SharedSidebarLayout";
 
 import {
   CalmCorner,
@@ -1229,22 +1230,22 @@ function App() {
 
         {/* Main dashboard — existing features preserved */}
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/practice/:practiceId" element={<MindfulPracticePage />} />
-        <Route path="/journal" element={<JournalPage />} />
-        <Route path="/insights" element={<InsightsPage />} />
-        <Route path="/mindful-moments" element={<MindfulMomentsPage />} />
-        <Route path="/incognito-checkin" element={<IncognitoCheckinPage />} />
-        <Route path="/mood-heatmap" element={<MoodHeatmapPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/games" element={<GamesZone />} />
+        <Route path="/practice/:practiceId" element={<SharedSidebarLayout><MindfulPracticePage /></SharedSidebarLayout>} />
+        <Route path="/journal" element={<SharedSidebarLayout><JournalPage /></SharedSidebarLayout>} />
+        <Route path="/insights" element={<SharedSidebarLayout><InsightsPage /></SharedSidebarLayout>} />
+        <Route path="/mindful-moments" element={<SharedSidebarLayout><MindfulMomentsPage /></SharedSidebarLayout>} />
+        <Route path="/incognito-checkin" element={<SharedSidebarLayout><IncognitoCheckinPage /></SharedSidebarLayout>} />
+        <Route path="/mood-heatmap" element={<SharedSidebarLayout><MoodHeatmapPage /></SharedSidebarLayout>} />
+        <Route path="/profile" element={<SharedSidebarLayout><ProfilePage /></SharedSidebarLayout>} />
+        <Route path="/games" element={<SharedSidebarLayout><GamesZone /></SharedSidebarLayout>} />
 
         {/* Mindora wellness pages */}
-        <Route path="/calm-corner" element={<CalmCorner />} />
-        <Route path="/inner-garden" element={<InnerGarden />} />
-        <Route path="/soundscape" element={<MoodSoundscape />} />
+        <Route path="/calm-corner" element={<SharedSidebarLayout><CalmCorner /></SharedSidebarLayout>} />
+        <Route path="/inner-garden" element={<SharedSidebarLayout><InnerGarden /></SharedSidebarLayout>} />
+        <Route path="/soundscape" element={<SharedSidebarLayout><MoodSoundscape /></SharedSidebarLayout>} />
         <Route
           path="/comfort-box"
-          element={<LittleComfortBox />}
+          element={<SharedSidebarLayout><LittleComfortBox /></SharedSidebarLayout>}
         />
 
         {/* Fallback for unknown routes */}
