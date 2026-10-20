@@ -2417,12 +2417,3 @@ body {
 .landing-dark .landing-cta h2{color:#fff3df!important}
 .landing-dark .landing-cta p{color:#e6d4c3!important}
 .landing-dark .landing-cta .landing-dark-button{background:#ed9455!important;color:#39271e!important;border-color:#ed9455!important}
-
-
-/* Burgundy dark theme override — landing only */
-.mindora-landing.landing-dark,.landing-dark .landing-navbar,.landing-dark .landing-intro,.landing-dark .landing-why,.landing-dark .landing-features,.landing-dark .landing-preview,.landing-dark .landing-how,.landing-dark .landing-difference,.landing-dark .landing-cta{background:#800020!important;color:#fff9f2!important}
-.landing-dark h1,.landing-dark h2,.landing-dark h3,.landing-dark p,.landing-dark span,.landing-dark a:not(.landing-dark-button),.landing-dark li{color:#fff9f2}
-.landing-dark .landing-feature-card,.landing-dark .landing-why-grid article,.landing-dark .landing-preview-card,.landing-dark .landing-step-card{background:#f3e6d5!important;border-color:#d45060!important;color:#800020!important}
-.landing-dark .landing-feature-card h3,.landing-dark .landing-feature-card p,.landing-dark .landing-why-grid article h3,.landing-dark .landing-why-grid article p,.landing-dark .landing-step-card h3,.landing-dark .landing-step-card p{color:#800020!important}
-.landing-dark .landing-dark-button{background:#d45060!important;color:#fff9f2!important;border-color:#d45060!important}
-.landing-dark .landing-preference-controls select,.landing-dark .landing-theme-toggle{background:#f3e6d5!important;color:#800020!important;border-color:#d45060!important}
