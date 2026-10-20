@@ -171,3 +171,13 @@
 .auth-page.auth-dark .auth-input-wrap input{color:#fffbda!important}
 .auth-page.auth-dark input::placeholder{color:#d0b9a7!important;opacity:1}
 .auth-page.auth-dark .auth-tabs a.active{background:#ed9455!important;color:#39271e!important}
+
+
+/* Burgundy dark theme override — authentication only */
+.auth-dark,.auth-dark .auth-form-side,.auth-dark .auth-visual{background:#800020!important;color:#fff9f2!important}
+.auth-dark .auth-form-side h1,.auth-dark .auth-form-side h2,.auth-dark .auth-subtitle,.auth-dark .auth-field,.auth-dark .auth-tabs a,.auth-dark p,.auth-dark label{color:#fff9f2!important}
+.auth-dark .auth-input-wrap,.auth-dark .auth-tabs,.auth-dark .auth-google-fallback{background:#f3e6d5!important;border-color:#d45060!important;color:#800020!important}
+.auth-dark .auth-input-wrap input{background:transparent!important;color:#800020!important}
+.auth-dark .auth-input-wrap input::placeholder{color:#81515a!important}
+.auth-dark .auth-tabs a.active,.auth-dark button[type="submit"]{background:#d45060!important;color:#fff9f2!important}
+.auth-dark .auth-preference-controls select,.auth-dark .auth-preference-controls button,.auth-dark .auth-close-home{background:#f3e6d5!important;color:#800020!important;border-color:#d45060!important}
