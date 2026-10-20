@@ -29,3 +29,12 @@ html[data-mindora-theme="dark"] {
 :root { color:#49342e; background:#fffbda; }
 body { background:#fffbda; color:#49342e; }
 html[data-mindora-theme="dark"] { background:#292323; color:#fff3df; }
+
+
+/* Unified burgundy dark theme — dark mode only */
+html[data-mindora-theme="dark"],html[data-mindora-theme="dark"] body,#root{color-scheme:light}
+html[data-mindora-theme="dark"]{background:#800020;color:#fff9f2}
+html[data-mindora-theme="dark"] body{background:#800020!important;color:#fff9f2!important}
+html[data-mindora-theme="dark"] #root{background:transparent!important;color:#fff9f2}
+html[data-mindora-theme="dark"] input,html[data-mindora-theme="dark"] textarea,html[data-mindora-theme="dark"] select{background:#fff9f2;color:#800020;border-color:#d45060}
+html[data-mindora-theme="dark"] input::placeholder,html[data-mindora-theme="dark"] textarea::placeholder{color:#81515a}
