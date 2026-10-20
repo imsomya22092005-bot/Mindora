@@ -75,7 +75,6 @@ function makeTargets(width, height, speed = 1) {
 export default function GamesZone() {
   const navigate = useNavigate();
   const location = useLocation();
-  const location = useLocation();
   const [language] = useLanguage();
   const hi = language === "hi";
   const [activeGame, setActiveGame] = useState(() => new URLSearchParams(window.location.search).get("game"));
