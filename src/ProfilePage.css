@@ -57,3 +57,17 @@ html[data-mindora-theme="dark"] .profile-bottom-card{border-color:#59443b;backgr
 html[data-mindora-theme="dark"] .profile-bottom-card p{color:#e6d4c3}
 html[data-mindora-theme="dark"] .profile-bottom-card button{background:#ed9455;color:#39271e}
 
+
+/* Final theme pass for profile, profile information and action controls. */
+.profile-page{background:radial-gradient(ellipse at 50% 0%,#ffec9e 0,transparent 42%),#fffbda!important;color:#49342e!important}
+.profile-hero{background:linear-gradient(125deg,#ffec9e,#ffbb70 58%,#ed9455)!important;color:#49342e!important}
+.profile-hero p,.profile-eyebrow{color:#65473e!important}
+.profile-detail-card{background:#fffdf0!important;border-color:#f1d6b4!important}
+.profile-detail-card strong{color:#49342e!important}.profile-detail-card small,.profile-detail-label,.profile-bottom-card p{color:#806b61!important}
+.profile-bottom-card{background:#ffec9e!important;border-color:#f1d6b4!important}
+html[data-mindora-theme="dark"] .profile-page{background:radial-gradient(ellipse at 50% 0%,#49342e 0,transparent 42%),#292323!important;color:#fff3df!important}
+html[data-mindora-theme="dark"] .profile-hero{background:linear-gradient(125deg,#49342e,#62402f 58%,#75503a)!important;color:#fffbda!important}
+html[data-mindora-theme="dark"] .profile-hero p,html[data-mindora-theme="dark"] .profile-eyebrow{color:#f0d8c9!important}
+html[data-mindora-theme="dark"] .profile-detail-card,html[data-mindora-theme="dark"] .profile-bottom-card{background:#382d2a!important;border-color:#59443b!important}
+html[data-mindora-theme="dark"] .profile-detail-card strong,html[data-mindora-theme="dark"] .profile-bottom-card strong{color:#fffbda!important}
+html[data-mindora-theme="dark"] .profile-detail-card small,html[data-mindora-theme="dark"] .profile-detail-label,html[data-mindora-theme="dark"] .profile-bottom-card p{color:#e6d4c3!important}
