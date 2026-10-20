@@ -1089,3 +1089,21 @@ html[data-mindora-theme="dark"] .wellness-page h1,html[data-mindora-theme="dark"
 html[data-mindora-theme="dark"] .wellness-page p,html[data-mindora-theme="dark"] .wellness-page .wellness-muted{color:#e6d4c3!important}
 html[data-mindora-theme="dark"] .wellness-page input,html[data-mindora-theme="dark"] .wellness-page textarea,html[data-mindora-theme="dark"] .wellness-page select{background:#45352f!important;color:#fffbda!important;border-color:#705242!important}
 html[data-mindora-theme="dark"] .wellness-page input::placeholder,html[data-mindora-theme="dark"] .wellness-page textarea::placeholder{color:#d0b9a7!important;opacity:1}
+
+
+/* Comfort box: replace old green card stack with Mindora's warm paper palette. */
+.comfort-note-layer-0,.comfort-note-layer-1{background:#fff8e7!important;border:1px solid #edcfaa!important;color:#49342e!important}
+.comfort-note-layer-2{background:#ffecce!important;border:1px solid #e9c49c!important;color:#49342e!important}
+.comfort-note-layer>svg,.comfort-note-layer .note-flower{color:#c97845!important}
+.comfort-note-layer .wellness-eyebrow{color:#a96337!important}
+.comfort-note-layer blockquote{color:#49342e!important}
+.comfort-note-layer .comfort-count{color:#896d57!important}
+.comfort-note-layer .wellness-button{background:#ed9455!important;border-color:#ed9455!important;color:#39271e!important}
+.comfort-restored{background:#fff8e7!important;border-color:#edcfaa!important}
+.comfort-drag-hint{display:none!important}
+html[data-mindora-theme="dark"] .comfort-note-layer-0,html[data-mindora-theme="dark"] .comfort-note-layer-1,.dark-theme .comfort-note-layer-0,.dark-theme .comfort-note-layer-1{background:#382d2a!important;border-color:#705242!important;color:#fff3df!important}
+html[data-mindora-theme="dark"] .comfort-note-layer-2,.dark-theme .comfort-note-layer-2{background:#45352f!important;border-color:#705242!important;color:#fff3df!important}
+html[data-mindora-theme="dark"] .comfort-note-layer blockquote,.dark-theme .comfort-note-layer blockquote,html[data-mindora-theme="dark"] .comfort-note-layer-0,.dark-theme .comfort-note-layer-0{color:#fff3df!important}
+html[data-mindora-theme="dark"] .comfort-note-layer .wellness-eyebrow,.dark-theme .comfort-note-layer .wellness-eyebrow{color:#ffbb70!important}
+html[data-mindora-theme="dark"] .comfort-note-layer .comfort-count,.dark-theme .comfort-note-layer .comfort-count{color:#e6d4c3!important}
+html[data-mindora-theme="dark"] .comfort-restored,.dark-theme .comfort-restored{background:#382d2a!important;border-color:#705242!important;color:#fff3df!important}
