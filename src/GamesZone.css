@@ -253,3 +253,13 @@ html[data-mindora-theme="dark"] .colorpop-result-stats>div{background:#45352f;bo
 html[data-mindora-theme="dark"] .colorpop-result-stats span{color:#e6d4c3}
 html[data-mindora-theme="dark"] .colorpop-canvas-wrap,html[data-mindora-theme="dark"] .colorpop-canvas-wrap canvas{border-color:#705242;background:#302624}
 
+
+/* Final palette pass for game hub and non-game controls; preserve game-play colours. */
+.games-page{background:radial-gradient(ellipse at 10% 5%,rgba(255,187,112,.25),transparent 34%),linear-gradient(135deg,#fffbda,#ffec9e)!important;color:#49342e!important}
+.games-page .games-welcome,.games-page .game-card,.games-page .game-coming-card,.games-page .colorpop-shell{background:#fffdf0!important;border-color:#f1d6b4!important;color:#49342e!important}
+.games-page .games-brand h1,.games-page .games-welcome h2,.games-page .game-card-copy strong,.games-page .game-coming-card h2,.games-page .colorpop-top h2{color:#49342e!important}
+.games-page .games-header>p,.games-page .games-welcome p,.games-page .game-card-copy>span,.games-page .games-footer,.games-page .game-coming-card p,.games-page .colorpop-top p{color:#65473e!important}
+html[data-mindora-theme="dark"] .games-page{background:radial-gradient(ellipse at 10% 5%,rgba(237,148,85,.13),transparent 34%),linear-gradient(135deg,#292323,#382d2a)!important;color:#fff3df!important}
+html[data-mindora-theme="dark"] .games-page .games-welcome,html[data-mindora-theme="dark"] .games-page .game-card,html[data-mindora-theme="dark"] .games-page .game-coming-card,html[data-mindora-theme="dark"] .games-page .colorpop-shell{background:#382d2a!important;border-color:#59443b!important;color:#fff3df!important}
+html[data-mindora-theme="dark"] .games-page .games-brand h1,html[data-mindora-theme="dark"] .games-page .games-welcome h2,html[data-mindora-theme="dark"] .games-page .game-card-copy strong,html[data-mindora-theme="dark"] .games-page .game-coming-card h2,html[data-mindora-theme="dark"] .games-page .colorpop-top h2{color:#fffbda!important}
+html[data-mindora-theme="dark"] .games-page .games-header>p,html[data-mindora-theme="dark"] .games-page .games-welcome p,html[data-mindora-theme="dark"] .games-page .game-card-copy>span,html[data-mindora-theme="dark"] .games-page .games-footer,html[data-mindora-theme="dark"] .games-page .game-coming-card p,html[data-mindora-theme="dark"] .games-page .colorpop-top p{color:#e6d4c3!important}
