@@ -3131,3 +3131,14 @@ body,.app-shell{background:#fffbda;color:#49342e}
 .dark-theme .shared-dashboard-content,.shared-dashboard-layout:has(.dark-theme) .shared-dashboard-content{background:#292323}
 @media(max-width:1050px){.shared-dashboard-layout{grid-template-columns:250px minmax(0,1fr)}.shared-dashboard-sidebar{padding:24px 14px}.shared-sidebar-brand strong{font-size:28px}.shared-dashboard-content{padding:24px}}
 @media(max-width:760px){.shared-dashboard-layout{grid-template-columns:1fr}.shared-dashboard-sidebar{position:relative;top:auto;height:auto;min-height:0;padding:16px;overflow:visible;border-right:0;border-bottom:1px solid #f0d8bc}.shared-sidebar-brand{margin:0 4px 20px}.shared-sidebar-brand strong{font-size:25px}.shared-brand-mark{width:40px;height:40px;font-size:25px}.shared-sidebar-label{margin-bottom:10px}.shared-sidebar-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.shared-nav-link{gap:9px;padding:12px 10px;font-size:13px}.shared-nav-row{min-height:46px}.shared-nav-expand{width:30px}.shared-nav-submenu{grid-column:1/-1;margin-left:10px}.shared-sidebar-spacer{display:none}.shared-sidebar-quote{margin:18px 0 10px;padding:15px}.shared-sidebar-quote>span{margin-bottom:10px}.shared-sidebar-quote p{font-size:14px}.shared-dashboard-content{padding:20px 14px}.shared-nav-group:has(.shared-nav-submenu){grid-column:1/-1}}
+
+
+/* Shared navigation pages no longer need duplicate "Back to Dashboard" links. */
+.shared-dashboard-content .wellness-back,
+.shared-dashboard-content .practice-back,
+.shared-dashboard-content a[href="/dashboard"]:not(.shared-sidebar-brand),
+.shared-dashboard-content button.dashboard-back,
+.shared-dashboard-content .back-to-dashboard{display:none!important}
+.shared-dashboard-content .wellness-topbar{justify-content:flex-end!important}
+.shared-dashboard-content .games-header{position:relative}
+.shared-dashboard-content .games-back{margin-bottom:8px}
