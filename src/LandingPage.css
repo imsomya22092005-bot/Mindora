@@ -2240,3 +2240,50 @@ body {
 .landing-dark .landing-intro{background:linear-gradient(135deg,#292323 0%,#382d2a 55%,#49342e 100%)}
 .landing-dark .landing-intro h2,.landing-dark .landing-intro h2 span,.landing-dark h2,.landing-dark h3{color:#fffbda}
 .landing-dark .landing-intro p,.landing-dark .landing-feature-card p,.landing-dark .landing-why-grid article p,.landing-dark p{color:#e6d4c3}
+
+
+/* Reminder CTA: its own themed surface in both light and dark mode. */
+.mindora-landing .landing-cta {
+  background: linear-gradient(135deg, #ffec9e 0%, #ffbb70 100%) !important;
+  color: #49342e !important;
+  border: 1px solid #ed9455 !important;
+  border-radius: 28px !important;
+  padding: clamp(32px, 5vw, 64px) 24px !important;
+}
+.mindora-landing .landing-cta .section-eyebrow {
+  background: #fff3cf !important;
+  color: #8b4c2d !important;
+  border: 1px solid #ed9455 !important;
+}
+.mindora-landing .landing-cta h2 {
+  color: #49342e !important;
+}
+.mindora-landing .landing-cta p {
+  color: #65473e !important;
+}
+.mindora-landing .landing-cta .landing-cta-button {
+  background: #ed9455 !important;
+  border-color: #ed9455 !important;
+  color: #39271e !important;
+}
+.mindora-landing.landing-dark .landing-cta {
+  background: linear-gradient(135deg, #382d2a 0%, #49342e 100%) !important;
+  color: #fff3df !important;
+  border-color: #705242 !important;
+}
+.mindora-landing.landing-dark .landing-cta .section-eyebrow {
+  background: #45352f !important;
+  color: #ffbb70 !important;
+  border-color: #705242 !important;
+}
+.mindora-landing.landing-dark .landing-cta h2 {
+  color: #fffbda !important;
+}
+.mindora-landing.landing-dark .landing-cta p {
+  color: #e6d4c3 !important;
+}
+.mindora-landing.landing-dark .landing-cta .landing-cta-button {
+  background: #ed9455 !important;
+  border-color: #ed9455 !important;
+  color: #39271e !important;
+}
