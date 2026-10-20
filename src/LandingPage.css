@@ -2394,3 +2394,26 @@ body {
 .mindora-landing.landing-dark .landing-preview p {
   color: #e6d4c3 !important;
 }
+
+
+/* Landing page visual: warm cream, apricot and cocoa instead of green. */
+.mindora-landing .how-visual{background:radial-gradient(circle,#fff5d2 0%,#ffec9e 58%,#ffdfb5 100%)!important}
+.mindora-landing .how-orbit{border-color:rgba(169,93,50,.42)!important}
+.mindora-landing .how-center{color:#49342e!important}
+.mindora-landing .how-center>span{color:#c97845!important}
+.mindora-landing .orbit-label{background:#fffaf0!important;color:#49342e!important;border:1px solid #f0d5b5!important;box-shadow:0 5px 20px rgba(73,52,46,.08)!important}
+.mindora-landing .landing-cta{background:linear-gradient(135deg,#fffbda 0%,#ffec9e 55%,#ffdfb5 100%)!important;border:1px solid #ed9455!important}
+.mindora-landing .landing-cta .section-eyebrow{background:#fff8e7!important;color:#a96337!important;border-color:#edc59e!important}
+.mindora-landing .landing-cta h2{color:#49342e!important}
+.mindora-landing .landing-cta p{color:#765747!important}
+.mindora-landing .landing-cta .landing-dark-button{background:#ed9455!important;color:#39271e!important;border-color:#ed9455!important}
+.landing-dark .how-visual{background:radial-gradient(circle,#45352f 0%,#382d2a 58%,#292323 100%)!important}
+.landing-dark .how-orbit{border-color:rgba(255,187,112,.42)!important}
+.landing-dark .how-center,.landing-dark .how-center p{color:#fff3df!important}
+.landing-dark .how-center>span{color:#ffbb70!important}
+.landing-dark .orbit-label{background:#45352f!important;color:#fff3df!important;border-color:#705242!important}
+.landing-dark .landing-cta{background:linear-gradient(135deg,#292323 0%,#382d2a 58%,#45352f 100%)!important;border-color:#705242!important}
+.landing-dark .landing-cta .section-eyebrow{background:#45352f!important;color:#ffbb70!important;border-color:#705242!important}
+.landing-dark .landing-cta h2{color:#fff3df!important}
+.landing-dark .landing-cta p{color:#e6d4c3!important}
+.landing-dark .landing-cta .landing-dark-button{background:#ed9455!important;color:#39271e!important;border-color:#ed9455!important}
