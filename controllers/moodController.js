@@ -9,6 +9,8 @@ exports.saveMoodEntry = async (req, res) => {
       return res.status(400).json({ error: 'Date (YYYY-MM-DD) and mood are required.' });
     }
 
+    date = typeof date === 'string' ? date.trim().split('T')[0] : date;
+
     const entry = await Mood.findOneAndUpdate(
       { user: userId, date },
       { 
@@ -17,7 +19,7 @@ exports.saveMoodEntry = async (req, res) => {
         note: note || '', 
         tags: Array.isArray(tags) ? tags : [] 
       },
-      { new: true, upsert: true, runValidators: true }
+      { returnDocument: 'after', upsert: true, runValidators: true }
     );
 
     return res.status(200).json({
