@@ -3142,16 +3142,3 @@ body,.app-shell{background:#fffbda;color:#49342e}
 .shared-dashboard-content .wellness-topbar{justify-content:flex-end!important}
 .shared-dashboard-content .games-header{position:relative}
 .shared-dashboard-content .games-back{margin-bottom:8px}
-
-
-/* Unified burgundy palette for dashboard and shared sidebar, dark mode only */
-.dark-theme,.dark-theme.app-shell,.shared-dashboard-layout:has(.dark-theme),html[data-mindora-theme="dark"] .shared-dashboard-layout{background:#800020!important;color:#fff9f2!important}
-.dark-theme .sidebar,.dark-theme .topbar,.dark-theme .panel,.dark-theme .stat-card,.dark-theme .journal-modal,.dark-theme .settings-popover,.dark-theme .notification-popover,
-html[data-mindora-theme="dark"] .shared-dashboard-sidebar,html[data-mindora-theme="dark"] .shared-sidebar-quote{background:#800020!important;border-color:#d45060!important;color:#fff9f2!important}
-.dark-theme .shared-dashboard-content,html[data-mindora-theme="dark"] .shared-dashboard-content{background:#800020!important;color:#fff9f2!important}
-.dark-theme h1,.dark-theme h2,.dark-theme h3,.dark-theme h4,.dark-theme p,.dark-theme label,.dark-theme small,.dark-theme span,
-html[data-mindora-theme="dark"] .shared-dashboard-layout h1,html[data-mindora-theme="dark"] .shared-dashboard-layout h2,html[data-mindora-theme="dark"] .shared-dashboard-layout h3,html[data-mindora-theme="dark"] .shared-dashboard-layout p,html[data-mindora-theme="dark"] .shared-dashboard-layout label,html[data-mindora-theme="dark"] .shared-dashboard-layout small{color:#fff9f2}
-.dark-theme .shared-nav-row.is-active,html[data-mindora-theme="dark"] .shared-nav-row.is-active{background:#d45060!important;color:#fff9f2!important;box-shadow:inset 3px 0 #f3e6d5}
-.dark-theme .shared-nav-row,.dark-theme .shared-sub-link,.dark-theme .shared-settings-link,html[data-mindora-theme="dark"] .shared-nav-row,html[data-mindora-theme="dark"] .shared-sub-link,html[data-mindora-theme="dark"] .shared-settings-link{color:#f3e6d5}
-.dark-theme .shared-brand-mark,.dark-theme .shared-sidebar-quote>span,html[data-mindora-theme="dark"] .shared-brand-mark,html[data-mindora-theme="dark"] .shared-sidebar-quote>span{background:#d45060!important;color:#fff9f2!important}
-.dark-theme button,.dark-theme .button,html[data-mindora-theme="dark"] .shared-dashboard-layout button{border-color:#d45060}
