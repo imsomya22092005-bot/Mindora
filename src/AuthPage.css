@@ -152,3 +152,22 @@
 .auth-dark .auth-form-side h1,.auth-dark .auth-form-side h2,.auth-dark .auth-subtitle,.auth-dark .auth-field,.auth-dark .auth-tabs a{color:#fff3df}.auth-dark .auth-input-wrap{background:#45352f;border-color:#705242}.auth-dark .auth-input-wrap input{color:#fffbda;background:transparent}.auth-dark .auth-input-wrap input::placeholder{color:#d0b9a7;opacity:1}
 .auth-dark .auth-tabs{background:#45352f}.auth-dark .auth-tabs a.active{background:#ed9455;color:#39271e}.auth-dark .auth-google-fallback,.auth-dark .auth-preference-controls select,.auth-dark .auth-preference-controls button,.auth-dark .auth-close-home{background:#45352f;color:#fffbda;border-color:#705242}
 
+
+/* Final warm palette and readable contrast for authentication screens. */
+.auth-page{background:#fffbda!important;color:#49342e!important}
+.auth-page .auth-visual{background:linear-gradient(145deg,#fffbda,#ffec9e 52%,#ffbb70)!important;color:#49342e!important}
+.auth-page .auth-form-side{background:#fffdf0!important;color:#49342e!important}
+.auth-page h1,.auth-page h2,.auth-page .auth-subtitle,.auth-page .auth-field,.auth-page .auth-tabs a{color:#49342e!important}
+.auth-page .auth-input-wrap,.auth-page .auth-google-fallback{background:#fffdf0!important;color:#49342e!important;border-color:#e8c9a8!important}
+.auth-page .auth-input-wrap input{background:transparent!important;color:#49342e!important}
+.auth-page input::placeholder{color:#806b61!important;opacity:1}
+.auth-page .auth-tabs{background:#ffec9e!important}
+.auth-page .auth-tabs a.active{background:#ed9455!important;color:#39271e!important}
+.auth-page.auth-dark{background:#292323!important;color:#fff3df!important}
+.auth-page.auth-dark .auth-visual{background:linear-gradient(145deg,#292323,#382d2a 55%,#49342e)!important;color:#fffbda!important}
+.auth-page.auth-dark .auth-form-side{background:#382d2a!important;color:#fff3df!important}
+.auth-page.auth-dark h1,.auth-page.auth-dark h2,.auth-page.auth-dark .auth-subtitle,.auth-page.auth-dark .auth-field,.auth-page.auth-dark .auth-tabs a{color:#fff3df!important}
+.auth-page.auth-dark .auth-input-wrap,.auth-page.auth-dark .auth-google-fallback,.auth-page.auth-dark .auth-tabs{background:#45352f!important;color:#fff3df!important;border-color:#705242!important}
+.auth-page.auth-dark .auth-input-wrap input{color:#fffbda!important}
+.auth-page.auth-dark input::placeholder{color:#d0b9a7!important;opacity:1}
+.auth-page.auth-dark .auth-tabs a.active{background:#ed9455!important;color:#39271e!important}
