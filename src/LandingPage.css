@@ -2287,3 +2287,110 @@ body {
   border-color: #ed9455 !important;
   color: #39271e !important;
 }
+
+
+/* Final site-wide landing palette pass: remove leftover sage/green section fills. */
+.mindora-landing,
+.mindora-landing .landing-navbar,
+.mindora-landing .landing-intro,
+.mindora-landing .landing-why,
+.mindora-landing .landing-features,
+.mindora-landing .landing-preview,
+.mindora-landing .landing-how,
+.mindora-landing .landing-difference,
+.mindora-landing .landing-cta,
+.mindora-landing .landing-footer {
+  color: #49342e;
+}
+.mindora-landing .landing-why,
+.mindora-landing .landing-features,
+.mindora-landing .landing-preview,
+.mindora-landing .landing-how,
+.mindora-landing .landing-difference,
+.mindora-landing .landing-footer {
+  background: #fffbda !important;
+}
+.mindora-landing .landing-intro {
+  background: linear-gradient(135deg,#fffbda 0%,#ffec9e 58%,#ffbb70 100%) !important;
+}
+.mindora-landing .landing-cta {
+  background: linear-gradient(135deg,#ffec9e 0%,#ffbb70 100%) !important;
+  color: #49342e !important;
+}
+.mindora-landing .landing-cta h2,
+.mindora-landing .landing-cta .section-eyebrow,
+.mindora-landing .landing-cta p {
+  color: #49342e !important;
+}
+.mindora-landing .landing-cta .section-eyebrow {
+  background: #fffbda !important;
+  border-color: #ed9455 !important;
+}
+.mindora-landing .landing-cta .landing-cta-button {
+  background: #ed9455 !important;
+  color: #39271e !important;
+}
+.mindora-landing .landing-feature-card,
+.mindora-landing .landing-why-grid article {
+  background: #fffdf0 !important;
+  color: #49342e !important;
+  border-color: #f1d6b4 !important;
+}
+.mindora-landing .landing-feature-card h3,
+.mindora-landing .landing-why-grid article h3,
+.mindora-landing .landing-feature-card p,
+.mindora-landing .landing-why-grid article p {
+  color: #49342e !important;
+}
+.mindora-landing.landing-dark,
+.mindora-landing.landing-dark .landing-navbar,
+.mindora-landing.landing-dark .landing-intro,
+.mindora-landing.landing-dark .landing-why,
+.mindora-landing.landing-dark .landing-features,
+.mindora-landing.landing-dark .landing-preview,
+.mindora-landing.landing-dark .landing-how,
+.mindora-landing.landing-dark .landing-difference,
+.mindora-landing.landing-dark .landing-footer {
+  background: #292323 !important;
+  color: #fff3df !important;
+}
+.mindora-landing.landing-dark .landing-intro {
+  background: linear-gradient(135deg,#292323 0%,#382d2a 58%,#49342e 100%) !important;
+}
+.mindora-landing.landing-dark .landing-cta {
+  background: linear-gradient(135deg,#382d2a 0%,#49342e 100%) !important;
+  color: #fff3df !important;
+  border-color: #705242 !important;
+}
+.mindora-landing.landing-dark .landing-cta h2,
+.mindora-landing.landing-dark .landing-cta .section-eyebrow {
+  color: #fffbda !important;
+}
+.mindora-landing.landing-dark .landing-cta p {
+  color: #e6d4c3 !important;
+}
+.mindora-landing.landing-dark .landing-cta .section-eyebrow {
+  background: #45352f !important;
+  border-color: #705242 !important;
+}
+.mindora-landing.landing-dark .landing-feature-card,
+.mindora-landing.landing-dark .landing-why-grid article {
+  background: #382d2a !important;
+  color: #fff3df !important;
+  border-color: #59443b !important;
+}
+.mindora-landing.landing-dark .landing-feature-card h3,
+.mindora-landing.landing-dark .landing-why-grid article h3 {
+  color: #fffbda !important;
+}
+.mindora-landing.landing-dark .landing-feature-card p,
+.mindora-landing.landing-dark .landing-why-grid article p {
+  color: #e6d4c3 !important;
+}
+.mindora-landing.landing-dark .landing-navbar a,
+.mindora-landing.landing-dark .landing-difference p,
+.mindora-landing.landing-dark .landing-footer,
+.mindora-landing.landing-dark .landing-how p,
+.mindora-landing.landing-dark .landing-preview p {
+  color: #e6d4c3 !important;
+}
