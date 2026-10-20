@@ -263,3 +263,12 @@ html[data-mindora-theme="dark"] .games-page{background:radial-gradient(ellipse a
 html[data-mindora-theme="dark"] .games-page .games-welcome,html[data-mindora-theme="dark"] .games-page .game-card,html[data-mindora-theme="dark"] .games-page .game-coming-card,html[data-mindora-theme="dark"] .games-page .colorpop-shell{background:#382d2a!important;border-color:#59443b!important;color:#fff3df!important}
 html[data-mindora-theme="dark"] .games-page .games-brand h1,html[data-mindora-theme="dark"] .games-page .games-welcome h2,html[data-mindora-theme="dark"] .games-page .game-card-copy strong,html[data-mindora-theme="dark"] .games-page .game-coming-card h2,html[data-mindora-theme="dark"] .games-page .colorpop-top h2{color:#fffbda!important}
 html[data-mindora-theme="dark"] .games-page .games-header>p,html[data-mindora-theme="dark"] .games-page .games-welcome p,html[data-mindora-theme="dark"] .games-page .game-card-copy>span,html[data-mindora-theme="dark"] .games-page .games-footer,html[data-mindora-theme="dark"] .games-page .game-coming-card p,html[data-mindora-theme="dark"] .games-page .colorpop-top p{color:#e6d4c3!important}
+
+
+/* Burgundy dark theme override — games hub and game screens */
+html[data-mindora-theme="dark"] .games-page,html[data-mindora-theme="dark"] .games-zone{background:#800020!important;color:#fff9f2!important}
+html[data-mindora-theme="dark"] .game-card,html[data-mindora-theme="dark"] .games-welcome,html[data-mindora-theme="dark"] .colorpop-shell,html[data-mindora-theme="dark"] .game-coming-card{background:#f3e6d5!important;border-color:#d45060!important;color:#800020!important}
+html[data-mindora-theme="dark"] .games-page h1,html[data-mindora-theme="dark"] .games-page h2,html[data-mindora-theme="dark"] .games-page h3,html[data-mindora-theme="dark"] .game-card-copy strong,html[data-mindora-theme="dark"] .games-welcome p,html[data-mindora-theme="dark"] .game-coming-card p{color:#800020!important}
+html[data-mindora-theme="dark"] .games-brand h1,html[data-mindora-theme="dark"] .games-brand p,html[data-mindora-theme="dark"] .games-page .games-eyebrow{color:#fff9f2!important}
+html[data-mindora-theme="dark"] .games-page button{border-color:#d45060}
+html[data-mindora-theme="dark"] .games-page .games-back,html[data-mindora-theme="dark"] .games-page .colorpop-button{background:#d45060!important;color:#fff9f2!important}
