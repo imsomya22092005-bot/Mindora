@@ -111,10 +111,14 @@ export function JournalPage() {
         <div className="journal-page-top"><span><Feather size={14}/> {hi ? "अपने साथ एक पल" : "A MOMENT WITH YOURSELF"}</span><span>{new Date().toLocaleDateString(hi ? "hi-IN" : "en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</span></div>
         <div className="journal-page-body">
            <h2 className="journal-dear-diary-title">{hi ? "प्रिय डायरी" : "Dear Diary"}</h2>
-           <div className="journal-writing-scrapbook journal-writing-simple">
+           <div className="journal-writing-scrapbook journal-writing-simple journal-writing-with-photos">
              <div className="journal-writing-column">
                <textarea autoFocus aria-label={hi ? "डायरी में लिखें" : "Write in your diary"} value={text} onChange={e=>setText(e.target.value)} placeholder="" />
              </div>
+             <aside className="journal-photo-side">
+               <span className="journal-photo-side-title">{hi ? "तस्वीरें" : "Photos"}</span>
+               {pageId && <ScrapbookEditor key={pageId} pageId={pageId} hi={hi} />}
+             </aside>
            </div>
           <div className="journal-page-actions">
             <button className="journal-close-button" onClick={()=>{setDiaryOpen(false);setViewEntry(null);}}>{hi ? "पन्ना वापस रखें" : "Put page back"}</button>
