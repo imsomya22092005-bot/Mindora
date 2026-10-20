@@ -624,3 +624,26 @@ html[data-mindora-theme="dark"] .journal-writing-simple textarea,.dark-theme .jo
 }
 html[data-mindora-theme="dark"] .journal-close-button,.dark-theme .journal-close-button{background:#45352f!important;border-color:#705242!important;color:#fffbda!important}
 html[data-mindora-theme="dark"] .journal-page-actions .diary-save-button,.dark-theme .journal-page-actions .diary-save-button{background:#ed9455!important;color:#39271e!important}
+
+
+/* Simple, practical photo corner beside the lined diary page. */
+.journal-writing-with-photos{display:grid!important;grid-template-columns:minmax(0,1fr) 220px!important;gap:22px!important;align-items:start!important}
+.journal-writing-with-photos .journal-writing-column{min-width:0!important}
+.journal-writing-with-photos .journal-writing-column textarea{min-height:420px!important}
+.journal-photo-side{min-width:0!important;padding:14px!important;border:1px solid #e8c9a8!important;border-radius:12px!important;background:#fff9e8!important}
+.journal-photo-side-title{display:block!important;margin:0 0 10px!important;color:#806044!important;font-size:12px!important;font-weight:600!important;letter-spacing:.04em!important}
+.journal-photo-side .scrapbook-tools{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:10px!important}
+.journal-photo-side .scrapbook-tools h3{margin:0!important;color:#49342e!important;font:600 20px/1.25 Georgia,serif!important}
+.journal-photo-side .scrapbook-tool-button.primary{align-self:flex-start!important;background:#ed9455!important;color:#39271e!important;border:0!important;border-radius:8px!important;padding:9px 12px!important}
+.journal-photo-side .scrapbook-decoration-tools{display:flex!important;flex-wrap:wrap!important;gap:6px!important;margin:12px 0!important}
+.journal-photo-side .scrapbook-decoration-tools button{background:#fffdf0!important;color:#65473e!important;border:1px solid #e8c9a8!important;border-radius:7px!important;padding:6px 8px!important;font-size:12px!important}
+.journal-photo-side .scrapbook-canvas{min-height:230px!important;height:300px!important;border:1px dashed #dfc29f!important;border-radius:9px!important;background-color:#fffdf0!important;background-image:radial-gradient(#ecdcc5 1px,transparent 1px)!important;background-size:14px 14px!important}
+.journal-photo-side .scrapbook-canvas-empty{display:flex!important;align-items:center!important;justify-content:center!important;min-height:200px!important;color:#b99a81!important}
+.journal-photo-side .scrapbook-canvas-empty span{font-size:28px!important}
+.journal-photo-side .scrapbook-storage-note,.journal-photo-side .scrapbook-tools p,.journal-photo-side .scrapbook-kicker{display:none!important}
+.journal-photo-side .scrapbook-editor{background:transparent!important;border:0!important;padding:0!important}
+html[data-mindora-theme="dark"] .journal-photo-side,.dark-theme .journal-photo-side{background:#382d2a!important;border-color:#59443b!important}
+html[data-mindora-theme="dark"] .journal-photo-side-title,.dark-theme .journal-photo-side-title,html[data-mindora-theme="dark"] .journal-photo-side .scrapbook-tools h3,.dark-theme .journal-photo-side .scrapbook-tools h3{color:#fffbda!important}
+html[data-mindora-theme="dark"] .journal-photo-side .scrapbook-decoration-tools button,.dark-theme .journal-photo-side .scrapbook-decoration-tools button{background:#45352f!important;color:#e6d4c3!important;border-color:#705242!important}
+html[data-mindora-theme="dark"] .journal-photo-side .scrapbook-canvas,.dark-theme .journal-photo-side .scrapbook-canvas{background-color:#302725!important;background-image:radial-gradient(#59443b 1px,transparent 1px)!important;border-color:#705242!important}
+@media(max-width:760px){.journal-writing-with-photos{grid-template-columns:1fr!important}.journal-writing-with-photos .journal-writing-column textarea{min-height:300px!important}.journal-photo-side .scrapbook-canvas{height:240px!important}}
