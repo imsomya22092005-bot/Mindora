@@ -71,11 +71,3 @@ html[data-mindora-theme="dark"] .profile-hero p,html[data-mindora-theme="dark"] 
 html[data-mindora-theme="dark"] .profile-detail-card,html[data-mindora-theme="dark"] .profile-bottom-card{background:#382d2a!important;border-color:#59443b!important}
 html[data-mindora-theme="dark"] .profile-detail-card strong,html[data-mindora-theme="dark"] .profile-bottom-card strong{color:#fffbda!important}
 html[data-mindora-theme="dark"] .profile-detail-card small,html[data-mindora-theme="dark"] .profile-detail-label,html[data-mindora-theme="dark"] .profile-bottom-card p{color:#e6d4c3!important}
-
-
-/* Burgundy dark theme override — profile */
-html[data-mindora-theme="dark"] .profile-page,.dark-theme .profile-page{background:#800020!important;color:#fff9f2!important}
-html[data-mindora-theme="dark"] .profile-hero,.dark-theme .profile-hero{background:#d45060!important;color:#fff9f2!important}
-html[data-mindora-theme="dark"] .profile-detail-card,html[data-mindora-theme="dark"] .profile-bottom-card,.dark-theme .profile-detail-card,.dark-theme .profile-bottom-card{background:#f3e6d5!important;border-color:#d45060!important;color:#800020!important}
-html[data-mindora-theme="dark"] .profile-detail-card strong,html[data-mindora-theme="dark"] .profile-detail-label,html[data-mindora-theme="dark"] .profile-detail-card small,html[data-mindora-theme="dark"] .profile-bottom-card p,html[data-mindora-theme="dark"] .profile-bottom-card strong,.dark-theme .profile-detail-card strong,.dark-theme .profile-detail-label,.dark-theme .profile-detail-card small,.dark-theme .profile-bottom-card p,.dark-theme .profile-bottom-card strong{color:#800020!important}
-html[data-mindora-theme="dark"] .profile-bottom-card button,.dark-theme .profile-bottom-card button{background:#d45060!important;color:#fff9f2!important}
