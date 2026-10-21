@@ -38,11 +38,11 @@ import {
 } from "recharts";
 import "./App.css";
 import { useLanguage } from "./language";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { apiRequest } from "./api";
 import LandingPage from "./LandingPage";
 import AuthPage from "./AuthPage";
-import { JournalPage, InsightsPage, MindfulMomentsPage, MoodHeatmapPage } from "./DashboardPages";
+import { JournalPage, InsightsPage, MindfulMomentsPage } from "./DashboardPages";
 import IncognitoCheckinPage from "./IncognitoCheckinPage";
 import ProfilePage from "./ProfilePage";
 import GamesZone from "./GamesZone";
@@ -460,7 +460,6 @@ function Dashboard() {
       { path: "/insights", keys: ["insight", "insights", "chart", "average", "trend", "patterns", "history", "जानकारी", "मूड इतिहास", "चार्ट", "पैटर्न", "रुझान"] },
       { path: "/mindful-moments", keys: ["mindful", "breathing", "breath", "calm", "pause", "सुकून", "साँस", "सांस", "ध्यान", "विराम"] },
       { path: "/incognito-checkin", keys: ["incognito", "private", "burnout", "stress", "निजी", "तनाव", "बर्नआउट"] },
-      { path: "/mood-heatmap", keys: ["heatmap", "mind map", "mood map", "calendar", "मूड मैप", "हीटमैप", "कैलेंडर"] },
       { path: "/calm-corner", keys: ["calm corner", "comfort", "comfort box", "शांति", "सुकून कोना", "आराम"] },
       { path: "/profile", keys: ["profile", "account", "my profile", "प्रोफ़ाइल", "खाता"] },
       { path: "/settings", keys: ["settings", "setting", "सेटिंग", "सेटिंग्स"] },
@@ -486,7 +485,6 @@ function Dashboard() {
     if (section === "Insights") navigate("/insights");
     if (section === "Mindful moments") navigate("/mindful-moments");
     if (section === "Incognito check-in") navigate("/incognito-checkin");
-    if (section === "Mood heatmap") navigate("/mood-heatmap");
     if (section === "Calm Corner") navigate("/calm-corner");
     if (section === "My profile") navigate("/profile");
     if (section === "Play & Unwind") navigate("/games");
@@ -498,7 +496,6 @@ function Dashboard() {
     { label: t("Insights", "जानकारियाँ"), icon: BarChart3, routeLabel: "Insights" },
     { label: t("Mindful moments", "सुकून के पल"), icon: Wind, routeLabel: "Mindful moments" },
     { label: t("Incognito check-in", "निजी चेक-इन"), icon: ShieldCheck, routeLabel: "Incognito check-in" },
-    { label: t("Mood heatmap", "मूड मैप"), icon: Sparkles, routeLabel: "Mood heatmap" },
     { label: t("Play & Unwind", "खेलें और सुकून पाएँ"), icon: Gamepad2, routeLabel: "Play & Unwind" },
   ];
 
@@ -1235,7 +1232,7 @@ function App() {
         <Route path="/insights" element={<SharedSidebarLayout><InsightsPage /></SharedSidebarLayout>} />
         <Route path="/mindful-moments" element={<SharedSidebarLayout><MindfulMomentsPage /></SharedSidebarLayout>} />
         <Route path="/incognito-checkin" element={<SharedSidebarLayout><IncognitoCheckinPage /></SharedSidebarLayout>} />
-        <Route path="/mood-heatmap" element={<SharedSidebarLayout><MoodHeatmapPage /></SharedSidebarLayout>} />
+        <Route path="/mood-heatmap" element={<Navigate to="/dashboard" replace />} />
         <Route path="/profile" element={<SharedSidebarLayout><ProfilePage /></SharedSidebarLayout>} />
         <Route path="/games" element={<SharedSidebarLayout><GamesZone /></SharedSidebarLayout>} />
 
