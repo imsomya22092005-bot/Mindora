@@ -3256,3 +3256,23 @@ html[data-mindora-theme="dark"] .mood-book-entry p,
 html[data-mindora-theme="dark"] .mood-book-entry em { color: #e6d4c3 !important; }
 html[data-mindora-theme="dark"] .book-eyebrow,
 html[data-mindora-theme="dark"] .book-page-number { color: #ffbb70 !important; }
+
+
+/* Incognito now uses the shared top preference bar only; no duplicate local controls. */
+.incognito-page-controls { display: none !important; }
+html[data-mindora-theme="dark"] .incognito-page {
+  background: #292323 !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .incognito-page .section-page-header,
+html[data-mindora-theme="dark"] .incognito-page .incognito-checkin-card {
+  background: #382d2a !important;
+  border-color: #59443b !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .incognito-page :is(h1,h2,h3,strong,legend) { color: #fffbda !important; }
+html[data-mindora-theme="dark"] .incognito-page :is(p,span,label,.section-page-eyebrow) { color: #e6d4c3 !important; }
+html[data-mindora-theme="dark"] .incognito-page .incognito-privacy-note {
+  background: #45352f !important;
+  border-color: #705242 !important;
+}
