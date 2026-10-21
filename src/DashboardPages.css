@@ -647,3 +647,55 @@ html[data-mindora-theme="dark"] .journal-photo-side-title,.dark-theme .journal-p
 html[data-mindora-theme="dark"] .journal-photo-side .scrapbook-decoration-tools button,.dark-theme .journal-photo-side .scrapbook-decoration-tools button{background:#45352f!important;color:#e6d4c3!important;border-color:#705242!important}
 html[data-mindora-theme="dark"] .journal-photo-side .scrapbook-canvas,.dark-theme .journal-photo-side .scrapbook-canvas{background-color:#302725!important;background-image:radial-gradient(#59443b 1px,transparent 1px)!important;border-color:#705242!important}
 @media(max-width:760px){.journal-writing-with-photos{grid-template-columns:1fr!important}.journal-writing-with-photos .journal-writing-column textarea{min-height:300px!important}.journal-photo-side .scrapbook-canvas{height:240px!important}}
+
+
+/* Mindora warm paper treatment for journal empty states and mood pages. */
+.diary-entries .diary-empty {
+  background: radial-gradient(circle at 35% 25%, #fffdf0 0%, #ffec9e 58%, #ffdfb5 100%) !important;
+  border-color: #edc58f !important;
+  color: #49342e !important;
+}
+.diary-entries .diary-empty h3 { color: #49342e !important; }
+.diary-entries .diary-empty p { color: #65473e !important; }
+html[data-mindora-theme="dark"] .diary-entries .diary-empty {
+  background: radial-gradient(circle at 35% 25%, #49342e 0%, #382d2a 62%, #292323 100%) !important;
+  border-color: #705242 !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .diary-entries .diary-empty h3,
+html[data-mindora-theme="dark"] .diary-entries .diary-empty p { color: #fff3df !important; }
+
+html[data-mindora-theme="dark"] .insight-stat-grid article {
+  background: linear-gradient(145deg, #382d2a, #302725) !important;
+  border-color: #59443b !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .insight-stat-grid article > span,
+html[data-mindora-theme="dark"] .insight-stat-grid article > p { color: #e6d4c3 !important; }
+html[data-mindora-theme="dark"] .insight-stat-grid article > strong { color: #fffbda !important; }
+html[data-mindora-theme="dark"] .insight-chart-card,
+html[data-mindora-theme="dark"] .insight-kind-note,
+html[data-mindora-theme="dark"] .mood-card,
+html[data-mindora-theme="dark"] .mood-heatmap-card {
+  background: #382d2a !important;
+  border-color: #59443b !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .mood-hero-card {
+  background: linear-gradient(120deg, #49342e 0%, #382d2a 62%, #302725 100%) !important;
+  border-color: #705242 !important;
+}
+html[data-mindora-theme="dark"] .mood-insight-card,
+html[data-mindora-theme="dark"] .mood-selected-day {
+  background: linear-gradient(145deg, #382d2a, #302725) !important;
+  border-color: #59443b !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .mood-insight-label,
+html[data-mindora-theme="dark"] .mood-insight-card > p,
+html[data-mindora-theme="dark"] .mood-frequency-bars > div,
+html[data-mindora-theme="dark"] .mood-selected-day p,
+html[data-mindora-theme="dark"] .mood-selected-day span { color: #e6d4c3 !important; }
+html[data-mindora-theme="dark"] .mood-insight-card > strong,
+html[data-mindora-theme="dark"] .mood-selected-day strong { color: #fffbda !important; }
+html[data-mindora-theme="dark"] .mood-total-pill { background: #45352f !important; color: #fffbda !important; border-color: #705242 !important; }
