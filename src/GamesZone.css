@@ -297,3 +297,68 @@ html[data-mindora-theme="dark"] .games-page .games-footer,
 html[data-mindora-theme="dark"] .games-page .burn-hero p {
   color: #e6d4c3 !important;
 }
+
+
+/* Final contrast pass for the complete Play & Unwind experience in dark mode. */
+html[data-mindora-theme="dark"] .shared-dashboard-layout,
+html[data-mindora-theme="dark"] .shared-dashboard-content,
+html[data-mindora-theme="dark"] .shared-dashboard-content:has(.games-page) {
+  background: #292323 !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .games-page,
+html[data-mindora-theme="dark"] .shared-dashboard-content .games-page {
+  background: #292323 !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .games-page :is(h1,h2,h3,h4,strong,b,label,legend,.game-card-copy strong,.games-brand h1,.games-welcome h2,.colorpop-top h2,.colorpop-results h2,.game-coming-card h2) {
+  color: #fffbda !important;
+}
+html[data-mindora-theme="dark"] .games-page :is(p,span,small,li,label,.games-header > p,.games-welcome p,.game-card-copy > span,.games-footer,.colorpop-top p,.colorpop-progress-row,.colorpop-results > p,.game-coming-card p,.burn-hero p,.burn-eyebrow,.burn-letter-top,.burn-date,.burn-letter-foot,.burn-note,.colorpop-hint) {
+  color: #e6d4c3 !important;
+}
+html[data-mindora-theme="dark"] .games-page :is(.games-brand small,.colorpop-kicker,.burn-eyebrow) {
+  color: #ffbb70 !important;
+}
+html[data-mindora-theme="dark"] .games-page :is(.games-welcome,.game-card,.game-coming-card,.colorpop-shell,.burn-experience,.burn-letter,.colorpop-preview,.colorpop-level,.colorpop-result-stats > div) {
+  background: #382d2a !important;
+  border-color: #59443b !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .games-page :is(.burn-letter textarea,.colorpop-level span,.colorpop-stats span,.colorpop-target-label,.colorpop-controls button,.game-coming-card button,.games-back) {
+  background-color: #45352f !important;
+  border-color: #705242 !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .games-page :is(.game-card-art) {
+  border-color: #59443b !important;
+}
+html[data-mindora-theme="dark"] .games-page .game-card-art .game-play-pill {
+  background: #ffec9e !important;
+  color: #49342e !important;
+}
+html[data-mindora-theme="dark"] .games-page .game-card-art .game-soon-pill {
+  background: #45352f !important;
+  color: #e6d4c3 !important;
+}
+html[data-mindora-theme="dark"] .games-page .colorpop-controls .colorpop-soft,
+html[data-mindora-theme="dark"] .games-page .burn-button {
+  background: #ed9455 !important;
+  border-color: #ed9455 !important;
+  color: #39271e !important;
+}
+html[data-mindora-theme="dark"] .games-page .colorpop-preview p,
+html[data-mindora-theme="dark"] .games-page .burn-letter textarea::placeholder {
+  color: #e6d4c3 !important;
+}
+html[data-mindora-theme="dark"] .games-page .game-rainbow .game-card-art {
+  background: linear-gradient(135deg,#49342e,#59443b,#ed9455) !important;
+}
+html[data-mindora-theme="dark"] .games-page .game-night .game-card-art,
+html[data-mindora-theme="dark"] .games-page .game-glow .game-card-art {
+  background: linear-gradient(135deg,#302725,#49342e,#705242) !important;
+}
+html[data-mindora-theme="dark"] .games-page .game-paper .game-card-art,
+html[data-mindora-theme="dark"] .games-page .game-rain .game-card-art {
+  background: linear-gradient(135deg,#45352f,#59443b,#705242) !important;
+}
