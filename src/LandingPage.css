@@ -2627,3 +2627,28 @@ body {
 .mindora-landing.landing-dark .preview-dots i {
   background: #ed9455 !important;
 }
+
+
+/* Force readable contrast for the three promise lines in the dark landing theme. */
+html[data-mindora-theme="dark"] .mindora-landing .landing-difference .difference-points p,
+.mindora-landing.landing-dark .landing-difference .difference-points p,
+.landing-dark .landing-difference .difference-points p {
+  color: #fff3df !important;
+  background: #382d2a !important;
+  border-color: #705242 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+html[data-mindora-theme="dark"] .mindora-landing .landing-difference .difference-points p span,
+.mindora-landing.landing-dark .landing-difference .difference-points p span,
+.landing-dark .landing-difference .difference-points p span {
+  color: #ffbb70 !important;
+  background: #45352f !important;
+  border-color: #705242 !important;
+  opacity: 1 !important;
+}
+html[data-mindora-theme="dark"] .mindora-landing .landing-difference .difference-footnote,
+.mindora-landing.landing-dark .landing-difference .difference-footnote,
+.landing-dark .landing-difference .difference-footnote {
+  color: #e6d4c3 !important;
+}
