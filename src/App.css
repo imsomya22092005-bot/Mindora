@@ -3308,3 +3308,33 @@ html[data-mindora-theme="dark"] .shared-dashboard-content .insight-heading,
 html[data-mindora-theme="dark"] .shared-dashboard-content .insights-header h1 {
   color: #fff3df !important;
 }
+
+
+/* Match the actual shared sidebar and Insights PageHeader class names. */
+html[data-mindora-theme="dark"] .shared-sidebar-label,
+html[data-mindora-theme="dark"] .shared-sidebar-brand,
+html[data-mindora-theme="dark"] .shared-sidebar-brand strong,
+html[data-mindora-theme="dark"] .shared-sidebar-nav .shared-nav-link,
+html[data-mindora-theme="dark"] .shared-sidebar-nav .shared-nav-link span,
+html[data-mindora-theme="dark"] .shared-sidebar-nav .shared-nav-expand,
+html[data-mindora-theme="dark"] .shared-sidebar-nav .shared-sub-link,
+html[data-mindora-theme="dark"] .shared-sidebar-quote p,
+html[data-mindora-theme="dark"] .shared-sidebar-quote small,
+html[data-mindora-theme="dark"] .shared-settings-link {
+  color: #ffffff !important;
+}
+html[data-mindora-theme="dark"] .shared-sidebar-nav .shared-nav-row.is-active,
+html[data-mindora-theme="dark"] .shared-sidebar-nav .shared-nav-row.is-active .shared-nav-link,
+html[data-mindora-theme="dark"] .shared-sidebar-nav .shared-nav-row.is-active .shared-nav-link span,
+html[data-mindora-theme="dark"] .shared-sidebar-nav .shared-sub-link.sub-active {
+  color: #ffec9e !important;
+}
+html[data-mindora-theme="dark"] .insights-page .section-page-header h1,
+html[data-mindora-theme="dark"] .insights-page .section-page-header h1 em,
+html[data-mindora-theme="dark"] .insights-page .section-page-header p {
+  color: #ffffff !important;
+}
+html[data-mindora-theme="dark"] .shared-dashboard-content .section-page-header h1,
+html[data-mindora-theme="dark"] .shared-dashboard-content .section-page-header h1 em {
+  color: #ffffff !important;
+}
