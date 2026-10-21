@@ -2417,3 +2417,64 @@ body {
 .landing-dark .landing-cta h2{color:#fff3df!important}
 .landing-dark .landing-cta p{color:#e6d4c3!important}
 .landing-dark .landing-cta .landing-dark-button{background:#ed9455!important;color:#39271e!important;border-color:#ed9455!important}
+
+
+/* Landing-page preference controls: visible beside the auth links on every screen. */
+.mindora-landing .landing-preference-controls {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.mindora-landing .landing-preference-controls select,
+.mindora-landing .landing-theme-toggle {
+  height: 38px;
+  border: 1px solid #edc58f;
+  border-radius: 11px;
+  background: #fffdf0;
+  color: #49342e;
+  padding: 0 11px;
+  font: 600 12px 'DM Sans', sans-serif;
+  cursor: pointer;
+}
+.mindora-landing .landing-theme-toggle {
+  width: 38px;
+  padding: 0;
+  font-size: 19px;
+}
+.mindora-landing .landing-preference-controls select:focus-visible,
+.mindora-landing .landing-theme-toggle:focus-visible {
+  outline: 2px solid #ed9455;
+  outline-offset: 2px;
+}
+.mindora-landing.landing-dark .landing-preference-controls select,
+.mindora-landing.landing-dark .landing-theme-toggle {
+  background: #45352f;
+  color: #fffbda;
+  border-color: #705242;
+}
+@media (max-width: 1000px) {
+  .mindora-landing .landing-navbar { flex-wrap: wrap; gap: 12px; }
+  .mindora-landing .landing-preference-controls { margin-left: auto; }
+}
+@media (max-width: 620px) {
+  .mindora-landing .landing-preference-controls select { max-width: 95px; padding: 0 6px; }
+  .mindora-landing .landing-preference-controls select,
+  .mindora-landing .landing-theme-toggle { height: 34px; }
+  .mindora-landing .landing-theme-toggle { width: 34px; }
+}
+
+/* Replace the old green reminder/orbit accent with a brand-matched peach glow. */
+.landing-dark .how-visual {
+  background: radial-gradient(circle, #49342e 0%, #382d2a 58%, #292323 100%) !important;
+}
+.landing-dark .how-center,
+.landing-dark .orbit-label {
+  color: #ffdfb5 !important;
+}
+.landing-dark .how-orbit { border-color: rgba(237,148,85,.3) !important; }
+.landing-dark .landing-reminder,
+.landing-dark .reminder-card,
+.landing-dark [class*="reminder"] {
+  color: #fff3df;
+}
