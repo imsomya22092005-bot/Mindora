@@ -2491,3 +2491,38 @@ body {
   display: grid !important;
   place-items: center !important;
 }
+
+
+/* Reminder section: warm yellow in light mode, cocoa/peach in dark mode. */
+.mindora-landing .landing-cta {
+  background: linear-gradient(135deg, #fffbda 0%, #ffec9e 58%, #ffdfb5 100%) !important;
+  border-color: #edc58f !important;
+  color: #49342e !important;
+}
+.mindora-landing .landing-cta .section-eyebrow { color: #a95d32 !important; }
+.mindora-landing .landing-cta h2 { color: #49342e !important; }
+.mindora-landing .landing-cta p { color: #65473e !important; }
+.mindora-landing .landing-cta .landing-cta-button {
+  background: #ed9455 !important;
+  border-color: #ed9455 !important;
+  color: #39271e !important;
+}
+.mindora-landing.landing-dark .landing-cta {
+  background: linear-gradient(135deg, #382d2a 0%, #49342e 58%, #302725 100%) !important;
+  border-color: #705242 !important;
+  color: #fff3df !important;
+}
+.mindora-landing.landing-dark .landing-cta .section-eyebrow { color: #ffbb70 !important; }
+.mindora-landing.landing-dark .landing-cta h2 { color: #fffbda !important; }
+.mindora-landing.landing-dark .landing-cta p { color: #f0dfd1 !important; }
+.mindora-landing.landing-dark .landing-cta .landing-cta-button {
+  background: #ed9455 !important;
+  border-color: #ed9455 !important;
+  color: #39271e !important;
+}
+.mindora-landing.landing-dark .how-center {
+  background: #382d2a !important;
+  border-color: #59443b !important;
+  color: #ffdfb5 !important;
+  box-shadow: 0 0 0 10px rgba(237,148,85,.08) !important;
+}
