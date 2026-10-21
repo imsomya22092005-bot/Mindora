@@ -2478,3 +2478,16 @@ body {
 .landing-dark [class*="reminder"] {
   color: #fff3df;
 }
+
+
+/* Explicitly override the older header rule that hid these controls. */
+.mindora-landing .landing-navbar .landing-preference-controls,
+.mindora-landing .landing-navbar .landing-theme-toggle {
+  display: flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+.mindora-landing .landing-navbar .landing-theme-toggle {
+  display: grid !important;
+  place-items: center !important;
+}
