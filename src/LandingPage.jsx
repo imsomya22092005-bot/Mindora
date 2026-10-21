@@ -31,7 +31,13 @@ export default function LandingPage() {
   const [language, setLanguage] = useLanguage();
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("mindora-theme") === "dark");
   const hi = language === "hi";
-  useEffect(() => { localStorage.setItem("mindora-theme", darkMode ? "dark" : "light"); }, [darkMode]);
+  useEffect(() => {
+    const theme = darkMode ? "dark" : "light";
+    localStorage.setItem("mindora-theme", theme);
+    document.documentElement.dataset.mindoraTheme = theme;
+    document.documentElement.dataset.mindoraLanguage = language;
+    localStorage.setItem("mindora-language", language);
+  }, [darkMode, language]);
   useEffect(() => {
     const root = document.querySelector(".mindora-landing");
     if (!root || !("IntersectionObserver" in window)) return;
@@ -76,6 +82,13 @@ export default function LandingPage() {
           <a className="landing-signup" href="/signup">
             {hi ? "शुरू करें" : "Get started"} <span>↗</span>
           </a>
+        </div>
+        <div className="landing-preference-controls" aria-label={hi ? "भाषा और थीम" : "Language and theme"}>
+          <select aria-label={hi ? "भाषा चुनें" : "Choose language"} value={language} onChange={e => setLanguage(e.target.value)}>
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+          </select>
+          <button type="button" className="landing-theme-toggle" aria-label={darkMode ? (hi ? "लाइट मोड" : "Switch to light mode") : (hi ? "डार्क मोड" : "Switch to dark mode")} onClick={() => setDarkMode(v => !v)}>{darkMode ? "☀" : "☾"}</button>
         </div>
       </header>
 
