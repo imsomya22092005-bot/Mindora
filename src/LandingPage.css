@@ -2564,3 +2564,66 @@ body {
   background: #45352f !important;
   color: #ffbb70 !important;
 }
+
+
+/* Landing dark mode: fix the preview section's green headline and low-contrast mock dashboard. */
+.mindora-landing.landing-dark .preview-copy h2,
+.mindora-landing.landing-dark .preview-copy h2 *,
+.mindora-landing.landing-dark .preview-copy p {
+  color: #fff3df !important;
+}
+.mindora-landing.landing-dark .preview-copy h2 em,
+.mindora-landing.landing-dark .preview-copy h2 span {
+  color: #ffbb70 !important;
+}
+.mindora-landing.landing-dark .preview-window {
+  background: linear-gradient(145deg, #382d2a 0%, #302725 100%) !important;
+  color: #fff3df !important;
+  border: 1px solid #59443b !important;
+  box-shadow: 0 24px 70px rgba(0,0,0,.22) !important;
+}
+.mindora-landing.landing-dark .preview-window :is(*, *::before, *::after) {
+  color: #fff3df !important;
+  border-color: #59443b;
+}
+.mindora-landing.landing-dark .preview-window-top {
+  border-bottom: 1px solid #59443b !important;
+}
+.mindora-landing.landing-dark .preview-window-top > span:nth-child(2),
+.mindora-landing.landing-dark .preview-welcome > span {
+  color: #ffbb70 !important;
+}
+.mindora-landing.landing-dark .preview-welcome h3 {
+  color: #fff3df !important;
+}
+.mindora-landing.landing-dark .preview-welcome p,
+.mindora-landing.landing-dark .preview-note,
+.mindora-landing.landing-dark .preview-mini small {
+  color: #e6d4c3 !important;
+}
+.mindora-landing.landing-dark .preview-moods > span {
+  background: #45352f !important;
+  border: 1px solid #59443b !important;
+  color: #ffbb70 !important;
+}
+.mindora-landing.landing-dark .preview-moods > span small {
+  color: #fff3df !important;
+}
+.mindora-landing.landing-dark .preview-mini {
+  background: #45352f !important;
+  border: 1px solid #59443b !important;
+}
+.mindora-landing.landing-dark .preview-mini b {
+  color: #fff3df !important;
+}
+.mindora-landing.landing-dark .preview-mini small {
+  color: #e6d4c3 !important;
+}
+.mindora-landing.landing-dark .preview-mini-icon {
+  background: #292323 !important;
+  color: #ffbb70 !important;
+  border-color: #705242 !important;
+}
+.mindora-landing.landing-dark .preview-dots i {
+  background: #ed9455 !important;
+}
