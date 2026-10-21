@@ -3338,3 +3338,81 @@ html[data-mindora-theme="dark"] .shared-dashboard-content .section-page-header h
 html[data-mindora-theme="dark"] .shared-dashboard-content .section-page-header h1 em {
   color: #ffffff !important;
 }
+
+
+/* Dark mode: keep active navigation and the sidebar reminder in cocoa, not light-theme yellow. */
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-nav-row.is-active,
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-nav-row.is-active:hover,
+.dark-theme .shared-dashboard-sidebar .shared-nav-row.is-active,
+.shared-dashboard-layout:has(.dark-theme) .shared-dashboard-sidebar .shared-nav-row.is-active {
+  background: #45352f !important;
+  color: #fff3df !important;
+  box-shadow: inset 3px 0 0 #ed9455 !important;
+}
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-nav-row.is-active .shared-nav-link,
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-nav-row.is-active .shared-nav-link span,
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-nav-row.is-active .shared-nav-link svg,
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-nav-row.is-active .shared-nav-expand,
+.dark-theme .shared-dashboard-sidebar .shared-nav-row.is-active :is(.shared-nav-link,.shared-nav-expand),
+.shared-dashboard-layout:has(.dark-theme) .shared-dashboard-sidebar .shared-nav-row.is-active :is(.shared-nav-link,.shared-nav-expand) {
+  color: #fff3df !important;
+  stroke: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-nav-row:hover,
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-sub-link:hover,
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-sub-link.sub-active,
+.dark-theme .shared-dashboard-sidebar .shared-nav-row:hover,
+.shared-dashboard-layout:has(.dark-theme) .shared-dashboard-sidebar .shared-nav-row:hover {
+  background: #45352f !important;
+  color: #ffdfb5 !important;
+}
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-sidebar-quote,
+.dark-theme .shared-dashboard-sidebar .shared-sidebar-quote,
+.shared-dashboard-layout:has(.dark-theme) .shared-dashboard-sidebar .shared-sidebar-quote {
+  background: linear-gradient(135deg, #382d2a, #302725) !important;
+  border: 1px solid #59443b !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-sidebar-quote p,
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-sidebar-quote small,
+.dark-theme .shared-dashboard-sidebar .shared-sidebar-quote p,
+.dark-theme .shared-dashboard-sidebar .shared-sidebar-quote small,
+.shared-dashboard-layout:has(.dark-theme) .shared-dashboard-sidebar .shared-sidebar-quote p,
+.shared-dashboard-layout:has(.dark-theme) .shared-dashboard-sidebar .shared-sidebar-quote small {
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-sidebar-quote small,
+.dark-theme .shared-dashboard-sidebar .shared-sidebar-quote small,
+.shared-dashboard-layout:has(.dark-theme) .shared-dashboard-sidebar .shared-sidebar-quote small {
+  color: #e6d4c3 !important;
+}
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar .shared-sidebar-quote > span,
+.dark-theme .shared-dashboard-sidebar .shared-sidebar-quote > span,
+.shared-dashboard-layout:has(.dark-theme) .shared-dashboard-sidebar .shared-sidebar-quote > span {
+  background: #45352f !important;
+  color: #ffbb70 !important;
+}
+html[data-mindora-theme="dark"] .section-page-header h1,
+html[data-mindora-theme="dark"] .section-page-header h1 em,
+html[data-mindora-theme="dark"] .section-page-header .section-page-eyebrow,
+html[data-mindora-theme="dark"] .section-page-header .section-eyebrow,
+.dark-theme .section-page-header h1,
+.dark-theme .section-page-header h1 em,
+.dark-theme .section-page-header .section-page-eyebrow,
+.dark-theme .section-page-header .section-eyebrow {
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .section-page-header .section-page-eyebrow,
+html[data-mindora-theme="dark"] .section-page-header .section-eyebrow,
+.dark-theme .section-page-header .section-page-eyebrow,
+.dark-theme .section-page-header .section-eyebrow {
+  color: #ffbb70 !important;
+}
+html[data-mindora-theme="dark"] .insight-stat-grid article :is(span,strong,p),
+html[data-mindora-theme="dark"] .insight-chart-card :is(h2,p),
+html[data-mindora-theme="dark"] .insight-kind-note :is(p,strong),
+.dark-theme .insight-stat-grid article :is(span,strong,p),
+.dark-theme .insight-chart-card :is(h2,p),
+.dark-theme .insight-kind-note :is(p,strong) {
+  color: #fff3df !important;
+}
