@@ -3142,3 +3142,80 @@ body,.app-shell{background:#fffbda;color:#49342e}
 .shared-dashboard-content .wellness-topbar{justify-content:flex-end!important}
 .shared-dashboard-content .games-header{position:relative}
 .shared-dashboard-content .games-back{margin-bottom:8px}
+
+
+/* Warm peach theme corrections for empty states and insight metrics. */
+.diary-empty,
+.diary-entries .diary-empty {
+  background: radial-gradient(circle at 35% 25%, #fffdf0 0%, #ffec9e 62%, #ffdfb5 100%) !important;
+  border-color: #edc58f !important;
+  color: #49342e !important;
+  box-shadow: 0 16px 42px rgba(116, 70, 42, .10), inset 0 0 0 8px rgba(255,255,255,.42) !important;
+}
+.diary-empty h3, .diary-empty p, .diary-empty a { color: #49342e !important; }
+.diary-empty svg { color: #ed9455 !important; }
+
+html[data-mindora-theme="dark"] .diary-empty,
+html[data-mindora-theme="dark"] .diary-entries .diary-empty {
+  background: radial-gradient(circle at 35% 25%, #49342e 0%, #382d2a 65%, #292323 100%) !important;
+  border-color: #705242 !important;
+  color: #fff3df !important;
+  box-shadow: 0 16px 42px rgba(0,0,0,.2), inset 0 0 0 8px rgba(255,236,158,.04) !important;
+}
+html[data-mindora-theme="dark"] .diary-empty h3,
+html[data-mindora-theme="dark"] .diary-empty p,
+html[data-mindora-theme="dark"] .diary-empty a { color: #fff3df !important; }
+html[data-mindora-theme="dark"] .diary-empty svg { color: #ffbb70 !important; }
+
+/* Play & Unwind uses the document theme too, so the entire shell/sidebar/content turn dark. */
+html[data-mindora-theme="dark"] .shared-dashboard-layout,
+html[data-mindora-theme="dark"] .shared-dashboard-content {
+  background: #292323 !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .shared-dashboard-layout { border-color: #59443b !important; }
+html[data-mindora-theme="dark"] .shared-dashboard-sidebar {
+  background: #302725 !important;
+  border-color: #59443b !important;
+}
+html[data-mindora-theme="dark"] .shared-dashboard-content > main {
+  background-color: transparent !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .shared-dashboard-content .games-page {
+  min-height: 100vh;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Readable dashboard metrics in dark mode, including labels and empty-value text. */
+html[data-mindora-theme="dark"] .stat-label,
+html[data-mindora-theme="dark"] .stat-footnote,
+html[data-mindora-theme="dark"] .stat-card p,
+html[data-mindora-theme="dark"] .insight-stat-grid article > span,
+html[data-mindora-theme="dark"] .insight-stat-grid article > p {
+  color: #e6d4c3 !important;
+}
+html[data-mindora-theme="dark"] .insight-stat-grid article > strong,
+html[data-mindora-theme="dark"] .insight-stat-grid article > strong small {
+  color: #fffbda !important;
+}
+html[data-mindora-theme="dark"] .insight-stat-grid article {
+  background: #382d2a !important;
+  border-color: #59443b !important;
+}
+html[data-mindora-theme="dark"] .insight-chart-card,
+html[data-mindora-theme="dark"] .insight-kind-note {
+  background: #382d2a !important;
+  border-color: #59443b !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .insight-chart-card h2,
+html[data-mindora-theme="dark"] .insight-kind-note strong {
+  color: #fffbda !important;
+}
+html[data-mindora-theme="dark"] .insight-chart-card p,
+html[data-mindora-theme="dark"] .insight-kind-note p {
+  color: #e6d4c3 !important;
+}
