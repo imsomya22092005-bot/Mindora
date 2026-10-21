@@ -1,0 +1,204 @@
+Mindora Backend API Documentation
+
+Base URL: http://localhost:5000/api
+Auth: Include "Authorization: Bearer <token>" in Headers for protected routes.
+
+==============================
+1. AUTHENTICATION MODULE
+==============================
+
+👉 1. Send OTP
+• Method: POST
+• Route: /api/auth/otp/send
+• Headers: Content-Type: application/json
+• Body:
+{
+  "email": "user@example.com"
+}
+• Response (200):
+{
+  "success": true,
+  "message": "Verification code sent to your email."
+}
+
+👉 2. Verify OTP & Login
+• Method: POST
+• Route: /api/auth/otp/verify
+• Headers: Content-Type: application/json
+• Body:
+{
+  "email": "user@example.com",
+  "otp": "823593",
+  "name": "Ishan Mittal"
+}
+• Response (200):
+{
+  "success": true,
+  "token": "eyJhbGciOi...",
+  "user": {
+    "id": "670c5e3d...",
+    "name": "Ishan Mittal",
+    "email": "user@example.com",
+    "authProvider": "otp"
+  }
+}
+
+👉 3. Guest Login
+• Method: POST
+• Route: /api/auth/guest
+• Headers: Content-Type: application/json
+• Body: {}
+• Response (200): Returns token & guest user object.
+
+==============================
+2. MOOD TRACKING (Protected)
+==============================
+
+👉 1. Log / Update Daily Mood (Upsert)
+• Method: POST
+• Route: /api/mood/entry
+• Headers: 
+  - Authorization: Bearer <token>
+  - Content-Type: application/json
+• Body:
+{
+  "date": "2026-10-15",
+  "mood": "good",
+  "intensity": 4,
+  "note": "Working on frontend integration",
+  "tags": ["coding", "productive"]
+}
+(Allowed mood values: terrible, bad, neutral, good, rad)
+• Response (200): Returns saved mood entry.
+
+👉 2. Monthly Calendar View
+• Method: GET
+• Route: /api/mood/calendar?year=2026&month=10
+• Headers: Authorization: Bearer <token>
+• Response (200): Chronological array of entries for that month.
+
+👉 3. Yearly Heatmap (GitHub Style)
+• Method: GET
+• Route: /api/mood/heatmap?year=2026
+• Headers: Authorization: Bearer <token>
+• Response (200):
+{
+  "success": true,
+  "year": "2026",
+  "totalEntries": 2,
+  "data": {
+    "2026-10-02": { "mood": "good", "intensity": 4 },
+    "2026-10-15": { "mood": "rad", "intensity": 5 }
+  }
+}
+
+==================================
+3. GOOGLE AUTHENTICATION ENDPOINT
+==================================
+
+👉 Google Login / Signup
+• Method: POST
+• Route: /api/auth/google
+• Headers: 
+  Content-Type: application/json
+• Body:
+{
+  "token": "<google_id_token_from_frontend>"
+}
+
+• Success Response (200 OK):
+{
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": "670c5e3d1234567890abcdef",
+    "name": "Ishan Mittal",
+    "email": "user@gmail.com",
+    "authProvider": "google"
+  }
+}
+
+• Error Responses:
+  - 400 Bad Request:
+    { "error": "Google ID token is required" }
+  - 401 Unauthorized:
+    { "error": "Google authentication failed" }
+
+==============================
+3. CALM CORNER (Protected)
+==============================
+
+👉 1. Log Mindful Session
+• Method: POST
+• Route: /api/calm/session
+• Headers: 
+  - Authorization: Bearer <token>
+  - Content-Type: application/json
+• Body:
+{
+  "activityType": "box_breathing",
+  "durationMinutes": 5,
+  "soundscape": "rain",
+  "reflectionNote": "Felt grounded and calm after coding"
+}
+(Allowed activityType values: box_breathing, 478_breathing, ambient_sound, grounding, custom)
+(Allowed soundscape values: rain, forest, waves, none)
+• Response (201):
+{
+  "success": true,
+  "message": "Session recorded successfully",
+  "data": {
+    "_id": "670c5e3d1234567890abcdef",
+    "user": "670c4a1b...",
+    "activityType": "box_breathing",
+    "durationMinutes": 5,
+    "soundscape": "rain",
+    "reflectionNote": "Felt grounded and calm after coding",
+    "completedAt": "2026-10-20T11:25:00.000Z"
+  }
+}
+
+👉 2. Aggregate Dashboard Stats
+• Method: GET
+• Route: /api/calm/stats
+• Headers: Authorization: Bearer <token>
+• Response (200):
+{
+  "success": true,
+  "data": {
+    "totalMinutes": 35,
+    "totalSessions": 6,
+    "activityBreakdown": [
+      {
+        "_id": "box_breathing",
+        "totalMinutes": 20,
+        "count": 4
+      },
+      {
+        "_id": "ambient_sound",
+        "totalMinutes": 15,
+        "count": 2
+      }
+    ]
+  }
+}
+
+👉 3. Session History Feed
+• Method: GET
+• Route: /api/calm/history?limit=10
+• Headers: Authorization: Bearer <token>
+• Response (200):
+{
+  "success": true,
+  "count": 1,
+  "data": [
+    {
+      "_id": "670c5e3d1234567890abcdef",
+      "activityType": "box_breathing",
+      "durationMinutes": 5,
+      "soundscape": "rain",
+      "reflectionNote": "Felt grounded and calm after coding",
+      "completedAt": "2026-10-20T11:25:00.000Z"
+    }
+  ]
+}
