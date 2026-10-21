@@ -2526,3 +2526,41 @@ body {
   color: #ffdfb5 !important;
   box-shadow: 0 0 0 10px rgba(237,148,85,.08) !important;
 }
+
+
+/* High-contrast landing copy in dark mode: replace remaining sage/green text. */
+.mindora-landing.landing-dark :is(.section-eyebrow,.features-heading .section-eyebrow,.landing-why-heading .section-eyebrow,.preview-copy .section-eyebrow,.how-copy .section-eyebrow,.landing-difference .section-eyebrow,.landing-cta .section-eyebrow) {
+  color: #ffbb70 !important;
+}
+.mindora-landing.landing-dark :is(.landing-intro h2,.landing-intro h2 span,.landing-intro p,
+  .landing-why h2,.landing-why h2 em,.landing-why-heading p,
+  .landing-why-grid article h3,.landing-why-grid article p,.landing-why-grid article .why-number,
+  .landing-features h2,.landing-features p,.landing-feature-card h3,.landing-feature-card p,
+  .landing-feature-card .feature-link,.landing-preview h2,.landing-preview p,
+  .landing-how h2,.landing-how h2 span,.landing-how p,
+  .landing-difference h2,.landing-difference h2 em,.landing-difference p,
+  .landing-difference .difference-points p,.landing-difference .difference-footnote,
+  .landing-cta h2,.landing-cta p,.landing-footer,.landing-footer a) {
+  color: #fff3df !important;
+}
+.mindora-landing.landing-dark :is(.landing-intro h2 span,.landing-why h2 em,.landing-how h2 span,.landing-difference h2 em) {
+  color: #ffbb70 !important;
+}
+.mindora-landing.landing-dark .difference-points p span {
+  color: #ffbb70 !important;
+  background: #45352f !important;
+  border-color: #705242 !important;
+}
+.mindora-landing.landing-dark .landing-feature-card .feature-icon,
+.mindora-landing.landing-dark .landing-feature-card .feature-number,
+.mindora-landing.landing-dark .landing-why-grid .why-symbol {
+  color: #ffbb70 !important;
+}
+.mindora-landing.landing-dark .landing-preview .preview-window,
+.mindora-landing.landing-dark .landing-preview .preview-window * {
+  color: #fff3df !important;
+}
+.mindora-landing.landing-dark .landing-preview .preview-mini-icon {
+  background: #45352f !important;
+  color: #ffbb70 !important;
+}
