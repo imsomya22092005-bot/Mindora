@@ -3219,3 +3219,40 @@ html[data-mindora-theme="dark"] .insight-chart-card p,
 html[data-mindora-theme="dark"] .insight-kind-note p {
   color: #e6d4c3 !important;
 }
+
+
+/* Final dark-mode cleanup: remove remaining sage/forest surfaces from check-in book and empty history. */
+html[data-mindora-theme="dark"] body { background: #292323 !important; color: #fff3df !important; }
+html[data-mindora-theme="dark"] .empty-history {
+  background: linear-gradient(135deg, #382d2a, #302725) !important;
+  border-color: #59443b !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .empty-history strong { color: #fffbda !important; }
+html[data-mindora-theme="dark"] .empty-history p { color: #e6d4c3 !important; }
+html[data-mindora-theme="dark"] .history-empty-icon {
+  background: #45352f !important;
+  color: #ffbb70 !important;
+}
+html[data-mindora-theme="dark"] .mood-book {
+  background: linear-gradient(115deg, #382d2a 0%, #49342e 9%, #382d2a 15%, #302725 100%) !important;
+  border-color: #59443b !important;
+  box-shadow: inset 5px 0 9px #292323, inset -3px 0 5px rgba(255,236,158,.08), 0 22px 42px rgba(0,0,0,.22) !important;
+}
+html[data-mindora-theme="dark"] .mood-book::after { border-color: rgba(255,236,158,.10) !important; }
+html[data-mindora-theme="dark"] .mood-book-spine {
+  background: linear-gradient(90deg, #302725, #59443b 48%, #382d2a) !important;
+  border-color: #705242 !important;
+}
+html[data-mindora-theme="dark"] .mood-book-page {
+  background: repeating-linear-gradient(to bottom, #302725 0, #302725 37px, rgba(237,148,85,.13) 38px, #302725 39px) !important;
+  border-color: #59443b !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .mood-book-entry h2,
+html[data-mindora-theme="dark"] .mood-book-entry h3,
+html[data-mindora-theme="dark"] .mood-book-entry strong { color: #fffbda !important; }
+html[data-mindora-theme="dark"] .mood-book-entry p,
+html[data-mindora-theme="dark"] .mood-book-entry em { color: #e6d4c3 !important; }
+html[data-mindora-theme="dark"] .book-eyebrow,
+html[data-mindora-theme="dark"] .book-page-number { color: #ffbb70 !important; }
