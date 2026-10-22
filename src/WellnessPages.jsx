@@ -78,7 +78,7 @@ export function CalmCorner() {
       await apiRequest("/api/calm/session", {
         method: "POST",
         token,
-        body: JSON.stringify({ activityType: "box-breathing", durationSeconds, soundscape: "none" }),
+        body: JSON.stringify({ activityType: "box-breathing", durationMinutes: Math.max(1, Math.ceil(durationSeconds / 60)), soundscape: "none" }),
       });
       setSessionStatus(hi ? "आपका साँस लेने का सत्र सेव हो गया।" : "Your breathing session was saved.");
     } catch (error) {
