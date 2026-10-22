@@ -3416,3 +3416,49 @@ html[data-mindora-theme="dark"] .insight-kind-note :is(p,strong),
 .dark-theme .insight-kind-note :is(p,strong) {
   color: #fff3df !important;
 }
+
+
+/* Responsive dashboard shell + mobile Your Space hamburger navigation */
+.shared-sidebar-mobile-head { display: contents; }
+.shared-sidebar-hamburger { display: none; }
+.shared-dashboard-layout, .shared-dashboard-content, .shared-dashboard-content > main { min-width: 0; }
+.shared-dashboard-content img, .shared-dashboard-content video, .shared-dashboard-content canvas, .shared-dashboard-content svg { max-width: 100%; }
+.shared-dashboard-content :is(input,textarea,select) { max-width: 100%; }
+@media (max-width: 760px) {
+  .shared-dashboard-layout { display: block !important; width: 100%; min-width: 0; overflow-x: clip; }
+  .shared-dashboard-sidebar { position: relative !important; top: 0 !important; width: 100%; height: auto !important; min-height: 0 !important; padding: 12px 14px !important; overflow: visible !important; border-right: 0 !important; border-bottom: 1px solid #f0d8bc; }
+  .shared-sidebar-mobile-head { display: flex !important; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+  .shared-sidebar-mobile-head .shared-sidebar-brand { margin: 0 !important; min-width: 0; }
+  .shared-sidebar-mobile-head .shared-sidebar-brand strong { font-size: 25px !important; }
+  .shared-sidebar-mobile-head .shared-brand-mark { width: 38px; height: 38px; font-size: 24px; flex: 0 0 auto; }
+  .shared-sidebar-hamburger { display: inline-flex !important; align-items: center; justify-content: center; flex: 0 0 44px; width: 44px; height: 44px; border: 1px solid #e8c9a8; border-radius: 12px; background: #fffdf0; color: #49342e; box-shadow: 0 3px 12px rgba(73,52,46,.08); }
+  .shared-sidebar-label, .shared-sidebar-nav, .shared-sidebar-spacer, .shared-sidebar-quote, .shared-settings-link { display: none !important; }
+  .shared-dashboard-sidebar.mobile-menu-open .shared-sidebar-label { display: block !important; margin: 18px 0 10px !important; }
+  .shared-dashboard-sidebar.mobile-menu-open .shared-sidebar-nav { display: flex !important; flex-direction: column !important; gap: 5px !important; }
+  .shared-dashboard-sidebar.mobile-menu-open .shared-sidebar-spacer { display: none !important; }
+  .shared-dashboard-sidebar.mobile-menu-open .shared-sidebar-quote { display: block !important; margin: 14px 0 8px !important; }
+  .shared-dashboard-sidebar.mobile-menu-open .shared-settings-link { display: flex !important; margin-top: 8px; }
+  .shared-dashboard-sidebar.mobile-menu-open .shared-nav-group { width: 100%; }
+  .shared-dashboard-sidebar.mobile-menu-open .shared-nav-row { display: flex; width: 100%; min-height: 46px; }
+  .shared-dashboard-sidebar.mobile-menu-open .shared-nav-link { flex: 1; min-width: 0; padding: 12px 10px; font-size: 14px; }
+  .shared-dashboard-sidebar.mobile-menu-open .shared-nav-expand { flex: 0 0 38px; }
+  .shared-dashboard-sidebar.mobile-menu-open .shared-nav-submenu { margin: 3px 0 8px 24px; }
+  .shared-dashboard-content { width: 100%; min-width: 0; padding: 18px 12px !important; overflow-x: clip; }
+  .shared-dashboard-content > main { width: 100% !important; max-width: 100% !important; min-width: 0 !important; }
+  .shared-dashboard-content :is(.section-page-header,.page-header,.insights-header,.journal-page-header) { gap: 12px; flex-wrap: wrap; }
+  .shared-dashboard-content :is(.section-page-header h1,.page-header h1,.insights-header h1) { font-size: clamp(1.55rem, 6vw, 2.25rem); overflow-wrap: anywhere; }
+  .shared-dashboard-content :is(.insight-stat-grid,.mood-stat-grid,.dashboard-stat-grid,.mindful-focus-grid) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .shared-dashboard-content :is(.journal-writing-with-photos,.insight-main-grid,.dashboard-main-grid) { grid-template-columns: minmax(0, 1fr) !important; }
+  .shared-dashboard-content :is(.journal-writing-column,.journal-photo-side,.insight-chart-card,.insight-kind-note,.wellness-panel,.game-card,.colorpop-shell) { min-width: 0; }
+  .shared-dashboard-content :is(table,.table-wrap) { max-width: 100%; }
+  .shared-dashboard-content pre { max-width: 100%; overflow-x: auto; }
+}
+@media (max-width: 420px) {
+  .shared-dashboard-sidebar { padding: 10px 11px !important; }
+  .shared-dashboard-content { padding: 14px 10px !important; }
+  .shared-dashboard-content :is(.insight-stat-grid,.mood-stat-grid,.dashboard-stat-grid,.mindful-focus-grid) { grid-template-columns: minmax(0,1fr) !important; }
+  .shared-dashboard-content :is(button,a[role="button"]) { max-width: 100%; }
+}
+@media (min-width: 761px) {
+  .shared-sidebar-mobile-head { display: contents; }
+}
