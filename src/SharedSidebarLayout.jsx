@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, BookOpen, BarChart3, Wind, ShieldCheck, Gamepad2, Settings, ChevronDown, Leaf } from "lucide-react";
+import { LayoutDashboard, BookOpen, BarChart3, Wind, ShieldCheck, Gamepad2, Settings, ChevronDown, Leaf, Sparkles } from "lucide-react";
 import "./App.css";
 
 const mainItems = [
