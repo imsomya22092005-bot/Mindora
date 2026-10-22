@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { apiRequest } from "./api";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Heart, ArrowRight, Mail, UserRound, X, ShieldCheck } from "lucide-react";
+import { Heart, ArrowRight, Mail, UserRound, X, ShieldCheck, Sun, Moon } from "lucide-react";
 import "./AuthPage.css";
 import { useLanguage } from "./language";
 
@@ -12,7 +12,10 @@ export default function AuthPage({ mode = "login" }) {
   const [language, setLanguage] = useLanguage();
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("mindora-theme") === "dark");
   const hi = language === "hi";
-  useEffect(() => { localStorage.setItem("mindora-theme", darkMode ? "dark" : "light"); }, [darkMode]);
+  useEffect(() => {
+    localStorage.setItem("mindora-theme", darkMode ? "dark" : "light");
+    document.documentElement.dataset.mindoraTheme = darkMode ? "dark" : "light";
+  }, [darkMode]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
@@ -144,6 +147,16 @@ export default function AuthPage({ mode = "login" }) {
 
   return (
     <main className={`auth-page ${darkMode ? "auth-dark" : ""}`}>
+      <div className="auth-page-preferences" aria-label="Page preferences">
+        <label htmlFor="auth-language">{hi ? "भाषा" : "Language"}</label>
+        <select id="auth-language" value={language} onChange={(event) => { setLanguage(event.target.value); localStorage.setItem("mindora-language", event.target.value); }} aria-label="Choose language">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी</option>
+        </select>
+        <button type="button" onClick={() => setDarkMode(value => !value)} aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}>
+          {darkMode ? <Sun size={16} /> : <Moon size={16} />} {darkMode ? (hi ? "लाइट मोड" : "Light mode") : (hi ? "डार्क मोड" : "Dark mode")}
+        </button>
+      </div>
       <section className="auth-visual">
         <Link className="auth-brand" to="/" aria-label="Mindora home">
           <span className="auth-brand-mark"><img src="/favicon.svg" alt="" /></span>
