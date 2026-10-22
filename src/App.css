@@ -3462,3 +3462,13 @@ html[data-mindora-theme="dark"] .insight-kind-note :is(p,strong),
 @media (min-width: 761px) {
   .shared-sidebar-mobile-head { display: contents; }
 }
+
+@media (max-width: 760px) {
+  html[data-mindora-theme="dark"] .shared-sidebar-hamburger,
+  .dark-theme .shared-sidebar-hamburger,
+  .shared-dashboard-layout:has(.dark-theme) .shared-sidebar-hamburger {
+    background: #45352f !important;
+    border-color: #705242 !important;
+    color: #fff3df !important;
+  }
+}
