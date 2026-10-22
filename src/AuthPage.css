@@ -171,3 +171,49 @@
 .auth-page.auth-dark .auth-input-wrap input{color:#fffbda!important}
 .auth-page.auth-dark input::placeholder{color:#d0b9a7!important;opacity:1}
 .auth-page.auth-dark .auth-tabs a.active{background:#ed9455!important;color:#39271e!important}
+
+
+/* Login and sign-up have their own working theme and language controls. */
+.auth-page-preferences {
+  position: absolute;
+  z-index: 20;
+  top: 14px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px;
+  border: 1px solid #e8c9a8;
+  border-radius: 14px;
+  background: #fffdf0;
+  color: #49342e;
+  font: 600 12px/1.2 "DM Sans", sans-serif;
+}
+.auth-page-preferences select,
+.auth-page-preferences button {
+  min-height: 36px;
+  border: 1px solid #e8c9a8;
+  border-radius: 9px;
+  padding: 0 10px;
+  background: #ffec9e;
+  color: #49342e;
+  font: inherit;
+  cursor: pointer;
+}
+.auth-page-preferences button { display:flex; align-items:center; gap:7px; }
+.auth-page.auth-dark .auth-page-preferences {
+  background: #382d2a;
+  border-color: #705242;
+  color: #fff3df;
+}
+.auth-page.auth-dark .auth-page-preferences select,
+.auth-page.auth-dark .auth-page-preferences button {
+  background: #45352f;
+  border-color: #705242;
+  color: #fff3df;
+}
+@media (max-width: 700px) {
+  .auth-page-preferences { top: 10px; right: 10px; gap: 5px; padding: 5px; }
+  .auth-page-preferences label { display: none; }
+  .auth-page-preferences select, .auth-page-preferences button { min-height: 34px; padding: 0 7px; }
+}
