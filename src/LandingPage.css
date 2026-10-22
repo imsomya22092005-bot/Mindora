@@ -2654,35 +2654,31 @@ html[data-mindora-theme="dark"] .mindora-landing .landing-difference .difference
 }
 
 
-/* Mindora landing section gradients: distinct, soft and theme-matched.
-   Scoped to light mode so the existing dark theme remains unchanged. */
-.mindora-landing:not(.landing-dark) .landing-why {
-  background:
-    radial-gradient(ellipse at 5% 5%, rgba(255, 236, 158, 0.58) 0%, transparent 48%),
-    linear-gradient(120deg, #FFFBDA 15%, #FFFDF0 65%, #FFE8D0 100%);
+
+/* Landing page section backgrounds — stronger full-width gradients */
+.mindora-landing:not(.landing-dark) section.landing-why {
+  background: radial-gradient(ellipse at 8% 0%, #FFEC9E 0%, transparent 48%), linear-gradient(115deg, #FFFBDA 0%, #FFF4D5 52%, #FFE0C2 100%) !important;
+}
+.mindora-landing:not(.landing-dark) section.landing-features {
+  background: linear-gradient(135deg, #FFEC9E 0%, #FFDCA6 38%, #FFF0CF 70%, #FFFBDA 100%) !important;
+}
+.mindora-landing:not(.landing-dark) section.landing-preview {
+  background: radial-gradient(ellipse at 75% 45%, #FFBB70 0%, #FFD3A4 28%, transparent 62%), linear-gradient(120deg, #FFFBDA 0%, #FFF7E9 48%, #FFE7B0 100%) !important;
+}
+.mindora-landing:not(.landing-dark) section.landing-difference {
+  background: linear-gradient(110deg, #FFBB70 0%, #FFD0A3 30%, #FFE6C4 63%, #FFFBDA 100%) !important;
 }
 
-.mindora-landing:not(.landing-dark) .landing-features {
-  background:
-    linear-gradient(155deg, #FFEC9E 0%, #FFE7B7 34%, #FFFBDA 75%, #FFFBDA 100%);
+/* Dark mode gets its own subtle warm gradients, without changing its palette */
+.mindora-landing.landing-dark section.landing-why {
+  background: radial-gradient(ellipse at 8% 0%, rgba(255, 187, 112, .20), transparent 48%), linear-gradient(115deg, #292323 0%, #342923 52%, #3A2A25 100%) !important;
 }
-
-.mindora-landing:not(.landing-dark) .landing-preview {
-  background:
-    radial-gradient(ellipse at 52% 45%, rgba(255, 187, 112, 0.52) 0%, rgba(255, 215, 173, 0.34) 25%, transparent 65%),
-    linear-gradient(135deg, #FFFBDA 0%, #FFF9F0 55%, #FFEC9E 100%);
+.mindora-landing.landing-dark section.landing-features {
+  background: linear-gradient(135deg, #352923 0%, #3D2B24 38%, #332924 70%, #292323 100%) !important;
 }
-
-.mindora-landing:not(.landing-dark) .landing-difference {
-  background:
-    linear-gradient(115deg, #FFF4D0 0%, #FFDFC0 35%, #FFE5C8 58%, #FFFBDA 100%);
+.mindora-landing.landing-dark section.landing-preview {
+  background: radial-gradient(ellipse at 75% 45%, rgba(237, 148, 85, .24) 0%, rgba(255, 187, 112, .10) 30%, transparent 62%), linear-gradient(120deg, #292323 0%, #302725 48%, #382A24 100%) !important;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .mindora-landing:not(.landing-dark) .landing-why,
-  .mindora-landing:not(.landing-dark) .landing-features,
-  .mindora-landing:not(.landing-dark) .landing-preview,
-  .mindora-landing:not(.landing-dark) .landing-difference {
-    background-attachment: scroll;
-  }
+.mindora-landing.landing-dark section.landing-difference {
+  background: linear-gradient(110deg, #3B2A24 0%, #382A26 30%, #302725 63%, #292323 100%) !important;
 }
