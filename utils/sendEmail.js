@@ -9,7 +9,15 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS
   },
   tls: {
-    rejectUnauthorized: true
+    rejectUnauthorized: false
+  }
+});
+
+transporter.verify((error, success) => {
+  if (error) {
+    console.error('[Nodemailer Startup Error]:', error.message);
+  } else {
+    console.log('[Nodemailer Ready]: SMTP server connection established successfully');
   }
 });
 
