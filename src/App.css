@@ -3472,3 +3472,35 @@ html[data-mindora-theme="dark"] .insight-kind-note :is(p,strong),
     color: #fff3df !important;
   }
 }
+
+
+/* Mobile fix: keep the global language/theme bar in normal flow so it never covers the Your Space hamburger. */
+@media (max-width: 760px) {
+  .global-page-preferences {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    width: fit-content;
+    max-width: calc(100% - 20px);
+    margin: 8px 10px 0 auto !important;
+    flex-wrap: wrap;
+    z-index: 5 !important;
+  }
+  .global-page-preferences label {
+    min-width: 0;
+  }
+  .global-page-preferences select,
+  .global-page-preferences button {
+    max-width: 100%;
+  }
+}
+@media (max-width: 380px) {
+  .global-page-preferences {
+    gap: 4px !important;
+    padding: 4px !important;
+  }
+  .global-page-preferences label span {
+    display: none;
+  }
+}
