@@ -27,7 +27,7 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/mood', require('./routes/moodRoutes'));
-app.use('api/calm', require('./routes/calmRoutes'));
+app.use('/api/calm', require('./routes/calmRoutes'));
 
 
 app.use((req, res) => {
