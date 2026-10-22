@@ -16,6 +16,7 @@ import {
 import { Link } from "react-router-dom";
 import "./WellnessPages.css";
 import { useLanguage } from "./language";
+import { apiRequest } from "./api";
 
 function Shell({ title, subtitle, icon, children }) {
   const [language] = useLanguage();
@@ -52,6 +53,38 @@ export function CalmCorner() {
   const hi = language === "hi";
   const [breathing, setBreathing] = useState(false);
   const [grounding, setGrounding] = useState(0);
+  const [sessionStatus, setSessionStatus] = useState("");
+  const breathingStartedAt = useRef(null);
+
+  async function toggleBreathing() {
+    if (!breathing) {
+      breathingStartedAt.current = Date.now();
+      setSessionStatus("");
+      setBreathing(true);
+      return;
+    }
+
+    setBreathing(false);
+    const startedAt = breathingStartedAt.current;
+    breathingStartedAt.current = null;
+    const durationSeconds = startedAt ? Math.max(1, Math.round((Date.now() - startedAt) / 1000)) : 1;
+    const token = localStorage.getItem("mindora-token");
+    if (!token) {
+      setSessionStatus(hi ? "सत्र पूरा हुआ। सेव करने के लिए लॉग इन करें।" : "Session paused. Sign in to save your practice.");
+      return;
+    }
+
+    try {
+      await apiRequest("/api/calm/session", {
+        method: "POST",
+        token,
+        body: JSON.stringify({ activityType: "box-breathing", durationSeconds, soundscape: "none" }),
+      });
+      setSessionStatus(hi ? "आपका साँस लेने का सत्र सेव हो गया।" : "Your breathing session was saved.");
+    } catch (error) {
+      setSessionStatus(error.message || (hi ? "सत्र सेव नहीं हो सका।" : "Could not save this session."));
+    }
+  }
 
   const prompts = hi ? [
     "अपने आसपास ऐसी 5 चीज़ें देखें जिन्हें आप देख सकते हैं।",
@@ -89,10 +122,11 @@ export function CalmCorner() {
 
         <button
           className="wellness-button"
-          onClick={() => setBreathing(!breathing)}
+          onClick={toggleBreathing}
         >
           {breathing ? (hi ? "साँसों का अभ्यास रोकें" : "Pause breathing") : (hi ? "साँसों का अभ्यास शुरू करें" : "Begin breathing")}
         </button>
+        {sessionStatus && <p className="wellness-muted" role="status" aria-live="polite">{sessionStatus}</p>}
       </div>
 
       <div className="wellness-panel">
