@@ -52,9 +52,22 @@ export function CalmCorner() {
   const [language] = useLanguage();
   const hi = language === "hi";
   const [breathing, setBreathing] = useState(false);
+  const [breathingPhase, setBreathingPhase] = useState("inhale");
   const [grounding, setGrounding] = useState(0);
   const [sessionStatus, setSessionStatus] = useState("");
   const breathingStartedAt = useRef(null);
+
+  useEffect(() => {
+    if (!breathing) {
+      setBreathingPhase("inhale");
+      return undefined;
+    }
+    setBreathingPhase("inhale");
+    const phaseTimer = window.setInterval(() => {
+      setBreathingPhase((phase) => phase === "inhale" ? "exhale" : "inhale");
+    }, 4000);
+    return () => window.clearInterval(phaseTimer);
+  }, [breathing]);
 
   async function toggleBreathing() {
     if (!breathing) {
@@ -112,7 +125,7 @@ export function CalmCorner() {
         <div className={`breathing-orb ${breathing ? "breathing-active" : ""}`}>
           <div className="breathing-inner">
             <Wind size={30} />
-            <span>{breathing ? (hi ? "धीरे-धीरे साँस लें" : "Breathe slowly") : (hi ? "अपनी साँसों की लय पाएँ" : "Find your rhythm")}</span>
+            <span>{breathing ? (hi ? (breathingPhase === "inhale" ? "साँस अंदर लें" : "साँस बाहर छोड़ें") : (breathingPhase === "inhale" ? "Inhale" : "Exhale")) : (hi ? "अपनी साँसों की लय पाएँ" : "Find your rhythm")}</span>
           </div>
         </div>
 
