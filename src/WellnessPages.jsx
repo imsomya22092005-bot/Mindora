@@ -536,7 +536,7 @@ export function LetItOutJournal() {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, []);
 
-  const [entries, setEntries = useState(() => {
+  const [entries, setEntries] = useState(() => {
     try {
       return JSON.parse(
         localStorage.getItem("mindora-let-it-out-entries")
