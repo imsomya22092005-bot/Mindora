@@ -1174,3 +1174,30 @@ html[data-mindora-theme="dark"] .wellness-page .wellness-panel .wellness-eyebrow
   color: #fff3df !important;
   opacity: 1 !important;
 }
+
+
+/* Mood Soundscape: avoid yellow highlight for selected sounds in dark mode. */
+html[data-mindora-theme="dark"] .wellness-page .soundscape-option,
+.dark-theme .wellness-page .soundscape-option {
+  background: #45352f !important;
+  color: #fff3df !important;
+  border-color: #705242 !important;
+  box-shadow: none !important;
+}
+html[data-mindora-theme="dark"] .wellness-page .soundscape-option:hover,
+html[data-mindora-theme="dark"] .wellness-page .soundscape-option-active,
+.dark-theme .wellness-page .soundscape-option:hover,
+.dark-theme .wellness-page .soundscape-option-active {
+  background: #594139 !important;
+  color: #ffffff !important;
+  border-color: #ed9455 !important;
+  box-shadow: 0 0 0 1px #ed9455 !important;
+}
+html[data-mindora-theme="dark"] .wellness-page .soundscape-option-copy strong,
+.dark-theme .wellness-page .soundscape-option-copy strong {
+  color: #ffffff !important;
+}
+html[data-mindora-theme="dark"] .wellness-page .soundscape-option-copy small,
+.dark-theme .wellness-page .soundscape-option-copy small {
+  color: #e6d4c3 !important;
+}
