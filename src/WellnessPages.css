@@ -1107,3 +1107,46 @@ html[data-mindora-theme="dark"] .comfort-note-layer blockquote,.dark-theme .comf
 html[data-mindora-theme="dark"] .comfort-note-layer .wellness-eyebrow,.dark-theme .comfort-note-layer .wellness-eyebrow{color:#ffbb70!important}
 html[data-mindora-theme="dark"] .comfort-note-layer .comfort-count,.dark-theme .comfort-note-layer .comfort-count{color:#e6d4c3!important}
 html[data-mindora-theme="dark"] .comfort-restored,.dark-theme .comfort-restored{background:#382d2a!important;border-color:#705242!important;color:#fff3df!important}
+
+
+/* Dark-mode readability fixes requested for wellness cards and Inner Garden. */
+html[data-mindora-theme="dark"] .wellness-page .wellness-heading h1,
+html[data-mindora-theme="dark"] .wellness-page .wellness-heading > p:last-child {
+  color: #fff3df !important;
+  opacity: 1 !important;
+}
+html[data-mindora-theme="dark"] .wellness-page .wellness-eyebrow,
+html[data-mindora-theme="dark"] .wellness-page .wellness-brand,
+html[data-mindora-theme="dark"] .wellness-page .wellness-back {
+  color: #f0a18b !important;
+  opacity: 1 !important;
+}
+html[data-mindora-theme="dark"] .wellness-page .care-item {
+  background: #45352f !important;
+  color: #fff3df !important;
+  border-color: #705242 !important;
+}
+html[data-mindora-theme="dark"] .wellness-page .care-item > span:nth-child(2),
+html[data-mindora-theme="dark"] .wellness-page .care-check {
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .wellness-page .care-done {
+  background: #514039 !important;
+  border-color: #ed9455 !important;
+}
+html[data-mindora-theme="dark"] .wellness-page .garden-summary h2,
+html[data-mindora-theme="dark"] .wellness-page .garden-summary > p,
+html[data-mindora-theme="dark"] .wellness-page .garden-growth-note {
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .wellness-page .wellness-button.secondary {
+  background: #45352f !important;
+  color: #fff3df !important;
+  border-color: #705242 !important;
+}
+html[data-mindora-theme="dark"] .wellness-page .journal-entry,
+html[data-mindora-theme="dark"] .wellness-page .journal-actions button {
+  background: #45352f !important;
+  color: #fff3df !important;
+  border-color: #705242 !important;
+}
