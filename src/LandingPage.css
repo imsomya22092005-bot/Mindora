@@ -2708,3 +2708,28 @@ html[data-mindora-theme="dark"] .mindora-landing .landing-preview p,
   opacity: 1 !important;
   text-shadow: none !important;
 }
+
+
+/* DARK MODE FIX: override earlier light-theme selectors that force green text with !important and -webkit-text-fill-color. */
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-intro h2,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-intro h2 span,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-intro > p,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-why-heading h2,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-why-heading h2 em,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-why-heading > p,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-why-grid article p,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .preview-copy h2,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .preview-copy > p,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-how .how-copy h2,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-how .how-copy h2 span,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-how .how-copy > p,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-difference h2,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-difference h2 em,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-difference .difference-footnote,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-cta h2,
+html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-cta > p {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
