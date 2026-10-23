@@ -711,3 +711,29 @@ html[data-mindora-theme="dark"] .mindora-section-page .mindful-tool-title {
 html[data-mindora-theme="dark"] .mindora-section-page .mindful-tool-title svg {
   color: #a8c7a0 !important;
 }
+
+
+/* When the diary is opened, bring the writing page fully forward instead of overlapping the cover. */
+.journal-diary-scene.diary-is-open .journal-diary-cover {
+  display: none !important;
+}
+.journal-diary-scene.diary-is-open .journal-loose-page {
+  position: relative !important;
+  z-index: 5 !important;
+  width: min(100%, 1120px) !important;
+  margin: 0 auto 38px !important;
+  transform: none !important;
+}
+.journal-diary-scene.diary-is-open {
+  display: block !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
+  isolation: isolate !important;
+}
+@media (max-width: 760px) {
+  .journal-diary-scene.diary-is-open .journal-loose-page {
+    width: 100% !important;
+    margin: 0 auto 24px !important;
+  }
+}
