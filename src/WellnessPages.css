@@ -1150,3 +1150,27 @@ html[data-mindora-theme="dark"] .wellness-page .journal-actions button {
   color: #fff3df !important;
   border-color: #705242 !important;
 }
+
+
+/* Little Comfort Box mood selector: dark mode only, remove white chips and yellow selected state. */
+html[data-mindora-theme="dark"] .wellness-page .mood-chip,
+.dark-theme .wellness-page .mood-chip {
+  background: #45352f !important;
+  color: #fff3df !important;
+  border-color: #705242 !important;
+  box-shadow: none !important;
+}
+html[data-mindora-theme="dark"] .wellness-page .mood-chip:hover,
+html[data-mindora-theme="dark"] .wellness-page .mood-chip.mood-selected,
+.dark-theme .wellness-page .mood-chip:hover,
+.dark-theme .wellness-page .mood-chip.mood-selected {
+  background: #594139 !important;
+  color: #ffffff !important;
+  border-color: #ed9455 !important;
+  box-shadow: none !important;
+}
+html[data-mindora-theme="dark"] .wellness-page .wellness-panel .wellness-eyebrow,
+.dark-theme .wellness-page .wellness-panel .wellness-eyebrow {
+  color: #fff3df !important;
+  opacity: 1 !important;
+}
