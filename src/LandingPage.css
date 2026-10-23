@@ -2682,3 +2682,29 @@ html[data-mindora-theme="dark"] .mindora-landing .landing-difference .difference
 .mindora-landing.landing-dark section.landing-difference {
   background: linear-gradient(110deg, #3B2A24 0%, #382A26 30%, #302725 63%, #292323 100%) !important;
 }
+
+
+/* Landing page dark-mode contrast for all requested wellbeing copy. */
+html[data-mindora-theme="dark"] .mindora-landing .landing-intro h2,
+html[data-mindora-theme="dark"] .mindora-landing .landing-intro h2 span,
+html[data-mindora-theme="dark"] .mindora-landing .landing-intro > p,
+html[data-mindora-theme="dark"] .mindora-landing .landing-difference p,
+html[data-mindora-theme="dark"] .mindora-landing .landing-difference p span,
+html[data-mindora-theme="dark"] .mindora-landing .landing-feature-card p,
+html[data-mindora-theme="dark"] .mindora-landing .landing-why-grid article p,
+html[data-mindora-theme="dark"] .mindora-landing .landing-cta p,
+html[data-mindora-theme="dark"] .mindora-landing .landing-how p,
+html[data-mindora-theme="dark"] .mindora-landing .landing-preview p,
+.mindora-landing.landing-dark .landing-intro h2,
+.mindora-landing.landing-dark .landing-intro h2 span,
+.mindora-landing.landing-dark .landing-intro > p,
+.mindora-landing.landing-dark .landing-difference p,
+.mindora-landing.landing-dark .landing-feature-card p,
+.mindora-landing.landing-dark .landing-why-grid article p,
+.mindora-landing.landing-dark .landing-cta p,
+.mindora-landing.landing-dark .landing-how p,
+.mindora-landing.landing-dark .landing-preview p {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
