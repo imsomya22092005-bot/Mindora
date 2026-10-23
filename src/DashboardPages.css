@@ -699,3 +699,15 @@ html[data-mindora-theme="dark"] .mood-selected-day span { color: #e6d4c3 !import
 html[data-mindora-theme="dark"] .mood-insight-card > strong,
 html[data-mindora-theme="dark"] .mood-selected-day strong { color: #fffbda !important; }
 html[data-mindora-theme="dark"] .mood-total-pill { background: #45352f !important; color: #fffbda !important; border-color: #705242 !important; }
+
+
+/* Dark mode: brighten only the four Mindful Moments card headings, not the cards. */
+.dark-theme.mindora-section-page .mindful-tool-title,
+html[data-mindora-theme="dark"] .mindora-section-page .mindful-tool-title {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+.dark-theme.mindora-section-page .mindful-tool-title svg,
+html[data-mindora-theme="dark"] .mindora-section-page .mindful-tool-title svg {
+  color: #a8c7a0 !important;
+}
