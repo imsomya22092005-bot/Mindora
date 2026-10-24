@@ -117,6 +117,9 @@ export default function GamesZone() {
   const [puzzleTiles, setPuzzleTiles] = useState([]);
   const [puzzleMoves, setPuzzleMoves] = useState(0);
   const [puzzleWon, setPuzzleWon] = useState(false);
+  const [puzzleSelected, setPuzzleSelected] = useState(null);
+  const [puzzleRemaining, setPuzzleRemaining] = useState(120);
+  const [puzzleTimedOut, setPuzzleTimedOut] = useState(false);
   const canvasRef = useRef(null);
   const gameRef = useRef({
     targets: [], shot: null, pointer: { x: 300, y: 250 }, raf: 0,
@@ -125,6 +128,32 @@ export default function GamesZone() {
   });
 
   useEffect(() => { gameRef.current.soundOn = soundOn; }, [soundOn]);
+
+  const puzzleTimeLimit = puzzleSize === 3 ? 120 : puzzleSize === 4 ? 180 : 240;
+  useEffect(() => {
+    if (activeGame !== "picture-puzzle" || !puzzleImage || !puzzleTiles.length || puzzleWon || puzzleTimedOut) return;
+    const timer = window.setInterval(() => setPuzzleRemaining(value => {
+      if (value <= 1) { window.clearInterval(timer); setPuzzleTimedOut(true); return 0; }
+      return value - 1;
+    }), 1000);
+    return () => window.clearInterval(timer);
+  }, [activeGame, puzzleImage, puzzleTiles.length, puzzleWon, puzzleTimedOut]);
+
+  function startPicturePuzzle(image = puzzleImage, size = puzzleSize) {
+    setPuzzleTiles(makePuzzleShuffle(size));
+    setPuzzleMoves(0);
+    setPuzzleWon(false);
+    setPuzzleTimedOut(false);
+    setPuzzleSelected(null);
+    setPuzzleRemaining(size === 3 ? 120 : size === 4 ? 180 : 240);
+  }
+
+  function quitPicturePuzzle() {
+    setActiveGame(null); setPlaying(false); setFinished(false);
+    setPuzzleImage(""); setPuzzleTiles([]); setPuzzleMoves(0); setPuzzleWon(false);
+    setPuzzleTimedOut(false); setPuzzleSelected(null);
+    navigate("/games");
+  }
 
   useEffect(() => {
     if (activeGame !== "color-pop" || !playing) return;
@@ -373,16 +402,17 @@ export default function GamesZone() {
     {activeGame === "picture-puzzle" ? <section className="picture-puzzle-shell">
       <div className="picture-puzzle-heading"><span className="picture-puzzle-icon">🧩</span><div><span className="colorpop-kicker">MINDORA ARCADE · PICTURE GAME</span><h2>{hi ? "तस्वीर पूरी करें" : "Picture Puzzle"} <span>✦</span></h2></div></div>
       <div className="picture-puzzle-toolbar">
-        <label className="picture-upload-button"> <span>＋</span> {hi ? "तस्वीर चुनें" : "Choose picture"} <input type="file" accept="image/*" onChange={e => { const file=e.target.files?.[0]; if(!file)return; const reader=new FileReader(); reader.onload=()=>{setPuzzleImage(String(reader.result));setPuzzleTiles(makePuzzleShuffle(puzzleSize));setPuzzleMoves(0);setPuzzleWon(false)}; reader.readAsDataURL(file); e.target.value=""; }} /></label>
-        <label className="picture-size-label">{hi ? "कठिनाई" : "Difficulty"} <select value={puzzleSize} onChange={e=>{setPuzzleSize(Number(e.target.value));setPuzzleTiles([]);setPuzzleMoves(0);setPuzzleWon(false)}}><option value={3}>3 × 3 · {hi?"आसान":"Easy"}</option><option value={4}>4 × 4 · {hi?"मध्यम":"Medium"}</option><option value={5}>5 × 5 · {hi?"मुश्किल":"Hard"}</option></select></label>
-        <span className="picture-moves">{hi ? "चालें" : "Moves"} <b>{puzzleMoves}</b></span>
+        <label className="picture-upload-button"><span>＋</span> {hi ? "तस्वीर बदलें" : "Choose picture"} <input type="file" accept="image/*" onChange={e => { const file=e.target.files?.[0]; if(!file)return; const reader=new FileReader(); reader.onload=()=>{setPuzzleImage(String(reader.result));startPicturePuzzle(String(reader.result),puzzleSize)}; reader.readAsDataURL(file); e.target.value=""; }} /></label>
+        <label className="picture-size-label">{hi ? "लेवल" : "Level"} <select value={puzzleSize} onChange={e=>{const size=Number(e.target.value);setPuzzleSize(size);if(puzzleImage)startPicturePuzzle(puzzleImage,size);else {setPuzzleRemaining(size===3?120:size===4?180:240);setPuzzleSelected(null)}}}><option value={3}>3 × 3 · {hi?"आसान":"Easy"}</option><option value={4}>4 × 4 · {hi?"मध्यम":"Medium"}</option><option value={5}>5 × 5 · {hi?"मुश्किल":"Hard"}</option></select></label>
+        {puzzleImage ? <><span className={"picture-moves"+(puzzleRemaining<=15?" is-low-time":"")}>{hi?"समय":"Time"} <b>{Math.floor(puzzleRemaining/60)}:{String(puzzleRemaining%60).padStart(2,"0")}</b></span><span className="picture-moves">{hi ? "चालें" : "Moves"} <b>{puzzleMoves}</b></span></> : null}
+        <button className="picture-puzzle-quit" onClick={quitPicturePuzzle}>{hi?"गेम छोड़ें":"Quit game"}</button>
       </div>
-      {!puzzleImage ? <div className="picture-puzzle-empty"><span>🖼️</span><h3>{hi ? "अपनी पसंद की तस्वीर चुनें" : "Pick your favourite picture"}</h3><p>{hi ? "अपने डिवाइस से Doraemon, cartoon या कोई भी फोटो अपलोड करें। तस्वीर इसी ब्राउज़र में इस्तेमाल होगी।" : "Upload a Doraemon, cartoon, or any photo from your device. Your image stays in this browser session."}</p><label className="picture-upload-button"><span>＋</span> {hi ? "फोटो अपलोड करें" : "Upload a photo"}<input type="file" accept="image/*" onChange={e => { const file=e.target.files?.[0]; if(!file)return; const reader=new FileReader(); reader.onload=()=>{setPuzzleImage(String(reader.result));setPuzzleTiles([]);setPuzzleMoves(0);setPuzzleWon(false)}; reader.readAsDataURL(file); e.target.value=""; }} /></label></div> :
-      <><div className="picture-puzzle-board" style={{gridTemplateColumns:`repeat(${puzzleSize}, minmax(0,1fr))`}}>
-        {(puzzleTiles.length ? puzzleTiles : Array.from({length:puzzleSize*puzzleSize},(_,i)=>i)).map((tile,index)=>{const blank=puzzleSize*puzzleSize-1;const canMove=tile!==blank && (Math.abs(index%puzzleSize-(puzzleTiles.indexOf(blank)%puzzleSize))+Math.abs(Math.floor(index/puzzleSize)-Math.floor(puzzleTiles.indexOf(blank)/puzzleSize))===1);return <button key={tile} aria-label={tile===blank?"Empty space":`Tile ${tile+1}`} disabled={puzzleWon || (!puzzleTiles.length && !puzzleWon)} className={"picture-puzzle-tile"+(tile===blank?" is-blank":"")} style={tile===blank?{}:{backgroundImage:`url("${puzzleImage}")`,backgroundSize:`${puzzleSize*100}% ${puzzleSize*100}%`,backgroundPosition:`${(tile%puzzleSize)/(puzzleSize-1)*100}% ${Math.floor(tile/puzzleSize)/(puzzleSize-1)*100}%`}} onClick={()=>{if(!puzzleTiles.length)return;const blankIndex=puzzleTiles.indexOf(blank);if(Math.abs(index%puzzleSize-blankIndex%puzzleSize)+Math.abs(Math.floor(index/puzzleSize)-Math.floor(blankIndex/puzzleSize))!==1)return;const next=[...puzzleTiles];[next[index],next[blankIndex]]=[next[blankIndex],next[index]];setPuzzleTiles(next);setPuzzleMoves(v=>v+1);if(next.every((v,i)=>v===i)){setPuzzleWon(true)}}} />})}
+      {!puzzleImage ? <div className="picture-puzzle-empty"><span>🖼️</span><h3>{hi ? "अपनी पसंद की तस्वीर चुनें" : "Pick your favourite picture"}</h3><p>{hi ? "Doraemon, cartoon या कोई भी फोटो अपलोड करें। फोटो चुनते ही shuffled game शुरू होगी।" : "Upload a Doraemon, cartoon, or any photo. The shuffled game starts as soon as you choose it."}</p><label className="picture-upload-button"><span>＋</span> {hi ? "फोटो अपलोड करें" : "Upload a photo"}<input type="file" accept="image/*" onChange={e => { const file=e.target.files?.[0]; if(!file)return; const reader=new FileReader(); reader.onload=()=>{setPuzzleImage(String(reader.result));startPicturePuzzle(String(reader.result),puzzleSize)}; reader.readAsDataURL(file); e.target.value=""; }} /></label></div> :
+      <><div className={"picture-puzzle-board"+(puzzleTimedOut?" is-frozen":"")} style={{gridTemplateColumns:`repeat(${puzzleSize}, minmax(0,1fr))`}}>
+        {(puzzleTiles.length ? puzzleTiles : Array.from({length:puzzleSize*puzzleSize},(_,i)=>i)).map((tile,index)=>{const blank=puzzleSize*puzzleSize-1;return <button key={tile} aria-label={tile===blank?"Empty space":`Tile ${tile+1}`} disabled={puzzleWon||puzzleTimedOut} className={"picture-puzzle-tile"+(tile===blank?" is-blank":"")+(puzzleSelected===index?" is-selected":"")} style={tile===blank?{}:{backgroundImage:`url("${puzzleImage}")`,backgroundSize:`${puzzleSize*100}% ${puzzleSize*100}%`,backgroundPosition:`${(tile%puzzleSize)/(puzzleSize-1)*100}% ${Math.floor(tile/puzzleSize)/(puzzleSize-1)*100}%`}} onClick={()=>{if(puzzleTimedOut||puzzleWon)return;if(puzzleSelected===null){setPuzzleSelected(index);return;}if(puzzleSelected===index){setPuzzleSelected(null);return;}const next=[...puzzleTiles];[next[index],next[puzzleSelected]]=[next[puzzleSelected],next[index]];setPuzzleTiles(next);setPuzzleMoves(v=>v+1);setPuzzleSelected(null);if(next.every((v,i)=>v===i))setPuzzleWon(true);}} />})}
       </div>
-      {puzzleWon ? <div className="picture-puzzle-success"><span>🎉</span><strong>{hi ? "कमाल! तस्वीर पूरी हो गई!" : "You did it! Picture complete!"}</strong><p>{hi ? `${puzzleMoves} चालों में पूरा किया।` : `Completed in ${puzzleMoves} moves.`}</p></div> : <p className="picture-puzzle-hint">{hi ? "खाली जगह के पास वाली टाइल पर क्लिक करें।" : "Click a tile next to the empty space to slide it."}</p>}
-      <div className="picture-puzzle-actions"><button className="picture-puzzle-reset" onClick={()=>{setPuzzleTiles(makePuzzleShuffle(puzzleSize));setPuzzleMoves(0);setPuzzleWon(false)}}>{hi ? "फिर से शुरू करें" : "Restart puzzle"}</button></div></>}
+      {puzzleWon ? <div className="picture-puzzle-success"><span>🎉</span><strong>{hi ? "कमाल! तस्वीर पूरी हो गई!" : "You did it! Picture complete!"}</strong><p>{hi ? `${puzzleMoves} चालों में पूरा किया।` : `Completed in ${puzzleMoves} moves.`}</p></div> : puzzleTimedOut ? <div className="picture-puzzle-success is-timeout"><span>⏰</span><strong>{hi?"समय पूरा हो गया!":"Time's up!"}</strong><p>{hi?"फिर से शुरू करें और इस बार समय के अंदर तस्वीर पूरी करें।":"Restart and try to complete the picture before time runs out."}</p></div> : <p className="picture-puzzle-hint">{hi ? "किसी भी टाइल पर क्लिक करें, फिर जिस जगह ले जाना है उस टाइल पर क्लिक करें।" : "Click any tile, then click another tile to swap their places."}</p>}
+      <div className="picture-puzzle-actions"><button onClick={()=>startPicturePuzzle()}>{hi ? "नया गेम शुरू करें" : "Restart / New game"}</button></div></>}
     </section> : null}
     {activeGame && activeGame !== "color-pop" && activeGame !== "let-it-burn" && activeGame !== "picture-puzzle" ? <section className="game-coming-card"><span className="coming-emoji">{games.find(g=>g.id===activeGame)?.emoji}</span><span className="colorpop-kicker">{hi?"जल्द आ रहा है":"COMING SOON"}</span><h2>{hi?games.find(g=>g.id===activeGame)?.hi:games.find(g=>g.id===activeGame)?.title}</h2><p>{hi?games.find(g=>g.id===activeGame)?.hiDescription:games.find(g=>g.id===activeGame)?.description}</p><button onClick={()=>setActiveGame(null)}>{hi?"गेम चुनें":"Choose another game"}</button></section> : null}
 
