@@ -9,7 +9,15 @@ const games = [
   { id: "starweave", title: "Starweave", hi: "स्टारवीव", description: "Connect stars and create your own constellations.", hiDescription: "तारों को जोड़कर अपनी आकृतियाँ बनाएँ।", emoji: "🌌", tone: "night" },
   { id: "let-it-burn", title: "Let It Burn", hi: "लेट इट बर्न", description: "Write it down, light the page, and let it go.", hiDescription: "लिखें, पन्ने को जलाएँ और मन हल्का करें।", emoji: "🕯️", tone: "paper", ready: true },
   { id: "light-jar", title: "The Little Light Jar", hi: "छोटी रोशनी का जार", description: "Collect little moments of hope.", hiDescription: "उम्मीद के छोटे-छोटे पल इकट्ठा करें।", emoji: "✨", tone: "glow" },
-  { id: "rainy-window", title: "Rainy Window", hi: "बारिश वाली खिड़की", description: "Watch the rain and take a quiet pause.", hiDescription: "बारिश को देखें और एक शांत पल लें।", emoji: "🌧️", tone: "rain" },
+  { id: "puzzle-pause", title: "Puzzle Pause", hi: "पहेली पॉज़", description: "Solve little logic puzzles, patterns and brain teasers.", hiDescription: "छोटी तर्क पहेलियाँ, पैटर्न और दिमागी सवाल हल करें।", emoji: "🧩", tone: "rain", ready: true },
+];
+
+const puzzles = [
+  { type: "NUMBER PATTERN", hiType: "संख्या पैटर्न", question: "What comes next?", hiQuestion: "अगली संख्या क्या होगी?", visual: "2   ·   4   ·   8   ·   16   ·   ?", options: ["18", "24", "32", "34"], answer: 2, explanation: "Each number doubles: 2, 4, 8, 16, 32.", hiExplanation: "हर संख्या दोगुनी हो रही है: 2, 4, 8, 16, 32।" },
+  { type: "ODD ONE OUT", hiType: "अलग चुनें", question: "Which one doesn't belong?", hiQuestion: "इनमें से अलग कौन है?", visual: "▲    ▲    ●    ▲", options: ["First shape", "Second shape", "Circle", "Last shape"], hiOptions: ["पहला आकार", "दूसरा आकार", "गोला", "आखिरी आकार"], answer: 2, explanation: "The circle is the only shape that isn't a triangle.", hiExplanation: "गोला एकमात्र आकार है जो त्रिकोण नहीं है।" },
+  { type: "LOGIC RIDDLE", hiType: "तर्क पहेली", question: "The more you take, the more you leave behind. What are they?", hiQuestion: "जितना ज़्यादा लेते हो, उतना ज़्यादा पीछे छोड़ते हो। वे क्या हैं?", visual: "Think beyond objects…", hiVisual: "चीज़ों से आगे सोचें…", options: ["Coins", "Footsteps", "Photos", "Books"], hiOptions: ["सिक्के", "कदमों के निशान", "तस्वीरें", "किताबें"], answer: 1, explanation: "Every step you take leaves a footprint behind.", hiExplanation: "हर कदम के साथ पैरों के निशान पीछे छूटते हैं।" },
+  { type: "MISSING NUMBER", hiType: "गुम संख्या", question: "Find the missing number.", hiQuestion: "गुम संख्या पहचानें।", visual: "3   ·   6   ·   11   ·   18   ·   ?", options: ["25", "27", "28", "29"], answer: 1, explanation: "Add 3, then 5, then 7, then 9: the answer is 27.", hiExplanation: "क्रमशः 3, 5, 7, फिर 9 जोड़ें: उत्तर 27 है।" },
+  { type: "WORD PLAY", hiType: "शब्द पहेली", question: "What has keys but can't open locks?", hiQuestion: "किसके पास keys हैं, पर वह ताला नहीं खोल सकता?", visual: "A little word riddle", hiVisual: "एक छोटी शब्द पहेली", options: ["A map", "A piano", "A door", "A clock"], hiOptions: ["नक्शा", "पियानो", "दरवाज़ा", "घड़ी"], answer: 1, explanation: "A piano has musical keys, not lock keys.", hiExplanation: "पियानो में संगीत की keys होती हैं, ताले की नहीं।" },
 ];
 
 const palette = [
@@ -105,6 +113,9 @@ export default function GamesZone() {
   const [candleLitPaper, setCandleLitPaper] = useState(false);
   const [burnComplete, setBurnComplete] = useState(false);
   const [penColour, setPenColour] = useState("#45536c");
+  const [puzzleIndex, setPuzzleIndex] = useState(0);
+  const [puzzleChoice, setPuzzleChoice] = useState(null);
+  const [puzzleScore, setPuzzleScore] = useState(0);
   const canvasRef = useRef(null);
   const gameRef = useRef({
     targets: [], shot: null, pointer: { x: 300, y: 250 }, raf: 0,
@@ -301,6 +312,7 @@ export default function GamesZone() {
   }
 
   function chooseGame(id) {
+    if (id === "puzzle-pause") { setPuzzleIndex(0); setPuzzleChoice(null); setPuzzleScore(0); }
     if (id === "color-pop") { setActiveGame("color-pop"); setPlaying(false); setFinished(false); return; }
     setActiveGame(id); setPlaying(false);
   }
@@ -356,7 +368,18 @@ export default function GamesZone() {
       {burning ? <div className="burn-confirm"><p>{hi?"पन्ना जल रहा है… धीरे से साँस लें।":"The page is burning away… take one slow breath."}</p></div> : <><button className="burn-button" disabled={!burnThought.trim()} onClick={()=>{if(!candleMoved){setCandleMoved(true);return;}setCandleLitPaper(true);setBurning(true);window.setTimeout(()=>{setBurnComplete(true);setBurning(false);setBurnThought("");setCandleLitPaper(false);setCandleMoved(false)},2600)}}>{!candleMoved?(hi?"मोमबत्ती को पन्ने तक ले जाएँ":"Move candle to the page"):(hi?"पन्ने में आग लगाएँ":"Light the page")} <span>✦</span></button><button className="burn-keep" onClick={()=>{setCandleMoved(false);setCandleLitPaper(false)}}>{hi?"मोमबत्ती वापस रखें":"Reset candle"}</button></>}
       <p className="burn-note">{hi?"यह एक डिजिटल प्रतीकात्मक अनुभव है — कोई वास्तविक आग नहीं।":"A symbolic digital ritual. No real fire, just a little room to breathe."}</p></div>}
     </section> : null}
-    {activeGame && activeGame !== "color-pop" && activeGame !== "let-it-burn" ? <section className="game-coming-card"><span className="coming-emoji">{games.find(g=>g.id===activeGame)?.emoji}</span><span className="colorpop-kicker">{hi?"जल्द आ रहा है":"COMING SOON"}</span><h2>{hi?games.find(g=>g.id===activeGame)?.hi:games.find(g=>g.id===activeGame)?.title}</h2><p>{hi?games.find(g=>g.id===activeGame)?.hiDescription:games.find(g=>g.id===activeGame)?.description}</p><button onClick={()=>setActiveGame(null)}>{hi?"गेम चुनें":"Choose another game"}</button></section> : null}
+
+    {activeGame === "puzzle-pause" ? <section className="puzzle-shell">
+      <div className="puzzle-heading"><span className="puzzle-icon">🧩</span><div><span className="colorpop-kicker">MINDORA ARCADE · 02</span><h2>{hi ? "Puzzle Pause" : "Puzzle Pause"} <span>✦</span></h2><p>{hi ? "एक-एक पहेली हल करें। कोई जल्दबाज़ी नहीं।" : "Give your mind a playful little challenge. No rush."}</p></div></div>
+      {puzzleIndex < puzzles.length ? <div className="puzzle-card">
+        <div className="puzzle-meta"><span>{hi ? puzzles[puzzleIndex].hiType : puzzles[puzzleIndex].type}</span><span>{hi ? "पहेली" : "PUZZLE"} {puzzleIndex + 1} / {puzzles.length}</span></div>
+        <h3>{hi ? puzzles[puzzleIndex].hiQuestion : puzzles[puzzleIndex].question}</h3>
+        <div className="puzzle-visual">{hi ? (puzzles[puzzleIndex].hiVisual || puzzles[puzzleIndex].visual) : puzzles[puzzleIndex].visual}</div>
+        <div className="puzzle-options">{puzzles[puzzleIndex].options.map((option, index) => <button key={option} disabled={puzzleChoice !== null} className={puzzleChoice === index ? (index === puzzles[puzzleIndex].answer ? "correct" : "incorrect") : (puzzleChoice !== null && index === puzzles[puzzleIndex].answer ? "correct" : "")} onClick={() => { setPuzzleChoice(index); if (index === puzzles[puzzleIndex].answer) setPuzzleScore(v => v + 1); }}>{hi ? (puzzles[puzzleIndex].hiOptions?.[index] || option) : option}</button>)}</div>
+        {puzzleChoice !== null && <div className={"puzzle-feedback " + (puzzleChoice === puzzles[puzzleIndex].answer ? "is-correct" : "is-wrong")}><strong>{puzzleChoice === puzzles[puzzleIndex].answer ? (hi ? "बिल्कुल सही! ✨" : "That's right! ✨") : (hi ? "अच्छी कोशिश!" : "Nice try!")}</strong><p>{hi ? puzzles[puzzleIndex].hiExplanation : puzzles[puzzleIndex].explanation}</p><button onClick={() => { setPuzzleIndex(v => v + 1); setPuzzleChoice(null); }}>{hi ? (puzzleIndex === puzzles.length - 1 ? "नतीजा देखें" : "अगली पहेली") : (puzzleIndex === puzzles.length - 1 ? "See results" : "Next puzzle")} <ArrowRight size={15}/></button></div>}
+      </div> : <div className="puzzle-finish"><span>🌟</span><h2>{hi ? "पहेलियाँ पूरी हुईं!" : "Puzzle set complete!"}</h2><p>{hi ? `आपने ${puzzleScore} में से ${puzzles.length} सही हल कीं।` : `You solved ${puzzleScore} out of ${puzzles.length} puzzles.`}</p><div className="puzzle-finish-actions"><button onClick={() => { setPuzzleIndex(0); setPuzzleChoice(null); setPuzzleScore(0); }}><RotateCcw size={15}/>{hi ? "फिर से खेलें" : "Play again"}</button><button className="puzzle-secondary" onClick={() => { setActiveGame(null); navigate("/games"); }}>{hi ? "दूसरा गेम" : "Choose another game"}</button></div></div>}
+    </section> : null}
+    {activeGame && activeGame !== "color-pop" && activeGame !== "let-it-burn" && activeGame !== "puzzle-pause" ? <section className="game-coming-card"><span className="coming-emoji">{games.find(g=>g.id===activeGame)?.emoji}</span><span className="colorpop-kicker">{hi?"जल्द आ रहा है":"COMING SOON"}</span><h2>{hi?games.find(g=>g.id===activeGame)?.hi:games.find(g=>g.id===activeGame)?.title}</h2><p>{hi?games.find(g=>g.id===activeGame)?.hiDescription:games.find(g=>g.id===activeGame)?.description}</p><button onClick={()=>setActiveGame(null)}>{hi?"गेम चुनें":"Choose another game"}</button></section> : null}
 
     {!activeGame ? <>
       <section className="games-welcome"><span className="games-welcome-spark">✦</span><div><span className="colorpop-kicker">{hi?"आपकी छोटी-सी ब्रेक":"YOUR LITTLE BREAK"}</span><h2>{hi?"आज आप क्या खेलना चाहेंगे?":"What feels good to play today?"}</h2><p>{hi?"कोई दबाव नहीं, बस अपने लिए एक छोटा-सा पल।":"No pressure, just a little moment for yourself."}</p></div></section>
