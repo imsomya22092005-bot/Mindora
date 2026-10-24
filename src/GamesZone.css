@@ -428,3 +428,13 @@ html[data-mindora-theme="dark"] .picture-moves.is-low-time{background:#4d302c;co
 html[data-mindora-theme="dark"] .picture-moves.is-low-time b{color:#ffe1d9}
 html[data-mindora-theme="dark"] .picture-puzzle-success.is-timeout{background:#4d302c;border-color:#a86457;color:#ffe1d9}
 @media(max-width:560px){.picture-puzzle-quit{flex:1}}
+
+/* Fruit Merge: touch-friendly falling fruit and merge game */
+.fruit-merge-shell{width:min(100%,760px);margin:26px auto 38px;padding:clamp(18px,3.5vw,32px);border:1px solid #f1d6b4;border-radius:28px;background:#fffdf0;box-shadow:0 22px 65px rgba(113,73,44,.12);color:#49342e}
+.fruit-merge-stats{display:flex;gap:12px;margin:18px 0}.fruit-merge-stats span{flex:1;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-radius:14px;background:#fff3d7;color:#806b61;font-size:13px}.fruit-merge-stats b{font-size:22px;color:#49342e}
+.fruit-merge-board{position:relative;width:min(100%,420px);margin:0 auto;border:7px solid #b9825b;border-top:0;border-radius:0 0 22px 22px;overflow:hidden;box-shadow:inset 0 0 0 3px rgba(255,255,255,.4);touch-action:pan-y}
+.fruit-merge-board canvas{display:block;width:100%;height:min(66vh,560px);min-height:430px;cursor:crosshair;touch-action:pan-y}
+.fruit-merge-overlay{position:absolute;left:10px;right:10px;bottom:10px;pointer-events:none;display:flex;justify-content:center;text-align:center;color:#80533b;font-size:11px}.fruit-merge-overlay>span{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.78)}
+.fruit-merge-overlay>div{pointer-events:auto;width:min(100%,270px);padding:18px;border:1px solid #f1d6b4;border-radius:20px;background:rgba(255,253,240,.95);box-shadow:0 10px 30px rgba(80,50,30,.15)}.fruit-merge-overlay>div>span{font-size:40px}.fruit-merge-overlay h3{margin:5px;color:#49342e}.fruit-merge-overlay p{font-size:12px;color:#806b61}.fruit-merge-overlay button{border:0;border-radius:999px;padding:10px 16px;background:#ed9455;color:#39271e;font-weight:750;cursor:pointer}
+html[data-mindora-theme="dark"] .fruit-merge-shell{background:#382d2a;border-color:#59443b;color:#fff3df}html[data-mindora-theme="dark"] .fruit-merge-stats span{background:#45352f;color:#e6d4c3}html[data-mindora-theme="dark"] .fruit-merge-stats b{color:#fffbda}html[data-mindora-theme="dark"] .fruit-merge-overlay>div{background:#382d2a;border-color:#59443b}html[data-mindora-theme="dark"] .fruit-merge-overlay h3{color:#fffbda}html[data-mindora-theme="dark"] .fruit-merge-overlay p{color:#e6d4c3}
+@media(max-width:560px){.fruit-merge-shell{padding:16px;margin-top:18px;border-radius:20px}.fruit-merge-board canvas{height:500px;min-height:420px}.fruit-merge-stats span{padding:10px 12px}}
