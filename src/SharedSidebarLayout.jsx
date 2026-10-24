@@ -9,7 +9,7 @@ const mainItems = [
  {label:"Insights",href:"/insights",icon:BarChart3},
  {label:"Mindful moments",href:"/mindful-moments",icon:Wind,children:[["Calm Corner","/calm-corner"],["Inner Garden","/inner-garden"],["Little Comfort Box","/comfort-box"],["Mood Soundscape","/soundscape"]]},
  {label:"Incognito check-in",href:"/incognito-checkin",icon:ShieldCheck},
- {label:"Play & Unwind",href:"/games",icon:Gamepad2,children:[["Color Pop","/games?game=color-pop"],["Let It Burn","/games?game=let-it-burn"]]}
+ {label:"Play & Unwind",href:"/games",icon:Gamepad2,children:[["Color Pop","/games?game=color-pop"],["Let It Burn","/games?game=let-it-burn"],["Picture Puzzle","/games?game=picture-puzzle"]]}
 ];
 
 export default function SharedSidebarLayout({children}) {
