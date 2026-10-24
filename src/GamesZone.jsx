@@ -9,7 +9,7 @@ const games = [
   { id: "starweave", title: "Starweave", hi: "स्टारवीव", description: "Connect stars and create your own constellations.", hiDescription: "तारों को जोड़कर अपनी आकृतियाँ बनाएँ।", emoji: "🌌", tone: "night" },
   { id: "let-it-burn", title: "Let It Burn", hi: "लेट इट बर्न", description: "Write it down, light the page, and let it go.", hiDescription: "लिखें, पन्ने को जलाएँ और मन हल्का करें।", emoji: "🕯️", tone: "paper", ready: true },
   { id: "light-jar", title: "The Little Light Jar", hi: "छोटी रोशनी का जार", description: "Collect little moments of hope.", hiDescription: "उम्मीद के छोटे-छोटे पल इकट्ठा करें।", emoji: "✨", tone: "glow" },
-  { id: "picture-puzzle", title: "Picture Puzzle", hi: "तस्वीर वाली पहेली", description: "Rebuild a cartoon picture by sliding shuffled tiles.", hiDescription: "बिखरे हुए टाइल्स जोड़कर कार्टून तस्वीर पूरी करें।", emoji: "🧩", tone: "rain", ready: true },
+  { id: "picture-puzzle", title: "Picture Puzzle", hi: "तस्वीर वाली पहेली", description: "Put the picture back together by moving the tiles.", hiDescription: "टाइल्स को सही जगह लगाकर तस्वीर पूरी करें।", emoji: "🧩", tone: "rain", ready: true },
 ];
 
 const palette = [
@@ -26,6 +26,13 @@ const levels = {
   Medium: { time: 30, target: 20, speed: 1.0, hi: "मध्यम" },
   Hard: { time: 25, target: 25, speed: 1.4, hi: "मुश्किल" },
 };
+
+
+function makePuzzleShuffle(size) {
+ const total=size*size; const tiles=Array.from({length:total},(_,i)=>i); let blank=total-1; let previousBlank=-1;
+ for(let step=0;step<Math.max(60,total*18);step++){const options=[blank-size,blank+size,...(blank%size?[blank-1]:[]),...(blank%size<size-1?[blank+1]:[])].filter(index=>index>=0&&index<total&&index!==previousBlank);const next=options[Math.floor(Math.random()*options.length)];[tiles[blank],tiles[next]]=[tiles[next],tiles[blank]];previousBlank=blank;blank=next;}
+ return tiles;
+}
 
 function playSound(type, enabled) {
   if (!enabled || typeof window === "undefined") return;
@@ -364,9 +371,9 @@ export default function GamesZone() {
     </section> : null}
 
     {activeGame === "picture-puzzle" ? <section className="picture-puzzle-shell">
-      <div className="picture-puzzle-heading"><span className="picture-puzzle-icon">🧩</span><div><span className="colorpop-kicker">MINDORA ARCADE · PICTURE GAME</span><h2>{hi ? "तस्वीर पूरी करें" : "Picture Puzzle"} <span>✦</span></h2><p>{hi ? "अपनी Doraemon या कोई भी cartoon तस्वीर चुनें, फिर टाइल्स को सही जगह लगाएँ।" : "Choose a Doraemon or any cartoon picture, then slide the tiles back into place."}</p></div></div>
+      <div className="picture-puzzle-heading"><span className="picture-puzzle-icon">🧩</span><div><span className="colorpop-kicker">MINDORA ARCADE · PICTURE GAME</span><h2>{hi ? "तस्वीर पूरी करें" : "Picture Puzzle"} <span>✦</span></h2><p>{hi ? "अपनी Doraemon या कोई भी cartoon तस्वीर चुनें, फिर टाइल्स को सही जगह लगाएँ।" : ""}</p></div></div>
       <div className="picture-puzzle-toolbar">
-        <label className="picture-upload-button"> <span>＋</span> {hi ? "तस्वीर चुनें" : "Choose picture"} <input type="file" accept="image/*" onChange={e => { const file=e.target.files?.[0]; if(!file)return; const reader=new FileReader(); reader.onload=()=>{setPuzzleImage(String(reader.result));setPuzzleTiles([]);setPuzzleMoves(0);setPuzzleWon(false)}; reader.readAsDataURL(file); e.target.value=""; }} /></label>
+        <label className="picture-upload-button"> <span>＋</span> {hi ? "तस्वीर चुनें" : "Choose picture"} <input type="file" accept="image/*" onChange={e => { const file=e.target.files?.[0]; if(!file)return; const reader=new FileReader(); reader.onload=()=>{setPuzzleImage(String(reader.result));setPuzzleTiles(makePuzzleShuffle(puzzleSize));setPuzzleMoves(0);setPuzzleWon(false)}; reader.readAsDataURL(file); e.target.value=""; }} /></label>
         <label className="picture-size-label">{hi ? "कठिनाई" : "Difficulty"} <select value={puzzleSize} onChange={e=>{setPuzzleSize(Number(e.target.value));setPuzzleTiles([]);setPuzzleMoves(0);setPuzzleWon(false)}}><option value={3}>3 × 3 · {hi?"आसान":"Easy"}</option><option value={4}>4 × 4 · {hi?"मध्यम":"Medium"}</option><option value={5}>5 × 5 · {hi?"मुश्किल":"Hard"}</option></select></label>
         <span className="picture-moves">{hi ? "चालें" : "Moves"} <b>{puzzleMoves}</b></span>
       </div>
@@ -375,7 +382,7 @@ export default function GamesZone() {
         {(puzzleTiles.length ? puzzleTiles : Array.from({length:puzzleSize*puzzleSize},(_,i)=>i)).map((tile,index)=>{const blank=puzzleSize*puzzleSize-1;const canMove=tile!==blank && (Math.abs(index%puzzleSize-(puzzleTiles.indexOf(blank)%puzzleSize))+Math.abs(Math.floor(index/puzzleSize)-Math.floor(puzzleTiles.indexOf(blank)/puzzleSize))===1);return <button key={tile} aria-label={tile===blank?"Empty space":`Tile ${tile+1}`} disabled={puzzleWon || (!puzzleTiles.length && !puzzleWon)} className={"picture-puzzle-tile"+(tile===blank?" is-blank":"")} style={tile===blank?{}:{backgroundImage:`url("${puzzleImage}")`,backgroundSize:`${puzzleSize*100}% ${puzzleSize*100}%`,backgroundPosition:`${(tile%puzzleSize)/(puzzleSize-1)*100}% ${Math.floor(tile/puzzleSize)/(puzzleSize-1)*100}%`}} onClick={()=>{if(!puzzleTiles.length)return;const blankIndex=puzzleTiles.indexOf(blank);if(Math.abs(index%puzzleSize-blankIndex%puzzleSize)+Math.abs(Math.floor(index/puzzleSize)-Math.floor(blankIndex/puzzleSize))!==1)return;const next=[...puzzleTiles];[next[index],next[blankIndex]]=[next[blankIndex],next[index]];setPuzzleTiles(next);setPuzzleMoves(v=>v+1);if(next.every((v,i)=>v===i)){setPuzzleWon(true)}}} />})}
       </div>
       {puzzleWon ? <div className="picture-puzzle-success"><span>🎉</span><strong>{hi ? "कमाल! तस्वीर पूरी हो गई!" : "You did it! Picture complete!"}</strong><p>{hi ? `${puzzleMoves} चालों में पूरा किया।` : `Completed in ${puzzleMoves} moves.`}</p></div> : <p className="picture-puzzle-hint">{hi ? "खाली जगह के पास वाली टाइल पर क्लिक करें।" : "Click a tile next to the empty space to slide it."}</p>}
-      <div className="picture-puzzle-actions"><button onClick={()=>{const n=puzzleSize*puzzleSize;const a=Array.from({length:n},(_,i)=>i);let blank=n-1,previous=-1;for(let k=0;k<Math.max(40,puzzleSize*puzzleSize*12);k++){const options=[blank-puzzleSize,blank+puzzleSize,...(blank%puzzleSize? [blank-1]:[]),...(blank%puzzleSize<puzzleSize-1?[blank+1]:[])].filter(x=>x>=0&&x<n&&Math.abs(x%puzzleSize-blank%puzzleSize)+Math.abs(Math.floor(x/puzzleSize)-Math.floor(blank/puzzleSize))===1&&x!==previous);const next=options[Math.floor(Math.random()*options.length)];[a[blank],a[next]]=[a[next],a[blank]];previous=blank;blank=next;}setPuzzleTiles(a);setPuzzleMoves(0);setPuzzleWon(false)}}>{hi ? "🔀 तस्वीर मिक्स करें" : "🔀 Shuffle picture"}</button><button className="picture-puzzle-reset" onClick={()=>{setPuzzleTiles([]);setPuzzleMoves(0);setPuzzleWon(false)}}>{hi ? "रीसेट" : "Reset"}</button></div></>}
+      <div className="picture-puzzle-actions"><button className="picture-puzzle-reset" onClick={()=>{setPuzzleTiles(makePuzzleShuffle(puzzleSize));setPuzzleMoves(0);setPuzzleWon(false)}}>{hi ? "फिर से शुरू करें" : "Restart puzzle"}</button></div></>}
     </section> : null}
     {activeGame && activeGame !== "color-pop" && activeGame !== "let-it-burn" && activeGame !== "picture-puzzle" ? <section className="game-coming-card"><span className="coming-emoji">{games.find(g=>g.id===activeGame)?.emoji}</span><span className="colorpop-kicker">{hi?"जल्द आ रहा है":"COMING SOON"}</span><h2>{hi?games.find(g=>g.id===activeGame)?.hi:games.find(g=>g.id===activeGame)?.title}</h2><p>{hi?games.find(g=>g.id===activeGame)?.hiDescription:games.find(g=>g.id===activeGame)?.description}</p><button onClick={()=>setActiveGame(null)}>{hi?"गेम चुनें":"Choose another game"}</button></section> : null}
 
