@@ -371,7 +371,7 @@ export default function GamesZone() {
     </section> : null}
 
     {activeGame === "picture-puzzle" ? <section className="picture-puzzle-shell">
-      <div className="picture-puzzle-heading"><span className="picture-puzzle-icon">🧩</span><div><span className="colorpop-kicker">MINDORA ARCADE · PICTURE GAME</span><h2>{hi ? "तस्वीर पूरी करें" : "Picture Puzzle"} <span>✦</span></h2><p>{hi ? "अपनी Doraemon या कोई भी cartoon तस्वीर चुनें, फिर टाइल्स को सही जगह लगाएँ।" : ""}</p></div></div>
+      <div className="picture-puzzle-heading"><span className="picture-puzzle-icon">🧩</span><div><span className="colorpop-kicker">MINDORA ARCADE · PICTURE GAME</span><h2>{hi ? "तस्वीर पूरी करें" : "Picture Puzzle"} <span>✦</span></h2></div></div>
       <div className="picture-puzzle-toolbar">
         <label className="picture-upload-button"> <span>＋</span> {hi ? "तस्वीर चुनें" : "Choose picture"} <input type="file" accept="image/*" onChange={e => { const file=e.target.files?.[0]; if(!file)return; const reader=new FileReader(); reader.onload=()=>{setPuzzleImage(String(reader.result));setPuzzleTiles(makePuzzleShuffle(puzzleSize));setPuzzleMoves(0);setPuzzleWon(false)}; reader.readAsDataURL(file); e.target.value=""; }} /></label>
         <label className="picture-size-label">{hi ? "कठिनाई" : "Difficulty"} <select value={puzzleSize} onChange={e=>{setPuzzleSize(Number(e.target.value));setPuzzleTiles([]);setPuzzleMoves(0);setPuzzleWon(false)}}><option value={3}>3 × 3 · {hi?"आसान":"Easy"}</option><option value={4}>4 × 4 · {hi?"मध्यम":"Medium"}</option><option value={5}>5 × 5 · {hi?"मुश्किल":"Hard"}</option></select></label>
