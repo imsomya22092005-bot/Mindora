@@ -8,7 +8,7 @@ const games = [
   { id: "color-pop", title: "Color Pop", hi: "कलर पॉप", description: "Pop only the colour you are asked to find.", hiDescription: "दिए गए रंग के बबल्स ही पॉप करें।", emoji: "🌈", tone: "rainbow", ready: true },
   { id: "starweave", title: "Starweave", hi: "स्टारवीव", description: "Connect stars and create your own constellations.", hiDescription: "तारों को जोड़कर अपनी आकृतियाँ बनाएँ।", emoji: "🌌", tone: "night" },
   { id: "let-it-burn", title: "Let It Burn", hi: "लेट इट बर्न", description: "Write it down, light the page, and let it go.", hiDescription: "लिखें, पन्ने को जलाएँ और मन हल्का करें।", emoji: "🕯️", tone: "paper", ready: true },
-  { id: "light-jar", title: "The Little Light Jar", hi: "छोटी रोशनी का जार", description: "Collect little moments of hope.", hiDescription: "उम्मीद के छोटे-छोटे पल इकट्ठा करें।", emoji: "✨", tone: "glow" },
+  { id: "fruit-merge", title: "Fruit Merge", hi: "फ्रूट मर्ज", description: "Drop matching fruits, merge them, and beat your best score.", hiDescription: "एक जैसे फल गिराएँ, उन्हें मिलाएँ और अपना स्कोर बढ़ाएँ।", emoji: "🍉", tone: "glow", ready: true },
   { id: "picture-puzzle", title: "Picture Puzzle", hi: "तस्वीर वाली पहेली", description: "Put the picture back together by moving the tiles.", hiDescription: "टाइल्स को सही जगह लगाकर तस्वीर पूरी करें।", emoji: "🧩", tone: "rain", ready: true },
 ];
 
@@ -121,6 +121,11 @@ export default function GamesZone() {
   const [puzzleRemaining, setPuzzleRemaining] = useState(120);
   const [puzzleTimedOut, setPuzzleTimedOut] = useState(false);
   const canvasRef = useRef(null);
+  const fruitCanvasRef = useRef(null);
+  const fruitStateRef = useRef({ fruits: [], next: 0, score: 0, over: false, raf: 0, lastMerge: 0 });
+  const [fruitScore, setFruitScore] = useState(0);
+  const [fruitNext, setFruitNext] = useState(0);
+  const [fruitOver, setFruitOver] = useState(false);
   const gameRef = useRef({
     targets: [], shot: null, pointer: { x: 300, y: 250 }, raf: 0,
     score: 0, correct: 0, wrong: 0, shots: 0, remaining: 30,
@@ -341,8 +346,94 @@ export default function GamesZone() {
     }
   }
 
+
+  const fruitTypes = [
+    { emoji: "🍒", r: 14, points: 2 }, { emoji: "🍓", r: 19, points: 4 },
+    { emoji: "🍇", r: 24, points: 8 }, { emoji: "🍊", r: 29, points: 16 },
+    { emoji: "🍋", r: 34, points: 32 }, { emoji: "🍏", r: 39, points: 64 },
+    { emoji: "🍑", r: 45, points: 128 }, { emoji: "🍍", r: 51, points: 256 },
+    { emoji: "🍈", r: 58, points: 512 }, { emoji: "🍉", r: 66, points: 1024 },
+  ];
+  function resetFruitMerge() {
+    fruitStateRef.current = { fruits: [], next: Math.floor(Math.random() * 4), score: 0, over: false, raf: 0, lastMerge: 0 };
+    setFruitScore(0); setFruitNext(fruitStateRef.current.next); setFruitOver(false);
+  }
+  useEffect(() => {
+    if (activeGame !== "fruit-merge") return;
+    resetFruitMerge();
+    const canvas = fruitCanvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const state = fruitStateRef.current;
+    let width = 360, height = 520, last = 0;
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = rect.width || 360; height = rect.height || 520;
+      canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize(); window.addEventListener("resize", resize);
+    const draw = (now) => {
+      const dt = Math.min((now - (last || now)) / 16.67, 2); last = now;
+      ctx.clearRect(0, 0, width, height);
+      const bg = ctx.createLinearGradient(0, 0, width, height);
+      bg.addColorStop(0, "#d9f2ff"); bg.addColorStop(.45, "#fff2dc"); bg.addColorStop(1, "#ffe1d7");
+      ctx.fillStyle = bg; ctx.fillRect(0, 0, width, height);
+      ctx.fillStyle = "rgba(255,255,255,.55)";
+      for (let i=0;i<16;i++) { ctx.beginPath(); ctx.arc((i*79)%width,(i*113)%height,2+(i%3),0,Math.PI*2);ctx.fill(); }
+      const wall = 12, floor = height - 16;
+      ctx.fillStyle = "#b9825b"; ctx.fillRect(wall, 0, 5, floor); ctx.fillRect(width-wall-5, 0, 5, floor); ctx.fillRect(wall, floor, width-wall*2, 8);
+      ctx.strokeStyle = "rgba(170,75,55,.5)"; ctx.setLineDash([6,5]); ctx.beginPath(); ctx.moveTo(wall+5, 92); ctx.lineTo(width-wall-5, 92); ctx.stroke(); ctx.setLineDash([]);
+      if (!state.over) {
+        state.fruits.forEach((a) => {
+          if (!a.drop) { a.x += a.vx; a.y += a.vy * dt; a.vy += .19 * dt; }
+          if (a.x-a.r < wall+5) { a.x=wall+5+a.r; a.vx=Math.abs(a.vx)*.35; }
+          if (a.x+a.r > width-wall-5) { a.x=width-wall-5-a.r; a.vx=-Math.abs(a.vx)*.35; }
+          if (a.y+a.r > floor) { a.y=floor-a.r; a.vy=0; a.drop=true; }
+        });
+        for (let i=0;i<state.fruits.length;i++) for(let j=i+1;j<state.fruits.length;j++) {
+          const a=state.fruits[i], b=state.fruits[j], dx=b.x-a.x, dy=b.y-a.y, dist=Math.hypot(dx,dy), min=a.r+b.r;
+          if (dist < min && dist > 0) {
+            if (a.type===b.type && a.type < fruitTypes.length-1 && now-state.lastMerge>100) {
+              const type=a.type+1, x=(a.x+b.x)/2, y=(a.y+b.y)/2;
+              state.fruits.splice(j,1); state.fruits.splice(i,1);
+              state.fruits.push({x,y,r:fruitTypes[type].r,type,vy:-2,vx:0,drop:false});
+              state.score += fruitTypes[type].points; setFruitScore(state.score); state.lastMerge=now;
+              i=-1; break;
+            } else {
+              const overlap=(min-dist)*.5, nx=dx/dist, ny=dy/dist;
+              if (!a.drop) {a.x-=nx*overlap;a.y-=ny*overlap;}
+              if (!b.drop) {b.x+=nx*overlap;b.y+=ny*overlap;}
+              if (a.y+a.r >= floor-1 && b.y+b.r >= floor-1) {a.drop=true;b.drop=true;}
+            }
+          }
+        }
+        if (state.fruits.some(a=>a.y-a.r < 92 && a.drop)) { state.over=true; setFruitOver(true); }
+      }
+      state.fruits.forEach(a=>{
+        const fruit=fruitTypes[a.type];
+        ctx.save(); ctx.shadowColor="rgba(99,65,45,.2)";ctx.shadowBlur=8;ctx.shadowOffsetY=3;
+        ctx.fillStyle="rgba(255,255,255,.68)";ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,Math.PI*2);ctx.fill();
+        ctx.shadowBlur=0;ctx.shadowOffsetY=0;ctx.font=(a.r*1.55)+"px serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(fruit.emoji,a.x,a.y+1);ctx.restore();
+      });
+      if (!state.over) state.raf=requestAnimationFrame(draw);
+    };
+    const dropFruit = (e) => {
+      if (state.over) return;
+      const rect=canvas.getBoundingClientRect(), x=Math.max(32,Math.min(width-32,e.clientX-rect.left));
+      const type=state.next;
+      state.fruits.push({x,y:28,r:fruitTypes[type].r,type,vy:0,vx:0,drop:false});
+      state.next=Math.floor(Math.random()*4);setFruitNext(state.next);
+    };
+    canvas.addEventListener("pointerdown",dropFruit);
+    state.raf=requestAnimationFrame(draw);
+    return ()=>{cancelAnimationFrame(state.raf);window.removeEventListener("resize",resize);canvas.removeEventListener("pointerdown",dropFruit);};
+  }, [activeGame]);
+
   function chooseGame(id) {
     if (id === "picture-puzzle") { setPuzzleTiles([]); setPuzzleMoves(0); setPuzzleWon(false); }
+    if (id === "fruit-merge") resetFruitMerge();
     if (id === "color-pop") { setActiveGame("color-pop"); setPlaying(false); setFinished(false); return; }
     setActiveGame(id); setPlaying(false);
   }
@@ -399,6 +490,14 @@ export default function GamesZone() {
       <p className="burn-note">{hi?"यह एक डिजिटल प्रतीकात्मक अनुभव है — कोई वास्तविक आग नहीं।":"A symbolic digital ritual. No real fire, just a little room to breathe."}</p></div>}
     </section> : null}
 
+
+    {activeGame === "fruit-merge" ? <section className="fruit-merge-shell">
+      <div className="picture-puzzle-heading"><span className="picture-puzzle-icon">🍉</span><div><span className="colorpop-kicker">MINDORA ARCADE · FRUIT GAME</span><h2>{hi?"फलों को मिलाएँ":"Fruit Merge"} <span>✦</span></h2><p>{hi?"एक जैसे फल मिलाकर बड़े फल बनाएँ।":"Drop fruits into the jar. Matching fruits merge into bigger ones."}</p></div></div>
+      <div className="fruit-merge-stats"><span>{hi?"स्कोर":"Score"} <b>{fruitScore}</b></span><span>{hi?"अगला फल":"Next fruit"} <b>{fruitTypes[fruitNext]?.emoji || "🍒"}</b></span></div>
+      <div className="fruit-merge-board"><canvas ref={fruitCanvasRef} aria-label="Fruit Merge game. Tap or click inside the jar to drop fruits and merge matching fruits."/><div className="fruit-merge-overlay">{fruitOver ? <div><span>🍉</span><h3>{hi?"जार भर गया!":"Jar is full!"}</h3><p>{hi?"फिर से खेलें और अपना स्कोर बढ़ाएँ।":"Try again and beat your high score."}</p><button onClick={resetFruitMerge}>{hi?"फिर खेलें":"Play again"}</button></div> : <span>{hi?"फल गिराने के लिए जार में टैप करें":"Tap anywhere inside the jar to drop a fruit"}</span>}</div></div>
+      <div className="picture-puzzle-actions"><button onClick={resetFruitMerge}>{hi?"नया गेम":"Restart game"}</button><button className="picture-puzzle-reset" onClick={()=>{setActiveGame(null);navigate("/games")}}>{hi?"सभी गेम":"All games"}</button></div>
+    </section> : null}
+
     {activeGame === "picture-puzzle" ? <section className="picture-puzzle-shell">
       <div className="picture-puzzle-heading"><span className="picture-puzzle-icon">🧩</span><div><span className="colorpop-kicker">MINDORA ARCADE · PICTURE GAME</span><h2>{hi ? "तस्वीर पूरी करें" : "Picture Puzzle"} <span>✦</span></h2></div></div>
       <div className="picture-puzzle-toolbar">
@@ -414,7 +513,7 @@ export default function GamesZone() {
       {puzzleWon ? <div className="picture-puzzle-success"><span>🎉</span><strong>{hi ? "कमाल! तस्वीर पूरी हो गई!" : "You did it! Picture complete!"}</strong><p>{hi ? `${puzzleMoves} चालों में पूरा किया।` : `Completed in ${puzzleMoves} moves.`}</p></div> : puzzleTimedOut ? <div className="picture-puzzle-success is-timeout"><span>⏰</span><strong>{hi?"समय पूरा हो गया!":"Time's up!"}</strong><p>{hi?"फिर से शुरू करें और इस बार समय के अंदर तस्वीर पूरी करें।":"Restart and try to complete the picture before time runs out."}</p></div> : <p className="picture-puzzle-hint">{hi ? "किसी भी टाइल पर क्लिक करें, फिर जिस जगह ले जाना है उस टाइल पर क्लिक करें।" : "Click any tile, then click another tile to swap their places."}</p>}
       <div className="picture-puzzle-actions"><button onClick={()=>startPicturePuzzle()}>{hi ? "नया गेम शुरू करें" : "Restart / New game"}</button></div></>}
     </section> : null}
-    {activeGame && activeGame !== "color-pop" && activeGame !== "let-it-burn" && activeGame !== "picture-puzzle" ? <section className="game-coming-card"><span className="coming-emoji">{games.find(g=>g.id===activeGame)?.emoji}</span><span className="colorpop-kicker">{hi?"जल्द आ रहा है":"COMING SOON"}</span><h2>{hi?games.find(g=>g.id===activeGame)?.hi:games.find(g=>g.id===activeGame)?.title}</h2><p>{hi?games.find(g=>g.id===activeGame)?.hiDescription:games.find(g=>g.id===activeGame)?.description}</p><button onClick={()=>setActiveGame(null)}>{hi?"गेम चुनें":"Choose another game"}</button></section> : null}
+    {activeGame && activeGame !== "color-pop" && activeGame !== "let-it-burn" && activeGame !== "picture-puzzle" && activeGame !== "fruit-merge" ? <section className="game-coming-card"><span className="coming-emoji">{games.find(g=>g.id===activeGame)?.emoji}</span><span className="colorpop-kicker">{hi?"जल्द आ रहा है":"COMING SOON"}</span><h2>{hi?games.find(g=>g.id===activeGame)?.hi:games.find(g=>g.id===activeGame)?.title}</h2><p>{hi?games.find(g=>g.id===activeGame)?.hiDescription:games.find(g=>g.id===activeGame)?.description}</p><button onClick={()=>setActiveGame(null)}>{hi?"गेम चुनें":"Choose another game"}</button></section> : null}
 
     {!activeGame ? <>
       <section className="games-welcome"><span className="games-welcome-spark">✦</span><div><span className="colorpop-kicker">{hi?"आपकी छोटी-सी ब्रेक":"YOUR LITTLE BREAK"}</span><h2>{hi?"आज आप क्या खेलना चाहेंगे?":"What feels good to play today?"}</h2><p>{hi?"कोई दबाव नहीं, बस अपने लिए एक छोटा-सा पल।":"No pressure, just a little moment for yourself."}</p></div></section>
