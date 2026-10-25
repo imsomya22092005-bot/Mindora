@@ -6,7 +6,7 @@ import "./GamesZone.css";
 
 const games = [
   { id: "color-pop", title: "Color Pop", hi: "कलर पॉप", description: "Pop only the colour you are asked to find.", hiDescription: "दिए गए रंग के बबल्स ही पॉप करें।", emoji: "🌈", tone: "rainbow", ready: true },
-  { id: "starweave", title: "Starweave", hi: "स्टारवीव", description: "Connect stars and create your own constellations.", hiDescription: "तारों को जोड़कर अपनी आकृतियाँ बनाएँ।", emoji: "🌌", tone: "night" },
+  { id: "starweave", title: "Starweave", hi: "स्टारवीव", description: "Connect stars and create your own constellations.", hiDescription: "तारों को जोड़कर अपनी आकृतियाँ बनाएँ।", emoji: "🌌", tone: "night", ready: true },
   { id: "let-it-burn", title: "Let It Burn", hi: "लेट इट बर्न", description: "Write it down, light the page, and let it go.", hiDescription: "लिखें, पन्ने को जलाएँ और मन हल्का करें।", emoji: "🕯️", tone: "paper", ready: true },
   { id: "picture-puzzle", title: "Picture Puzzle", hi: "तस्वीर वाली पहेली", description: "Put the picture back together by moving the tiles.", hiDescription: "टाइल्स को सही जगह लगाकर तस्वीर पूरी करें।", emoji: "🧩", tone: "rain", ready: true },
 ];
@@ -119,6 +119,9 @@ export default function GamesZone() {
   const [puzzleSelected, setPuzzleSelected] = useState(null);
   const [puzzleRemaining, setPuzzleRemaining] = useState(120);
   const [puzzleTimedOut, setPuzzleTimedOut] = useState(false);
+  const [starweaveConnected, setStarweaveConnected] = useState([]);
+  const [starweaveMessage, setStarweaveMessage] = useState("");
+  const [starweaveWon, setStarweaveWon] = useState(false);
   const canvasRef = useRef(null);
   const fruitCanvasRef = useRef(null);
   const fruitStateRef = useRef({ fruits: [], next: 0, score: 0, over: false, raf: 0, lastMerge: 0 });
@@ -480,6 +483,31 @@ export default function GamesZone() {
       <div className="colorpop-controls"><button onClick={() => {setFinished(false);setActiveGame("color-pop");}}>{hi?"लेवल चुनें":"Change level"}</button><button className="colorpop-soft" onClick={() => startColorPop(difficulty)}><RotateCcw size={16}/>{hi?"फिर खेलें":"Play again"}</button></div>
     </section> : null}
 
+
+    {activeGame === "starweave" ? <section className="starweave-shell">
+      <div className="starweave-heading">
+        <span className="starweave-emblem">✦</span>
+        <div><span className="colorpop-kicker">MINDORA ARCADE · CONSTELLATION 01</span><h2>{hi ? "अपना तारामंडल बनाएँ" : "Weave your own sky"}</h2><p>{hi ? "तारों को 1 से 8 तक सही क्रम में जोड़ें और रात के आकाश में एक आकृति बनाएँ।" : "Connect the stars in order from 1 to 8 and reveal a little constellation."}</p></div>
+      </div>
+      <div className="starweave-status"><span><i className="starweave-status-dot"/> {hi ? "शांत मोड" : "A little mindful play"}</span><strong>{starweaveWon ? "8 / 8" : `${starweaveConnected.length} / 8`} <small>{hi ? "तारे जुड़े" : "stars connected"}</small></strong></div>
+      <div className="starweave-sky">
+        <div className="starweave-nebula starweave-nebula-one"/><div className="starweave-nebula starweave-nebula-two"/>
+        <svg viewBox="0 0 600 390" role="img" aria-label="Interactive constellation. Connect the numbered stars in order.">
+          <defs><linearGradient id="starweave-line" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#ffdca8"/><stop offset="100%" stopColor="#f49ac2"/></linearGradient><filter id="starweave-glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+          {Array.from({length:54},(_,i)=><circle key={`dust-${i}`} cx={(i*97+23)%590+5} cy={(i*53+19)%370+8} r={i%5===0?1.7:.8} fill="#fff6df" opacity={i%3===0?".8":".38"}/>)}
+          {[[90,90],[190,55],[285,95],[390,65],[480,130],[405,205],[300,245],[185,205]].slice(0,Math.max(0,starweaveConnected.length-1)).map((p,i)=>null)}
+          {[[105,105],[205,60],[305,100],[420,75],[500,145],[410,225],[300,265],[180,220]].slice(0,starweaveConnected.length-1).map((p,i,arr)=> <line key={`line-${i}`} x1={p[0]} y1={p[1]} x2={[[105,105],[205,60],[305,100],[420,75],[500,145],[410,225],[300,265],[180,220]][i+1][0]} y2={[[105,105],[205,60],[305,100],[420,75],[500,145],[410,225],[300,265],[180,220]][i+1][1]} stroke="url(#starweave-line)" strokeWidth="2.5" strokeLinecap="round" filter="url(#starweave-glow}" opacity=".95"/>)}
+          {[[105,105],[205,60],[305,100],[420,75],[500,145],[410,225],[300,265],[180,220]].map(([x,y],i)=><g key={i} className={`starweave-point ${starweaveConnected.includes(i)?"is-connected":""} ${starweaveConnected.length===i?"is-next":""}`} role="button" tabIndex={starweaveWon?-1:0} aria-label={`Star ${i+1}`} onClick={()=>{if(starweaveWon||starweaveConnected.includes(i))return;if(i===starweaveConnected.length){const next=[...starweaveConnected,i];setStarweaveConnected(next);setStarweaveMessage(next.length===8?(hi?"तारामंडल पूरा हुआ — बहुत सुंदर!":"Beautifully done. Your constellation is complete."):(hi?"अच्छा! अगला चमकता तारा चुनें।":"Lovely. Find the next glowing star."));if(next.length===8)setStarweaveWon(true);}else setStarweaveMessage(hi?`पहले तारा ${starweaveConnected.length+1} चुनें।`:`Find star ${starweaveConnected.length+1} next.`)}} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();if(!starweaveWon&&!starweaveConnected.includes(i)&&i===starweaveConnected.length){const next=[...starweaveConnected,i];setStarweaveConnected(next);setStarweaveMessage(next.length===8?"Beautifully done. Your constellation is complete.":"Lovely. Find the next glowing star.");if(next.length===8)setStarweaveWon(true);}}}}>
+            <circle className="starweave-hit" cx={x} cy={y} r="25"/><circle className="starweave-halo" cx={x} cy={y} r="16"/><path d={`M ${x} ${y-9} L ${x+2.7} ${y-2.7} L ${x+9} ${y} L ${x+2.7} ${y+2.7} L ${x} ${y+9} L ${x-2.7} ${y+2.7} L ${x-9} ${y} L ${x-2.7} ${y-2.7} Z`} className="starweave-star"/><text x={x} y={y+30} textAnchor="middle">{i+1}</text>
+          </g>)}
+        </svg>
+        {starweaveWon&&<div className="starweave-win"><span>✧</span><strong>{hi?"तारों से बनी आपकी आकृति":"A constellation, made by you"}</strong><p>{hi?"एक पल रुकें और अपनी बनाई आकृति को देखें।":"Take a breath and enjoy the little shape you made."}</p></div>}
+      </div>
+      <div className="starweave-message" aria-live="polite"><span>✦</span>{starweaveMessage || (hi ? `तारा ${starweaveConnected.length+1} चुनें` : `Tap star ${starweaveConnected.length+1} to begin`)}</div>
+      <div className="starweave-actions"><button className="starweave-primary" onClick={()=>{setStarweaveConnected([]);setStarweaveMessage("");setStarweaveWon(false)}}><RotateCcw size={16}/>{hi?"फिर से बनाएँ":"Start a new constellation"}</button><button className="starweave-secondary" onClick={()=>{setActiveGame(null);navigate("/games")}}>{hi?"सभी गेम":"Back to games"} <ArrowRight size={15}/></button></div>
+      <p className="starweave-footnote"><Sparkles size={14}/>{hi?"कोई टाइमर नहीं, कोई दबाव नहीं — बस एक तारा एक बार में।":"No timer, no pressure. One star at a time."}</p>
+    </section> : null}
+
     {activeGame === "let-it-burn" ? <section className="burn-experience">
       <div className="burn-hero"><span className="burn-eyebrow">{hi?"आपके लिए एक शांत पल":"A QUIET RITUAL FOR YOU"}</span><h2>{hi?"जो मन में है, उसे लिखें।":"Some things are lighter when let go."}</h2><p>{hi?"बिना किसी डर या फैसले के, अपने मन की बात इस पन्ने पर उतारें।":"A gentle space to put your thoughts down, without judgement or pressure."}</p></div>
       <div className={"burn-scene"+(candleLitPaper?" paper-ignited":"")}><button className={"burn-candle"+(candleMoved?" candle-at-paper":"")+(candleLitPaper?" candle-used":"")} aria-label={hi?"मोमबत्ती को पन्ने तक ले जाएँ":"Move candle to the page"} onClick={()=>{if(!burning&&!burnComplete)setCandleMoved(v=>!v)}}><span/></button><div className={"burn-letter"+(burning?" burning":"")+(candleLitPaper?" catching-fire":"")}>
@@ -518,7 +546,7 @@ export default function GamesZone() {
       {puzzleWon ? <div className="picture-puzzle-success"><span>🎉</span><strong>{hi ? "कमाल! तस्वीर पूरी हो गई!" : "You did it! Picture complete!"}</strong><p>{hi ? `${puzzleMoves} चालों में पूरा किया।` : `Completed in ${puzzleMoves} moves.`}</p></div> : puzzleTimedOut ? <div className="picture-puzzle-success is-timeout"><span>⏰</span><strong>{hi?"समय पूरा हो गया!":"Time's up!"}</strong><p>{hi?"फिर से शुरू करें और इस बार समय के अंदर तस्वीर पूरी करें।":"Restart and try to complete the picture before time runs out."}</p></div> : <p className="picture-puzzle-hint">{hi ? "किसी भी टाइल पर क्लिक करें, फिर जिस जगह ले जाना है उस टाइल पर क्लिक करें।" : "Click any tile, then click another tile to swap their places."}</p>}
       <div className="picture-puzzle-actions"><button onClick={()=>startPicturePuzzle()}>{hi ? "नया गेम शुरू करें" : "Restart / New game"}</button></div></>}
     </section> : null}
-    {activeGame && activeGame !== "color-pop" && activeGame !== "let-it-burn" && activeGame !== "picture-puzzle" && activeGame !== "fruit-merge" ? <section className="game-coming-card"><span className="coming-emoji">{games.find(g=>g.id===activeGame)?.emoji}</span><span className="colorpop-kicker">{hi?"जल्द आ रहा है":"COMING SOON"}</span><h2>{hi?games.find(g=>g.id===activeGame)?.hi:games.find(g=>g.id===activeGame)?.title}</h2><p>{hi?games.find(g=>g.id===activeGame)?.hiDescription:games.find(g=>g.id===activeGame)?.description}</p><button onClick={()=>setActiveGame(null)}>{hi?"गेम चुनें":"Choose another game"}</button></section> : null}
+    {activeGame && activeGame !== "color-pop" && activeGame !== "let-it-burn" && activeGame !== "starweave" && activeGame !== "picture-puzzle" && activeGame !== "fruit-merge" ? <section className="game-coming-card"><span className="coming-emoji">{games.find(g=>g.id===activeGame)?.emoji}</span><span className="colorpop-kicker">{hi?"जल्द आ रहा है":"COMING SOON"}</span><h2>{hi?games.find(g=>g.id===activeGame)?.hi:games.find(g=>g.id===activeGame)?.title}</h2><p>{hi?games.find(g=>g.id===activeGame)?.hiDescription:games.find(g=>g.id===activeGame)?.description}</p><button onClick={()=>setActiveGame(null)}>{hi?"गेम चुनें":"Choose another game"}</button></section> : null}
 
     {!activeGame ? <>
       <section className="games-welcome"><span className="games-welcome-spark">✦</span><div><span className="colorpop-kicker">{hi?"आपकी छोटी-सी ब्रेक":"YOUR LITTLE BREAK"}</span><h2>{hi?"आज आप क्या खेलना चाहेंगे?":"What feels good to play today?"}</h2><p>{hi?"कोई दबाव नहीं, बस अपने लिए एक छोटा-सा पल।":"No pressure, just a little moment for yourself."}</p></div></section>
