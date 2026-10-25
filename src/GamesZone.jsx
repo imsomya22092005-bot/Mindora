@@ -126,6 +126,7 @@ export default function GamesZone() {
   const [fruitScore, setFruitScore] = useState(0);
   const [fruitNext, setFruitNext] = useState(0);
   const [fruitOver, setFruitOver] = useState(false);
+  const [fruitResetKey, setFruitResetKey] = useState(0);
   const gameRef = useRef({
     targets: [], shot: null, pointer: { x: 300, y: 250 }, raf: 0,
     score: 0, correct: 0, wrong: 0, shots: 0, remaining: 30,
@@ -355,12 +356,11 @@ export default function GamesZone() {
     { emoji: "🍈", r: 58, points: 512 }, { emoji: "🍉", r: 66, points: 1024 },
   ];
   function resetFruitMerge() {
-    fruitStateRef.current = { fruits: [], next: Math.floor(Math.random() * 4), score: 0, over: false, raf: 0, lastMerge: 0 };
-    setFruitScore(0); setFruitNext(fruitStateRef.current.next); setFruitOver(false);
+    fruitStateRef.current = { fruits: [], next: Math.floor(Math.random() * 4), score: 0, over: false, raf: 0, lastMerge: 0, dropX: 180 };
+    setFruitScore(0); setFruitNext(fruitStateRef.current.next); setFruitOver(false); setFruitResetKey(k => k + 1);
   }
   useEffect(() => {
     if (activeGame !== "fruit-merge") return;
-    resetFruitMerge();
     const canvas = fruitCanvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -419,17 +419,21 @@ export default function GamesZone() {
       });
       if (!state.over) state.raf=requestAnimationFrame(draw);
     };
-    const dropFruit = (e) => {
+    const moveFruitPosition = (e) => {
+      const rect=canvas.getBoundingClientRect();
+      state.dropX=Math.max(34,Math.min(width-34,e.clientX-rect.left));
+    };
+    const spawnFruit = () => {
       if (state.over) return;
-      const rect=canvas.getBoundingClientRect(), x=Math.max(32,Math.min(width-32,e.clientX-rect.left));
       const type=state.next;
-      state.fruits.push({x,y:28,r:fruitTypes[type].r,type,vy:0,vx:0,drop:false});
+      state.fruits.push({x:state.dropX || width/2,y:28,r:fruitTypes[type].r,type,vy:0,vx:0,drop:false});
       state.next=Math.floor(Math.random()*4);setFruitNext(state.next);
     };
-    canvas.addEventListener("pointerdown",dropFruit);
+    canvas.addEventListener("pointermove",moveFruitPosition);
+    const spawnTimer=window.setInterval(spawnFruit,950);
     state.raf=requestAnimationFrame(draw);
-    return ()=>{cancelAnimationFrame(state.raf);window.removeEventListener("resize",resize);canvas.removeEventListener("pointerdown",dropFruit);};
-  }, [activeGame]);
+    return ()=>{cancelAnimationFrame(state.raf);window.clearInterval(spawnTimer);window.removeEventListener("resize",resize);canvas.removeEventListener("pointermove",moveFruitPosition);};
+  }, [activeGame, fruitResetKey]);
 
   function chooseGame(id) {
     if (id === "picture-puzzle") { setPuzzleTiles([]); setPuzzleMoves(0); setPuzzleWon(false); }
@@ -494,8 +498,8 @@ export default function GamesZone() {
     {activeGame === "fruit-merge" ? <section className="fruit-merge-shell">
       <div className="picture-puzzle-heading"><span className="picture-puzzle-icon">🍉</span><div><span className="colorpop-kicker">MINDORA ARCADE · FRUIT GAME</span><h2>{hi?"फलों को मिलाएँ":"Fruit Merge"} <span>✦</span></h2><p>{hi?"एक जैसे फल मिलाकर बड़े फल बनाएँ।":"Drop fruits into the jar. Matching fruits merge into bigger ones."}</p></div></div>
       <div className="fruit-merge-stats"><span>{hi?"स्कोर":"Score"} <b>{fruitScore}</b></span><span>{hi?"अगला फल":"Next fruit"} <b>{fruitTypes[fruitNext]?.emoji || "🍒"}</b></span></div>
-      <div className="fruit-merge-board"><canvas ref={fruitCanvasRef} aria-label="Fruit Merge game. Tap or click inside the jar to drop fruits and merge matching fruits."/><div className="fruit-merge-overlay">{fruitOver ? <div><span>🍉</span><h3>{hi?"जार भर गया!":"Jar is full!"}</h3><p>{hi?"फिर से खेलें और अपना स्कोर बढ़ाएँ।":"Try again and beat your high score."}</p><button onClick={resetFruitMerge}>{hi?"फिर खेलें":"Play again"}</button></div> : <span>{hi?"फल गिराने के लिए जार में टैप करें":"Tap anywhere inside the jar to drop a fruit"}</span>}</div></div>
-      <div className="picture-puzzle-actions"><button onClick={resetFruitMerge}>{hi?"नया गेम":"Restart game"}</button><button className="picture-puzzle-reset" onClick={()=>{setActiveGame(null);navigate("/games")}}>{hi?"सभी गेम":"All games"}</button></div>
+      <div className="fruit-merge-board"><canvas ref={fruitCanvasRef} aria-label="Fruit Merge game. Tap or click inside the jar to drop fruits and merge matching fruits."/><div className="fruit-merge-overlay">{fruitOver ? <div><span>🍉</span><h3>{hi?"जार भर गया!":"Jar is full!"}</h3><p>{hi?"फिर से खेलें और अपना स्कोर बढ़ाएँ।":"Try again and beat your high score."}</p><button onClick={resetFruitMerge}>{hi?"फिर खेलें":"Play again"}</button></div> : <span>{hi?"फल गिराने के लिए जार में टैप करें":"Move left or right to choose where fruits fall"}</span>}</div></div>
+      <div className="picture-puzzle-actions"><button onClick={resetFruitMerge}>{hi?"नया गेम":"Restart game"}</button><button className="picture-puzzle-reset" onClick={()=>{setActiveGame(null);setPlaying(false);setFinished(false);navigate("/games")}}>{hi?"गेम छोड़ें":"Quit Game"}</button></div>
     </section> : null}
 
     {activeGame === "picture-puzzle" ? <section className="picture-puzzle-shell">
