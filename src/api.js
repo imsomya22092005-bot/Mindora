@@ -4,10 +4,9 @@ const isProduction = import.meta.env.PROD;
 const API_BASE_URL = (configuredApiUrl || (isProduction ? "" : "http://localhost:5000")).replace(/\/$/, "");
 
 export async function apiRequest(path, { token, ...options } = {}) {
-  // Calm Corner is intentionally frontend-only. Its breathing exercise must
-  // keep working even when the backend session endpoint is not available.
+  // Calm Corner is intentionally frontend-only; don't send a request to a removed endpoint.
   if (path === "/api/calm/session") {
-    throw new Error("LOCAL_CALM_SESSION_ONLY");
+    throw new Error("Practice paused. Your breathing session is not saved to the server.");
   }
 
   if (isProduction && !configuredApiUrl) {
