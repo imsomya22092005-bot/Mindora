@@ -369,7 +369,7 @@ export default function GamesZone() {
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = rect.width || 360; height = rect.height || 520; state.dropX = width / 2;
+      width = rect.width || 360; height = rect.height || 520; state.dropX = Math.max(45, Math.min(width - 45, state.dropX || width / 2));
       canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
@@ -384,12 +384,12 @@ export default function GamesZone() {
       for (let i=0;i<16;i++) { ctx.beginPath(); ctx.arc((i*79)%width,(i*113)%height,2+(i%3),0,Math.PI*2);ctx.fill(); }
       const wall = 12, floor = height - 16;
       ctx.fillStyle = "#b9825b"; ctx.fillRect(wall, 0, 5, floor); ctx.fillRect(width-wall-5, 0, 5, floor); ctx.fillRect(wall, floor, width-wall*2, 8);
-      ctx.strokeStyle = "rgba(170,75,55,.5)"; ctx.setLineDash([6,5]); ctx.beginPath(); ctx.moveTo(wall+5, 92); ctx.lineTo(width-wall-5, 92); ctx.stroke(); ctx.setLineDash([]);\n      if (!state.over) { ctx.strokeStyle = "rgba(100,105,120,.55)"; ctx.setLineDash([4, 6]); ctx.beginPath(); ctx.moveTo(state.dropX || width/2, 24); ctx.lineTo(state.dropX || width/2, 78); ctx.stroke(); ctx.setLineDash([]); }
+      ctx.strokeStyle = "rgba(170,75,55,.5)"; ctx.setLineDash([6,5]); ctx.beginPath(); ctx.moveTo(wall+5, 92); ctx.lineTo(width-wall-5, 92); ctx.stroke(); ctx.setLineDash([]);\n      if (!state.over) { const previewX = Math.max(wall + fruitTypes[state.next].r + 5, Math.min(width - wall - fruitTypes[state.next].r - 5, state.dropX || width / 2)); ctx.strokeStyle = "rgba(100,105,120,.65)"; ctx.setLineDash([4, 6]); ctx.beginPath(); ctx.moveTo(previewX, 24); ctx.lineTo(previewX, 78); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = .8; ctx.font = (fruitTypes[state.next].r * 1.55) + "px serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(fruitTypes[state.next].emoji, previewX, 50); ctx.globalAlpha = 1; }
       if (!state.over) {
         state.fruits.forEach((a) => {
-          if (!a.drop) { a.x += a.vx * dt; a.y += a.vy * dt; a.vy += .075 * dt; }
-          if (a.x-a.r < wall+5) { a.x=wall+5+a.r; a.vx=Math.abs(a.vx)*.35; }
-          if (a.x+a.r > width-wall-5) { a.x=width-wall-5-a.r; a.vx=-Math.abs(a.vx)*.35; }
+          if (!a.drop) { a.y += a.vy * dt; a.vy += .028 * dt; }
+          if (a.x-a.r < wall+5) { a.x=wall+5+a.r; a.vx=0; }
+          if (a.x+a.r > width-wall-5) { a.x=width-wall-5-a.r; a.vx=0; }
           if (a.y+a.r > floor) { a.y=floor-a.r; a.vy=0; a.drop=true; }
         });
         for (let i=0;i<state.fruits.length;i++) for(let j=i+1;j<state.fruits.length;j++) {
@@ -403,8 +403,8 @@ export default function GamesZone() {
               i=-1; break;
             } else {
               const overlap=(min-dist)*.5, nx=dx/dist, ny=dy/dist;
-              if (!a.drop) {a.x-=nx*overlap;a.y-=ny*overlap;}
-              if (!b.drop) {b.x+=nx*overlap;b.y+=ny*overlap;}
+              if (!a.drop) {a.y-=ny*overlap;}
+              if (!b.drop) {b.y+=ny*overlap;}
               if (a.y+a.r >= floor-1 && b.y+b.r >= floor-1) {a.drop=true;b.drop=true;}
             }
           }
@@ -421,7 +421,7 @@ export default function GamesZone() {
     };
     const moveFruitPosition = (e) => {
       const rect=canvas.getBoundingClientRect();
-      state.dropX=Math.max(wall+fruitTypes[state.next].r+5,Math.min(width-wall-fruitTypes[state.next].r-5,e.clientX-rect.left));
+      const scaleX = width / rect.width;\n      state.dropX=Math.max(wall+fruitTypes[state.next].r+5,Math.min(width-wall-fruitTypes[state.next].r-5,(e.clientX-rect.left)*scaleX));
     };
     const spawnFruit = () => {
       if (state.over) return;
@@ -430,7 +430,7 @@ export default function GamesZone() {
       state.next=Math.floor(Math.random()*4);setFruitNext(state.next);
     };
     canvas.addEventListener("pointermove",moveFruitPosition);
-    const spawnTimer=window.setInterval(spawnFruit,1550);
+    const spawnTimer=window.setInterval(spawnFruit,2800);
     state.raf=requestAnimationFrame(draw);
     return ()=>{cancelAnimationFrame(state.raf);window.clearInterval(spawnTimer);window.removeEventListener("resize",resize);canvas.removeEventListener("pointermove",moveFruitPosition);};
   }, [activeGame, fruitResetKey]);
@@ -496,9 +496,9 @@ export default function GamesZone() {
 
 
     {activeGame === "fruit-merge" ? <section className="fruit-merge-shell">
-      <div className="picture-puzzle-heading"><span className="picture-puzzle-icon">🍉</span><div><span className="colorpop-kicker">MINDORA ARCADE · FRUIT GAME</span><h2>{hi?"फलों को मिलाएँ":"Fruit Merge"} <span>✦</span></h2><p>{hi?"एक जैसे फल मिलाकर बड़े फल बनाएँ।":"Move your mouse to aim the next fruit. It drops at that position, but can roll if it hits other fruits."}</p></div></div>
+      <div className="picture-puzzle-heading"><span className="picture-puzzle-icon">🍉</span><div><span className="colorpop-kicker">MINDORA ARCADE · FRUIT GAME</span><h2>{hi?"फलों को मिलाएँ":"Fruit Merge"} <span>✦</span></h2><p>{hi?"एक जैसे फल मिलाकर बड़े फल बनाएँ।":"Move the mouse to choose a spot. Fruits fall slowly and stay in their lane as much as possible."}</p></div></div>
       <div className="fruit-merge-stats"><span>{hi?"स्कोर":"Score"} <b>{fruitScore}</b></span><span>{hi?"अगला फल":"Next fruit"} <b>{fruitTypes[fruitNext]?.emoji || "🍒"}</b></span></div>
-      <div className="fruit-merge-board"><canvas ref={fruitCanvasRef} aria-label="Fruit Merge game. Move your mouse over the jar to aim where the next fruit will drop."/><div className="fruit-merge-overlay">{fruitOver ? <div><span>🍉</span><h3>{hi?"जार भर गया!":"Jar is full!"}</h3><p>{hi?"फिर से खेलें और अपना स्कोर बढ़ाएँ।":"Try again and beat your high score."}</p><button onClick={resetFruitMerge}>{hi?"फिर खेलें":"Play again"}</button></div> : <span>{hi?"फल गिराने के लिए जार में टैप करें":"Move your mouse left or right to aim the next fruit"}</span>}</div></div>
+      <div className="fruit-merge-board"><canvas ref={fruitCanvasRef} aria-label="Fruit Merge game. Move your mouse over the jar to aim where the next fruit will drop."/><div className="fruit-merge-overlay">{fruitOver ? <div><span>🍉</span><h3>{hi?"जार भर गया!":"Jar is full!"}</h3><p>{hi?"फिर से खेलें और अपना स्कोर बढ़ाएँ।":"Try again and beat your high score."}</p><button onClick={resetFruitMerge}>{hi?"फिर खेलें":"Play again"}</button></div> : <span>{hi?"फल गिराने के लिए जार में टैप करें":"Move left or right to aim; a fruit drops every few seconds"}</span>}</div></div>
       <div className="picture-puzzle-actions"><button onClick={resetFruitMerge}>{hi?"नया गेम":"Restart game"}</button><button className="picture-puzzle-reset" onClick={()=>{setActiveGame(null);setPlaying(false);setFinished(false);navigate("/games")}}>{hi?"गेम छोड़ें":"Quit Game"}</button></div>
     </section> : null}
 
