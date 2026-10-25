@@ -1201,3 +1201,12 @@ html[data-mindora-theme="dark"] .wellness-page .soundscape-option-copy small,
 .dark-theme .wellness-page .soundscape-option-copy small {
   color: #e6d4c3 !important;
 }
+
+
+/* Calm Corner YouTube sound player */
+.calm-sound-panel{margin-top:26px;padding:22px;border:1px solid var(--wellness-border,#ead8c7);border-radius:22px;background:var(--wellness-card,#fffaf3);text-align:left}
+.calm-sound-panel h2{margin:8px 0;color:var(--wellness-text,#49342e)}
+.calm-youtube-embed{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:16px;background:#241d1a;margin-top:16px}
+.calm-youtube-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+html[data-mindora-theme="dark"] .calm-sound-panel{background:#382d2a;border-color:#59443b}
+html[data-mindora-theme="dark"] .calm-sound-panel h2{color:#fff3df}
