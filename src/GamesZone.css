@@ -454,3 +454,36 @@ html[data-mindora-theme="dark"] .starweave-status{background:#45354a;border-colo
 html[data-mindora-theme="dark"] .starweave-message{background:#45354a;color:#f3e3f3}
 html[data-mindora-theme="dark"] .starweave-secondary{background:#45354a;border-color:#70526f;color:#ffecda}
 @media(max-width:560px){.starweave-shell{padding:15px;margin-top:18px;border-radius:21px}.starweave-heading{align-items:flex-start;gap:12px}.starweave-emblem{flex-basis:50px;height:50px;border-radius:16px;font-size:28px}.starweave-heading p{font-size:12px}.starweave-status{padding:11px 12px}.starweave-sky{border-radius:17px}.starweave-sky svg{min-height:210px}.starweave-win{inset:auto 8px 8px;padding:10px}.starweave-actions{flex-direction:column}.starweave-actions button{width:100%}}
+
+
+/* Starweave night-sky creator: layered deep space and free-form star selection */
+.starweave-free .starweave-shell{background:#080d1b}
+.starweave-free.starweave-shell{background:linear-gradient(145deg,#11182a,#171b31 55%,#211b31);border-color:#343b59;color:#f3f2ff;box-shadow:0 24px 80px rgba(0,0,0,.3)}
+.starweave-free .starweave-heading h2{color:#fff5df}
+.starweave-free .starweave-heading p{color:#c0c5df}
+.starweave-free .starweave-emblem{background:linear-gradient(145deg,#e6d5a4,#a9bce8);color:#24263e;box-shadow:0 0 28px #9aabed30}
+.starweave-free .starweave-status{background:#151c31d9;border-color:#343d5c;color:#c1c9e5}
+.starweave-free .starweave-status strong{color:#fff2d0}
+.starweave-real-sky{min-height:clamp(330px,58vw,560px);background:radial-gradient(ellipse at 52% 47%,#293451 0%,#151e35 34%,#090f20 74%,#070b16 100%);border-color:#34405f;box-shadow:inset 0 0 90px #030610,0 14px 40px #03061066}
+.starweave-real-sky .starweave-nebula{width:65%;height:45%;filter:blur(58px);opacity:.2}
+.starweave-real-sky .starweave-nebula-one{left:-4%;top:8%;background:#6b82d6}
+.starweave-real-sky .starweave-nebula-two{right:-10%;bottom:2%;background:#bc8cc8}
+.starweave-milkyway{position:absolute;inset:-20% -15%;pointer-events:none;background:linear-gradient(145deg,transparent 30%,#a6b9ef08 38%,#c5c9ff16 47%,#f2d9ff0b 54%,transparent 63%);filter:blur(14px);transform:rotate(-8deg)}
+.starweave-real-sky svg{position:relative;z-index:1;width:100%;height:auto;min-height:0;max-height:none;aspect-ratio:900/560;overflow:visible}
+.starweave-real-sky .starweave-point{cursor:crosshair;outline:none}
+.starweave-real-sky .starweave-hit{fill:transparent}
+.starweave-real-sky .starweave-point:focus-visible .starweave-hit{stroke:#ffe7aa;stroke-width:1.5;stroke-dasharray:2 3}
+.starweave-real-sky .starweave-point:hover circle:not(.starweave-hit){filter:drop-shadow(0 0 5px #fff1c5)}
+.starweave-sky-label{position:absolute;z-index:2;bottom:13px;left:0;right:0;text-align:center;pointer-events:none;color:#c6cee8aa;font-size:9px;letter-spacing:2px}
+.starweave-free .starweave-message{background:#1b2238;color:#dce3ff;border:1px solid #303b5a}
+.starweave-free .starweave-message span{color:#ffe3a4}
+.starweave-free .starweave-primary{background:linear-gradient(135deg,#e5d2a0,#b8c8ee);border-color:#c9c8e6;color:#20243a;box-shadow:0 8px 25px #a8b6e51f}
+.starweave-free .starweave-secondary{background:#151c31;border-color:#39415e;color:#e6e9ff}
+.starweave-free .starweave-secondary:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.starweave-free .starweave-footnote{color:#aab3d2}
+html[data-mindora-theme="dark"] .starweave-free.starweave-shell{background:linear-gradient(145deg,#11182a,#171b31 55%,#211b31);border-color:#343b59}
+html[data-mindora-theme="dark"] .starweave-free .starweave-heading h2{color:#fff5df}
+html[data-mindora-theme="dark"] .starweave-free .starweave-status{background:#151c31d9;border-color:#343d5c;color:#c1c9e5}
+html[data-mindora-theme="dark"] .starweave-free .starweave-message{background:#1b2238;color:#dce3ff}
+html[data-mindora-theme="dark"] .starweave-free .starweave-secondary{background:#151c31;border-color:#39415e;color:#e6e9ff}
+@media(max-width:560px){.starweave-real-sky{min-height:0}.starweave-real-sky svg{min-height:0}.starweave-sky-label{font-size:7px;letter-spacing:1.1px;bottom:7px}.starweave-free .starweave-actions{flex-direction:column}.starweave-free .starweave-actions button{width:100%}}
