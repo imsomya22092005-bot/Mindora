@@ -504,3 +504,8 @@ html[data-mindora-theme="dark"] .starweave-free .starweave-secondary{background:
  .games-grid .game-card-copy{padding:18px 30px 24px 16px}
  .games-grid .game-card-copy strong{font-size:18px}
 }
+
+
+/* Let It Burn: accessible sound toggle */
+.burn-sound-toggle{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.burn-sound-toggle:focus-visible{outline:2px solid #b9825b;outline-offset:3px}
