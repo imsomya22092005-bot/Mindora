@@ -384,7 +384,8 @@ export default function GamesZone() {
       for (let i=0;i<16;i++) { ctx.beginPath(); ctx.arc((i*79)%width,(i*113)%height,2+(i%3),0,Math.PI*2);ctx.fill(); }
       const wall = 12, floor = height - 16;
       ctx.fillStyle = "#b9825b"; ctx.fillRect(wall, 0, 5, floor); ctx.fillRect(width-wall-5, 0, 5, floor); ctx.fillRect(wall, floor, width-wall*2, 8);
-      ctx.strokeStyle = "rgba(170,75,55,.5)"; ctx.setLineDash([6,5]); ctx.beginPath(); ctx.moveTo(wall+5, 92); ctx.lineTo(width-wall-5, 92); ctx.stroke(); ctx.setLineDash([]);\n      if (!state.over) { const previewX = Math.max(wall + fruitTypes[state.next].r + 5, Math.min(width - wall - fruitTypes[state.next].r - 5, state.dropX || width / 2)); ctx.strokeStyle = "rgba(100,105,120,.65)"; ctx.setLineDash([4, 6]); ctx.beginPath(); ctx.moveTo(previewX, 24); ctx.lineTo(previewX, 78); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = .8; ctx.font = (fruitTypes[state.next].r * 1.55) + "px serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(fruitTypes[state.next].emoji, previewX, 50); ctx.globalAlpha = 1; }
+      ctx.strokeStyle = "rgba(170,75,55,.5)"; ctx.setLineDash([6,5]); ctx.beginPath(); ctx.moveTo(wall+5, 92); ctx.lineTo(width-wall-5, 92); ctx.stroke(); ctx.setLineDash([]);
+      if (!state.over) { const previewX = Math.max(wall + fruitTypes[state.next].r + 5, Math.min(width - wall - fruitTypes[state.next].r - 5, state.dropX || width / 2)); ctx.strokeStyle = "rgba(100,105,120,.65)"; ctx.setLineDash([4, 6]); ctx.beginPath(); ctx.moveTo(previewX, 24); ctx.lineTo(previewX, 78); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = .8; ctx.font = (fruitTypes[state.next].r * 1.55) + "px serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(fruitTypes[state.next].emoji, previewX, 50); ctx.globalAlpha = 1; }
       if (!state.over) {
         state.fruits.forEach((a) => {
           if (!a.drop) { a.y += a.vy * dt; a.vy += .028 * dt; }
@@ -421,7 +422,8 @@ export default function GamesZone() {
     };
     const moveFruitPosition = (e) => {
       const rect=canvas.getBoundingClientRect();
-      const scaleX = width / rect.width;\n      state.dropX=Math.max(wall+fruitTypes[state.next].r+5,Math.min(width-wall-fruitTypes[state.next].r-5,(e.clientX-rect.left)*scaleX));
+      const scaleX = width / rect.width;
+      state.dropX=Math.max(wall+fruitTypes[state.next].r+5,Math.min(width-wall-fruitTypes[state.next].r-5,(e.clientX-rect.left)*scaleX));
     };
     const spawnFruit = () => {
       if (state.over) return;
