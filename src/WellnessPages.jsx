@@ -54,8 +54,6 @@ export function CalmCorner() {
   const [breathing, setBreathing] = useState(false);
   const [breathingPhase, setBreathingPhase] = useState("inhale");
   const [grounding, setGrounding] = useState(0);
-  const [sessionStatus, setSessionStatus] = useState("");
-  const breathingStartedAt = useRef(null);
 
   useEffect(() => {
     if (!breathing) {
@@ -69,34 +67,8 @@ export function CalmCorner() {
     return () => window.clearInterval(phaseTimer);
   }, [breathing]);
 
-  async function toggleBreathing() {
-    if (!breathing) {
-      breathingStartedAt.current = Date.now();
-      setSessionStatus("");
-      setBreathing(true);
-      return;
-    }
-
-    setBreathing(false);
-    const startedAt = breathingStartedAt.current;
-    breathingStartedAt.current = null;
-    const durationSeconds = startedAt ? Math.max(1, Math.round((Date.now() - startedAt) / 1000)) : 1;
-    const token = localStorage.getItem("mindora-token");
-    if (!token) {
-      setSessionStatus(hi ? "सत्र पूरा हुआ। सेव करने के लिए लॉग इन करें।" : "Session paused. Sign in to save your practice.");
-      return;
-    }
-
-    try {
-      await apiRequest("/api/calm/session", {
-        method: "POST",
-        token,
-        body: JSON.stringify({ activityType: "box-breathing", durationMinutes: Math.max(1, Math.ceil(durationSeconds / 60)), soundscape: "none" }),
-      });
-      setSessionStatus(hi ? "आपका साँस लेने का सत्र सेव हो गया।" : "Your breathing session was saved.");
-    } catch (error) {
-      setSessionStatus(error.message || (hi ? "सत्र सेव नहीं हो सका।" : "Could not save this session."));
-    }
+  function toggleBreathing() {
+    setBreathing((current) => !current);
   }
 
   const prompts = hi ? [
@@ -139,7 +111,6 @@ export function CalmCorner() {
         >
           {breathing ? (hi ? "साँसों का अभ्यास रोकें" : "Pause breathing") : (hi ? "साँसों का अभ्यास शुरू करें" : "Begin breathing")}
         </button>
-        {sessionStatus && <p className="wellness-muted" role="status" aria-live="polite">{sessionStatus}</p>}
       </div>
 
       <div className="wellness-panel">
