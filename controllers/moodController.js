@@ -2,14 +2,14 @@ const Mood = require('../models/Mood');
 
 exports.saveMoodEntry = async (req, res) => {
   try {
-    const { date, mood, intensity, note, tags } = req.body;
+    const { date: rawDate, mood, intensity, note, tags } = req.body;
     const userId = req.user._id;
 
-    if (!date || !mood) {
+    if (!rawDate || !mood) {
       return res.status(400).json({ error: 'Date (YYYY-MM-DD) and mood are required.' });
     }
 
-    date = typeof date === 'string' ? date.trim().split('T')[0] : date;
+    const date = typeof rawDate === 'string' ? rawDate.trim().split('T')[0] : rawDate;
 
     const entry = await Mood.findOneAndUpdate(
       { user: userId, date },
