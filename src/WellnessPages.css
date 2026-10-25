@@ -1210,3 +1210,41 @@ html[data-mindora-theme="dark"] .wellness-page .soundscape-option-copy small,
 .calm-youtube-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 html[data-mindora-theme="dark"] .calm-sound-panel{background:#382d2a;border-color:#59443b}
 html[data-mindora-theme="dark"] .calm-sound-panel h2{color:#fff3df}
+
+
+/* Calm Corner: minimal, self-generated meditation ambience player */
+.calm-music-player {
+  margin: 28px auto 4px;
+  padding: 20px 16px 4px;
+  max-width: 460px;
+  text-align: center;
+  border-top: 1px solid var(--wellness-border);
+}
+.calm-music-player .wellness-eyebrow { margin-bottom: 14px; }
+.calm-music-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 13px 22px;
+  border: 1px solid var(--wellness-border) !important;
+  border-radius: 999px;
+  background: var(--wellness-card) !important;
+  color: var(--wellness-text) !important;
+  font: inherit;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.calm-music-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(73, 52, 46, .10);
+}
+.calm-music-button:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.calm-music-icon { font-size: 18px; line-height: 1; }
+.calm-music-caption { margin: 12px 0 0; font-size: 13px; }
+html[data-mindora-theme="dark"] .calm-music-button {
+  background: #45352f !important;
+  color: #fff3df !important;
+  border-color: #705242 !important;
+}
