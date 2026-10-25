@@ -16,7 +16,6 @@ import {
 import { Link } from "react-router-dom";
 import "./WellnessPages.css";
 import { useLanguage } from "./language";
-import { apiRequest } from "./api";
 
 function Shell({ title, subtitle, icon, children }) {
   const [language] = useLanguage();
@@ -111,6 +110,22 @@ export function CalmCorner() {
         >
           {breathing ? (hi ? "साँसों का अभ्यास रोकें" : "Pause breathing") : (hi ? "साँसों का अभ्यास शुरू करें" : "Begin breathing")}
         </button>
+
+        <div className="calm-sound-panel">
+          <p className="wellness-eyebrow">{hi ? "सुकून भरी ध्वनि" : "A LITTLE MORE CALM"}</p>
+          <h2>{hi ? "अपनी पसंदीदा ध्वनि सुनें" : "Listen to a calming sound"}</h2>
+          <p className="wellness-muted">{hi ? "धीरे साँस लें और चाहें तो नीचे दिए गए प्लेयर से ध्वनि चलाएँ।" : "Breathe slowly and press play whenever you're ready."}</p>
+          <div className="calm-youtube-embed">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/vPvIxwh9N2w?playsinline=1&rel=0"
+              title="Calm Corner relaxing sound"
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
       </div>
 
       <div className="wellness-panel">
