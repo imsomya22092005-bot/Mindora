@@ -120,8 +120,8 @@ export default function GamesZone() {
   const [puzzleRemaining, setPuzzleRemaining] = useState(120);
   const [puzzleTimedOut, setPuzzleTimedOut] = useState(false);
   const [starweaveConnected, setStarweaveConnected] = useState([]);
+  const [starweaveStars] = useState(() => Array.from({length:92},(_,i)=>({id:i,x:18+Math.random()*864,y:18+Math.random()*524,r:i%13===0?2.7:i%5===0?1.9:.8+Math.random()*.65,bright:i%13===0||i%7===0})));
   const [starweaveMessage, setStarweaveMessage] = useState("");
-  const [starweaveWon, setStarweaveWon] = useState(false);
   const canvasRef = useRef(null);
   const fruitCanvasRef = useRef(null);
   const fruitStateRef = useRef({ fruits: [], next: 0, score: 0, over: false, raf: 0, lastMerge: 0 });
@@ -484,27 +484,32 @@ export default function GamesZone() {
     </section> : null}
 
 
-    {activeGame === "starweave" ? <section className="starweave-shell">
+    {activeGame === "starweave" ? <section className="starweave-shell starweave-free">
       <div className="starweave-heading">
         <span className="starweave-emblem">✦</span>
-        <div><span className="colorpop-kicker">MINDORA ARCADE · CONSTELLATION 01</span><h2>{hi ? "अपना तारामंडल बनाएँ" : "Weave your own sky"}</h2><p>{hi ? "तारों को 1 से 8 तक सही क्रम में जोड़ें और रात के आकाश में एक आकृति बनाएँ।" : "Connect the stars in order from 1 to 8 and reveal a little constellation."}</p></div>
+        <div><span className="colorpop-kicker">MINDORA ARCADE · YOUR NIGHT SKY</span><h2>{hi ? "अपना रात का आसमान बनाएँ" : "Make the night sky yours"}</h2><p>{hi ? "किसी भी तारे को चुनें, फिर अपनी पसंद के तारों को जोड़ें। कोई तय क्रम या सही-गलत पैटर्न नहीं।" : "Choose any star, then connect any others in any order. No fixed sequence, no right or wrong pattern."}</p></div>
       </div>
-      <div className="starweave-status"><span><i className="starweave-status-dot"/> {hi ? "शांत मोड" : "A little mindful play"}</span><strong>{starweaveWon ? "8 / 8" : `${starweaveConnected.length} / 8`} <small>{hi ? "तारे जुड़े" : "stars connected"}</small></strong></div>
-      <div className="starweave-sky">
-        <div className="starweave-nebula starweave-nebula-one"/><div className="starweave-nebula starweave-nebula-two"/>
-        <svg viewBox="0 0 600 390" role="img" aria-label="Interactive constellation. Connect the numbered stars in order.">
-          <defs><linearGradient id="starweave-line" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#ffdca8"/><stop offset="100%" stopColor="#f49ac2"/></linearGradient><filter id="starweave-glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-          {Array.from({length:54},(_,i)=><circle key={`dust-${i}`} cx={(i*97+23)%590+5} cy={(i*53+19)%370+8} r={i%5===0?1.7:.8} fill="#fff6df" opacity={i%3===0?".8":".38"}/>)}
-          {[[105,105],[205,60],[305,100],[420,75],[500,145],[410,225],[300,265],[180,220]].slice(0,starweaveConnected.length-1).map((p,i,arr)=> <line key={`line-${i}`} x1={p[0]} y1={p[1]} x2={[[105,105],[205,60],[305,100],[420,75],[500,145],[410,225],[300,265],[180,220]][i+1][0]} y2={[[105,105],[205,60],[305,100],[420,75],[500,145],[410,225],[300,265],[180,220]][i+1][1]} stroke="url(#starweave-line)" strokeWidth="2.5" strokeLinecap="round" filter="url(#starweave-glow)" opacity=".95"/>)}
-          {[[105,105],[205,60],[305,100],[420,75],[500,145],[410,225],[300,265],[180,220]].map(([x,y],i)=><g key={i} className={`starweave-point ${starweaveConnected.includes(i)?"is-connected":""} ${starweaveConnected.length===i?"is-next":""}`} role="button" tabIndex={starweaveWon?-1:0} aria-label={`Star ${i+1}`} onClick={()=>{if(starweaveWon||starweaveConnected.includes(i))return;if(i===starweaveConnected.length){const next=[...starweaveConnected,i];setStarweaveConnected(next);setStarweaveMessage(next.length===8?(hi?"तारामंडल पूरा हुआ — बहुत सुंदर!":"Beautifully done. Your constellation is complete."):(hi?"अच्छा! अगला चमकता तारा चुनें।":"Lovely. Find the next glowing star."));if(next.length===8)setStarweaveWon(true);}else setStarweaveMessage(hi?`पहले तारा ${starweaveConnected.length+1} चुनें।`:`Find star ${starweaveConnected.length+1} next.`)}} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();if(!starweaveWon&&!starweaveConnected.includes(i)&&i===starweaveConnected.length){const next=[...starweaveConnected,i];setStarweaveConnected(next);setStarweaveMessage(next.length===8?"Beautifully done. Your constellation is complete.":"Lovely. Find the next glowing star.");if(next.length===8)setStarweaveWon(true);}}}}>
-            <circle className="starweave-hit" cx={x} cy={y} r="25"/><circle className="starweave-halo" cx={x} cy={y} r="16"/><path d={`M ${x} ${y-9} L ${x+2.7} ${y-2.7} L ${x+9} ${y} L ${x+2.7} ${y+2.7} L ${x} ${y+9} L ${x-2.7} ${y+2.7} L ${x-9} ${y} L ${x-2.7} ${y-2.7} Z`} className="starweave-star"/><text x={x} y={y+30} textAnchor="middle">{i+1}</text>
+      <div className="starweave-status"><span><i className="starweave-status-dot"/> {hi ? "खुला आसमान · अपनी कल्पना" : "Open sky · your imagination"}</span><strong>{starweaveConnected.length} <small>{hi ? "तारे चुने" : "stars connected"}</small></strong></div>
+      <div className="starweave-sky starweave-real-sky">
+        <div className="starweave-nebula starweave-nebula-one"/><div className="starweave-nebula starweave-nebula-two"/><div className="starweave-milkyway"/>
+        <svg viewBox="0 0 900 560" role="application" aria-label={hi ? "अपना तारों वाला पैटर्न बनाने के लिए किसी भी तारे को चुनें" : "Select any stars to draw your own constellation pattern"} onClick={(e)=>{if(e.target===e.currentTarget){setStarweaveMessage(hi?"चमकते तारों में से किसी को भी चुनें।":"Pick any glowing star to start connecting.");}}}>
+          <defs><radialGradient id="starweave-sun"><stop offset="0%" stopColor="#fffef2"/><stop offset="35%" stopColor="#fff0bd"/><stop offset="100%" stopColor="#fff0bd" stopOpacity="0"/></radialGradient><linearGradient id="starweave-line" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#fff0ba"/><stop offset="100%" stopColor="#b6d8ff"/></linearGradient><filter id="starweave-glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+          {Array.from({length:180},(_,i)=>{const x=(i*137.508+17)%890+5;const y=(i*83.71+31)%550+5;const big=i%17===0;return <circle key={`dust-${i}`} cx={x} cy={y} r={big?1.5:.45+(i%4)*.2} fill={big?"#dceaff":"#fff9e9"} opacity={big?.85:.2+(i%5)*.1}/>})}
+          <ellipse cx="450" cy="285" rx="250" ry="110" fill="#9b9be8" opacity=".055" transform="rotate(-24 450 285)"/>
+          {starweaveConnected.slice(0,-1).map((id,i)=>{const a=starweaveStars[id],b=starweaveStars[starweaveConnected[i+1]];return a&&b?<line key={`line-${i}`} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="url(#starweave-line)" strokeWidth="1.7" strokeLinecap="round" opacity=".9" filter="url(#starweave-glow)"/>:null})}
+          {starweaveStars.map((s,i)=><g key={s.id} className={`starweave-point ${starweaveConnected.includes(i)?"is-connected":""}`} role="button" tabIndex="0" aria-label={`Star ${i+1}`} onClick={(e)=>{e.stopPropagation();if(starweaveConnected.includes(i)){setStarweaveMessage(hi?"यह तारा पहले से जुड़ा है।":"That star is already in your pattern.");return;}setStarweaveConnected(prev=>[...prev,i]);setStarweaveMessage(hi?"सुंदर! अब कोई भी दूसरा तारा चुनें।":"Lovely. Choose any other star to continue.");}} onKeyDown={(e)=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();e.currentTarget.dispatchEvent(new MouseEvent("click",{bubbles:true}));}}}>
+            <circle cx={s.x} cy={s.y} r={s.r*3.5} fill="url(#starweave-sun)" opacity={s.bright?.7:.23}/>
+            <circle className="starweave-hit" cx={s.x} cy={s.y} r="14"/>
+            <circle cx={s.x} cy={s.y} r={s.r} fill={s.bright?"#fff4c7":"#d9e6ff"} opacity={s.bright?1:.75} filter={s.bright?"url(#starweave-glow)":undefined}/>
+            {s.bright&&<path d={`M ${s.x} ${s.y- s.r*2.2} L ${s.x+s.r*.32} ${s.y-s.r*.32} L ${s.x+s.r*2.2} ${s.y} L ${s.x+s.r*.32} ${s.y+s.r*.32} L ${s.x} ${s.y+s.r*2.2} L ${s.x-s.r*.32} ${s.y+s.r*.32} L ${s.x-s.r*2.2} ${s.y} L ${s.x-s.r*.32} ${s.y-s.r*.32} Z`} fill="#fff5d4" opacity=".9"/>}
+            {starweaveConnected.includes(i)&&<circle cx={s.x} cy={s.y} r={s.r+5} fill="none" stroke="#ffe6a7" strokeWidth="1" opacity=".75"/>}
           </g>)}
         </svg>
-        {starweaveWon&&<div className="starweave-win"><span>✧</span><strong>{hi?"तारों से बनी आपकी आकृति":"A constellation, made by you"}</strong><p>{hi?"एक पल रुकें और अपनी बनाई आकृति को देखें।":"Take a breath and enjoy the little shape you made."}</p></div>}
+        <div className="starweave-sky-label">{hi ? "अनंत आकाश · आपकी अपनी आकृति" : "INFINITE SKY · YOUR OWN CONSTELLATION"}</div>
       </div>
-      <div className="starweave-message" aria-live="polite"><span>✦</span>{starweaveMessage || (hi ? `तारा ${starweaveConnected.length+1} चुनें` : `Tap star ${starweaveConnected.length+1} to begin`)}</div>
-      <div className="starweave-actions"><button className="starweave-primary" onClick={()=>{setStarweaveConnected([]);setStarweaveMessage("");setStarweaveWon(false)}}><RotateCcw size={16}/>{hi?"फिर से बनाएँ":"Start a new constellation"}</button><button className="starweave-secondary" onClick={()=>{setActiveGame(null);navigate("/games")}}>{hi?"सभी गेम":"Back to games"} <ArrowRight size={15}/></button></div>
-      <p className="starweave-footnote"><Sparkles size={14}/>{hi?"कोई टाइमर नहीं, कोई दबाव नहीं — बस एक तारा एक बार में।":"No timer, no pressure. One star at a time."}</p>
+      <div className="starweave-message" aria-live="polite"><span>✦</span>{starweaveMessage || (hi ? "शुरू करने के लिए कोई भी तारा चुनें।" : "Tap any star to begin. Connect them in whatever way feels right.")}</div>
+      <div className="starweave-actions"><button className="starweave-primary" onClick={()=>{setStarweaveConnected([]);setStarweaveMessage(hi?"नई शुरुआत — कोई भी तारा चुनें।":"Fresh sky. Start anywhere.");}}><RotateCcw size={16}/>{hi?"साफ़ करके फिर बनाएँ":"Clear & start again"}</button><button className="starweave-secondary" disabled={!starweaveConnected.length} onClick={()=>{setStarweaveConnected(prev=>prev.slice(0,-1));setStarweaveMessage(hi?"आख़िरी कनेक्शन हटाया।":"Undid the last connection.");}}><ArrowLeft size={16}/>{hi?"आख़िरी लाइन हटाएँ":"Undo last star"}</button><button className="starweave-secondary" onClick={()=>{setActiveGame(null);navigate("/games")}}>{hi?"सभी गेम":"Back to games"} <ArrowRight size={15}/></button></div>
+      <p className="starweave-footnote"><Sparkles size={14}/>{hi?"कोई टाइमर, लेवल या तय क्रम नहीं। यह आसमान आपका है।":"No timer, levels, or prescribed patterns. This sky is yours."}</p>
     </section> : null}
 
     {activeGame === "let-it-burn" ? <section className="burn-experience">
