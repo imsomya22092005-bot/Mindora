@@ -202,3 +202,144 @@ Auth: Include "Authorization: Bearer <token>" in Headers for protected routes.
     }
   ]
 }
+
+=======================================
+4. MOVEMENT / MINDFUL PRACTICES MODULE
+=======================================
+
+👉 1. Get All Movement Cards
+• Method: GET
+• Route: /api/movements
+• Headers: None (Public)
+• Response (200):
+{
+  "success": true,
+  "data": [
+    {
+      "id": "1",
+      "slug": "desk-stretch",
+      "title": "Desk Stretch",
+      "duration": "5 mins",
+      "category": "stretching",
+      "intensity": "light",
+      "description": "Simple neck, shoulder, and wrist releases while sitting."
+    }
+  ]
+}
+
+👉 2. Get Single Practice Details by Slug
+• Method: GET
+• Route: /api/movements/:slug
+• Headers: None (Public)
+• URL Params:
+  - slug: "desk-stretch" (or any valid practice slug)
+• Success Response (200 OK):
+{
+  "success": true,
+  "data": {
+    "id": "1",
+    "slug": "desk-stretch",
+    "title": "Desk Stretch",
+    "duration": "5 mins",
+    "category": "stretching",
+    "intensity": "light",
+    "description": "Simple neck, shoulder, and wrist releases while sitting.",
+    "steps": [
+      {
+        "stepNumber": 1,
+        "title": "Neck Rolls",
+        "instruction": "Gently roll your head in a clockwise circle for 30 seconds."
+      },
+      {
+        "stepNumber": 2,
+        "title": "Shoulder Shrugs",
+        "instruction": "Inhale and bring your shoulders up to your ears, hold, and release."
+      }
+    ],
+    "totalSteps": 2
+  }
+}
+
+• Error Response (404 Not Found):
+{
+  "success": false,
+  "error": "Practice not found"
+}
+
+==============================
+5. JOURNAL MODULE (Protected)
+==============================
+
+👉 1. Get All Journal Entries
+• Method: GET
+• Route: /api/journal
+• Headers:
+  - Authorization: Bearer <token>
+• Success Response (200 OK):
+{
+  "success": true,
+  "count": 1,
+  "data": [
+    {
+      "_id": "670c5e3d1234567890abc001",
+      "user": "670c5e3d1234567890abcdef",
+      "title": "A page from today",
+      "content": "Reflected on the project architecture and took a long evening walk.",
+      "category": "daily reflection / diary",
+      "dateText": "25 Oct 2026",
+      "createdAt": "2026-10-25T10:30:00.000Z",
+      "updatedAt": "2026-10-25T10:30:00.000Z"
+    }
+  ]
+}
+
+👉 2. Create Journal Entry
+• Method: POST
+• Route: /api/journal
+• Headers:
+  - Authorization: Bearer <token>
+  - Content-Type: application/json
+• Body:
+{
+  "title": "A page from today",
+  "content": "Reflected on the project architecture and took a long evening walk.",
+  "category": "daily reflection / diary",
+  "dateText": "25 Oct 2026"
+}
+• Success Response (201 Created):
+{
+  "success": true,
+  "data": {
+    "_id": "670c5e3d1234567890abc001",
+    "user": "670c5e3d1234567890abcdef",
+    "title": "A page from today",
+    "content": "Reflected on the project architecture and took a long evening walk.",
+    "category": "daily reflection / diary",
+    "dateText": "25 Oct 2026",
+    "createdAt": "2026-10-25T10:30:00.000Z",
+    "updatedAt": "2026-10-25T10:30:00.000Z"
+  }
+}
+• Error Response (400 Bad Request):
+{
+  "success": false,
+  "error": "Content is required"
+}
+
+👉 3. Delete Journal Entry
+• Method: DELETE
+• Route: /api/journal/:id
+• Headers:
+  - Authorization: Bearer <token>
+• URL Params:
+  - id: "670c5e3d1234567890abc001"
+• Success Response (200 OK):
+{
+  "success": true,
+  "message": "Deleted successfully"
+}
+• Error Response (404 Not Found):
+{
+  "success": false,
+  "error": "Entry not found"
+}
