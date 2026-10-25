@@ -137,6 +137,50 @@ export default function GamesZone() {
 
   useEffect(() => { gameRef.current.soundOn = soundOn; }, [soundOn]);
 
+  // Gentle, low-volume fire crackle while the Let It Burn page is burning.
+  useEffect(() => {
+    if (activeGame !== "let-it-burn" || !burning || !soundOn) return;
+    let audio;
+    let source;
+    let gain;
+    let crackleTimer;
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      audio = new AudioContextClass();
+      if (audio.state === "suspended") audio.resume();
+      const buffer = audio.createBuffer(1, audio.sampleRate * 2, audio.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (Math.random() > 0.985 ? 1 : 0.16);
+      source = audio.createBufferSource();
+      source.buffer = buffer;
+      source.loop = true;
+      const filter = audio.createBiquadFilter();
+      filter.type = "lowpass";
+      filter.frequency.value = 1250;
+      gain = audio.createGain();
+      gain.gain.value = 0.035;
+      source.connect(filter);
+      filter.connect(gain);
+      gain.connect(audio.destination);
+      source.start();
+      crackleTimer = window.setInterval(() => {
+        if (!audio || !gain) return;
+        const now = audio.currentTime;
+        gain.gain.cancelScheduledValues(now);
+        gain.gain.setValueAtTime(0.018 + Math.random() * 0.025, now);
+        gain.gain.linearRampToValueAtTime(0.012, now + 0.18);
+      }, 160);
+    } catch {
+      // Sound is optional; the ritual still works if audio is unavailable.
+    }
+    return () => {
+      if (crackleTimer) window.clearInterval(crackleTimer);
+      try { source?.stop(); } catch {}
+      if (audio && audio.state !== "closed") audio.close();
+    };
+  }, [activeGame, burning, soundOn]);
+
   const puzzleTimeLimit = puzzleSize === 3 ? 120 : puzzleSize === 4 ? 180 : 240;
   useEffect(() => {
     if (activeGame !== "picture-puzzle" || !puzzleImage || !puzzleTiles.length || puzzleWon || puzzleTimedOut) return;
@@ -524,6 +568,7 @@ export default function GamesZone() {
       {candleLitPaper&&<><span className="burn-fire-flare"/><span className="burn-smoke smoke-one"/><span className="burn-smoke smoke-two"/><span className="burn-smoke smoke-three"/></>}</div></div>
       {!burnComplete && <div className="burn-actions"><div className="burn-pen-row"><span>{hi?"अपनी स्याही चुनें":"CHOOSE YOUR INK"}</span>{[{c:"#45536c",label:hi?"नीली":"Blue"},{c:"#a45d70",label:hi?"गुलाबी":"Rose"},{c:"#607c66",label:hi?"हरी":"Sage"}].map(p=><button key={p.c} title={p.label} aria-label={p.label} className={penColour===p.c?"active":""} onClick={()=>setPenColour(p.c)}><i style={{background:p.c}}/></button>)}</div>
       {burning ? <div className="burn-confirm"><p>{hi?"पन्ना जल रहा है… धीरे से साँस लें।":"The page is burning away… take one slow breath."}</p></div> : <><button className="burn-button" disabled={!burnThought.trim()} onClick={()=>{if(!candleMoved){setCandleMoved(true);return;}setCandleLitPaper(true);setBurning(true);window.setTimeout(()=>{setBurnComplete(true);setBurning(false);setBurnThought("");setCandleLitPaper(false);setCandleMoved(false)},2600)}}>{!candleMoved?(hi?"मोमबत्ती को पन्ने तक ले जाएँ":"Move candle to the page"):(hi?"पन्ने में आग लगाएँ":"Light the page")} <span>✦</span></button><button className="burn-keep" onClick={()=>{setCandleMoved(false);setCandleLitPaper(false)}}>{hi?"मोमबत्ती वापस रखें":"Reset candle"}</button></>}
+      <button className="burn-keep burn-sound-toggle" type="button" onClick={()=>setSoundOn(v=>!v)} aria-pressed={soundOn}>{soundOn?"🔊":"🔇"} {soundOn?(hi?"आवाज़ चालू":"Sound on"):(hi?"आवाज़ बंद":"Sound off")}</button>
       <p className="burn-note">{hi?"यह एक डिजिटल प्रतीकात्मक अनुभव है — कोई वास्तविक आग नहीं।":"A symbolic digital ritual. No real fire, just a little room to breathe."}</p></div>}
     </section> : null}
 
