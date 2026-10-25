@@ -487,3 +487,20 @@ html[data-mindora-theme="dark"] .starweave-free .starweave-status{background:#15
 html[data-mindora-theme="dark"] .starweave-free .starweave-message{background:#1b2238;color:#dce3ff}
 html[data-mindora-theme="dark"] .starweave-free .starweave-secondary{background:#151c31;border-color:#39415e;color:#e6e9ff}
 @media(max-width:560px){.starweave-real-sky{min-height:0}.starweave-real-sky svg{min-height:0}.starweave-sky-label{font-size:7px;letter-spacing:1.1px;bottom:7px}.starweave-free .starweave-actions{flex-direction:column}.starweave-free .starweave-actions button{width:100%}}
+
+/* Four game cards: balanced two-column layout on desktop and tablet */
+.games-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:980px;gap:22px}
+.games-grid .game-card{min-height:260px;display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);grid-template-rows:1fr;align-items:stretch}
+.games-grid .game-card-art{height:100%;min-height:240px;grid-column:1;grid-row:1}
+.games-grid .game-card-copy{grid-column:2;grid-row:1;align-self:center;padding:26px 24px 26px 22px}
+.games-grid .game-card-copy strong{font-size:clamp(18px,2vw,23px);line-height:1.25}
+.games-grid .game-card-copy>span{font-size:13px;line-height:1.7}
+.games-grid .game-card-arrow{position:absolute;right:18px;bottom:18px}
+@media(max-width:650px){
+ .games-grid{grid-template-columns:1fr;gap:14px}
+ .games-grid .game-card{min-height:0;grid-template-columns:120px minmax(0,1fr);grid-template-rows:minmax(150px,auto)}
+ .games-grid .game-card-art{min-height:150px}
+ .games-grid .game-card-emoji{font-size:48px}
+ .games-grid .game-card-copy{padding:18px 30px 24px 16px}
+ .games-grid .game-card-copy strong{font-size:18px}
+}
