@@ -8,7 +8,6 @@ const games = [
   { id: "color-pop", title: "Color Pop", hi: "कलर पॉप", description: "Pop only the colour you are asked to find.", hiDescription: "दिए गए रंग के बबल्स ही पॉप करें।", emoji: "🌈", tone: "rainbow", ready: true },
   { id: "starweave", title: "Starweave", hi: "स्टारवीव", description: "Connect stars and create your own constellations.", hiDescription: "तारों को जोड़कर अपनी आकृतियाँ बनाएँ।", emoji: "🌌", tone: "night" },
   { id: "let-it-burn", title: "Let It Burn", hi: "लेट इट बर्न", description: "Write it down, light the page, and let it go.", hiDescription: "लिखें, पन्ने को जलाएँ और मन हल्का करें।", emoji: "🕯️", tone: "paper", ready: true },
-  { id: "fruit-merge", title: "Fruit Merge", hi: "फ्रूट मर्ज", description: "Drop matching fruits, merge them, and beat your best score.", hiDescription: "एक जैसे फल गिराएँ, उन्हें मिलाएँ और अपना स्कोर बढ़ाएँ।", emoji: "🍉", tone: "glow", ready: true },
   { id: "picture-puzzle", title: "Picture Puzzle", hi: "तस्वीर वाली पहेली", description: "Put the picture back together by moving the tiles.", hiDescription: "टाइल्स को सही जगह लगाकर तस्वीर पूरी करें।", emoji: "🧩", tone: "rain", ready: true },
 ];
 
