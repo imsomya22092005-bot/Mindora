@@ -53,6 +53,63 @@ export function CalmCorner() {
   const [breathing, setBreathing] = useState(false);
   const [breathingPhase, setBreathingPhase] = useState("inhale");
   const [grounding, setGrounding] = useState(0);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const musicRef = useRef(null);
+
+  async function toggleMeditationMusic() {
+    if (musicRef.current) {
+      const player = musicRef.current;
+      try {
+        player.master.gain.cancelScheduledValues(player.context.currentTime);
+        player.master.gain.setTargetAtTime(0, player.context.currentTime, 0.8);
+        window.setTimeout(() => {
+          player.oscillators.forEach((oscillator) => {
+            try { oscillator.stop(); } catch {}
+          });
+          player.context.close().catch(() => {});
+        }, 1800);
+      } catch {}
+      musicRef.current = null;
+      setMusicPlaying(false);
+      return;
+    }
+
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      const context = new AudioContextClass();
+      await context.resume();
+      const master = context.createGain();
+      master.gain.setValueAtTime(0, context.currentTime);
+      master.connect(context.destination);
+
+      const oscillators = [];
+      [
+        { frequency: 174.61, volume: 0.22 },
+        { frequency: 220.00, volume: 0.16 },
+        { frequency: 261.63, volume: 0.10 },
+        { frequency: 329.63, volume: 0.06 },
+      ].forEach(({ frequency, volume }, index) => {
+        const oscillator = context.createOscillator();
+        const tone = context.createGain();
+        oscillator.type = "sine";
+        oscillator.frequency.value = frequency;
+        oscillator.detune.value = index % 2 === 0 ? -3 : 3;
+        tone.gain.value = volume;
+        oscillator.connect(tone);
+        tone.connect(master);
+        oscillator.start();
+        oscillators.push(oscillator);
+      });
+
+      master.gain.setTargetAtTime(0.12, context.currentTime, 2.5);
+      musicRef.current = { context, master, oscillators };
+      setMusicPlaying(true);
+    } catch (error) {
+      console.error("Could not start meditation ambience:", error);
+      setMusicPlaying(false);
+    }
+  }
 
   useEffect(() => {
     if (!breathing) {
@@ -110,6 +167,19 @@ export function CalmCorner() {
         >
           {breathing ? (hi ? "साँसों का अभ्यास रोकें" : "Pause breathing") : (hi ? "साँसों का अभ्यास शुरू करें" : "Begin breathing")}
         </button>
+
+        <div className="calm-music-player">
+          <p className="wellness-eyebrow">{hi ? "सुकून भरी ध्वनि" : "A MOMENT OF STILLNESS"}</p>
+          <button
+            type="button"
+            className="calm-music-button"
+            onClick={toggleMeditationMusic}
+            aria-pressed={musicPlaying}
+          >
+            <span className="calm-music-icon" aria-hidden="true">{musicPlaying ? "Ⅱ" : "▶"}</span>
+            <span>{musicPlaying ? (hi ? "संगीत रोकें" : "Pause meditation music") : (hi ? "सुकून भरा संगीत सुनें" : "Play meditation music")}</span>
+          </button>
+          <p className="calm-music-caption">{hi ? "धीमी, शांत ध्वनियों के साथ एक पल ठहरें।" : "A soft, gentle ambient tone for a quiet moment."}</p>
         </div>
       </div>
 
