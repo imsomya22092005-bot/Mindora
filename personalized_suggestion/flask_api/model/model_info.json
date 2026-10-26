@@ -1,0 +1,70 @@
+{
+  "model_file": "best_model_v2.pkl",
+  "model_type": "LogisticRegression (Pipeline: StandardScaler + OneHotEncoder + LogisticRegression)",
+  "threshold": 0.3,
+  "numeric_columns": [
+    "mood_intensity",
+    "energy_level",
+    "usual_energy",
+    "max_duration_pref",
+    "energy_required",
+    "duration_min",
+    "difficulty",
+    "needs_privacy",
+    "mood_is_main",
+    "mood_is_target",
+    "cat_is_pref",
+    "too_long",
+    "heavy_on_low_energy",
+    "beginner_hard",
+    "user_past_count",
+    "user_past_rate",
+    "user_cat_past_rate",
+    "repeated_recently"
+  ],
+  "categorical_columns": [
+    "mood",
+    "time_of_day",
+    "age_group",
+    "experience_level",
+    "pref_category_1",
+    "pref_category_2",
+    "activity_category",
+    "time_x_category",
+    "intensity_x_category"
+  ],
+  "sklearn_version": "1.8.0",
+  "target": "helpful (1 = completed and rating >= 4)",
+  "prior": 0.24924096052994757,
+  "k_smoothing": 2,
+  "activities_file": "activities.csv",
+  "allowed_values": {
+    "mood": [
+      "anxiety",
+      "frustration",
+      "loneliness",
+      "low_energy",
+      "overwhelmed",
+      "restlessness",
+      "sadness",
+      "stress"
+    ],
+    "time_of_day": [
+      "afternoon",
+      "evening",
+      "morning",
+      "night"
+    ],
+    "mood_intensity": [
+      1,
+      5
+    ],
+    "energy_level": [
+      1,
+      5
+    ]
+  },
+  "users_file": "users.csv",
+  "model_size_mb": 0.004,
+  "history_rule": "Send past activities oldest first. repeated_recently looks at the last 3."
+}

@@ -1,0 +1,67 @@
+activity_id,activity_title,activity_category,activity_description,target_moods,energy_required,duration_min,difficulty,needs_privacy
+A002,Feet on the Floor,grounding,Press your feet into the floor and notice their weight for one minute.,anxiety;stress;restlessness,1,2,1,0
+A064,Calm Sounds Lie-Down,rest,Lie down and listen to rain or soft nature sounds.,stress;anxiety;overwhelmed,1,10,1,1
+A061,Photo Walk of Small Things,creative,"Take 5 photos of small, nice things around you.",sadness;low_energy;loneliness,2,10,1,0
+A018,Feelings Check-In Prompt,journaling,Complete this sentence: 'Right now I feel ___ because ___'.,sadness;anxiety;loneliness,1,4,1,1
+A033,Step Outside for Sunlight,movement,Go outside for 5 minutes and get some fresh air and daylight.,low_energy;sadness;stress,1,5,1,0
+A037,Pick Your Top 3,routine,"Write down everything, then circle only the top 3 for today.",overwhelmed;stress,1,5,1,0
+A013,Alternate Nostril Breathing,breathing,"Close one nostril, breathe in, switch sides, breathe out. Repeat slowly.",anxiety;stress;restlessness,1,5,2,0
+A046,Share a Funny Memory,social,Send someone a funny memory or photo you both enjoyed.,loneliness;sadness,1,5,1,0
+A038,Low-Energy Day Plan,routine,"Choose 3 small, manageable things for today and let the rest go.",low_energy;sadness;overwhelmed,1,5,1,0
+A031,Dance to One Song,movement,Play a song you like and move however you want.,sadness;low_energy;frustration,3,4,1,1
+A034,Make Bed + Tidy One Spot,routine,Make your bed and tidy just one small spot.,low_energy;overwhelmed;sadness,1,5,1,0
+A011,Sighing Breath Release,breathing,"Take a deep breath in, then let out a long sigh. Do it 5 times.",frustration;stress;overwhelmed,1,2,1,0
+A023,What Did I Need Instead?,journaling,Write what you needed in the moment that made you angry.,frustration,1,6,2,1
+A006,Slow Walk Around the Room,grounding,Walk slowly and feel each step touching the ground.,restlessness;anxiety;frustration,2,4,1,0
+A063,20-Minute Power Nap,rest,Set an alarm and take a short nap.,low_energy,1,20,1,1
+A035,Tiny 3-Step Morning Routine,routine,"Drink water, wash your face, do one stretch. That is enough.",low_energy;sadness,1,10,1,0
+A014,3-Line Frustration Dump,journaling,"Write what annoyed you, why it bothered you, and one thing you can control.",frustration;stress,1,5,1,1
+A012,Quick Wake-Up Breaths,breathing,"Take 20 quick, light breaths through your nose, then rest and breathe normally.",low_energy;sadness,2,2,2,0
+A060,Cook Something Simple,creative,"Make something easy, like tea with toast or instant noodles with veggies.",low_energy;frustration,2,20,2,0
+A043,Plan Tomorrow in 3 Lines,routine,Write 3 lines about what tomorrow will look like.,anxiety;overwhelmed,1,5,1,0
+A024,2-Minute Shoulder Release,movement,Roll your shoulders and gently stretch your neck.,stress;frustration;low_energy,1,2,1,0
+A008,4-7-8 Breathing,breathing,"Breathe in for 4, hold for 7, breathe out for 8. Repeat 4 times.",anxiety;stress;restlessness,1,4,2,0
+A009,Slow Exhale Breathing,breathing,Breathe in for 4 and out for 6 for two minutes.,stress;anxiety;frustration,1,2,1,0
+A032,20-Minute Workout,movement,"Do a simple 20-minute workout: jumping jacks, squats, planks.",restlessness;frustration,3,20,3,0
+A015,"One Worry, One Next Step",journaling,Write down one worry and one small action you can take about it.,anxiety;overwhelmed,1,5,1,1
+A065,Warm Shower,rest,Take a warm shower and focus on the feeling of the water.,stress;low_energy;anxiety,1,10,1,1
+A036,"One Task, 10 Minutes",routine,Pick one task and work on it for only 10 minutes.,overwhelmed;low_energy;stress,2,10,1,0
+A044,Text One Friend,social,"Send a short message to one friend, just to say hi.",loneliness;sadness,1,5,1,0
+A062,"10-Minute Rest, Eyes Closed",rest,Lie down or sit back and rest with your eyes closed.,low_energy;stress;overwhelmed,1,10,1,1
+A017,Brain Dump List,journaling,"Write everything on your mind in any order, without judging it.",overwhelmed;stress;restlessness,1,7,1,1
+A007,Box Breathing,breathing,"Breathe in 4, hold 4, out 4, hold 4. Repeat for 4 rounds.",stress;anxiety;frustration,1,3,1,0
+A054,Thought Labeling,mindfulness,"Notice your thoughts and label them: worrying, planning, remembering.",anxiety;stress,1,5,3,0
+A010,Belly Breathing,breathing,Place a hand on your belly and breathe so your belly rises and falls.,stress;anxiety;overwhelmed,1,4,1,0
+A004,Name Your Surroundings,grounding,Look around and quietly name every object you can see in the room.,anxiety;overwhelmed,1,2,1,0
+A056,Safe Place Visualization,mindfulness,"Imagine a calm, safe place in detail: what you see, hear and feel.",anxiety;stress;overwhelmed,1,6,2,1
+A003,Object Focus,grounding,"Pick one object nearby and describe its color, shape and texture in detail.",anxiety;overwhelmed;stress,1,3,1,0
+A042,5-Minute Declutter Timer,routine,Set a timer for 5 minutes and clear one small area.,overwhelmed;restlessness,2,5,1,0
+A016,Gratitude Three,journaling,Write 3 small things that went okay today.,sadness;low_energy;loneliness,1,5,1,1
+A055,Mindful Listening,mindfulness,Close your eyes and listen to all the sounds around you for 3 minutes.,restlessness;anxiety;stress,1,3,1,0
+A001,5-4-3-2-1 Senses Check,grounding,"Name 5 things you see, 4 you can touch, 3 you hear, 2 you smell, 1 you taste.",anxiety;stress;overwhelmed,1,3,1,0
+A052,Muscle Relaxation,mindfulness,"Tighten and then release each muscle group, from feet to face.",stress;anxiety;restlessness,1,8,2,1
+A050,1-Minute Pause,mindfulness,Sit still for one minute and just notice your breath.,stress;anxiety;overwhelmed,1,1,1,0
+A025,Short Brisk Walk,movement,"Walk for 10 minutes at a steady pace, outside if you can.",stress;frustration;restlessness;low_energy,2,10,1,0
+A039,Evening Wind-Down Routine,routine,"Dim the lights, put screens away and have a warm drink.",stress;anxiety;restlessness,1,15,1,0
+A026,Desk Stretch Break,movement,"Stretch your arms, back and wrists while sitting or standing.",stress;restlessness;low_energy,1,4,1,0
+A058,Calming Playlist,creative,Listen to a calm playlist and do nothing else.,stress;sadness;low_energy,1,10,1,0
+A057,Free Doodle,creative,Doodle freely on paper without trying to make it look good.,restlessness;stress;sadness,1,10,1,0
+A020,Tiny Win Log,journaling,"Write one thing you finished today, however small.",low_energy;sadness;overwhelmed,1,3,1,1
+A027,Shake It Out,movement,"Shake your hands, arms and legs loosely for one minute.",frustration;restlessness;stress,2,2,1,1
+A047,Sit in a Common Space,social,"Sit somewhere with other people around, even without talking.",loneliness;sadness,1,20,1,0
+A040,Water + Snack Break,routine,Drink a glass of water and eat a small snack.,low_energy;stress;frustration,1,5,1,0
+A005,Body Scan Mini,grounding,Move your attention from head to toe and notice where you hold tension.,stress;restlessness;anxiety,1,5,2,0
+A022,Self-Kindness Note,journaling,Write what you would say to a friend who felt the way you do now.,sadness;loneliness;stress,1,5,2,1
+A045,Call Someone You Trust,social,Call a friend or family member and talk for a few minutes.,loneliness;sadness;stress,2,15,2,1
+A053,Kind Phrases for Yourself,mindfulness,Repeat kind phrases such as 'May I be gentle with myself'.,sadness;loneliness,1,5,2,1
+A051,Mindful Sip,mindfulness,Drink tea or water slowly and notice the taste and warmth.,stress;restlessness;anxiety,1,4,1,0
+A049,Voice Note to a Friend,social,Record a short voice note to a friend about your day.,loneliness;frustration,1,4,2,1
+A059,Color a Simple Pattern,creative,Color in a simple pattern or mandala.,anxiety;restlessness,1,10,1,0
+A019,Letter You Won't Send,journaling,Write a letter to the person who upset you. You will not send it.,frustration;sadness,2,10,2,1
+A028,Gentle Yoga Flow,movement,Move through 5 easy yoga poses at a slow pace.,stress;anxiety;low_energy,2,10,2,0
+A029,Stair or March Burst,movement,Climb stairs or march in place for 2 minutes.,restlessness;frustration;low_energy,3,3,2,0
+A048,Ask for Help with One Thing,social,Ask someone for help with one small task.,overwhelmed;stress,2,5,3,0
+A041,15-Minute Digital Break,routine,Keep your phone away for 15 minutes.,overwhelmed;stress;anxiety,1,15,1,0
+A066,Permission to Do Nothing,rest,Give yourself 5 minutes with no task and no phone.,overwhelmed;low_energy;stress,1,5,1,0
+A021,What Can I Control?,journaling,Make two columns: things I can control and things I cannot.,anxiety;stress;overwhelmed,1,6,2,1
+A030,Slow Stretch in Bed,movement,Stretch your arms and legs slowly while lying down.,low_energy;sadness,1,4,1,0
