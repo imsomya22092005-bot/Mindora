@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, BookOpen, BarChart3, Wind, Gamepad2, Settings, ChevronDown, Leaf, Sparkles, Menu, X, HeartHandshake } from "lucide-react";
+import { LayoutDashboard, BookOpen, BarChart3, Wind, Gamepad2, Settings, ChevronDown, Leaf, Sparkles, Menu, X, HeartHandshake, StickyNote } from "lucide-react";
 import "./App.css";
 
 const mainItems = [
  {label:"Overview",href:"/dashboard",icon:LayoutDashboard},
  {label:"Journal",href:"/journal",icon:BookOpen},
+ {label:"Little Notes",href:"/sticky-wall",icon:StickyNote},
  {label:"Insights",href:"/insights",icon:BarChart3},
  {label:"Mindful moments",href:"/mindful-moments",icon:Wind,children:[["Calm Corner","/calm-corner"],["Inner Garden","/inner-garden"],["Little Comfort Box","/comfort-box"],["Mood Soundscape","/soundscape"]]},
  {label:"AI wellbeing",href:"/mindora-ai",icon:HeartHandshake},
