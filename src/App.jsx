@@ -25,7 +25,6 @@ import {
   RotateCcw,
   Leaf,
   Check,
-  ShieldCheck,
   Gamepad2,
 } from "lucide-react";
 import {
@@ -44,7 +43,6 @@ import { apiRequest } from "./api";
 import LandingPage from "./LandingPage";
 import AuthPage from "./AuthPage";
 import { JournalPage, InsightsPage, MindfulMomentsPage } from "./DashboardPages";
-import IncognitoCheckinPage from "./IncognitoCheckinPage";
 import ProfilePage from "./ProfilePage";
 import GamesZone from "./GamesZone";
 import SharedSidebarLayout from "./SharedSidebarLayout";
@@ -461,7 +459,6 @@ function Dashboard() {
       { path: "/journal", keys: ["journal", "diary", "diaries", "write", "writing", "notes", "डायरी", "जर्नल", "लिखना", "नोट्स"] },
       { path: "/insights", keys: ["insight", "insights", "chart", "average", "trend", "patterns", "history", "जानकारी", "मूड इतिहास", "चार्ट", "पैटर्न", "रुझान"] },
       { path: "/mindful-moments", keys: ["mindful", "breathing", "breath", "calm", "pause", "सुकून", "साँस", "सांस", "ध्यान", "विराम"] },
-      { path: "/incognito-checkin", keys: ["incognito", "private", "burnout", "stress", "निजी", "तनाव", "बर्नआउट"] },
       { path: "/mindora-ai", keys: ["ai wellbeing", "wellbeing ai", "emotion companion", "coping suggestions", "ai", "भावनात्मक साथी", "सुझाव"] },
       { path: "/calm-corner", keys: ["calm corner", "comfort", "comfort box", "शांति", "सुकून कोना", "आराम"] },
       { path: "/profile", keys: ["profile", "account", "my profile", "प्रोफ़ाइल", "खाता"] },
@@ -487,7 +484,6 @@ function Dashboard() {
     if (section === "Journal") navigate("/journal");
     if (section === "Insights") navigate("/insights");
     if (section === "Mindful moments") navigate("/mindful-moments");
-    if (section === "Incognito check-in") navigate("/incognito-checkin");
     if (section === "AI wellbeing") navigate("/mindora-ai");
     if (section === "Calm Corner") navigate("/calm-corner");
     if (section === "My profile") navigate("/profile");
@@ -499,7 +495,6 @@ function Dashboard() {
     { label: t("Journal", "डायरी"), icon: BookOpen, routeLabel: "Journal" },
     { label: t("Insights", "जानकारियाँ"), icon: BarChart3, routeLabel: "Insights" },
     { label: t("Mindful moments", "सुकून के पल"), icon: Wind, routeLabel: "Mindful moments" },
-    { label: t("Incognito check-in", "निजी चेक-इन"), icon: ShieldCheck, routeLabel: "Incognito check-in" },
     { label: t("AI wellbeing", "AI वेलबीइंग"), icon: HeartHandshake, routeLabel: "AI wellbeing" },
     { label: t("Play & Unwind", "खेलें और सुकून पाएँ"), icon: Gamepad2, routeLabel: "Play & Unwind" },
   ];
@@ -1236,7 +1231,6 @@ function App() {
         <Route path="/journal" element={<SharedSidebarLayout><JournalPage /></SharedSidebarLayout>} />
         <Route path="/insights" element={<SharedSidebarLayout><InsightsPage /></SharedSidebarLayout>} />
         <Route path="/mindful-moments" element={<SharedSidebarLayout><MindfulMomentsPage /></SharedSidebarLayout>} />
-        <Route path="/incognito-checkin" element={<SharedSidebarLayout><IncognitoCheckinPage /></SharedSidebarLayout>} />
         <Route path="/mood-heatmap" element={<Navigate to="/dashboard" replace />} />
         <Route path="/profile" element={<SharedSidebarLayout><ProfilePage /></SharedSidebarLayout>} />
         <Route path="/games" element={<SharedSidebarLayout><GamesZone /></SharedSidebarLayout>} />
