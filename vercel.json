@@ -4,6 +4,14 @@
   "buildCommand": "npm run build",
   "rewrites": [
     {
+      "source": "/ml-proxy/emotion/:path*",
+      "destination": "https://mindora-82go.onrender.com/:path*"
+    },
+    {
+      "source": "/ml-proxy/coping/:path*",
+      "destination": "https://mindora-1-2tup.onrender.com/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
