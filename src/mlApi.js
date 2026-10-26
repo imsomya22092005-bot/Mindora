@@ -1,32 +1,81 @@
 import { apiRequest } from "./api";
 
-// Additive helpers for the ML features. Existing API helpers remain untouched.
-// Pass the same Mindora JWT used by the rest of the authenticated app.
+// Deployed ML services. These fallbacks keep the AI features usable if the
+// current Mindora backend deployment has not yet picked up /api/ml routes.
+const EMOTION_SERVICE_URL = "https://mindora-82go.onrender.com";
+const COPING_SERVICE_URL = "https://mindora-1-2tup.onrender.com";
+
+async function postJson(url, body) {
+  let response;
+  try {
+    response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(body || {}),
+    });
+  } catch {
+    throw new Error("Could not connect to the AI service. Please try again in a moment.");
+  }
+
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(data.error || data.message || `AI service request failed (${response.status}).`);
+  }
+  if (data.error === true) {
+    throw new Error(data.message || "The AI service could not complete this request.");
+  }
+  return data;
+}
+
+function isMissingMlRoute(error) {
+  const message = String(error?.message || "");
+  return message.includes("Not Found - /api/ml/") ||
+    message.includes("Request failed (404)") ||
+    message.includes("Cannot POST /api/ml/");
+}
+
+async function withDirectFallback(backendRequest, directRequest) {
+  try {
+    return await backendRequest();
+  } catch (error) {
+    if (!isMissingMlRoute(error)) throw error;
+    return directRequest();
+  }
+}
+
 export function analyzeEmotion(text, token) {
-  return apiRequest("/api/ml/emotion/analyze", {
-    method: "POST",
-    token,
-    body: JSON.stringify({ text }),
-  });
+  return withDirectFallback(
+    () => apiRequest("/api/ml/emotion/analyze", {
+      method: "POST",
+      token,
+      body: JSON.stringify({ text }),
+    }),
+    () => postJson(`${EMOTION_SERVICE_URL}/analyze`, { text })
+  );
 }
 
 export function sendWellnessChat(message, token, sessionId) {
-  return apiRequest("/api/ml/emotion/chat", {
-    method: "POST",
-    token,
-    body: JSON.stringify({
-      message,
-      ...(sessionId ? { session_id: sessionId } : {}),
+  const body = { message, ...(sessionId ? { session_id: sessionId } : {}) };
+  return withDirectFallback(
+    () => apiRequest("/api/ml/emotion/chat", {
+      method: "POST",
+      token,
+      body: JSON.stringify(body),
     }),
-  });
+    () => postJson(`${EMOTION_SERVICE_URL}/chat`, body)
+  );
 }
 
 export function resetWellnessChat(token, sessionId) {
-  return apiRequest("/api/ml/emotion/reset", {
-    method: "POST",
-    token,
-    body: JSON.stringify(sessionId ? { session_id: sessionId } : {}),
-  });
+  const body = sessionId ? { session_id: sessionId } : {};
+  return withDirectFallback(
+    () => apiRequest("/api/ml/emotion/reset", {
+      method: "POST",
+      token,
+      body: JSON.stringify(body),
+    }),
+    () => postJson(`${EMOTION_SERVICE_URL}/reset`, body)
+  );
 }
 
 export function getCopingProfile(token) {
@@ -42,11 +91,14 @@ export function saveCopingProfile(profile, token) {
 }
 
 export function getCopingRecommendations(checkIn, token) {
-  return apiRequest("/api/ml/coping/recommend", {
-    method: "POST",
-    token,
-    body: JSON.stringify(checkIn),
-  });
+  return withDirectFallback(
+    () => apiRequest("/api/ml/coping/recommend", {
+      method: "POST",
+      token,
+      body: JSON.stringify(checkIn),
+    }),
+    () => postJson(`${COPING_SERVICE_URL}/recommend`, checkIn)
+  );
 }
 
 export function sendCopingFeedback(feedback, token) {
