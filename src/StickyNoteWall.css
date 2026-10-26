@@ -60,3 +60,25 @@ html[data-mindora-theme="dark"] .sticky-wall-empty,.dark-theme .sticky-wall-empt
 html[data-mindora-theme="dark"] .sticky-wall-empty p,.dark-theme .sticky-wall-empty p{color:#d0dbce}
 html[data-mindora-theme="dark"] .sticky-wall-composer,.dark-theme .sticky-wall-composer{background:#202c23;color:#e1e9df;border-color:#344337}
 html[data-mindora-theme="dark"] .sticky-wall-composer input,html[data-mindora-theme="dark"] .sticky-wall-composer textarea,.dark-theme .sticky-wall-composer input,.dark-theme .sticky-wall-composer textarea{background:#17211a;color:#e1e9df;border-color:#344337}
+
+
+/* Little Notes uses Mindora's original butter-yellow, cream and terracotta palette. */
+.sticky-wall-page{background:radial-gradient(ellipse at 8% 4%,#fff0be 0,transparent 35%),#fff8d9!important;color:#51392f}
+.sticky-wall-heading h1{color:#51392f}.sticky-wall-heading h1 em{color:#b9653a}.sticky-wall-heading p{color:#856b5a}.sticky-wall-eyebrow{color:#a9653d}
+.sticky-wall-back{background:#fffdf2;border-color:#f0d7b5;color:#8d5737}
+.sticky-wall-add,.sticky-wall-empty button,.sticky-wall-pin-button{background:#d9824b;color:#fffaf0}
+.sticky-wall-board{border-color:#dca875;background-color:#edc28f;background-image:radial-gradient(ellipse at 18% 20%,#fff0c7bd 0,transparent 37%),radial-gradient(ellipse at 82% 80%,#b96b403b 0,transparent 42%),repeating-linear-gradient(4deg,#ffffff12 0px,#ffffff12 2px,transparent 2px,transparent 7px),linear-gradient(115deg,#e7b780,#ffe7aa 48%,#e5b17d);box-shadow:inset 0 0 70px #734a3214,0 18px 42px #5e4c3512}
+.sticky-wall-string{background:#9a684b75}.sticky-wall-empty{color:#654534}.sticky-wall-empty-icon{background:#fff8e6c9;border-color:#fff8;color:#b8794b}.sticky-wall-empty-kicker{color:#a9653d}.sticky-wall-empty p{color:#76563f}
+.sticky-note-butter{background:#ffe99d}.sticky-note-rose{background:#f4b7a8}.sticky-note-sage{background:#d3dfb9}.sticky-note-peach{background:#ffd19c}.sticky-note-lilac{background:#e3c7d8}.sticky-note-sky{background:#cce1df}
+.sticky-note{color:#594232}.sticky-note-pin{color:#a65f3c}.sticky-note footer{color:#806047}
+.sticky-wall-add-tile{border-color:#9d694e7a;background:#fff8e63d;color:#855538}.sticky-wall-add-tile:hover{background:#fff8e687}.sticky-wall-board-caption{color:#85583bb8}
+.sticky-wall-composer{background:#fffdf2;color:#51392f;border-color:#f0d7b5}.sticky-wall-modal-close{border-color:#f0d7b5;color:#855538}
+.sticky-wall-composer input,.sticky-wall-composer textarea{background:#fff8e7;border-color:#f0d7b5;color:#51392f}
+.sticky-wall-composer input:focus,.sticky-wall-composer textarea:focus{border-color:#dca875;box-shadow:0 0 0 3px #d9824b20}
+.sticky-wall-color-swatch.is-selected{box-shadow:0 0 0 2px #b66a3d,0 0 0 5px #b66a3d22}
+html[data-mindora-theme="dark"] .sticky-wall-page{background:radial-gradient(ellipse at 8% 4%,#49352c 0,transparent 35%),#292323!important;color:#fff3df}
+html[data-mindora-theme="dark"] .sticky-wall-heading h1{color:#fff3df}
+html[data-mindora-theme="dark"] .sticky-wall-heading h1 em{color:#e2a18f}
+html[data-mindora-theme="dark"] .sticky-wall-board{border-color:#81553e;background-color:#49352c;background-image:radial-gradient(ellipse at 15% 15%,#684735aa 0,transparent 38%),radial-gradient(ellipse at 85% 85%,#29232370 0,transparent 45%),repeating-linear-gradient(4deg,#ffffff05 0px,#ffffff05 2px,transparent 2px,transparent 7px),linear-gradient(125deg,#49352c,#60412f 48%,#382d2a)}
+html[data-mindora-theme="dark"] .sticky-wall-composer{background:#382d2a;color:#fff3df;border-color:#59443b}
+html[data-mindora-theme="dark"] .sticky-wall-composer input,html[data-mindora-theme="dark"] .sticky-wall-composer textarea{background:#292323;color:#fff3df;border-color:#59443b}
