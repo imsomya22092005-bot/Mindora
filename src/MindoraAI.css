@@ -3,53 +3,53 @@
 
 
 /* Dark mode: keep every wellbeing panel, field and suggestion card in the dark palette. */
-.dark-theme .mindora-ai-page{color:#eee4d7}
-.dark-theme .mai-header{background:linear-gradient(115deg,#302620 0%,#38291f 65%,#443024 100%);border-color:#594337}
-.dark-theme .mai-header h1,.dark-theme .mai-card-heading h2,.dark-theme .mai-checkin-card h2,.dark-theme .mai-results-heading h2{color:#fff0df}
-.dark-theme .mai-header p,.dark-theme .mai-muted,.dark-theme .mai-results-heading p{color:#c3ad9a}
-.dark-theme .mai-eyebrow{color:#e2a875}
-.dark-theme .mai-header-art{background:#4b362a;color:#f0b57c}
-.dark-theme .mai-header-art i{color:#d9aa83}
-.dark-theme .mai-header-art b{color:#f1c995}
-.dark-theme .mai-tabs{background:#211b18;border-color:#4a3930}
-.dark-theme .mai-tabs button{color:#c8b8aa}
-.dark-theme .mai-tabs button.selected{background:#51392f;color:#ffe6c7}
-.dark-theme .mai-chat-card,.dark-theme .mai-checkin-card,.dark-theme .mai-recommendations{background:#251e1a;border-color:#4a3930;box-shadow:0 8px 30px #0003}
-.dark-theme .mai-card-heading{border-color:#44352d}
-.dark-theme .mai-icon,.dark-theme .mai-message-avatar{background:#493429;color:#f0bd8a}
-.dark-theme .mai-reset{background:#30251f;border-color:#594438;color:#f0c6a1}
-.dark-theme .mai-message-list{background:#1e1916}
-.dark-theme .mai-message p{background:#302720;border-color:#4a3930;color:#f0e3d6}
-.dark-theme .mai-message.user p{background:#493429;border-color:#694b37;color:#ffead5}
-.dark-theme .mai-message.user .mai-message-avatar{background:#60402d;color:#ffe3c2}
-.dark-theme .mai-typing{color:#c9b29e}
-.dark-theme .mai-typing span{background:#d99a64}
-.dark-theme .mai-chat-form{background:#201a17;border-color:#594337}
-.dark-theme .mai-chat-form textarea{color:#f5e8db}
-.dark-theme .mai-chat-form textarea::placeholder{color:#b7a293}
-.dark-theme .mai-chat-form button,.dark-theme .mai-primary{background:#a85f3d;color:#fff5e9}
-.dark-theme .mai-chat-form button:hover,.dark-theme .mai-primary:hover{background:#c4744d}
-.dark-theme .mai-privacy-note{color:#b7a596}
-.dark-theme .mai-label{color:#e8d3bf}
-.dark-theme .mai-mood-option{background:#2c231e;border-color:#4e3b30;color:#e0cdbb}
-.dark-theme .mai-mood-option:hover{background:#3a2b22;border-color:#9b6948}
-.dark-theme .mai-mood-option.chosen{background:#51392f;border-color:#d18b5d;color:#fff0df;box-shadow:inset 0 0 0 1px #9d6847}
-.dark-theme .mai-range-label strong{color:#f0b57c}
-.dark-theme .mai-range{accent-color:#d9824b}
-.dark-theme .mai-range-ends{color:#b9a696}
-.dark-theme .mai-select{background:#2c231e;border-color:#594337;color:#f0e1d2;color-scheme:dark}
-.dark-theme .mai-select option{background:#2c231e;color:#f0e1d2}
-.dark-theme .mai-empty-state{background:#211b18;border-color:#5b4435}
-.dark-theme .mai-empty-art,.dark-theme .mai-activity-number{background:#493429;color:#f0bd8a}
-.dark-theme .mai-empty-state h3,.dark-theme .mai-activity-copy h3{color:#fff0df}
-.dark-theme .mai-empty-state p,.dark-theme .mai-activity-copy p{color:#c5b3a4}
-.dark-theme .mai-activity-card{background:#2a211c;border-color:#4e3b30}
-.dark-theme .mai-category{color:#e0a779}
-.dark-theme .mai-duration{color:#c8b3a1}
-.dark-theme .mai-rating-actions{border-color:#49382e}
-.dark-theme .mai-rating-actions span{color:#d2bead}
-.dark-theme .mai-rating-actions button{background:#30251f;border-color:#594438;color:#e3c3a4}
-.dark-theme .mai-rating-actions button.rated{background:#60412e;border-color:#d18b5d;color:#fff0df}
-.dark-theme .mai-rating-actions small{color:#f0b57c}
-.dark-theme .mai-error{color:#ffad9c}
-@media(max-width:560px){.dark-theme .mai-header{background:linear-gradient(115deg,#302620,#443024)}}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mindora-ai-page{color:#eee4d7}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-header{background:linear-gradient(115deg,#302620 0%,#38291f 65%,#443024 100%);border-color:#594337}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-header h1,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-card-heading h2,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-checkin-card h2,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-results-heading h2{color:#fff0df}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-header p,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-muted,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-results-heading p{color:#c3ad9a}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-eyebrow{color:#e2a875}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-header-art{background:#4b362a;color:#f0b57c}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-header-art i{color:#d9aa83}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-header-art b{color:#f1c995}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-tabs{background:#211b18;border-color:#4a3930}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-tabs button{color:#c8b8aa}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-tabs button.selected{background:#51392f;color:#ffe6c7}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-chat-card,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-checkin-card,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-recommendations{background:#251e1a;border-color:#4a3930;box-shadow:0 8px 30px #0003}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-card-heading{border-color:#44352d}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-icon,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-message-avatar{background:#493429;color:#f0bd8a}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-reset{background:#30251f;border-color:#594438;color:#f0c6a1}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-message-list{background:#1e1916}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-message p{background:#302720;border-color:#4a3930;color:#f0e3d6}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-message.user p{background:#493429;border-color:#694b37;color:#ffead5}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-message.user .mai-message-avatar{background:#60402d;color:#ffe3c2}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-typing{color:#c9b29e}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-typing span{background:#d99a64}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-chat-form{background:#201a17;border-color:#594337}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-chat-form textarea{color:#f5e8db}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-chat-form textarea::placeholder{color:#b7a293}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-chat-form button,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-primary{background:#a85f3d;color:#fff5e9}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-chat-form button:hover,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-primary:hover{background:#c4744d}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-privacy-note{color:#b7a596}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-label{color:#e8d3bf}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-mood-option{background:#2c231e;border-color:#4e3b30;color:#e0cdbb}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-mood-option:hover{background:#3a2b22;border-color:#9b6948}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-mood-option.chosen{background:#51392f;border-color:#d18b5d;color:#fff0df;box-shadow:inset 0 0 0 1px #9d6847}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-range-label strong{color:#f0b57c}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-range{accent-color:#d9824b}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-range-ends{color:#b9a696}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-select{background:#2c231e;border-color:#594337;color:#f0e1d2;color-scheme:dark}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-select option{background:#2c231e;color:#f0e1d2}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-empty-state{background:#211b18;border-color:#5b4435}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-empty-art,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-activity-number{background:#493429;color:#f0bd8a}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-empty-state h3,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-activity-copy h3{color:#fff0df}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-empty-state p,:is(html[data-mindora-theme="dark"], .dark-theme) .mai-activity-copy p{color:#c5b3a4}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-activity-card{background:#2a211c;border-color:#4e3b30}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-category{color:#e0a779}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-duration{color:#c8b3a1}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-rating-actions{border-color:#49382e}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-rating-actions span{color:#d2bead}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-rating-actions button{background:#30251f;border-color:#594438;color:#e3c3a4}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-rating-actions button.rated{background:#60412e;border-color:#d18b5d;color:#fff0df}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-rating-actions small{color:#f0b57c}
+:is(html[data-mindora-theme="dark"], .dark-theme) .mai-error{color:#ffad9c}
+@media(max-width:560px){:is(html[data-mindora-theme="dark"], .dark-theme) .mai-header{background:linear-gradient(115deg,#302620,#443024)}}
