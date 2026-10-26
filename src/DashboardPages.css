@@ -426,3 +426,46 @@ main.mindora-section-page:has(.insight-chart-card) .section-page-title h1 em{
 .journal-diary-scene.diary-is-open .journal-loose-page.page-in-motion{animation:journalPageLift .7s cubic-bezier(.2,.8,.2,1) both}
 @media(max-width:760px){.journal-diary-scene.diary-is-open .journal-diary-cover{min-height:300px;transform:translateY(-8px) scale(.97)}.journal-diary-scene.diary-is-open .journal-cover-content{min-height:300px;padding:28px 25px 25px 45px}.journal-diary-scene.diary-is-open .journal-loose-page{margin:-20px auto 0;width:100%}.journal-diary-scene.diary-is-open .journal-page-body{padding:22px 18px}.journal-diary-scene.diary-is-open .journal-writing-scrapbook{grid-template-columns:1fr}}
 
+
+
+/* Restore Mindora's original warm butter-yellow, cream and terracotta palette across section pages. */
+.mindora-section-page{--page-bg:#fff8d9;--paper:#fffdf2;--ink:#51392f;--muted:#856b5a;--line:#f0d7b5;background:radial-gradient(ellipse at 7% 5%,#ffe6a6 0,transparent 34%),linear-gradient(135deg,#fff8d9,#fff0bf 58%,#ffedb4);color:var(--ink)}
+.section-page-title h1,.diary-writing h2,.diary-entries-head h2,.diary-saved-card h3,.insight-stat-grid strong,.insight-chart-card h2,.mindful-tool-title{color:#51392f}
+.section-page-title h1 em{color:#b65f35}
+.diary-editor,.diary-saved-card,.insight-stat-grid article,.insight-chart-card,.mindful-tool-card{background:#fffdf2;border-color:#f0d7b5}
+.diary-paper-top{background:#ffe9a0;border-color:#f2d29b;color:#8c5a37}
+.diary-paper-top span:first-child,.diary-saved-meta,.diary-chapter,.diary-side-kicker{color:#a9653d}
+.diary-writing h2{color:#51392f}
+.diary-title-label,.diary-title-label input,.diary-writing textarea{color:#624638}
+.diary-title-label input{border-color:#f0d7b5}
+.diary-writing textarea{background:repeating-linear-gradient(to bottom,transparent 0,transparent 32px,#f1d9b8 33px,#f1d9b8 34px);background-position:0 16px}
+.diary-save-button{background:#d9824b;color:#fffaf0}.diary-save-button:hover:not(:disabled){background:#b96536}
+.diary-success,.diary-count{color:#a65f38}
+.diary-prompt-card{background:linear-gradient(145deg,#fff0b9,#ffe4a0);border-color:#f3d49d;color:#68452f}
+.diary-side-icon{background:#ffdfa0;color:#b66d3d}
+.diary-prompt-card>p{color:#68452f}.diary-prompt-card button{color:#a85f36}
+.diary-flower{color:#b9793b18}
+.diary-reminder{background:#f8e7d5;border-color:#efcfad;color:#75523c}
+.diary-reminder>svg{color:#c17a43}.diary-reminder span{color:#946b4c}
+.diary-count{border-color:#f0d7b5;background:#fffdf2}
+.diary-empty{border-color:#efcfad;background:#fff9e7;color:#a66a40}
+.diary-empty h3{color:#654534}
+.diary-saved-card h3{color:#654534}.diary-saved-meta button{border-color:#f0d7b5;color:#a16c4b}
+.insight-chart-card .diary-empty a{color:#b56537}
+.mindful-intro-card{background:linear-gradient(115deg,#ffedb0,#fff6d5);border-color:#f0d7b5}
+.mindful-big-spark{color:#e0ad69}
+.mindful-tool-icon.sage,.mindful-tool-icon.moss{background:#fff0c4;color:#ae6d3d}
+.mindful-tool-icon.peach{background:#f8e1cc;color:#a65f38}
+.mindful-tool-icon.blue{background:#f4e8d9;color:#9a795d}
+.mindful-tool-icon.rose{background:#f8dfd2;color:#b66c54}
+.journal-diary-cover{border-color:#8e4e2f;background:linear-gradient(115deg,#8e4d30 0%,#d58a55 9%,#bd7448 15%,#a85f39 100%);box-shadow:inset 5px 0 9px #6e3a26,inset -3px 0 5px #edb07a,0 22px 42px rgba(114,65,36,.22)}
+.journal-cover-content{color:#fff4df}.journal-cover-content h2{color:#fff4df}.journal-cover-content h2 em{color:#ffe49b}
+.journal-cover-kicker,.journal-cover-small{color:#ffe8c8}.journal-cover-decoration{color:#f5c991}.journal-open-button{border-color:#f0c49a;background:#ffffff14;color:#fff4df}
+.journal-loose-page{border-color:#f0c98f;background:#fffdf2;color:#51392f}
+.journal-page-top{background:#ffe9a0;border-color:#f0d7b5;color:#a9653d}
+.journal-dear-diary-title{color:#51392f}
+.journal-photo-side{border-color:#edc99f;background:#fff8e7}
+.journal-photo-side-title{color:#936a4d}
+html[data-mindora-theme="dark"] .mindora-section-page,.dark-theme.mindora-section-page{--page-bg:#292323;--paper:#382d2a;--ink:#fff3df;--muted:#dfc4a8;--line:#59443b;background:radial-gradient(ellipse at 7% 5%,#49352c 0,transparent 34%),linear-gradient(135deg,#292323,#332722 58%,#382a24);color:var(--ink)}
+html[data-mindora-theme="dark"] .journal-diary-cover,.dark-theme .journal-diary-cover{background:linear-gradient(115deg,#673c2c 0%,#9d6040 9%,#895136 15%,#75442f 100%);border-color:#9d6848}
+html[data-mindora-theme="dark"] .journal-loose-page,.dark-theme .journal-loose-page{background:#382d2a;color:#fff3df;border-color:#59443b}
