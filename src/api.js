@@ -4,11 +4,6 @@ const isProduction = import.meta.env.PROD;
 const API_BASE_URL = (configuredApiUrl || (isProduction ? "" : "http://localhost:5000")).replace(/\/$/, "");
 
 export async function apiRequest(path, { token, ...options } = {}) {
-  // Calm Corner is intentionally frontend-only; don't send a request to a removed endpoint.
-  if (path === "/api/calm/session") {
-    throw new Error("Practice paused. Your breathing session is not saved to the server.");
-  }
-
   if (isProduction && !configuredApiUrl) {
     throw new Error("Mindora's backend URL is not configured yet. Please set VITE_API_URL in Vercel Environment Variables, then redeploy the frontend.");
   }
