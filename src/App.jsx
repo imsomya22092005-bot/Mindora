@@ -495,10 +495,10 @@ function Dashboard() {
 
   const navItems = [
     { label: t("Overview", "डैशबोर्ड"), icon: LayoutDashboard, routeLabel: "Overview" },
+    { label: t("Sticky Note Wall", "स्टिकी नोट वॉल"), icon: StickyNote, routeLabel: "Sticky Note Wall" },
     { label: t("Journal", "डायरी"), icon: BookOpen, routeLabel: "Journal" },
     { label: t("Insights", "जानकारियाँ"), icon: BarChart3, routeLabel: "Insights" },
     { label: t("Mindful moments", "सुकून के पल"), icon: Wind, routeLabel: "Mindful moments" },
-    { label: t("Sticky Note Wall", "स्टिकी नोट वॉल"), icon: StickyNote, routeLabel: "Sticky Note Wall" },
     { label: t("AI wellbeing", "AI वेलबीइंग"), icon: HeartHandshake, routeLabel: "AI wellbeing" },
     { label: t("Play & Unwind", "खेलें और सुकून पाएँ"), icon: Gamepad2, routeLabel: "Play & Unwind" },
   ];
