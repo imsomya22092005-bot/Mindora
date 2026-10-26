@@ -7,7 +7,7 @@ const mainItems = [
  {label:"Overview",href:"/dashboard",icon:LayoutDashboard},
  {label:"Journal",href:"/journal",icon:BookOpen},
  {label:"Insights",href:"/insights",icon:BarChart3},
- {label:"Mindful moments",href:"/mindful-moments",icon:Wind,children:[["Calm Corner","/calm-corner"],["Inner Garden","/inner-garden"],["Little Comfort Box","/comfort-box"],["Sticky Note Wall","/sticky-wall"],["Mood Soundscape","/soundscape"]]},
+ {label:"Mindful moments",href:"/mindful-moments",icon:Wind,children:[["Calm Corner","/calm-corner"],["Inner Garden","/inner-garden"],["Little Comfort Box","/comfort-box"],["Mood Soundscape","/soundscape"]]},
  {label:"AI wellbeing",href:"/mindora-ai",icon:HeartHandshake},
  {label:"Play & Unwind",href:"/games",icon:Gamepad2,children:[["Color Pop","/games?game=color-pop"],["Starweave","/games?game=starweave"],["Let It Burn","/games?game=let-it-burn"],["Picture Puzzle","/games?game=picture-puzzle"]]}
 ];
