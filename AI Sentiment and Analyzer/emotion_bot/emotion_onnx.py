@@ -1,12 +1,3 @@
-"""
-emotion_onnx.py - chhota (~35 MB) emotion + sentiment model chalane ke liye.
-Torch / transformers ki zaroorat NAHI: sirf onnxruntime + tokenizers (deploy halka rehta hai).
-
-    model = EmotionModel("model")
-    model.analyze("I feel really sad")
-    -> {"sentiment": "negative", "emotion": "sadness", "emotion_conf": 0.71,
-        "top2": ["sadness", "disappointment"], "sentiment_conf": 0.93}
-"""
 import json
 import os
 

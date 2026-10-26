@@ -1,22 +1,3 @@
-"""
-api.py - Flask REST API (Streamlit app.py ki jagah ya uske saath).
-
-Endpoints:
-  GET  /health                       -> {"status": "ok"}
-  POST /chat     {"message", "session_id"?}   -> reply (Gemini) + detected emotion
-  POST /analyze  {"text"}                     -> sirf emotion model (Gemini ke bina)
-  POST /reset    {"session_id"}               -> chat history saaf
-
-Env vars:
-  GEMINI_API_KEY   (zaroori)
-  GEMINI_MODEL     (optional)
-  API_TOKEN        (optional) set kiya to har request me header  X-API-Key: <token>  chahiye (/health ko chhodkar)
-  CORS_ORIGINS     (optional) "*" ya "https://mysite.com,https://other.com"
-  RATE_LIMIT_PER_MIN (default 30, per IP)
-
-Chalane ke liye (ek hi worker, kyunki sessions memory me hain):
-  gunicorn api:app --workers 1 --threads 8 --timeout 60
-"""
 import os
 import re
 import threading
@@ -29,7 +10,7 @@ from flask import Flask, jsonify, request
 import chatbot
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SESSION_TTL = 30 * 60        # 30 min inactive -> session delete
+SESSION_TTL = 30 * 60
 MAX_SESSIONS = 2000
 MAX_MESSAGE_CHARS = 1000
 SESSION_ID_RE = re.compile(r"^[A-Za-z0-9_-]{8,64}$")
@@ -38,7 +19,7 @@ SESSION_ID_RE = re.compile(r"^[A-Za-z0-9_-]{8,64}$")
 def create_app(emotion_model=None, llm=None):
     app = Flask(__name__)
     app.config["JSON_SORT_KEYS"] = False
-    app.config["MAX_CONTENT_LENGTH"] = 16 * 1024      # bade payload reject
+    app.config["MAX_CONTENT_LENGTH"] = 16 * 1024
 
     api_token = os.environ.get("API_TOKEN")
     origins = [o.strip() for o in os.environ.get("CORS_ORIGINS", "").split(",") if o.strip()]
@@ -60,7 +41,7 @@ def create_app(emotion_model=None, llm=None):
     def get_llm():
         with deps_lock:
             if deps["llm"] is None:
-                deps["llm"] = chatbot.GeminiResponder()      # key env var se
+                deps["llm"] = chatbot.GeminiResponder()
             return deps["llm"]
 
     def err(msg, code):

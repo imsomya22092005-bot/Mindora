@@ -18,7 +18,7 @@ def load_emotion_model():
 def get_api_key():
     try:
         return st.secrets["GEMINI_API_KEY"]
-    except Exception:  # secrets file nahi hai to env var dekho
+    except Exception:
         return os.environ.get("GEMINI_API_KEY")
 
 

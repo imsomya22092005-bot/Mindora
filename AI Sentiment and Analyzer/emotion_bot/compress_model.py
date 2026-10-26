@@ -1,27 +1,3 @@
-"""
-compress_model.py   (Google Colab me chalao, sirf EK baar)
-
-880 MB  (roberta-base sentiment + distilroberta-base emotion)
-   -->  ~35 MB (ek hi chhota model, dono kaam karta hai, int8 ONNX)
-
-Kaise:
- 1. Knowledge distillation: tumhare dono bade models "teacher" hain. Ek chhota student
-    (all-MiniLM-L12-v2, 33M params) unse seekhta hai. Student me 2 heads hain:
-    emotion (28 classes) aur sentiment (4 classes).
- 2. Embedding table (sabse bhaari hissa) ko int8 me store karte hain (per-row scale).
- 3. ONNX export + int8 dynamic quantization (baaki saare MatMul int8).
- 4. Test set par teacher vs student vs final ONNX ka accuracy/F1 print hota hai,
-    taaki pata chale kitna farak pada. Size 50 MB se upar gaya to script rok degi.
-
-Chalane se pehle Colab me (GPU on):
-    from google.colab import drive; drive.mount('/content/drive')
-    # goemotions_combined.csv ko /content me upload karo (ya CSV_PATH env set karo)
-    !pip install -q onnx onnxscript onnxruntime
-    !python compress_model.py
-
-Output: /content/deploy  (aur Drive me: emotion_analyzer/deploy_model)
-        model_int8.onnx, tokenizer.json, labels.json, settings.json
-"""
 import copy
 import gc
 import json
@@ -46,14 +22,13 @@ CSV_PATH = os.environ.get("CSV_PATH", "goemotions_combined.csv")
 TEACHER_DIR = os.environ.get("TEACHER_DIR", "/content/drive/MyDrive/emotion_analyzer")
 OUT_DIR = os.environ.get("OUT_DIR", "/content/deploy")
 TMP_DIR = "/content/tmp_onnx"
-# Aur chhota chahiye (~23 MB)?  STUDENT_NAME=sentence-transformers/all-MiniLM-L6-v2
 STUDENT_NAME = os.environ.get("STUDENT_NAME", "sentence-transformers/all-MiniLM-L12-v2")
 MAX_LEN = 64
 EPOCHS = 10
 BATCH = 64
 LR = 1e-4
-TEMP = 2.0      # distillation temperature
-ALPHA = 0.5     # 0.5 teacher se seekho + 0.5 asli labels se
+TEMP = 2.0      
+ALPHA = 0.5     
 SIZE_LIMIT_MB = 50
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -196,7 +171,7 @@ def train_student(splits, tok, n_emo, n_sent):
     tr_loader = make_loader(splits["train"], tok, True, BATCH)
     va_loader = make_loader(splits["val"], tok, False, 256)
 
-    def class_weights(y, k):  # notebook jaisa: sqrt inverse-frequency
+    def class_weights(y, k):  
         counts = np.bincount(y, minlength=k).clip(min=1)
         return torch.tensor((len(y) / (k * counts)) ** 0.5, dtype=torch.float, device=device)
     w_emo = class_weights(splits["train"]["y_emo"], n_emo)
@@ -283,7 +258,6 @@ def export_onnx(student, tok, fp32_path):
 
 def quantize(fp32_path, int8_path):
     from onnxruntime.quantization import QuantType, quantize_dynamic
-    # reduce_range=True: purane/non-VNNI CPU par bhi (jaise free hosting) same accuracy aaye
     quantize_dynamic(fp32_path, int8_path, weight_type=QuantType.QInt8,
                      op_types_to_quantize=["MatMul"], reduce_range=True)
 
@@ -353,7 +327,7 @@ def main():
     json.dump({"max_len": MAX_LEN, "student": STUDENT_NAME, "conf_limit": 0.30},
               open(os.path.join(OUT_DIR, "settings.json"), "w"), indent=1)
 
-    # ---- final ONNX ko asli deploy wale tareeke (onnxruntime + tokenizers) se test karo
+    # ---- final ONNX ko  (onnxruntime + tokenizers) se test karo
     import onnxruntime as ort
     from tokenizers import Tokenizer
     tk = Tokenizer.from_file(os.path.join(OUT_DIR, "tokenizer.json"))

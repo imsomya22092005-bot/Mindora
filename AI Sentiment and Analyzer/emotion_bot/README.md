@@ -1,70 +1,225 @@
-# Wellness Chat Bot (chhota model + Gemini)
+# Mindora — AI Emotion and Sentiment Analyzer
 
-Model: 880 MB -> ~35 MB. Chatbot: rule-based -> Gemini.
+## Overview
 
-## Step 1: Model chhota karo (Colab, ek baar, ~15-25 min)
-1. Colab kholo, Runtime > Change runtime type > **T4 GPU**.
-2. Ye cells chalao:
-   ```python
-   from google.colab import drive; drive.mount('/content/drive')
-   from google.colab import files; files.upload()      # goemotions_combined.csv + compress_model.py
-   !pip install -q onnx onnxscript onnxruntime
-   !python compress_model.py
-   ```
-   (Drive me `emotion_analyzer/sentiment` aur `emotion` folders pehle se hone chahiye, jo main.ipynb ne save kiye the.)
-3. End me result table + size print hoga. Drive me `emotion_analyzer/deploy_model/` folder ban jaayega.
-4. Us folder ki 4 files (`model_int8.onnx, tokenizer.json, labels.json, settings.json`) is project ke `model/` folder me daalo.
+Mindora is a Flask-based REST API that analyzes text to identify the emotion and sentiment expressed by a user. It also provides a chat endpoint that can return a response based on the user's message.
 
-## Step 2: Gemini API key
-https://aistudio.google.com/apikey se key banao. **Key ko kabhi code ya GitHub me mat daalna.**
+The project uses an ONNX model for emotion classification and exposes endpoints for emotion analysis, chat interaction, session reset, and service health monitoring.
 
-## Step 3: Local test
-```bash
-pip install -r requirements.txt
-cp .streamlit/secrets.toml.example .streamlit/secrets.toml   # key paste karo
-streamlit run app.py
+## Features
+
+- Emotion classification from text.
+- Sentiment identification, such as positive or negative.
+- Confidence score and top predicted emotions.
+- Chat endpoint for message-based interaction.
+- Session reset functionality.
+- Health-check endpoint for deployment monitoring.
+- REST API integration for frontend and backend applications.
+
+## Technology Stack
+
+- **Python** — application logic.
+- **Flask** — REST API framework.
+- **ONNX Runtime** — emotion model inference.
+- **Gunicorn** — production WSGI server.
+- **Render** — API hosting.
+- **Git and GitHub** — version control and source code management.
+
+## Project Structure
+
+```text
+emotion_bot/
+├── api.py
+├── app.py
+├── chatbot.py
+├── compress_model.py
+├── emotion_onnx.py
+├── model/
+│   ├── labels.json
+│   ├── model_int8.onnx
+│   ├── settings.json
+│   └── tokenizer.json
+├── requirements-api.txt
+├── requirements.txt
+├── Procfile
+└── README.md
 ```
 
-## Step 4: Deploy (Streamlit Community Cloud)
-1. Poora folder GitHub repo me push karo (model ~35 MB hai, GitHub ki 100 MB limit ke andar, LFS nahi chahiye).
-   `.gitignore` secrets.toml ko bachata hai.
-2. share.streamlit.io > New app > repo chuno > main file `app.py`.
-3. Advanced settings > Secrets me: `GEMINI_API_KEY = "your-key"`.
+## API Endpoints
 
-## Gemini model naam
-Default `gemini-flash-latest` (fallback `gemini-2.5-flash`). Error aaye to env/secret me `GEMINI_MODEL` set karo.
+Base URL: `https://mindora-82go.onrender.com`
 
-## Safety
-Self-harm wale words par bot Gemini ko call kiye bina fixed helpline reply deta hai (`chatbot.py` me `CRISIS_PATTERNS`).
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/health` | Checks whether the API is running. |
+| POST | `/analyze` | Analyzes text for emotion and sentiment. |
+| POST | `/chat` | Processes a chat message and returns a response. |
+| POST | `/reset` | Resets a chat session. |
 
----
+### 1. Health Check
 
-# Flask API (api.py)
+**Request**
 
-Streamlit ki jagah (ya saath me) REST API. Model + Gemini wahi hain.
+```http
+GET /health
+```
+
+**Example response**
+
+```json
+{
+  "status": "ok"
+}
+```
+
+### 2. Emotion and Sentiment Analysis
+
+**Request**
+
+```http
+POST /analyze
+Content-Type: application/json
+```
+
+**Example request body**
+
+```json
+{
+  "text": "I feel happy and excited today."
+}
+```
+
+**Example response**
+
+```json
+{
+  "confidence": 0.7464,
+  "emotion": "joy",
+  "sentiment": "positive",
+  "top2": [
+    "joy",
+    "excitement"
+  ]
+}
+```
+
+The output values depend on the input text and model prediction.
+
+### 3. Chat
+
+**Request**
+
+```http
+POST /chat
+Content-Type: application/json
+```
+
+**Example request body**
+
+```json
+{
+  "message": "Hello, how are you?"
+}
+```
+
+The endpoint processes the message and returns a response along with the available emotion information and session identifier. The exact response fields depend on the current API implementation.
+
+### 4. Reset Chat Session
+
+**Request**
+
+```http
+POST /reset
+Content-Type: application/json
+```
+
+**Example request body**
+
+```json
+{
+  "session_id": "SESSION_ID_RETURNED_BY_CHAT"
+}
+```
+
+Replace the placeholder with the actual session ID returned by the chat endpoint.
+
+## Running Locally
+
+### Prerequisites
+
+- Python installed.
+- Git installed.
+- Project source code downloaded or cloned.
+
+### Setup
+
+1. Open a terminal in the `emotion_bot` directory.
+2. Create a virtual environment:
+
+```bash
+python -m venv venv
+```
+
+3. Activate the environment on Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+4. Install the API dependencies:
 
 ```bash
 pip install -r requirements-api.txt
-export GEMINI_API_KEY="your-key"
-export API_TOKEN="koi-lamba-secret"          # optional, lagane ki salah hai
-export CORS_ORIGINS="https://tumhari-site.com"   # browser frontend ho to
-python api.py                                 # dev, port 8000
-# production / Render / Railway / Heroku:  Procfile me gunicorn already hai
 ```
-**Zaroori:** gunicorn me `--workers 1` hi rakho (chat sessions memory me hain, 30 min baad hat jaate hain).
 
-| Endpoint | Body | Response |
-|---|---|---|
-| `GET /health` | - | `{"status":"ok"}` |
-| `POST /chat` | `{"message":"I feel low","session_id":"optional"}` | `session_id, reply, crisis, error, emotion{emotion,sentiment,confidence,top2,confident,source}` |
-| `POST /analyze` | `{"text":"..."}` | `emotion, sentiment, confidence, top2` (Gemini ke bina) |
-| `POST /reset` | `{"session_id":"..."}` | `{"status":"reset"}` |
-
-Pehle `/chat` ke response me `session_id` aata hai, agle messages me wahi bhejo taaki bot ko context yaad rahe.
-Header `X-API-Key: <API_TOKEN>` har call me (agar token set kiya).
+5. Start the API:
 
 ```bash
-curl -X POST localhost:8000/chat -H "Content-Type: application/json" -H "X-API-Key: secret" \
-     -d '{"message":"I am stressed about exams"}'
+python api.py
 ```
-Errors: 400 galat input, 401 token galat, 429 rate limit (30/min per IP), `"error": true` ka matlab Gemini fail hua aur fallback reply gaya.
+
+The local address and port depend on the Flask application configuration.
+
+For production deployment, the application uses Gunicorn as configured in the deployment settings.
+
+## Deployment
+
+The API is hosted on Render.
+
+**Build command**
+
+```bash
+pip install -r requirements-api.txt
+```
+
+**Start command**
+
+```bash
+gunicorn api:app --workers 1 --threads 8 --timeout 120
+```
+
+The deployed service can be checked using the `/health` endpoint.
+
+## Integration
+
+Applications can integrate with Mindora by sending HTTP requests to the deployed API.
+
+For POST requests, use:
+
+```http
+Content-Type: application/json
+```
+
+The API can be integrated with a frontend or another backend without requiring the emotion model to run in the client application.
+
+## Notes
+
+- The emotion and sentiment outputs are model predictions and may not always be correct.
+- Keep API credentials in environment variables; never commit secret keys to the repository.
+- Verify the chat provider and its configuration against the current implementation before deployment.
+- Update this documentation whenever endpoints, response formats, dependencies, or deployment settings change.
+
+## Source Code
+
+Repository: https://github.com/imsomya22092005-bot/Mindora
+

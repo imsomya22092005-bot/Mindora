@@ -1,12 +1,3 @@
-"""
-chatbot.py - Gemini wala chatbot.
-
-Flow har message par:
-  1) Safety check (local, Gemini ke bina): self-harm ke words mile to turant helpline wala fixed reply.
-  2) Tumhara chhota emotion model feeling pata karta hai (Hinglish ke liye keywords wale rules).
-  3) Wo feeling "hint" ke roop me Gemini ko jaati hai, Gemini natural reply likhta hai.
-  4) Lagatar 3 negative messages par counsellor wala nudge jud jaata hai.
-"""
 import os
 import re
 import sys
@@ -130,8 +121,6 @@ MODEL_CANDIDATES = ["gemini-3.8-flash", "gemini-flash-latest"]
 
 
 class GeminiResponder:
-    """google-genai wrapper. API key env var GEMINI_API_KEY (ya app.py se pass karo).
-    Model badalna ho to env var GEMINI_MODEL set karo."""
 
     def __init__(self, api_key=None, model=None):
         from google import genai
@@ -149,7 +138,6 @@ class GeminiResponder:
         t = self._types
         contents = [t.Content(role=h["role"], parts=[t.Part(text=h["text"])]) for h in history]
         contents.append(t.Content(role="user", parts=[t.Part(text=user_text)]))
-        # max_output_tokens me Gemini ki "thinking" tokens bhi ginti hain, isliye limit badi rakhi hai
         config = t.GenerateContentConfig(system_instruction=system_prompt, temperature=0.8,
                                          max_output_tokens=2048)
         last_err = None
@@ -160,7 +148,7 @@ class GeminiResponder:
                     text = (resp.text or "").strip()
                     if text:
                         self.models.remove(model)
-                        self.models.insert(0, model)   # jo chala use yaad rakho
+                        self.models.insert(0, model)
                         return text
                     last_err = RuntimeError("empty response (blocked or cut)")
                     break
@@ -205,7 +193,6 @@ def build_system_prompt(info, confident, state):
 
 
 def chat(text, state, analyze_fn, llm, conf_limit=0.30):
-    """Returns {"reply", "analysis" (ya None), "crisis", "intent", "group"} - purane chatbot jaisa hi format."""
     turn = state["turn"]
     state["turn"] += 1
     clean = normalize(text)
@@ -223,7 +210,7 @@ def chat(text, state, analyze_fn, llm, conf_limit=0.30):
     if hi:
         info, source = hinglish_info(clean), "hinglish_rules"
         if info is None:
-            guess = analyze_fn(text)       # model Hinglish me kamzor hai: sirf tab maano jab bahut sure ho
+            guess = analyze_fn(text)
             if guess["emotion_conf"] >= 0.8:
                 info, source = guess, "model"
     else:
