@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   Heart,
+  HeartHandshake,
   LayoutDashboard,
   BookOpen,
   BarChart3,
@@ -461,6 +462,7 @@ function Dashboard() {
       { path: "/insights", keys: ["insight", "insights", "chart", "average", "trend", "patterns", "history", "जानकारी", "मूड इतिहास", "चार्ट", "पैटर्न", "रुझान"] },
       { path: "/mindful-moments", keys: ["mindful", "breathing", "breath", "calm", "pause", "सुकून", "साँस", "सांस", "ध्यान", "विराम"] },
       { path: "/incognito-checkin", keys: ["incognito", "private", "burnout", "stress", "निजी", "तनाव", "बर्नआउट"] },
+      { path: "/mindora-ai", keys: ["ai wellbeing", "wellbeing ai", "emotion companion", "coping suggestions", "ai", "भावनात्मक साथी", "सुझाव"] },
       { path: "/calm-corner", keys: ["calm corner", "comfort", "comfort box", "शांति", "सुकून कोना", "आराम"] },
       { path: "/profile", keys: ["profile", "account", "my profile", "प्रोफ़ाइल", "खाता"] },
       { path: "/settings", keys: ["settings", "setting", "सेटिंग", "सेटिंग्स"] },
@@ -486,6 +488,7 @@ function Dashboard() {
     if (section === "Insights") navigate("/insights");
     if (section === "Mindful moments") navigate("/mindful-moments");
     if (section === "Incognito check-in") navigate("/incognito-checkin");
+    if (section === "AI wellbeing") navigate("/mindora-ai");
     if (section === "Calm Corner") navigate("/calm-corner");
     if (section === "My profile") navigate("/profile");
     if (section === "Play & Unwind") navigate("/games");
@@ -497,6 +500,7 @@ function Dashboard() {
     { label: t("Insights", "जानकारियाँ"), icon: BarChart3, routeLabel: "Insights" },
     { label: t("Mindful moments", "सुकून के पल"), icon: Wind, routeLabel: "Mindful moments" },
     { label: t("Incognito check-in", "निजी चेक-इन"), icon: ShieldCheck, routeLabel: "Incognito check-in" },
+    { label: t("AI wellbeing", "AI वेलबीइंग"), icon: HeartHandshake, routeLabel: "AI wellbeing" },
     { label: t("Play & Unwind", "खेलें और सुकून पाएँ"), icon: Gamepad2, routeLabel: "Play & Unwind" },
   ];
 
