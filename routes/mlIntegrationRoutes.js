@@ -1,21 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const { protect } = require('../middleware/auth');
-const CopingProfile = require('../models/CopingProfile');
-const CopingFeedback = require('../models/CopingFeedback');
 
-// Base URL for the Coping Suggestions ML Model
+// Base URL for Coping Suggestions ML Model
 const COPING_API_URL = (process.env.COPING_API_URL || 'https://mindora-1-2tup.onrender.com').replace(/\/$/, '');
 
 const MOODS = ['stress', 'anxiety', 'frustration', 'sadness', 'low_energy', 'overwhelmed', 'loneliness', 'restlessness'];
 const TIMES = ['morning', 'afternoon', 'evening', 'night'];
 
 /**
- * Robust JSON forwarder with 45-second timeout for Render free-tier wakeups
+ * Robust JSON forwarder with 45-second timeout for Render free-tier cold starts
  */
 async function forwardJson(url, body, res) {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 45000); // 45s for cold start
+  const timeout = setTimeout(() => controller.abort(), 45000);
 
   try {
     const upstream = await fetch(url, {
@@ -76,7 +74,7 @@ router.get('/coping/health', async (req, res) => {
 });
 
 /* =======================================================
-   2. PROTECTED ROUTES (Requires Bearer Token)
+   2. PROTECTED RECOMMENDATION ROUTE
    ======================================================= */
 router.use(protect);
 
@@ -94,7 +92,7 @@ router.post('/coping/recommend', async (req, res) => {
       });
     }
 
-    // Build the exact schema required by https://mindora-1-2tup.onrender.com/recommend
+    // Build the exact payload schema for the ML model
     const payload = {
       user_id: req.user?._id?.toString() || undefined,
       mood: mood.toLowerCase(),
@@ -112,75 +110,10 @@ router.post('/coping/recommend', async (req, res) => {
   }
 });
 
-// GET /api/ml/coping/profile
-router.get('/coping/profile', async (req, res) => {
-  try {
-    const profile = await CopingProfile.findOne({ user: req.user._id }).lean();
-    return res.json({ success: true, profile });
-  } catch (error) {
-    return res.status(500).json({ success: false, error: 'Could not load coping profile.' });
-  }
-});
-
-// PUT /api/ml/coping/profile
-router.put('/coping/profile', async (req, res) => {
-  try {
-    const body = req.body || {};
-    const required = ['age_group', 'experience_level', 'pref_category_1', 'pref_category_2', 'max_duration_pref', 'usual_energy'];
-    const missing = required.filter((key) => body[key] === undefined || body[key] === null || body[key] === '');
-    
-    if (missing.length) return res.status(400).json({ success: false, error: `Missing fields: ${missing.join(', ')}` });
-    if (body.pref_category_1 === body.pref_category_2) {
-      return res.status(400).json({ success: false, error: 'Choose two different activity categories.' });
-    }
-
-    const profile = await CopingProfile.findOneAndUpdate(
-      { user: req.user._id },
-      {
-        user: req.user._id,
-        age_group: body.age_group,
-        experience_level: body.experience_level,
-        pref_category_1: body.pref_category_1,
-        pref_category_2: body.pref_category_2,
-        max_duration_pref: Number(body.max_duration_pref),
-        usual_energy: Number(body.usual_energy)
-      },
-      { upsert: true, new: true, runValidators: true, setDefaultsOnInsert: true }
-    );
-    return res.json({ success: true, profile });
-  } catch (error) {
-    return res.status(400).json({ success: false, error: error.message });
-  }
-});
-
-// POST /api/ml/coping/feedback
-router.post('/coping/feedback', async (req, res) => {
-  try {
-    const { activity_id, action, rating } = req.body || {};
-    if (!activity_id || !['completed', 'dropped', 'skipped'].includes(action)) {
-      return res.status(400).json({ success: false, error: 'activity_id and a valid action are required.' });
-    }
-    const parsedRating = rating === undefined || rating === null || rating === '' ? undefined : Number(rating);
-    if (action === 'completed' && (!Number.isInteger(parsedRating) || parsedRating < 1 || parsedRating > 5)) {
-      return res.status(400).json({ success: false, error: 'Rating 1-5 is required for completed activities.' });
-    }
-
-    const feedback = await CopingFeedback.create({
-      user: req.user._id,
-      activity_id: String(activity_id).slice(0, 200),
-      action,
-      ...(parsedRating !== undefined ? { rating: parsedRating } : {})
-    });
-
-    return res.status(201).json({ success: true, feedback });
-  } catch (error) {
-    return res.status(500).json({ success: false, error: 'Could not save feedback.' });
-  }
-});
-
 /* =======================================================
-   3. SAFETY WRAPPERS FOR OLD / OTHER ML PATHS
+   3. SAFETY WRAPPERS
    ======================================================= */
+
 // POST /api/ml/emotion/chat
 router.post('/emotion/chat', async (req, res) => {
   const { message } = req.body || {};

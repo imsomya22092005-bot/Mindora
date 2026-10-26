@@ -344,79 +344,22 @@ Base URL: https://mindora-backend-mdfl.onrender.com
     "error": "Invalid mood. Allowed moods are: stress, anxiety, frustration, sadness, low_energy, overwhelmed, loneliness, restlessness"
   }
 
---------------------------------------------------
-3. Get User Coping Profile
---------------------------------------------------
-• Method: GET
-• Endpoint: /api/ml/coping/profile
-• Access: Protected
-• Headers:
-    Authorization: Bearer <USER_JWT_TOKEN>
-• Success Response (200 OK):
-  {
-    "success": true,
-    "profile": {
-      "_id": "671cb0a8...",
-      "user": "671ca8...",
-      "age_group": "18-24",
-      "experience_level": "beginner",
-      "pref_category_1": "breathing",
-      "pref_category_2": "mindfulness",
-      "max_duration_pref": 15,
-      "usual_energy": 3
-    }
-  }
-
---------------------------------------------------
-4. Create / Update Coping Profile
---------------------------------------------------
-• Method: PUT
-• Endpoint: /api/ml/coping/profile
-• Access: Protected
-• Headers:
-    Authorization: Bearer <USER_JWT_TOKEN>
-    Content-Type: application/json
-• Request Body:
-  {
-    "age_group": "18-24",
-    "experience_level": "beginner",
-    "pref_category_1": "breathing",
-    "pref_category_2": "mindfulness",
-    "max_duration_pref": 15,
-    "usual_energy": 3
-  }
-• Success Response (200 OK):
-  {
-    "success": true,
-    "profile": { ... }
-  }
-
---------------------------------------------------
-5. Activity Feedback (Logging Completion/Rating)
+  --------------------------------------------------
+3. AI Emotion Chat
 --------------------------------------------------
 • Method: POST
-• Endpoint: /api/ml/coping/feedback
+• Endpoint: /api/ml/emotion/chat
 • Access: Protected
 • Headers:
     Authorization: Bearer <USER_JWT_TOKEN>
     Content-Type: application/json
 • Request Body:
   {
-    "activity_id": "act_04",
-    "action": "completed",
-    "rating": 5
+    "message": "I feel very overwhelmed with my assignments."
   }
-• Constraints:
-    - action: "completed" | "dropped" | "skipped"
-    - rating: integer 1 to 5 (required only when action is "completed")
-• Success Response (201 Created):
+• Success Response (200 OK):
   {
     "success": true,
-    "feedback": {
-      "id": "671cb2f...",
-      "activity_id": "act_04",
-      "action": "completed",
-      "rating": 5,
-      "createdAt": "2026-10-26T14:15:00.000Z"
-    }
+    "reply": "I am here with you. Take a gentle breath. If you are feeling overwhelmed, you can request coping recommendations tailored for you.",
+    "receivedMessage": "I feel very overwhelmed with my assignments."
   }
