@@ -55,13 +55,13 @@ export default function StickyNoteWall() {
         <button className="sticky-wall-back" onClick={() => navigate("/dashboard")} aria-label="Back to dashboard"><ArrowLeft size={17} /></button>
         <div className="sticky-wall-heading">
           <span className="sticky-wall-eyebrow"><Sparkles size={14} /> A LITTLE SPACE FOR YOUR THOUGHTS</span>
-          <h1>Your little <em>wall of words.</em></h1>
+          <h1>Little <em>Notes.</em></h1>
           <p>Save a thought, a tiny win, a reminder, or something you want to let go of.</p>
         </div>
         <button className="sticky-wall-add" onClick={() => setComposerOpen(true)}><Plus size={18} /> Add a note</button>
       </header>
 
-      <section className="sticky-wall-board" aria-label="Your sticky note wall">
+      <section className="sticky-wall-board" aria-label="Little Notes wall">
         <div className="sticky-wall-string" />
         {notes.length === 0 ? (
           <div className="sticky-wall-empty">
