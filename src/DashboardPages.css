@@ -469,3 +469,12 @@ main.mindora-section-page:has(.insight-chart-card) .section-page-title h1 em{
 html[data-mindora-theme="dark"] .mindora-section-page,.dark-theme.mindora-section-page{--page-bg:#292323;--paper:#382d2a;--ink:#fff3df;--muted:#dfc4a8;--line:#59443b;background:radial-gradient(ellipse at 7% 5%,#49352c 0,transparent 34%),linear-gradient(135deg,#292323,#332722 58%,#382a24);color:var(--ink)}
 html[data-mindora-theme="dark"] .journal-diary-cover,.dark-theme .journal-diary-cover{background:linear-gradient(115deg,#673c2c 0%,#9d6040 9%,#895136 15%,#75442f 100%);border-color:#9d6848}
 html[data-mindora-theme="dark"] .journal-loose-page,.dark-theme .journal-loose-page{background:#382d2a;color:#fff3df;border-color:#59443b}
+
+
+/* Keep the open writing page physically on top of the diary cover, like a page pulled out from the book. */
+.journal-diary-scene.diary-is-open{position:relative;display:block;min-height:470px;padding:0;margin:0 auto 38px;perspective:none;isolation:isolate}
+.journal-diary-scene.diary-is-open .journal-diary-cover{position:relative;z-index:1;width:min(100%,950px);min-height:430px;margin:0 auto;transform:none;filter:none}
+.journal-diary-scene.diary-is-open .journal-cover-content{min-height:430px}
+.journal-diary-scene.diary-is-open .journal-loose-page{position:absolute;z-index:4;top:22px;left:50%;width:min(92%,900px);min-height:390px;max-height:none;margin:0;overflow:visible;transform:translateX(-50%);box-shadow:0 22px 55px rgba(79,48,31,.3);animation:journalPageLift .65s cubic-bezier(.2,.8,.2,1) both}
+.journal-diary-scene.diary-is-open .journal-loose-page.page-in-motion{animation:journalPageLift .7s cubic-bezier(.2,.8,.2,1) both}
+@media(max-width:760px){.journal-diary-scene.diary-is-open{min-height:420px}.journal-diary-scene.diary-is-open .journal-diary-cover{min-height:380px}.journal-diary-scene.diary-is-open .journal-cover-content{min-height:380px}.journal-diary-scene.diary-is-open .journal-loose-page{top:12px;width:96%;min-height:360px;max-height:calc(100vh - 100px);overflow:auto}.journal-diary-scene.diary-is-open .journal-page-body{padding:22px 18px}.journal-diary-scene.diary-is-open .journal-writing-scrapbook{grid-template-columns:1fr}}
