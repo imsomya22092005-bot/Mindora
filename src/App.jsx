@@ -484,6 +484,7 @@ function Dashboard() {
     setActiveNav(section);
     if (section === "Overview") navigate("/dashboard");
     if (section === "Journal") navigate("/journal");
+    if (section === "Little Notes") navigate("/sticky-wall");
     if (section === "Insights") navigate("/insights");
     if (section === "Mindful moments") navigate("/mindful-moments");
     if (section === "AI wellbeing") navigate("/mindora-ai");
@@ -495,6 +496,7 @@ function Dashboard() {
   const navItems = [
     { label: t("Overview", "डैशबोर्ड"), icon: LayoutDashboard, routeLabel: "Overview" },
     { label: t("Journal", "डायरी"), icon: BookOpen, routeLabel: "Journal" },
+    { label: t("Little Notes", "छोटे नोट्स"), icon: StickyNote, routeLabel: "Little Notes" },
     { label: t("Insights", "जानकारियाँ"), icon: BarChart3, routeLabel: "Insights" },
     { label: t("Mindful moments", "सुकून के पल"), icon: Wind, routeLabel: "Mindful moments" },
     { label: t("AI wellbeing", "AI वेलबीइंग"), icon: HeartHandshake, routeLabel: "AI wellbeing" },
