@@ -124,85 +124,6 @@ Auth: Include "Authorization: Bearer <token>" in Headers for protected routes.
   - 401 Unauthorized:
     { "error": "Google authentication failed" }
 
-==============================
-3. CALM CORNER (Protected)
-==============================
-
-👉 1. Log Mindful Session
-• Method: POST
-• Route: /api/calm/session
-• Headers: 
-  - Authorization: Bearer <token>
-  - Content-Type: application/json
-• Body:
-{
-  "activityType": "box_breathing",
-  "durationMinutes": 5,
-  "soundscape": "rain",
-  "reflectionNote": "Felt grounded and calm after coding"
-}
-(Allowed activityType values: box_breathing, 478_breathing, ambient_sound, grounding, custom)
-(Allowed soundscape values: rain, forest, waves, none)
-• Response (201):
-{
-  "success": true,
-  "message": "Session recorded successfully",
-  "data": {
-    "_id": "670c5e3d1234567890abcdef",
-    "user": "670c4a1b...",
-    "activityType": "box_breathing",
-    "durationMinutes": 5,
-    "soundscape": "rain",
-    "reflectionNote": "Felt grounded and calm after coding",
-    "completedAt": "2026-10-20T11:25:00.000Z"
-  }
-}
-
-👉 2. Aggregate Dashboard Stats
-• Method: GET
-• Route: /api/calm/stats
-• Headers: Authorization: Bearer <token>
-• Response (200):
-{
-  "success": true,
-  "data": {
-    "totalMinutes": 35,
-    "totalSessions": 6,
-    "activityBreakdown": [
-      {
-        "_id": "box_breathing",
-        "totalMinutes": 20,
-        "count": 4
-      },
-      {
-        "_id": "ambient_sound",
-        "totalMinutes": 15,
-        "count": 2
-      }
-    ]
-  }
-}
-
-👉 3. Session History Feed
-• Method: GET
-• Route: /api/calm/history?limit=10
-• Headers: Authorization: Bearer <token>
-• Response (200):
-{
-  "success": true,
-  "count": 1,
-  "data": [
-    {
-      "_id": "670c5e3d1234567890abcdef",
-      "activityType": "box_breathing",
-      "durationMinutes": 5,
-      "soundscape": "rain",
-      "reflectionNote": "Felt grounded and calm after coding",
-      "completedAt": "2026-10-20T11:25:00.000Z"
-    }
-  ]
-}
-
 =======================================
 4. MOVEMENT / MINDFUL PRACTICES MODULE
 =======================================
@@ -343,3 +264,159 @@ Auth: Include "Authorization: Bearer <token>" in Headers for protected routes.
   "success": false,
   "error": "Entry not found"
 }
+
+==================================================
+6. MINDORA BACKEND: COPING & ML API SPECIFICATIONS
+==================================================
+
+Base URL: https://mindora-backend-mdfl.onrender.com
+
+--------------------------------------------------
+1. Coping ML Health Check
+--------------------------------------------------
+• Method: GET
+• Endpoint: /api/ml/coping/health
+• Access: Public (No Token Required)
+• Purpose: Check if the underlying ML recommendation engine is alive and ready.
+• Response (200 OK):
+  {
+    "success": true,
+    "mlService": {
+      "status": "ok",
+      "activities": 66,
+      "threshold": 0.3
+    }
+  }
+• Error Response (502 Bad Gateway):
+  {
+    "success": false,
+    "error": "ML service is asleep or offline."
+  }
+
+--------------------------------------------------
+2. Get Personalized Coping Recommendations
+--------------------------------------------------
+• Method: POST
+• Endpoint: /api/ml/coping/recommend
+• Access: Protected
+• Headers:
+    Authorization: Bearer <USER_JWT_TOKEN>
+    Content-Type: application/json
+• Request Body:
+  {
+    "mood": "stress",
+    "mood_intensity": 4,
+    "energy_level": 3,
+    "time_of_day": "evening",
+    "top_n": 3
+  }
+
+• Constraints & Valid Values:
+    - mood (string, required): 
+      "stress" | "anxiety" | "frustration" | "sadness" | "low_energy" | "overwhelmed" | "loneliness" | "restlessness"
+    - mood_intensity (integer, optional, default: 3): 1 to 5
+    - energy_level (integer, optional, default: 3): 1 to 5
+    - time_of_day (string, optional, default: "evening"): 
+      "morning" | "afternoon" | "evening" | "night"
+    - top_n (integer, optional, default: 3): 1 to 10
+
+• Success Response (200 OK):
+  {
+    "success": true,
+    "recommendations": [
+      {
+        "activity_id": "act_04",
+        "title": "Box Breathing",
+        "category": "breathing",
+        "description": "4-4-4-4 rhythm for nervous system regulation",
+        "duration_min": 5,
+        "score": 0.82,
+        "predicted_helpful": true,
+        "repeated_recently": false
+      }
+    ],
+    "threshold": 0.3
+  }
+
+• Validation Error (400 Bad Request):
+  {
+    "success": false,
+    "error": "Invalid mood. Allowed moods are: stress, anxiety, frustration, sadness, low_energy, overwhelmed, loneliness, restlessness"
+  }
+
+--------------------------------------------------
+3. Get User Coping Profile
+--------------------------------------------------
+• Method: GET
+• Endpoint: /api/ml/coping/profile
+• Access: Protected
+• Headers:
+    Authorization: Bearer <USER_JWT_TOKEN>
+• Success Response (200 OK):
+  {
+    "success": true,
+    "profile": {
+      "_id": "671cb0a8...",
+      "user": "671ca8...",
+      "age_group": "18-24",
+      "experience_level": "beginner",
+      "pref_category_1": "breathing",
+      "pref_category_2": "mindfulness",
+      "max_duration_pref": 15,
+      "usual_energy": 3
+    }
+  }
+
+--------------------------------------------------
+4. Create / Update Coping Profile
+--------------------------------------------------
+• Method: PUT
+• Endpoint: /api/ml/coping/profile
+• Access: Protected
+• Headers:
+    Authorization: Bearer <USER_JWT_TOKEN>
+    Content-Type: application/json
+• Request Body:
+  {
+    "age_group": "18-24",
+    "experience_level": "beginner",
+    "pref_category_1": "breathing",
+    "pref_category_2": "mindfulness",
+    "max_duration_pref": 15,
+    "usual_energy": 3
+  }
+• Success Response (200 OK):
+  {
+    "success": true,
+    "profile": { ... }
+  }
+
+--------------------------------------------------
+5. Activity Feedback (Logging Completion/Rating)
+--------------------------------------------------
+• Method: POST
+• Endpoint: /api/ml/coping/feedback
+• Access: Protected
+• Headers:
+    Authorization: Bearer <USER_JWT_TOKEN>
+    Content-Type: application/json
+• Request Body:
+  {
+    "activity_id": "act_04",
+    "action": "completed",
+    "rating": 5
+  }
+• Constraints:
+    - action: "completed" | "dropped" | "skipped"
+    - rating: integer 1 to 5 (required only when action is "completed")
+• Success Response (201 Created):
+  {
+    "success": true,
+    "feedback": {
+      "id": "671cb2f...",
+      "activity_id": "act_04",
+      "action": "completed",
+      "rating": 5,
+      "createdAt": "2026-10-26T14:15:00.000Z"
+    }
+  }

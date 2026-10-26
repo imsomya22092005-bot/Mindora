@@ -29,7 +29,7 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/mood', require('./routes/moodRoutes'));
 app.use('/api/movements', require('./routes/movementRoutes'));
 app.use('/api/journal', require('./routes/journalRoutes'));
-
+app.use('/api/ml', require('./routes/mlIntegrationRoutes'));
 
 app.use((req, res) => {
   res.status(404).json({ error: `Not Found - ${req.originalUrl}` });
