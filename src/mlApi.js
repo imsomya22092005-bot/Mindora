@@ -2,8 +2,8 @@ import { apiRequest } from "./api";
 
 // Deployed ML services. These fallbacks keep the AI features usable if the
 // current Mindora backend deployment has not yet picked up /api/ml routes.
-const EMOTION_SERVICE_URL = "https://mindora-82go.onrender.com";
-const COPING_SERVICE_URL = "https://mindora-1-2tup.onrender.com";
+const EMOTION_SERVICE_URL = "/ml-proxy/emotion";
+const COPING_SERVICE_URL = "/ml-proxy/coping";
 
 async function postJson(url, body) {
   let response;
