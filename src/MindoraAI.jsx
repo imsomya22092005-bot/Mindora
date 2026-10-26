@@ -11,7 +11,7 @@ const moods = [
   ["sadness", "Sad", "🌧️"], ["stress", "Stressed", "🍃"]
 ];
 const times = ["morning", "afternoon", "evening", "night"];
-const getToken = () => localStorage.getItem("token") || localStorage.getItem("authToken") || localStorage.getItem("mindoraToken") || "";
+const getToken = () => localStorage.getItem("mindora-token") || localStorage.getItem("token") || localStorage.getItem("authToken") || localStorage.getItem("mindoraToken") || "";
 
 export default function MindoraAI() {
   const [language] = useLanguage();
@@ -61,7 +61,7 @@ export default function MindoraAI() {
     event.preventDefault();
     setRecBusy(true); setRecError(""); setRecommendations([]); setFeedback({});
     try {
-      const result = await getCopingRecommendations({ mood, intensity, time_of_day: timeOfDay, energy_level: energy, top_n: 3 }, getToken());
+      const result = await getCopingRecommendations({ mood, mood_intensity: intensity, time_of_day: timeOfDay, energy_level: energy, top_n: 3 }, getToken());
       const data = result?.data || result;
       setRecommendations(data.recommendations || data.activities || []);
       if (!(data.recommendations || data.activities || []).length) setRecError("No suggestions returned yet. Please try again.");
@@ -73,7 +73,7 @@ export default function MindoraAI() {
     const activityId = item.activity_id || item.id || item.title;
     setFeedback(prev => ({ ...prev, [activityId]: rating }));
     try {
-      await sendCopingFeedback({ activity_id: String(activityId), title: item.title, category: item.category, status: "completed", rating, helpful: rating >= 4 }, getToken());
+      await sendCopingFeedback({ activity_id: String(activityId), action: "completed", rating }, getToken());
     } catch (error) {
       setRecError("Your rating could not be saved: " + error.message);
       setFeedback(prev => { const next = { ...prev }; delete next[activityId]; return next; });
