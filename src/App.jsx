@@ -26,6 +26,7 @@ import {
   Leaf,
   Check,
   Gamepad2,
+  StickyNote,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -485,6 +486,7 @@ function Dashboard() {
     if (section === "Journal") navigate("/journal");
     if (section === "Insights") navigate("/insights");
     if (section === "Mindful moments") navigate("/mindful-moments");
+    if (section === "Sticky Note Wall") navigate("/sticky-wall");
     if (section === "AI wellbeing") navigate("/mindora-ai");
     if (section === "Calm Corner") navigate("/calm-corner");
     if (section === "My profile") navigate("/profile");
@@ -496,6 +498,7 @@ function Dashboard() {
     { label: t("Journal", "डायरी"), icon: BookOpen, routeLabel: "Journal" },
     { label: t("Insights", "जानकारियाँ"), icon: BarChart3, routeLabel: "Insights" },
     { label: t("Mindful moments", "सुकून के पल"), icon: Wind, routeLabel: "Mindful moments" },
+    { label: t("Sticky Note Wall", "स्टिकी नोट वॉल"), icon: StickyNote, routeLabel: "Sticky Note Wall" },
     { label: t("AI wellbeing", "AI वेलबीइंग"), icon: HeartHandshake, routeLabel: "AI wellbeing" },
     { label: t("Play & Unwind", "खेलें और सुकून पाएँ"), icon: Gamepad2, routeLabel: "Play & Unwind" },
   ];
