@@ -1,47 +1,186 @@
-# Coping Suggestions API (Flask)
+# Mindora – Personalized Coping Suggestions API
 
-User ka mood, energy waghera bhejo, ML model top activities wapas deta hai. Gemini ki zaroorat nahi (neeche "Gemini kab" dekho).
+## Overview
 
-## Chalane ke steps
-1. `pip install -r requirements.txt` (Python 3.11+)
-2. `python app.py` -> `http://localhost:5000`
-3. Test: `python -m unittest tests.test_api -v`
+Mindora Personalized Coping Suggestions is a machine learning-based REST API that recommends coping activities based on a user's current mood and situation.
 
-`model/` folder mein model ki 4 files already hain (notebook Part 17 se). Notebook dobara run karo toh nayi files yahan replace kar do.
+The API uses a trained Logistic Regression model to score and rank suitable activities, helping users discover personalized ways to manage everyday stress and emotions.
 
-## Endpoints
-| Method | Path | Kaam |
-|---|---|---|
-| GET | `/health` | status |
-| POST | `/recommend` | top activities |
+## Features
 
-### Input format (backend developer ke liye)
-| Field | Type | Zaroori? | Matlab |
-|---|---|---|---|
-| `mood` | string | haan | `anxiety, frustration, loneliness, low_energy, overwhelmed, restlessness, sadness, stress` |
-| `mood_intensity` | 1 se 5 | nahi (default 3) | feeling kitni strong hai |
-| `energy_level` | 1 se 5 | nahi (default 3) | 1 = bahut thaka hua |
-| `time_of_day` | string | nahi | `morning, afternoon, evening, night` (nahi bheja toh server ka time) |
-| `user_id` | string | nahi | `users.csv` mein hai toh profile wahan se aata hai |
-| `profile` | object | nahi | naye user ke liye: `age_group, experience_level, pref_category_1, pref_category_2, max_duration_pref, usual_energy` |
-| `history` | list | nahi | purani activities, **purani pehle**: `[{"activity_id": "A002", "helpful": 1}]` |
-| `top_n` | number | nahi (default 3) | 1 se 10 |
+- Mood-based coping activity recommendations
+- Considers mood intensity, energy level, and time of day
+- Supports ranking and returning the top N recommendations
+- Includes 66 coping activities
+- Provides prediction scores for recommended activities
+- REST API built using Flask
+- Deployed on Render
 
-API stateless hai (apna database nahi). Feedback se suggestions badalne ke liye har request mein user ki `history` bhejni hai. `helpful = 1` ka matlab activity complete hui aur rating 4 ya usse zyada.
+## Tech Stack
+
+- **Programming Language:** Python
+- **Machine Learning:** Scikit-learn, Logistic Regression
+- **Data Processing:** Pandas, NumPy
+- **Model Serialization:** Joblib
+- **Backend Framework:** Flask
+- **Production Server:** Gunicorn
+- **Deployment:** Render
+- **Version Control:** Git and GitHub
+
+## API Deployment
+
+**Base URL:**  
+https://mindora-1-2tup.onrender.com
+
+### Health Check
+
+**Endpoint:** `GET /health`
+
+Check whether the API is running and the activities have loaded successfully.
+
+Example response:
+
+```json
+{
+  "activities": 66,
+  "status": "ok",
+  "threshold": 0.3
+}
+```
+
+### Get Personalized Recommendations
+
+**Endpoint:** `POST /recommend`
+
+**Content-Type:** `application/json`
+
+#### Request Body
+
+```json
+{
+  "mood": "stress",
+  "mood_intensity": 4,
+  "energy_level": 3,
+  "time_of_day": "evening",
+  "top_n": 3
+}
+```
+
+#### Input Parameters
+
+| Parameter | Description |
+|---|---|
+| `mood` | User's current mood |
+| `mood_intensity` | Intensity of the mood |
+| `energy_level` | User's current energy level |
+| `time_of_day` | Time of day |
+| `top_n` | Number of recommendations requested |
+
+Supported moods:
+
+- `anxiety`
+- `frustration`
+- `loneliness`
+- `low_energy`
+- `overwhelmed`
+- `restlessness`
+- `sadness`
+- `stress`
+
+#### Example Response
+
+The API returns a JSON response containing the recommended activities and the configured threshold. Each recommendation may include fields such as:
+
+- `activity_id`
+- `title`
+- `category`
+- `description`
+- `duration_min`
+- `predicted_helpful`
+- `repeated_recently`
+- `score`
+
+The exact recommendations depend on the input and model predictions.
+
+## Model Workflow
+
+1. Receive the user's mood and context through the API.
+2. Process the input into the format expected by the trained model.
+3. Use the saved Logistic Regression pipeline to calculate helpfulness scores.
+4. Rank activities according to the recommendation logic.
+5. Return the requested recommendations as JSON.
+
+The trained model is loaded from a saved `.pkl` file. It is not retrained for every API request.
+
+## Run Locally
+
+### 1. Clone the Repository
 
 ```bash
-curl -X POST http://localhost:5000/recommend -H "Content-Type: application/json" \
-  -d '{"mood": "stress", "mood_intensity": 4, "energy_level": 3, "time_of_day": "evening",
-       "history": [{"activity_id": "A002", "helpful": 1}]}'
+git clone -b ML https://github.com/imsomya22092005-bot/Mindora.git
 ```
-Response mein har activity ke saath: `activity_id, title, category, description, duration_min, score, predicted_helpful, repeated_recently`. `score` helpful hone ki probability hai, `predicted_helpful` = score 0.30 ya usse zyada.
 
-## Deploy (Render jaisi service)
-Build: `pip install -r requirements.txt`, Start: `gunicorn app:app --workers 1 --threads 4 --timeout 60` (`Procfile` mein likha hai). Deploy ke baad `/health` kholke check karo. Public deploy par `API_SECRET` set karna.
+### 2. Navigate to the API Directory
 
-## Gemini kab chahiye?
-Abhi nahi. Model ko mood app ke buttons/sliders se mil jaata hai. Gemini tabhi jodna jab user free text likhe ("aaj bahut stress hai") aur mood us text se nikalna ho.
+```bash
+cd Mindora/personalized_suggestion/flask_api
+```
 
-## Dhyan rakho
-- `scikit-learn` ka version `model_info.json` ke `sklearn_version` jaisa hi rakho.
-- `time_of_day` app se bhejna behtar hai (nahi bheja toh: morning 5-12, afternoon 12-17, evening 17-21, baaki night).
+### 3. Create a Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+Activate it on Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+On macOS or Linux:
+
+```bash
+source venv/bin/activate
+```
+
+### 4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Start the API
+
+```bash
+python app.py
+```
+
+If the application is configured to run through Flask's development server, it will display the local address in the terminal. Use that address to test the API.
+
+For production deployment, Gunicorn is used on Render.
+
+## Deployment Configuration
+
+The API is deployed on Render with the following configuration:
+
+**Root Directory**
+```text
+personalized_suggestion/flask_api
+```
+
+**Build Command**
+```bash
+pip install -r requirements.txt
+```
+
+**Start Command**
+```bash
+gunicorn app:app --workers 1 --threads 4 --timeout 60
+```
+
+## Project Purpose
+
+This API is a component of Mindora, designed to provide personalized coping activity suggestions based on user-provided emotional and contextual information.
+
+It is intended to support emotional well-being and is not a substitute for professional mental health care.

@@ -1,8 +1,3 @@
-"""Model load karna aur activities ko score karna.
-
-Logic notebook ke recommend_v2 function jaisa hi hai (Part 14 aur Part 15).
-Fark sirf itna hai ki history yahan list ke form mein aati hai.
-"""
 import json
 import logging
 import os

@@ -1,9 +1,3 @@
-"""Coping Suggestions - Flask API (sirf ML model, Gemini ki zaroorat nahi).
-
-Routes:
-  GET  /health      server aur model ka status
-  POST /recommend   mood, energy waghera do -> top activities milengi
-"""
 import hmac
 import logging
 import os
