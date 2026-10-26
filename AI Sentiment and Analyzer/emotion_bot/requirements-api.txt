@@ -1,0 +1,6 @@
+flask>=3.0
+gunicorn>=22.0
+onnxruntime>=1.18
+tokenizers>=0.20
+numpy
+google-genai>=1.0

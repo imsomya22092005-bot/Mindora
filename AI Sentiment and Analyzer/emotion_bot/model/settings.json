@@ -1,0 +1,5 @@
+{
+ "max_len": 64,
+ "student": "sentence-transformers/all-MiniLM-L12-v2",
+ "conf_limit": 0.3
+}
