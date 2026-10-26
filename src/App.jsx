@@ -47,6 +47,7 @@ import ProfilePage from "./ProfilePage";
 import GamesZone from "./GamesZone";
 import SharedSidebarLayout from "./SharedSidebarLayout";
 import MindoraAI from "./MindoraAI";
+import StickyNoteWall from "./StickyNoteWall";
 
 import {
   CalmCorner,
@@ -1231,6 +1232,7 @@ function App() {
         <Route path="/journal" element={<SharedSidebarLayout><JournalPage /></SharedSidebarLayout>} />
         <Route path="/insights" element={<SharedSidebarLayout><InsightsPage /></SharedSidebarLayout>} />
         <Route path="/mindful-moments" element={<SharedSidebarLayout><MindfulMomentsPage /></SharedSidebarLayout>} />
+        <Route path="/sticky-wall" element={<SharedSidebarLayout><StickyNoteWall /></SharedSidebarLayout>} />
         <Route path="/mood-heatmap" element={<Navigate to="/dashboard" replace />} />
         <Route path="/profile" element={<SharedSidebarLayout><ProfilePage /></SharedSidebarLayout>} />
         <Route path="/games" element={<SharedSidebarLayout><GamesZone /></SharedSidebarLayout>} />
