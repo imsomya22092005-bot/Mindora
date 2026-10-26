@@ -57,20 +57,21 @@ export function CalmCorner() {
   const musicRef = useRef(null);
 
   async function toggleMeditationMusic() {
-    if (musicRef.current) {
-      const player = musicRef.current;
+    const existingPlayer = musicRef.current;
+
+    if (existingPlayer) {
       try {
-        player.master.gain.cancelScheduledValues(player.context.currentTime);
-        player.master.gain.setTargetAtTime(0, player.context.currentTime, 0.8);
-        window.setTimeout(() => {
-          player.oscillators.forEach((oscillator) => {
-            try { oscillator.stop(); } catch {}
-          });
-          player.context.close().catch(() => {});
-        }, 1800);
-      } catch {}
-      musicRef.current = null;
-      setMusicPlaying(false);
+        if (musicPlaying) {
+          await existingPlayer.context.suspend();
+          setMusicPlaying(false);
+        } else {
+          await existingPlayer.context.resume();
+          setMusicPlaying(true);
+        }
+      } catch (error) {
+        console.error("Could not toggle meditation ambience:", error);
+        setMusicPlaying(false);
+      }
       return;
     }
 
@@ -110,6 +111,20 @@ export function CalmCorner() {
       setMusicPlaying(false);
     }
   }
+
+  // Stop the ambience completely whenever Calm Corner unmounts (page navigation).
+  useEffect(() => {
+    return () => {
+      const player = musicRef.current;
+      if (!player) return;
+
+      player.oscillators.forEach((oscillator) => {
+        try { oscillator.stop(); } catch {}
+      });
+      player.context.close().catch(() => {});
+      musicRef.current = null;
+    };
+  }, []);
 
   useEffect(() => {
     if (!breathing) {
