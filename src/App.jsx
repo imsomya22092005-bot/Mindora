@@ -47,6 +47,7 @@ import IncognitoCheckinPage from "./IncognitoCheckinPage";
 import ProfilePage from "./ProfilePage";
 import GamesZone from "./GamesZone";
 import SharedSidebarLayout from "./SharedSidebarLayout";
+import MindoraAI from "./MindoraAI";
 
 import {
   CalmCorner,
@@ -1235,6 +1236,9 @@ function App() {
         <Route path="/mood-heatmap" element={<Navigate to="/dashboard" replace />} />
         <Route path="/profile" element={<SharedSidebarLayout><ProfilePage /></SharedSidebarLayout>} />
         <Route path="/games" element={<SharedSidebarLayout><GamesZone /></SharedSidebarLayout>} />
+
+        {/* Additive AI wellbeing tools */}
+        <Route path="/mindora-ai" element={<SharedSidebarLayout><MindoraAI /></SharedSidebarLayout>} />
 
         {/* Mindora wellness pages */}
         <Route path="/calm-corner" element={<SharedSidebarLayout><CalmCorner /></SharedSidebarLayout>} />
