@@ -41,7 +41,7 @@ def create_app(emotion_model=None, llm=None):
     def get_llm():
         with deps_lock:
             if deps["llm"] is None:
-                deps["llm"] = chatbot.GeminiResponder()
+                deps["llm"] = chatbot.OllamaResponder()
             return deps["llm"]
 
     def err(msg, code):
@@ -100,7 +100,12 @@ def create_app(emotion_model=None, llm=None):
     # --------------------------------------------------------------- routes
     @app.get("/health")
     def health():
-        return jsonify({"status": "ok"})
+        out = {"status": "ok"}
+        if request.args.get("deep") == "1":          # /health?deep=1 -> Ollama ready hai ya nahi
+            ok, msg = get_llm().check()
+            out.update({"ollama": ok, "detail": msg})
+            return jsonify(out), (200 if ok else 503)
+        return jsonify(out)
 
     @app.post("/chat")
     def chat():
@@ -125,6 +130,7 @@ def create_app(emotion_model=None, llm=None):
             "session_id": sid,
             "reply": out["reply"],
             "crisis": out["crisis"],
+            "fallback": out.get("fallback", False),
             "error": out["intent"] == "llm_error",
             "emotion": None if a is None else {
                 "emotion": a["emotion"], "sentiment": a["sentiment"], "confidence": a["confidence"],
