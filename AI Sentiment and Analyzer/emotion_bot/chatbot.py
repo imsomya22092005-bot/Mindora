@@ -123,54 +123,94 @@ How to reply:
 DEFAULT_OLLAMA_HOST = "http://localhost:11434"
 DEFAULT_OLLAMA_MODEL = "llama3.2:3b"
 
+
 class OllamaResponder:
 
     def __init__(self, host=None, model=None, api_key=None, timeout=None):
         import requests
         self._requests = requests
-        self.host = (host or os.environ.get("OLLAMA_HOST") or DEFAULT_OLLAMA_HOST).rstrip("/")
-        self.model = model or os.environ.get("OLLAMA_MODEL") or DEFAULT_OLLAMA_MODEL
-        self.timeout = float(timeout or os.environ.get("OLLAMA_TIMEOUT") or 120)                
-        key = api_key or os.environ.get("OLLAMA_API_KEY")
-        self.headers = {"Authorization": "Bearer " + key} if key else {}
+        self.host = "https://api.groq.com/openai/v1"
+        self.model = model or os.environ.get("GROQ_MODEL") or "openai/gpt-oss-20b"
+        self.timeout = float(timeout or os.environ.get("GROQ_TIMEOUT") or 30)
+        key = api_key or os.environ.get("GROQ_API_KEY")
+        self.headers = {
+            "Authorization": "Bearer " + key,
+            "Content-Type": "application/json"
+        } if key else {}
 
     def check(self):
-        """(ok, message): Ollama chal raha hai aur model pull ho chuka hai ya nahi."""
+        if not self.headers.get("Authorization"):
+            return False, "GROQ_API_KEY environment variable missing"
         try:
-            r = self._requests.get(self.host + "/api/tags", headers=self.headers, timeout=5)
+            r = self._requests.get(
+                self.host + "/models",
+                headers=self.headers,
+                timeout=10
+            )
             r.raise_for_status()
-            names = [m.get("name", "") for m in r.json().get("models", [])]
-        except Exception as e:                      # noqa: BLE001
-            return False, "Ollama se connect nahi ho paya (%s). Ollama chalu hai? OLLAMA_HOST = %s" % (
-                type(e).__name__, self.host)
-        m = self.model
-        if any(n == m or n == m + ":latest" or n.startswith(m + ":") for n in names):
-            return True, "ok"
-        return False, "Model '%s' pulled nahi hai. Terminal me chalao:  ollama pull %s" % (m, m)
-    
+            names = [m.get("id", "") for m in r.json().get("data", [])]
+            if self.model in names:
+                return True, "ok"
+            return False, "Configured Groq model is not available: " + self.model
+        except Exception as e:
+            return False, "Groq connection failed (%s)" % type(e).__name__
+
     def reply(self, system_prompt, history, user_text):
-        """history: [{"role": "user"|"model", "text": str}, ...]. Text return karta hai, fail hone par exception."""
+        if not self.headers.get("Authorization"):
+            raise RuntimeError("GROQ_API_KEY environment variable missing")
+
         messages = [{"role": "system", "content": system_prompt}]
-        messages += [{"role": h["role"], "content": h["text"]} for h in history]
+
+        for h in history:
+            role = h["role"]
+            if role == "model":
+                role = "assistant"
+            if role in ("user", "assistant"):
+                messages.append({"role": role, "content": h["text"]})
+
         messages.append({"role": "user", "content": user_text})
-        payload = {"model": self.model, "messages": messages, "stream": False, "keep_alive": "30m",
-                   "options": {"temperature": 0.8, "num_predict": 300}}
+
+        payload = {
+            "model": self.model,
+            "messages": messages,
+            "stream": False,
+            "temperature": 0.8,
+            "max_completion_tokens": 300
+        }
+
         last_err = None
+
         for attempt in range(2):
             try:
-                r = self._requests.post(self.host + "/api/chat", json=payload,
-                                        headers=self.headers, timeout=(5, self.timeout))   # (connect, read)
+                r = self._requests.post(
+                    self.host + "/chat/completions",
+                    json=payload,
+                    headers=self.headers,
+                    timeout=(5, self.timeout)
+                )
+
                 if r.status_code >= 400:
-                    raise RuntimeError("Ollama HTTP %d: %s" % (r.status_code, r.text[:200]))
-                text = (r.json().get("message", {}).get("content") or "").strip()
+                    raise RuntimeError(
+                        "Groq HTTP %d: %s" % (r.status_code, r.text[:200])
+                    )
+
+                text = (
+                    r.json().get("choices", [{}])[0]
+                    .get("message", {}).get("content") or ""
+                ).strip()
+
                 if text:
                     return text
-                last_err = RuntimeError("empty response from Ollama")
-            except Exception as e:                  # noqa: BLE001
+
+                last_err = RuntimeError("Empty response from Groq")
+
+            except Exception as e:
                 last_err = e
-                if "HTTP 404" in str(e):            # model pulled nahi: retry bekaar
+                if "HTTP 400" in str(e) or "HTTP 401" in str(e) or "HTTP 403" in str(e) or "HTTP 404" in str(e):
                     break
+
             time.sleep(1.5 * (attempt + 1))
+
         raise last_err
 
 
