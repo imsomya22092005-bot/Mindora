@@ -1,20 +1,30 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const { protect } = require('../middleware/auth');
 
-// Base URLs for both ML Services
+// Base URLs for ML Services
 const EMOTION_API_URL = (process.env.EMOTION_API_URL || 'https://mindora-82go.onrender.com').replace(/\/$/, '');
 const COPING_API_URL = (process.env.COPING_API_URL || 'https://mindora-1-2tup.onrender.com').replace(/\/$/, '');
 
 const MOODS = ['stress', 'anxiety', 'frustration', 'sadness', 'low_energy', 'overwhelmed', 'loneliness', 'restlessness'];
 const TIMES = ['morning', 'afternoon', 'evening', 'night'];
 
+// Inline CopingFeedback model to avoid MODULE_NOT_FOUND errors
+const CopingFeedback = mongoose.models.CopingFeedback || mongoose.model('CopingFeedback', new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  activity_id: { type: String, required: true },
+  action: { type: String, enum: ['completed', 'dropped', 'skipped'], required: true },
+  rating: { type: Number, min: 1, max: 5 },
+  createdAt: { type: Date, default: Date.now }
+}));
+
 /**
- * Robust JSON Forwarder with 60s timeout to handle Render free-tier cold starts
+ * Robust JSON Forwarder with 60s timeout for Render free-tier cold starts
  */
 async function forwardJson(url, body, res, apiKey = null) {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 60000); // 60 seconds
+  const timeout = setTimeout(() => controller.abort(), 60000);
 
   try {
     const headers = {
@@ -66,7 +76,6 @@ async function forwardJson(url, body, res, apiKey = null) {
    1. PUBLIC HEALTH CHECKS
    ======================================================= */
 
-// GET /api/ml/emotion/health
 router.get('/emotion/health', async (req, res) => {
   try {
     const response = await fetch(`${EMOTION_API_URL}/health`);
@@ -77,7 +86,6 @@ router.get('/emotion/health', async (req, res) => {
   }
 });
 
-// GET /api/ml/coping/health
 router.get('/coping/health', async (req, res) => {
   try {
     const response = await fetch(`${COPING_API_URL}/health`);
@@ -92,27 +100,6 @@ router.get('/coping/health', async (req, res) => {
    2. PROTECTED ROUTES (JWT Required)
    ======================================================= */
 router.use(protect);
-
-// POST /api/ml/emotion/chat
-router.post('/emotion/chat', async (req, res) => {
-  const { message } = req.body || {};
-  if (!message || typeof message !== 'string') {
-    return res.status(400).json({ success: false, error: 'message string field is required.' });
-  }
-
-  return forwardJson(`${EMOTION_API_URL}/chat`, req.body, res);
-});
-
-// POST /api/ml/emotion/analyze
-router.post('/emotion/analyze', async (req, res) => {
-  return forwardJson(`${EMOTION_API_URL}/analyze`, req.body, res);
-});
-
-// POST /api/ml/emotion/reset
-router.post('/emotion/reset', async (req, res) => {
-  return forwardJson(`${EMOTION_API_URL}/reset`, req.body, res);
-});
-
 
 // POST /api/ml/coping/recommend
 router.post('/coping/recommend', async (req, res) => {
@@ -138,11 +125,74 @@ router.post('/coping/recommend', async (req, res) => {
       ...(history ? { history } : {})
     };
 
-    // Calls https://mindora-1-2tup.onrender.com/recommend
     return forwardJson(`${COPING_API_URL}/recommend`, payload, res);
   } catch (error) {
     return res.status(500).json({ success: false, error: 'Failed to process recommendation.' });
   }
+});
+
+// POST /api/ml/coping/feedback
+router.post('/coping/feedback', async (req, res) => {
+  try {
+    const body = req.body || {};
+    const { activity_id, action, rating, helpful, feedback_type } = body;
+
+    if (!activity_id) {
+      return res.status(400).json({ success: false, error: 'activity_id is required.' });
+    }
+
+    let finalAction = action || 'completed';
+    let finalRating = rating ? Number(rating) : undefined;
+
+    if (helpful === true || feedback_type === 'thumbs_up' || action === 'helpful') {
+      finalAction = 'completed';
+      finalRating = finalRating || 5;
+    } else if (helpful === false || feedback_type === 'thumbs_down' || action === 'not_helpful') {
+      finalAction = 'dropped';
+      finalRating = finalRating || 1;
+    }
+
+    const feedback = await CopingFeedback.create({
+      user: req.user?._id,
+      activity_id: String(activity_id).slice(0, 200),
+      action: finalAction,
+      ...(finalRating !== undefined ? { rating: finalRating } : {})
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: 'Feedback recorded successfully',
+      feedback: {
+        id: feedback._id,
+        activity_id: feedback.activity_id,
+        action: feedback.action,
+        rating: feedback.rating,
+        createdAt: feedback.createdAt
+      }
+    });
+  } catch (error) {
+    console.error('[Feedback Error]:', error.message);
+    return res.status(500).json({ success: false, error: 'Could not record activity feedback.' });
+  }
+});
+
+// POST /api/ml/emotion/chat
+router.post('/emotion/chat', async (req, res) => {
+  const { message } = req.body || {};
+  if (!message || typeof message !== 'string') {
+    return res.status(400).json({ success: false, error: 'message string field is required.' });
+  }
+  return forwardJson(`${EMOTION_API_URL}/chat`, req.body, res);
+});
+
+// POST /api/ml/emotion/analyze
+router.post('/emotion/analyze', async (req, res) => {
+  return forwardJson(`${EMOTION_API_URL}/analyze`, req.body, res);
+});
+
+// POST /api/ml/emotion/reset
+router.post('/emotion/reset', async (req, res) => {
+  return forwardJson(`${EMOTION_API_URL}/reset`, req.body, res);
 });
 
 module.exports = router;
