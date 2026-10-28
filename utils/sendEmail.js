@@ -1,4 +1,4 @@
-async function sendOtpEmail(toEmail, otpCode) {
+async function sendOTPEmail(toEmail, otpCode) {
   const response = await fetch('https://sendliberty.com/api/send', {
     method: 'POST',
     headers: {
@@ -29,4 +29,4 @@ async function sendOtpEmail(toEmail, otpCode) {
   return data;
 }
 
-module.exports = { sendOtpEmail };
+module.exports = { sendOTPEmail };
