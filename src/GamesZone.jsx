@@ -84,6 +84,11 @@ export default function GamesZone() {
   const [language] = useLanguage();
   const hi = language === "hi";
   const [activeGame, setActiveGame] = useState(() => new URLSearchParams(window.location.search).get("game"));
+  const [sessionMinutes, setSessionMinutes] = useState(15);
+  const [sessionRemaining, setSessionRemaining] = useState(15 * 60);
+  const [sessionActive, setSessionActive] = useState(false);
+  const [sessionReminder, setSessionReminder] = useState(false);
+  const sessionWasPlaying = useRef(false);
   useEffect(() => {
     const requestedGame = new URLSearchParams(location.search).get("game");
     if (requestedGame && games.some((game) => game.id === requestedGame)) {
@@ -183,13 +188,13 @@ export default function GamesZone() {
 
   const puzzleTimeLimit = puzzleSize === 3 ? 120 : puzzleSize === 4 ? 180 : 240;
   useEffect(() => {
-    if (activeGame !== "picture-puzzle" || !puzzleImage || !puzzleTiles.length || puzzleWon || puzzleTimedOut) return;
+    if (activeGame !== "picture-puzzle" || sessionReminder || !puzzleImage || !puzzleTiles.length || puzzleWon || puzzleTimedOut) return;
     const timer = window.setInterval(() => setPuzzleRemaining(value => {
       if (value <= 1) { window.clearInterval(timer); setPuzzleTimedOut(true); return 0; }
       return value - 1;
     }), 1000);
     return () => window.clearInterval(timer);
-  }, [activeGame, puzzleImage, puzzleTiles.length, puzzleWon, puzzleTimedOut]);
+  }, [activeGame, puzzleImage, puzzleTiles.length, puzzleWon, puzzleTimedOut, sessionReminder]);
 
   function startPicturePuzzle(image = puzzleImage, size = puzzleSize) {
     setPuzzleTiles(makePuzzleShuffle(size));
@@ -406,7 +411,7 @@ export default function GamesZone() {
     setFruitScore(0); setFruitNext(fruitStateRef.current.next); setFruitOver(false); setFruitResetKey(k => k + 1);
   }
   useEffect(() => {
-    if (activeGame !== "fruit-merge") return;
+    if (activeGame !== "fruit-merge" || sessionReminder) return;
     const canvas = fruitCanvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -481,7 +486,45 @@ export default function GamesZone() {
     const spawnTimer=window.setInterval(spawnFruit,2800);
     state.raf=requestAnimationFrame(draw);
     return ()=>{cancelAnimationFrame(state.raf);window.clearInterval(spawnTimer);window.removeEventListener("resize",resize);canvas.removeEventListener("pointermove",moveFruitPosition);};
-  }, [activeGame, fruitResetKey]);
+  }, [activeGame, fruitResetKey, sessionReminder]);
+
+  useEffect(() => {
+    if (!sessionActive || !activeGame || sessionReminder) return;
+    const timer = window.setInterval(() => {
+      setSessionRemaining((seconds) => {
+        if (seconds <= 1) {
+          window.clearInterval(timer);
+          sessionWasPlaying.current = activeGame === "color-pop" && playing;
+          if (sessionWasPlaying.current) togglePause();
+          setSessionActive(false);
+          setSessionReminder(true);
+          return 0;
+        }
+        return seconds - 1;
+      });
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [sessionActive, activeGame, sessionReminder, playing]);
+
+  function continueForFiveMinutes() {
+    setSessionRemaining(5 * 60);
+    setSessionActive(true);
+    setSessionReminder(false);
+    if (sessionWasPlaying.current && activeGame === "color-pop") {
+      window.setTimeout(() => togglePause(), 0);
+    }
+    sessionWasPlaying.current = false;
+  }
+
+  function endPlaySession() {
+    setSessionReminder(false);
+    setSessionActive(false);
+    setActiveGame(null);
+    setPlaying(false);
+    setFinished(false);
+    sessionWasPlaying.current = false;
+    navigate("/games");
+  }
 
   function chooseGame(id) {
     if (id === "picture-puzzle") { setPuzzleTiles([]); setPuzzleMoves(0); setPuzzleWon(false); }
@@ -499,6 +542,12 @@ export default function GamesZone() {
       <div className="games-brand"><span><Gamepad2 size={20}/></span><div><small>MINDORA · YOUR SPACE</small><h1>{hi ? "खेलें और सुकून पाएँ" : "Play & Unwind"}</h1></div></div>
       <p>{hi ? "थोड़ा खेलें। साँस लें। अपने लिए एक पल निकालें।" : "A little play, a little pause, a moment just for you."}</p>
     </header>
+
+    {!activeGame ? <section className="mindful-timer-setup">
+      <div className="mindful-timer-copy"><span className="mindful-timer-emoji">🌼</span><div><span className="colorpop-kicker">{hi ? "खेलने से पहले एक प्यारा-सा रिमाइंडर" : "A LITTLE CHECK-IN BEFORE YOU PLAY"}</span><h2>{hi ? "आपका mindful play timer" : "Set your mindful play timer"}</h2><p>{hi ? "अपना समय चुनें। पूरा होने पर गेम रुकेगा और हम आपको प्यार से ब्रेक याद दिलाएँगे।" : "Choose your play time. When it’s up, your game pauses and we’ll gently remind you to take a break."}</p></div></div>
+      <div className="mindful-timer-options">{[{v:10,l:hi?"10 मिनट":"10 min"},{v:15,l:hi?"15 मिनट":"15 min"},{v:30,l:hi?"30 मिनट":"30 min"}].map(option=><button key={option.v} type="button" className={sessionMinutes===option.v?"selected":""} onClick={()=>setSessionMinutes(option.v)}>{option.l}</button>)}</div>
+      <label className="mindful-timer-custom">{hi ? "या अपने मिनट चुनें" : "Or choose your own time"} <select value={sessionMinutes} onChange={e=>setSessionMinutes(Number(e.target.value))}><option value={5}>5 min</option><option value={10}>10 min</option><option value={15}>15 min</option><option value={20}>20 min</option><option value={25}>25 min</option><option value={30}>30 min</option><option value={45}>45 min</option><option value={60}>60 min</option></select></label>
+    </section> : null}
 
     {activeGame === "color-pop" && !playing && !finished ? <section className="colorpop-shell">
       <div className="colorpop-top"><div><span className="colorpop-kicker">MINDORA ARCADE · 01</span><h2>Color Pop <span>✦</span></h2><p>{hi ? "सिर्फ़ वही रंग पॉप करें जो ऊपर बताया गया है।" : "Pop only the colour you are asked to find."}</p></div></div>
@@ -601,6 +650,15 @@ export default function GamesZone() {
       <section className="games-welcome"><span className="games-welcome-spark">✦</span><div><span className="colorpop-kicker">{hi?"आपकी छोटी-सी ब्रेक":"YOUR LITTLE BREAK"}</span><h2>{hi?"आज आप क्या खेलना चाहेंगे?":"What feels good to play today?"}</h2><p>{hi?"कोई दबाव नहीं, बस अपने लिए एक छोटा-सा पल।":"No pressure, just a little moment for yourself."}</p></div></section>
       <section className="games-grid">{games.map((g)=><button key={g.id} className={"game-card game-"+g.tone+(g.ready?" game-ready":"")} onClick={()=>chooseGame(g.id)}><span className="game-card-art"><span className="game-card-emoji">{g.emoji}</span>{g.ready?<span className="game-play-pill"><Play size={13} fill="currentColor"/> {hi?"खेलें":"Play now"}</span>:<span className="game-soon-pill"><Lock size={12}/> {hi?"जल्द":"Coming soon"}</span>}</span><span className="game-card-copy"><strong>{hi?g.hi:g.title}</strong><span>{hi?g.hiDescription:g.description}</span></span><ArrowRight size={17} className="game-card-arrow"/></button>)}</section>
     </> : null}
+    {sessionReminder && <div className="mindful-reminder-backdrop" role="presentation"><section className="mindful-reminder-card" role="dialog" aria-modal="true" aria-labelledby="mindful-reminder-title">
+      <div className="mindful-reminder-art" aria-hidden="true">🌷✨</div>
+      <span className="colorpop-kicker">{hi ? "आपके लिए एक छोटा-सा विराम" : "A LITTLE PAUSE FOR YOU"}</span>
+      <h2 id="mindful-reminder-title">{hi ? "वाह, आपने आज अच्छा समय बिताया! 💛" : "You’ve had a lovely little play! 💛"}</h2>
+      <p>{hi ? "आपका तय किया हुआ समय पूरा हो गया। चलिए, आँखों और मन को थोड़ा आराम दें।" : "Your play timer is up. Let’s give your eyes and mind a tiny, refreshing break."}</p>
+      <div className="mindful-reminder-actions"><button className="mindful-reminder-primary" onClick={endPlaySession}>{hi ? "ब्रेक लेते हैं 🌿" : "Take a little break 🌿"}</button><button className="mindful-reminder-secondary" onClick={continueForFiveMinutes}>{hi ? "बस 5 मिनट और खेलें ✨" : "Play for 5 more minutes ✨"}</button></div>
+      <small>{hi ? "आपकी पसंद, आपका समय — कोई दबाव नहीं।" : "Your choice, your pace — no pressure."}</small>
+    </section></div>}
+
     <footer className="games-footer"><Sparkles size={15}/>{hi?"यह जगह सिर्फ़ आपके लिए है — अपनी गति से खेलें।":"This space is yours. Play at your own pace."}</footer>
   </main>;
 }
