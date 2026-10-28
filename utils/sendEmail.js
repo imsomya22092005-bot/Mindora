@@ -1,28 +1,32 @@
-const { Resend } = require('resend');
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-const sendOTPEmail = async (toEmail, otp) => {
-  const { data, error } = await resend.emails.send({
-    from: 'Mindora Support <onboarding@resend.dev>', 
-    to: toEmail,
-    subject: 'Your Mindora Verification Code',
-    html: `
-      <div style="font-family: Arial, sans-serif; padding: 20px; color: #111;">
-        <h2>Verify Your Account</h2>
-        <p>Use the following 6-digit code to complete your login:</p>
-        <h1 style="color: #4CAF50; letter-spacing: 4px;">${otp}</h1>
-        <p>This code will expire in 10 minutes. If you did not request this, please ignore this email.</p>
-      </div>
-    `
+async function sendOtpEmail(toEmail, otpCode) {
+  const response = await fetch('https://sendliberty.com/api/send', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${process.env.SENDLIBERTY_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      from: `Mindora Support <${process.env.EMAIL_USER}>`,
+      to: toEmail,
+      subject: 'Your Mindora Verification Code',
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h2>Your Verification Code</h2>
+          <p>Use the following 6-digit code to verify your Mindora account. It expires in 10 minutes:</p>
+          <h1 style="color: #025a04; letter-spacing: 4px;">${otpCode}</h1>
+          <p>If you did not request this, please ignore this email.</p>
+        </div>
+      `
+    }),
+    signal: AbortSignal.timeout(10000)
   });
 
-  if (error) {
-    console.error('[Resend Error]:', error);
-    throw new Error(error.message);
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error || 'Failed to send OTP email via Sendliberty');
   }
 
   return data;
-};
+}
 
-module.exports = sendOTPEmail;
+module.exports = { sendOtpEmail };
