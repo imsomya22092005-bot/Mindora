@@ -23,6 +23,7 @@ async function sendOTPEmail(toEmail, otpCode) {
 
   const data = await response.json();
   if (!response.ok) {
+    console.error('[Sendliberty Error Payload]:', data);
     throw new Error(data.error || 'Failed to send OTP email via Sendliberty');
   }
 
