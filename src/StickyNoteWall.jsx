@@ -62,6 +62,12 @@ export default function StickyNoteWall() {
       </header>
 
       <section className="sticky-wall-board" aria-label="Little Notes wall">
+        <div className="sticky-wall-decor sticky-wall-decor-flower" aria-hidden="true">✿</div>
+        <div className="sticky-wall-decor sticky-wall-decor-sparkle" aria-hidden="true">✦</div>
+        <div className="sticky-wall-decor sticky-wall-decor-heart" aria-hidden="true">♡</div>
+        <div className="sticky-wall-decor sticky-wall-decor-sun" aria-hidden="true">☼</div>
+        <div className="sticky-wall-washi sticky-wall-washi-left" aria-hidden="true" />
+        <div className="sticky-wall-washi sticky-wall-washi-right" aria-hidden="true" />
         <div className="sticky-wall-string" />
         {notes.length === 0 ? (
           <div className="sticky-wall-empty">
