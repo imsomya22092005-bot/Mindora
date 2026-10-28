@@ -82,3 +82,28 @@ html[data-mindora-theme="dark"] .sticky-wall-heading h1 em{color:#e2a18f}
 html[data-mindora-theme="dark"] .sticky-wall-board{border-color:#81553e;background-color:#49352c;background-image:radial-gradient(ellipse at 15% 15%,#684735aa 0,transparent 38%),radial-gradient(ellipse at 85% 85%,#29232370 0,transparent 45%),repeating-linear-gradient(4deg,#ffffff05 0px,#ffffff05 2px,transparent 2px,transparent 7px),linear-gradient(125deg,#49352c,#60412f 48%,#382d2a)}
 html[data-mindora-theme="dark"] .sticky-wall-composer{background:#382d2a;color:#fff3df;border-color:#59443b}
 html[data-mindora-theme="dark"] .sticky-wall-composer input,html[data-mindora-theme="dark"] .sticky-wall-composer textarea{background:#292323;color:#fff3df;border-color:#59443b}
+
+
+/* Pinterest scrapbook finish: washi tape, hand-drawn doodles and pinned paper. */
+.sticky-wall-board{overflow:hidden}
+.sticky-wall-decor{position:absolute;z-index:0;pointer-events:none;user-select:none;font-family:Georgia,serif;line-height:1;filter:drop-shadow(0 2px 1px #7a4a2c12)}
+.sticky-wall-decor-flower{top:70px;left:25px;font-size:36px;color:#b9653a;transform:rotate(-13deg)}
+.sticky-wall-decor-sparkle{top:115px;right:35px;font-size:31px;color:#fff8dc;text-shadow:0 1px 0 #b8784c;transform:rotate(10deg)}
+.sticky-wall-decor-heart{bottom:74px;left:30px;font-size:36px;color:#bc735e;transform:rotate(12deg)}
+.sticky-wall-decor-sun{right:27px;bottom:83px;font-size:35px;color:#a65f3c;transform:rotate(-10deg)}
+.sticky-wall-washi{position:absolute;z-index:1;top:20px;width:105px;height:25px;opacity:.9;pointer-events:none;background-color:#fff0bb;background-image:repeating-linear-gradient(135deg,#d9824b44 0,#d9824b44 4px,transparent 4px,transparent 9px);box-shadow:0 2px 5px #6b41241a}
+.sticky-wall-washi-left{left:11%;transform:rotate(-8deg)}
+.sticky-wall-washi-right{right:11%;top:auto;bottom:23px;background-color:#f4c3b5;background-image:radial-gradient(#a85f3d70 1.3px,transparent 1.5px);background-size:8px 8px;transform:rotate(7deg)}
+.sticky-note{z-index:1;overflow:visible}
+.sticky-note::before{content:"";position:absolute;z-index:2;top:-10px;left:50%;width:70px;height:22px;transform:translateX(-50%) rotate(-4deg);background:repeating-linear-gradient(135deg,#fff1c8e8 0,#fff1c8e8 5px,#f0cfa6e8 5px,#f0cfa6e8 9px);box-shadow:0 2px 4px #65432b15;border:1px solid #ffffff70}
+.sticky-note::after{content:"✧";position:absolute;right:12px;bottom:31px;pointer-events:none;font-size:25px;line-height:1;color:#a65f3c45;transform:rotate(9deg)}
+.sticky-note-pin{z-index:3;filter:drop-shadow(0 2px 1px #57372130)}
+.sticky-note-delete{z-index:4}
+.sticky-wall-empty,.sticky-wall-notes,.sticky-wall-board-caption{position:relative;z-index:2}
+.sticky-wall-board-caption{padding-top:12px}
+@media(max-width:700px){.sticky-wall-decor-flower{top:62px;left:9px;font-size:25px}.sticky-wall-decor-sparkle{top:86px;right:9px;font-size:24px}.sticky-wall-decor-heart{left:8px;bottom:57px;font-size:26px}.sticky-wall-decor-sun{right:9px;bottom:59px;font-size:25px}.sticky-wall-washi{width:66px;height:18px;top:10px}.sticky-wall-washi-right{top:auto;bottom:12px}.sticky-note::before{width:52px;height:18px;top:-8px}}
+html[data-mindora-theme="dark"] .sticky-wall-decor-flower{color:#e2a18f}
+html[data-mindora-theme="dark"] .sticky-wall-decor-sparkle{color:#fff0c9}
+html[data-mindora-theme="dark"] .sticky-wall-decor-heart{color:#e2a18f}
+html[data-mindora-theme="dark"] .sticky-wall-decor-sun{color:#f0bd8a}
+html[data-mindora-theme="dark"] .sticky-note::before{background:repeating-linear-gradient(135deg,#e5b98de8 0,#e5b98de8 5px,#b87958e8 5px,#b87958e8 9px);border-color:#fff2}
