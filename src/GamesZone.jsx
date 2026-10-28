@@ -527,6 +527,10 @@ export default function GamesZone() {
   }
 
   function chooseGame(id) {
+    setSessionRemaining(sessionMinutes * 60);
+    setSessionActive(true);
+    setSessionReminder(false);
+    sessionWasPlaying.current = false;
     if (id === "picture-puzzle") { setPuzzleTiles([]); setPuzzleMoves(0); setPuzzleWon(false); }
     if (id === "fruit-merge") resetFruitMerge();
     if (id === "color-pop") { setActiveGame("color-pop"); setPlaying(false); setFinished(false); return; }
