@@ -193,7 +193,7 @@ class OllamaResponder:
             "messages": messages,
             "stream": False,
             "temperature": 0.8,
-            "max_completion_tokens": 300
+            "max_completion_tokens": 800
         }
 
         last_err = None
