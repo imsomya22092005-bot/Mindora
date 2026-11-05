@@ -19,13 +19,17 @@ const mainItems = [
 export default function SharedSidebarLayout({children}) {
  const location=useLocation();
  const [mobileMenuOpen,setMobileMenuOpen]=useState(false);
+ const [savedMoodTheme] = useState(() => {
+  try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
+  catch { return "default"; }
+ });
  const [expanded,setExpanded]=useState({
   "Mindful moments":location.pathname.startsWith("/calm")||location.pathname.startsWith("/inner")||location.pathname==="/comfort-box"||location.pathname==="/soundscape"||location.pathname==="/mindful-moments",
   "Play & Unwind":location.pathname==="/games",
   "AI wellbeing":location.pathname==="/mindora-ai"||location.pathname==="/wellbeing-checkin"||location.pathname==="/sleep-check"||location.pathname==="/academic-stress"
  });
  const active=(item)=>location.pathname===item.href || (item.children&&item.label==="Mindful moments"&&(location.pathname.startsWith("/calm")||location.pathname.startsWith("/inner")||location.pathname==="/comfort-box"||location.pathname==="/soundscape"||location.pathname==="/mindful-moments")) || (item.label==="Play & Unwind"&&location.pathname==="/games");
- return <div className="shared-dashboard-layout">
+ return <div className="shared-dashboard-layout" data-mood={savedMoodTheme}>
   <aside className={"shared-dashboard-sidebar "+(mobileMenuOpen?"mobile-menu-open":"")}>
    <div className="shared-sidebar-mobile-head">
     <Link to="/dashboard" className="shared-sidebar-brand" onClick={()=>setMobileMenuOpen(false)}><span className="shared-brand-mark">✿</span><strong>mindora</strong></Link>
