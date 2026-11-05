@@ -20,8 +20,28 @@ import { useLanguage } from "./language";
 function Shell({ title, subtitle, icon, children }) {
   const [language] = useLanguage();
   const hi = language === "hi";
+  const [savedMoodTheme, setSavedMoodTheme] = useState(() => {
+    try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
+    catch { return "default"; }
+  });
+  useEffect(() => {
+    const syncMood = (event) => {
+      const nextMood = event?.detail?.mood;
+      if (nextMood) setSavedMoodTheme(nextMood);
+      else {
+        try { setSavedMoodTheme((localStorage.getItem("mindora-saved-mood") || "default").toLowerCase()); }
+        catch { setSavedMoodTheme("default"); }
+      }
+    };
+    window.addEventListener("mindora:mood-saved", syncMood);
+    window.addEventListener("storage", syncMood);
+    return () => {
+      window.removeEventListener("mindora:mood-saved", syncMood);
+      window.removeEventListener("storage", syncMood);
+    };
+  }, []);
   return (
-    <main className="wellness-page">
+    <main className="wellness-page" data-mood={savedMoodTheme}>
       <header className="wellness-topbar">
         <Link to="/dashboard" className="wellness-back">
           <ArrowLeft size={18} /> {hi ? "डैशबोर्ड पर वापस जाएँ" : "Back to Dashboard"}
