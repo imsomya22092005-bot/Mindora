@@ -488,3 +488,18 @@ html[data-mindora-theme="dark"] .journal-loose-page,.dark-theme .journal-loose-p
 .journal-diary-scene.diary-is-open .journal-loose-page.page-in-motion{animation:journalPageCentered .55s ease-out both!important}
 @keyframes journalPageCentered{from{opacity:.7;transform:translateX(-50%) translateY(12px)!important}to{opacity:1;transform:translateX(-50%) translateY(0)!important}}
 @media(max-width:760px){.journal-diary-scene.diary-is-open{min-height:680px!important}.journal-diary-scene.diary-is-open .journal-diary-cover,.journal-diary-scene.diary-is-open .journal-cover-content{min-height:640px!important}.journal-diary-scene.diary-is-open .journal-loose-page{top:12px!important;width:96%!important;min-height:600px!important;max-height:none!important;overflow:visible!important}.journal-diary-scene.diary-is-open .journal-page-body{padding:22px 18px}.journal-diary-scene.diary-is-open .journal-writing-scrapbook{grid-template-columns:1fr}}
+
+
+/* Insights page heading: the dark-theme class is on the page itself, not a parent */
+html[data-mindora-theme="dark"] .mindora-section-page .section-page-title h1,
+.dark-theme.mindora-section-page .section-page-title h1 {
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .mindora-section-page .section-page-title h1 em,
+.dark-theme.mindora-section-page .section-page-title h1 em {
+  color: #ffbb70 !important;
+}
+html[data-mindora-theme="dark"] .mindora-section-page .section-page-eyebrow,
+.dark-theme.mindora-section-page .section-page-eyebrow {
+  color: #edc49f !important;
+}
