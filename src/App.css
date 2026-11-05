@@ -3692,3 +3692,199 @@ html[data-mindora-theme="dark"] .section-block .section-heading .section-kicker,
 @media (prefers-reduced-motion: reduce) {
   .mood-book-wrap[data-mood] * { transition-duration:.01ms !important; animation-duration:.01ms !important; }
 }
+
+
+/* ==========================================================
+   SITE-WIDE MOOD THEMING
+   Mood palettes recolour the complete signed-in experience.
+   Global Light/Dark preference remains the mode switch.
+   ========================================================== */
+.app-shell[data-mood]:not([data-mood="default"]),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) {
+  --mood-base: #EBDCC6;
+  --mood-ink: #1F382E;
+  --mood-accent: #CBB3EA;
+  --mood-muted: color-mix(in srgb, var(--mood-ink) 72%, white);
+  --mood-page: color-mix(in srgb, var(--mood-base) 23%, white);
+  --mood-panel: color-mix(in srgb, var(--mood-base) 12%, white);
+  --mood-panel-soft: color-mix(in srgb, var(--mood-base) 36%, white);
+  --mood-line: color-mix(in srgb, var(--mood-ink) 18%, var(--mood-base));
+  --mood-hover: color-mix(in srgb, var(--mood-accent) 28%, var(--mood-panel));
+  --mood-active: color-mix(in srgb, var(--mood-base) 62%, white);
+  --mood-button-bg: var(--mood-ink);
+  --mood-button-text: #FFFFFF;
+  --mood-focus: var(--mood-accent);
+  transition: background-color .55s ease, color .55s ease;
+}
+.app-shell[data-mood="low"], .shared-dashboard-layout[data-mood="low"] {
+  --mood-base:#EBDCC6; --mood-ink:#1F382E; --mood-accent:#CBB3EA;
+}
+.app-shell[data-mood="meh"], .shared-dashboard-layout[data-mood="meh"] {
+  --mood-base:#C9ADA7; --mood-ink:#3A0F34; --mood-accent:#C75A3A;
+}
+.app-shell[data-mood="okay"], .shared-dashboard-layout[data-mood="okay"] {
+  --mood-base:#B8DCCB; --mood-ink:#164E4A; --mood-accent:#F5A477;
+}
+.app-shell[data-mood="good"], .shared-dashboard-layout[data-mood="good"] {
+  --mood-base:#F2D98D; --mood-ink:#49352C; --mood-accent:#D9A6A0;
+}
+.app-shell[data-mood="great"], .shared-dashboard-layout[data-mood="great"] {
+  --mood-base:#FAF8F3; --mood-ink:#08090B; --mood-accent:#CDF22B;
+}
+
+/* Dashboard + every page using the shared sidebar: light mood palettes */
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) {
+  background: var(--mood-page) !important;
+  color: var(--mood-ink);
+}
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) .sidebar,
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) .topbar,
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) .panel,
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) .stat-card,
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) .journal-modal,
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) .settings-popover,
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) .notification-popover,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-sidebar,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-sidebar-quote,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-content :is(.panel,.card,.page-card,.journal-writing-card,.journal-entry-card,.insight-card,.assessment-card,.game-card,.wellness-card,.mindful-card,.tool-card,.prompt-card,.stat-card,.growth-note,.growth-message) {
+  background: var(--mood-panel) !important;
+  border-color: var(--mood-line) !important;
+  color: var(--mood-ink);
+}
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) .welcome-section,
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) .mindful-panel,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-content {
+  background: var(--mood-page) !important;
+  color: var(--mood-ink);
+}
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) :is(.brand,.profile-copy strong,.breadcrumb strong,.section-heading h2,.panel-heading h2,.stat-value,.history-details strong,.empty-history strong,.modal-heading h2,.welcome-copy h1),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-content :is(h1,h2,h3,h4,strong,.section-page-header,.page-header) {
+  color: var(--mood-ink);
+}
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) :is(.welcome-copy p,.section-heading p,.gentle-note,.stat-footnote,.activity-copy span,.history-details span,.modal-description,.privacy-note,.empty-history p,.dashboard-footer),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-content :is(p,small,.muted,.subtitle,.description,.helper-text,.journal-entry-date) {
+  color: var(--mood-muted);
+}
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) .nav-item,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-nav-row,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-settings-link {
+  color: var(--mood-ink);
+}
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) .nav-item:hover,
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) .nav-item.active,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-nav-row:hover,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-nav-row.is-active,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-settings-link:hover,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-settings-link.is-active {
+  background: var(--mood-active) !important;
+  color: var(--mood-ink) !important;
+  box-shadow: inset 3px 0 0 var(--mood-accent);
+}
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) :is(.mood-option,.search-box,.theme-setting,.select-period,.icon-button,.plain-icon,.journal-modal textarea),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-content :is(input,textarea,select) {
+  background: var(--mood-panel) !important;
+  color: var(--mood-ink) !important;
+  border-color: var(--mood-line) !important;
+}
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) :is(.welcome-button,.book-turn-button,.book-save-button,.primary-button,.submit-button),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-content :is(.primary-button,.submit-button,.wellness-primary,.practice-primary,.games-primary) {
+  background: var(--mood-button-bg) !important;
+  border-color: var(--mood-button-bg) !important;
+  color: var(--mood-button-text) !important;
+}
+.app-shell[data-mood]:not([data-mood="default"]):not(.dark-theme) :is(button,a):focus-visible,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) :is(button,a,input,textarea,select):focus-visible {
+  outline-color: var(--mood-focus) !important;
+}
+
+/* Dark variants: deep tinted surfaces with explicit light text for contrast. */
+.app-shell.dark-theme[data-mood="low"],
+.shared-dashboard-layout[data-mood="low"] {
+  --mood-base:#17251F; --mood-ink:#F3EBDD; --mood-accent:#B9A5D6;
+  --mood-muted:#D0D8D0; --mood-page:#111C17; --mood-panel:#1D2D24; --mood-panel-soft:#26392E;
+  --mood-line:#34483D; --mood-hover:#2B3C32; --mood-active:#34483D; --mood-button-bg:#B9A5D6; --mood-button-text:#17251F; --mood-focus:#CBB3EA;
+}
+.app-shell.dark-theme[data-mood="meh"],
+.shared-dashboard-layout[data-mood="meh"] {
+  --mood-base:#24101F; --mood-ink:#F5E9E7; --mood-accent:#E18467;
+  --mood-muted:#D9C3CF; --mood-page:#190B16; --mood-panel:#2C1727; --mood-panel-soft:#3B2035;
+  --mood-line:#543047; --mood-hover:#40283A; --mood-active:#543047; --mood-button-bg:#E18467; --mood-button-text:#24101F; --mood-focus:#E9A18A;
+}
+.app-shell.dark-theme[data-mood="okay"],
+.shared-dashboard-layout[data-mood="okay"] {
+  --mood-base:#102E2C; --mood-ink:#E4F1E9; --mood-accent:#F5A477;
+  --mood-muted:#C2DAD0; --mood-page:#0B2221; --mood-panel:#173A37; --mood-panel-soft:#204743;
+  --mood-line:#28514B; --mood-hover:#214640; --mood-active:#28514B; --mood-button-bg:#F5A477; --mood-button-text:#102E2C; --mood-focus:#F5A477;
+}
+.app-shell.dark-theme[data-mood="good"],
+.shared-dashboard-layout[data-mood="good"] {
+  --mood-base:#2C211B; --mood-ink:#F8EEDB; --mood-accent:#E6AD79;
+  --mood-muted:#DCCDBB; --mood-page:#1D1511; --mood-panel:#362820; --mood-panel-soft:#49362A;
+  --mood-line:#584033; --mood-hover:#49362A; --mood-active:#584033; --mood-button-bg:#E6AD79; --mood-button-text:#2C211B; --mood-focus:#E6AD79;
+}
+.app-shell.dark-theme[data-mood="great"],
+.shared-dashboard-layout[data-mood="great"] {
+  --mood-base:#08090B; --mood-ink:#FAF8F3; --mood-accent:#CDF22B;
+  --mood-muted:#D8D9D2; --mood-page:#08090B; --mood-panel:#151713; --mood-panel-soft:#20231A;
+  --mood-line:#34372B; --mood-hover:#24291A; --mood-active:#34372B; --mood-button-bg:#CDF22B; --mood-button-text:#08090B; --mood-focus:#CDF22B;
+}
+.app-shell.dark-theme[data-mood]:not([data-mood="default"]),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) {
+  background: var(--mood-page) !important;
+  color: var(--mood-ink) !important;
+}
+.app-shell.dark-theme[data-mood]:not([data-mood="default"]) :is(.sidebar,.topbar,.panel,.stat-card,.journal-modal,.settings-popover,.notification-popover,.welcome-section,.mindful-panel),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-sidebar,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-sidebar-quote,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-content :is(.panel,.card,.page-card,.journal-writing-card,.journal-entry-card,.insight-card,.assessment-card,.game-card,.wellness-card,.mindful-card,.tool-card,.prompt-card,.stat-card,.growth-note,.growth-message) {
+  background: var(--mood-panel) !important;
+  border-color: var(--mood-line) !important;
+  color: var(--mood-ink) !important;
+}
+.app-shell.dark-theme[data-mood]:not([data-mood="default"]) .welcome-section,
+.app-shell.dark-theme[data-mood]:not([data-mood="default"]) .mindful-panel,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-content {
+  background: var(--mood-page) !important;
+  color: var(--mood-ink) !important;
+}
+.app-shell.dark-theme[data-mood]:not([data-mood="default"]) :is(h1,h2,h3,h4,strong,.brand,.profile-copy strong,.breadcrumb strong,.section-heading h2,.panel-heading h2,.stat-value,.history-details strong,.empty-history strong,.modal-heading h2),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-content :is(h1,h2,h3,h4,strong) {
+  color: var(--mood-ink) !important;
+}
+.app-shell.dark-theme[data-mood]:not([data-mood="default"]) :is(p,small,.welcome-copy p,.section-heading p,.gentle-note,.stat-footnote,.activity-copy span,.history-details span,.modal-description,.privacy-note,.empty-history p),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-content :is(p,small,.muted,.subtitle,.description,.helper-text,.journal-entry-date) {
+  color: var(--mood-muted) !important;
+}
+.app-shell.dark-theme[data-mood]:not([data-mood="default"]) .nav-item,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-nav-row,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-settings-link {
+  color: var(--mood-ink) !important;
+}
+.app-shell.dark-theme[data-mood]:not([data-mood="default"]) .nav-item:is(:hover,.active),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-nav-row:is(:hover,.is-active),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-settings-link:is(:hover,.is-active) {
+  background: var(--mood-active) !important;
+  color: var(--mood-ink) !important;
+  box-shadow: inset 3px 0 0 var(--mood-accent);
+}
+.app-shell.dark-theme[data-mood]:not([data-mood="default"]) :is(input,textarea,select,.search-box,.mood-option,.theme-setting,.select-period,.icon-button,.plain-icon),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-content :is(input,textarea,select) {
+  background: var(--mood-panel-soft) !important;
+  color: var(--mood-ink) !important;
+  border-color: var(--mood-line) !important;
+}
+.app-shell.dark-theme[data-mood]:not([data-mood="default"]) :is(.welcome-button,.book-turn-button,.book-save-button,.primary-button,.submit-button),
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) .shared-dashboard-content :is(.primary-button,.submit-button,.wellness-primary,.practice-primary,.games-primary) {
+  background: var(--mood-button-bg) !important;
+  border-color: var(--mood-button-bg) !important;
+  color: var(--mood-button-text) !important;
+}
+.app-shell[data-mood]:not([data-mood="default"]) *,
+.shared-dashboard-layout[data-mood]:not([data-mood="default"]) * {
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: .45s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell[data-mood] *, .shared-dashboard-layout[data-mood] * { transition-duration: .01ms !important; }
+}
