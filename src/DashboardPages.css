@@ -503,3 +503,12 @@ html[data-mindora-theme="dark"] .mindora-section-page .section-page-eyebrow,
 .dark-theme.mindora-section-page .section-page-eyebrow {
   color: #edc49f !important;
 }
+
+
+/* Dashboard Insights eyebrow: readable cream text in dark mode */
+.dark-theme .section-block .section-heading .section-kicker,
+html[data-mindora-theme="dark"] .section-block .section-heading .section-kicker {
+  color: #ffdfb5 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
