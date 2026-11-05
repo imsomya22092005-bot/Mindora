@@ -18,10 +18,27 @@ function readNotes() {
 export default function StickyNoteWall() {
   const navigate = useNavigate();
   const [notes, setNotes] = useState(readNotes);
-  const [savedMoodTheme] = useState(() => {
+  const [savedMoodTheme, setSavedMoodTheme] = useState(() => {
     try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
     catch { return "default"; }
   });
+
+  useEffect(() => {
+    const syncMood = (event) => {
+      const nextMood = event?.detail?.mood;
+      if (nextMood) setSavedMoodTheme(nextMood);
+      else {
+        try { setSavedMoodTheme((localStorage.getItem("mindora-saved-mood") || "default").toLowerCase()); }
+        catch { setSavedMoodTheme("default"); }
+      }
+    };
+    window.addEventListener("mindora:mood-saved", syncMood);
+    window.addEventListener("storage", syncMood);
+    return () => {
+      window.removeEventListener("mindora:mood-saved", syncMood);
+      window.removeEventListener("storage", syncMood);
+    };
+  }, []);
   const [composerOpen, setComposerOpen] = useState(false);
   const [noteText, setNoteText] = useState("");
   const [noteTitle, setNoteTitle] = useState("");
