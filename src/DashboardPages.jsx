@@ -45,6 +45,10 @@ export function JournalPage() {
   const [language] = useLanguage();
   const hi = language === "hi";
   const [entries, setEntries] = useState(loadEntries);
+  const [journalMood, setJournalMood] = useState(() => {
+    try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
+    catch { return "default"; }
+  });
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [activePrompt, setActivePrompt] = useState(0);
@@ -90,7 +94,7 @@ export function JournalPage() {
     window.setTimeout(() => setSavedNotice(false), 3000);
   }
   function deleteEntry(id) { setEntries(previous => previous.filter(entry => entry.id !== id)); deleteScrapbookPage(id); }
-  return <main className={theme}>
+  return <main className={theme + " journal-mood-page"} data-mood={journalMood} data-mood-mode={isDark ? "dark" : "light"}>
     <PageHeader eyebrow={hi ? "आपके निजी पन्ने" : "YOUR PRIVATE PAGES"} title={hi ? <>मन की बातें <em>लिखने की जगह।</em></> : <>A little space to <em>let it out.</em></>} subtitle={hi ? "उन बातों के लिए एक डायरी जिन्हें आप याद रखना, छोड़ देना या समझना चाहते हैं।" : "A diary for the things you want to remember, release, or simply understand."} icon={BookHeart}/>
 
     <section className={`journal-diary-scene ${diaryOpen ? "diary-is-open" : ""}`}>
