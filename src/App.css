@@ -3574,3 +3574,14 @@ html[data-mindora-theme="dark"] .shared-settings-link:active * {
   color: #fff3df !important;
   stroke: #fff3df !important;
 }
+
+
+/* Final contrast override for dashboard's GENTLE SELF-AWARENESS eyebrow */
+html[data-mindora-theme="dark"] .app-shell .section-block .section-heading .section-kicker,
+html[data-mindora-theme="dark"] .section-block .section-heading .section-kicker,
+.dark-theme .section-block .section-heading .section-kicker {
+  color: #fff0d8 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #fff0d8 !important;
+  text-shadow: none !important;
+}
