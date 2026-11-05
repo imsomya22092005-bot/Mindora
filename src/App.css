@@ -3585,3 +3585,110 @@ html[data-mindora-theme="dark"] .section-block .section-heading .section-kicker,
   -webkit-text-fill-color: #fff0d8 !important;
   text-shadow: none !important;
 }
+
+
+/* Mood-adaptive diary themes. Scoped to the diary only; global app themes stay independent. */
+.mood-book-wrap[data-mood]:not([data-mood="default"]) {
+  --mood-transition: background-color .55s ease, color .55s ease, border-color .55s ease, box-shadow .55s ease;
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) .mood-book {
+  background: var(--mood-surface);
+  border-color: var(--mood-border);
+  box-shadow: 0 16px 35px color-mix(in srgb, var(--mood-text) 13%, transparent), 0 3px 0 var(--mood-border);
+  transition: var(--mood-transition);
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) .mood-book-spine {
+  background: linear-gradient(90deg, var(--mood-spine), var(--mood-surface) 70%, var(--mood-spine));
+  border-right-color: var(--mood-border);
+  transition: var(--mood-transition);
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) .mood-book-page {
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 39px, color-mix(in srgb, var(--mood-text) 7%, transparent) 40px), var(--mood-surface);
+  transition: var(--mood-transition);
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) :is(.book-eyebrow,.book-page-number,.book-cover-content h3,.mood-book-entry h3,.book-goodbye h3,.book-cover-content p,.book-goodbye p,.book-quote,.book-goodbye-script) {
+  color: var(--mood-text) !important;
+  transition: color .55s ease;
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) :is(.book-eyebrow,.book-page-number) { opacity: .78; }
+.mood-book-wrap[data-mood]:not([data-mood="default"]) :is(.book-cover-icon,.book-goodbye-heart) {
+  background: color-mix(in srgb, var(--mood-accent) 25%, var(--mood-surface));
+  border-color: var(--mood-accent);
+  color: var(--mood-text);
+  transition: var(--mood-transition);
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) .book-mood-emoji {
+  border-color: color-mix(in srgb, var(--mood-surface) 78%, white);
+  box-shadow: 0 5px 18px color-mix(in srgb, var(--mood-text) 15%, transparent);
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) :is(.book-turn-button,.book-save-button) {
+  background: var(--mood-text);
+  border-color: var(--mood-text);
+  color: var(--mood-button-text);
+  transition: var(--mood-transition), transform .18s ease;
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) :is(.book-turn-button,.book-save-button):hover:not(:disabled) {
+  background: var(--mood-accent);
+  border-color: var(--mood-accent);
+  color: var(--mood-text);
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) .book-turn-button.secondary {
+  background: color-mix(in srgb, var(--mood-surface) 88%, var(--mood-accent));
+  border-color: var(--mood-border);
+  color: var(--mood-text);
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) .book-feeling-button {
+  background: color-mix(in srgb, var(--mood-surface) 82%, var(--mood-accent));
+  border-color: var(--mood-border);
+  color: var(--mood-text);
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) .book-feeling-button.selected {
+  background: var(--mood-accent);
+  border-color: var(--mood-accent);
+  color: var(--mood-text);
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) .book-success {
+  color: var(--mood-text);
+  background: color-mix(in srgb, var(--mood-surface) 76%, var(--mood-accent));
+  border: 1px solid var(--mood-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+.mood-book-wrap[data-mood]:not([data-mood="default"]) .book-success svg { color: var(--mood-text); }
+
+/* Five light palettes: surface, high-contrast text, highlight. */
+.mood-book-wrap[data-mood="low"][data-mood-mode="light"] {
+  --mood-surface:#EBDCC6; --mood-text:#1F382E; --mood-accent:#CBB3EA; --mood-border:#D4C2A9; --mood-spine:#D9C8B2; --mood-button-text:#FFFFFF;
+}
+.mood-book-wrap[data-mood="meh"][data-mood-mode="light"] {
+  --mood-surface:#C9ADA7; --mood-text:#3A0F34; --mood-accent:#C75A3A; --mood-border:#B99690; --mood-spine:#BFA19B; --mood-button-text:#FFFFFF;
+}
+.mood-book-wrap[data-mood="okay"][data-mood-mode="light"] {
+  --mood-surface:#B8DCCB; --mood-text:#164E4A; --mood-accent:#F5A477; --mood-border:#9FC9B7; --mood-spine:#A9D0BE; --mood-button-text:#FFFFFF;
+}
+.mood-book-wrap[data-mood="good"][data-mood-mode="light"] {
+  --mood-surface:#F2D98D; --mood-text:#49352C; --mood-accent:#D9A6A0; --mood-border:#E2C778; --mood-spine:#E8D18E; --mood-button-text:#49352C;
+}
+.mood-book-wrap[data-mood="great"][data-mood-mode="light"] {
+  --mood-surface:#FAF8F3; --mood-text:#08090B; --mood-accent:#CDF22B; --mood-border:#D9DDC9; --mood-spine:#E8E9DE; --mood-button-text:#FAF8F3;
+}
+
+/* Five matching dark palettes, selected by the existing app-wide dark-mode toggle. */
+.mood-book-wrap[data-mood="low"][data-mood-mode="dark"] {
+  --mood-surface:#17251F; --mood-text:#F3EBDD; --mood-accent:#B9A5D6; --mood-border:#34483D; --mood-spine:#20352B; --mood-button-text:#17251F;
+}
+.mood-book-wrap[data-mood="meh"][data-mood-mode="dark"] {
+  --mood-surface:#24101F; --mood-text:#F5E9E7; --mood-accent:#E18467; --mood-border:#543047; --mood-spine:#32182C; --mood-button-text:#24101F;
+}
+.mood-book-wrap[data-mood="okay"][data-mood-mode="dark"] {
+  --mood-surface:#102E2C; --mood-text:#E4F1E9; --mood-accent:#F5A477; --mood-border:#28514B; --mood-spine:#173A36; --mood-button-text:#102E2C;
+}
+.mood-book-wrap[data-mood="good"][data-mood-mode="dark"] {
+  --mood-surface:#2C211B; --mood-text:#F8EEDB; --mood-accent:#E6AD79; --mood-border:#584033; --mood-spine:#3A2A21; --mood-button-text:#2C211B;
+}
+.mood-book-wrap[data-mood="great"][data-mood-mode="dark"] {
+  --mood-surface:#08090B; --mood-text:#FAF8F3; --mood-accent:#CDF22B; --mood-border:#34372B; --mood-spine:#171A13; --mood-button-text:#08090B;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mood-book-wrap[data-mood] * { transition-duration:.01ms !important; animation-duration:.01ms !important; }
+}
