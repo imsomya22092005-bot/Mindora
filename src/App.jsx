@@ -132,6 +132,15 @@ const moods = [
   { label: "Great", emoji: "😁", value: 10, color: "#ed9455" },
 ];
 
+// Mood diary palettes are independent of Mindora's global light/dark preference.
+const moodDiaryPalettes = {
+  Low: { light: ["#EBDCC6", "#1F382E", "#CBB3EA"], dark: ["#17251F", "#F3EBDD", "#B9A5D6"] },
+  Meh: { light: ["#C9ADA7", "#3A0F34", "#C75A3A"], dark: ["#24101F", "#F5E9E7", "#E18467"] },
+  Okay: { light: ["#B8DCCB", "#164E4A", "#F5A477"], dark: ["#102E2C", "#E4F1E9", "#F5A477"] },
+  Good: { light: ["#F2D98D", "#49352C", "#D9A6A0"], dark: ["#2C211B", "#F8EEDB", "#E6AD79"] },
+  Great: { light: ["#FAF8F3", "#08090B", "#CDF22B"], dark: ["#08090B", "#FAF8F3", "#CDF22B"] },
+};
+
 const initialActivity = [
   {
     id: 1,
@@ -237,7 +246,14 @@ function MindfulPracticePage() {
 
 function Dashboard() {
   const [selectedMood, setSelectedMood] = useState(null);
-  const [savedMood, setSavedMood] = useState(null);
+  const [savedMood, setSavedMood] = useState(() => {
+    try {
+      const savedLabel = localStorage.getItem("mindora-saved-mood");
+      return moods.find((mood) => mood.label === savedLabel) || null;
+    } catch {
+      return null;
+    }
+  });
   const [showMoodMessage, setShowMoodMessage] = useState(false);
 
   const [moodHistory, setMoodHistory] = useState(readMoodHistory);
@@ -411,6 +427,11 @@ function Dashboard() {
 
     setMoodHistory((previous) => [entry, ...previous]);
     setSavedMood(selectedMood);
+    try {
+      localStorage.setItem("mindora-saved-mood", selectedMood.label);
+    } catch {
+      // The diary still updates for this session if storage is unavailable.
+    }
     setShowMoodMessage(true);
   }
 
@@ -718,7 +739,11 @@ function Dashboard() {
               </div>
             </div>
 
-            <div className="mood-book-wrap">
+            <div
+              className="mood-book-wrap"
+              data-mood={savedMood?.label?.toLowerCase() || "default"}
+              data-mood-mode={darkMode ? "dark" : "light"}
+            >
               <div className="mood-book">
                 <div className="mood-book-spine" aria-hidden="true" />
                 <div className="mood-book-page">
@@ -733,7 +758,7 @@ function Dashboard() {
                   ) : bookPage <= moods.length ? (
                     <div className="mood-book-entry" key={bookPage}>
                       <span className="book-eyebrow">PAGE {String(bookPage + 1).padStart(2, "0")} · YOUR FEELINGS ARE WELCOME</span>
-                      <span className="book-mood-emoji" style={{ backgroundColor: moods[bookPage - 1].color }}>
+                      <span className="book-mood-emoji" style={{ backgroundColor: "var(--mood-accent, " + moods[bookPage - 1].color + ")" }}>
                         {moods[bookPage - 1].emoji}
                       </span>
                       <h3>{t(moods[bookPage - 1].label, ["कम", "ठीक-ठाक", "ठीक", "अच्छा", "बहुत अच्छा"][bookPage - 1])}</h3>
