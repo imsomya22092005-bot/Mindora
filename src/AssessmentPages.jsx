@@ -60,7 +60,7 @@ const academicGroups = [
  ]}
 ];
 function Shell({eyebrow,title,subtitle,children,icon:Icon=Heart}) {
- const nav=useNavigate(); return <main className="assessment-page"><button className="assessment-back" onClick={()=>nav("/dashboard")}><ArrowLeft size={16}/>{hi?"डैशबोर्ड पर वापस":"Back to dashboard"}</button><header className="assessment-heading"><span className="assessment-mark"><Icon size={22}/></span><div><span className="assessment-eyebrow">{eyebrow}</span><h1>{title}</h1><p>{subtitle}</p></div></header>{children}</main>;
+ const nav=useNavigate(); return <main className="assessment-page"><button className="assessment-back" onClick={()=>nav("/dashboard")}><ArrowLeft size={16}/>{"Back to dashboard"}</button><header className="assessment-heading"><span className="assessment-mark"><Icon size={22}/></span><div><span className="assessment-eyebrow">{eyebrow}</span><h1>{title}</h1><p>{subtitle}</p></div></header>{children}</main>;
 }
 function OptionList({options,value,onChange}) { return <div className="assessment-options">{options.map((o,i)=><button type="button" key={i} className={String(value)===String(i)?"is-selected":""} onClick={()=>onChange(i)}>{o}</button>)}</div>; }
 export function WellbeingCheckinPage(){
