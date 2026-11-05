@@ -544,3 +544,75 @@ html[data-mindora-theme="dark"] .diary-prompt-card .diary-side-icon,
   background: #59443b !important;
   color: #ffbb70 !important;
 }
+
+
+/* JOURNAL PAGE — dedicated 5-mood light/dark colour system */
+.mindora-section-page.journal-mood-page {
+  --journal-bg:#F5F0E7; --journal-surface:#FBF8F1; --journal-cover:#EBDCC6;
+  --journal-ink:#1F382E; --journal-muted:#53665B; --journal-accent:#CBB3EA;
+  --journal-line:#D4C2A9; --journal-input:#FFFDF8; --journal-button:#1F382E;
+  --journal-button-text:#FFFFFF; --journal-soft:#E7DCCB;
+  background:var(--journal-bg)!important; color:var(--journal-ink)!important;
+  transition:background-color .5s ease,color .5s ease;
+}
+.journal-mood-page[data-mood="low"] {--journal-bg:#F2E8D9;--journal-surface:#EBDCC6;--journal-cover:#1F382E;--journal-ink:#1F382E;--journal-muted:#53665B;--journal-accent:#CBB3EA;--journal-line:#D4C2A9;--journal-input:#FBF7EF;--journal-button:#1F382E;--journal-button-text:#FFFFFF;--journal-soft:#E2D2BD;}
+.journal-mood-page[data-mood="meh"] {--journal-bg:#E8D8D4;--journal-surface:#C9ADA7;--journal-cover:#3A0F34;--journal-ink:#3A0F34;--journal-muted:#62434F;--journal-accent:#C75A3A;--journal-line:#B99690;--journal-input:#F7EEEA;--journal-button:#3A0F34;--journal-button-text:#FFFFFF;--journal-soft:#D9C0BA;}
+.journal-mood-page[data-mood="okay"] {--journal-bg:#E4F0E9;--journal-surface:#B8DCCB;--journal-cover:#164E4A;--journal-ink:#164E4A;--journal-muted:#426C63;--journal-accent:#F5A477;--journal-line:#9FC9B7;--journal-input:#F7FBF8;--journal-button:#164E4A;--journal-button-text:#FFFFFF;--journal-soft:#D4E9DE;}
+.journal-mood-page[data-mood="good"] {--journal-bg:#FBF3D9;--journal-surface:#F2D98D;--journal-cover:#49352C;--journal-ink:#49352C;--journal-muted:#725B48;--journal-accent:#D9A6A0;--journal-line:#E2C778;--journal-input:#FFFBEC;--journal-button:#49352C;--journal-button-text:#FFFFFF;--journal-soft:#F5E6B8;}
+.journal-mood-page[data-mood="great"] {--journal-bg:#F4F3EB;--journal-surface:#FAF8F3;--journal-cover:#08090B;--journal-ink:#08090B;--journal-muted:#45483B;--journal-accent:#CDF22B;--journal-line:#D9DDC9;--journal-input:#FFFFFF;--journal-button:#08090B;--journal-button-text:#FAF8F3;--journal-soft:#E9EBDD;}
+
+/* Every major Journal surface, from the header to saved entries. */
+.journal-mood-page .section-page-header {border-color:var(--journal-line)!important;}
+.journal-mood-page .section-back,.journal-mood-page .section-page-brand,.journal-mood-page .section-page-title h1,
+.journal-mood-page .section-page-title h1 em,.journal-mood-page .section-page-title p,
+.journal-mood-page .section-page-title .section-page-eyebrow {color:var(--journal-ink)!important;}
+.journal-mood-page .section-page-title h1 em {text-decoration-color:var(--journal-accent);}
+.journal-mood-page .journal-diary-cover {
+  background:linear-gradient(125deg,color-mix(in srgb,var(--journal-cover) 82%,#000) 0%,var(--journal-cover) 52%,color-mix(in srgb,var(--journal-cover) 78%,var(--journal-accent)) 100%)!important;
+  border-color:var(--journal-ink)!important;
+  box-shadow:inset 5px 0 10px color-mix(in srgb,var(--journal-ink) 30%,transparent),0 22px 42px color-mix(in srgb,var(--journal-ink) 20%,transparent)!important;
+  color:var(--journal-button-text)!important;
+}
+.journal-mood-page .journal-cover-content {color:var(--journal-button-text)!important;}
+.journal-mood-page .journal-cover-content h2,.journal-mood-page .journal-cover-content p,
+.journal-mood-page .journal-cover-content>svg,.journal-mood-page .journal-cover-kicker,
+.journal-mood-page .journal-cover-small,.journal-mood-page .journal-cover-decoration {color:var(--journal-button-text)!important;}
+.journal-mood-page .journal-cover-rule {background:var(--journal-accent)!important;}
+.journal-mood-page .journal-cover-content h2 em {color:var(--journal-accent)!important;}
+.journal-mood-page .journal-open-button {background:var(--journal-accent)!important;color:var(--journal-ink)!important;border-color:var(--journal-accent)!important;}
+.journal-mood-page .journal-loose-page {background:linear-gradient(90deg,var(--journal-soft),var(--journal-input) 5%,var(--journal-input))!important;border-color:var(--journal-line)!important;color:var(--journal-ink)!important;}
+.journal-mood-page .journal-page-top {background:color-mix(in srgb,var(--journal-surface) 50%,var(--journal-input))!important;border-color:var(--journal-line)!important;color:var(--journal-muted)!important;}
+.journal-mood-page .journal-page-body h2,.journal-mood-page .journal-page-body textarea,
+.journal-mood-page .journal-page-body .diary-title-label input {color:var(--journal-ink)!important;}
+.journal-mood-page .journal-page-body textarea {background:repeating-linear-gradient(to bottom,transparent 0,transparent 29px,color-mix(in srgb,var(--journal-ink) 13%,transparent) 30px,color-mix(in srgb,var(--journal-ink) 13%,transparent) 31px)!important;}
+.journal-mood-page .journal-page-actions button {border-color:var(--journal-line)!important;}
+.journal-mood-page .journal-page-actions .diary-save-button {background:var(--journal-button)!important;color:var(--journal-button-text)!important;border-color:var(--journal-button)!important;}
+.journal-mood-page .journal-close-button {background:var(--journal-surface)!important;color:var(--journal-ink)!important;}
+.journal-mood-page .diary-prompt-card {background:linear-gradient(145deg,var(--journal-surface),var(--journal-soft))!important;border-color:var(--journal-line)!important;color:var(--journal-ink)!important;}
+.journal-mood-page .diary-prompt-card :is(.diary-side-kicker,p,button) {color:var(--journal-ink)!important;}
+.journal-mood-page .diary-prompt-card .diary-side-icon {background:var(--journal-accent)!important;color:var(--journal-ink)!important;}
+.journal-mood-page .diary-flower {color:var(--journal-accent)!important;}
+.journal-mood-page .diary-reminder {background:var(--journal-surface)!important;border-color:var(--journal-line)!important;color:var(--journal-ink)!important;}
+.journal-mood-page .diary-reminder :is(p,span,svg) {color:var(--journal-ink)!important;}
+.journal-mood-page .diary-entries-head :is(h2,p,.section-page-eyebrow) {color:var(--journal-ink)!important;}
+.journal-mood-page .diary-count {background:var(--journal-accent)!important;color:var(--journal-ink)!important;}
+.journal-mood-page .diary-saved-card,.journal-mood-page .diary-empty {background:var(--journal-surface)!important;border-color:var(--journal-line)!important;color:var(--journal-ink)!important;}
+.journal-mood-page .diary-saved-card :is(h3,p,.diary-saved-meta,.diary-saved-meta svg,.diary-entry-flourish) {color:var(--journal-ink)!important;}
+.journal-mood-page .diary-saved-card .journal-saved-actions button {background:var(--journal-accent)!important;color:var(--journal-ink)!important;border-color:var(--journal-accent)!important;}
+.journal-mood-page .diary-saved-card .diary-saved-meta button {background:transparent!important;color:var(--journal-ink)!important;}
+.journal-mood-page .diary-empty :is(h3,p,svg) {color:var(--journal-ink)!important;}
+.journal-mood-page .section-page-footer {border-color:var(--journal-line)!important;color:var(--journal-muted)!important;}
+.journal-mood-page :is(input,textarea,button):focus-visible {outline:3px solid var(--journal-accent)!important;outline-offset:3px;}
+.journal-mood-page :is(textarea,input)::placeholder {color:var(--journal-muted)!important;opacity:1;}
+
+/* Dark companion palettes for the exact same five moods. */
+.journal-mood-page.dark-theme {--journal-bg:#111C17;--journal-surface:#17251F;--journal-cover:#17251F;--journal-ink:#F3EBDD;--journal-muted:#D0D8D0;--journal-accent:#B9A5D6;--journal-line:#34483D;--journal-input:#1D2D24;--journal-button:#B9A5D6;--journal-button-text:#17251F;--journal-soft:#20352B;}
+.journal-mood-page.dark-theme[data-mood="low"] {--journal-bg:#111C17;--journal-surface:#17251F;--journal-cover:#17251F;--journal-ink:#F3EBDD;--journal-muted:#D0D8D0;--journal-accent:#B9A5D6;--journal-line:#34483D;--journal-input:#1D2D24;--journal-button:#B9A5D6;--journal-button-text:#17251F;--journal-soft:#20352B;}
+.journal-mood-page.dark-theme[data-mood="meh"] {--journal-bg:#190B16;--journal-surface:#24101F;--journal-cover:#24101F;--journal-ink:#F5E9E7;--journal-muted:#D9C3CF;--journal-accent:#E18467;--journal-line:#543047;--journal-input:#2C1727;--journal-button:#E18467;--journal-button-text:#24101F;--journal-soft:#32182C;}
+.journal-mood-page.dark-theme[data-mood="okay"] {--journal-bg:#0B2221;--journal-surface:#102E2C;--journal-cover:#102E2C;--journal-ink:#E4F1E9;--journal-muted:#C2DAD0;--journal-accent:#F5A477;--journal-line:#28514B;--journal-input:#173A36;--journal-button:#F5A477;--journal-button-text:#102E2C;--journal-soft:#173A36;}
+.journal-mood-page.dark-theme[data-mood="good"] {--journal-bg:#1D1511;--journal-surface:#2C211B;--journal-cover:#2C211B;--journal-ink:#F8EEDB;--journal-muted:#DCCDBB;--journal-accent:#E6AD79;--journal-line:#584033;--journal-input:#362820;--journal-button:#E6AD79;--journal-button-text:#2C211B;--journal-soft:#3A2A21;}
+.journal-mood-page.dark-theme[data-mood="great"] {--journal-bg:#08090B;--journal-surface:#151713;--journal-cover:#08090B;--journal-ink:#FAF8F3;--journal-muted:#D8D9D2;--journal-accent:#CDF22B;--journal-line:#34372B;--journal-input:#20231A;--journal-button:#CDF22B;--journal-button-text:#08090B;--journal-soft:#171A13;}
+.journal-mood-page.dark-theme .journal-diary-cover {background:linear-gradient(125deg,var(--journal-cover),color-mix(in srgb,var(--journal-cover) 76%,var(--journal-accent)))!important;}
+.journal-mood-page.dark-theme .journal-loose-page {background:linear-gradient(90deg,var(--journal-soft),var(--journal-input) 5%,var(--journal-input))!important;}
+.journal-mood-page.dark-theme .journal-page-body textarea {background:repeating-linear-gradient(to bottom,transparent 0,transparent 29px,color-mix(in srgb,var(--journal-ink) 18%,transparent) 30px,color-mix(in srgb,var(--journal-ink) 18%,transparent) 31px)!important;}
+.journal-mood-page.dark-theme .diary-entries .diary-empty {background:radial-gradient(circle at 35% 25%,var(--journal-surface),var(--journal-bg))!important;}
