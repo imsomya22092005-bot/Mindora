@@ -893,7 +893,7 @@ function Dashboard() {
           <section className="section-block" id="mood-insights">
             <div className="section-heading">
               <div>
-                <div className="section-kicker">{t("GENTLE SELF-AWARENESS", "खुद को प्यार से समझें")}</div>
+                <div className="section-kicker" style={darkMode ? { color: "#fff0d8", opacity: 1, WebkitTextFillColor: "#fff0d8" } : undefined}>{t("GENTLE SELF-AWARENESS", "खुद को प्यार से समझें")}</div>
                 <h2>{t("Your mood, over time", "समय के साथ आपका मूड")}</h2>
                 <p>{t("Notice patterns without judging yourself.", "बिना खुद को आँके अपने मूड के पैटर्न समझें।")}</p>
               </div>
