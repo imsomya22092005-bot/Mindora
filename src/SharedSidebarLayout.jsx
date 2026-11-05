@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { LayoutDashboard, BookOpen, BarChart3, Wind, Gamepad2, Settings, ChevronDown, Leaf, Sparkles, Menu, X, HeartHandshake, StickyNote } from "lucide-react";
 import "./App.css";
@@ -19,10 +19,26 @@ const mainItems = [
 export default function SharedSidebarLayout({children}) {
  const location=useLocation();
  const [mobileMenuOpen,setMobileMenuOpen]=useState(false);
- const [savedMoodTheme] = useState(() => {
+ const [savedMoodTheme, setSavedMoodTheme] = useState(() => {
   try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
   catch { return "default"; }
  });
+ useEffect(() => {
+  const syncMood = (event) => {
+   const nextMood = event?.detail?.mood;
+   if (nextMood) setSavedMoodTheme(nextMood);
+   else {
+    try { setSavedMoodTheme((localStorage.getItem("mindora-saved-mood") || "default").toLowerCase()); }
+    catch { setSavedMoodTheme("default"); }
+   }
+  };
+  window.addEventListener("mindora:mood-saved", syncMood);
+  window.addEventListener("storage", syncMood);
+  return () => {
+   window.removeEventListener("mindora:mood-saved", syncMood);
+   window.removeEventListener("storage", syncMood);
+  };
+ }, []);
  const [expanded,setExpanded]=useState({
   "Mindful moments":location.pathname.startsWith("/calm")||location.pathname.startsWith("/inner")||location.pathname==="/comfort-box"||location.pathname==="/soundscape"||location.pathname==="/mindful-moments",
   "Play & Unwind":location.pathname==="/games",
