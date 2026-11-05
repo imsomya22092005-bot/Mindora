@@ -114,3 +114,25 @@ html[data-mindora-theme="dark"] .sleep-rhythm-panel{background:linear-gradient(1
 html[data-mindora-theme="dark"] .sleep-time-controls input{background:#302725;border-color:#705242;color:#fff3df}
 html[data-mindora-theme="dark"] .sleep-rhythm-head h3{color:#fff0d8}
 @media(max-width:700px){.wellbeing-journey-hero,.dream-lab-intro,.student-observatory{grid-template-columns:1fr;padding:20px}.wellbeing-orbit,.dream-window,.stress-orbit{margin:8px auto 0}.wellbeing-journey-hero h2,.dream-lab-copy h2,.observatory-copy h2{font-size:24px}.sleep-time-controls{gap:8px}.sleep-rhythm-panel{padding:18px}.sleep-rhythm-head{align-items:flex-start}.dream-window{width:120px;height:120px}}
+
+
+/* Dark-mode readability: Academic Stress Predictor question labels */
+html[data-mindora-theme="dark"] .assessment-academic .academic-group legend,
+html[data-mindora-theme="dark"] .assessment-academic .assessment-profile-grid label {
+  color: #fff0d8;
+}
+html[data-mindora-theme="dark"] .assessment-academic .assessment-muted,
+html[data-mindora-theme="dark"] .assessment-academic > .assessment-muted {
+  color: #e6d4c3;
+}
+html[data-mindora-theme="dark"] .assessment-academic .academic-overview .assessment-muted {
+  color: #e6d4c3;
+}
+html[data-mindora-theme="dark"] .assessment-academic .assessment-profile-grid select {
+  color: #fff3df;
+  background-color: #302725;
+}
+html[data-mindora-theme="dark"] .assessment-academic .assessment-profile-grid select option {
+  color: #fff3df;
+  background: #302725;
+}
