@@ -3484,3 +3484,30 @@ html[data-mindora-theme="dark"] .insight-kind-note :is(p,strong),
     display: none;
   }
 }
+
+
+/* Three independent student wellbeing tools — warm Mindora palette */
+.assessment-launch-section { margin-top: 38px; }
+.assessment-launch-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+.assessment-launch-card { position:relative; display:flex; flex-direction:column; align-items:flex-start; text-align:left; min-height:245px; padding:23px; overflow:hidden; border:1px solid #efcfaa; border-radius:22px; background:linear-gradient(145deg,#fffdf0 0%,#fff3d4 58%,#ffdfb5 100%); color:#49342e; box-shadow:0 12px 30px rgba(116,70,42,.08); transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease; }
+.assessment-launch-card::after { content:""; position:absolute; width:150px; height:150px; border-radius:50%; right:-54px; bottom:-68px; background:rgba(255,187,112,.22); transition:transform .35s ease; }
+.assessment-launch-card:hover { transform:translateY(-6px); box-shadow:0 18px 36px rgba(116,70,42,.14); border-color:#ed9455; }
+.assessment-launch-card:hover::after { transform:scale(1.35); }
+.assessment-launch-icon { display:grid; place-items:center; width:46px; height:46px; border-radius:16px; background:#ffec9e; color:#865333; font-size:29px; line-height:1; margin-bottom:17px; }
+.assessment-launch-kicker { color:#ad7046; font-size:10px; font-weight:800; letter-spacing:1.35px; margin-bottom:8px; }
+.assessment-launch-card strong { font:800 19px/1.25 Manrope,'DM Sans',sans-serif; margin-bottom:8px; position:relative; z-index:1; }
+.assessment-launch-card>span:not(.assessment-launch-icon):not(.assessment-launch-kicker) { color:#806b61; font-size:13px; line-height:1.55; position:relative; z-index:1; }
+.assessment-launch-card em { display:inline-flex; align-items:center; gap:7px; margin-top:auto; padding-top:17px; font-style:normal; font-weight:800; font-size:13px; color:#9b5f36; position:relative; z-index:1; }
+.sleep-launch .assessment-launch-icon { background:#ffe0b8; animation:mindora-moon-drift 4.5s ease-in-out infinite; }
+.wellbeing-launch .assessment-launch-icon { animation:mindora-heart-breathe 3.2s ease-in-out infinite; }
+.academic-launch .assessment-launch-icon { animation:mindora-pencil-float 3.8s ease-in-out infinite; }
+@keyframes mindora-heart-breathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+@keyframes mindora-moon-drift { 0%,100%{transform:translateY(0) rotate(-7deg)} 50%{transform:translateY(-5px) rotate(7deg)} }
+@keyframes mindora-pencil-float { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-5px) rotate(5deg)} }
+html[data-mindora-theme="dark"] .assessment-launch-card { background:linear-gradient(145deg,#45352f,#382d2a 65%,#49342e); border-color:#705242; color:#fff3df; }
+html[data-mindora-theme="dark"] .assessment-launch-card strong { color:#fff3df; }
+html[data-mindora-theme="dark"] .assessment-launch-card>span:not(.assessment-launch-icon):not(.assessment-launch-kicker) { color:#e6d4c3; }
+html[data-mindora-theme="dark"] .assessment-launch-card em { color:#ffbb70; }
+@media(max-width:900px){.assessment-launch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.assessment-launch-grid{grid-template-columns:1fr}.assessment-launch-card{min-height:210px}}
+@media(prefers-reduced-motion:reduce){.assessment-launch-card,.assessment-launch-card::after,.assessment-launch-icon{animation:none!important;transition:none!important}}
