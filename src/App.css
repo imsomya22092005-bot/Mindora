@@ -3527,3 +3527,50 @@ html[data-mindora-theme="dark"] .shared-settings-link:active {
 html[data-mindora-theme="dark"] .shared-settings-link:focus:not(:focus-visible) {
   outline: none !important;
 }
+
+
+/* Dark mode contrast + interaction fix for the actual dashboard Settings button */
+.dark-theme .nav-item.settings-link,
+.dark-theme .nav-item.settings-link span,
+.dark-theme .nav-item.settings-link svg {
+  color: #fff3df !important;
+}
+.dark-theme .nav-item.settings-link:hover,
+.dark-theme .nav-item.settings-link:focus,
+.dark-theme .nav-item.settings-link:focus-visible,
+.dark-theme .nav-item.settings-link:active {
+  background: #45352f !important;
+  color: #fff3df !important;
+  box-shadow: none !important;
+  outline: none !important;
+  filter: none !important;
+}
+.dark-theme .nav-item.settings-link:hover span,
+.dark-theme .nav-item.settings-link:focus span,
+.dark-theme .nav-item.settings-link:focus-visible span,
+.dark-theme .nav-item.settings-link:active span,
+.dark-theme .nav-item.settings-link:hover svg,
+.dark-theme .nav-item.settings-link:focus svg,
+.dark-theme .nav-item.settings-link:focus-visible svg,
+.dark-theme .nav-item.settings-link:active svg {
+  color: #fff3df !important;
+  stroke: #fff3df !important;
+}
+/* Also cover the shared-sidebar version of Settings */
+html[data-mindora-theme="dark"] .shared-settings-link:hover,
+html[data-mindora-theme="dark"] .shared-settings-link:focus,
+html[data-mindora-theme="dark"] .shared-settings-link:focus-visible,
+html[data-mindora-theme="dark"] .shared-settings-link:active {
+  background: #45352f !important;
+  color: #fff3df !important;
+  box-shadow: none !important;
+  outline: none !important;
+  filter: none !important;
+}
+html[data-mindora-theme="dark"] .shared-settings-link:hover *,
+html[data-mindora-theme="dark"] .shared-settings-link:focus *,
+html[data-mindora-theme="dark"] .shared-settings-link:focus-visible *,
+html[data-mindora-theme="dark"] .shared-settings-link:active * {
+  color: #fff3df !important;
+  stroke: #fff3df !important;
+}
