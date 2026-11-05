@@ -41,6 +41,7 @@ const prompts = [
 
 export function JournalPage() {
   const theme = useThemeClass();
+  const isDark = theme.includes("dark-theme");
   const [language] = useLanguage();
   const hi = language === "hi";
   const [entries, setEntries] = useState(loadEntries);
@@ -131,7 +132,7 @@ export function JournalPage() {
     {savedNotice && <p className="diary-success journal-saved-message"><Heart size={14}/> {hi ? "आपकी बातें डायरी में सुरक्षित रख दी गई हैं।" : "Your words have been tucked safely into your journal."}</p>}
 
     <div className="journal-lower-grid">
-      <aside className="diary-prompt-card"><span className="diary-side-icon"><Sparkles size={19}/></span><span className="diary-side-kicker">{hi ? "एक कोमल-सा सवाल" : "A GENTLE PROMPT"}</span><p>“{hi ? ["आज क्या सामान्य से ज़्यादा भारी लगा, और उसे संभालने में किस चीज़ ने मदद की?","आज ऐसी कौन-सी छोटी-सी बात है जिसके लिए आप आभारी हैं?","आप चाहते हैं कि कोई आपके बारे में कौन-सी बात समझे?","आज आपको थोड़ा-सा सुकून कहाँ मिला?"][activePrompt] : prompts[activePrompt]}”</p><button onClick={()=>setActivePrompt(i=>(i+1)%prompts.length)}>{hi ? "एक और सवाल" : "Another prompt"} <ArrowUpRight size={14}/></button><div className="diary-flower">✿</div></aside>
+      <aside className="diary-prompt-card" style={isDark ? { background: "linear-gradient(145deg, #45352f, #382d2a)", borderColor: "#705242", color: "#fff3df" } : undefined}><span className="diary-side-icon"><Sparkles size={19}/></span><span className="diary-side-kicker" style={isDark ? { color: "#ffdfb5", opacity: 1, WebkitTextFillColor: "#ffdfb5" } : undefined}>{hi ? "एक कोमल-सा सवाल" : "A GENTLE PROMPT"}</span><p style={isDark ? { color: "#fff3df", opacity: 1, WebkitTextFillColor: "#fff3df" } : undefined}>“{hi ? ["आज क्या सामान्य से ज़्यादा भारी लगा, और उसे संभालने में किस चीज़ ने मदद की?","आज ऐसी कौन-सी छोटी-सी बात है जिसके लिए आप आभारी हैं?","आप चाहते हैं कि कोई आपके बारे में कौन-सी बात समझे?","आज आपको थोड़ा-सा सुकून कहाँ मिला?"][activePrompt] : prompts[activePrompt]}”</p><button style={isDark ? { color: "#ffbb70", opacity: 1, WebkitTextFillColor: "#ffbb70" } : undefined} onClick={()=>setActivePrompt(i=>(i+1)%prompts.length)}>{hi ? "एक और सवाल" : "Another prompt"} <ArrowUpRight size={14}/></button><div className="diary-flower">✿</div></aside>
       <aside className="diary-reminder"><Heart size={17}/><p>{hi ? "आज हर भावना को समझना ज़रूरी नहीं है। कुछ बातों को बस ठहरने की जगह चाहिए।" : "You don't have to make sense of every feeling today. Some things just need a place to land."}</p><span>{hi ? "— आपके लिए एक याद दिलाना" : "— a reminder for you"}</span></aside>
     </div>
 
