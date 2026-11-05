@@ -18,6 +18,10 @@ function readNotes() {
 export default function StickyNoteWall() {
   const navigate = useNavigate();
   const [notes, setNotes] = useState(readNotes);
+  const [savedMoodTheme] = useState(() => {
+    try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
+    catch { return "default"; }
+  });
   const [composerOpen, setComposerOpen] = useState(false);
   const [noteText, setNoteText] = useState("");
   const [noteTitle, setNoteTitle] = useState("");
@@ -50,7 +54,7 @@ export default function StickyNoteWall() {
   }
 
   return (
-    <div className="sticky-wall-page">
+    <div className="sticky-wall-page" data-mood={savedMoodTheme}>
       <header className="sticky-wall-header">
         <button className="sticky-wall-back" onClick={() => navigate("/dashboard")} aria-label="Back to dashboard"><ArrowLeft size={17} /></button>
         <div className="sticky-wall-heading">
