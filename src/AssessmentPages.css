@@ -7,3 +7,73 @@ html[data-mindora-theme="dark"] .assessment-heading p,html[data-mindora-theme="d
 html[data-mindora-theme="dark"] .assessment-options button.is-selected{background:#59443b;border-color:#ed9455}
 html[data-mindora-theme="dark"] .assessment-profile-grid input,html[data-mindora-theme="dark"] .assessment-profile-grid select{background:#302725;border-color:#705242;color:#fff3df}
 html[data-mindora-theme="dark"] .assessment-back{color:#ffdfb5}
+
+
+/* Mindora assessment experience refresh */
+.assessment-page{position:relative;isolation:isolate;max-width:1120px}
+.assessment-page:before{content:"";position:absolute;z-index:-1;top:105px;right:-100px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,#ffbb7033,transparent 68%);pointer-events:none}
+.assessment-heading{position:relative;min-height:170px;overflow:hidden;padding:22px 26px;border-radius:28px;background:linear-gradient(112deg,#fff9df 0%,#ffefc1 58%,#ffe0b7 100%);border:1px solid #f2d7a7;box-shadow:0 16px 38px #a66d2510}
+.assessment-heading-copy{position:relative;z-index:2;max-width:690px}
+.assessment-heading h1{letter-spacing:-1.4px}
+.assessment-heading-art{position:absolute;right:36px;top:50%;transform:translateY(-50%);width:170px;height:150px;display:grid;place-items:center}
+.art-orbit{position:absolute;border:1px solid #d9955a66;border-radius:50%;transform:rotate(-24deg)}
+.orbit-one{width:142px;height:70px}.orbit-two{width:112px;height:112px;border-style:dashed;animation:assessment-spin 22s linear infinite}
+.art-core{width:78px;height:78px;border-radius:28px;display:grid;place-items:center;color:#87532f;background:linear-gradient(145deg,#fff9d7,#ffbd76);box-shadow:0 12px 30px #b66e3333;transform:rotate(-8deg)}
+.art-spark{position:absolute;color:#c47b45;font-style:normal;font-size:23px}.spark-one{top:7px;right:20px}.spark-two{bottom:9px;left:15px;font-size:18px}
+@keyframes assessment-spin{to{transform:rotate(336deg)}}
+.assessment-panel{border-radius:28px;box-shadow:0 22px 55px #9c6b2418;border-color:#f0d5a7}
+.assessment-mini-grid article{position:relative;overflow:hidden;min-height:190px;background:linear-gradient(145deg,#fffdf4,#fff2d4);transition:transform .25s,box-shadow .25s}
+.assessment-mini-grid article:after{content:"";position:absolute;width:105px;height:105px;border-radius:50%;right:-30px;bottom:-42px;background:radial-gradient(circle,#ffbb7066,transparent 70%)}
+.assessment-mini-grid article:hover{transform:translateY(-5px) rotate(-.5deg);box-shadow:0 14px 28px #b8793020}
+.assessment-mini-grid article:nth-child(2){background:linear-gradient(145deg,#fffaf0,#ffe9d5)}
+.assessment-progress{height:11px;padding:2px;background:#f2dfbf}
+.assessment-progress span{box-shadow:0 0 12px #ed945577}
+.assessment-question{font-size:clamp(23px,3.4vw,32px);letter-spacing:-.6px;max-width:700px}
+.assessment-options button{position:relative;overflow:hidden;min-height:62px;border-radius:17px;background:linear-gradient(135deg,#fffef8,#fff8e9);padding:14px 17px}
+.assessment-options button:before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:#ffbb70;opacity:0;transition:opacity .2s}
+.assessment-options button:hover:before,.assessment-options button.is-selected:before{opacity:1}
+.assessment-options button.is-selected{background:linear-gradient(120deg,#fff0b9,#ffe2b8);border-color:#e99a5d;box-shadow:0 7px 18px #d88b3b20}
+.assessment-success{padding:10px 14px;border-radius:14px;background:#eef3df;color:#627344}
+.assessment-result-grid article{background:linear-gradient(145deg,#fffdf3,#fff0cf);border-radius:22px;position:relative;overflow:hidden}
+.assessment-result-grid article:after{content:"";position:absolute;right:-30px;top:-35px;width:100px;height:100px;border-radius:50%;background:#ffbb7028}
+.sleep-overview{position:relative;display:grid;grid-template-columns:1fr auto;gap:4px 20px;align-items:center;margin:0 0 18px;padding:24px 28px;border-radius:25px;background:linear-gradient(115deg,#3e342f,#6b5141);color:#fff4df;overflow:hidden;box-shadow:0 18px 35px #4a332322}
+.overview-kicker{font-size:10px;letter-spacing:1.8px;font-weight:900;color:#c17a48}
+.sleep-overview .overview-kicker{color:#ffd39e}
+.sleep-overview strong{display:block;font-size:38px;line-height:1.1;margin-top:8px}.sleep-overview strong small{font-size:17px;color:#f2c99e}
+.sleep-overview p{margin:4px 0 0;color:#f0d9c4;font-size:13px}
+.sleep-moon{font-size:68px;line-height:1;color:#ffdc9d;position:relative;padding:0 18px;text-shadow:0 0 25px #ffd38b55}
+.sleep-moon span{position:absolute;right:0;top:2px;font-size:20px}
+.sleep-overview-track{grid-column:1/-1;height:6px;border-radius:10px;background:#ffffff2b;margin-top:15px;overflow:hidden}
+.sleep-overview-track span{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,#ffdc9d,#ed9455);transition:width .3s}
+.assessment-section-intro{display:flex;gap:14px;align-items:center;margin-bottom:8px}
+.assessment-section-intro h2{margin:4px 0 0;font-size:23px}
+.section-number,.academic-chapter{display:grid;place-items:center;flex:0 0 42px;height:42px;border-radius:14px;background:#ffec9e;color:#8c5b34;font-weight:900}
+.assessment-sleep .assessment-fieldset{padding:22px 18px;margin:12px -18px;border-radius:19px;border:1px solid #f0dfc5;background:#fffdf5}
+.assessment-sleep .assessment-fieldset legend{padding:0 8px}
+.assessment-sleep .assessment-fieldset .assessment-options{grid-template-columns:repeat(5,minmax(0,1fr))}
+.academic-overview{display:grid;grid-template-columns:1fr auto;gap:4px 20px;padding:22px 24px;margin:-4px -4px 22px;border-radius:22px;background:linear-gradient(120deg,#fff4cf,#ffe4c4);border:1px solid #f1d2a5}
+.academic-overview h2{margin:8px 0 0;font-size:23px;color:#563d30}
+.academic-overview .assessment-muted{margin:5px 0 0}
+.academic-count{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:82px;height:82px;border-radius:24px;background:#fffaf0;box-shadow:0 7px 18px #9b632018}
+.academic-count strong{font-size:26px;color:#754b32}.academic-count small{font-size:13px;color:#b17b4c}.academic-count span{font-size:10px;font-weight:800;letter-spacing:1px;color:#9d775a;text-transform:uppercase}
+.academic-track{grid-column:1/-1;height:7px;border-radius:10px;background:#e8d4b3;overflow:hidden;margin-top:13px}.academic-track span{display:block;height:100%;background:linear-gradient(90deg,#ffbb70,#ed9455);transition:width .3s}
+.academic-group{padding:22px 20px;margin:16px -8px;border:1px solid #f0dfc5;border-radius:20px;background:linear-gradient(145deg,#fffefa,#fff8e8)}
+.academic-group legend{display:flex;align-items:center;gap:12px;padding-right:12px}
+.academic-group .academic-chapter{width:36px;height:36px;flex-basis:36px;border-radius:12px;font-size:12px}
+.academic-group:nth-of-type(3) .academic-chapter{background:#ffe0c0}
+.academic-group:nth-of-type(4) .academic-chapter{background:#f8e7b7}
+.academic-group:nth-of-type(5) .academic-chapter{background:#f5d9bd}
+.assessment-academic .assessment-profile-grid{gap:18px}
+.assessment-academic .assessment-profile-grid label{padding:14px;border-radius:15px;background:#fffdf5;border:1px solid #f0e2ca}
+.assessment-academic .assessment-profile-grid select{background:#fffaf0}
+.assessment-academic-result{background:linear-gradient(140deg,#fff5d9,#ffe8cc);border-radius:22px;padding:26px}
+.assessment-academic-result h2{font-size:28px}
+html[data-mindora-theme="dark"] .assessment-heading{background:linear-gradient(112deg,#40332b,#514033);border-color:#6a4e3b}
+html[data-mindora-theme="dark"] .assessment-heading-art .art-core{background:linear-gradient(145deg,#6d5140,#8d6344);color:#fff0d8}
+html[data-mindora-theme="dark"] .assessment-mini-grid article,html[data-mindora-theme="dark"] .assessment-sleep .assessment-fieldset,html[data-mindora-theme="dark"] .academic-group,html[data-mindora-theme="dark"] .assessment-academic .assessment-profile-grid label{background:#40332d;border-color:#665043}
+html[data-mindora-theme="dark"] .academic-overview{background:linear-gradient(120deg,#49382c,#57402f);border-color:#70533d}
+html[data-mindora-theme="dark"] .academic-overview h2{color:#fff0d8}
+html[data-mindora-theme="dark"] .academic-count{background:#392d27}
+html[data-mindora-theme="dark"] .sleep-overview{background:linear-gradient(115deg,#292522,#49372e)}
+@media(max-width:760px){.assessment-heading{padding:20px;min-height:145px}.assessment-heading-art{right:-28px;opacity:.45;transform:translateY(-50%) scale(.78)}.assessment-heading-copy{max-width:80%}.sleep-overview{padding:20px}.assessment-sleep .assessment-fieldset .assessment-options{grid-template-columns:repeat(2,minmax(0,1fr))}.academic-overview{padding:18px;grid-template-columns:1fr auto}.academic-overview h2{font-size:19px}.academic-group{padding:17px 12px;margin:14px -5px}}
+@media(prefers-reduced-motion:reduce){.art-orbit{animation:none}}
