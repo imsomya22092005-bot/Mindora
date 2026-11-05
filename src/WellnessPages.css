@@ -1248,3 +1248,85 @@ html[data-mindora-theme="dark"] .calm-music-button {
   color: #fff3df !important;
   border-color: #705242 !important;
 }
+
+
+/* MINDFUL MOMENTS + FOUR INNER PAGES — last saved mood palette */
+.wellness-page[data-mood="low"]{--wellness-bg:#F2E8D9;--wellness-card:#EBDCC6;--wellness-text:#1F382E;--wellness-muted:#53665B;--wellness-green:#1F382E;--wellness-light:#CBB3EA;--wellness-border:#D4C2A9;background:radial-gradient(ellipse at 12% 8%,#CBB3EA55,transparent 34%),var(--wellness-bg);color:var(--wellness-text);}
+.wellness-page[data-mood="meh"]{--wellness-bg:#E8D8D4;--wellness-card:#C9ADA7;--wellness-text:#3A0F34;--wellness-muted:#62434F;--wellness-green:#3A0F34;--wellness-light:#E8B6A8;--wellness-border:#B99690;background:radial-gradient(ellipse at 12% 8%,#C75A3A35,transparent 34%),var(--wellness-bg);color:var(--wellness-text);}
+.wellness-page[data-mood="okay"]{--wellness-bg:#E4F0E9;--wellness-card:#B8DCCB;--wellness-text:#164E4A;--wellness-muted:#426C63;--wellness-green:#17645F;--wellness-light:#F5A477;--wellness-border:#9FC9B7;background:radial-gradient(ellipse at 12% 8%,#F5A47738,transparent 34%),var(--wellness-bg);color:var(--wellness-text);}
+.wellness-page[data-mood="good"]{--wellness-bg:#FBF3D9;--wellness-card:#F2D98D;--wellness-text:#49352C;--wellness-muted:#725B48;--wellness-green:#49352C;--wellness-light:#D9A6A0;--wellness-border:#E2C778;background:radial-gradient(ellipse at 12% 8%,#D9A6A055,transparent 34%),var(--wellness-bg);color:var(--wellness-text);}
+.wellness-page[data-mood="great"]{--wellness-bg:#F4F3EB;--wellness-card:#FAF8F3;--wellness-text:#08090B;--wellness-muted:#45483B;--wellness-green:#08090B;--wellness-light:#CDF22B;--wellness-border:#D9DDC9;background:radial-gradient(ellipse at 12% 8%,#CDF22B35,transparent 34%),var(--wellness-bg);color:var(--wellness-text);}
+.wellness-page[data-mood] :is(.wellness-heading h1,.wellness-panel h2,.garden-summary h2,.rain-card h2,.journal-editor h2,.comfort-restored h2){color:var(--wellness-text)!important;}
+.wellness-page[data-mood] :is(.wellness-heading>p:last-child,.wellness-panel>p:not(.wellness-eyebrow),.garden-summary>p,.garden-growth-note,.rain-card>p:not(.wellness-eyebrow),.wellness-muted,.journal-editor>p:not(.wellness-eyebrow)){color:var(--wellness-muted)!important;}
+.wellness-page[data-mood] :is(.wellness-eyebrow,.wellness-brand,.wellness-back,.wellness-heading-icon,.breathing-inner){color:var(--wellness-green)!important;}
+.wellness-page[data-mood] .wellness-heading-icon{background:var(--wellness-light)!important;}
+.wellness-page[data-mood] :is(.wellness-panel,.calm-card,.garden-summary,.comfort-note,.rain-card,.journal-editor,.comfort-restored){background:var(--wellness-card)!important;border-color:var(--wellness-border)!important;color:var(--wellness-text)!important;box-shadow:0 14px 36px color-mix(in srgb,var(--wellness-text) 8%,transparent)!important;}
+.wellness-page[data-mood] .calm-card{background:radial-gradient(ellipse at 50% 42%,color-mix(in srgb,var(--wellness-light) 62%,var(--wellness-card)),var(--wellness-card) 72%)!important;}
+.wellness-page[data-mood] .wellness-button{background:var(--wellness-green)!important;border-color:var(--wellness-green)!important;color:#fff!important;}
+.wellness-page[data-mood] .wellness-button.secondary{background:var(--wellness-light)!important;border-color:var(--wellness-border)!important;color:var(--wellness-text)!important;}
+.wellness-page[data-mood] .breathing-orb{border-color:var(--wellness-green)!important;background:color-mix(in srgb,var(--wellness-light) 58%,transparent)!important;box-shadow:0 0 0 15px color-mix(in srgb,var(--wellness-light) 30%,transparent)!important;}
+.wellness-page[data-mood] .grounding-dots span{background:color-mix(in srgb,var(--wellness-muted) 25%,var(--wellness-card))!important;}
+.wellness-page[data-mood] .grounding-dots .dot-active{background:var(--wellness-green)!important;}
+.wellness-page[data-mood] .progress-track{background:color-mix(in srgb,var(--wellness-border) 60%,var(--wellness-card))!important;}
+.wellness-page[data-mood] .progress-track>div{background:var(--wellness-green)!important;}
+.wellness-page[data-mood] .care-item,.wellness-page[data-mood] .mood-chip,.wellness-page[data-mood] .journal-entry{background:var(--wellness-card)!important;border-color:var(--wellness-border)!important;color:var(--wellness-text)!important;}
+.wellness-page[data-mood] .care-item>span:nth-child(2),.wellness-page[data-mood] .care-check,.wellness-page[data-mood] .mood-chip{color:var(--wellness-text)!important;}
+.wellness-page[data-mood] .care-done,.wellness-page[data-mood] .mood-chip.mood-selected{background:var(--wellness-light)!important;border-color:var(--wellness-green)!important;color:var(--wellness-text)!important;}
+.wellness-page[data-mood] .care-check{border-color:var(--wellness-green)!important;}
+.wellness-page[data-mood] .care-done .care-check{background:var(--wellness-green)!important;color:#fff!important;}
+.wellness-page[data-mood] .comfort-note{background:linear-gradient(150deg,var(--wellness-light),var(--wellness-card))!important;}
+.wellness-page[data-mood] .comfort-note :is(blockquote,.wellness-eyebrow,.comfort-count,.note-flower,svg){color:var(--wellness-text)!important;}
+.wellness-page[data-mood] .rain-scene{background:linear-gradient(180deg,color-mix(in srgb,var(--wellness-light) 75%,var(--wellness-card)),var(--wellness-card))!important;}
+.wellness-page[data-mood] .rain-cloud,.wellness-page[data-mood] .rain-drop{color:var(--wellness-green)!important;}
+.wellness-page[data-mood] .rain-hill{filter:saturate(.7);}
+.wellness-page[data-mood] .soundscape-option{background:var(--wellness-card)!important;border-color:var(--wellness-border)!important;color:var(--wellness-text)!important;}
+.wellness-page[data-mood] .soundscape-option :is(strong,small){color:var(--wellness-text)!important;}
+.wellness-page[data-mood] .soundscape-option-active{background:var(--wellness-light)!important;border-color:var(--wellness-green)!important;}
+.wellness-page[data-mood] .volume-control input{accent-color:var(--wellness-green)!important;}
+.wellness-page[data-mood] .journal-editor textarea{background:var(--wellness-bg)!important;color:var(--wellness-text)!important;border-color:var(--wellness-border)!important;}
+.wellness-page[data-mood] .journal-editor textarea::placeholder{color:var(--wellness-muted)!important;opacity:1;}
+.wellness-page[data-mood] .journal-privacy,.wellness-page[data-mood] .journal-entry time{color:var(--wellness-muted)!important;}
+.wellness-page[data-mood] .journal-actions button{background:var(--wellness-light)!important;color:var(--wellness-text)!important;border-color:var(--wellness-border)!important;}
+.wellness-page[data-mood] .garden-growth-note{color:var(--wellness-muted)!important;}
+.wellness-page[data-mood] .garden-landscape{background:linear-gradient(180deg,color-mix(in srgb,var(--wellness-light) 82%,white),color-mix(in srgb,var(--wellness-card) 80%,var(--wellness-bg)))!important;}
+.wellness-page[data-mood] .garden-landscape::before{background:color-mix(in srgb,var(--wellness-green) 28%,var(--wellness-light))!important;}
+.wellness-page[data-mood] .garden-landscape::after{background:color-mix(in srgb,var(--wellness-green) 48%,var(--wellness-card))!important;}
+.wellness-page[data-mood] .garden-sun{color:var(--wellness-green)!important;}
+.wellness-page[data-mood] .garden-cloud{color:color-mix(in srgb,var(--wellness-text) 48%,white)!important;}
+.wellness-page[data-mood] .garden-stem{background:var(--wellness-green)!important;}
+.wellness-page[data-mood] .garden-leaf{background:color-mix(in srgb,var(--wellness-green) 72%,var(--wellness-light))!important;}
+.wellness-page[data-mood] .garden-flower{color:var(--wellness-light)!important;}
+.wellness-page[data-mood] .garden-flower-core{color:var(--wellness-green)!important;}
+.wellness-page[data-mood] .garden-plant-number{background:var(--wellness-green)!important;color:#fff!important;}
+.wellness-page[data-mood] .garden-ground{color:var(--wellness-light)!important;}
+.wellness-page[data-mood] .garden-butterfly{filter:saturate(.7);}
+.wellness-page[data-mood] :is(input,textarea,select):focus-visible,.wellness-page[data-mood] button:focus-visible{outline:3px solid var(--wellness-green)!important;outline-offset:3px;}
+.wellness-page[data-mood] :is(input,textarea)::placeholder{color:var(--wellness-muted)!important;opacity:1;}
+.wellness-page[data-mood] .wellness-footer{color:var(--wellness-muted)!important;border-color:var(--wellness-border)!important;}
+
+/* Dark-mode companions for each mood; scoped to the wellness pages only. */
+html[data-mindora-theme="dark"] .wellness-page[data-mood="low"]{--wellness-bg:#111C17;--wellness-card:#17251F;--wellness-text:#F3EBDD;--wellness-muted:#D0D8D0;--wellness-green:#B9A5D6;--wellness-light:#26392E;--wellness-border:#34483D;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood="meh"]{--wellness-bg:#190B16;--wellness-card:#24101F;--wellness-text:#F5E9E7;--wellness-muted:#D9C3CF;--wellness-green:#E18467;--wellness-light:#40283A;--wellness-border:#543047;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood="okay"]{--wellness-bg:#0B2221;--wellness-card:#102E2C;--wellness-text:#E4F1E9;--wellness-muted:#C2DAD0;--wellness-green:#F5A477;--wellness-light:#204743;--wellness-border:#28514B;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood="good"]{--wellness-bg:#1D1511;--wellness-card:#2C211B;--wellness-text:#F8EEDB;--wellness-muted:#DCCDBB;--wellness-green:#E6AD79;--wellness-light:#49362A;--wellness-border:#584033;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood="great"]{--wellness-bg:#08090B;--wellness-card:#151713;--wellness-text:#FAF8F3;--wellness-muted:#D8D9D2;--wellness-green:#CDF22B;--wellness-light:#24291A;--wellness-border:#34372B;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .wellness-button{color:#08090B!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .wellness-button.secondary{color:var(--wellness-text)!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .care-item,
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .mood-chip,
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .journal-entry,
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .soundscape-option{background:var(--wellness-card)!important;color:var(--wellness-text)!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .comfort-note{background:linear-gradient(150deg,var(--wellness-light),var(--wellness-card))!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .rain-scene{background:linear-gradient(180deg,#172D32,var(--wellness-card))!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .garden-landscape{background:linear-gradient(180deg,#263A34,#1B3029)!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .garden-landscape::before{background:color-mix(in srgb,var(--wellness-green) 34%,var(--wellness-light))!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .garden-landscape::after{background:color-mix(in srgb,var(--wellness-green) 45%,var(--wellness-card))!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .garden-plant-number{color:#08090B!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .wellness-heading-icon{background:var(--wellness-light)!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] :is(.wellness-heading h1,.wellness-panel h2,.garden-summary h2,.rain-card h2,.journal-editor h2,.comfort-restored h2){color:var(--wellness-text)!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] :is(.wellness-heading>p:last-child,.wellness-panel>p:not(.wellness-eyebrow),.garden-summary>p,.garden-growth-note,.rain-card>p:not(.wellness-eyebrow),.wellness-muted,.journal-editor>p:not(.wellness-eyebrow)){color:var(--wellness-muted)!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .soundscape-option :is(strong,small){color:var(--wellness-text)!important;}
+html[data-mindora-theme="dark"] .wellness-page[data-mood] .care-item>span:nth-child(2){color:var(--wellness-text)!important;}
+
+/* Accessibility: retain the page's motion design but respect reduced-motion settings. */
+@media(prefers-reduced-motion:reduce){.wellness-page[data-mood] *{transition-duration:.01ms!important;animation-duration:.01ms!important;}}
