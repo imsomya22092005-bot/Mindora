@@ -420,6 +420,7 @@ function Dashboard() {
     setSavedMood(selectedMood);
     try {
       localStorage.setItem("mindora-saved-mood", selectedMood.label);
+      window.dispatchEvent(new CustomEvent("mindora:mood-saved", { detail: { mood: selectedMood.label.toLowerCase() } }));
     } catch {
       // The diary still updates for this session if storage is unavailable.
     }
