@@ -523,7 +523,7 @@ function Dashboard() {
   ];
 
   return (
-    <div className={`app-shell ${darkMode ? "dark-theme" : ""}`}>
+    <div className={`app-shell ${darkMode ? "dark-theme" : ""}`} data-mood={savedMood?.label?.toLowerCase() || "default"}>
       <aside className="sidebar">
         <button
           className="brand"
