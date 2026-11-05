@@ -1012,7 +1012,6 @@ function Dashboard() {
               ))}
             </div>
           </section>
-</section>
 
           <footer className="app-footer">
             <span>
