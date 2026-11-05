@@ -77,3 +77,40 @@ html[data-mindora-theme="dark"] .academic-count{background:#392d27}
 html[data-mindora-theme="dark"] .sleep-overview{background:linear-gradient(115deg,#292522,#49372e)}
 @media(max-width:760px){.assessment-heading{padding:20px;min-height:145px}.assessment-heading-art{right:-28px;opacity:.45;transform:translateY(-50%) scale(.78)}.assessment-heading-copy{max-width:80%}.sleep-overview{padding:20px}.assessment-sleep .assessment-fieldset .assessment-options{grid-template-columns:repeat(2,minmax(0,1fr))}.academic-overview{padding:18px;grid-template-columns:1fr auto}.academic-overview h2{font-size:19px}.academic-group{padding:17px 12px;margin:14px -5px}}
 @media(prefers-reduced-motion:reduce){.art-orbit{animation:none}}
+
+
+/* Three distinct Mindora experiences: Mind Journey, Dream Lab, Student Observatory */
+.wellbeing-journey-hero{display:grid;grid-template-columns:1.3fr .7fr;align-items:center;gap:20px;padding:26px 28px;margin-bottom:22px;border-radius:24px;background:radial-gradient(circle at 82% 45%,#ffe1ad 0 16%,transparent 17%),linear-gradient(115deg,#fff0bd,#fff9e8 65%,#ffe5c7);overflow:hidden}
+.wellbeing-journey-hero h2,.dream-lab-copy h2,.observatory-copy h2{font:800 clamp(23px,3vw,32px)/1.15 Manrope,sans-serif;letter-spacing:-.8px;color:#563d30;margin:10px 0}
+.wellbeing-journey-hero p,.dream-lab-copy p,.observatory-copy p{color:#806b61;line-height:1.65;max-width:520px;margin:0}
+.journey-stamps{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.journey-stamps span,.observatory-tags span{font-size:11px;font-weight:800;color:#8a5a37;padding:8px 11px;border-radius:30px;background:#fffaf0;border:1px solid #efd6ae}
+.wellbeing-orbit{width:145px;height:145px;justify-self:center;position:relative;border:1px dashed #d99b62;border-radius:50%;display:grid;place-items:center;animation:orbit-breathe 7s ease-in-out infinite}
+.wellbeing-orbit:before,.wellbeing-orbit:after{content:"";position:absolute;border-radius:50%;border:1px solid #e8b77c}
+.wellbeing-orbit:before{inset:13px}.wellbeing-orbit:after{inset:27px;background:linear-gradient(145deg,#ffedac,#ffbd78);box-shadow:0 10px 30px #d98e4933}
+.wellbeing-orbit b,.wellbeing-orbit i,.wellbeing-orbit span,.wellbeing-orbit em{position:absolute;z-index:1;font-style:normal;color:#80502f}
+.wellbeing-orbit b{font-size:10px;letter-spacing:2px}.wellbeing-orbit i{font-size:25px;top:5px;left:12px}.wellbeing-orbit span{right:6px;top:25px}.wellbeing-orbit em{bottom:8px;left:30px}
+@keyframes orbit-breathe{50%{transform:rotate(12deg) scale(1.04)}}
+.wellbeing-question-meta{display:flex;align-items:center;gap:13px;margin:4px 0 18px}
+.wellbeing-step-bubble{width:48px;height:48px;display:grid;place-items:center;border-radius:17px;background:linear-gradient(145deg,#ffec9e,#ffbb70);font-weight:900;color:#754b32;box-shadow:0 8px 18px #d88b3b25}
+.wellbeing-question-meta div{display:flex;flex-direction:column;gap:4px}.wellbeing-question-meta b{font-size:10px;letter-spacing:1.5px;color:#b56c3d}.wellbeing-question-meta small{font-size:12px;color:#8d7868}.wellbeing-sparkle{margin-left:auto;color:#d9955a;font-size:24px}
+.dream-lab-intro{display:grid;grid-template-columns:1fr 180px;align-items:center;gap:20px;padding:24px 28px;margin-bottom:17px;border-radius:25px;background:linear-gradient(115deg,#fff0c7,#fff9e9 70%,#ffe2c3);border:1px solid #f0d5a7}
+.dream-window{height:140px;width:140px;justify-self:center;position:relative;display:grid;place-items:center;border-radius:48% 52% 46% 54%;background:linear-gradient(145deg,#59483e,#2f2926);box-shadow:0 15px 32px #59483e33;transform:rotate(7deg)}
+.dream-window span{font-size:55px;color:#ffe0a1;position:absolute;top:8px;left:25px}.dream-window i{font-style:normal;color:#ffcf83;position:absolute;right:22px;top:22px}.dream-window b{font-size:11px;line-height:1.4;letter-spacing:2px;color:#fff0d8;text-align:center;margin-top:35px}
+.sleep-rhythm-panel{padding:22px 25px;margin-bottom:17px;border-radius:23px;background:linear-gradient(135deg,#fffdf3,#fff0d6);border:1px solid #efd6ae;box-shadow:0 12px 28px #9c6b2410}
+.sleep-rhythm-head{display:flex;align-items:center;justify-content:space-between;gap:15px}.sleep-rhythm-head h3{margin:5px 0;color:#563d30;font-size:19px}.sleep-rhythm-head>strong{font-size:25px;color:#9c6039}.sleep-rhythm-head>strong small{font-size:11px;color:#9b806b}
+.sleep-clock-track{height:16px;border-radius:30px;background:repeating-linear-gradient(90deg,#ead9bb 0 1px,transparent 1px 8.333%),#f4e8d3;margin:21px 0 15px;overflow:hidden;position:relative}
+.sleep-clock-fill{display:block;height:100%;width:66%;margin-left:15%;border-radius:30px;background:linear-gradient(90deg,#d49a5b,#ed9455,#ffcc81);box-shadow:0 0 15px #ed945555}
+.sleep-time-controls{display:flex;align-items:end;gap:14px}.sleep-time-controls label{display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:800;color:#76553e;flex:1}.sleep-time-controls input{height:42px;border:1px solid #e7cda8;border-radius:12px;padding:0 10px;background:#fffdf6;color:#563d30}.sleep-path{padding-bottom:12px;color:#c37d48;font-size:20px}.sleep-rhythm-panel>p{font-size:11px;color:#907966;margin:13px 0 0}
+.student-observatory{display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:15px;padding:25px 28px;margin:-4px -4px 22px;border-radius:25px;background:radial-gradient(circle at 80% 50%,#ffe0ae 0 17%,transparent 18%),linear-gradient(115deg,#fff0c3,#fff9e9 70%,#ffe3c7);border:1px solid #f0d4a6;overflow:hidden}
+.observatory-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:17px}.observatory-tags span{padding:7px 10px}
+.stress-orbit{width:150px;height:150px;justify-self:center;display:grid;place-items:center;position:relative;border-radius:50%;background:conic-gradient(from 15deg,#ed9455 0 24%,#ffcf89 24% 49%,#f5dfa8 49% 74%,#e9b77e 74%);box-shadow:0 12px 28px #b4773430;animation:orbit-breathe 9s ease-in-out infinite}
+.stress-orbit-ring{position:absolute;inset:12px;border-radius:50%;background:#fff8e8;border:1px solid #e8c99c}.stress-orbit>span{z-index:1;text-align:center;font-size:11px;line-height:1.5;font-weight:900;letter-spacing:1px;color:#78543b}.stress-orbit i,.stress-orbit b{position:absolute;z-index:2;font-style:normal;color:#a76839}.stress-orbit i{top:12px;right:25px}.stress-orbit b{bottom:14px;left:23px;font-size:22px}
+html[data-mindora-theme="dark"] .wellbeing-journey-hero,html[data-mindora-theme="dark"] .dream-lab-intro,html[data-mindora-theme="dark"] .student-observatory{background:linear-gradient(115deg,#49382c,#57402f);border-color:#70533d}
+html[data-mindora-theme="dark"] .wellbeing-journey-hero h2,html[data-mindora-theme="dark"] .dream-lab-copy h2,html[data-mindora-theme="dark"] .observatory-copy h2,html[data-mindora-theme="dark"] .sleep-rhythm-head h3{color:#fff0d8}
+html[data-mindora-theme="dark"] .wellbeing-journey-hero p,html[data-mindora-theme="dark"] .dream-lab-copy p,html[data-mindora-theme="dark"] .observatory-copy p,html[data-mindora-theme="dark"] .wellbeing-question-meta small{color:#e6d4c3}
+html[data-mindora-theme="dark"] .journey-stamps span,html[data-mindora-theme="dark"] .observatory-tags span{background:#392d27;border-color:#705242;color:#ffdfb5}
+html[data-mindora-theme="dark"] .sleep-rhythm-panel{background:linear-gradient(135deg,#40332d,#49382c);border-color:#665043}
+html[data-mindora-theme="dark"] .sleep-time-controls input{background:#302725;border-color:#705242;color:#fff3df}
+html[data-mindora-theme="dark"] .sleep-rhythm-head h3{color:#fff0d8}
+@media(max-width:700px){.wellbeing-journey-hero,.dream-lab-intro,.student-observatory{grid-template-columns:1fr;padding:20px}.wellbeing-orbit,.dream-window,.stress-orbit{margin:8px auto 0}.wellbeing-journey-hero h2,.dream-lab-copy h2,.observatory-copy h2{font-size:24px}.sleep-time-controls{gap:8px}.sleep-rhythm-panel{padding:18px}.sleep-rhythm-head{align-items:flex-start}.dream-window{width:120px;height:120px}}
