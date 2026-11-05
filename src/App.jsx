@@ -132,15 +132,6 @@ const moods = [
   { label: "Great", emoji: "😁", value: 10, color: "#ed9455" },
 ];
 
-// Mood diary palettes are independent of Mindora's global light/dark preference.
-const moodDiaryPalettes = {
-  Low: { light: ["#EBDCC6", "#1F382E", "#CBB3EA"], dark: ["#17251F", "#F3EBDD", "#B9A5D6"] },
-  Meh: { light: ["#C9ADA7", "#3A0F34", "#C75A3A"], dark: ["#24101F", "#F5E9E7", "#E18467"] },
-  Okay: { light: ["#B8DCCB", "#164E4A", "#F5A477"], dark: ["#102E2C", "#E4F1E9", "#F5A477"] },
-  Good: { light: ["#F2D98D", "#49352C", "#D9A6A0"], dark: ["#2C211B", "#F8EEDB", "#E6AD79"] },
-  Great: { light: ["#FAF8F3", "#08090B", "#CDF22B"], dark: ["#08090B", "#FAF8F3", "#CDF22B"] },
-};
-
 const initialActivity = [
   {
     id: 1,
