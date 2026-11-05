@@ -489,6 +489,9 @@ function Dashboard() {
     if (section === "Insights") navigate("/insights");
     if (section === "Mindful moments") navigate("/mindful-moments");
     if (section === "AI wellbeing") navigate("/mindora-ai");
+    if (section === "Wellbeing Check-in") navigate("/wellbeing-checkin");
+    if (section === "Sleep Check") navigate("/sleep-check");
+    if (section === "Academic Stress Predictor") navigate("/academic-stress");
     if (section === "Calm Corner") navigate("/calm-corner");
     if (section === "My profile") navigate("/profile");
     if (section === "Play & Unwind") navigate("/games");
@@ -501,6 +504,9 @@ function Dashboard() {
     { label: t("Insights", "जानकारियाँ"), icon: BarChart3, routeLabel: "Insights" },
     { label: t("Mindful moments", "सुकून के पल"), icon: Wind, routeLabel: "Mindful moments" },
     { label: t("AI wellbeing", "AI वेलबीइंग"), icon: HeartHandshake, routeLabel: "AI wellbeing" },
+    { label: t("Wellbeing Check-in", "वेलबीइंग चेक-इन"), icon: Heart, routeLabel: "Wellbeing Check-in" },
+    { label: t("Sleep Check", "नींद की जाँच"), icon: Moon, routeLabel: "Sleep Check" },
+    { label: t("Academic Stress Predictor", "अकादमिक तनाव प्रेडिक्टर"), icon: Sparkles, routeLabel: "Academic Stress Predictor" },
     { label: t("Play & Unwind", "खेलें और सुकून पाएँ"), icon: Gamepad2, routeLabel: "Play & Unwind" },
   ];
 
