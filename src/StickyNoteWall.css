@@ -107,3 +107,120 @@ html[data-mindora-theme="dark"] .sticky-wall-decor-sparkle{color:#fff0c9}
 html[data-mindora-theme="dark"] .sticky-wall-decor-heart{color:#e2a18f}
 html[data-mindora-theme="dark"] .sticky-wall-decor-sun{color:#f0bd8a}
 html[data-mindora-theme="dark"] .sticky-note::before{background:repeating-linear-gradient(135deg,#e5b98de8 0,#e5b98de8 5px,#b87958e8 5px,#b87958e8 9px);border-color:#fff2}
+
+
+/* LITTLE NOTES — MOOD-ADAPTIVE PAGE PALETTES
+   Scoped to this page only. Global Light/Dark mode remains the mode selector. */
+.sticky-wall-page[data-mood]:not([data-mood="default"]) {
+  --ln-page:#F2E8D9; --ln-surface:#EBDCC6; --ln-board:#D9C5A9;
+  --ln-ink:#1F382E; --ln-muted:#53665B; --ln-accent:#CBB3EA;
+  --ln-line:#D4C2A9; --ln-button:#1F382E; --ln-button-text:#FFFFFF;
+  --ln-paper:#F7F0E5; --ln-paper-alt:#E5D7C5; --ln-pin:#765B49;
+  background:radial-gradient(ellipse at 8% 4%,color-mix(in srgb,var(--ln-accent) 25%,var(--ln-page)),transparent 36%),var(--ln-page)!important;
+  color:var(--ln-ink)!important; transition:background-color .5s ease,color .5s ease;
+}
+.sticky-wall-page[data-mood="low"] {--ln-page:#F2E8D9;--ln-surface:#EBDCC6;--ln-board:#D9C5A9;--ln-ink:#1F382E;--ln-muted:#53665B;--ln-accent:#CBB3EA;--ln-line:#D4C2A9;--ln-button:#1F382E;--ln-button-text:#FFFFFF;--ln-paper:#F7F0E5;--ln-paper-alt:#E5D7C5;--ln-pin:#765B49;}
+.sticky-wall-page[data-mood="meh"] {--ln-page:#E8D8D4;--ln-surface:#C9ADA7;--ln-board:#B78F8B;--ln-ink:#3A0F34;--ln-muted:#62434F;--ln-accent:#C75A3A;--ln-line:#B99690;--ln-button:#3A0F34;--ln-button-text:#FFFFFF;--ln-paper:#F3E4E0;--ln-paper-alt:#E0C7C1;--ln-pin:#713F38;}
+.sticky-wall-page[data-mood="okay"] {--ln-page:#E4F0E9;--ln-surface:#B8DCCB;--ln-board:#9FC9B7;--ln-ink:#164E4A;--ln-muted:#426C63;--ln-accent:#F5A477;--ln-line:#9FC9B7;--ln-button:#164E4A;--ln-button-text:#FFFFFF;--ln-paper:#F1F8F3;--ln-paper-alt:#D4E9DE;--ln-pin:#356B61;}
+.sticky-wall-page[data-mood="good"] {--ln-page:#FBF3D9;--ln-surface:#F2D98D;--ln-board:#E8C875;--ln-ink:#49352C;--ln-muted:#725B48;--ln-accent:#D9A6A0;--ln-line:#E2C778;--ln-button:#49352C;--ln-button-text:#FFFFFF;--ln-paper:#FFF9E7;--ln-paper-alt:#F5E6B8;--ln-pin:#81533D;}
+.sticky-wall-page[data-mood="great"] {--ln-page:#F4F3EB;--ln-surface:#FAF8F3;--ln-board:#DDE1D0;--ln-ink:#08090B;--ln-muted:#45483B;--ln-accent:#CDF22B;--ln-line:#D9DDC9;--ln-button:#08090B;--ln-button-text:#FAF8F3;--ln-paper:#FFFFFF;--ln-paper-alt:#E9EBDD;--ln-pin:#535747;}
+
+/* Page heading, navigation, board, empty state and action controls. */
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-heading h1,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-heading h1 em,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-heading p,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-eyebrow,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-back,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-empty,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-empty-kicker,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-empty p,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-board-caption {
+  color:var(--ln-ink)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-heading h1 em,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-eyebrow,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-empty-kicker {color:var(--ln-accent)!important;}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-back {
+  background:var(--ln-surface)!important;border-color:var(--ln-line)!important;color:var(--ln-ink)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) :is(.sticky-wall-add,.sticky-wall-empty button,.sticky-wall-pin-button) {
+  background:var(--ln-button)!important;border:1px solid var(--ln-button)!important;color:var(--ln-button-text)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-board {
+  border-color:var(--ln-line)!important;
+  background-color:var(--ln-board)!important;
+  background-image:radial-gradient(ellipse at 18% 20%,color-mix(in srgb,var(--ln-surface) 75%,white) 0,transparent 38%),radial-gradient(ellipse at 82% 80%,color-mix(in srgb,var(--ln-ink) 13%,transparent) 0,transparent 44%),repeating-linear-gradient(4deg,#ffffff12 0,#ffffff12 2px,transparent 2px,transparent 7px),linear-gradient(115deg,var(--ln-board),var(--ln-surface) 48%,var(--ln-board))!important;
+  box-shadow:inset 0 0 70px color-mix(in srgb,var(--ln-ink) 10%,transparent),0 18px 42px color-mix(in srgb,var(--ln-ink) 10%,transparent)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-string {background:color-mix(in srgb,var(--ln-ink) 40%,transparent)!important;}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-empty-icon {
+  background:var(--ln-surface)!important;border-color:var(--ln-line)!important;color:var(--ln-ink)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-add-tile {
+  background:color-mix(in srgb,var(--ln-surface) 55%,transparent)!important;
+  border-color:color-mix(in srgb,var(--ln-ink) 45%,transparent)!important;color:var(--ln-ink)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-add-tile:hover {background:var(--ln-surface)!important;}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-board-caption {color:var(--ln-muted)!important;}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-decor {color:var(--ln-accent)!important;}
+
+/* Notes remain individually pinned, but each paper tint now belongs to the active mood. */
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note {
+  background:var(--ln-paper)!important;color:var(--ln-ink)!important;
+  border:1px solid color-mix(in srgb,var(--ln-ink) 12%,var(--ln-paper));
+  box-shadow:2px 8px 14px color-mix(in srgb,var(--ln-ink) 20%,transparent),0 1px 1px #ffffff80 inset!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note:nth-child(3n+2) {background:var(--ln-surface)!important;}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note:nth-child(3n) {background:var(--ln-paper-alt)!important;}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note :is(h3,p,footer) {color:var(--ln-ink)!important;}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note-pin {color:var(--ln-pin)!important;}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note-delete {background:color-mix(in srgb,var(--ln-surface) 78%,white)!important;color:var(--ln-ink)!important;}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note::before {
+  background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--ln-accent) 55%,white) 0,color-mix(in srgb,var(--ln-accent) 55%,white) 5px,color-mix(in srgb,var(--ln-surface) 70%,white) 5px,color-mix(in srgb,var(--ln-surface) 70%,white) 9px)!important;
+  border-color:color-mix(in srgb,var(--ln-ink) 10%,white)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note::after {color:color-mix(in srgb,var(--ln-accent) 45%,transparent)!important;}
+
+/* Add-note modal, form fields, swatches and keyboard focus. */
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer {
+  background:var(--ln-surface)!important;color:var(--ln-ink)!important;border-color:var(--ln-line)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer :is(h2,label,.sticky-wall-color-label,.sticky-wall-eyebrow) {color:var(--ln-ink)!important;}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer label span {color:var(--ln-muted)!important;}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-modal-close {
+  background:var(--ln-paper)!important;border-color:var(--ln-line)!important;color:var(--ln-ink)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer :is(input,textarea) {
+  background:var(--ln-paper)!important;color:var(--ln-ink)!important;border-color:var(--ln-line)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer :is(input,textarea)::placeholder {color:var(--ln-muted)!important;opacity:1;}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer :is(input,textarea):focus {
+  border-color:var(--ln-accent)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--ln-accent) 25%,transparent)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-color-swatch.is-selected {
+  box-shadow:0 0 0 2px var(--ln-ink),0 0 0 5px color-mix(in srgb,var(--ln-accent) 38%,transparent)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) :is(button,input,textarea):focus-visible {
+  outline:3px solid var(--ln-accent)!important;outline-offset:3px;
+}
+
+/* Dark-mode companion palettes. These activate only when the app's dark toggle is on. */
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="low"] {--ln-page:#111C17;--ln-surface:#17251F;--ln-board:#26392E;--ln-ink:#F3EBDD;--ln-muted:#D0D8D0;--ln-accent:#B9A5D6;--ln-line:#34483D;--ln-button:#B9A5D6;--ln-button-text:#17251F;--ln-paper:#20352B;--ln-paper-alt:#1D2D24;--ln-pin:#D4BDEB;}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="meh"] {--ln-page:#190B16;--ln-surface:#24101F;--ln-board:#40283A;--ln-ink:#F5E9E7;--ln-muted:#D9C3CF;--ln-accent:#E18467;--ln-line:#543047;--ln-button:#E18467;--ln-button-text:#24101F;--ln-paper:#32182C;--ln-paper-alt:#2C1727;--ln-pin:#F0B19B;}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="okay"] {--ln-page:#0B2221;--ln-surface:#102E2C;--ln-board:#204743;--ln-ink:#E4F1E9;--ln-muted:#C2DAD0;--ln-accent:#F5A477;--ln-line:#28514B;--ln-button:#F5A477;--ln-button-text:#102E2C;--ln-paper:#173A36;--ln-paper-alt:#20413D;--ln-pin:#FFD0AE;}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="good"] {--ln-page:#1D1511;--ln-surface:#2C211B;--ln-board:#49362A;--ln-ink:#F8EEDB;--ln-muted:#DCCDBB;--ln-accent:#E6AD79;--ln-line:#584033;--ln-button:#E6AD79;--ln-button-text:#2C211B;--ln-paper:#3A2A21;--ln-paper-alt:#362820;--ln-pin:#F0C394;}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="great"] {--ln-page:#08090B;--ln-surface:#151713;--ln-board:#24291A;--ln-ink:#FAF8F3;--ln-muted:#D8D9D2;--ln-accent:#CDF22B;--ln-line:#34372B;--ln-button:#CDF22B;--ln-button-text:#08090B;--ln-paper:#20231A;--ln-paper-alt:#171A13;--ln-pin:#CDF22B;}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="default"]) {
+  background:radial-gradient(ellipse at 8% 4%,color-mix(in srgb,var(--ln-accent) 18%,var(--ln-page)),transparent 36%),var(--ln-page)!important;
+}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-board {
+  background-image:radial-gradient(ellipse at 18% 20%,color-mix(in srgb,var(--ln-surface) 75%,white) 0,transparent 38%),radial-gradient(ellipse at 82% 80%,color-mix(in srgb,var(--ln-ink) 16%,transparent) 0,transparent 44%),repeating-linear-gradient(4deg,#ffffff08 0,#ffffff08 2px,transparent 2px,transparent 7px),linear-gradient(115deg,var(--ln-board),var(--ln-surface) 48%,var(--ln-board))!important;
+}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note {
+  border-color:var(--ln-line)!important;box-shadow:2px 8px 14px #0005,0 1px 1px #ffffff10 inset!important;
+}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note :is(h3,p,footer) {color:var(--ln-ink)!important;}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer {
+  box-shadow:0 25px 80px #0008!important;
+}
+@media(prefers-reduced-motion:reduce){.sticky-wall-page[data-mood] *{transition-duration:.01ms!important;animation-duration:.01ms!important;}}
