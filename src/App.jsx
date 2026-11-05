@@ -49,6 +49,7 @@ import GamesZone from "./GamesZone";
 import SharedSidebarLayout from "./SharedSidebarLayout";
 import MindoraAI from "./MindoraAI";
 import StickyNoteWall from "./StickyNoteWall";
+import { WellbeingCheckinPage, SleepCheckPage, AcademicStressPage } from "./AssessmentPages";
 
 import {
   CalmCorner,
@@ -1011,6 +1012,30 @@ function Dashboard() {
               ))}
             </div>
           </section>
+          <section className="section-block assessment-launch-section">
+            <div className="section-heading">
+              <div>
+                <div className="section-kicker">{t("A LITTLE MORE SELF-UNDERSTANDING", "खुद को थोड़ा और समझें")}</div>
+                <h2>{t("Explore your wellbeing", "अपनी भलाई को समझें")}</h2>
+                <p>{t("Three separate check-ins for your mood, sleep and student life.", "मूड, नींद और छात्र जीवन के लिए तीन अलग-अलग चेक-इन।")}</p>
+              </div>
+            </div>
+            <div className="assessment-launch-grid">
+              <button type="button" className="assessment-launch-card wellbeing-launch" onClick={() => navigate("/wellbeing-checkin")}>
+                <span className="assessment-launch-icon">♡</span><span className="assessment-launch-kicker">{t("16 QUESTIONS · 3 MIN", "16 सवाल · 3 मिनट")}</span>
+                <strong>{t("Wellbeing Check-in", "वेलबीइंग चेक-इन")}</strong><span>{t("A gentle mood and worry check using PHQ-9 and GAD-7.", "PHQ-9 और GAD-7 के ज़रिए मूड और चिंता को समझें।")}</span><em>{t("Start check-in", "शुरू करें")} <ArrowRight size={15}/></em>
+              </button>
+              <button type="button" className="assessment-launch-card sleep-launch" onClick={() => navigate("/sleep-check")}>
+                <span className="assessment-launch-icon">☾</span><span className="assessment-launch-kicker">{t("7 QUESTIONS · SLEEP", "7 सवाल · नींद")}</span>
+                <strong>{t("Sleep Check", "स्लीप चेक")}</strong><span>{t("Reflect on your sleep over the last two weeks.", "पिछले दो हफ्तों की अपनी नींद पर विचार करें।")}</span><em>{t("Check my sleep", "नींद जाँचें")} <ArrowRight size={15}/></em>
+              </button>
+              <button type="button" className="assessment-launch-card academic-launch" onClick={() => navigate("/academic-stress")}>
+                <span className="assessment-launch-icon">✎</span><span className="assessment-launch-kicker">{t("16 QUESTIONS · STUDENT LIFE", "16 सवाल · छात्र जीवन")}</span>
+                <strong>{t("Academic Stress Predictor", "अकादमिक स्ट्रेस प्रेडिक्टर")}</strong><span>{t("Explore study, sleep, relationships and surroundings linked with stress.", "पढ़ाई, नींद, रिश्तों और आसपास के माहौल से जुड़े पैटर्न समझें।")}</span><em>{t("Explore patterns", "पैटर्न देखें")} <ArrowRight size={15}/></em>
+              </button>
+            </div>
+          </section>
+
           <footer className="app-footer">
             <span>
               <Heart size={13} /> {t("Made for your softer days.", "आपके सुकून भरे दिनों के लिए।")}
@@ -1236,6 +1261,9 @@ function App() {
         <Route path="/insights" element={<SharedSidebarLayout><InsightsPage /></SharedSidebarLayout>} />
         <Route path="/mindful-moments" element={<SharedSidebarLayout><MindfulMomentsPage /></SharedSidebarLayout>} />
         <Route path="/sticky-wall" element={<SharedSidebarLayout><StickyNoteWall /></SharedSidebarLayout>} />
+        <Route path="/wellbeing-checkin" element={<SharedSidebarLayout><WellbeingCheckinPage /></SharedSidebarLayout>} />
+        <Route path="/sleep-check" element={<SharedSidebarLayout><SleepCheckPage /></SharedSidebarLayout>} />
+        <Route path="/academic-stress" element={<SharedSidebarLayout><AcademicStressPage /></SharedSidebarLayout>} />
         <Route path="/mood-heatmap" element={<Navigate to="/dashboard" replace />} />
         <Route path="/profile" element={<SharedSidebarLayout><ProfilePage /></SharedSidebarLayout>} />
         <Route path="/games" element={<SharedSidebarLayout><GamesZone /></SharedSidebarLayout>} />
