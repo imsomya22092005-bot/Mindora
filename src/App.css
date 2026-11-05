@@ -3800,37 +3800,37 @@ html[data-mindora-theme="dark"] .section-block .section-heading .section-kicker,
 
 /* Dark variants: deep tinted surfaces with explicit light text for contrast. */
 .app-shell.dark-theme[data-mood="low"],
-.shared-dashboard-layout[data-mood="low"] {
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-mood="low"] {
   --mood-base:#17251F; --mood-ink:#F3EBDD; --mood-accent:#B9A5D6;
   --mood-muted:#D0D8D0; --mood-page:#111C17; --mood-panel:#1D2D24; --mood-panel-soft:#26392E;
   --mood-line:#34483D; --mood-hover:#2B3C32; --mood-active:#34483D; --mood-button-bg:#B9A5D6; --mood-button-text:#17251F; --mood-focus:#CBB3EA;
 }
 .app-shell.dark-theme[data-mood="meh"],
-.shared-dashboard-layout[data-mood="meh"] {
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-mood="meh"] {
   --mood-base:#24101F; --mood-ink:#F5E9E7; --mood-accent:#E18467;
   --mood-muted:#D9C3CF; --mood-page:#190B16; --mood-panel:#2C1727; --mood-panel-soft:#3B2035;
   --mood-line:#543047; --mood-hover:#40283A; --mood-active:#543047; --mood-button-bg:#E18467; --mood-button-text:#24101F; --mood-focus:#E9A18A;
 }
 .app-shell.dark-theme[data-mood="okay"],
-.shared-dashboard-layout[data-mood="okay"] {
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-mood="okay"] {
   --mood-base:#102E2C; --mood-ink:#E4F1E9; --mood-accent:#F5A477;
   --mood-muted:#C2DAD0; --mood-page:#0B2221; --mood-panel:#173A37; --mood-panel-soft:#204743;
   --mood-line:#28514B; --mood-hover:#214640; --mood-active:#28514B; --mood-button-bg:#F5A477; --mood-button-text:#102E2C; --mood-focus:#F5A477;
 }
 .app-shell.dark-theme[data-mood="good"],
-.shared-dashboard-layout[data-mood="good"] {
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-mood="good"] {
   --mood-base:#2C211B; --mood-ink:#F8EEDB; --mood-accent:#E6AD79;
   --mood-muted:#DCCDBB; --mood-page:#1D1511; --mood-panel:#362820; --mood-panel-soft:#49362A;
   --mood-line:#584033; --mood-hover:#49362A; --mood-active:#584033; --mood-button-bg:#E6AD79; --mood-button-text:#2C211B; --mood-focus:#E6AD79;
 }
 .app-shell.dark-theme[data-mood="great"],
-.shared-dashboard-layout[data-mood="great"] {
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-mood="great"] {
   --mood-base:#08090B; --mood-ink:#FAF8F3; --mood-accent:#CDF22B;
   --mood-muted:#D8D9D2; --mood-page:#08090B; --mood-panel:#151713; --mood-panel-soft:#20231A;
   --mood-line:#34372B; --mood-hover:#24291A; --mood-active:#34372B; --mood-button-bg:#CDF22B; --mood-button-text:#08090B; --mood-focus:#CDF22B;
 }
 .app-shell.dark-theme[data-mood]:not([data-mood="default"]),
-.shared-dashboard-layout[data-mood]:not([data-mood="default"]) {
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-mood]:not([data-mood="default"]) {
   background: var(--mood-page) !important;
   color: var(--mood-ink) !important;
 }
