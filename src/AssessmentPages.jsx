@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Heart, Moon, BookOpen, CheckCircle2, AlertCircle, RotateCcw } from "lucide-react";
-import { useLanguage } from "./language";
 import "./AssessmentPages.css";
 
 const scale4 = ["Not at all", "Several days", "More than half the days", "Nearly every day"];
