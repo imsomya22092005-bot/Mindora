@@ -512,3 +512,35 @@ html[data-mindora-theme="dark"] .section-block .section-heading .section-kicker 
   opacity: 1 !important;
   text-shadow: none !important;
 }
+
+
+/* Dark mode: make every line in the journal gentle-prompt card readable */
+html[data-mindora-theme="dark"] .diary-prompt-card,
+.dark-theme.mindora-section-page .diary-prompt-card {
+  color: #fff3df !important;
+  background: linear-gradient(145deg, #45352f, #382d2a) !important;
+  border-color: #705242 !important;
+}
+html[data-mindora-theme="dark"] .diary-prompt-card .diary-side-kicker,
+.dark-theme.mindora-section-page .diary-prompt-card .diary-side-kicker {
+  color: #ffdfb5 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #ffdfb5 !important;
+}
+html[data-mindora-theme="dark"] .diary-prompt-card > p,
+.dark-theme.mindora-section-page .diary-prompt-card > p {
+  color: #fff3df !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #fff3df !important;
+}
+html[data-mindora-theme="dark"] .diary-prompt-card button,
+.dark-theme.mindora-section-page .diary-prompt-card button {
+  color: #ffbb70 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #ffbb70 !important;
+}
+html[data-mindora-theme="dark"] .diary-prompt-card .diary-side-icon,
+.dark-theme.mindora-section-page .diary-prompt-card .diary-side-icon {
+  background: #59443b !important;
+  color: #ffbb70 !important;
+}
