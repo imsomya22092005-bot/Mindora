@@ -9,7 +9,10 @@ const mainItems = [
  {label:"Little Notes",href:"/sticky-wall",icon:StickyNote},
  {label:"Insights",href:"/insights",icon:BarChart3},
  {label:"Mindful moments",href:"/mindful-moments",icon:Wind,children:[["Calm Corner","/calm-corner"],["Inner Garden","/inner-garden"],["Little Comfort Box","/comfort-box"],["Mood Soundscape","/soundscape"]]},
- {label:"AI wellbeing",href:"/mindora-ai",icon:HeartHandshake,children:[["Wellbeing Check-in","/wellbeing-checkin"],["Sleep Check","/sleep-check"],["Academic Stress Predictor","/academic-stress"]]},
+ {label:"AI wellbeing",href:"/mindora-ai",icon:HeartHandshake},
+ {label:"Wellbeing Check-in",href:"/wellbeing-checkin",icon:HeartHandshake},
+ {label:"Sleep Check",href:"/sleep-check",icon:Wind},
+ {label:"Academic Stress Predictor",href:"/academic-stress",icon:Sparkles},
  {label:"Play & Unwind",href:"/games",icon:Gamepad2,children:[["Color Pop","/games?game=color-pop"],["Starweave","/games?game=starweave"],["Let It Burn","/games?game=let-it-burn"],["Picture Puzzle","/games?game=picture-puzzle"]]}
 ];
 
@@ -21,7 +24,7 @@ export default function SharedSidebarLayout({children}) {
   "Play & Unwind":location.pathname==="/games",
   "AI wellbeing":location.pathname==="/mindora-ai"||location.pathname==="/wellbeing-checkin"||location.pathname==="/sleep-check"||location.pathname==="/academic-stress"
  });
- const active=(item)=>location.pathname===item.href || (item.children&&item.label==="Mindful moments"&&(location.pathname.startsWith("/calm")||location.pathname.startsWith("/inner")||location.pathname==="/comfort-box"||location.pathname==="/soundscape"||location.pathname==="/mindful-moments")) || (item.label==="Play & Unwind"&&location.pathname==="/games") || (item.label==="AI wellbeing"&&(location.pathname==="/mindora-ai"||location.pathname==="/wellbeing-checkin"||location.pathname==="/sleep-check"||location.pathname==="/academic-stress"));
+ const active=(item)=>location.pathname===item.href || (item.children&&item.label==="Mindful moments"&&(location.pathname.startsWith("/calm")||location.pathname.startsWith("/inner")||location.pathname==="/comfort-box"||location.pathname==="/soundscape"||location.pathname==="/mindful-moments")) || (item.label==="Play & Unwind"&&location.pathname==="/games");
  return <div className="shared-dashboard-layout">
   <aside className={"shared-dashboard-sidebar "+(mobileMenuOpen?"mobile-menu-open":"")}>
    <div className="shared-sidebar-mobile-head">
