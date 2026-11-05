@@ -670,3 +670,30 @@ html[data-mindora-theme="dark"] .diary-prompt-card .diary-side-icon,
 .insights-mood-page.dark-theme .insight-stat-grid article>span,
 .insights-mood-page.dark-theme .insight-chart-card>.section-page-eyebrow{color:var(--insight-muted)!important;}
 @media(prefers-reduced-motion:reduce){.insights-mood-page *{transition-duration:.01ms!important;animation-duration:.01ms!important;}}
+
+
+/* MINDFUL MOMENTS HUB — same latest-saved-mood palette as the inner tools. */
+.mindful-moments-mood-page[data-mood="low"]{--mm-bg:#F2E8D9;--mm-surface:#EBDCC6;--mm-ink:#1F382E;--mm-muted:#53665B;--mm-accent:#8B6DB2;--mm-line:#D4C2A9;background:var(--mm-bg)!important;color:var(--mm-ink)!important;}
+.mindful-moments-mood-page[data-mood="meh"]{--mm-bg:#E8D8D4;--mm-surface:#C9ADA7;--mm-ink:#3A0F34;--mm-muted:#62434F;--mm-accent:#C75A3A;--mm-line:#B99690;background:var(--mm-bg)!important;color:var(--mm-ink)!important;}
+.mindful-moments-mood-page[data-mood="okay"]{--mm-bg:#E4F0E9;--mm-surface:#B8DCCB;--mm-ink:#164E4A;--mm-muted:#426C63;--mm-accent:#F5A477;--mm-line:#9FC9B7;background:var(--mm-bg)!important;color:var(--mm-ink)!important;}
+.mindful-moments-mood-page[data-mood="good"]{--mm-bg:#FBF3D9;--mm-surface:#F2D98D;--mm-ink:#49352C;--mm-muted:#725B48;--mm-accent:#D9A6A0;--mm-line:#E2C778;background:var(--mm-bg)!important;color:var(--mm-ink)!important;}
+.mindful-moments-mood-page[data-mood="great"]{--mm-bg:#F4F3EB;--mm-surface:#FAF8F3;--mm-ink:#08090B;--mm-muted:#45483B;--mm-accent:#CDF22B;--mm-line:#D9DDC9;background:var(--mm-bg)!important;color:var(--mm-ink)!important;}
+.mindful-moments-mood-page[data-mood] .mindful-intro-card{background:linear-gradient(115deg,var(--mm-surface),var(--mm-bg))!important;border-color:var(--mm-line)!important;}
+.mindful-moments-mood-page[data-mood] .mindful-intro-card :is(h2,p,.section-page-eyebrow){color:var(--mm-ink)!important;}
+.mindful-moments-mood-page[data-mood] .mindful-big-spark{color:var(--mm-accent)!important;}
+.mindful-moments-mood-page[data-mood] .mindful-tool-card{background:var(--mm-surface)!important;border-color:var(--mm-line)!important;color:var(--mm-ink)!important;}
+.mindful-moments-mood-page[data-mood] .mindful-tool-title,.mindful-moments-mood-page[data-mood] .mindful-tool-card p,.mindful-moments-mood-page[data-mood] .mindful-tool-open{color:var(--mm-ink)!important;}
+.mindful-moments-mood-page[data-mood] .mindful-tool-title svg{color:var(--mm-accent)!important;}
+.mindful-moments-mood-page[data-mood] .mindful-tool-icon{background:var(--mm-bg)!important;color:var(--mm-ink)!important;border:1px solid var(--mm-line);}
+.mindful-moments-mood-page[data-mood] .section-page-footer{border-color:var(--mm-line)!important;color:var(--mm-muted)!important;}
+html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood="low"]{--mm-bg:#111C17;--mm-surface:#17251F;--mm-ink:#F3EBDD;--mm-muted:#D0D8D0;--mm-accent:#B9A5D6;--mm-line:#34483D;}
+html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood="meh"]{--mm-bg:#190B16;--mm-surface:#24101F;--mm-ink:#F5E9E7;--mm-muted:#D9C3CF;--mm-accent:#E18467;--mm-line:#543047;}
+html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood="okay"]{--mm-bg:#0B2221;--mm-surface:#102E2C;--mm-ink:#E4F1E9;--mm-muted:#C2DAD0;--mm-accent:#F5A477;--mm-line:#28514B;}
+html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood="good"]{--mm-bg:#1D1511;--mm-surface:#2C211B;--mm-ink:#F8EEDB;--mm-muted:#DCCDBB;--mm-accent:#E6AD79;--mm-line:#584033;}
+html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood="great"]{--mm-bg:#08090B;--mm-surface:#151713;--mm-ink:#FAF8F3;--mm-muted:#D8D9D2;--mm-accent:#CDF22B;--mm-line:#34372B;}
+html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood] .mindful-intro-card,
+html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood] .mindful-tool-card{background:var(--mm-surface)!important;border-color:var(--mm-line)!important;}
+html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood] .mindful-intro-card :is(h2,p,.section-page-eyebrow),
+html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood] .mindful-tool-title,
+html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood] .mindful-tool-card p,
+html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood] .mindful-tool-open{color:var(--mm-ink)!important;}
