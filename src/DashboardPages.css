@@ -732,3 +732,12 @@ html[data-mindora-theme="dark"][data-mindora-mood] .journal-mood-page[data-mood]
   opacity:1!important;
   text-shadow:none!important;
 }
+
+
+/* Match the diary cover supporting text to the exact accent used by "you." */
+.journal-mood-page .journal-cover-content .journal-cover-kicker,
+.journal-mood-page .journal-cover-content>p{
+  color:var(--journal-accent)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
