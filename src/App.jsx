@@ -1221,8 +1221,14 @@ function Dashboard() {
 }
 
 function MoodThemeSync() {
+  const location = useLocation();
   useEffect(() => {
+    const isPublicPage = location.pathname === "/" || location.pathname === "/login" || location.pathname === "/signup";
     const syncMood = (event) => {
+      if (isPublicPage) {
+        delete document.documentElement.dataset.mindoraMood;
+        return;
+      }
       let mood = event?.detail?.mood;
       if (!mood) {
         try { mood = (localStorage.getItem("mindora-saved-mood") || "okay").toLowerCase(); }
@@ -1237,9 +1243,14 @@ function MoodThemeSync() {
     syncMood();
     syncTheme();
     window.addEventListener("mindora:mood-saved", syncMood);
-    window.addEventListener("storage", () => { syncMood(); syncTheme(); });
-    return () => window.removeEventListener("mindora:mood-saved", syncMood);
-  }, []);
+    window.addEventListener("storage", syncMood);
+    window.addEventListener("storage", syncTheme);
+    return () => {
+      window.removeEventListener("mindora:mood-saved", syncMood);
+      window.removeEventListener("storage", syncMood);
+      window.removeEventListener("storage", syncTheme);
+    };
+  }, [location.pathname]);
   return null;
 }
 
