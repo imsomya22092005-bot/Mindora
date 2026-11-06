@@ -272,3 +272,31 @@ html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="meh"] .sticky-wall-
 html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="okay"] .sticky-wall-board{background-color:#204743!important;}
 html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="good"] .sticky-wall-board{background-color:#49362A!important;}
 html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="great"] .sticky-wall-board{background-color:#24291A!important;}
+
+
+/* Match the actual app dark-mode class as well as the document theme attribute. */
+.app-shell.dark-theme .sticky-wall-page[data-mood="low"]{--ln-page:#111C17;--ln-surface:#17251F;--ln-board:#26392E;--ln-ink:#F3EBDD;--ln-muted:#D0D8D0;--ln-accent:#B9A5D6;--ln-line:#34483D;--ln-button:#B9A5D6;--ln-button-text:#17251F;--ln-paper:#20352B;--ln-paper-alt:#1D2D24;--ln-pin:#D4BDEB;}
+.app-shell.dark-theme .sticky-wall-page[data-mood="meh"]{--ln-page:#190B16;--ln-surface:#24101F;--ln-board:#40283A;--ln-ink:#F5E9E7;--ln-muted:#D9C3CF;--ln-accent:#E18467;--ln-line:#543047;--ln-button:#E18467;--ln-button-text:#24101F;--ln-paper:#32182C;--ln-paper-alt:#2C1727;--ln-pin:#F0B19B;}
+.app-shell.dark-theme .sticky-wall-page[data-mood="okay"]{--ln-page:#0B2221;--ln-surface:#102E2C;--ln-board:#204743;--ln-ink:#E4F1E9;--ln-muted:#C2DAD0;--ln-accent:#F5A477;--ln-line:#28514B;--ln-button:#F5A477;--ln-button-text:#102E2C;--ln-paper:#173A36;--ln-paper-alt:#20413D;--ln-pin:#FFD0AE;}
+.app-shell.dark-theme .sticky-wall-page[data-mood="good"]{--ln-page:#1D1511;--ln-surface:#2C211B;--ln-board:#49362A;--ln-ink:#F8EEDB;--ln-muted:#DCCDBB;--ln-accent:#E6AD79;--ln-line:#584033;--ln-button:#E6AD79;--ln-button-text:#2C211B;--ln-paper:#3A2A21;--ln-paper-alt:#362820;--ln-pin:#F0C394;}
+.app-shell.dark-theme .sticky-wall-page[data-mood="great"]{--ln-page:#08090B;--ln-surface:#151713;--ln-board:#24291A;--ln-ink:#FAF8F3;--ln-muted:#D8D9D2;--ln-accent:#CDF22B;--ln-line:#34372B;--ln-button:#CDF22B;--ln-button-text:#08090B;--ln-paper:#20231A;--ln-paper-alt:#171A13;--ln-pin:#CDF22B;}
+.app-shell.dark-theme .sticky-wall-page[data-mood]:not([data-mood="default"]){
+  background:radial-gradient(ellipse at 8% 4%,color-mix(in srgb,var(--ln-accent) 18%,var(--ln-page)),transparent 36%),var(--ln-page)!important;
+  color:var(--ln-ink)!important;
+}
+.app-shell.dark-theme .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-board{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--ln-surface) 82%,white),var(--ln-board) 52%,color-mix(in srgb,var(--ln-page) 72%,var(--ln-accent)))!important;
+  border-color:var(--ln-line)!important;
+}
+.app-shell.dark-theme .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note,
+.app-shell.dark-theme .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer{
+  background:var(--ln-paper)!important;color:var(--ln-ink)!important;border-color:var(--ln-line)!important;
+}
+.app-shell.dark-theme .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note :is(h3,p,footer),
+.app-shell.dark-theme .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-heading :is(h1,p),
+.app-shell.dark-theme .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer :is(h2,label){
+  color:var(--ln-ink)!important;
+}
+.app-shell.dark-theme .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer :is(input,textarea){
+  background:var(--ln-page)!important;color:var(--ln-ink)!important;border-color:var(--ln-line)!important;
+}
