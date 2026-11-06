@@ -4164,3 +4164,16 @@ html[data-mindora-mood="good"] #root :is(.shared-dashboard-sidebar,.shared-dashb
 html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(.shared-dashboard-sidebar,.shared-dashboard-content,.sidebar,.topbar,.shared-sidebar-quote,.shared-nav-row,.shared-sub-link,.global-page-preferences){
  background-color:#332619!important;border-color:#5B452B!important;color:#FBF2DF!important;
 }
+
+
+
+/* MEH mood — shared site shell, sidebar and every shared-layout route */
+.shared-dashboard-layout[data-mood="meh"]{--meh-bg:#F2E8E6;--meh-surface:#E4D0CC;--meh-ink:#432D3B;--meh-muted:#765D68;--meh-accent:#A65D68;--meh-highlight:#D9A39A;background:#F2E8E6!important;color:#432D3B!important}
+.shared-dashboard-layout[data-mood="meh"] .shared-dashboard-sidebar{background:#E4D0CC!important;color:#432D3B!important;border-color:#C9ADA7!important}
+.shared-dashboard-layout[data-mood="meh"] .shared-dashboard-content{background:#F2E8E6!important;color:#432D3B!important}
+.shared-dashboard-layout[data-mood="meh"] :is(a,button,.nav-item,.sidebar-link){accent-color:#A65D68}
+.shared-dashboard-layout[data-mood="meh"] :is(.nav-item.active,.nav-item[aria-current="page"],.sidebar-link.active){background:#D9A39A!important;color:#432D3B!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"],.shared-dashboard-layout.dark-theme[data-mood="meh"]{background:#1D141B!important;color:#F5E9E7!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .shared-dashboard-sidebar,.shared-dashboard-layout.dark-theme[data-mood="meh"] .shared-dashboard-sidebar{background:#2B1D27!important;color:#F5E9E7!important;border-color:#49303D!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .shared-dashboard-content,.shared-dashboard-layout.dark-theme[data-mood="meh"] .shared-dashboard-content{background:#1D141B!important;color:#F5E9E7!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] :is(.nav-item.active,.nav-item[aria-current="page"],.sidebar-link.active),.shared-dashboard-layout.dark-theme[data-mood="meh"] :is(.nav-item.active,.nav-item[aria-current="page"],.sidebar-link.active){background:#49303D!important;color:#F5E9E7!important}
