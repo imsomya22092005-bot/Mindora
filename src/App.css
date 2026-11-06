@@ -4035,16 +4035,16 @@ html[data-mindora-theme="dark"][data-mindora-mood="meh"]{--mindora-mood-bg:#1D14
 html[data-mindora-theme="dark"][data-mindora-mood="okay"]{--mindora-mood-bg:#0E211F;--mindora-mood-surface:#18332F;--mindora-mood-ink:#EAF2EE;--mindora-mood-muted:#C2DAD0;--mindora-mood-accent:#72B8A5;--mindora-mood-highlight:#294B43;--mindora-mood-border:#31574E;--mindora-mood-soft:#142B27;}
 html[data-mindora-theme="dark"][data-mindora-mood="good"]{--mindora-mood-bg:#21180F;--mindora-mood-surface:#332619;--mindora-mood-ink:#FBF2DF;--mindora-mood-muted:#E1CFB5;--mindora-mood-accent:#E9A85B;--mindora-mood-highlight:#503B25;--mindora-mood-border:#5B452B;--mindora-mood-soft:#2A2015;}
 html[data-mindora-theme="dark"][data-mindora-mood="great"]{--mindora-mood-bg:#08090B;--mindora-mood-surface:#171A13;--mindora-mood-ink:#FAF8F3;--mindora-mood-muted:#D2D5C6;--mindora-mood-accent:#CDF22B;--mindora-mood-highlight:#303820;--mindora-mood-border:#3D4630;--mindora-mood-soft:#10130E;}
-html,body,#root{background:var(--mindora-mood-bg)!important;color:var(--mindora-mood-ink);}
-#root :is(.app-shell,.shared-dashboard-layout,.shared-dashboard-content,.mindora-section-page,.wellness-page,.practice-page,.landing-page,.assessment-page,.games-page,.sticky-wall-page,.profile-page,.mindora-ai-page){background-color:var(--mindora-mood-bg)!important;color:var(--mindora-mood-ink);}
-#root :is(.sidebar,.shared-dashboard-sidebar,.topbar,.panel,.stat-card,.journal-modal,.settings-popover,.notification-popover,.shared-sidebar-quote,.practice-instructions,.insight-stat-grid article,.insight-chart-card,.mindful-intro-card,.mindful-tool-card,.wellness-panel,.rain-card,.garden-summary,.journal-editor,.calm-card){background-color:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;}
-#root :is(h1,h2,h3,h4,strong,.brand,.brand-name,.shared-sidebar-brand,.section-page-brand,.section-page-title,.welcome-copy h1,.section-heading h2,.panel-heading h2,.stat-value){color:var(--mindora-mood-ink)!important;}
-#root :is(p,small,.sidebar-label,.shared-sidebar-label,.section-page-eyebrow,.section-page-footer,.welcome-copy p,.section-heading p,.stat-footnote,.muted,.wellness-muted){color:var(--mindora-mood-muted)!important;}
-#root :is(.nav-item:hover,.nav-item.active,.shared-nav-row:hover,.shared-nav-row.is-active,.shared-sub-link:hover,.shared-sub-link.sub-active){background:var(--mindora-mood-highlight)!important;color:var(--mindora-mood-ink)!important;}
-#root :is(button,a,.icon-button,.plain-icon):focus-visible{outline-color:var(--mindora-mood-accent)!important;}
-#root :is(.primary-button,.save-button,.journal-save-button,.incognito-submit,.practice-primary,.wellness-button){background:var(--mindora-mood-accent)!important;border-color:var(--mindora-mood-accent)!important;color:#fff!important;}
-#root :is(input,textarea,select,.search-box,.mood-option,.theme-setting,.select-period){background-color:var(--mindora-mood-soft)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;}
-#root :is(input,textarea)::placeholder{color:var(--mindora-mood-muted)!important;opacity:1;}
+html[data-mindora-mood]{background:var(--mindora-mood-bg)!important;color:var(--mindora-mood-ink);}
+html[data-mindora-mood] #root :is(.app-shell,.shared-dashboard-layout,.shared-dashboard-content,.mindora-section-page,.wellness-page,.practice-page,.landing-page,.assessment-page,.games-page,.sticky-wall-page,.profile-page,.mindora-ai-page){background-color:var(--mindora-mood-bg)!important;color:var(--mindora-mood-ink);}
+html[data-mindora-mood] #root :is(.sidebar,.shared-dashboard-sidebar,.topbar,.panel,.stat-card,.journal-modal,.settings-popover,.notification-popover,.shared-sidebar-quote,.practice-instructions,.insight-stat-grid article,.insight-chart-card,.mindful-intro-card,.mindful-tool-card,.wellness-panel,.rain-card,.garden-summary,.journal-editor,.calm-card){background-color:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;}
+html[data-mindora-mood] #root :is(h1,h2,h3,h4,strong,.brand,.brand-name,.shared-sidebar-brand,.section-page-brand,.section-page-title,.welcome-copy h1,.section-heading h2,.panel-heading h2,.stat-value){color:var(--mindora-mood-ink)!important;}
+html[data-mindora-mood] #root :is(p,small,.sidebar-label,.shared-sidebar-label,.section-page-eyebrow,.section-page-footer,.welcome-copy p,.section-heading p,.stat-footnote,.muted,.wellness-muted){color:var(--mindora-mood-muted)!important;}
+html[data-mindora-mood] #root :is(.nav-item:hover,.nav-item.active,.shared-nav-row:hover,.shared-nav-row.is-active,.shared-sub-link:hover,.shared-sub-link.sub-active){background:var(--mindora-mood-highlight)!important;color:var(--mindora-mood-ink)!important;}
+html[data-mindora-mood] #root :is(button,a,.icon-button,.plain-icon):focus-visible{outline-color:var(--mindora-mood-accent)!important;}
+html[data-mindora-mood] #root :is(.primary-button,.save-button,.journal-save-button,.incognito-submit,.practice-primary,.wellness-button){background:var(--mindora-mood-accent)!important;border-color:var(--mindora-mood-accent)!important;color:#fff!important;}
+html[data-mindora-mood] #root :is(input,textarea,select,.search-box,.mood-option,.theme-setting,.select-period){background-color:var(--mindora-mood-soft)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;}
+html[data-mindora-mood] #root :is(input,textarea)::placeholder{color:var(--mindora-mood-muted)!important;opacity:1;}
 .shared-dashboard-layout{grid-template-columns:300px minmax(0,1fr);}
 .shared-dashboard-sidebar{background:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;}
 .shared-dashboard-content{background:var(--mindora-mood-bg)!important;}
@@ -4076,96 +4076,7 @@ html[data-mindora-theme="dark"][data-mindora-mood="good"] #root .assessment-laun
    Applies the active Good palette to every route, not only
    the assessment, AI and games feature pages.
    ========================================================= */
-html[data-mindora-mood="good"] body,
-html[data-mindora-mood="good"] #root,
-html[data-mindora-mood="good"] #root main,
-html[data-mindora-mood="good"] #root .page,
-html[data-mindora-mood="good"] #root [class*="page"],
-html[data-mindora-mood="good"] #root [class*="screen"],
-html[data-mindora-mood="good"] #root [class*="workspace"]{
-  background-color:#FBF2DF!important;color:#493626!important;
-}
-html[data-mindora-mood="good"] #root :is(
- [class*="card"],[class*="panel"],[class*="tile"],[class*="surface"],
- [class*="widget"],[class*="modal"],[class*="popover"],[class*="drawer"],
- [class*="section-box"],[class*="content-box"],[class*="feature-box"]
-):not([class*="card-art"]):not([class*="card-image"]):not([class*="card-visual"]):not([class*="card-icon"]):not([class*="card-illustration"]):not([class*="colorpop-target"]):not([class*="game-board"]):not([class*="game-canvas"]):not([class*="chart"]):not([class*="graph"]){
- background-color:#F1DDAA!important;
- border-color:#E4CE9D!important;
- color:#493626!important;
-}
-html[data-mindora-mood="good"] #root :is(
- [class*="card"] h1,[class*="card"] h2,[class*="card"] h3,[class*="card"] h4,
- [class*="panel"] h1,[class*="panel"] h2,[class*="panel"] h3,[class*="panel"] h4,
- [class*="tile"] h1,[class*="tile"] h2,[class*="tile"] h3,[class*="tile"] h4,
- [class*="modal"] h1,[class*="modal"] h2,[class*="modal"] h3,
- [class*="popover"] h1,[class*="popover"] h2,[class*="popover"] h3
- ){color:#493626!important}
-html[data-mindora-mood="good"] #root :is(
- [class*="card"] p,[class*="card"] small,[class*="card"] span,
- [class*="panel"] p,[class*="panel"] small,[class*="panel"] span,
- [class*="tile"] p,[class*="tile"] small,[class*="tile"] span,
- [class*="modal"] p,[class*="popover"] p
- ){color:#79644B!important}
-html[data-mindora-mood="good"] #root :is(button,[role="button"],input,textarea,select){
- border-color:#E4CE9D!important;
-}
-html[data-mindora-mood="good"] #root :is(input,textarea,select){
- background-color:#FFF9EA!important;color:#493626!important;
-}
-html[data-mindora-mood="good"] #root :is(input,textarea)::placeholder{color:#79644B!important;opacity:1}
-html[data-mindora-mood="good"] #root :is(button,.button,[class*="primary"],[class*="submit"],[class*="save"]):not([class*="game"]):not([class*="colorpop"]):not([class*="target"]){
- border-color:#C17A28!important;
-}
-html[data-mindora-mood="good"] #root :is(a,[role="tab"],[class*="nav-item"],[class*="tab"]):focus-visible{
- outline-color:#C17A28!important;
-}
-
-/* Good mood dark-mode: deep roasted brown surfaces, warm ivory text */
-html[data-mindora-theme="dark"][data-mindora-mood="good"] body,
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root,
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root main,
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root .page,
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root [class*="page"],
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root [class*="screen"],
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root [class*="workspace"]{
- background-color:#21180F!important;color:#FBF2DF!important;
-}
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(
- [class*="card"],[class*="panel"],[class*="tile"],[class*="surface"],
- [class*="widget"],[class*="modal"],[class*="popover"],[class*="drawer"],
- [class*="section-box"],[class*="content-box"],[class*="feature-box"]
-):not([class*="card-art"]):not([class*="card-image"]):not([class*="card-visual"]):not([class*="card-icon"]):not([class*="card-illustration"]):not([class*="colorpop-target"]):not([class*="game-board"]):not([class*="game-canvas"]):not([class*="chart"]):not([class*="graph"]){
- background-color:#332619!important;border-color:#5B452B!important;color:#FBF2DF!important;
-}
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(
- [class*="card"] h1,[class*="card"] h2,[class*="card"] h3,[class*="card"] h4,
- [class*="panel"] h1,[class*="panel"] h2,[class*="panel"] h3,[class*="panel"] h4,
- [class*="tile"] h1,[class*="tile"] h2,[class*="tile"] h3,[class*="tile"] h4,
- [class*="modal"] h1,[class*="modal"] h2,[class*="modal"] h3,
- [class*="popover"] h1,[class*="popover"] h2,[class*="popover"] h3
- ){color:#FBF2DF!important}
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(
- [class*="card"] p,[class*="card"] small,[class*="card"] span,
- [class*="panel"] p,[class*="panel"] small,[class*="panel"] span,
- [class*="tile"] p,[class*="tile"] small,[class*="tile"] span,
- [class*="modal"] p,[class*="popover"] p
- ){color:#E1CFB5!important}
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(input,textarea,select){
- background-color:#2A2015!important;border-color:#5B452B!important;color:#FBF2DF!important;
-}
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(input,textarea)::placeholder{color:#E1CFB5!important;opacity:1}
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(button,[role="button"],a):focus-visible{outline-color:#E9A85B!important}
-
-/* Shared sidebar, navigation and preference surfaces follow Good too */
-html[data-mindora-mood="good"] #root :is(.shared-dashboard-sidebar,.shared-dashboard-content,.sidebar,.topbar,.shared-sidebar-quote,.shared-nav-row,.shared-sub-link,.global-page-preferences){
- background-color:#F1DDAA!important;border-color:#E4CE9D!important;color:#493626!important;
-}
-html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(.shared-dashboard-sidebar,.shared-dashboard-content,.sidebar,.topbar,.shared-sidebar-quote,.shared-nav-row,.shared-sub-link,.global-page-preferences){
- background-color:#332619!important;border-color:#5B452B!important;color:#FBF2DF!important;
-}
-
-
+/* Good mood global overrides are intentionally scoped to authenticated app shells above; public landing and auth pages retain their original design. */
 
 /* MEH mood — shared site shell, sidebar and every shared-layout route */
 .shared-dashboard-layout[data-mood="meh"]{--meh-bg:#F2E8E6;--meh-surface:#E4D0CC;--meh-ink:#432D3B;--meh-muted:#765D68;--meh-accent:#A65D68;--meh-highlight:#D9A39A;background:#F2E8E6!important;color:#432D3B!important}
