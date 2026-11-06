@@ -4406,3 +4406,30 @@ html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-
 html[data-mindora-theme="dark"] #root .journal-mood-page.dark-theme[data-mood="great"] :is(
  article,section,[class*="card"],[class*="panel"],[class*="tile"],[class*="note"],[class*="memory"]
 ):not([class*="image"]):not([class*="visual"]){background-color:#151713!important;border-color:#34372B!important;color:#FAF8F3!important;}
+
+
+/* Dashboard exercise image cards: keep every title and supporting line readable. */
+#root .app-shell .mindful-focus-card .mindful-card-content,
+#root .app-shell .mindful-focus-card .mindful-card-content :is(strong,.mindful-card-type,.mindful-card-description,.mindful-card-action){
+  color:#FFFFFF!important;
+  -webkit-text-fill-color:#FFFFFF!important;
+  text-shadow:0 1px 4px rgba(0,0,0,.42);
+}
+#root .app-shell .mindful-focus-card::before{
+  background:linear-gradient(180deg,rgba(5,12,8,.12) 0%,rgba(5,12,8,.28) 32%,rgba(5,12,8,.88) 100%)!important;
+}
+
+/* Settings popover follows the selected mood and remains legible in either mode. */
+#root .app-shell[data-mood]:not([data-mood="default"]) .settings-popover{
+  background:var(--mood-panel,var(--mindora-mood-surface))!important;
+  border-color:var(--mood-line,var(--mindora-mood-border))!important;
+  color:var(--mood-ink,var(--mindora-mood-ink))!important;
+}
+#root .app-shell[data-mood]:not([data-mood="default"]) .settings-popover :is(strong,p,button,.theme-setting){
+  color:var(--mood-ink,var(--mindora-mood-ink))!important;
+}
+html[data-mindora-theme="dark"] #root .app-shell[data-mood]:not([data-mood="default"]) .settings-popover{
+  background:var(--mood-panel,var(--mindora-mood-surface))!important;
+  border-color:var(--mood-line,var(--mindora-mood-border))!important;
+  color:var(--mood-ink,var(--mindora-mood-ink))!important;
+}
