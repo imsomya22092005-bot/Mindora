@@ -2734,18 +2734,11 @@ html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-cta > p {
   text-shadow: none !important;
 }
 
-/* Final CTA supporting line: cool slate-blue for contrast against the warm CTA backgrounds. */
-.mindora-landing .landing-cta > p {
-  color: #294F68 !important;
-  -webkit-text-fill-color: #294F68 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  filter: none !important;
-  text-shadow: none !important;
-}
+/* Final CTA supporting line: white in both landing-page themes, as requested. */
+.mindora-landing .landing-cta > p,
 .mindora-landing.landing-dark .landing-cta > p {
-  color: #DCEBFA !important;
-  -webkit-text-fill-color: #DCEBFA !important;
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
   opacity: 1 !important;
   visibility: visible !important;
   filter: none !important;
