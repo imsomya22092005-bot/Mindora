@@ -370,3 +370,83 @@ html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page .sleep
 }
 .app-shell.dark-theme[data-mood="meh"] .assessment-sleep .sleep-overview-track{background:#49303D!important}
 .app-shell.dark-theme[data-mood="meh"] .assessment-sleep .sleep-overview-track span{background:#E49A9D!important}
+
+
+/* FINAL MEH SLEEP CHECK REPAIR — target the real app-shell theme attributes.
+   The page uses .app-shell[data-mood] and .app-shell.dark-theme; no html theme attrs. */
+.app-shell[data-mood="meh"] .assessment-page.assessment-sleep{
+  background:#F2E8E6!important;color:#432D3B!important;
+}
+.app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-heading{
+  background:#E4D0CC!important;background-image:none!important;border:1px solid #C9ADA7!important;color:#432D3B!important;
+}
+.app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-panel{
+  background:#E4D0CC!important;background-image:none!important;border:1px solid #C9ADA7!important;color:#432D3B!important;
+}
+.app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-fieldset{
+  display:block!important;float:none!important;
+  background:#F2E8E6!important;background-image:none!important;
+  border:0!important;border-radius:16px!important;
+  padding:22px 20px 20px!important;margin:18px 0!important;
+  color:#432D3B!important;box-shadow:inset 0 0 0 1px #C9ADA7!important;
+}
+.app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-fieldset legend{
+  display:block!important;float:none!important;width:100%!important;max-width:100%!important;
+  padding:0 8px 16px!important;margin:0!important;text-align:center!important;
+  color:#432D3B!important;line-height:1.5!important;
+}
+.app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-options button{
+  background:#E4D0CC!important;border:1px solid #C9ADA7!important;color:#432D3B!important;
+}
+.app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-options button:hover,
+.app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-options button.is-selected{
+  background:#D9A39A!important;border-color:#A65D68!important;color:#432D3B!important;
+}
+.app-shell[data-mood="meh"] .assessment-page.assessment-sleep :is(h1,h2,h3,.overview-kicker,.assessment-muted,.assessment-heading p,.dream-lab-copy p,.sleep-rhythm-panel>p){
+  color:#432D3B!important;
+}
+
+/* Dark mode: every sleep page surface is deep plum, never pale dusty-pink */
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep{
+  background:#1D141B!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep :is(.assessment-heading,.assessment-panel,.dream-lab-intro,.sleep-rhythm-panel,.sleep-overview,.assessment-sleep-result){
+  background:#2B1D27!important;background-image:none!important;border:1px solid #49303D!important;color:#F5E9E7!important;box-shadow:none!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-fieldset{
+  background:#241923!important;background-image:none!important;border:1px solid #49303D!important;
+  box-shadow:none!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-fieldset legend{
+  color:#F5E9E7!important;-webkit-text-fill-color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-options button{
+  background:#33232F!important;background-image:none!important;border:1px solid #59404E!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-options button:hover,
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-options button.is-selected{
+  background:#49303D!important;border-color:#E49A9D!important;color:#FFF5F2!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep :is(h1,h2,h3,.overview-kicker,.assessment-muted,.assessment-heading p,.dream-lab-copy p,.sleep-rhythm-panel>p,.assessment-sleep-result p){
+  color:#F5E9E7!important;-webkit-text-fill-color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep :is(.assessment-eyebrow,.assessment-back,.sleep-path){
+  color:#E49A9D!important;-webkit-text-fill-color:#E49A9D!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-profile-grid label{
+  background:#241923!important;border:1px solid #49303D!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-profile-grid :is(input,select){
+  background:#1D141B!important;border:1px solid #49303D!important;color:#F5E9E7!important;color-scheme:dark;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-profile-grid select option{
+  background:#1D141B!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-secondary{
+  background:#33232F!important;border:1px solid #59404E!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-primary{
+  background:#E49A9D!important;border:1px solid #E49A9D!important;color:#1D141B!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .sleep-overview-track{background:#49303D!important}
+.app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .sleep-overview-track span{background:#E49A9D!important}
