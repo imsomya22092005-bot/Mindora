@@ -165,3 +165,23 @@ html[data-mindora-theme="dark"][data-mindora-mood="okay"] .assessment-options bu
 html[data-mindora-theme="dark"][data-mindora-mood="okay"] .assessment-options button.is-selected{background:#28514B!important;border-color:#72B8A5!important}
 html[data-mindora-theme="dark"][data-mindora-mood="okay"] .assessment-primary{background:#28766D!important;color:#fff!important}
 html[data-mindora-theme="dark"][data-mindora-mood="okay"] .sleep-overview{background:linear-gradient(115deg,#0E211F,#18332F)!important}
+
+
+/* FINAL OKAY PALETTE OVERRIDE — remove remaining legacy yellow/orange cards */
+html[data-mindora-mood="okay"] .assessment-page,
+html[data-mindora-mood="okay"] .assessment-page :is(.wellbeing-journey-hero,.dream-lab-intro,.sleep-rhythm-panel,.student-observatory,.assessment-heading,.assessment-panel,.assessment-mini-grid article,.assessment-result-grid article,.assessment-sleep-result,.assessment-academic-result,.assessment-fieldset,.academic-overview,.academic-group,.assessment-academic .assessment-profile-grid label,.assessment-safety,.assessment-options button,.assessment-secondary,.assessment-profile-grid input,.assessment-profile-grid select,.journey-stamps span,.observatory-tags span,.academic-count,.section-number,.academic-chapter,.wellbeing-step-bubble,.art-core,.stress-orbit-ring){
+ background:#D4E4DC!important;background-image:none!important;border-color:#AFCFC0!important;color:#183D39!important;
+}
+html[data-mindora-mood="okay"] .assessment-page .sleep-overview{background:linear-gradient(115deg,#183D39,#28766D)!important;color:#EAF2EE!important}
+html[data-mindora-mood="okay"] .assessment-page .assessment-primary,
+html[data-mindora-mood="okay"] .assessment-page .assessment-progress span,
+html[data-mindora-mood="okay"] .assessment-page .academic-track span,
+html[data-mindora-mood="okay"] .assessment-page .sleep-overview-track span{background:#28766D!important;color:#fff!important}
+html[data-mindora-mood="okay"] .assessment-page :is(.assessment-eyebrow,.assessment-back,.wellbeing-question-meta b,.wellbeing-sparkle,.sleep-path,.overview-kicker){color:#28766D!important}
+html[data-mindora-mood="okay"] .assessment-page :is(.assessment-heading h1,.assessment-question,.assessment-fieldset legend,.assessment-section-intro h2,.academic-overview h2,.dream-lab-copy h2,.observatory-copy h2,.sleep-rhythm-head h3){color:#183D39!important}
+html[data-mindora-mood="okay"] .assessment-page :is(.assessment-heading p,.assessment-muted,.assessment-disclaimer,.assessment-timeframe,.assessment-result-grid p,.assessment-sleep-result p,.assessment-academic-result p,.wellbeing-journey-hero p,.dream-lab-copy p,.observatory-copy p,.sleep-rhythm-panel>p){color:#426C63!important}
+html[data-mindora-mood="okay"] .assessment-page :is(.assessment-mini-grid article>span,.assessment-result-grid article>b,.assessment-demo-flag){background:#B8D8C9!important;color:#183D39!important}
+html[data-mindora-theme="dark"][data-mindora-mood="okay"] .assessment-page :is(.wellbeing-journey-hero,.dream-lab-intro,.sleep-rhythm-panel,.student-observatory,.assessment-heading,.assessment-panel,.assessment-mini-grid article,.assessment-result-grid article,.assessment-sleep-result,.assessment-academic-result,.assessment-fieldset,.academic-overview,.academic-group,.assessment-academic .assessment-profile-grid label,.assessment-safety,.assessment-options button,.assessment-secondary,.assessment-profile-grid input,.assessment-profile-grid select,.journey-stamps span,.observatory-tags span,.academic-count,.section-number,.academic-chapter,.wellbeing-step-bubble,.art-core,.stress-orbit-ring){background:#18332F!important;background-image:none!important;border-color:#31574E!important;color:#EAF2EE!important}
+html[data-mindora-theme="dark"][data-mindora-mood="okay"] .assessment-page :is(.assessment-heading h1,.assessment-question,.assessment-fieldset legend,.assessment-section-intro h2,.academic-overview h2,.dream-lab-copy h2,.observatory-copy h2,.sleep-rhythm-head h3,.assessment-result-grid article>strong){color:#EAF2EE!important}
+html[data-mindora-theme="dark"][data-mindora-mood="okay"] .assessment-page :is(.assessment-heading p,.assessment-muted,.assessment-disclaimer,.assessment-timeframe,.assessment-result-grid p,.assessment-sleep-result p,.assessment-academic-result p,.wellbeing-journey-hero p,.dream-lab-copy p,.observatory-copy p,.sleep-rhythm-panel>p){color:#C2DAD0!important}
+html[data-mindora-theme="dark"][data-mindora-mood="okay"] .assessment-page .sleep-overview{background:linear-gradient(115deg,#0E211F,#18332F)!important;color:#EAF2EE!important}
