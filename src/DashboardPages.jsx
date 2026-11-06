@@ -104,7 +104,7 @@ export function JournalPage() {
         <div className="journal-cover-content">
           <span className="journal-cover-kicker">{hi ? "माइंडोरा · आपके निजी पन्ने" : "MINDORA · YOUR PRIVATE PAGES"}</span>
           <BookHeart size={38} strokeWidth={1.3}/>
-          <h2>{hi ? <>प्रिय, <em>आप।</em></> : <>Dear, <em>you.</em></>}</h2>
+          <h2>{hi ? <>प्रिय, <em>आप।</em></> : <><span className="journal-dear-word">Dear,</span> <em>you.</em></>}</h2>
           <p>{hi ? <>हर उस बात के लिए छोटी-सी जगह<br/>जो आप हमेशा कह नहीं पाते।</> : <>A little place for everything<br/>you don't always say out loud.</>}</p>
           <span className="journal-cover-rule" />
           <span className="journal-cover-small">{hi ? "एक दिन · एक पन्ना · आपकी कहानी" : "ONE DAY · ONE PAGE · YOUR STORY"}</span>
