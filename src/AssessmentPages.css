@@ -327,3 +327,46 @@ html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page .sleep
 .app-shell.dark-theme[data-mood="meh"] .assessment-sleep :is(p,.assessment-muted,.sleep-rhythm-panel>p,.assessment-timeframe){color:#D9C3CF!important}
 .app-shell.dark-theme[data-mood="meh"] .assessment-sleep :is(input,select){background:#241923!important;border-color:#49303D!important;color:#F5E9E7!important;color-scheme:dark}
 .app-shell.dark-theme[data-mood="meh"] .assessment-sleep .sleep-overview{background:linear-gradient(120deg,#1D141B,#49303D)!important}
+
+
+/* MEH SLEEP PAGE — final dark-mode surface override for every sleep form card */
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep{
+  background:#1D141B!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep :is(.dream-lab-intro,.sleep-rhythm-panel,.sleep-overview,.assessment-panel,.assessment-fieldset,.assessment-profile-grid label,.assessment-sleep-result){
+  background:#2B1D27!important;background-image:none!important;border:1px solid #49303D!important;color:#F5E9E7!important;box-shadow:none!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep :is(.assessment-fieldset legend,.assessment-section-intro h2,.dream-lab-copy h2,.sleep-rhythm-head h3,.assessment-sleep-result h2,.overview-kicker,.assessment-profile-grid label){
+  color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep :is(.assessment-muted,.dream-lab-copy p,.sleep-rhythm-panel>p,.sleep-rhythm-head strong small,.assessment-sleep-result p){
+  color:#D9C3CF!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .assessment-options button,
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .assessment-secondary{
+  background:#241923!important;background-image:none!important;border:1px solid #49303D!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .assessment-options button:hover,
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .assessment-options button.is-selected{
+  background:#49303D!important;border-color:#E49A9D!important;color:#FFF5F2!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .assessment-profile-grid :is(input,select){
+  background:#241923!important;background-image:none!important;border:1px solid #49303D!important;color:#F5E9E7!important;color-scheme:dark;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .assessment-profile-grid select option{
+  background:#241923!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .assessment-primary{
+  background:#E49A9D!important;background-image:none!important;border-color:#E49A9D!important;color:#1D141B!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep :is(.sleep-time-controls label,.sleep-path,.assessment-back){
+  color:#E49A9D!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .sleep-overview{
+  background:linear-gradient(120deg,#1D141B,#49303D)!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .sleep-overview :is(p,.overview-kicker,strong,small){
+  color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .sleep-overview-track{background:#49303D!important}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .sleep-overview-track span{background:#E49A9D!important}
