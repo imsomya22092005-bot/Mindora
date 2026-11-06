@@ -450,3 +450,77 @@ html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page .sleep
 }
 .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .sleep-overview-track{background:#49303D!important}
 .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .sleep-overview-track span{background:#E49A9D!important}
+
+
+/* === MEH / SLEEP CHECK: definitive page-level theme + question layout === */
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep{
+  background:#F2E8E6!important;color:#432D3B!important;
+}
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-heading,
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep .dream-lab-intro,
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep .sleep-rhythm-panel,
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-panel,
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep .sleep-overview,
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-sleep-result{
+  background:#E4D0CC!important;background-image:none!important;border:1px solid #C9ADA7!important;color:#432D3B!important;box-shadow:none!important;
+}
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-fieldset{
+  display:block!important;min-width:0!important;width:100%!important;box-sizing:border-box!important;
+  border:0!important;border-radius:18px!important;padding:22px 20px!important;margin:16px 0!important;
+  background:#F8F0EE!important;box-shadow:inset 0 0 0 1px #C9ADA7!important;
+}
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-fieldset legend{
+  display:block!important;float:none!important;width:100%!important;max-width:none!important;
+  box-sizing:border-box!important;padding:0 8px 14px!important;margin:0!important;
+  text-align:center!important;line-height:1.5!important;color:#432D3B!important;
+}
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-fieldset .assessment-options{margin:0!important;gap:12px!important}
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-options button{
+  background:#E4D0CC!important;background-image:none!important;border:1px solid #C9ADA7!important;color:#432D3B!important;text-align:center!important;
+}
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-options button:hover,
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep .assessment-options button.is-selected{
+  background:#D9A39A!important;border-color:#A65D68!important;color:#432D3B!important;
+}
+#root .app-shell[data-mood="meh"] .assessment-page.assessment-sleep :is(.assessment-heading h1,.assessment-heading p,.assessment-muted,.assessment-section-intro h2,.overview-kicker,.dream-lab-copy h2,.dream-lab-copy p,.sleep-rhythm-head h3,.sleep-rhythm-panel>p,.assessment-sleep-result h2,.assessment-sleep-result p){color:#432D3B!important}
+
+/* Dark theme attribute is on html; mood is on .app-shell. Explicitly cover all sleep surfaces. */
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep{
+  background:#1D141B!important;color:#F5E9E7!important;
+}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-heading,
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .dream-lab-intro,
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .sleep-rhythm-panel,
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-panel,
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .sleep-overview,
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-sleep-result{
+  background:#2B1D27!important;background-image:none!important;border:1px solid #49303D!important;color:#F5E9E7!important;box-shadow:none!important;
+}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-fieldset{
+  background:#241923!important;background-image:none!important;border:0!important;box-shadow:inset 0 0 0 1px #49303D!important;
+}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-fieldset legend{
+  color:#F5E9E7!important;-webkit-text-fill-color:#F5E9E7!important;
+}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-options button{
+  background:#33232F!important;background-image:none!important;border:1px solid #59404E!important;color:#F5E9E7!important;
+}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-options button:hover,
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-options button.is-selected{
+  background:#49303D!important;border-color:#E49A9D!important;color:#FFF5F2!important;
+}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep :is(.assessment-heading h1,.assessment-heading p,.assessment-muted,.assessment-section-intro h2,.overview-kicker,.dream-lab-copy h2,.dream-lab-copy p,.sleep-rhythm-head h3,.sleep-rhythm-panel>p,.assessment-sleep-result h2,.assessment-sleep-result p,.assessment-profile-grid label){
+  color:#F5E9E7!important;-webkit-text-fill-color:#F5E9E7!important;
+}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-profile-grid :is(input,select){
+  background:#1D141B!important;background-image:none!important;border:1px solid #49303D!important;color:#F5E9E7!important;color-scheme:dark;
+}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-profile-grid select option{background:#1D141B!important;color:#F5E9E7!important}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-secondary{
+  background:#33232F!important;border:1px solid #59404E!important;color:#F5E9E7!important;
+}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .assessment-primary{
+  background:#E49A9D!important;border:1px solid #E49A9D!important;color:#1D141B!important;
+}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .sleep-overview-track{background:#49303D!important}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .sleep-overview-track span{background:#E49A9D!important}
