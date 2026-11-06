@@ -524,3 +524,120 @@ html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .as
 }
 html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .sleep-overview-track{background:#49303D!important}
 html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood="meh"] .assessment-page.assessment-sleep .sleep-overview-track span{background:#E49A9D!important}
+
+
+/* LOW mood assessment pages — aligned cards and readable text in both themes */
+html[data-mindora-mood="low"] .assessment-page{
+ background:#F2E8D9!important;color:#1F382E!important;
+}
+html[data-mindora-mood="low"] .assessment-page .assessment-heading,
+html[data-mindora-mood="low"] .assessment-page .assessment-panel,
+html[data-mindora-mood="low"] .assessment-page .dream-lab-intro,
+html[data-mindora-mood="low"] .assessment-page .sleep-rhythm-panel,
+html[data-mindora-mood="low"] .assessment-page .sleep-overview,
+html[data-mindora-mood="low"] .assessment-page .wellbeing-journey-hero,
+html[data-mindora-mood="low"] .assessment-page .student-observatory,
+html[data-mindora-mood="low"] .assessment-page .academic-overview,
+html[data-mindora-mood="low"] .assessment-page .academic-group,
+html[data-mindora-mood="low"] .assessment-page .assessment-sleep-result{
+ background:#EBDCC6!important;background-image:none!important;border-color:#D4C2A9!important;color:#1F382E!important;
+}
+html[data-mindora-mood="low"] .assessment-page :is(h1,h2,h3,legend,.assessment-question,.assessment-heading p,.assessment-muted,.dream-lab-copy p,.observatory-copy p,.sleep-rhythm-panel>p){
+ color:#1F382E!important;-webkit-text-fill-color:#1F382E!important;
+}
+html[data-mindora-mood="low"] .assessment-page .assessment-fieldset{
+ display:block!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;
+ margin:18px 0!important;padding:20px 20px 22px!important;
+ border:1px solid #D4C2A9!important;border-radius:18px!important;
+ background:#F8F3EA!important;box-shadow:none!important;
+}
+html[data-mindora-mood="low"] .assessment-page .assessment-fieldset legend{
+ display:block!important;float:none!important;width:100%!important;max-width:none!important;
+ box-sizing:border-box!important;text-align:center!important;white-space:normal!important;
+ padding:0 10px 14px!important;margin:0!important;line-height:1.5!important;
+ color:#1F382E!important;-webkit-text-fill-color:#1F382E!important;
+}
+html[data-mindora-mood="low"] .assessment-page .assessment-fieldset .assessment-options{
+ display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important;margin:0!important;
+}
+html[data-mindora-mood="low"] .assessment-page .assessment-options button,
+html[data-mindora-mood="low"] .assessment-page .assessment-secondary{
+ background:#EBDCC6!important;border:1px solid #D4C2A9!important;color:#1F382E!important;text-align:center!important;
+}
+html[data-mindora-mood="low"] .assessment-page .assessment-options button.is-selected{
+ background:#CBB3EA!important;border-color:#8B6DB2!important;color:#1F382E!important;
+}
+html[data-mindora-mood="low"] .assessment-page .assessment-primary{
+ background:#8B6DB2!important;border-color:#8B6DB2!important;color:#fff!important;
+}
+html[data-mindora-mood="low"] .assessment-page .assessment-profile-grid label{
+ background:#EBDCC6!important;border:1px solid #D4C2A9!important;color:#1F382E!important;
+}
+html[data-mindora-mood="low"] .assessment-page .assessment-profile-grid :is(input,select){
+ background:#F8F3EA!important;border-color:#D4C2A9!important;color:#1F382E!important;
+}
+html[data-mindora-mood="low"] .assessment-page .assessment-progress,
+html[data-mindora-mood="low"] .assessment-page .academic-track{background:#D4C2A9!important;}
+html[data-mindora-mood="low"] .assessment-page .assessment-progress span,
+html[data-mindora-mood="low"] .assessment-page .academic-track span{background:#8B6DB2!important;}
+html[data-mindora-mood="low"] .assessment-page .sleep-overview{background:linear-gradient(120deg,#EBDCC6,#DCCCE9)!important;}
+html[data-mindora-mood="low"] .assessment-page .sleep-overview :is(strong,p,small,.overview-kicker){color:#1F382E!important;}
+
+/* Low mood dark palette */
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page{
+ background:#111C17!important;color:#F3EBDD!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page :is(
+ .assessment-heading,.assessment-panel,.dream-lab-intro,.sleep-rhythm-panel,.sleep-overview,
+ .wellbeing-journey-hero,.student-observatory,.academic-overview,.academic-group,.assessment-sleep-result
+){
+ background:#17251F!important;background-image:none!important;border-color:#34483D!important;color:#F3EBDD!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page :is(
+ h1,h2,h3,legend,.assessment-question,.assessment-heading p,.assessment-muted,
+ .dream-lab-copy p,.observatory-copy p,.sleep-rhythm-panel>p,.assessment-sleep-result p
+){color:#F3EBDD!important;-webkit-text-fill-color:#F3EBDD!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-fieldset{
+ display:block!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;
+ margin:18px 0!important;padding:20px 20px 22px!important;
+ border:1px solid #34483D!important;border-radius:18px!important;
+ background:#1A2420!important;box-shadow:none!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-fieldset legend{
+ display:block!important;float:none!important;width:100%!important;max-width:none!important;
+ box-sizing:border-box!important;text-align:center!important;white-space:normal!important;
+ padding:0 10px 14px!important;margin:0!important;line-height:1.5!important;
+ color:#F3EBDD!important;-webkit-text-fill-color:#F3EBDD!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-fieldset .assessment-options{
+ display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important;margin:0!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-options button,
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-secondary{
+ background:#26392E!important;border:1px solid #34483D!important;color:#F3EBDD!important;text-align:center!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-options button.is-selected{
+ background:#34483D!important;border-color:#B9A5D6!important;color:#F3EBDD!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-primary{
+ background:#B9A5D6!important;border-color:#B9A5D6!important;color:#111C17!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-profile-grid label{
+ background:#17251F!important;border:1px solid #34483D!important;color:#F3EBDD!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-profile-grid :is(input,select){
+ background:#1A2420!important;border-color:#34483D!important;color:#F3EBDD!important;color-scheme:dark;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-profile-grid select option{background:#1A2420!important;color:#F3EBDD!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-progress,
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .academic-track{background:#34483D!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-progress span,
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .academic-track span{background:#B9A5D6!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .sleep-overview{background:linear-gradient(120deg,#17251F,#26392E)!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .sleep-overview :is(strong,p,small,.overview-kicker){color:#F3EBDD!important;}
+@media(max-width:760px){
+ html[data-mindora-mood="low"] .assessment-page .assessment-fieldset,
+ html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-fieldset{padding:18px 12px!important;}
+ html[data-mindora-mood="low"] .assessment-page .assessment-fieldset .assessment-options,
+ html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-fieldset .assessment-options{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+}
