@@ -4177,3 +4177,169 @@ html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(.shared-dash
 .dark-theme .shared-dashboard-layout[data-mood="meh"] .shared-dashboard-sidebar,.shared-dashboard-layout.dark-theme[data-mood="meh"] .shared-dashboard-sidebar{background:#2B1D27!important;color:#F5E9E7!important;border-color:#49303D!important}
 .dark-theme .shared-dashboard-layout[data-mood="meh"] .shared-dashboard-content,.shared-dashboard-layout.dark-theme[data-mood="meh"] .shared-dashboard-content{background:#1D141B!important;color:#F5E9E7!important}
 .dark-theme .shared-dashboard-layout[data-mood="meh"] :is(.nav-item.active,.nav-item[aria-current="page"],.sidebar-link.active),.shared-dashboard-layout.dark-theme[data-mood="meh"] :is(.nav-item.active,.nav-item[aria-current="page"],.sidebar-link.active){background:#49303D!important;color:#F5E9E7!important}
+
+
+/* =========================================================
+   LOW MOOD — one coherent palette across the ENTIRE Mindora app
+   Both modes are variants of the same muted sage + lavender identity.
+   ========================================================= */
+html[data-mindora-mood="low"]{
+ --mindora-mood-bg:#F2E8D9!important;
+ --mindora-mood-surface:#EBDCC6!important;
+ --mindora-mood-ink:#1F382E!important;
+ --mindora-mood-muted:#53665B!important;
+ --mindora-mood-accent:#8B6DB2!important;
+ --mindora-mood-highlight:#CBB3EA!important;
+ --mindora-mood-border:#D4C2A9!important;
+ --mindora-mood-soft:#F8F3EA!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"]{
+ --mindora-mood-bg:#111C17!important;
+ --mindora-mood-surface:#17251F!important;
+ --mindora-mood-ink:#F3EBDD!important;
+ --mindora-mood-muted:#D0D8D0!important;
+ --mindora-mood-accent:#B9A5D6!important;
+ --mindora-mood-highlight:#26392E!important;
+ --mindora-mood-border:#34483D!important;
+ --mindora-mood-soft:#1A2420!important;
+}
+html[data-mindora-mood="low"] body,
+html[data-mindora-mood="low"] #root,
+html[data-mindora-mood="low"] #root main,
+html[data-mindora-mood="low"] #root [class*="page"],
+html[data-mindora-mood="low"] #root [class*="screen"],
+html[data-mindora-mood="low"] #root [class*="workspace"]{
+ background-color:var(--mindora-mood-bg)!important;color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-mood="low"] #root :is(
+ .app-shell,.shared-dashboard-layout,.shared-dashboard-content,.sidebar,.shared-dashboard-sidebar,
+ .topbar,.panel,.stat-card,.assessment-panel,.assessment-heading,.dream-lab-intro,
+ .sleep-rhythm-panel,.sleep-overview,.wellbeing-journey-hero,.student-observatory,
+ .academic-overview,.academic-group,.journal-diary-cover,.journal-loose-page,
+ .diary-editor,.diary-saved-card,.diary-prompt-card,.scrapbook-editor,
+ .mindful-intro-card,.mindful-tool-card,.insight-stat-grid article,.insight-chart-card,
+ .wellness-panel,.rain-card,.garden-summary,.journal-editor,.calm-card,
+ .practice-instructions,.profile-card,.ai-chat-panel,.ai-message,.game-instructions,
+ .game-settings,.game-result,.sticky-wall-toolbar
+){
+ background-color:var(--mindora-mood-surface)!important;
+ background-image:none!important;
+ border-color:var(--mindora-mood-border)!important;
+ color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-mood="low"] #root :is(
+ h1,h2,h3,h4,h5,strong,b,label,legend,
+ .brand,.brand-name,.shared-sidebar-brand,.section-page-title,
+ .welcome-copy h1,.section-heading h2,.panel-heading h2,
+ .assessment-question,.assessment-fieldset legend,
+ .dream-lab-copy h2,.observatory-copy h2,.sleep-rhythm-head h3,
+ .academic-overview h2,.journal-cover-content h2
+){color:var(--mindora-mood-ink)!important;-webkit-text-fill-color:var(--mindora-mood-ink)!important;}
+html[data-mindora-mood="low"] #root :is(
+ p,small,em,.muted,.sidebar-label,.shared-sidebar-label,
+ .section-page-eyebrow,.section-page-footer,.welcome-copy p,
+ .section-heading p,.assessment-muted,.assessment-heading p,
+ .dream-lab-copy p,.observatory-copy p,.sleep-rhythm-panel>p,
+ .stat-footnote,.wellness-muted,.journal-cover-content>p
+){color:var(--mindora-mood-muted)!important;-webkit-text-fill-color:var(--mindora-mood-muted)!important;}
+html[data-mindora-mood="low"] #root :is(
+ input,textarea,select,.search-box,.theme-setting,.select-period,
+ .assessment-profile-grid input,.assessment-profile-grid select
+){
+ background:var(--mindora-mood-soft)!important;background-image:none!important;
+ border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-mood="low"] #root :is(input,textarea)::placeholder{color:var(--mindora-mood-muted)!important;opacity:1!important;}
+html[data-mindora-mood="low"] #root :is(button,.button,[role="button"],.assessment-secondary,.assessment-options button,.shared-nav-row,.shared-sub-link){
+ border-color:var(--mindora-mood-border)!important;
+}
+html[data-mindora-mood="low"] #root :is(.nav-item.active,.shared-nav-row.is-active,.shared-sub-link.sub-active,.assessment-options button.is-selected){
+ background:var(--mindora-mood-highlight)!important;color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-mood="low"] #root :is(.assessment-primary,.primary-button,.save-button,.journal-save-button,.practice-primary,.wellness-button:not(.secondary),.scrapbook-tool-button.primary){
+ background:var(--mindora-mood-accent)!important;border-color:var(--mindora-mood-accent)!important;color:#fff!important;
+}
+html[data-mindora-mood="low"] #root :is(.assessment-options button,.assessment-secondary,.wellness-button.secondary,.scrapbook-tool-button,.scrapbook-decoration-tools button){
+ background:var(--mindora-mood-soft)!important;color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-mood="low"] #root :is(.assessment-heading,.dream-lab-intro,.wellbeing-journey-hero,.student-observatory){
+ background:linear-gradient(120deg,var(--mindora-mood-surface),var(--mindora-mood-bg))!important;
+}
+html[data-mindora-mood="low"] #root :is(.assessment-mark,.section-number,.academic-chapter,.wellbeing-step-bubble,.mindful-tool-icon){
+ background:var(--mindora-mood-highlight)!important;color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-mood="low"] #root :is(.assessment-progress,.academic-track,.sleep-overview-track){background:var(--mindora-mood-border)!important;}
+html[data-mindora-mood="low"] #root :is(.assessment-progress span,.academic-track span,.sleep-overview-track span){background:var(--mindora-mood-accent)!important;}
+html[data-mindora-mood="low"] #root :is(.sleep-overview,.dream-window,.stress-orbit){background:var(--mindora-mood-highlight)!important;color:var(--mindora-mood-ink)!important;}
+html[data-mindora-mood="low"] #root :is(.sleep-overview *, .dream-window *, .stress-orbit *){color:var(--mindora-mood-ink)!important;}
+html[data-mindora-mood="low"] #root :is(.shared-sidebar-quote,.global-page-preferences,.settings-popover,.notification-popover,.language-dropdown){
+ background:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-mood="low"] #root :is(.shared-sidebar-quote small,.global-page-preferences label,.language-dropdown button){color:var(--mindora-mood-ink)!important;}
+html[data-mindora-mood="low"] #root :is(.scrapbook-canvas,.game-board,.game-canvas,.color-pop-board){background-color:var(--mindora-mood-soft)!important;border-color:var(--mindora-mood-border)!important;}
+html[data-mindora-mood="low"] #root :is([class*="card"],[class*="panel"],[class*="tile"],[class*="surface"],[class*="widget"],[class*="modal"],[class*="popover"],[class*="drawer"],[class*="section-box"],[class*="content-box"],[class*="feature-box"]):not([class*="card-art"]):not([class*="card-image"]):not([class*="card-visual"]):not([class*="card-icon"]):not([class*="card-illustration"]):not([class*="target"]):not([class*="canvas"]):not([class*="chart"]):not([class*="graph"]){
+ background-color:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;
+}
+
+/* LOW mood dark mode — explicit dark surfaces override old green/brown rules */
+html[data-mindora-theme="dark"][data-mindora-mood="low"] body,
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root,
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root main,
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root [class*="page"],
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root [class*="screen"],
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root [class*="workspace"]{
+ background-color:#111C17!important;color:#F3EBDD!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(
+ .app-shell,.shared-dashboard-layout,.shared-dashboard-content,.sidebar,.shared-dashboard-sidebar,
+ .topbar,.panel,.stat-card,.assessment-panel,.assessment-heading,.dream-lab-intro,
+ .sleep-rhythm-panel,.sleep-overview,.wellbeing-journey-hero,.student-observatory,
+ .academic-overview,.academic-group,.journal-diary-cover,.journal-loose-page,
+ .diary-editor,.diary-saved-card,.diary-prompt-card,.scrapbook-editor,
+ .mindful-intro-card,.mindful-tool-card,.insight-stat-grid article,.insight-chart-card,
+ .wellness-panel,.rain-card,.garden-summary,.journal-editor,.calm-card,
+ .practice-instructions,.profile-card,.ai-chat-panel,.ai-message,.game-instructions,
+ .game-settings,.game-result,.sticky-wall-toolbar
+){
+ background-color:#17251F!important;background-image:none!important;
+ border-color:#34483D!important;color:#F3EBDD!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(
+ h1,h2,h3,h4,h5,strong,b,label,legend,.brand,.brand-name,.shared-sidebar-brand,
+ .section-page-title,.welcome-copy h1,.section-heading h2,.panel-heading h2,
+ .assessment-question,.assessment-fieldset legend,.dream-lab-copy h2,
+ .observatory-copy h2,.sleep-rhythm-head h3,.academic-overview h2,
+ .journal-cover-content h2
+){color:#F3EBDD!important;-webkit-text-fill-color:#F3EBDD!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(
+ p,small,em,.muted,.sidebar-label,.shared-sidebar-label,.section-page-eyebrow,
+ .section-page-footer,.welcome-copy p,.section-heading p,.assessment-muted,
+ .assessment-heading p,.dream-lab-copy p,.observatory-copy p,
+ .sleep-rhythm-panel>p,.stat-footnote,.wellness-muted,.journal-cover-content>p
+){color:#D0D8D0!important;-webkit-text-fill-color:#D0D8D0!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(
+ input,textarea,select,.search-box,.theme-setting,.select-period,
+ .assessment-profile-grid input,.assessment-profile-grid select
+){background:#1A2420!important;background-image:none!important;border-color:#34483D!important;color:#F3EBDD!important;color-scheme:dark;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(input,textarea)::placeholder{color:#D0D8D0!important;opacity:1!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.nav-item.active,.shared-nav-row.is-active,.shared-sub-link.sub-active,.assessment-options button.is-selected){
+ background:#26392E!important;color:#F3EBDD!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.assessment-options button,.assessment-secondary,.wellness-button.secondary,.scrapbook-tool-button,.scrapbook-decoration-tools button){
+ background:#1A2420!important;color:#F3EBDD!important;border-color:#34483D!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.assessment-primary,.primary-button,.save-button,.journal-save-button,.practice-primary,.wellness-button:not(.secondary),.scrapbook-tool-button.primary){
+ background:#B9A5D6!important;border-color:#B9A5D6!important;color:#111C17!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.assessment-mark,.section-number,.academic-chapter,.wellbeing-step-bubble,.mindful-tool-icon){
+ background:#26392E!important;color:#F3EBDD!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.assessment-progress,.academic-track,.sleep-overview-track){background:#34483D!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.assessment-progress span,.academic-track span,.sleep-overview-track span){background:#B9A5D6!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.sleep-overview,.dream-window,.stress-orbit){background:#26392E!important;color:#F3EBDD!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.sleep-overview *, .dream-window *, .stress-orbit *){color:#F3EBDD!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.shared-sidebar-quote,.global-page-preferences,.settings-popover,.notification-popover,.language-dropdown){
+ background:#17251F!important;border-color:#34483D!important;color:#F3EBDD!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.shared-sidebar-quote small,.global-page-preferences label,.language-dropdown button){color:#D0D8D0!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.scrapbook-canvas,.game-board,.game-canvas,.color-pop-board){background-color:#1A2420!important;border-color:#34483D!important;}
