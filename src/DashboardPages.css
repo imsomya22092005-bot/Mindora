@@ -867,3 +867,17 @@ html[data-mindora-theme="dark"][data-mindora-mood] .journal-mood-page[data-mood]
   -webkit-text-fill-color:var(--journal-accent)!important;
   text-shadow:none!important;
 }
+
+/* MEH mood — Journal, Insights and scrapbook full palette */
+.journal-mood-page[data-mood="meh"],.insights-mood-page[data-mood="meh"],.mindful-moments-mood-page[data-mood="meh"]{--journal-bg:#F2E8E6;--journal-surface:#E4D0CC;--journal-cover:#432D3B;--journal-ink:#432D3B;--journal-muted:#765D68;--journal-accent:#A65D68;--journal-line:#C9ADA7;--journal-input:#F8F0EE;--journal-button:#A65D68;--journal-button-text:#fff;--journal-soft:#EBDAD6;background:#F2E8E6!important;color:#432D3B!important}
+.journal-mood-page[data-mood="meh"] :is(.journal-diary-cover,.journal-loose-page,.journal-page-top,.diary-editor,.diary-saved-card,.diary-prompt-card,.scrapbook-editor,.scrapbook-canvas,.scrapbook-polaroid){background-color:#E4D0CC!important;border-color:#C9ADA7!important;color:#432D3B!important}
+.journal-mood-page[data-mood="meh"] .journal-cover-content :is(h2,h2 em,p,.journal-cover-kicker){color:#A65D68!important;-webkit-text-fill-color:#A65D68!important}
+.journal-mood-page[data-mood="meh"] :is(h1,h2,h3,p,.scrapbook-tools h3,.scrapbook-tools p,.scrapbook-kicker,.scrapbook-storage-note){color:#432D3B!important}
+.journal-mood-page[data-mood="meh"] :is(button,.scrapbook-tool-button,.scrapbook-decoration-tools button){background:#F8F0EE!important;border-color:#C9ADA7!important;color:#432D3B!important}
+.journal-mood-page[data-mood="meh"] :is(.journal-open-button,.diary-save-button,.scrapbook-tool-button.primary){background:#A65D68!important;color:#fff!important}
+.dark-theme .journal-mood-page[data-mood="meh"],.dark-theme .insights-mood-page[data-mood="meh"],.dark-theme .mindful-moments-mood-page[data-mood="meh"]{--journal-bg:#1D141B;--journal-surface:#2B1D27;--journal-cover:#2B1D27;--journal-ink:#F5E9E7;--journal-muted:#D9C3CF;--journal-accent:#E49A9D;--journal-line:#49303D;--journal-input:#241923;--journal-button:#E49A9D;--journal-button-text:#1D141B;--journal-soft:#321F2C;background:#1D141B!important;color:#F5E9E7!important}
+.dark-theme .journal-mood-page[data-mood="meh"] :is(.journal-diary-cover,.journal-loose-page,.journal-page-top,.diary-editor,.diary-saved-card,.diary-prompt-card,.scrapbook-editor,.scrapbook-canvas,.scrapbook-polaroid){background-color:#2B1D27!important;border-color:#49303D!important;color:#F5E9E7!important}
+.dark-theme .journal-mood-page[data-mood="meh"] .journal-cover-content :is(h2,h2 em,p,.journal-cover-kicker){color:#E49A9D!important;-webkit-text-fill-color:#E49A9D!important}
+.dark-theme .journal-mood-page[data-mood="meh"] :is(h1,h2,h3,p,.scrapbook-tools h3,.scrapbook-tools p,.scrapbook-kicker,.scrapbook-storage-note){color:#F5E9E7!important}
+.dark-theme .journal-mood-page[data-mood="meh"] :is(button,.scrapbook-tool-button,.scrapbook-decoration-tools button){background:#241923!important;border-color:#49303D!important;color:#F5E9E7!important}
+.dark-theme .journal-mood-page[data-mood="meh"] :is(.journal-open-button,.diary-save-button,.scrapbook-tool-button.primary){background:#E49A9D!important;color:#1D141B!important}
