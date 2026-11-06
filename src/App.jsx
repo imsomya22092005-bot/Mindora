@@ -789,7 +789,7 @@ function Dashboard() {
               <div className="mood-book-controls">
                 <button
                   className="book-turn-button secondary"
-                  style={darkMode ? { color: "#FFFFFF", WebkitTextFillColor: "#FFFFFF" } : undefined}
+                  style={{ color: "#FFFFFF", WebkitTextFillColor: "#FFFFFF" }}
                   onClick={() => setBookPage((page) => Math.max(0, page - 1))}
                   disabled={bookPage === 0}
                 >
@@ -797,7 +797,7 @@ function Dashboard() {
                 {bookPage > 0 && bookPage <= moods.length && (
                   <button
                     className="book-save-button"
-                    style={darkMode ? { color: "#FFFFFF", WebkitTextFillColor: "#FFFFFF" } : undefined}
+                    style={{ color: "#FFFFFF", WebkitTextFillColor: "#FFFFFF" }}
                     onClick={saveMood}
                     disabled={!selectedMood}
                     title={!selectedMood ? "Choose this feeling first" : "Save your daily check-in"}
@@ -806,7 +806,7 @@ function Dashboard() {
                 )}
                 <button
                   className="book-turn-button"
-                  style={darkMode ? { color: "#FFFFFF", WebkitTextFillColor: "#FFFFFF" } : undefined}
+                  style={{ color: "#FFFFFF", WebkitTextFillColor: "#FFFFFF" }}
                   onClick={() => setBookPage((page) => page >= moods.length + 1 ? 0 : page + 1)}
                 >
                   {bookPage === moods.length + 1 ? t("Read again", "फिर से पढ़ें") : t("Turn the page", "पन्ना पलटें")} <ArrowRight size={16} />
