@@ -4433,3 +4433,11 @@ html[data-mindora-theme="dark"] #root .app-shell[data-mood]:not([data-mood="defa
   border-color:var(--mood-line,var(--mindora-mood-border))!important;
   color:var(--mood-ink,var(--mindora-mood-ink))!important;
 }
+
+
+/* Dark-mode mood-book controls: preserve the dark button surfaces, but keep every label readable. */
+html[data-mindora-theme="dark"] #root .mood-book-controls :is(.book-turn-button,.book-save-button),
+html[data-mindora-theme="dark"] #root .mood-book-controls :is(.book-turn-button,.book-save-button) :is(svg,span){
+  color:#FFFFFF!important;
+  -webkit-text-fill-color:#FFFFFF!important;
+}
