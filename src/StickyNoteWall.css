@@ -224,3 +224,30 @@ html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="def
   box-shadow:0 25px 80px #0008!important;
 }
 @media(prefers-reduced-motion:reduce){.sticky-wall-page[data-mood] *{transition-duration:.01ms!important;animation-duration:.01ms!important;}}
+
+
+/* Final mood-wall correction: keep the pinboard and every wall control on the active mood palette. */
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-board{
+  background-color:var(--ln-board)!important;
+  border-color:var(--ln-line)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-empty :is(h2,p),
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-board-caption,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-add-tile{
+  color:var(--ln-ink)!important;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer :is(h2,label,.sticky-wall-color-label){
+  color:var(--ln-ink)!important;
+}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-page,
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-heading :is(h1,p),
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-empty :is(h2,p),
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer :is(h2,label,.sticky-wall-color-label),
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-note :is(h3,p,footer){
+  color:var(--ln-ink)!important;
+}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-board{
+  background-color:var(--ln-board)!important;
+  border-color:var(--ln-line)!important;
+}
