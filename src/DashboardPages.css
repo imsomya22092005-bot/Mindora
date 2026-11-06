@@ -741,3 +741,14 @@ html[data-mindora-theme="dark"][data-mindora-mood] .journal-mood-page[data-mood]
   opacity:1!important;
   text-shadow:none!important;
 }
+
+
+/* Journal cover final text-color correction:
+   "Dear," and every subtitle word use the same accent as the existing "you." */
+.journal-mood-page .journal-cover-content h2,
+.journal-mood-page .journal-cover-content h2 em,
+.journal-mood-page .journal-cover-content>p{
+  color:var(--journal-accent)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
