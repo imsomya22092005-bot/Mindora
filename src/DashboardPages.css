@@ -718,3 +718,17 @@ html[data-mindora-mood] .insights-mood-page[data-mood] :is(.insight-stat-grid ar
 html[data-mindora-theme="dark"][data-mindora-mood] .mindful-moments-mood-page[data-mood],
 html[data-mindora-theme="dark"][data-mindora-mood] .insights-mood-page[data-mood],
 html[data-mindora-theme="dark"][data-mindora-mood] .journal-mood-page[data-mood]{color:var(--mindora-mood-ink)!important;}
+
+
+/* Journal diary cover: keep the kicker and supporting sentence readable
+   in light mode without changing the already-correct "Dear, you." heading. */
+.journal-mood-page:not(.dark-theme) .journal-cover-content .journal-cover-kicker{
+  color:var(--journal-ink,#493626)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+.journal-mood-page:not(.dark-theme) .journal-cover-content>p{
+  color:var(--journal-muted,#725B48)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
