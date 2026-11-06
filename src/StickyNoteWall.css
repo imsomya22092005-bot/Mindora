@@ -251,3 +251,24 @@ html[data-mindora-theme="dark"] .sticky-wall-page[data-mood]:not([data-mood="def
   background-color:var(--ln-board)!important;
   border-color:var(--ln-line)!important;
 }
+
+
+/* Final wall palette enforcement: each saved mood recolours the whole pinboard, not just its notes. */
+.sticky-wall-page[data-mood="low"] .sticky-wall-board{background-color:#D9C5A9!important;border-color:#D4C2A9!important;}
+.sticky-wall-page[data-mood="meh"] .sticky-wall-board{background-color:#B78F8B!important;border-color:#B99690!important;}
+.sticky-wall-page[data-mood="okay"] .sticky-wall-board{background-color:#9FC9B7!important;border-color:#9FC9B7!important;}
+.sticky-wall-page[data-mood="good"] .sticky-wall-board{background-color:#E8C875!important;border-color:#E2C778!important;}
+.sticky-wall-page[data-mood="great"] .sticky-wall-board{background-color:#DDE1D0!important;border-color:#D9DDC9!important;}
+
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-header,
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-board{
+  transition:background .45s ease,border-color .45s ease,color .45s ease,box-shadow .45s ease;
+}
+.sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-board{
+  background-image:linear-gradient(135deg,color-mix(in srgb,var(--ln-surface) 82%,white),var(--ln-board) 52%,color-mix(in srgb,var(--ln-page) 72%,var(--ln-accent)))!important;
+}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="low"] .sticky-wall-board{background-color:#26392E!important;}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="meh"] .sticky-wall-board{background-color:#40283A!important;}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="okay"] .sticky-wall-board{background-color:#204743!important;}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="good"] .sticky-wall-board{background-color:#49362A!important;}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="great"] .sticky-wall-board{background-color:#24291A!important;}
