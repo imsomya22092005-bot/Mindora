@@ -641,3 +641,18 @@ html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .sleep
  html[data-mindora-mood="low"] .assessment-page .assessment-fieldset .assessment-options,
  html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page .assessment-fieldset .assessment-options{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
 }
+
+/* Sleep profile fields: explicit high-contrast labels and controls in dark mode. */
+html[data-mindora-theme="dark"] #root .assessment-page.assessment-sleep .assessment-profile-grid :is(label, label *){
+  color:#FFFFFF!important;
+  -webkit-text-fill-color:#FFFFFF!important;
+}
+html[data-mindora-theme="dark"] #root .assessment-page.assessment-sleep .assessment-profile-grid :is(input,select){
+  color:#FFFFFF!important;
+  -webkit-text-fill-color:#FFFFFF!important;
+  color-scheme:dark;
+}
+html[data-mindora-theme="dark"] #root .assessment-page.assessment-sleep .assessment-profile-grid select option{
+  background:#102E2C!important;
+  color:#FFFFFF!important;
+}
