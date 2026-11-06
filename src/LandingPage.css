@@ -2733,3 +2733,19 @@ html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-cta > p {
   opacity: 1 !important;
   text-shadow: none !important;
 }
+
+
+/* Landing page final reminder paragraph visibility fix */
+.mindora-landing .landing-cta > p {
+  color: #53665b !important;
+  -webkit-text-fill-color: #53665b !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: none !important;
+}
+html[data-mindora-theme="dark"] .mindora-landing .landing-cta > p {
+  color: #f5f3ef !important;
+  -webkit-text-fill-color: #f5f3ef !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
