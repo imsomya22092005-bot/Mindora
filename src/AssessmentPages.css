@@ -219,3 +219,38 @@ html[data-mindora-theme="dark"][data-mindora-mood="good"] .assessment-page .slee
 .dark-theme .shared-dashboard-layout[data-mood="meh"] .assessment-page :is(.assessment-heading,.assessment-panel,.assessment-mini-grid article,.assessment-result-grid article,.assessment-options button,.assessment-secondary,.assessment-sleep-result,.assessment-academic-result){background:#2B1D27!important;border-color:#49303D!important;color:#F5E9E7!important}
 .dark-theme .shared-dashboard-layout[data-mood="meh"] .assessment-page :is(.assessment-primary,.assessment-options button.is-selected,.assessment-result-grid article>b,.assessment-demo-flag){background:#E49A9D!important;border-color:#E49A9D!important;color:#1D141B!important}
 .dark-theme .shared-dashboard-layout[data-mood="meh"] .assessment-page :is(input,select){background:#241923!important;color:#F5E9E7!important;border-color:#49303D!important}
+
+
+/* MEH — final targeted pass for the three assessment hero cards.
+   Use the app's real root mood attributes (html[data-mindora-mood]),
+   not a data-mood attribute on the dashboard layout. */
+html[data-mindora-mood="meh"] .assessment-page :is(.wellbeing-journey-hero,.dream-lab-intro,.student-observatory){
+  background:#E4D0CC!important;background-image:none!important;border:1px solid #C9ADA7!important;color:#432D3B!important;
+}
+html[data-mindora-mood="meh"] .assessment-page :is(.wellbeing-orbit,.dream-window,.stress-orbit,.stress-orbit-ring,.art-core,.art-orbit){
+  background-color:#D9A39A!important;background-image:none!important;border-color:#A65D68!important;color:#432D3B!important;box-shadow:none!important;
+}
+html[data-mindora-mood="meh"] .assessment-page :is(.wellbeing-orbit i,.wellbeing-orbit b,.wellbeing-orbit span,.wellbeing-orbit em,.dream-window span,.dream-window i,.dream-window b,.stress-orbit span,.stress-orbit i,.stress-orbit b,.art-spark){
+  color:#432D3B!important;-webkit-text-fill-color:#432D3B!important;
+}
+html[data-mindora-mood="meh"] .assessment-page :is(.wellbeing-journey-hero h2,.dream-lab-copy h2,.observatory-copy h2,.sleep-rhythm-head h3,.academic-overview h2){color:#432D3B!important}
+html[data-mindora-mood="meh"] .assessment-page :is(.wellbeing-journey-hero p,.dream-lab-copy p,.observatory-copy p,.sleep-rhythm-panel>p,.journey-stamps,.journey-stamps span,.observatory-tags,.observatory-tags span){color:#765D68!important}
+html[data-mindora-mood="meh"] .assessment-page :is(.journey-stamps span,.observatory-tags span){background:#F8F0EE!important;border-color:#C9ADA7!important}
+html[data-mindora-mood="meh"] .assessment-page :is(.sleep-rhythm-panel,.academic-overview,.academic-count,.sleep-overview){border-color:#C9ADA7!important}
+html[data-mindora-mood="meh"] .assessment-page :is(.overview-kicker,.assessment-eyebrow,.assessment-back,.sleep-path,.wellbeing-question-meta b,.wellbeing-sparkle){color:#A65D68!important}
+html[data-mindora-mood="meh"] .assessment-page :is(.assessment-mini-grid article>span,.section-number,.academic-chapter,.wellbeing-step-bubble){background:#D9A39A!important;color:#432D3B!important;border-color:#A65D68!important}
+html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page :is(.wellbeing-journey-hero,.dream-lab-intro,.student-observatory,.sleep-rhythm-panel,.academic-overview){
+  background:#2B1D27!important;background-image:none!important;border-color:#49303D!important;color:#F5E9E7!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page :is(.wellbeing-orbit,.dream-window,.stress-orbit,.stress-orbit-ring,.art-core,.art-orbit){
+  background-color:#49303D!important;background-image:none!important;border-color:#E49A9D!important;color:#F5E9E7!important;box-shadow:none!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page :is(.wellbeing-orbit i,.wellbeing-orbit b,.wellbeing-orbit span,.wellbeing-orbit em,.dream-window span,.dream-window i,.dream-window b,.stress-orbit span,.stress-orbit i,.stress-orbit b,.art-spark){
+  color:#F5E9E7!important;-webkit-text-fill-color:#F5E9E7!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page :is(.wellbeing-journey-hero h2,.dream-lab-copy h2,.observatory-copy h2,.sleep-rhythm-head h3,.academic-overview h2){color:#F5E9E7!important}
+html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page :is(.wellbeing-journey-hero p,.dream-lab-copy p,.observatory-copy p,.sleep-rhythm-panel>p,.journey-stamps,.journey-stamps span,.observatory-tags,.observatory-tags span){color:#D9C3CF!important}
+html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page :is(.journey-stamps span,.observatory-tags span){background:#241923!important;border-color:#49303D!important}
+html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page :is(.overview-kicker,.assessment-eyebrow,.assessment-back,.sleep-path,.wellbeing-question-meta b,.wellbeing-sparkle){color:#E49A9D!important}
+html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page :is(.assessment-mini-grid article>span,.section-number,.academic-chapter,.wellbeing-step-bubble){background:#49303D!important;color:#F5E9E7!important;border-color:#E49A9D!important}
+html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page .sleep-overview{background:linear-gradient(120deg,#1D141B,#49303D)!important;color:#F5E9E7!important}
