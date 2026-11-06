@@ -1280,7 +1280,8 @@ function GlobalPagePreferences() {
 function App() {
   return (
     <BrowserRouter>
-      <MoodThemeSync />\n      <GlobalPagePreferences />
+      <MoodThemeSync />
+      <GlobalPagePreferences />
       <Routes>
         {/* Landing page */}
         <Route path="/" element={<LandingPage />} />
