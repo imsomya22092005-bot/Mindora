@@ -301,6 +301,7 @@ function Dashboard() {
   useEffect(() => {
     try {
       localStorage.setItem("mindora-theme", darkMode ? "dark" : "light");
+      document.documentElement.dataset.mindoraTheme = darkMode ? "dark" : "light";
     } catch {
       // Theme preference may not persist in private browsing.
     }
@@ -1219,6 +1220,29 @@ function Dashboard() {
   );
 }
 
+function MoodThemeSync() {
+  useEffect(() => {
+    const syncMood = (event) => {
+      let mood = event?.detail?.mood;
+      if (!mood) {
+        try { mood = (localStorage.getItem("mindora-saved-mood") || "okay").toLowerCase(); }
+        catch { mood = "okay"; }
+      }
+      document.documentElement.dataset.mindoraMood = mood;
+    };
+    const syncTheme = () => {
+      try { document.documentElement.dataset.mindoraTheme = localStorage.getItem("mindora-theme") === "dark" ? "dark" : "light"; }
+      catch { document.documentElement.dataset.mindoraTheme = "light"; }
+    };
+    syncMood();
+    syncTheme();
+    window.addEventListener("mindora:mood-saved", syncMood);
+    window.addEventListener("storage", () => { syncMood(); syncTheme(); });
+    return () => window.removeEventListener("mindora:mood-saved", syncMood);
+  }, []);
+  return null;
+}
+
 function GlobalPagePreferences() {
   const location = useLocation();
   const [language, setLanguage] = useLanguage();
@@ -1245,7 +1269,7 @@ function GlobalPagePreferences() {
 function App() {
   return (
     <BrowserRouter>
-      <GlobalPagePreferences />
+      <MoodThemeSync />\n      <GlobalPagePreferences />
       <Routes>
         {/* Landing page */}
         <Route path="/" element={<LandingPage />} />
