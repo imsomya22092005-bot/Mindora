@@ -204,3 +204,18 @@ html[data-mindora-theme="dark"][data-mindora-mood="good"] .assessment-page :is(.
 html[data-mindora-theme="dark"][data-mindora-mood="good"] .assessment-page :is(.assessment-primary,.assessment-progress span,.academic-track span,.sleep-overview-track span){background:#E9A85B!important;color:#21180F!important}
 html[data-mindora-theme="dark"][data-mindora-mood="good"] .assessment-page :is(.assessment-secondary,.assessment-options button,.assessment-profile-grid input,.assessment-profile-grid select){background:#2A2015!important;border-color:#5B452B!important;color:#FBF2DF!important}
 html[data-mindora-theme="dark"][data-mindora-mood="good"] .assessment-page .sleep-overview{background:linear-gradient(115deg,#21180F,#332619)!important;color:#FBF2DF!important}
+
+/* MEH mood — Wellbeing Checking: full light/dark palette and readable text */
+.shared-dashboard-layout[data-mood="meh"] .assessment-page{background:#F2E8E6!important;color:#432D3B!important}
+.shared-dashboard-layout[data-mood="meh"] .assessment-heading{background:linear-gradient(120deg,#E4D0CC,#F2E8E6)!important;border-color:#C9ADA7!important}
+.shared-dashboard-layout[data-mood="meh"] .assessment-page :is(h1,h2,h3,.assessment-question,.assessment-result-grid article>strong){color:#432D3B!important}
+.shared-dashboard-layout[data-mood="meh"] .assessment-page :is(p,.assessment-muted,.assessment-timeframe,.assessment-disclaimer,.assessment-result-grid p){color:#765D68!important}
+.shared-dashboard-layout[data-mood="meh"] .assessment-page :is(.assessment-panel,.assessment-mini-grid article,.assessment-result-grid article,.assessment-options button,.assessment-secondary,.assessment-sleep-result,.assessment-academic-result){background:#E4D0CC!important;border-color:#C9ADA7!important;color:#432D3B!important}
+.shared-dashboard-layout[data-mood="meh"] .assessment-page :is(.assessment-primary,.assessment-options button.is-selected,.assessment-result-grid article>b,.assessment-demo-flag){background:#A65D68!important;border-color:#A65D68!important;color:#fff!important}
+.shared-dashboard-layout[data-mood="meh"] .assessment-page :is(input,select){background:#F8F0EE!important;color:#432D3B!important;border-color:#C9ADA7!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .assessment-page{background:#1D141B!important;color:#F5E9E7!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .assessment-page :is(h1,h2,h3,.assessment-question,.assessment-result-grid article>strong){color:#F5E9E7!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .assessment-page :is(p,.assessment-muted,.assessment-timeframe,.assessment-disclaimer,.assessment-result-grid p){color:#D9C3CF!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .assessment-page :is(.assessment-heading,.assessment-panel,.assessment-mini-grid article,.assessment-result-grid article,.assessment-options button,.assessment-secondary,.assessment-sleep-result,.assessment-academic-result){background:#2B1D27!important;border-color:#49303D!important;color:#F5E9E7!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .assessment-page :is(.assessment-primary,.assessment-options button.is-selected,.assessment-result-grid article>b,.assessment-demo-flag){background:#E49A9D!important;border-color:#E49A9D!important;color:#1D141B!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .assessment-page :is(input,select){background:#241923!important;color:#F5E9E7!important;border-color:#49303D!important}
