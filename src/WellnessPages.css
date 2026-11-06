@@ -1330,3 +1330,25 @@ html[data-mindora-theme="dark"] .wellness-page[data-mood] .care-item>span:nth-ch
 
 /* Accessibility: retain the page's motion design but respect reduced-motion settings. */
 @media(prefers-reduced-motion:reduce){.wellness-page[data-mood] *{transition-duration:.01ms!important;animation-duration:.01ms!important;}}
+
+
+/* Central palette bridge: all four Mindful Moments tools use the exact site mood tokens. */
+html[data-mindora-mood] .wellness-page[data-mood]{
+ --wellness-bg:var(--mindora-mood-bg)!important;--wellness-card:var(--mindora-mood-surface)!important;
+ --wellness-text:var(--mindora-mood-ink)!important;--wellness-muted:var(--mindora-mood-muted)!important;
+ --wellness-green:var(--mindora-mood-accent)!important;--wellness-light:var(--mindora-mood-highlight)!important;
+ --wellness-border:var(--mindora-mood-border)!important;
+ background:var(--mindora-mood-bg)!important;color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-mood] .wellness-page[data-mood] :is(.wellness-panel,.calm-card,.garden-summary,.comfort-note,.rain-card,.journal-editor,.comfort-restored,.care-item,.mood-chip,.journal-entry,.soundscape-option){
+ background-color:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-mood] .wellness-page[data-mood] :is(h1,h2,h3,strong,.wellness-brand,.wellness-back,.wellness-eyebrow){color:var(--mindora-mood-ink)!important;}
+html[data-mindora-mood] .wellness-page[data-mood] :is(p,small,.wellness-muted,.garden-growth-note){color:var(--mindora-mood-muted)!important;}
+html[data-mindora-mood] .wellness-page[data-mood] .wellness-button{background:var(--mindora-mood-accent)!important;border-color:var(--mindora-mood-accent)!important;color:#fff!important;}
+html[data-mindora-mood] .wellness-page[data-mood] .wellness-button.secondary,
+html[data-mindora-mood] .wellness-page[data-mood] .journal-actions button{background:var(--mindora-mood-highlight)!important;color:var(--mindora-mood-ink)!important;}
+html[data-mindora-mood] .wellness-page[data-mood] :is(input,textarea,select){background:var(--mindora-mood-soft)!important;color:var(--mindora-mood-ink)!important;border-color:var(--mindora-mood-border)!important;}
+html[data-mindora-mood] .wellness-page[data-mood] :is(input,textarea)::placeholder{color:var(--mindora-mood-muted)!important;opacity:1;}
+html[data-mindora-theme="dark"][data-mindora-mood] .wellness-page[data-mood] :is(h1,h2,h3,strong,.wellness-brand,.wellness-back,.wellness-eyebrow){color:var(--mindora-mood-ink)!important;}
+html[data-mindora-theme="dark"][data-mindora-mood] .wellness-page[data-mood] :is(p,small,.wellness-muted,.garden-growth-note){color:var(--mindora-mood-muted)!important;}
