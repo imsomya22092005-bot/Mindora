@@ -109,3 +109,17 @@ html[data-mindora-theme="dark"][data-mindora-mood="good"] .mindora-ai-page :is(.
 html[data-mindora-theme="dark"][data-mindora-mood="good"] .mindora-ai-page :is(.mai-primary,.mai-chat-form button){background:#E9A85B!important;color:#21180F!important}
 html[data-mindora-theme="dark"][data-mindora-mood="good"] .mindora-ai-page :is(.mai-tabs button.selected,.mai-mood-option.chosen,.mai-message.user p){background:#503B25!important;color:#FBF2DF!important;border-color:#E9A85B!important}
 html[data-mindora-theme="dark"][data-mindora-mood="good"] .mindora-ai-page :is(.mai-label,.mai-range-label strong,.mai-eyebrow,.mai-category){color:#E9A85B!important}
+
+/* MEH mood — AI wellbeing complete surface and text contrast */
+.shared-dashboard-layout[data-mood="meh"] .mindora-ai-page{background:#F2E8E6!important;color:#432D3B!important}
+.shared-dashboard-layout[data-mood="meh"] .mindora-ai-page :is(.mai-header,.mai-chat-card,.mai-checkin-card,.mai-recommendations,.mai-activity-card,.mai-empty-state,.mai-message-list,.mai-chat-form){background:#E4D0CC!important;border-color:#C9ADA7!important;color:#432D3B!important}
+.shared-dashboard-layout[data-mood="meh"] .mindora-ai-page :is(h1,h2,h3,strong,.mai-label,.mai-message p){color:#432D3B!important}
+.shared-dashboard-layout[data-mood="meh"] .mindora-ai-page :is(p,.mai-muted,.mai-eyebrow,.mai-category,.mai-duration,.mai-privacy-note){color:#765D68!important}
+.shared-dashboard-layout[data-mood="meh"] .mindora-ai-page :is(button,.mai-tabs button.selected,.mai-primary,.mai-mood-option.chosen){background:#A65D68!important;border-color:#A65D68!important;color:#fff!important}
+.shared-dashboard-layout[data-mood="meh"] .mindora-ai-page :is(textarea,input,select){background:#F8F0EE!important;color:#432D3B!important;border-color:#C9ADA7!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .mindora-ai-page{background:#1D141B!important;color:#F5E9E7!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .mindora-ai-page :is(.mai-header,.mai-chat-card,.mai-checkin-card,.mai-recommendations,.mai-activity-card,.mai-empty-state,.mai-message-list,.mai-chat-form){background:#2B1D27!important;border-color:#49303D!important;color:#F5E9E7!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .mindora-ai-page :is(h1,h2,h3,strong,.mai-label,.mai-message p){color:#F5E9E7!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .mindora-ai-page :is(p,.mai-muted,.mai-eyebrow,.mai-category,.mai-duration,.mai-privacy-note){color:#D9C3CF!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .mindora-ai-page :is(button,.mai-tabs button.selected,.mai-primary,.mai-mood-option.chosen){background:#E49A9D!important;border-color:#E49A9D!important;color:#1D141B!important}
+.dark-theme .shared-dashboard-layout[data-mood="meh"] .mindora-ai-page :is(textarea,input,select){background:#241923!important;color:#F5E9E7!important;border-color:#49303D!important}
