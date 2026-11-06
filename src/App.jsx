@@ -385,47 +385,49 @@ function Dashboard() {
     );
   });
 
-  async function saveMood() {
+  function saveMood() {
     if (!selectedMood) return;
 
+    // Save locally and broadcast the mood first so the theme changes immediately.
+    const moodToSave = selectedMood;
     const token = localStorage.getItem("mindora-token");
     const moodValues = { Low: "bad", Meh: "neutral", Okay: "neutral", Good: "good", Great: "rad" };
     const entry = {
       id: Date.now(),
-      label: selectedMood.label,
-      emoji: selectedMood.emoji,
-      value: selectedMood.value,
+      label: moodToSave.label,
+      emoji: moodToSave.emoji,
+      value: moodToSave.value,
       date: getTodayDate(),
       timestamp: Date.now(),
     };
 
-    if (token) {
-      try {
-        await apiRequest("/api/mood/entry", {
-          method: "POST",
-          token,
-          body: JSON.stringify({
-            date: new Date().toISOString().slice(0, 10),
-            mood: moodValues[selectedMood.label] || "neutral",
-            intensity: Math.max(1, Math.min(5, Math.round(selectedMood.value / 2))),
-          }),
-        });
-      } catch (error) {
-        setShowMoodMessage(false);
-        window.alert(error.message || "Your mood could not be synced. Please try again.");
-        return;
-      }
-    }
-
     setMoodHistory((previous) => [entry, ...previous]);
-    setSavedMood(selectedMood);
+    setSavedMood(moodToSave);
     try {
-      localStorage.setItem("mindora-saved-mood", selectedMood.label);
-      window.dispatchEvent(new CustomEvent("mindora:mood-saved", { detail: { mood: selectedMood.label.toLowerCase() } }));
+      localStorage.setItem("mindora-saved-mood", moodToSave.label);
+      window.dispatchEvent(new CustomEvent("mindora:mood-saved", {
+        detail: { mood: moodToSave.label.toLowerCase() },
+      }));
     } catch {
       // The diary still updates for this session if storage is unavailable.
     }
     setShowMoodMessage(true);
+
+    // Sync with the server in the background; never block the theme update on the API.
+    if (token) {
+      apiRequest("/api/mood/entry", {
+        method: "POST",
+        token,
+        body: JSON.stringify({
+          date: new Date().toISOString().slice(0, 10),
+          mood: moodValues[moodToSave.label] || "neutral",
+          intensity: Math.max(1, Math.min(5, Math.round(moodToSave.value / 2))),
+        }),
+      }).catch((error) => {
+        console.error("Mood saved locally but could not sync with the server:", error);
+        window.alert("Your mood is saved on this device, but server sync failed. Please check your connection and try again later.");
+      });
+    }
   }
 
   function saveJournal() {
