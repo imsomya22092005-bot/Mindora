@@ -4441,3 +4441,11 @@ html[data-mindora-theme="dark"] #root .mood-book-controls :is(.book-turn-button,
   color:#FFFFFF!important;
   -webkit-text-fill-color:#FFFFFF!important;
 }
+
+
+/* Reliable dark-mode contrast: the app's real toggle class lives on .app-shell. */
+#root .app-shell.dark-theme .mood-book-controls :is(.book-turn-button,.book-save-button),
+#root .app-shell.dark-theme .mood-book-controls :is(.book-turn-button,.book-save-button) :is(svg,span){
+  color:#FFFFFF!important;
+  -webkit-text-fill-color:#FFFFFF!important;
+}
