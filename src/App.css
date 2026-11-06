@@ -4061,3 +4061,11 @@ html[data-mindora-mood="okay"] #root .assessment-launch-card :is(strong,span,em)
 html[data-mindora-mood="okay"] #root .assessment-launch-card:hover{border-color:#28766D!important;box-shadow:0 16px 34px #28766d20!important}
 html[data-mindora-theme="dark"][data-mindora-mood="okay"] #root .assessment-launch-card{background:#18332F!important;border-color:#31574E!important;color:#EAF2EE!important}
 html[data-mindora-theme="dark"][data-mindora-mood="okay"] #root .assessment-launch-card :is(strong,span,em){color:#EAF2EE!important}
+
+
+/* GOOD mood — keep dashboard assessment launcher cards in the same warm palette */
+html[data-mindora-mood="good"] #root :is(.assessment-launch-card,.assessment-launch-icon,.sleep-launch .assessment-launch-icon){background:#F1DDAA!important;background-image:none!important;border-color:#E4CE9D!important;color:#493626!important}
+html[data-mindora-mood="good"] #root .assessment-launch-card :is(strong,span,em){color:#493626!important}
+html[data-mindora-mood="good"] #root .assessment-launch-card:hover{border-color:#C17A28!important;box-shadow:0 16px 34px #C17A2820!important}
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root .assessment-launch-card{background:#332619!important;border-color:#5B452B!important;color:#FBF2DF!important}
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root .assessment-launch-card :is(strong,span,em){color:#FBF2DF!important}
