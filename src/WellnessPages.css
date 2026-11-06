@@ -1352,3 +1352,15 @@ html[data-mindora-mood] .wellness-page[data-mood] :is(input,textarea,select){bac
 html[data-mindora-mood] .wellness-page[data-mood] :is(input,textarea)::placeholder{color:var(--mindora-mood-muted)!important;opacity:1;}
 html[data-mindora-theme="dark"][data-mindora-mood] .wellness-page[data-mood] :is(h1,h2,h3,strong,.wellness-brand,.wellness-back,.wellness-eyebrow){color:var(--mindora-mood-ink)!important;}
 html[data-mindora-theme="dark"][data-mindora-mood] .wellness-page[data-mood] :is(p,small,.wellness-muted,.garden-growth-note){color:var(--mindora-mood-muted)!important;}
+
+/* MEH mood — Mindful Moments and all four wellness inner pages */
+.wellness-page[data-mood="meh"]{--wellness-bg:#F2E8E6;--wellness-card:#E4D0CC;--wellness-text:#432D3B;--wellness-muted:#765D68;--wellness-green:#A65D68;--wellness-light:#D9A39A;--wellness-border:#C9ADA7;background:#F2E8E6!important;color:#432D3B!important}
+.wellness-page[data-mood="meh"] :is(.wellness-panel,.rain-card,.garden-summary,.soundscape-card,.comfort-note-layer,.journal-entry){background:#E4D0CC!important;border-color:#C9ADA7!important;color:#432D3B!important}
+.wellness-page[data-mood="meh"] :is(h1,h2,h3,p,.wellness-eyebrow,.wellness-muted,.care-item,.garden-growth-note){color:#432D3B!important}
+.wellness-page[data-mood="meh"] :is(button,input,textarea,select){background:#F8F0EE!important;border-color:#C9ADA7!important;color:#432D3B!important}
+.wellness-page[data-mood="meh"] :is(.wellness-button.primary,.wellness-button:not(.secondary)){background:#A65D68!important;border-color:#A65D68!important;color:#fff!important}
+.dark-theme .wellness-page[data-mood="meh"]{--wellness-bg:#1D141B;--wellness-card:#2B1D27;--wellness-text:#F5E9E7;--wellness-muted:#D9C3CF;--wellness-green:#E49A9D;--wellness-light:#49303D;--wellness-border:#49303D;background:#1D141B!important;color:#F5E9E7!important}
+.dark-theme .wellness-page[data-mood="meh"] :is(.wellness-panel,.rain-card,.garden-summary,.soundscape-card,.comfort-note-layer,.journal-entry){background:#2B1D27!important;border-color:#49303D!important;color:#F5E9E7!important}
+.dark-theme .wellness-page[data-mood="meh"] :is(h1,h2,h3,p,.wellness-eyebrow,.wellness-muted,.care-item,.garden-growth-note){color:#F5E9E7!important}
+.dark-theme .wellness-page[data-mood="meh"] :is(button,input,textarea,select){background:#241923!important;border-color:#49303D!important;color:#F5E9E7!important}
+.dark-theme .wellness-page[data-mood="meh"] :is(.wellness-button.primary,.wellness-button:not(.secondary)){background:#E49A9D!important;border-color:#E49A9D!important;color:#1D141B!important}
