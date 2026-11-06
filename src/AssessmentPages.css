@@ -254,3 +254,76 @@ html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page :is(.j
 html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page :is(.overview-kicker,.assessment-eyebrow,.assessment-back,.sleep-path,.wellbeing-question-meta b,.wellbeing-sparkle){color:#E49A9D!important}
 html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page :is(.assessment-mini-grid article>span,.section-number,.academic-chapter,.wellbeing-step-bubble){background:#49303D!important;color:#F5E9E7!important;border-color:#E49A9D!important}
 html[data-mindora-theme="dark"][data-mindora-mood="meh"] .assessment-page .sleep-overview{background:linear-gradient(120deg,#1D141B,#49303D)!important;color:#F5E9E7!important}
+
+
+/* SLEEP REFLECTION — keep each question clear, centered and separated from its options */
+.assessment-sleep .assessment-fieldset{
+  display:block!important;
+  padding:24px 20px 22px!important;
+  margin:18px 0!important;
+  border:1px solid var(--assessment-border,#C9ADA7)!important;
+  border-radius:20px!important;
+  box-sizing:border-box;
+}
+.assessment-sleep .assessment-fieldset legend{
+  display:block!important;
+  float:none!important;
+  width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  text-align:center!important;
+  line-height:1.55!important;
+  padding:0 16px 14px!important;
+  margin:0 auto 8px!important;
+  font-size:clamp(15px,1.6vw,18px)!important;
+  font-weight:800!important;
+  white-space:normal!important;
+}
+.assessment-sleep .assessment-fieldset .assessment-options{
+  margin:0!important;
+  gap:12px!important;
+}
+.assessment-sleep .assessment-fieldset .assessment-options button{
+  text-align:center!important;
+  justify-content:center!important;
+  min-height:58px!important;
+}
+@media(max-width:760px){
+ .assessment-sleep .assessment-fieldset{padding:20px 14px!important;margin:15px 0!important}
+ .assessment-sleep .assessment-fieldset legend{padding:0 8px 12px!important}
+}
+
+/* Actual app theme lives on .app-shell, not html. Apply Meh palette to sleep form. */
+.app-shell[data-mood="meh"] .assessment-sleep .assessment-fieldset{
+  --assessment-border:#C9ADA7;
+  background:#E4D0CC!important;background-image:none!important;border-color:#C9ADA7!important;color:#432D3B!important;
+}
+.app-shell[data-mood="meh"] .assessment-sleep .assessment-fieldset legend{color:#432D3B!important}
+.app-shell[data-mood="meh"] .assessment-sleep .assessment-fieldset .assessment-options button{
+  background:#F8F0EE!important;border-color:#C9ADA7!important;color:#432D3B!important;
+}
+.app-shell[data-mood="meh"] .assessment-sleep .assessment-fieldset .assessment-options button:hover,
+.app-shell[data-mood="meh"] .assessment-sleep .assessment-fieldset .assessment-options button.is-selected{
+  background:#D9A39A!important;border-color:#A65D68!important;color:#432D3B!important;
+}
+
+/* Dark mode is .app-shell.dark-theme — replace every pale sleep-form surface with deep rose */
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .assessment-fieldset{
+  --assessment-border:#49303D;
+  background:#2B1D27!important;background-image:none!important;border-color:#49303D!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .assessment-fieldset legend{color:#F5E9E7!important}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .assessment-fieldset .assessment-options button{
+  background:#241923!important;border-color:#49303D!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .assessment-fieldset .assessment-options button:hover,
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .assessment-fieldset .assessment-options button.is-selected{
+  background:#49303D!important;border-color:#E49A9D!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep :is(.assessment-panel,.sleep-rhythm-panel,.dream-lab-intro,.sleep-overview){
+  background:#2B1D27!important;background-image:none!important;border-color:#49303D!important;color:#F5E9E7!important;
+}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep :is(h1,h2,h3,.assessment-question,.sleep-rhythm-head strong,.sleep-rhythm-head h3,.overview-kicker){color:#F5E9E7!important}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep :is(p,.assessment-muted,.sleep-rhythm-panel>p,.assessment-timeframe){color:#D9C3CF!important}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep :is(input,select){background:#241923!important;border-color:#49303D!important;color:#F5E9E7!important;color-scheme:dark}
+.app-shell.dark-theme[data-mood="meh"] .assessment-sleep .sleep-overview{background:linear-gradient(120deg,#1D141B,#49303D)!important}
