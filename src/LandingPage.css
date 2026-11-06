@@ -2734,18 +2734,18 @@ html[data-mindora-theme="dark"] .mindora-landing.landing-dark .landing-cta > p {
   text-shadow: none !important;
 }
 
-/* Final CTA copy: restore the landing page's warm palette and force readable visibility. */
+/* Final CTA supporting line: cool slate-blue for contrast against the warm CTA backgrounds. */
 .mindora-landing .landing-cta > p {
-  color: #65473e !important;
-  -webkit-text-fill-color: #65473e !important;
+  color: #294F68 !important;
+  -webkit-text-fill-color: #294F68 !important;
   opacity: 1 !important;
   visibility: visible !important;
   filter: none !important;
   text-shadow: none !important;
 }
 .mindora-landing.landing-dark .landing-cta > p {
-  color: #f0dfd1 !important;
-  -webkit-text-fill-color: #f0dfd1 !important;
+  color: #DCEBFA !important;
+  -webkit-text-fill-color: #DCEBFA !important;
   opacity: 1 !important;
   visibility: visible !important;
   filter: none !important;
