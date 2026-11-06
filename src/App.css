@@ -4069,3 +4069,98 @@ html[data-mindora-mood="good"] #root .assessment-launch-card :is(strong,span,em)
 html[data-mindora-mood="good"] #root .assessment-launch-card:hover{border-color:#C17A28!important;box-shadow:0 16px 34px #C17A2820!important}
 html[data-mindora-theme="dark"][data-mindora-mood="good"] #root .assessment-launch-card{background:#332619!important;border-color:#5B452B!important;color:#FBF2DF!important}
 html[data-mindora-theme="dark"][data-mindora-mood="good"] #root .assessment-launch-card :is(strong,span,em){color:#FBF2DF!important}
+
+
+/* =========================================================
+   GOOD MOOD — SITE-WIDE FINAL SKIN (LIGHT + DARK)
+   Applies the active Good palette to every route, not only
+   the assessment, AI and games feature pages.
+   ========================================================= */
+html[data-mindora-mood="good"] body,
+html[data-mindora-mood="good"] #root,
+html[data-mindora-mood="good"] #root main,
+html[data-mindora-mood="good"] #root .page,
+html[data-mindora-mood="good"] #root [class*="page"],
+html[data-mindora-mood="good"] #root [class*="screen"],
+html[data-mindora-mood="good"] #root [class*="workspace"]{
+  background-color:#FBF2DF!important;color:#493626!important;
+}
+html[data-mindora-mood="good"] #root :is(
+ [class*="card"],[class*="panel"],[class*="tile"],[class*="surface"],
+ [class*="widget"],[class*="modal"],[class*="popover"],[class*="drawer"],
+ [class*="section-box"],[class*="content-box"],[class*="feature-box"]
+):not([class*="card-art"]):not([class*="card-image"]):not([class*="card-visual"]):not([class*="card-icon"]):not([class*="card-illustration"]):not([class*="colorpop-target"]):not([class*="game-board"]):not([class*="game-canvas"]):not([class*="chart"]):not([class*="graph"]){
+ background-color:#F1DDAA!important;
+ border-color:#E4CE9D!important;
+ color:#493626!important;
+}
+html[data-mindora-mood="good"] #root :is(
+ [class*="card"] h1,[class*="card"] h2,[class*="card"] h3,[class*="card"] h4,
+ [class*="panel"] h1,[class*="panel"] h2,[class*="panel"] h3,[class*="panel"] h4,
+ [class*="tile"] h1,[class*="tile"] h2,[class*="tile"] h3,[class*="tile"] h4,
+ [class*="modal"] h1,[class*="modal"] h2,[class*="modal"] h3,
+ [class*="popover"] h1,[class*="popover"] h2,[class*="popover"] h3
+ ){color:#493626!important}
+html[data-mindora-mood="good"] #root :is(
+ [class*="card"] p,[class*="card"] small,[class*="card"] span,
+ [class*="panel"] p,[class*="panel"] small,[class*="panel"] span,
+ [class*="tile"] p,[class*="tile"] small,[class*="tile"] span,
+ [class*="modal"] p,[class*="popover"] p
+ ){color:#79644B!important}
+html[data-mindora-mood="good"] #root :is(button,[role="button"],input,textarea,select){
+ border-color:#E4CE9D!important;
+}
+html[data-mindora-mood="good"] #root :is(input,textarea,select){
+ background-color:#FFF9EA!important;color:#493626!important;
+}
+html[data-mindora-mood="good"] #root :is(input,textarea)::placeholder{color:#79644B!important;opacity:1}
+html[data-mindora-mood="good"] #root :is(button,.button,[class*="primary"],[class*="submit"],[class*="save"]):not([class*="game"]):not([class*="colorpop"]):not([class*="target"]){
+ border-color:#C17A28!important;
+}
+html[data-mindora-mood="good"] #root :is(a,[role="tab"],[class*="nav-item"],[class*="tab"]):focus-visible{
+ outline-color:#C17A28!important;
+}
+
+/* Good mood dark-mode: deep roasted brown surfaces, warm ivory text */
+html[data-mindora-theme="dark"][data-mindora-mood="good"] body,
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root,
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root main,
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root .page,
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root [class*="page"],
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root [class*="screen"],
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root [class*="workspace"]{
+ background-color:#21180F!important;color:#FBF2DF!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(
+ [class*="card"],[class*="panel"],[class*="tile"],[class*="surface"],
+ [class*="widget"],[class*="modal"],[class*="popover"],[class*="drawer"],
+ [class*="section-box"],[class*="content-box"],[class*="feature-box"]
+):not([class*="card-art"]):not([class*="card-image"]):not([class*="card-visual"]):not([class*="card-icon"]):not([class*="card-illustration"]):not([class*="colorpop-target"]):not([class*="game-board"]):not([class*="game-canvas"]):not([class*="chart"]):not([class*="graph"]){
+ background-color:#332619!important;border-color:#5B452B!important;color:#FBF2DF!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(
+ [class*="card"] h1,[class*="card"] h2,[class*="card"] h3,[class*="card"] h4,
+ [class*="panel"] h1,[class*="panel"] h2,[class*="panel"] h3,[class*="panel"] h4,
+ [class*="tile"] h1,[class*="tile"] h2,[class*="tile"] h3,[class*="tile"] h4,
+ [class*="modal"] h1,[class*="modal"] h2,[class*="modal"] h3,
+ [class*="popover"] h1,[class*="popover"] h2,[class*="popover"] h3
+ ){color:#FBF2DF!important}
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(
+ [class*="card"] p,[class*="card"] small,[class*="card"] span,
+ [class*="panel"] p,[class*="panel"] small,[class*="panel"] span,
+ [class*="tile"] p,[class*="tile"] small,[class*="tile"] span,
+ [class*="modal"] p,[class*="popover"] p
+ ){color:#E1CFB5!important}
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(input,textarea,select){
+ background-color:#2A2015!important;border-color:#5B452B!important;color:#FBF2DF!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(input,textarea)::placeholder{color:#E1CFB5!important;opacity:1}
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(button,[role="button"],a):focus-visible{outline-color:#E9A85B!important}
+
+/* Shared sidebar, navigation and preference surfaces follow Good too */
+html[data-mindora-mood="good"] #root :is(.shared-dashboard-sidebar,.shared-dashboard-content,.sidebar,.topbar,.shared-sidebar-quote,.shared-nav-row,.shared-sub-link,.global-page-preferences){
+ background-color:#F1DDAA!important;border-color:#E4CE9D!important;color:#493626!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="good"] #root :is(.shared-dashboard-sidebar,.shared-dashboard-content,.sidebar,.topbar,.shared-sidebar-quote,.shared-nav-row,.shared-sub-link,.global-page-preferences){
+ background-color:#332619!important;border-color:#5B452B!important;color:#FBF2DF!important;
+}
