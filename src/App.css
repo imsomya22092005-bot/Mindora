@@ -4053,3 +4053,11 @@ html,body,#root{background:var(--mindora-mood-bg)!important;color:var(--mindora-
 .app-shell .topbar,.app-shell .panel,.app-shell .stat-card{background:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;}
 .global-page-preferences{background:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;}
 .global-page-preferences :is(label,select,button){color:var(--mindora-mood-ink)!important;border-color:var(--mindora-mood-border)!important;}
+
+
+/* FINAL OKAY PALETTE OVERRIDE — assessment launcher cards in dashboard */
+html[data-mindora-mood="okay"] #root :is(.assessment-launch-card,.assessment-launch-icon,.sleep-launch .assessment-launch-icon){background:#D4E4DC!important;background-image:none!important;border-color:#AFCFC0!important;color:#183D39!important}
+html[data-mindora-mood="okay"] #root .assessment-launch-card :is(strong,span,em){color:#183D39!important}
+html[data-mindora-mood="okay"] #root .assessment-launch-card:hover{border-color:#28766D!important;box-shadow:0 16px 34px #28766d20!important}
+html[data-mindora-theme="dark"][data-mindora-mood="okay"] #root .assessment-launch-card{background:#18332F!important;border-color:#31574E!important;color:#EAF2EE!important}
+html[data-mindora-theme="dark"][data-mindora-mood="okay"] #root .assessment-launch-card :is(strong,span,em){color:#EAF2EE!important}
