@@ -857,3 +857,13 @@ html[data-mindora-theme="dark"][data-mindora-mood] .journal-mood-page[data-mood]
 .journal-mood-page.dark-theme[data-mood="good"] .scrapbook-sticker.sticker-tape{
   background:#503B25!important;color:#FBF2DF!important;
 }
+
+
+/* JOURNAL COVER — change only "Dear," to the exact same accent as "you."
+   Keep the existing em styling for "you." untouched. */
+.journal-mood-page .journal-diary-cover .journal-cover-content h2 .journal-dear-word{
+  color:var(--journal-accent)!important;
+  opacity:1!important;
+  -webkit-text-fill-color:var(--journal-accent)!important;
+  text-shadow:none!important;
+}
