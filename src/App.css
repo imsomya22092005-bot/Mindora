@@ -4010,3 +4010,46 @@ html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mo
  .shared-dashboard-layout:has(.wellness-page[data-mood]) *,
  .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) *{transition-duration:.01ms!important;}
 }
+
+
+
+/* =========================================================
+   MINDORA CENTRAL MOOD THEME
+   One saved mood controls every route, shared shell and widget.
+   Light/dark is a mode variant of that same mood palette.
+   ========================================================= */
+:root {
+  --mindora-mood-bg:#EAF2EE; --mindora-mood-surface:#D4E4DC;
+  --mindora-mood-ink:#183D39; --mindora-mood-muted:#426C63;
+  --mindora-mood-accent:#28766D; --mindora-mood-highlight:#E9A17D;
+  --mindora-mood-border:#AFCFC0; --mindora-mood-soft:#F4F8F5;
+}
+html[data-mindora-mood="low"]{--mindora-mood-bg:#F3EFE8;--mindora-mood-surface:#E4DED0;--mindora-mood-ink:#283A35;--mindora-mood-muted:#65736C;--mindora-mood-accent:#8B789D;--mindora-mood-highlight:#C9B8D8;--mindora-mood-border:#D8CFC1;--mindora-mood-soft:#FAF7F1;}
+html[data-mindora-mood="meh"]{--mindora-mood-bg:#F2E8E6;--mindora-mood-surface:#E4D0CC;--mindora-mood-ink:#432D3B;--mindora-mood-muted:#745E68;--mindora-mood-accent:#A65D68;--mindora-mood-highlight:#D9A39A;--mindora-mood-border:#D5BDB8;--mindora-mood-soft:#FAF3F1;}
+html[data-mindora-mood="okay"]{--mindora-mood-bg:#EAF2EE;--mindora-mood-surface:#D4E4DC;--mindora-mood-ink:#183D39;--mindora-mood-muted:#426C63;--mindora-mood-accent:#28766D;--mindora-mood-highlight:#E9A17D;--mindora-mood-border:#AFCFC0;--mindora-mood-soft:#F4F8F5;}
+html[data-mindora-mood="good"]{--mindora-mood-bg:#FBF2DF;--mindora-mood-surface:#F1DDAA;--mindora-mood-ink:#493626;--mindora-mood-muted:#79644B;--mindora-mood-accent:#C17A28;--mindora-mood-highlight:#E9A85B;--mindora-mood-border:#E4CE9D;--mindora-mood-soft:#FFF9EA;}
+html[data-mindora-mood="great"]{--mindora-mood-bg:#F5F6EC;--mindora-mood-surface:#E8EBD6;--mindora-mood-ink:#20251A;--mindora-mood-muted:#626B50;--mindora-mood-accent:#78951C;--mindora-mood-highlight:#CDF22B;--mindora-mood-border:#D5DAB9;--mindora-mood-soft:#FBFCF5;}
+html[data-mindora-theme="dark"]{color-scheme:dark;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"]{--mindora-mood-bg:#121A18;--mindora-mood-surface:#202B27;--mindora-mood-ink:#F3EFE8;--mindora-mood-muted:#C8D0CA;--mindora-mood-accent:#C5A9D9;--mindora-mood-highlight:#34423B;--mindora-mood-border:#3C4B45;--mindora-mood-soft:#1A2420;}
+html[data-mindora-theme="dark"][data-mindora-mood="meh"]{--mindora-mood-bg:#1D141B;--mindora-mood-surface:#2B1D27;--mindora-mood-ink:#F5E9E7;--mindora-mood-muted:#D8C4CB;--mindora-mood-accent:#E49A9D;--mindora-mood-highlight:#49303D;--mindora-mood-border:#543A49;--mindora-mood-soft:#261A23;}
+html[data-mindora-theme="dark"][data-mindora-mood="okay"]{--mindora-mood-bg:#0E211F;--mindora-mood-surface:#18332F;--mindora-mood-ink:#EAF2EE;--mindora-mood-muted:#C2DAD0;--mindora-mood-accent:#72B8A5;--mindora-mood-highlight:#294B43;--mindora-mood-border:#31574E;--mindora-mood-soft:#142B27;}
+html[data-mindora-theme="dark"][data-mindora-mood="good"]{--mindora-mood-bg:#21180F;--mindora-mood-surface:#332619;--mindora-mood-ink:#FBF2DF;--mindora-mood-muted:#E1CFB5;--mindora-mood-accent:#E9A85B;--mindora-mood-highlight:#503B25;--mindora-mood-border:#5B452B;--mindora-mood-soft:#2A2015;}
+html[data-mindora-theme="dark"][data-mindora-mood="great"]{--mindora-mood-bg:#08090B;--mindora-mood-surface:#171A13;--mindora-mood-ink:#FAF8F3;--mindora-mood-muted:#D2D5C6;--mindora-mood-accent:#CDF22B;--mindora-mood-highlight:#303820;--mindora-mood-border:#3D4630;--mindora-mood-soft:#10130E;}
+html,body,#root{background:var(--mindora-mood-bg)!important;color:var(--mindora-mood-ink);}
+#root :is(.app-shell,.shared-dashboard-layout,.shared-dashboard-content,.mindora-section-page,.wellness-page,.practice-page,.landing-page,.assessment-page,.games-page,.sticky-wall-page,.profile-page,.mindora-ai-page){background-color:var(--mindora-mood-bg)!important;color:var(--mindora-mood-ink);}
+#root :is(.sidebar,.shared-dashboard-sidebar,.topbar,.panel,.stat-card,.journal-modal,.settings-popover,.notification-popover,.shared-sidebar-quote,.practice-instructions,.insight-stat-grid article,.insight-chart-card,.mindful-intro-card,.mindful-tool-card,.wellness-panel,.rain-card,.garden-summary,.journal-editor,.calm-card){background-color:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;}
+#root :is(h1,h2,h3,h4,strong,.brand,.brand-name,.shared-sidebar-brand,.section-page-brand,.section-page-title,.welcome-copy h1,.section-heading h2,.panel-heading h2,.stat-value){color:var(--mindora-mood-ink)!important;}
+#root :is(p,small,.sidebar-label,.shared-sidebar-label,.section-page-eyebrow,.section-page-footer,.welcome-copy p,.section-heading p,.stat-footnote,.muted,.wellness-muted){color:var(--mindora-mood-muted)!important;}
+#root :is(.nav-item:hover,.nav-item.active,.shared-nav-row:hover,.shared-nav-row.is-active,.shared-sub-link:hover,.shared-sub-link.sub-active){background:var(--mindora-mood-highlight)!important;color:var(--mindora-mood-ink)!important;}
+#root :is(button,a,.icon-button,.plain-icon):focus-visible{outline-color:var(--mindora-mood-accent)!important;}
+#root :is(.primary-button,.save-button,.journal-save-button,.incognito-submit,.practice-primary,.wellness-button){background:var(--mindora-mood-accent)!important;border-color:var(--mindora-mood-accent)!important;color:#fff!important;}
+#root :is(input,textarea,select,.search-box,.mood-option,.theme-setting,.select-period){background-color:var(--mindora-mood-soft)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;}
+#root :is(input,textarea)::placeholder{color:var(--mindora-mood-muted)!important;opacity:1;}
+.shared-dashboard-layout{grid-template-columns:300px minmax(0,1fr);}
+.shared-dashboard-sidebar{background:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;}
+.shared-dashboard-content{background:var(--mindora-mood-bg)!important;}
+.app-shell{background:var(--mindora-mood-bg)!important;color:var(--mindora-mood-ink)!important;}
+.app-shell .sidebar{background:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;}
+.app-shell .topbar,.app-shell .panel,.app-shell .stat-card{background:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;}
+.global-page-preferences{background:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;}
+.global-page-preferences :is(label,select,button){color:var(--mindora-mood-ink)!important;border-color:var(--mindora-mood-border)!important;}
