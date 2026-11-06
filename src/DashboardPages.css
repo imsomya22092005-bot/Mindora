@@ -697,3 +697,24 @@ html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood] .mindful-i
 html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood] .mindful-tool-title,
 html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood] .mindful-tool-card p,
 html[data-mindora-theme="dark"] .mindful-moments-mood-page[data-mood] .mindful-tool-open{color:var(--mm-ink)!important;}
+
+
+/* Central palette bridge: hub, journal and insights always inherit the same site-wide mood. */
+html[data-mindora-mood] .mindful-moments-mood-page[data-mood],
+html[data-mindora-mood] .insights-mood-page[data-mood],
+html[data-mindora-mood] .journal-mood-page[data-mood]{
+ --mm-bg:var(--mindora-mood-bg)!important;--mm-surface:var(--mindora-mood-surface)!important;
+ --mm-ink:var(--mindora-mood-ink)!important;--mm-muted:var(--mindora-mood-muted)!important;
+ --mm-accent:var(--mindora-mood-accent)!important;--mm-line:var(--mindora-mood-border)!important;
+ --insight-bg:var(--mindora-mood-bg)!important;--insight-surface:var(--mindora-mood-surface)!important;
+ --insight-ink:var(--mindora-mood-ink)!important;--insight-muted:var(--mindora-mood-muted)!important;
+ --insight-accent:var(--mindora-mood-accent)!important;--insight-line:var(--mindora-mood-border)!important;
+ background:var(--mindora-mood-bg)!important;color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-mood] .mindful-moments-mood-page[data-mood] :is(.mindful-intro-card,.mindful-tool-card),
+html[data-mindora-mood] .insights-mood-page[data-mood] :is(.insight-stat-grid article,.insight-chart-card,.insight-kind-note){
+ background:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood] .mindful-moments-mood-page[data-mood],
+html[data-mindora-theme="dark"][data-mindora-mood] .insights-mood-page[data-mood],
+html[data-mindora-theme="dark"][data-mindora-mood] .journal-mood-page[data-mood]{color:var(--mindora-mood-ink)!important;}
