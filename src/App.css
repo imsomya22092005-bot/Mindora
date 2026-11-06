@@ -4343,3 +4343,155 @@ html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.shared-sideb
 }
 html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.shared-sidebar-quote small,.global-page-preferences label,.language-dropdown button){color:#D0D8D0!important;}
 html[data-mindora-theme="dark"][data-mindora-mood="low"] #root :is(.scrapbook-canvas,.game-board,.game-canvas,.color-pop-board){background-color:#1A2420!important;border-color:#34483D!important;}
+
+
+/* =========================================================
+   GREAT MOOD — complete app-wide card/surface coverage
+   One palette for every route, nested page, form and widget.
+   Mood is carried by .app-shell / .shared-dashboard-layout.
+   ========================================================= */
+#root .app-shell[data-mood="great"],
+#root .shared-dashboard-layout[data-mood="great"]{
+ --great-bg:#F4F3EB;
+ --great-surface:#FAF8F3;
+ --great-ink:#08090B;
+ --great-muted:#45483B;
+ --great-accent:#08090B;
+ --great-pop:#CDF22B;
+ --great-border:#D9DDC9;
+ --great-soft:#E9EBDD;
+ background:#F4F3EB!important;color:#08090B!important;
+}
+#root .app-shell[data-mood="great"] .main-content,
+#root .shared-dashboard-layout[data-mood="great"] .shared-dashboard-content{
+ background:#F4F3EB!important;color:#08090B!important;
+}
+#root .app-shell[data-mood="great"] .sidebar,
+#root .shared-dashboard-layout[data-mood="great"] .shared-dashboard-sidebar{
+ background:#FAF8F3!important;color:#08090B!important;border-color:#D9DDC9!important;
+}
+#root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ article,section,.card,.panel,.surface,.widget,.modal,.popover,.drawer,
+ [class*="card"],[class*="panel"],[class*="tile"],[class*="surface"],
+ [class*="widget"],[class*="modal"],[class*="popover"],[class*="drawer"],
+ [class*="section-box"],[class*="content-box"],[class*="feature-box"],
+ [class*="stat-box"],[class*="summary-box"],[class*="question-card"],
+ [class*="answer-card"],[class*="result-card"],[class*="tool-card"],
+ [class*="prompt-card"],[class*="note-card"],[class*="memory-card"]
+):not([class*="card-art"]):not([class*="card-image"]):not([class*="card-visual"]):not([class*="card-icon"]):not([class*="card-illustration"]):not([class*="canvas"]):not([class*="chart"]):not([class*="graph"]):not([class*="target"]){
+ background-color:#FAF8F3!important;background-image:none!important;
+ border-color:#D9DDC9!important;color:#08090B!important;
+}
+#root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ h1,h2,h3,h4,h5,h6,strong,b,label,legend,
+ .brand-name,.shared-sidebar-brand,.sidebar-label,.shared-sidebar-label,
+ .section-page-title,.assessment-question,.assessment-fieldset legend
+){color:#08090B!important;-webkit-text-fill-color:#08090B!important;}
+#root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ p,small,em,.muted,.section-page-eyebrow,.section-page-footer,
+ .assessment-muted,.stat-footnote,.wellness-muted,.description,.helper-text
+){color:#45483B!important;-webkit-text-fill-color:#45483B!important;}
+#root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ input,textarea,select,[contenteditable="true"],.search-box
+){background:#FFFFFF!important;background-image:none!important;border-color:#D9DDC9!important;color:#08090B!important;}
+#root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(input,textarea)::placeholder{color:#666B5B!important;opacity:1!important;}
+#root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .nav-item.active,.shared-nav-row.is-active,.shared-sub-link.sub-active,
+ .assessment-options button.is-selected,[aria-pressed="true"]
+){background:#CDF22B!important;border-color:#B8D83A!important;color:#08090B!important;}
+#root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .primary-button,.assessment-primary,.save-button,.journal-save-button,
+ .practice-primary,.wellness-button:not(.secondary),.scrapbook-tool-button.primary
+){background:#08090B!important;border-color:#08090B!important;color:#FAF8F3!important;}
+#root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .secondary-button,.assessment-secondary,.assessment-options button,
+ .wellness-button.secondary,.scrapbook-tool-button,.scrapbook-decoration-tools button
+){background:#E9EBDD!important;border-color:#D9DDC9!important;color:#08090B!important;}
+#root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .progress,.progress-track,.assessment-progress,.academic-track,.sleep-overview-track
+){background:#D9DDC9!important;}
+#root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .progress span,.assessment-progress span,.academic-track span,.sleep-overview-track span
+){background:#08090B!important;}
+#root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .shared-sidebar-quote,.global-page-preferences,.settings-popover,
+ .notification-popover,.language-dropdown,.shared-nav-submenu
+){background:#FAF8F3!important;border-color:#D9DDC9!important;color:#08090B!important;}
+#root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .scrapbook-canvas,.game-board,.game-canvas,.color-pop-board
+){background:#E9EBDD!important;border-color:#D9DDC9!important;}
+
+/* GREAT mood — dark: near-black + deep olive surfaces, ivory text, lime accent */
+html[data-mindora-theme="dark"] #root .app-shell[data-mood="great"],
+html[data-mindora-theme="dark"] #root .shared-dashboard-layout[data-mood="great"]{
+ --great-bg:#08090B;--great-surface:#151713;--great-ink:#FAF8F3;
+ --great-muted:#D8D9D2;--great-accent:#CDF22B;--great-pop:#CDF22B;
+ --great-border:#34372B;--great-soft:#20231A;
+ background:#08090B!important;color:#FAF8F3!important;
+}
+html[data-mindora-theme="dark"] #root .app-shell[data-mood="great"] .main-content,
+html[data-mindora-theme="dark"] #root .shared-dashboard-layout[data-mood="great"] .shared-dashboard-content{
+ background:#08090B!important;color:#FAF8F3!important;
+}
+html[data-mindora-theme="dark"] #root .app-shell[data-mood="great"] .sidebar,
+html[data-mindora-theme="dark"] #root .shared-dashboard-layout[data-mood="great"] .shared-dashboard-sidebar{
+ background:#151713!important;color:#FAF8F3!important;border-color:#34372B!important;
+}
+html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ article,section,.card,.panel,.surface,.widget,.modal,.popover,.drawer,
+ [class*="card"],[class*="panel"],[class*="tile"],[class*="surface"],
+ [class*="widget"],[class*="modal"],[class*="popover"],[class*="drawer"],
+ [class*="section-box"],[class*="content-box"],[class*="feature-box"],
+ [class*="stat-box"],[class*="summary-box"],[class*="question-card"],
+ [class*="answer-card"],[class*="result-card"],[class*="tool-card"],
+ [class*="prompt-card"],[class*="note-card"],[class*="memory-card"]
+):not([class*="card-art"]):not([class*="card-image"]):not([class*="card-visual"]):not([class*="card-icon"]):not([class*="card-illustration"]):not([class*="canvas"]):not([class*="chart"]):not([class*="graph"]):not([class*="target"]){
+ background-color:#151713!important;background-image:none!important;
+ border-color:#34372B!important;color:#FAF8F3!important;
+}
+html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ h1,h2,h3,h4,h5,h6,strong,b,label,legend,
+ .brand-name,.shared-sidebar-brand,.sidebar-label,.shared-sidebar-label,
+ .section-page-title,.assessment-question,.assessment-fieldset legend
+){color:#FAF8F3!important;-webkit-text-fill-color:#FAF8F3!important;}
+html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ p,small,em,.muted,.section-page-eyebrow,.section-page-footer,
+ .assessment-muted,.stat-footnote,.wellness-muted,.description,.helper-text
+){color:#D8D9D2!important;-webkit-text-fill-color:#D8D9D2!important;}
+html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ input,textarea,select,[contenteditable="true"],.search-box
+){background:#20231A!important;background-image:none!important;border-color:#34372B!important;color:#FAF8F3!important;color-scheme:dark;}
+html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(input,textarea)::placeholder{color:#D8D9D2!important;opacity:1!important;}
+html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .nav-item.active,.shared-nav-row.is-active,.shared-sub-link.sub-active,
+ .assessment-options button.is-selected,[aria-pressed="true"]
+){background:#303820!important;border-color:#CDF22B!important;color:#FAF8F3!important;}
+html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .primary-button,.assessment-primary,.save-button,.journal-save-button,
+ .practice-primary,.wellness-button:not(.secondary),.scrapbook-tool-button.primary
+){background:#CDF22B!important;border-color:#CDF22B!important;color:#08090B!important;}
+html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .secondary-button,.assessment-secondary,.assessment-options button,
+ .wellness-button.secondary,.scrapbook-tool-button,.scrapbook-decoration-tools button
+){background:#20231A!important;border-color:#34372B!important;color:#FAF8F3!important;}
+html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .progress,.progress-track,.assessment-progress,.academic-track,.sleep-overview-track
+){background:#34372B!important;}
+html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .progress span,.assessment-progress span,.academic-track span,.sleep-overview-track span
+){background:#CDF22B!important;}
+html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .shared-sidebar-quote,.global-page-preferences,.settings-popover,
+ .notification-popover,.language-dropdown,.shared-nav-submenu
+){background:#151713!important;border-color:#34372B!important;color:#FAF8F3!important;}
+html[data-mindora-theme="dark"] #root :is(.app-shell[data-mood="great"],.shared-dashboard-layout[data-mood="great"]) :is(
+ .scrapbook-canvas,.game-board,.game-canvas,.color-pop-board
+){background:#20231A!important;border-color:#34372B!important;}
+
+/* Great mood card coverage for independently themed feature pages */
+#root .journal-mood-page[data-mood="great"] :is(
+ article,section,[class*="card"],[class*="panel"],[class*="tile"],[class*="note"],[class*="memory"]
+):not([class*="image"]):not([class*="visual"]){background-color:#FAF8F3!important;border-color:#D9DDC9!important;color:#08090B!important;}
+html[data-mindora-theme="dark"] #root .journal-mood-page.dark-theme[data-mood="great"] :is(
+ article,section,[class*="card"],[class*="panel"],[class*="tile"],[class*="note"],[class*="memory"]
+):not([class*="image"]):not([class*="visual"]){background-color:#151713!important;border-color:#34372B!important;color:#FAF8F3!important;}
