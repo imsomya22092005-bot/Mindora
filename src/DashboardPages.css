@@ -752,3 +752,108 @@ html[data-mindora-theme="dark"][data-mindora-mood] .journal-mood-page[data-mood]
   opacity:1!important;
   text-shadow:none!important;
 }
+
+
+/* GOOD mood — journal cover text and YOUR MEMORY CORNER scrapbook
+   Keep the cover's "Dear, you." heading and both subtitle lines on one accent.
+   Replace the older fixed sage-green scrapbook styling in Good mood only. */
+.journal-mood-page[data-mood="good"] .journal-cover-content h2,
+.journal-mood-page[data-mood="good"] .journal-cover-content h2 em,
+.journal-mood-page[data-mood="good"] .journal-cover-content>p{
+  color:var(--journal-accent)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+.journal-mood-page[data-mood="good"] .journal-cover-content .journal-cover-kicker{
+  color:var(--journal-accent)!important;opacity:1!important;
+}
+.journal-mood-page[data-mood="good"] .scrapbook-editor{
+  background:#F1DDAA!important;border-color:#E4CE9D!important;color:#493626!important;
+}
+.journal-mood-page[data-mood="good"] .scrapbook-kicker,
+.journal-mood-page[data-mood="good"] .scrapbook-tools h3,
+.journal-mood-page[data-mood="good"] .scrapbook-tools p,
+.journal-mood-page[data-mood="good"] .scrapbook-storage-note{
+  color:#493626!important;opacity:1!important;
+}
+.journal-mood-page[data-mood="good"] .scrapbook-tool-button,
+.journal-mood-page[data-mood="good"] .scrapbook-decoration-tools button{
+  background:#FFF9EA!important;border-color:#E4CE9D!important;color:#493626!important;
+}
+.journal-mood-page[data-mood="good"] .scrapbook-tool-button.primary{
+  background:#C17A28!important;border-color:#C17A28!important;color:#fff!important;
+}
+.journal-mood-page[data-mood="good"] .scrapbook-canvas{
+  background-color:#FFF9EA!important;
+  background-image:radial-gradient(#E4CE9D .8px,transparent .8px)!important;
+  border-color:#D6B979!important;
+}
+.journal-mood-page[data-mood="good"] .scrapbook-canvas-empty,
+.journal-mood-page[data-mood="good"] .scrapbook-canvas-empty small{
+  color:#79644B!important;opacity:1!important;
+}
+.journal-mood-page[data-mood="good"] .scrapbook-polaroid{
+  background:#FFFCF3!important;border-color:#E4CE9D!important;color:#493626!important;
+}
+.journal-mood-page[data-mood="good"] .scrapbook-polaroid input{
+  background:transparent!important;color:#493626!important;
+}
+.journal-mood-page[data-mood="good"] .scrapbook-polaroid input::placeholder{
+  color:#79644B!important;opacity:1!important;
+}
+.journal-mood-page[data-mood="good"] .scrapbook-photo-controls button,
+.journal-mood-page[data-mood="good"] .scrapbook-remove-decor{
+  background:#FFF9EA!important;border-color:#E4CE9D!important;color:#493626!important;
+}
+.journal-mood-page[data-mood="good"] .scrapbook-sticker:not(.sticker-heart):not(.sticker-tape){
+  color:#C17A28!important;
+}
+.journal-mood-page[data-mood="good"] .scrapbook-sticker.sticker-tape{
+  background:#E9C987!important;color:#493626!important;
+}
+
+/* GOOD mood scrapbook dark mode */
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-editor{
+  background:#332619!important;border-color:#5B452B!important;color:#FBF2DF!important;
+}
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-kicker,
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-tools h3,
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-tools p,
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-storage-note{
+  color:#E1CFB5!important;
+}
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-tool-button,
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-decoration-tools button{
+  background:#2A2015!important;border-color:#5B452B!important;color:#FBF2DF!important;
+}
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-tool-button.primary{
+  background:#E9A85B!important;border-color:#E9A85B!important;color:#21180F!important;
+}
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-canvas{
+  background-color:#2A2015!important;
+  background-image:radial-gradient(#5B452B .8px,transparent .8px)!important;
+  border-color:#725638!important;
+}
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-canvas-empty,
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-canvas-empty small{
+  color:#E1CFB5!important;
+}
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-polaroid{
+  background:#FBF2DF!important;border-color:#E4CE9D!important;color:#493626!important;
+}
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-polaroid input{
+  background:transparent!important;color:#493626!important;
+}
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-polaroid input::placeholder{
+  color:#79644B!important;opacity:1!important;
+}
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-photo-controls button,
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-remove-decor{
+  background:#2A2015!important;border-color:#5B452B!important;color:#FBF2DF!important;
+}
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-sticker:not(.sticker-heart):not(.sticker-tape){
+  color:#E9A85B!important;
+}
+.journal-mood-page.dark-theme[data-mood="good"] .scrapbook-sticker.sticker-tape{
+  background:#503B25!important;color:#FBF2DF!important;
+}
