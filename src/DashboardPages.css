@@ -881,3 +881,53 @@ html[data-mindora-theme="dark"][data-mindora-mood] .journal-mood-page[data-mood]
 .dark-theme .journal-mood-page[data-mood="meh"] :is(h1,h2,h3,p,.scrapbook-tools h3,.scrapbook-tools p,.scrapbook-kicker,.scrapbook-storage-note){color:#F5E9E7!important}
 .dark-theme .journal-mood-page[data-mood="meh"] :is(button,.scrapbook-tool-button,.scrapbook-decoration-tools button){background:#241923!important;border-color:#49303D!important;color:#F5E9E7!important}
 .dark-theme .journal-mood-page[data-mood="meh"] :is(.journal-open-button,.diary-save-button,.scrapbook-tool-button.primary){background:#E49A9D!important;color:#1D141B!important}
+
+
+/* Default Mindora theme must override mood-specific diary/journal variables. */
+html[data-mindora-palette="default"] #root .journal-mood-page{
+ --journal-bg:#FFFBDA!important;--journal-surface:#FFEC9E!important;
+ --journal-cover:#FFBB70!important;--journal-ink:#49342E!important;
+ --journal-muted:#765B4A!important;--journal-accent:#ED9455!important;
+ --journal-line:#FFBB70!important;--journal-input:#FFF9E8!important;
+ --journal-button:#ED9455!important;--journal-button-text:#FFFFFF!important;
+ --journal-soft:#FFF0C2!important;
+ background:#FFFBDA!important;color:#49342E!important;
+}
+html[data-mindora-palette="default"] #root .journal-mood-page :is(
+ .journal-diary-cover,.journal-loose-page,.journal-page-top,.diary-editor,
+ .journal-page-body,.diary-saved-card,.diary-prompt-card,.diary-reminder,
+ .diary-empty,.scrapbook-editor,.scrapbook-canvas,.scrapbook-polaroid,
+ .diary-count,.diary-saved-meta
+){background-color:#FFEC9E!important;background-image:none!important;border-color:#FFBB70!important;color:#49342E!important;}
+html[data-mindora-palette="default"] #root .journal-mood-page :is(
+ h1,h2,h3,h4,p,span,strong,label,.section-page-eyebrow,.journal-cover-kicker,
+ .journal-cover-content,.journal-cover-content em,.diary-side-kicker,
+ .diary-entries-head,.diary-saved-meta,.scrapbook-tools
+){color:#49342E!important;-webkit-text-fill-color:#49342E!important;}
+html[data-mindora-palette="default"] #root .journal-mood-page :is(
+ .journal-open-button,.diary-save-button,.journal-page-actions button,
+ .scrapbook-tool-button.primary
+){background:#ED9455!important;border-color:#ED9455!important;color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;}
+html[data-mindora-palette="default"][data-mindora-theme="dark"] #root .journal-mood-page{
+ --journal-bg:#2B211D!important;--journal-surface:#382D2A!important;
+ --journal-cover:#382D2A!important;--journal-ink:#FFF3DF!important;
+ --journal-muted:#E3D2BE!important;--journal-accent:#ED9455!important;
+ --journal-line:#705242!important;--journal-input:#45352F!important;
+ --journal-button:#ED9455!important;--journal-button-text:#2B211D!important;
+ --journal-soft:#45352F!important;background:#2B211D!important;color:#FFF3DF!important;
+}
+html[data-mindora-palette="default"][data-mindora-theme="dark"] #root .journal-mood-page :is(
+ .journal-diary-cover,.journal-loose-page,.journal-page-top,.diary-editor,
+ .journal-page-body,.diary-saved-card,.diary-prompt-card,.diary-reminder,
+ .diary-empty,.scrapbook-editor,.scrapbook-canvas,.scrapbook-polaroid,
+ .diary-count,.diary-saved-meta
+){background-color:#382D2A!important;background-image:none!important;border-color:#705242!important;color:#FFF3DF!important;}
+html[data-mindora-palette="default"][data-mindora-theme="dark"] #root .journal-mood-page :is(
+ h1,h2,h3,h4,p,span,strong,label,.section-page-eyebrow,.journal-cover-kicker,
+ .journal-cover-content,.journal-cover-content em,.diary-side-kicker,
+ .diary-entries-head,.diary-saved-meta,.scrapbook-tools
+){color:#FFF3DF!important;-webkit-text-fill-color:#FFF3DF!important;}
+html[data-mindora-palette="default"][data-mindora-theme="dark"] #root .journal-mood-page :is(
+ .journal-open-button,.diary-save-button,.journal-page-actions button,
+ .scrapbook-tool-button.primary
+){background:#ED9455!important;border-color:#ED9455!important;color:#2B211D!important;-webkit-text-fill-color:#2B211D!important;}
