@@ -4554,3 +4554,160 @@ html[data-mindora-palette="default"][data-mindora-theme="dark"] #root :is(.sideb
 html[data-mindora-palette="default"][data-mindora-theme="dark"] #root :is(h1,h2,h3,h4,h5,h6,strong,b,label,legend,p,small,span,a,.muted,.description,.helper-text,.section-page-title,.section-page-eyebrow,.shared-nav-row,.shared-sub-link,.nav-item){color:#FFF3DF!important;-webkit-text-fill-color:#FFF3DF!important;}
 html[data-mindora-palette="default"][data-mindora-theme="dark"] #root :is(button,.button,.primary-button,.save-button,.assessment-primary,.wellness-button,.practice-primary,.theme-setting,.shared-nav-row.is-active,.nav-item.active){background-color:#ED9455!important;border-color:#ED9455!important;color:#2B211D!important;-webkit-text-fill-color:#2B211D!important;}
 html[data-mindora-palette="default"][data-mindora-theme="dark"] #root :is(input,textarea,select,[contenteditable="true"]){background:#45352F!important;border-color:#705242!important;color:#FFF3DF!important;}
+
+ 
+/* ==========================================================
+   MINDORA SINGLE GLOBAL MOOD THEME
+   The html data attributes are the only palette source.
+   Public routes never receive data-mindora-mood.
+   ========================================================== */
+html[data-mindora-palette="mood"][data-mindora-mood="low"] {
+  --mindora-mood-bg:#F2E8D9; --mindora-mood-surface:#EBDCC6; --mindora-mood-ink:#1F382E;
+  --mindora-mood-muted:#53665B; --mindora-mood-accent:#8B6DB2; --mindora-mood-highlight:#CBB3EA;
+  --mindora-mood-border:#D4C2A9; --mindora-mood-soft:#F8F3EA; --mindora-mood-button-text:#FFFFFF;
+}
+html[data-mindora-palette="mood"][data-mindora-mood="meh"] {
+  --mindora-mood-bg:#F2E8E6; --mindora-mood-surface:#E4D0CC; --mindora-mood-ink:#432D3B;
+  --mindora-mood-muted:#745E68; --mindora-mood-accent:#A65D68; --mindora-mood-highlight:#D9A39A;
+  --mindora-mood-border:#D5BDB8; --mindora-mood-soft:#FAF3F1; --mindora-mood-button-text:#FFFFFF;
+}
+html[data-mindora-palette="mood"][data-mindora-mood="okay"] {
+  --mindora-mood-bg:#E4F0E9; --mindora-mood-surface:#B8DCCB; --mindora-mood-ink:#164E4A;
+  --mindora-mood-muted:#426C63; --mindora-mood-accent:#17645F; --mindora-mood-highlight:#F5A477;
+  --mindora-mood-border:#9FC9B7; --mindora-mood-soft:#F1F8F3; --mindora-mood-button-text:#FFFFFF;
+}
+html[data-mindora-palette="mood"][data-mindora-mood="good"] {
+  --mindora-mood-bg:#FBF3D9; --mindora-mood-surface:#FFF9E7; --mindora-mood-ink:#49352C;
+  --mindora-mood-muted:#725B48; --mindora-mood-accent:#B66A55; --mindora-mood-highlight:#E2C778;
+  --mindora-mood-border:#E2C778; --mindora-mood-soft:#FFF9E7; --mindora-mood-button-text:#FFFFFF;
+}
+html[data-mindora-palette="mood"][data-mindora-mood="great"] {
+  --mindora-mood-bg:#F4F3EB; --mindora-mood-surface:#FAF8F3; --mindora-mood-ink:#08090B;
+  --mindora-mood-muted:#45483B; --mindora-mood-accent:#CDF22B; --mindora-mood-highlight:#CDF22B;
+  --mindora-mood-border:#D9DDC9; --mindora-mood-soft:#FFFFFF; --mindora-mood-button-text:#08090B;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="mood"][data-mindora-mood="low"] {
+  --mindora-mood-bg:#111C17; --mindora-mood-surface:#17251F; --mindora-mood-ink:#F3EBDD;
+  --mindora-mood-muted:#D0D8D0; --mindora-mood-accent:#B9A5D6; --mindora-mood-highlight:#26392E;
+  --mindora-mood-border:#34483D; --mindora-mood-soft:#1A2420; --mindora-mood-button-text:#17251F;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="mood"][data-mindora-mood="meh"] {
+  --mindora-mood-bg:#1D141B; --mindora-mood-surface:#2B1D27; --mindora-mood-ink:#F5E9E7;
+  --mindora-mood-muted:#D8C4CB; --mindora-mood-accent:#E49A9D; --mindora-mood-highlight:#49303D;
+  --mindora-mood-border:#49303D; --mindora-mood-soft:#261A23; --mindora-mood-button-text:#24101F;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="mood"][data-mindora-mood="okay"] {
+  --mindora-mood-bg:#0B2221; --mindora-mood-surface:#102E2C; --mindora-mood-ink:#E4F1E9;
+  --mindora-mood-muted:#C2DAD0; --mindora-mood-accent:#F5A477; --mindora-mood-highlight:#28514B;
+  --mindora-mood-border:#28514B; --mindora-mood-soft:#173A36; --mindora-mood-button-text:#102E2C;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="mood"][data-mindora-mood="good"] {
+  --mindora-mood-bg:#1D1511; --mindora-mood-surface:#362820; --mindora-mood-ink:#F8EEDB;
+  --mindora-mood-muted:#DCCDBB; --mindora-mood-accent:#E6AD79; --mindora-mood-highlight:#584033;
+  --mindora-mood-border:#584033; --mindora-mood-soft:#2C211B; --mindora-mood-button-text:#2C211B;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="mood"][data-mindora-mood="great"] {
+  --mindora-mood-bg:#08090B; --mindora-mood-surface:#151713; --mindora-mood-ink:#FAF8F3;
+  --mindora-mood-muted:#D8D9D2; --mindora-mood-accent:#CDF22B; --mindora-mood-highlight:#34372B;
+  --mindora-mood-border:#34372B; --mindora-mood-soft:#20231A; --mindora-mood-button-text:#08090B;
+}
+
+/* Every authenticated page canvas follows the same root palette. */
+html[data-mindora-palette="mood"][data-mindora-mood] body,
+html[data-mindora-palette="mood"][data-mindora-mood] #root,
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  .app-shell,.shared-dashboard-layout,.shared-dashboard-content,.main-content,
+  .mindora-section-page,.wellness-page,.practice-page,.assessment-page,.games-page,
+  .sticky-wall-page,.profile-page,.mindora-ai-page,.journal-mood-page
+) {
+  background-color:var(--mindora-mood-bg)!important;
+  color:var(--mindora-mood-ink)!important;
+  background-image:none;
+}
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  .sidebar,.shared-dashboard-sidebar,.topbar,.panel,.stat-card,.card,.page-card,
+  .journal-writing-card,.journal-entry-card,.insight-card,.assessment-card,.game-card,
+  .wellness-card,.mindful-card,.tool-card,.prompt-card,.settings-popover,
+  .notification-popover,.shared-sidebar-quote,.modal,.popover,.drawer,
+  [class*="card"],[class*="panel"],[class*="tile"],[class*="surface"],
+  [class*="widget"],[class*="modal"],[class*="popover"],[class*="drawer"],
+  [class*="question-card"],[class*="answer-card"],[class*="result-card"],
+  [class*="summary-card"],[class*="memory-card"],[class*="note-card"]
+):not([class*="art"]):not([class*="image"]):not([class*="icon"]):not([class*="visual"]):not([class*="illustration"]):not([class*="canvas"]):not([class*="chart"]):not([class*="graph"]):not([class*="target"]) {
+  background-color:var(--mindora-mood-surface)!important;
+  background-image:none!important;
+  border-color:var(--mindora-mood-border)!important;
+  color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  h1,h2,h3,h4,h5,h6,strong,b,label,legend,
+  .brand,.brand-name,.shared-sidebar-brand,.section-page-title,.assessment-question,
+  .assessment-fieldset legend,.book-cover-content h3,.book-eyebrow,.book-page-number
+) {
+  color:var(--mindora-mood-ink)!important;
+  -webkit-text-fill-color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  p,small,em,.muted,.description,.helper-text,.subtitle,.section-page-eyebrow,
+  .section-page-footer,.shared-sidebar-label,.wellness-muted,.assessment-muted,
+  .assessment-disclaimer,.stat-footnote,.journal-entry-date
+) {
+  color:var(--mindora-mood-muted)!important;
+  -webkit-text-fill-color:var(--mindora-mood-muted)!important;
+}
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  input,textarea,select,[contenteditable="true"],.search-box,.theme-setting,
+  .mood-option,.select-period
+) {
+  background:var(--mindora-mood-soft)!important;
+  background-image:none!important;
+  border-color:var(--mindora-mood-border)!important;
+  color:var(--mindora-mood-ink)!important;
+  color-scheme:light;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  input,textarea,select,[contenteditable="true"]
+) { color-scheme:dark; }
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(input,textarea)::placeholder {
+  color:var(--mindora-mood-muted)!important;opacity:1!important;
+}
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  .primary-button,.save-button,.journal-save-button,.assessment-primary,
+  .practice-primary,.wellness-button:not(.secondary),.submit-button,
+  .games-primary,.book-save-button,.welcome-button
+) {
+  background:var(--mindora-mood-accent)!important;
+  border-color:var(--mindora-mood-accent)!important;
+  color:var(--mindora-mood-button-text)!important;
+  -webkit-text-fill-color:var(--mindora-mood-button-text)!important;
+}
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  .nav-item.active,.shared-nav-row.is-active,.shared-sub-link.sub-active,
+  .assessment-options button.is-selected,[aria-pressed="true"]
+) {
+  background:var(--mindora-mood-highlight)!important;
+  border-color:var(--mindora-mood-border)!important;
+  color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  .secondary-button,.assessment-secondary,.assessment-options button,
+  .wellness-button.secondary,.scrapbook-tool-button,.scrapbook-decoration-tools button
+) {
+  background:var(--mindora-mood-soft)!important;
+  border-color:var(--mindora-mood-border)!important;
+  color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  .shared-nav-row,.shared-sub-link,.shared-settings-link,.settings-popover,
+  .settings-popover strong,.settings-popover p,.settings-popover button
+) { color:var(--mindora-mood-ink)!important; }
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  .shared-nav-row:hover,.shared-sub-link:hover,.shared-settings-link:hover,
+  .shared-settings-link.is-active
+) { background:var(--mindora-mood-highlight)!important;color:var(--mindora-mood-ink)!important; }
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  .progress,.progress-track,.assessment-progress,.academic-track,.sleep-overview-track
+) { background:var(--mindora-mood-border)!important; }
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  .progress span,.assessment-progress span,.academic-track span,.sleep-overview-track span
+) { background:var(--mindora-mood-accent)!important; }
