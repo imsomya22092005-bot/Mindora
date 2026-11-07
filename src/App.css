@@ -4518,3 +4518,13 @@ html[data-mindora-mood] #root :is(
   .assessment-options button,.assessment-secondary,.game-settings button,
   .game-instructions button,.game-results button
 ) {background:var(--mindora-mood-soft)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;}
+
+
+/* Anchor the app-shell Settings menu directly above its own button. */
+.app-settings-wrap{position:relative;flex:0 0 auto;margin-top:12px;z-index:160;}
+.app-settings-wrap>.settings-popover.app-settings-popover{
+ position:absolute!important;left:0!important;right:0!important;bottom:calc(100% + 8px)!important;top:auto!important;
+ width:auto!important;max-height:min(62vh,460px)!important;overflow-y:auto!important;margin:0!important;z-index:170!important;
+}
+.app-settings-popover .theme-setting.is-selected{border-color:#ED9455!important;background:#FFF0C2!important;font-weight:800;}
+.dark-theme .app-settings-popover .theme-setting.is-selected{border-color:#ED9455!important;background:#59443B!important;color:#FFF3DF!important;}
