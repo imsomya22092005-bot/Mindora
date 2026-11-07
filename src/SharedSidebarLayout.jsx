@@ -22,7 +22,7 @@ export default function SharedSidebarLayout({children}) {
  const [mobileMenuOpen,setMobileMenuOpen]=useState(false);
  const sidebarRef=useRef(null);
  const [settingsOpen,setSettingsOpen]=useState(false);
- const [paletteMode,setPaletteMode]=useState(() => { try { return localStorage.getItem("mindora-palette-mode") || "mood"; } catch { return "mood"; } });
+ const [paletteMode,setPaletteMode]=useState(() => { try { const mode=localStorage.getItem("mindora-palette-mode"); const mood=localStorage.getItem("mindora-saved-mood"); return mode || (mood ? "mood" : "default"); } catch { return "default"; } });
  const [darkMode,setDarkMode]=useState(() => { try { return localStorage.getItem("mindora-theme")==="dark"; } catch { return false; } });
  useEffect(() => {
   document.documentElement.dataset.mindoraTheme = darkMode ? "dark" : "light";
@@ -52,10 +52,15 @@ export default function SharedSidebarLayout({children}) {
  useEffect(() => {
   const syncMood = (event) => {
    const nextMood = event?.detail?.mood;
-   if (nextMood) setSavedMoodTheme(nextMood);
-   else {
-    try { setSavedMoodTheme((localStorage.getItem("mindora-saved-mood") || "default").toLowerCase()); }
-    catch { setSavedMoodTheme("default"); }
+   let mood = nextMood;
+   if (!mood) {
+    try { mood = (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
+    catch { mood = "default"; }
+   }
+   setSavedMoodTheme(mood);
+   if (mood && mood !== "default" && (event?.type !== "storage" || event?.key === "mindora-saved-mood")) {
+    setPaletteMode("mood");
+    try { localStorage.setItem("mindora-palette-mode", "mood"); } catch {}
    }
   };
   window.addEventListener("mindora:mood-saved", syncMood);
