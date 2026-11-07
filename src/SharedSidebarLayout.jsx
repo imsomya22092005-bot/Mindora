@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LayoutDashboard, BookOpen, BarChart3, Wind, Gamepad2, Settings, ChevronDown, Sparkles, Menu, X, HeartHandshake, StickyNote, Moon, Sun, UserRound, LogOut } from "lucide-react";
 import "./App.css";
@@ -20,6 +20,7 @@ export default function SharedSidebarLayout({children}) {
  const location=useLocation();
  const navigate=useNavigate();
  const [mobileMenuOpen,setMobileMenuOpen]=useState(false);
+ const sidebarRef=useRef(null);
  const [settingsOpen,setSettingsOpen]=useState(false);
  const [paletteMode,setPaletteMode]=useState(() => { try { return localStorage.getItem("mindora-palette-mode") || "mood"; } catch { return "mood"; } });
  const [darkMode,setDarkMode]=useState(() => { try { return localStorage.getItem("mindora-theme")==="dark"; } catch { return false; } });
@@ -33,6 +34,12 @@ export default function SharedSidebarLayout({children}) {
   try { localStorage.setItem("mindora-palette-mode", paletteMode); } catch {}
   window.dispatchEvent(new CustomEvent("mindora:palette-change", { detail: { palette: paletteMode } }));
  }, [paletteMode]);
+ useEffect(()=>{
+  if(settingsOpen && sidebarRef.current){
+   const sidebar=sidebarRef.current;
+   sidebar.scrollTo({top:sidebar.scrollHeight,behavior:"smooth"});
+  }
+ },[settingsOpen]);
  const handleLogout=()=>{
   try { localStorage.removeItem("mindora-token"); localStorage.removeItem("mindora-user"); } catch {}
   setSettingsOpen(false);
@@ -65,7 +72,7 @@ export default function SharedSidebarLayout({children}) {
  });
  const active=(item)=>location.pathname===item.href || (item.children&&item.label==="Mindful moments"&&(location.pathname.startsWith("/calm")||location.pathname.startsWith("/inner")||location.pathname==="/comfort-box"||location.pathname==="/soundscape"||location.pathname==="/mindful-moments")) || (item.label==="Play & Unwind"&&location.pathname==="/games");
  return <div className="shared-dashboard-layout" data-mood={savedMoodTheme}>
-  <aside className={"shared-dashboard-sidebar "+(mobileMenuOpen?"mobile-menu-open":"")}>
+  <aside ref={sidebarRef} className={"shared-dashboard-sidebar "+(mobileMenuOpen?"mobile-menu-open":"")}>
    <div className="shared-sidebar-mobile-head">
     <Link to="/dashboard" className="shared-sidebar-brand" onClick={()=>setMobileMenuOpen(false)}><span className="shared-brand-mark">✿</span><strong>mindora</strong></Link>
     <button type="button" className="shared-sidebar-hamburger" onClick={()=>setMobileMenuOpen(v=>!v)} aria-label={mobileMenuOpen?"Close navigation menu":"Open navigation menu"} aria-expanded={mobileMenuOpen}>{mobileMenuOpen?<X size={23}/>:<Menu size={23}/>}</button>
@@ -81,10 +88,10 @@ export default function SharedSidebarLayout({children}) {
     </div>})}
    </nav>
    <div className="shared-sidebar-spacer"/>
-   <div className="shared-sidebar-quote"><span><Sparkles size={20}/></span><p>You don’t have to have it all figured out today.</p><small>A gentle reminder</small></div>
-   <div className="shared-settings-wrap">
+   {!settingsOpen&&<div className="shared-sidebar-quote"><span><Sparkles size={20}/></span><p>You don’t have to have it all figured out today.</p><small>A gentle reminder</small></div>}
+   <div className="shared-settings-wrap" style={{position:"relative",zIndex:140,flex:"0 0 auto"}}>
     <button type="button" onClick={()=>setSettingsOpen(v=>!v)} aria-expanded={settingsOpen} className={"shared-settings-link "+(settingsOpen?"is-active":"")}><Settings size={20}/>Settings</button>
-    {settingsOpen&&<div className="settings-popover shared-settings-popover">
+    {settingsOpen&&<div className="settings-popover shared-settings-popover" style={{position:"absolute",left:0,right:0,bottom:"calc(100% + 12px)",top:"auto",width:"auto",zIndex:150,maxHeight:"min(55vh,360px)",overflowY:"auto",margin:0}}>
      <div className="settings-popover-heading"><strong>Settings</strong><button type="button" aria-label="Close settings" onClick={()=>setSettingsOpen(false)}><X size={16}/></button></div>
      <button type="button" className="theme-setting" onClick={()=>setDarkMode(v=>!v)}>{darkMode?<Sun size={17}/>:<Moon size={17}/>} {darkMode?"Switch to light mode":"Switch to dark mode"}</button>
      <button type="button" className="theme-setting" onClick={()=>setPaletteMode(v=>v==="default"?"mood":"default")}>{paletteMode==="default"?<Sparkles size={17}/>:<Sun size={17}/>} {paletteMode==="default"?"✓ Default theme":"Default theme"}</button>
