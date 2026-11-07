@@ -765,3 +765,19 @@ html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page :is(.a
 html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page :is(.assessment-secondary,.assessment-options button,.assessment-profile-grid input,.assessment-profile-grid select){background:#1A2420!important;border-color:#34483D!important;color:#F3EBDD!important;}
 html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page :is(.assessment-primary,.assessment-options button.is-selected){background:#B9A5D6!important;border-color:#B9A5D6!important;color:#111C17!important;}
 html[data-mindora-theme="dark"][data-mindora-mood="low"] .assessment-page :is(h1,h2,h3,h4,strong,legend,.assessment-question,.assessment-heading p,.assessment-muted,.assessment-disclaimer,.assessment-timeframe,.assessment-result-grid p,.assessment-sleep-result p,.assessment-academic-result p,.wellbeing-journey-hero p,.dream-lab-copy p,.observatory-copy p,.sleep-rhythm-panel>p){color:#F3EBDD!important;-webkit-text-fill-color:#F3EBDD!important;}
+
+
+/* Sleep answers are light tiles: keep their labels dark in default theme. */
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .assessment-options button{
+ background:#FFFDF5!important;background-image:none!important;border:1px solid #FFBB70!important;
+ color:#08090B!important;-webkit-text-fill-color:#08090B!important;
+}
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .assessment-options button :is(span,strong,small){
+ color:#08090B!important;-webkit-text-fill-color:#08090B!important;
+}
+html[data-mindora-palette="default"] #root .assessment-page :is(.assessment-result-grid article>strong,.assessment-sleep-result>strong,.sleep-reflection-count,.sleep-reflections-count){
+ color:#49342E!important;-webkit-text-fill-color:#49342E!important;
+}
+html[data-mindora-palette="default"] #root .assessment-page :is(.sleep-reflections-completed,.sleep-reflection-progress-label,.sleep-progress-count){
+ color:#49342E!important;-webkit-text-fill-color:#49342E!important;
+}
