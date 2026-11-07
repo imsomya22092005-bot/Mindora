@@ -126,6 +126,7 @@ export function WellbeingCheckinPage(){
  </Shell>;
 }
 export function SleepCheckPage(){
+ const [language]=useLanguage(); const hi=language==="hi";
  const [answers,setAnswers]=useState({}),[profile,setProfile]=useState({age:"20",gender:"female",smoke:"never smokes",drink:"never drinks"}),[result,setResult]=useState(null),[bedtime,setBedtime]=useState("23:00"),[wakeTime,setWakeTime]=useState("07:00");
  const complete=isi.every(q=>answers[q.name]!==undefined)&&profile.age>=16&&profile.age<=40; const sleepHours=(()=>{const [bh,bm]=bedtime.split(":").map(Number),[wh,wm]=wakeTime.split(":").map(Number);let mins=(wh*60+wm)-(bh*60+bm);if(mins<=0)mins+=1440;return `${Math.floor(mins/60)}h ${mins%60}m`;})();
  const submit=()=>{if(!complete)return;const vals=isi.map(q=>answers[q.name]);const total=vals.reduce((a,b)=>a+b,0);const score=Math.min(100,Math.round(total*4.2));const level=score>=60?"Needs attention":score>=40?"Disturbed":"Steady";const worst=vals.indexOf(Math.max(...vals));setResult({score,level,concern:vals[worst]===0?"None. All your answers are in the healthy range.":isi[worst].concern});};
