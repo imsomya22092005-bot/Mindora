@@ -4459,3 +4459,65 @@ html[data-mindora-theme="dark"] #root .mood-book-controls :is(.book-turn-button,
 .shared-settings-popover .theme-setting{min-height:46px;background:#fffdf0;border-color:#f1d6b4;color:#49342e;font-size:13px;cursor:pointer;}
 html[data-mindora-theme="dark"] .shared-settings-popover{background:#382d2a!important;border-color:#59443b!important;color:#fff3df!important;}
 html[data-mindora-theme="dark"] .shared-settings-popover .settings-popover-heading>button,html[data-mindora-theme="dark"] .shared-settings-popover .theme-setting{background:#45352f!important;border-color:#705242!important;color:#fff3df!important;}
+
+
+/* DEFAULT PALETTE MODE — restore Mindora's original butter/apricot look
+   independently of the saved mood, while keeping light/dark mode separate. */
+html[data-mindora-palette="default"] #root :is(.app-shell[data-mood],.shared-dashboard-layout[data-mood]){
+ background:#FFFBDA!important;color:#49342E!important;
+}
+html[data-mindora-palette="default"] #root :is(.app-shell[data-mood] .main-content,.shared-dashboard-layout[data-mood] .shared-dashboard-content){
+ background:#FFFBDA!important;color:#49342E!important;
+}
+html[data-mindora-palette="default"] #root :is(.app-shell[data-mood] .sidebar,.shared-dashboard-layout[data-mood] .shared-dashboard-sidebar){
+ background:#FFEC9E!important;color:#49342E!important;border-color:#FFBB70!important;
+}
+html[data-mindora-palette="default"] #root :is(.app-shell[data-mood],.shared-dashboard-layout[data-mood]) :is(
+ article,section,.card,.panel,.surface,.widget,.modal,.popover,.drawer,
+ [class*="card"],[class*="panel"],[class*="tile"],[class*="surface"],
+ [class*="widget"],[class*="modal"],[class*="popover"],[class*="drawer"],
+ [class*="section-box"],[class*="content-box"],[class*="feature-box"],
+ [class*="stat-box"],[class*="summary-box"],[class*="question-card"],
+ [class*="answer-card"],[class*="result-card"],[class*="tool-card"],
+ [class*="prompt-card"],[class*="note-card"],[class*="memory-card"]
+):not([class*="card-art"]):not([class*="card-image"]):not([class*="card-visual"]):not([class*="canvas"]):not([class*="chart"]):not([class*="graph"]):not([class*="target"]){
+ background-color:#FFEC9E!important;background-image:none!important;border-color:#FFBB70!important;color:#49342E!important;
+}
+html[data-mindora-palette="default"] #root :is(.app-shell[data-mood],.shared-dashboard-layout[data-mood]) :is(h1,h2,h3,h4,h5,h6,strong,b,label,legend,p,small,em){
+ color:#49342E!important;-webkit-text-fill-color:#49342E!important;
+}
+html[data-mindora-palette="default"] #root :is(.app-shell[data-mood],.shared-dashboard-layout[data-mood]) :is(button,.theme-setting,.shared-nav-row.is-active,.shared-sub-link.sub-active){
+ background:#FFBB70!important;border-color:#ED9455!important;color:#49342E!important;
+}
+html[data-mindora-palette="default"] #root :is(.app-shell[data-mood],.shared-dashboard-layout[data-mood]) :is(input,textarea,select){
+ background:#FFF9E8!important;border-color:#FFBB70!important;color:#49342E!important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root :is(.app-shell[data-mood],.shared-dashboard-layout[data-mood]){
+ background:#292323!important;color:#FFF3DF!important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root :is(.app-shell[data-mood] .main-content,.shared-dashboard-layout[data-mood] .shared-dashboard-content){
+ background:#292323!important;color:#FFF3DF!important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root :is(.app-shell[data-mood] .sidebar,.shared-dashboard-layout[data-mood] .shared-dashboard-sidebar){
+ background:#382D2A!important;color:#FFF3DF!important;border-color:#705242!important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root :is(.app-shell[data-mood],.shared-dashboard-layout[data-mood]) :is(
+ article,section,.card,.panel,.surface,.widget,.modal,.popover,.drawer,
+ [class*="card"],[class*="panel"],[class*="tile"],[class*="surface"],
+ [class*="widget"],[class*="modal"],[class*="popover"],[class*="drawer"],
+ [class*="section-box"],[class*="content-box"],[class*="feature-box"],
+ [class*="stat-box"],[class*="summary-box"],[class*="question-card"],
+ [class*="answer-card"],[class*="result-card"],[class*="tool-card"],
+ [class*="prompt-card"],[class*="note-card"],[class*="memory-card"]
+):not([class*="card-art"]):not([class*="card-image"]):not([class*="card-visual"]):not([class*="canvas"]):not([class*="chart"]):not([class*="graph"]):not([class*="target"]){
+ background-color:#382D2A!important;background-image:none!important;border-color:#705242!important;color:#FFF3DF!important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root :is(.app-shell[data-mood],.shared-dashboard-layout[data-mood]) :is(h1,h2,h3,h4,h5,h6,strong,b,label,legend,p,small,em){
+ color:#FFF3DF!important;-webkit-text-fill-color:#FFF3DF!important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root :is(.app-shell[data-mood],.shared-dashboard-layout[data-mood]) :is(button,.theme-setting,.shared-nav-row.is-active,.shared-sub-link.sub-active){
+ background:#5A4034!important;border-color:#ED9455!important;color:#FFF3DF!important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root :is(.app-shell[data-mood],.shared-dashboard-layout[data-mood]) :is(input,textarea,select){
+ background:#45352F!important;border-color:#705242!important;color:#FFF3DF!important;color-scheme:dark;
+}
