@@ -617,7 +617,6 @@ function Dashboard() {
               {darkMode ? t("Switch to light mode", "लाइट मोड करें") : t("Switch to dark mode", "डार्क मोड करें")}
             </button>
             <button className={"theme-setting "+(paletteMode==="default"?"is-selected":"")} aria-pressed={paletteMode==="default"} onClick={() => setPaletteMode("default")}><Sun size={17}/>{paletteMode==="default"?"✓ ":""}{t("Default theme", "डिफ़ॉल्ट थीम")}</button>
-            <button className={"theme-setting "+(paletteMode==="mood"?"is-selected":"")} aria-pressed={paletteMode==="mood"} onClick={() => setPaletteMode("mood")}><Sparkles size={17}/>{paletteMode==="mood"?"✓ ":""}{t("Mood colours", "मूड के रंग")}</button>
             <button className="theme-setting" onClick={() => { setShowSettings(false); navigate("/profile"); }}><Heart size={17}/>{t("My profile", "मेरी प्रोफ़ाइल")}</button><button className="theme-setting logout-setting" onClick={() => { localStorage.removeItem("mindora-token"); localStorage.removeItem("mindora-user"); setShowSettings(false); navigate("/login", { replace: true }); }}><X size={17}/>{t("Log out", "लॉग आउट")}</button>
           </div>
         )}
