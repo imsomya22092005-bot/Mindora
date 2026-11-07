@@ -4452,8 +4452,8 @@ html[data-mindora-theme="dark"] #root .mood-book-controls :is(.book-turn-button,
 
 
 /* Settings opens below its own button in normal sidebar flow, never over navigation or quote. */
-.shared-settings-wrap{position:relative!important;z-index:120!important;flex:0 0 auto;margin-top:12px;}
-.shared-settings-popover{position:static!important;display:block!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;width:auto!important;max-height:none!important;overflow:visible!important;z-index:1!important;margin:8px 0 0!important;}
+.shared-settings-wrap{position:relative!important;z-index:160!important;flex:0 0 auto;margin-top:12px!important;}
+.shared-settings-popover{position:absolute!important;display:block!important;left:0!important;right:0!important;top:auto!important;bottom:calc(100% + 8px)!important;width:auto!important;max-height:min(62vh,460px)!important;overflow-y:auto!important;z-index:170!important;margin:0!important;}
 .shared-settings-popover .settings-popover-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .shared-settings-popover .settings-popover-heading>button{display:grid;place-items:center;width:32px;height:32px;border:1px solid #f1d6b4;border-radius:8px;background:#fffdf0;color:#49342e;cursor:pointer;}
 .shared-settings-popover .theme-setting{min-height:46px;background:#fffdf0;border-color:#f1d6b4;color:#49342e;font-size:13px;cursor:pointer;}
