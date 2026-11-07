@@ -139,6 +139,7 @@ export default function StickyNoteWall() {
   }
 
   return (
+    <NoteLocalized hi={hi}>
     <div className="sticky-wall-page" data-mood={savedMoodTheme} style={wallStyle}>
       <header className="sticky-wall-header">
         <button className="sticky-wall-back" onClick={() => navigate("/dashboard")} aria-label="Back to dashboard"><ArrowLeft size={17} /></button>
@@ -202,5 +203,6 @@ export default function StickyNoteWall() {
         </div>
       )}
     </div>
+    </NoteLocalized>
   );
 }
