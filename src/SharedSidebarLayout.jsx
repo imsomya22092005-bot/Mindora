@@ -71,7 +71,7 @@ export default function SharedSidebarLayout({children}) {
   "AI wellbeing":location.pathname==="/mindora-ai"||location.pathname==="/wellbeing-checkin"||location.pathname==="/sleep-check"||location.pathname==="/academic-stress"
  });
  const active=(item)=>location.pathname===item.href || (item.children&&item.label==="Mindful moments"&&(location.pathname.startsWith("/calm")||location.pathname.startsWith("/inner")||location.pathname==="/comfort-box"||location.pathname==="/soundscape"||location.pathname==="/mindful-moments")) || (item.label==="Play & Unwind"&&location.pathname==="/games");
- return <div className="shared-dashboard-layout" data-mood={savedMoodTheme}>
+ return <div className="shared-dashboard-layout" data-palette-mode={paletteMode} data-mood={paletteMode === "default" ? "default" : savedMoodTheme}>
   <aside ref={sidebarRef} className={"shared-dashboard-sidebar "+(mobileMenuOpen?"mobile-menu-open":"")}>
    <div className="shared-sidebar-mobile-head">
     <Link to="/dashboard" className="shared-sidebar-brand" onClick={()=>setMobileMenuOpen(false)}><span className="shared-brand-mark">✿</span><strong>mindora</strong></Link>
