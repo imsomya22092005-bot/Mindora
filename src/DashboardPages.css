@@ -931,3 +931,37 @@ html[data-mindora-palette="default"][data-mindora-theme="dark"] #root .journal-m
  .journal-open-button,.diary-save-button,.journal-page-actions button,
  .scrapbook-tool-button.primary
 ){background:#ED9455!important;border-color:#ED9455!important;color:#2B211D!important;-webkit-text-fill-color:#2B211D!important;}
+
+
+/* FINAL DEFAULT-THEME OVERRIDE for the "Your Mood Today" diary cover.
+   The cover uses a background gradient (not background-color), so override it explicitly. */
+html[data-mindora-palette="default"] #root .mindora-section-page.journal-mood-page .journal-diary-cover{
+ --journal-cover:#FFBB70!important;--journal-accent:#ED9455!important;
+ background:linear-gradient(125deg,#FFBB70 0%,#FFBB70 52%,#ED9455 100%)!important;
+ background-color:#FFBB70!important;border-color:#ED9455!important;
+ color:#49342E!important;box-shadow:0 22px 42px rgba(237,148,85,.22)!important;
+}
+html[data-mindora-palette="default"] #root .mindora-section-page.journal-mood-page .journal-diary-cover :is(
+ .journal-cover-content,.journal-cover-content h2,.journal-cover-content h2 em,
+ .journal-cover-content p,.journal-cover-content>svg,.journal-cover-kicker,
+ .journal-cover-small,.journal-cover-decoration,.journal-dear-word
+){color:#49342E!important;-webkit-text-fill-color:#49342E!important;}
+html[data-mindora-palette="default"] #root .mindora-section-page.journal-mood-page .journal-diary-cover .journal-cover-rule{background:#ED9455!important;}
+html[data-mindora-palette="default"] #root .mindora-section-page.journal-mood-page .journal-diary-cover .journal-open-button{
+ background:#ED9455!important;border-color:#ED9455!important;color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
+}
+html[data-mindora-palette="default"][data-mindora-theme="dark"] #root .mindora-section-page.journal-mood-page .journal-diary-cover{
+ --journal-cover:#382D2A!important;--journal-accent:#ED9455!important;
+ background:linear-gradient(125deg,#382D2A 0%,#382D2A 52%,#594034 100%)!important;
+ background-color:#382D2A!important;border-color:#705242!important;color:#FFF3DF!important;
+ box-shadow:0 22px 42px rgba(0,0,0,.35)!important;
+}
+html[data-mindora-palette="default"][data-mindora-theme="dark"] #root .mindora-section-page.journal-mood-page .journal-diary-cover :is(
+ .journal-cover-content,.journal-cover-content h2,.journal-cover-content h2 em,
+ .journal-cover-content p,.journal-cover-content>svg,.journal-cover-kicker,
+ .journal-cover-small,.journal-cover-decoration,.journal-dear-word
+){color:#FFF3DF!important;-webkit-text-fill-color:#FFF3DF!important;}
+html[data-mindora-palette="default"][data-mindora-theme="dark"] #root .mindora-section-page.journal-mood-page .journal-diary-cover .journal-cover-rule{background:#ED9455!important;}
+html[data-mindora-palette="default"][data-mindora-theme="dark"] #root .mindora-section-page.journal-mood-page .journal-diary-cover .journal-open-button{
+ background:#ED9455!important;border-color:#ED9455!important;color:#2B211D!important;-webkit-text-fill-color:#2B211D!important;
+}
