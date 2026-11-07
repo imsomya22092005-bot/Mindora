@@ -1251,8 +1251,13 @@ function MoodThemeSync() {
       document.documentElement.dataset.mindoraMood = mood;
     };
     const syncTheme = () => {
-      try { document.documentElement.dataset.mindoraTheme = localStorage.getItem("mindora-theme") === "dark" ? "dark" : "light"; }
-      catch { document.documentElement.dataset.mindoraTheme = "light"; }
+      try {
+        document.documentElement.dataset.mindoraTheme = localStorage.getItem("mindora-theme") === "dark" ? "dark" : "light";
+        document.documentElement.dataset.mindoraPalette = localStorage.getItem("mindora-palette-mode") || "mood";
+      } catch {
+        document.documentElement.dataset.mindoraTheme = "light";
+        document.documentElement.dataset.mindoraPalette = "mood";
+      }
     };
     syncMood();
     syncTheme();
