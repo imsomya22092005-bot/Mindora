@@ -689,3 +689,67 @@ html[data-mindora-theme="dark"][data-mindora-mood="great"] .games-page :is(
 ){background:#24291A!important;border-color:#34372B!important;color:#CDF22B!important;}
 html[data-mindora-theme="dark"][data-mindora-mood="great"] .games-page .colorpop-progress span{background:#CDF22B!important;}
 html[data-mindora-theme="dark"][data-mindora-mood="great"] .games-page .games-back{color:#CDF22B!important;}
+
+
+/* LOW mood — Play & Unwind cards and surrounding panels, light + dark.
+   Keep game artwork, puzzle tiles and in-game targets colourful. */
+html[data-mindora-mood="low"] .games-page{
+ background:radial-gradient(ellipse at 8% 8%,#CBB3EA30,transparent 34%),linear-gradient(135deg,#F2E8D9,#F8F3EA 58%,#EBDCC6)!important;color:#1F382E!important;
+}
+html[data-mindora-mood="low"] .games-page :is(
+ .games-welcome,.game-card,.colorpop-shell,.game-coming-card,.mindful-timer-setup,
+ .colorpop-level,.colorpop-result-stats>div,.colorpop-preview,.colorpop-target-label,
+ .colorpop-hint,.colorpop-results,.game-instructions,.game-result-card,.letitburn-card,
+ .burn-stage,.game-modal,.game-settings,.game-score-card,.colorpop-controls,
+ .picture-puzzle-heading,.picture-puzzle-toolbar,.fruit-merge-stats
+){background:#EBDCC6!important;background-image:none!important;border-color:#D4C2A9!important;color:#1F382E!important;}
+html[data-mindora-mood="low"] .games-page :is(
+ .games-brand h1,.games-welcome h2,.game-card-copy strong,.colorpop-top h2,
+ .colorpop-level strong,.colorpop-preview strong,.colorpop-results h2,.game-coming-card h2,
+ .picture-puzzle-heading h2,.burn-hero h2
+){color:#1F382E!important;}
+html[data-mindora-mood="low"] .games-page :is(
+ .games-header>p,.games-welcome p,.game-card-copy>span,.games-footer,.colorpop-top p,
+ .colorpop-progress-row,.colorpop-results>p,.game-coming-card p,.burn-hero p,.burn-note
+){color:#52634F!important;}
+html[data-mindora-mood="low"] .games-page :is(
+ .colorpop-controls button,.game-coming-card button,.mindful-timer-options button,
+ .picture-puzzle-actions button,.picture-upload-button,.game-settings button
+){background:#F8F3EA!important;border-color:#D4C2A9!important;color:#1F382E!important;}
+html[data-mindora-mood="low"] .games-page :is(
+ .colorpop-controls .colorpop-soft,.mindful-timer-options button.selected,
+ .game-primary,.game-start-button,.burn-button
+){background:#8B6DB2!important;border-color:#8B6DB2!important;color:#fff!important;}
+html[data-mindora-mood="low"] .games-page :is(.games-brand>span,.mindful-timer-emoji,.colorpop-level.selected,.colorpop-progress){background:#CBB3EA!important;border-color:#8B6DB2!important;color:#1F382E!important;}
+html[data-mindora-mood="low"] .games-page .colorpop-progress span{background:#8B6DB2!important;}
+html[data-mindora-mood="low"] .games-page .games-back{color:#73569B!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .games-page{
+ background:radial-gradient(ellipse at 8% 8%,#B9A5D626,transparent 34%),linear-gradient(135deg,#111C17,#1A2420 58%,#17251F)!important;color:#F3EBDD!important;
+}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .games-page :is(
+ .games-welcome,.game-card,.colorpop-shell,.game-coming-card,.mindful-timer-setup,
+ .colorpop-level,.colorpop-result-stats>div,.colorpop-preview,.colorpop-target-label,
+ .colorpop-hint,.colorpop-results,.game-instructions,.game-result-card,.letitburn-card,
+ .burn-stage,.game-modal,.game-settings,.game-score-card,.colorpop-controls,
+ .picture-puzzle-heading,.picture-puzzle-toolbar,.fruit-merge-stats
+){background:#17251F!important;background-image:none!important;border-color:#34483D!important;color:#F3EBDD!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .games-page :is(
+ .games-brand h1,.games-welcome h2,.game-card-copy strong,.colorpop-top h2,
+ .colorpop-level strong,.colorpop-preview strong,.colorpop-results h2,.game-coming-card h2,
+ .picture-puzzle-heading h2,.burn-hero h2
+){color:#F3EBDD!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .games-page :is(
+ .games-header>p,.games-welcome p,.game-card-copy>span,.games-footer,.colorpop-top p,
+ .colorpop-progress-row,.colorpop-results>p,.game-coming-card p,.burn-hero p,.burn-note
+){color:#D8D0C1!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .games-page :is(
+ .colorpop-controls button,.game-coming-card button,.mindful-timer-options button,
+ .picture-puzzle-actions button,.picture-upload-button,.game-settings button
+){background:#1A2420!important;border-color:#34483D!important;color:#F3EBDD!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .games-page :is(
+ .colorpop-controls .colorpop-soft,.mindful-timer-options button.selected,
+ .game-primary,.game-start-button,.burn-button
+){background:#B9A5D6!important;border-color:#B9A5D6!important;color:#111C17!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .games-page :is(.games-brand>span,.mindful-timer-emoji,.colorpop-level.selected,.colorpop-progress){background:#26392E!important;border-color:#B9A5D6!important;color:#F3EBDD!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .games-page .colorpop-progress span{background:#B9A5D6!important;}
+html[data-mindora-theme="dark"][data-mindora-mood="low"] .games-page .games-back{color:#B9A5D6!important;}
