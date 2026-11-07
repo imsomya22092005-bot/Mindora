@@ -1,7 +1,38 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLanguage } from "./language";
 import { Plus, X, Pin, Trash2, Heart, Sparkles, ArrowLeft, StickyNote } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import "./StickyNoteWall.css";
+
+
+const noteHi = {
+ "A LITTLE SPACE FOR YOUR THOUGHTS":"आपके विचारों के लिए एक छोटी-सी जगह",
+ "Save a thought, a tiny win, a reminder, or something you want to let go of.":"कोई विचार, छोटी-सी खुशी, याद या ऐसी बात लिखें जिसे आप छोड़ना चाहते हैं।",
+ "Add a note":"नोट जोड़ें","YOUR WALL, YOUR WORDS":"आपकी दीवार, आपके शब्द",
+ "Let’s make the first note yours.":"आइए, पहला नोट आपका हो।",
+ "The wall is waiting. Add a little reminder, a goal for today, or a kind thing you want to tell yourself.":"यह दीवार आपका इंतज़ार कर रही है। कोई याद, आज का लक्ष्य या अपने लिए एक प्यारी बात लिखें।",
+ "Write your first note":"अपना पहला नोट लिखें","a gentle reminder: you’re allowed to start small ♡":"एक प्यारी याद: छोटी शुरुआत करना बिल्कुल ठीक है ♡",
+ "PIN SOMETHING MEANINGFUL":"कोई खास बात यहाँ सजाएँ","What would you like to remember?":"आप क्या याद रखना चाहेंगे?",
+ "A little heading":"एक छोटा-सा शीर्षक","optional":"वैकल्पिक","Your words":"आपके शब्द",
+ "Choose your paper":"अपने नोट का रंग चुनें","Pin it to my wall":"मेरी दीवार पर लगाएँ",
+ "Add another thought":"एक और विचार जोड़ें","Delete note":"नोट हटाएँ","Back to dashboard":"डैशबोर्ड पर वापस जाएँ",
+ "e.g. Today, I choose me":"जैसे: आज मैं खुद को चुनती हूँ","A thought, a promise, a tiny goal...":"कोई विचार, वादा या छोटा-सा लक्ष्य...",
+ "Close":"बंद करें","butter":"मक्खनिया","rose":"गुलाबी","sage":"सेज","peach":"आड़ू","lilac":"लाइलैक","sky":"आसमानी"
+};
+const noteTr=(value,hi)=>hi&&typeof value==="string"?(noteHi[value]||value):value;
+function NoteLocalized({children,hi}) {
+ const walk=node=>{
+  if(typeof node==="string") return noteTr(node,hi);
+  if(typeof node==="number"||node==null||typeof node==="boolean") return node;
+  if(Array.isArray(node)) return node.map(walk);
+  if(!React.isValidElement(node)) return node;
+  const props={...node.props};
+  for(const key of ["placeholder","title","aria-label","alt"]) if(typeof props[key]==="string") props[key]=noteTr(props[key],hi);
+  if(props.children!==undefined) props.children=walk(props.children);
+  return React.cloneElement(node,props);
+ };
+ return <>{walk(children)}</>;
+}
 
 const STORAGE_KEY = "mindora-sticky-wall-v1";
 const noteColors = ["butter", "rose", "sage", "peach", "lilac", "sky"];
@@ -40,6 +71,8 @@ function readNotes() {
 
 export default function StickyNoteWall() {
   const navigate = useNavigate();
+  const [language] = useLanguage();
+  const hi = language === "hi";
   const [notes, setNotes] = useState(readNotes);
   const [isDark, setIsDark] = useState(() => {
     try { return localStorage.getItem("mindora-theme") === "dark"; } catch { return false; }
@@ -141,7 +174,7 @@ export default function StickyNoteWall() {
                 <button className="sticky-note-delete" onClick={() => deleteNote(note.id)} aria-label="Delete note"><Trash2 size={14} /></button>
                 {note.title && <h3>{note.title}</h3>}
                 <p>{note.text}</p>
-                <footer><Heart size={12} /> <span>{new Date(note.createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}</span></footer>
+                <footer><Heart size={12} /> <span>{new Date(note.createdAt).toLocaleDateString(hi ? "hi-IN" : "en-IN", { month: "short", day: "numeric" })}</span></footer>
               </article>
             ))}
             <button className="sticky-wall-add-tile" onClick={() => setComposerOpen(true)}><Plus size={22} /><span>Add another thought</span></button>
