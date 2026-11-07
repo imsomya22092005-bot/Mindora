@@ -277,8 +277,11 @@ function Dashboard() {
   });
 
   const [paletteMode, setPaletteMode] = useState(() => {
-    try { return localStorage.getItem("mindora-palette-mode") || "mood"; }
-    catch { return "mood"; }
+    try {
+      const savedMode = localStorage.getItem("mindora-palette-mode");
+      const savedLabel = localStorage.getItem("mindora-saved-mood");
+      return savedMode || (savedLabel ? "mood" : "default");
+    } catch { return "default"; }
   });
   useEffect(() => {
     document.documentElement.dataset.mindoraPalette = paletteMode;
@@ -424,6 +427,11 @@ function Dashboard() {
     setSavedMood(moodToSave);
     try {
       localStorage.setItem("mindora-saved-mood", moodToSave.label);
+      localStorage.setItem("mindora-palette-mode", "mood");
+      setPaletteMode("mood");
+      window.dispatchEvent(new CustomEvent("mindora:palette-change", {
+        detail: { palette: "mood" },
+      }));
       window.dispatchEvent(new CustomEvent("mindora:mood-saved", {
         detail: { mood: moodToSave.label.toLowerCase() },
       }));
@@ -546,7 +554,7 @@ function Dashboard() {
   ];
 
   return (
-    <div className={`app-shell ${darkMode ? "dark-theme" : ""}`} data-mood={savedMood?.label?.toLowerCase() || "default"}>
+    <div className={`app-shell ${darkMode ? "dark-theme" : ""}`} data-mood={paletteMode === "default" ? "default" : (savedMood?.label?.toLowerCase() || "default")}>
       <aside className="sidebar">
         <button
           className="brand"
@@ -759,7 +767,7 @@ function Dashboard() {
 
             <div
               className="mood-book-wrap"
-              data-mood={savedMood?.label?.toLowerCase() || "default"}
+              data-mood={paletteMode === "default" ? "default" : (savedMood?.label?.toLowerCase() || "default")}
               data-mood-mode={darkMode ? "dark" : "light"}
             >
               <div className="mood-book">
@@ -1271,10 +1279,11 @@ function MoodThemeSync() {
       }
       let mood = event?.detail?.mood;
       if (!mood) {
-        try { mood = (localStorage.getItem("mindora-saved-mood") || "okay").toLowerCase(); }
-        catch { mood = "okay"; }
+        try { mood = (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
+        catch { mood = "default"; }
       }
-      document.documentElement.dataset.mindoraMood = mood;
+      if (mood && mood !== "default") document.documentElement.dataset.mindoraMood = mood;
+      else delete document.documentElement.dataset.mindoraMood;
     };
     const syncTheme = () => {
       try { document.documentElement.dataset.mindoraTheme = localStorage.getItem("mindora-theme") === "dark" ? "dark" : "light"; }
