@@ -45,7 +45,7 @@ export default function MindoraAI() {
     setChatBusy(true);
     setChatError("");
     try {
-      const result = await sendWellnessChat(text, getToken(), sessionId || undefined);
+      const result = await sendWellnessChat(hi ? `कृपया हिंदी में जवाब दें। उपयोगकर्ता का संदेश: ${text}` : text, getToken(), sessionId || undefined);
       const data = result?.data || result;
       const reply = data.reply || data.response || data.message || data.bot_response || data.assistant_response || "I’m listening. Could you tell me a little more about what you’re experiencing?";
       setSessionId(data.session_id || sessionId);
@@ -115,5 +115,5 @@ export default function MindoraAI() {
         {recommendations.length ? <div className="mai-activity-list">{recommendations.map((item, index) => {const id = item.activity_id || item.id || item.title; return <article className="mai-activity-card" key={id || index}><div className="mai-activity-number">0{index+1}</div><div className="mai-activity-copy"><span className="mai-category">{aiTr(item.category || "WELLBEING",hi)}</span><h3>{aiTr(item.title || "A gentle pause",hi)}</h3><p>{aiTr(item.description || item.reason || "Take a moment for yourself.",hi)}</p><span className="mai-duration"><Clock3 size={14}/> {item.duration_min || item.duration || 5} {hi?"मिनट":"min"}</span><div className="mai-rating-actions"><span>{hi ? "क्या यह मददगार था?" : "Was this helpful?"}</span><button type="button" disabled={Boolean(feedback[id])} className={feedback[id] === 5 ? "rated" : ""} onClick={() => rateActivity(item, 5)} aria-label={hi?"मददगार":"Helpful"}><ThumbsUp size={15}/></button><button type="button" disabled={Boolean(feedback[id])} className={feedback[id] === 1 ? "rated" : ""} onClick={() => rateActivity(item, 1)} aria-label={hi?"मददगार नहीं":"Not helpful"}><ThumbsDown size={15}/></button>{feedback[id] && <small>Thanks for sharing</small>}</div></div></article>})}</div> : <div className="mai-empty-state"><div className="mai-empty-art">✿</div><h3>{hi ? "धीरे-धीरे शुरू करें" : "Start with how you feel"}</h3><p>{hi ? "अपना मूड चुनें और हम आपके लिए कुछ छोटे अभ्यास खोजेंगे।" : "Choose your mood and we’ll look for a few small, manageable activities."}</p></div>}
       </div>
     </section>}
-  </div>;
+  </div></AILocalized>;
 }
