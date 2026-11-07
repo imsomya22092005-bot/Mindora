@@ -25,6 +25,7 @@ export default function SharedSidebarLayout({children}) {
  useEffect(() => {
   document.documentElement.dataset.mindoraTheme = darkMode ? "dark" : "light";
   try { localStorage.setItem("mindora-theme", darkMode ? "dark" : "light"); } catch {}
+  window.dispatchEvent(new CustomEvent("mindora:theme-change", { detail: { theme: darkMode ? "dark" : "light" } }));
  }, [darkMode]);
  const handleLogout=()=>{
   try { localStorage.removeItem("mindora-token"); localStorage.removeItem("mindora-user"); } catch {}
