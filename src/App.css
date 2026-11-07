@@ -3893,116 +3893,116 @@ html[data-mindora-theme="dark"] .shared-dashboard-layout[data-mood]:not([data-mo
 /* FULL CANVAS MOOD THEMING — Mindful Moments hub and its four inner pages.
    The shared shell, sidebar, content gutter and page canvas all follow the
    latest saved mood, not just the cards inside the page. */
-.shared-dashboard-layout:has(.wellness-page[data-mood]),
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]){
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]),
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]){
   --shell-bg:#F2E8D9;--shell-sidebar:#EBDCC6;--shell-surface:#F7F0E5;
   --shell-ink:#1F382E;--shell-muted:#53665B;--shell-accent:#8B6DB2;
   --shell-border:#D4C2A9;
   background:var(--shell-bg)!important;color:var(--shell-ink)!important;
 }
-.shared-dashboard-layout:has(.wellness-page[data-mood="low"]),
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood="low"]){--shell-bg:#F2E8D9;--shell-sidebar:#EBDCC6;--shell-surface:#F7F0E5;--shell-ink:#1F382E;--shell-muted:#53665B;--shell-accent:#8B6DB2;--shell-border:#D4C2A9;}
-.shared-dashboard-layout:has(.wellness-page[data-mood="meh"]),
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood="meh"]){--shell-bg:#E8D8D4;--shell-sidebar:#C9ADA7;--shell-surface:#F3E4E0;--shell-ink:#3A0F34;--shell-muted:#62434F;--shell-accent:#C75A3A;--shell-border:#B99690;}
-.shared-dashboard-layout:has(.wellness-page[data-mood="okay"]),
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood="okay"]){--shell-bg:#E4F0E9;--shell-sidebar:#B8DCCB;--shell-surface:#F1F8F3;--shell-ink:#164E4A;--shell-muted:#426C63;--shell-accent:#F07845;--shell-border:#9FC9B7;}
-.shared-dashboard-layout:has(.wellness-page[data-mood="good"]),
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood="good"]){--shell-bg:#FBF3D9;--shell-sidebar:#F2D98D;--shell-surface:#FFF9E7;--shell-ink:#49352C;--shell-muted:#725B48;--shell-accent:#B66A55;--shell-border:#E2C778;}
-.shared-dashboard-layout:has(.wellness-page[data-mood="great"]),
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood="great"]){--shell-bg:#F4F3EB;--shell-sidebar:#FAF8F3;--shell-surface:#FFFFFF;--shell-ink:#08090B;--shell-muted:#45483B;--shell-accent:#CDF22B;--shell-border:#D9DDC9;}
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood="low"]),
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood="low"]){--shell-bg:#F2E8D9;--shell-sidebar:#EBDCC6;--shell-surface:#F7F0E5;--shell-ink:#1F382E;--shell-muted:#53665B;--shell-accent:#8B6DB2;--shell-border:#D4C2A9;}
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood="meh"]),
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood="meh"]){--shell-bg:#E8D8D4;--shell-sidebar:#C9ADA7;--shell-surface:#F3E4E0;--shell-ink:#3A0F34;--shell-muted:#62434F;--shell-accent:#C75A3A;--shell-border:#B99690;}
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood="okay"]),
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood="okay"]){--shell-bg:#E4F0E9;--shell-sidebar:#B8DCCB;--shell-surface:#F1F8F3;--shell-ink:#164E4A;--shell-muted:#426C63;--shell-accent:#F07845;--shell-border:#9FC9B7;}
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood="good"]),
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood="good"]){--shell-bg:#FBF3D9;--shell-sidebar:#F2D98D;--shell-surface:#FFF9E7;--shell-ink:#49352C;--shell-muted:#725B48;--shell-accent:#B66A55;--shell-border:#E2C778;}
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood="great"]),
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood="great"]){--shell-bg:#F4F3EB;--shell-sidebar:#FAF8F3;--shell-surface:#FFFFFF;--shell-ink:#08090B;--shell-muted:#45483B;--shell-accent:#CDF22B;--shell-border:#D9DDC9;}
 
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-dashboard-sidebar,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-dashboard-sidebar{
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-dashboard-sidebar,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-dashboard-sidebar{
   background:var(--shell-sidebar)!important;border-color:var(--shell-border)!important;
   color:var(--shell-ink)!important;transition:background-color .45s ease,border-color .45s ease,color .45s ease;
 }
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-dashboard-content,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-dashboard-content{
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-dashboard-content,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-dashboard-content{
   background:var(--shell-bg)!important;color:var(--shell-ink)!important;
   transition:background-color .45s ease,color .45s ease;
 }
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sidebar-brand,
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sidebar-label,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-brand,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-label{color:var(--shell-ink)!important;}
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-nav-row,
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-settings-link,
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sub-link,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-nav-row,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-settings-link,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sub-link{color:var(--shell-ink)!important;}
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-nav-row:hover,
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-settings-link:hover,
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-settings-link.is-active,
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sub-link:hover,
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sub-link.sub-active,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-nav-row:hover,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-settings-link:hover,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-settings-link.is-active,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sub-link:hover,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sub-link.sub-active{
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sidebar-brand,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sidebar-label,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-brand,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-label{color:var(--shell-ink)!important;}
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-nav-row,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-settings-link,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sub-link,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-nav-row,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-settings-link,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sub-link{color:var(--shell-ink)!important;}
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-nav-row:hover,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-settings-link:hover,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-settings-link.is-active,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sub-link:hover,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sub-link.sub-active,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-nav-row:hover,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-settings-link:hover,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-settings-link.is-active,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sub-link:hover,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sub-link.sub-active{
   background:var(--shell-surface)!important;color:var(--shell-ink)!important;
 }
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-nav-row.is-active,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-nav-row.is-active{
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-nav-row.is-active,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-nav-row.is-active{
   background:var(--shell-surface)!important;color:var(--shell-ink)!important;
   box-shadow:inset 3px 0 0 var(--shell-accent)!important;
 }
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-nav-submenu,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-nav-submenu{border-color:var(--shell-border)!important;}
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sidebar-quote,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-quote{
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-nav-submenu,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-nav-submenu{border-color:var(--shell-border)!important;}
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sidebar-quote,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-quote{
   background:var(--shell-surface)!important;border-color:var(--shell-border)!important;color:var(--shell-ink)!important;
 }
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sidebar-quote>span,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-quote>span{
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sidebar-quote>span,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-quote>span{
   background:var(--shell-sidebar)!important;color:var(--shell-accent)!important;
 }
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sidebar-quote small,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-quote small{color:var(--shell-muted)!important;}
-.shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sidebar-hamburger,
-.shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-hamburger{color:var(--shell-ink)!important;}
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sidebar-quote small,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-quote small{color:var(--shell-muted)!important;}
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sidebar-hamburger,
+.shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-hamburger{color:var(--shell-ink)!important;}
 
 /* Matching dark shell palettes: full page canvas + sidebar + gutters. */
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]),
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]){
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]),
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]){
   --shell-bg:#111C17;--shell-sidebar:#17251F;--shell-surface:#1D2D24;
   --shell-ink:#F3EBDD;--shell-muted:#D0D8D0;--shell-accent:#B9A5D6;--shell-border:#34483D;
 }
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood="low"]),
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood="low"]){--shell-bg:#111C17;--shell-sidebar:#17251F;--shell-surface:#1D2D24;--shell-ink:#F3EBDD;--shell-muted:#D0D8D0;--shell-accent:#B9A5D6;--shell-border:#34483D;}
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood="meh"]),
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood="meh"]){--shell-bg:#190B16;--shell-sidebar:#24101F;--shell-surface:#2C1727;--shell-ink:#F5E9E7;--shell-muted:#D9C3CF;--shell-accent:#E18467;--shell-border:#543047;}
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood="okay"]),
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood="okay"]){--shell-bg:#0B2221;--shell-sidebar:#102E2C;--shell-surface:#173A36;--shell-ink:#E4F1E9;--shell-muted:#C2DAD0;--shell-accent:#F5A477;--shell-border:#28514B;}
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood="good"]),
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood="good"]){--shell-bg:#1D1511;--shell-sidebar:#2C211B;--shell-surface:#362820;--shell-ink:#F8EEDB;--shell-muted:#DCCDBB;--shell-accent:#E6AD79;--shell-border:#584033;}
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood="great"]),
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood="great"]){--shell-bg:#08090B;--shell-sidebar:#151713;--shell-surface:#20231A;--shell-ink:#FAF8F3;--shell-muted:#D8D9D2;--shell-accent:#CDF22B;--shell-border:#34372B;}
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sidebar-brand,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sidebar-label,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-nav-row,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-settings-link,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sub-link,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-brand,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-label,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-nav-row,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-settings-link,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sub-link{color:var(--shell-ink)!important;}
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-nav-row:hover,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-nav-row.is-active,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-settings-link:hover,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-settings-link.is-active,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-nav-row:hover,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-nav-row.is-active,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-settings-link:hover,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-settings-link.is-active{background:var(--shell-surface)!important;color:var(--shell-ink)!important;}
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sidebar-quote,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-quote{background:var(--shell-surface)!important;border-color:var(--shell-border)!important;color:var(--shell-ink)!important;}
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sidebar-quote small,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-quote small{color:var(--shell-muted)!important;}
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.wellness-page[data-mood]) .shared-sidebar-quote>span,
-html[data-mindora-theme="dark"] .shared-dashboard-layout:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-quote>span{background:var(--shell-sidebar)!important;color:var(--shell-accent)!important;}
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood="low"]),
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood="low"]){--shell-bg:#111C17;--shell-sidebar:#17251F;--shell-surface:#1D2D24;--shell-ink:#F3EBDD;--shell-muted:#D0D8D0;--shell-accent:#B9A5D6;--shell-border:#34483D;}
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood="meh"]),
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood="meh"]){--shell-bg:#190B16;--shell-sidebar:#24101F;--shell-surface:#2C1727;--shell-ink:#F5E9E7;--shell-muted:#D9C3CF;--shell-accent:#E18467;--shell-border:#543047;}
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood="okay"]),
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood="okay"]){--shell-bg:#0B2221;--shell-sidebar:#102E2C;--shell-surface:#173A36;--shell-ink:#E4F1E9;--shell-muted:#C2DAD0;--shell-accent:#F5A477;--shell-border:#28514B;}
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood="good"]),
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood="good"]){--shell-bg:#1D1511;--shell-sidebar:#2C211B;--shell-surface:#362820;--shell-ink:#F8EEDB;--shell-muted:#DCCDBB;--shell-accent:#E6AD79;--shell-border:#584033;}
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood="great"]),
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood="great"]){--shell-bg:#08090B;--shell-sidebar:#151713;--shell-surface:#20231A;--shell-ink:#FAF8F3;--shell-muted:#D8D9D2;--shell-accent:#CDF22B;--shell-border:#34372B;}
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sidebar-brand,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sidebar-label,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-nav-row,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-settings-link,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sub-link,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-brand,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-label,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-nav-row,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-settings-link,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sub-link{color:var(--shell-ink)!important;}
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-nav-row:hover,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-nav-row.is-active,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-settings-link:hover,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-settings-link.is-active,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-nav-row:hover,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-nav-row.is-active,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-settings-link:hover,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-settings-link.is-active{background:var(--shell-surface)!important;color:var(--shell-ink)!important;}
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sidebar-quote,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-quote{background:var(--shell-surface)!important;border-color:var(--shell-border)!important;color:var(--shell-ink)!important;}
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sidebar-quote small,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-quote small{color:var(--shell-muted)!important;}
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.wellness-page[data-mood]) .shared-sidebar-quote>span,
+html[data-mindora-theme="dark"] .shared-dashboard-layout[data-palette-mode="mood"]:has(.mindful-moments-mood-page[data-mood]) .shared-sidebar-quote>span{background:var(--shell-sidebar)!important;color:var(--shell-accent)!important;}
 
 @media(prefers-reduced-motion:reduce){
  .shared-dashboard-layout:has(.wellness-page[data-mood]),
