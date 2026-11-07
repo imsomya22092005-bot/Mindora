@@ -4459,3 +4459,62 @@ html[data-mindora-theme="dark"] #root .mood-book-controls :is(.book-turn-button,
 .shared-settings-popover .theme-setting{min-height:46px;background:#fffdf0;border-color:#f1d6b4;color:#49342e;font-size:13px;cursor:pointer;}
 html[data-mindora-theme="dark"] .shared-settings-popover{background:#382d2a!important;border-color:#59443b!important;color:#fff3df!important;}
 html[data-mindora-theme="dark"] .shared-settings-popover .settings-popover-heading>button,html[data-mindora-theme="dark"] .shared-settings-popover .theme-setting{background:#45352f!important;border-color:#705242!important;color:#fff3df!important;}
+
+
+/* Unified mood palette layer: apply the active mood consistently to assessment,
+   sleep, academic stress, games and shared page surfaces. Default theme is untouched. */
+html[data-mindora-mood] #root :is(
+  .assessment-page,.assessment-heading,.assessment-panel,.assessment-mini-grid article,
+  .assessment-result-grid article,.assessment-sleep-result,.assessment-academic-result,
+  .assessment-sleep .assessment-fieldset,.academic-group,.assessment-profile-grid label,
+  .wellbeing-journey-hero,.student-observatory,.academic-overview,.sleep-rhythm-panel,
+  .sleep-overview,.dream-lab-intro,.games-page,.games-hero,.game-card,.game-info-card,
+  .game-settings,.game-instructions,.game-results,.game-result-card,.game-modal,
+  .play-unwind-card,.assessment-launch-card,.assessment-card,.sleep-launch,
+  .shared-dashboard-content,.shared-dashboard-layout
+) {
+  background-color:var(--mindora-mood-bg)!important;
+  border-color:var(--mindora-mood-border)!important;
+  color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-mood] #root :is(
+  .assessment-heading,.assessment-panel,.assessment-mini-grid article,
+  .assessment-result-grid article,.assessment-sleep-result,.assessment-academic-result,
+  .assessment-sleep .assessment-fieldset,.academic-group,.assessment-profile-grid label,
+  .wellbeing-journey-hero,.student-observatory,.academic-overview,.sleep-rhythm-panel,
+  .sleep-overview,.dream-lab-intro,.game-card,.game-info-card,.game-settings,
+  .game-instructions,.game-results,.game-result-card,.game-modal,
+  .play-unwind-card,.assessment-launch-card,.assessment-card,.sleep-launch,
+  #root [class*="card"],#root [class*="panel"],#root [class*="tile"],
+  #root [class*="surface"],#root [class*="widget"],#root [class*="popover"]
+) {
+  background-image:none!important;
+  background-color:var(--mindora-mood-surface)!important;
+  border-color:var(--mindora-mood-border)!important;
+  color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-mood] #root :is(
+  .assessment-heading h1,.assessment-heading h2,.assessment-panel h1,
+  .assessment-panel h2,.assessment-panel h3,.assessment-question,
+  .assessment-fieldset legend,.assessment-muted,.assessment-disclaimer,
+  .assessment-timeframe,.academic-overview h2,.academic-group h3,
+  .game-card h2,.game-card h3,.game-info-card h2,.game-info-card h3,
+  .game-settings h2,.game-instructions h2,.game-results h2
+) {color:var(--mindora-mood-ink)!important;-webkit-text-fill-color:var(--mindora-mood-ink)!important;}
+html[data-mindora-mood] #root :is(
+  .assessment-heading p,.assessment-panel p,.assessment-muted,
+  .assessment-disclaimer,.assessment-timeframe,.academic-group p,
+  .game-card p,.game-info-card p,.game-instructions p,.game-results p
+) {color:var(--mindora-mood-muted)!important;-webkit-text-fill-color:var(--mindora-mood-muted)!important;}
+html[data-mindora-mood] #root :is(
+  .assessment-mini-grid article>span,.section-number,.academic-chapter,
+  .assessment-result-grid article>b,.assessment-demo-flag,.assessment-mark
+) {background:var(--mindora-mood-highlight)!important;color:var(--mindora-mood-ink)!important;}
+html[data-mindora-mood] #root :is(
+  .assessment-primary,.assessment-launch-card .assessment-launch-icon,
+  .game-card .game-card-icon,.play-unwind-card .game-icon
+) {background:var(--mindora-mood-accent)!important;border-color:var(--mindora-mood-accent)!important;}
+html[data-mindora-mood] #root :is(
+  .assessment-options button,.assessment-secondary,.game-settings button,
+  .game-instructions button,.game-results button
+) {background:var(--mindora-mood-soft)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important;}
