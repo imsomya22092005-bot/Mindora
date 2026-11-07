@@ -95,7 +95,6 @@ export default function SharedSidebarLayout({children}) {
      <div className="settings-popover-heading"><strong>Settings</strong><button type="button" aria-label="Close settings" onClick={()=>setSettingsOpen(false)}><X size={16}/></button></div>
      <button type="button" className="theme-setting" onClick={()=>setDarkMode(v=>!v)}>{darkMode?<Sun size={17}/>:<Moon size={17}/>} {darkMode?"Switch to light mode":"Switch to dark mode"}</button>
      <button type="button" className={"theme-setting "+(paletteMode==="default"?"is-selected":"")} aria-pressed={paletteMode==="default"} onClick={()=>setPaletteMode("default")}><Sun size={17}/> {paletteMode==="default"?"✓ Default theme":"Use default theme"}</button>
-     <button type="button" className={"theme-setting "+(paletteMode==="mood"?"is-selected":"")} aria-pressed={paletteMode==="mood"} onClick={()=>setPaletteMode("mood")}><Sparkles size={17}/> {paletteMode==="mood"?"✓ Mood colours":"Use mood colours"}</button>
      <button type="button" className="theme-setting" onClick={()=>{setSettingsOpen(false);setMobileMenuOpen(false);navigate("/profile");}}><UserRound size={17}/> My profile</button>
      <button type="button" className="theme-setting logout-setting" onClick={handleLogout}><LogOut size={17}/> Log out</button>
     </div>}
