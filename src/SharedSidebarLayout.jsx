@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, BookOpen, BarChart3, Wind, Gamepad2, Settings, ChevronDown, Leaf, Sparkles, Menu, X, HeartHandshake, StickyNote } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { LayoutDashboard, BookOpen, BarChart3, Wind, Gamepad2, Settings, ChevronDown, Sparkles, Menu, X, HeartHandshake, StickyNote, Moon, Sun, UserRound, LogOut } from "lucide-react";
 import "./App.css";
 
 const mainItems = [
@@ -18,7 +18,19 @@ const mainItems = [
 
 export default function SharedSidebarLayout({children}) {
  const location=useLocation();
+ const navigate=useNavigate();
  const [mobileMenuOpen,setMobileMenuOpen]=useState(false);
+ const [settingsOpen,setSettingsOpen]=useState(false);
+ const [darkMode,setDarkMode]=useState(() => { try { return localStorage.getItem("mindora-theme")==="dark"; } catch { return false; } });
+ useEffect(() => {
+  document.documentElement.dataset.mindoraTheme = darkMode ? "dark" : "light";
+  try { localStorage.setItem("mindora-theme", darkMode ? "dark" : "light"); } catch {}
+ }, [darkMode]);
+ const handleLogout=()=>{
+  try { localStorage.removeItem("mindora-token"); localStorage.removeItem("mindora-user"); } catch {}
+  setSettingsOpen(false);
+  navigate("/login",{replace:true});
+ };
  const [savedMoodTheme, setSavedMoodTheme] = useState(() => {
   try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
   catch { return "default"; }
@@ -63,7 +75,15 @@ export default function SharedSidebarLayout({children}) {
    </nav>
    <div className="shared-sidebar-spacer"/>
    <div className="shared-sidebar-quote"><span><Sparkles size={20}/></span><p>You don’t have to have it all figured out today.</p><small>A gentle reminder</small></div>
-   <Link to="/profile" onClick={()=>setMobileMenuOpen(false)} className={"shared-settings-link "+(location.pathname==="/profile"?"is-active":"")}><Settings size={20}/>Settings</Link>
+   <div className="shared-settings-wrap">
+    <button type="button" onClick={()=>setSettingsOpen(v=>!v)} aria-expanded={settingsOpen} className={"shared-settings-link "+(settingsOpen?"is-active":"")}><Settings size={20}/>Settings</button>
+    {settingsOpen&&<div className="settings-popover shared-settings-popover">
+     <div className="settings-popover-heading"><strong>Settings</strong><button type="button" aria-label="Close settings" onClick={()=>setSettingsOpen(false)}><X size={16}/></button></div>
+     <button type="button" className="theme-setting" onClick={()=>setDarkMode(v=>!v)}>{darkMode?<Sun size={17}/>:<Moon size={17}/>} {darkMode?"Switch to light mode":"Switch to dark mode"}</button>
+     <button type="button" className="theme-setting" onClick={()=>{setSettingsOpen(false);setMobileMenuOpen(false);navigate("/profile");}}><UserRound size={17}/> My profile</button>
+     <button type="button" className="theme-setting logout-setting" onClick={handleLogout}><LogOut size={17}/> Log out</button>
+    </div>}
+   </div>
   </aside>
   <main className="shared-dashboard-content">{children}</main>
  </div>
