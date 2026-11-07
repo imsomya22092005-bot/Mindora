@@ -277,6 +277,15 @@ function Dashboard() {
   });
 
   useEffect(() => {
+    const syncTheme = (event) => {
+      const theme = event?.detail?.theme || localStorage.getItem("mindora-theme");
+      setDarkMode(theme === "dark");
+    };
+    window.addEventListener("mindora:theme-change", syncTheme);
+    return () => window.removeEventListener("mindora:theme-change", syncTheme);
+  }, []);
+
+  useEffect(() => {
     try {
       localStorage.setItem(
         "mindora-mood-history",
