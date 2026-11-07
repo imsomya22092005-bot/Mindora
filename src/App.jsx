@@ -1238,8 +1238,20 @@ function MoodThemeSync() {
   const location = useLocation();
   useEffect(() => {
     const isPublicPage = location.pathname === "/" || location.pathname === "/login" || location.pathname === "/signup";
-    const syncMood = (event) => {
+    const syncPreferences = (event) => {
       if (isPublicPage) {
+        delete document.documentElement.dataset.mindoraMood;
+        delete document.documentElement.dataset.mindoraPalette;
+        return;
+      }
+      let palette = event?.detail?.palette;
+      if (!palette) {
+        try { palette = localStorage.getItem("mindora-palette-mode") || "mood"; }
+        catch { palette = "mood"; }
+      }
+      document.documentElement.dataset.mindoraPalette = palette;
+      if (palette === "default") {
+        // Restore the original site's own light/dark styling instead of painting a guessed palette over it.
         delete document.documentElement.dataset.mindoraMood;
         return;
       }
@@ -1251,28 +1263,24 @@ function MoodThemeSync() {
       document.documentElement.dataset.mindoraMood = mood;
     };
     const syncTheme = () => {
-      try {
-        document.documentElement.dataset.mindoraTheme = localStorage.getItem("mindora-theme") === "dark" ? "dark" : "light";
-        document.documentElement.dataset.mindoraPalette = localStorage.getItem("mindora-palette-mode") || "mood";
-      } catch {
-        document.documentElement.dataset.mindoraTheme = "light";
-        document.documentElement.dataset.mindoraPalette = "mood";
-      }
+      try { document.documentElement.dataset.mindoraTheme = localStorage.getItem("mindora-theme") === "dark" ? "dark" : "light"; }
+      catch { document.documentElement.dataset.mindoraTheme = "light"; }
     };
-    syncMood();
+    syncPreferences();
     syncTheme();
-    window.addEventListener("mindora:mood-saved", syncMood);
-    window.addEventListener("storage", syncMood);
+    window.addEventListener("mindora:mood-saved", syncPreferences);
+    window.addEventListener("mindora:palette-change", syncPreferences);
+    window.addEventListener("storage", syncPreferences);
     window.addEventListener("storage", syncTheme);
     return () => {
-      window.removeEventListener("mindora:mood-saved", syncMood);
-      window.removeEventListener("storage", syncMood);
+      window.removeEventListener("mindora:mood-saved", syncPreferences);
+      window.removeEventListener("mindora:palette-change", syncPreferences);
+      window.removeEventListener("storage", syncPreferences);
       window.removeEventListener("storage", syncTheme);
     };
   }, [location.pathname]);
   return null;
 }
-
 function GlobalPagePreferences() {
   const location = useLocation();
   const [language, setLanguage] = useLanguage();
