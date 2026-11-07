@@ -4711,3 +4711,46 @@ html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
 html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
   .progress span,.assessment-progress span,.academic-track span,.sleep-overview-track span
 ) { background:var(--mindora-mood-accent)!important; }
+
+/* Bind older page-specific design tokens to the same global palette. */
+html[data-mindora-palette="mood"][data-mindora-mood] #root .wellness-page {
+  --wellness-bg:var(--mindora-mood-bg)!important;
+  --wellness-card:var(--mindora-mood-surface)!important;
+  --wellness-text:var(--mindora-mood-ink)!important;
+  --wellness-muted:var(--mindora-mood-muted)!important;
+  --wellness-green:var(--mindora-mood-accent)!important;
+  --wellness-light:var(--mindora-mood-highlight)!important;
+  --wellness-border:var(--mindora-mood-border)!important;
+}
+html[data-mindora-palette="mood"][data-mindora-mood] #root .mood-book-wrap[data-mood]:not([data-mood="default"]) {
+  --mood-surface:var(--mindora-mood-surface)!important;
+  --mood-text:var(--mindora-mood-ink)!important;
+  --mood-accent:var(--mindora-mood-accent)!important;
+  --mood-border:var(--mindora-mood-border)!important;
+  --mood-spine:var(--mindora-mood-surface)!important;
+  --mood-button-text:var(--mindora-mood-button-text)!important;
+}
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  .sticky-wall-board,.sticky-wall-composer,.sticky-note,.journal-diary-cover,
+  .journal-loose-page,.diary-editor,.diary-saved-card,.diary-prompt-card,
+  .scrapbook-editor,.assessment-profile-grid label,.assessment-sleep-result,
+  .assessment-academic-result,.assessment-fieldset,.academic-group,
+  .sleep-overview,.dream-window,.stress-orbit,.wellbeing-journey-hero,
+  .student-observatory,.academic-overview,.sleep-rhythm-panel,.game-instructions,
+  .game-settings,.game-result,.game-results,.game-modal,.colorpop-shell,
+  .burn-experience,.burn-confirm
+) {
+  background-color:var(--mindora-mood-surface)!important;
+  background-image:none!important;
+  border-color:var(--mindora-mood-border)!important;
+  color:var(--mindora-mood-ink)!important;
+}
+html[data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  .sticky-wall-board-caption,.sticky-wall-toolbar,.sticky-wall-empty,
+  .burn-letter,.burn-letter textarea,.colorpop-shell
+) { color:var(--mindora-mood-ink)!important; }
+html[data-mindora-theme="dark"][data-mindora-palette="mood"][data-mindora-mood] #root :is(
+  .sticky-note,.sticky-wall-board,.sticky-wall-composer,.burn-letter,
+  .burn-confirm,.colorpop-shell,.colorpop-level,.colorpop-preview,
+  .colorpop-result-stats>div
+) { background-color:var(--mindora-mood-surface)!important;border-color:var(--mindora-mood-border)!important;color:var(--mindora-mood-ink)!important; }
