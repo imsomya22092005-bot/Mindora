@@ -97,6 +97,7 @@ function Shell({eyebrow,title,subtitle,children,icon:Icon=Heart}) {
 }
 function OptionList({options,value,onChange}) { const [language]=useLanguage(); const hi=language==="hi"; return <div className="assessment-options">{options.map((o,i)=><button type="button" key={i} className={String(value)===String(i)?"is-selected":""} onClick={()=>onChange(i)}>{tr(o,hi)}</button>)}</div>; }
 export function WellbeingCheckinPage(){
+ const [language]=useLanguage(); const hi=language==="hi";
  const [step,setStep]=useState(-1),[answers,setAnswers]=useState({}),[result,setResult]=useState(false),[safety,setSafety]=useState(false);
  const questions=useMemo(()=>[...phq.map((q,i)=>({q,group:"Mood check",n:i+1})),...gad.map((q,i)=>({q,group:"Worry check",n:i+1}))],[]);
  const setAnswer=(v)=>setAnswers(a=>({...a,[step]:v}));
