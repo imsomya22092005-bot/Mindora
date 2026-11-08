@@ -27,6 +27,7 @@ import {
   Check,
   Gamepad2,
   StickyNote,
+  Menu,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -264,6 +265,7 @@ function Dashboard() {
   const [showSettings, setShowSettings] = useState(false);
   const [language, setLanguage] = useLanguage();
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const currentUser = (() => { try { return JSON.parse(localStorage.getItem("mindora-user") || "{}"); } catch { return {}; } })();
   const [bookPage, setBookPage] = useState(0);
   const t = (en, hi) => language === "hi" ? hi : en;
@@ -540,6 +542,7 @@ function Dashboard() {
   }
 
   function navigateTo(section) {
+    setMobileSidebarOpen(false);
     setActiveNav(section);
     if (section === "Overview") navigate("/dashboard");
     if (section === "Journal") navigate("/journal");
@@ -570,7 +573,7 @@ function Dashboard() {
 
   return (
     <div className={`app-shell ${darkMode ? "dark-theme" : ""}`} data-mood={paletteMode === "default" ? "default" : (savedMood?.label?.toLowerCase() || "default")}>
-      <aside className="sidebar">
+      <aside className={`sidebar ${mobileSidebarOpen ? "sidebar-open" : ""}`}>
         <button
           className="brand"
           onClick={() => navigateTo("Overview")}
@@ -649,6 +652,9 @@ function Dashboard() {
 
       <main className="main-content">
         <header className="topbar">
+          <button type="button" className="mobile-sidebar-toggle" onClick={() => setMobileSidebarOpen((open) => !open)} aria-label={mobileSidebarOpen ? "Close dashboard menu" : "Open dashboard menu"} aria-expanded={mobileSidebarOpen}>
+            {mobileSidebarOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
           <div className="breadcrumb">
             <span>{t("Your space", "आपकी जगह")}</span>
             <span className="breadcrumb-slash">/</span>
