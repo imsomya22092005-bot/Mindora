@@ -300,3 +300,47 @@ html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="great"] .sticky-wal
 .app-shell.dark-theme .sticky-wall-page[data-mood]:not([data-mood="default"]) .sticky-wall-composer :is(input,textarea){
   background:var(--ln-page)!important;color:var(--ln-ink)!important;border-color:var(--ln-line)!important;
 }
+
+
+/* Compact mobile heading: keep the title on one readable line. */
+@media(max-width:600px){
+  .sticky-wall-header{
+    display:grid!important;
+    grid-template-columns:36px minmax(0,1fr);
+    align-items:start!important;
+    gap:10px 11px!important;
+    width:100%;box-sizing:border-box;
+  }
+  .sticky-wall-back{width:36px;height:36px;grid-column:1;grid-row:1}
+  .sticky-wall-heading{
+    grid-column:2;grid-row:1;min-width:0;width:100%;
+  }
+  .sticky-wall-eyebrow{
+    display:flex;flex-wrap:nowrap;white-space:nowrap;
+    gap:5px;font-size:clamp(7px,2.1vw,9px);
+    letter-spacing:clamp(.45px,.25vw,.9px);
+    line-height:1.35;max-width:100%;
+  }
+  .sticky-wall-heading h1{
+    white-space:nowrap;overflow:visible;
+    font-size:clamp(25px,7.2vw,31px)!important;
+    line-height:1.15;letter-spacing:-.8px;
+    margin:8px 0 7px;
+  }
+  .sticky-wall-heading p{
+    max-width:100%;font-size:12px!important;
+    line-height:1.55;overflow-wrap:normal;word-break:normal;
+  }
+  .sticky-wall-add{
+    grid-column:2;grid-row:2;
+    justify-self:start;margin:0!important;
+    min-height:40px;padding:10px 14px!important;
+  }
+}
+@media(max-width:360px){
+  .sticky-wall-header{grid-template-columns:32px minmax(0,1fr);gap:9px!important}
+  .sticky-wall-back{width:32px;height:32px}
+  .sticky-wall-eyebrow{font-size:7px;letter-spacing:.35px}
+  .sticky-wall-heading h1{font-size:25px!important;letter-spacing:-1px}
+  .sticky-wall-heading p{font-size:11px!important}
+}
