@@ -1364,3 +1364,8 @@ html[data-mindora-theme="dark"][data-mindora-mood] .wellness-page[data-mood] :is
 .dark-theme .wellness-page[data-mood="meh"] :is(h1,h2,h3,p,.wellness-eyebrow,.wellness-muted,.care-item,.garden-growth-note){color:#F5E9E7!important}
 .dark-theme .wellness-page[data-mood="meh"] :is(button,input,textarea,select){background:#241923!important;border-color:#49303D!important;color:#F5E9E7!important}
 .dark-theme .wellness-page[data-mood="meh"] :is(.wellness-button.primary,.wellness-button:not(.secondary)){background:#E49A9D!important;border-color:#E49A9D!important;color:#1D141B!important}
+
+
+/* Use the actual Mindora favicon wherever the wellness pages show the brand mark. */
+.wellness-brand-favicon{display:block;width:25px;height:25px;object-fit:contain;flex:0 0 25px}
+.wellness-heading-favicon{display:block;width:100%;height:100%;max-width:48px;max-height:48px;object-fit:contain}
