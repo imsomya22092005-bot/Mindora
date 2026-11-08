@@ -91,7 +91,7 @@ export default function SharedSidebarLayout({children}) {
  return <div className="shared-dashboard-layout" data-palette-mode={paletteMode} data-mood={paletteMode === "default" ? "default" : savedMoodTheme}>
   <aside ref={sidebarRef} className={"shared-dashboard-sidebar "+(mobileMenuOpen?"mobile-menu-open":"")}>
    <div className="shared-sidebar-mobile-head">
-    <Link to="/dashboard" className="shared-sidebar-brand" onClick={()=>setMobileMenuOpen(false)}><span className="shared-brand-mark">✿</span><strong>mindora</strong></Link>
+    <Link to="/dashboard" className="shared-sidebar-brand" onClick={()=>setMobileMenuOpen(false)}><span className="shared-brand-mark"><img src="/favicon.svg" alt="" /></span><strong>mindora</strong></Link>
     <button type="button" className="shared-sidebar-hamburger" onClick={()=>setMobileMenuOpen(v=>!v)} aria-label={mobileMenuOpen?"Close navigation menu":"Open navigation menu"} aria-expanded={mobileMenuOpen}>{mobileMenuOpen?<X size={23}/>:<Menu size={23}/>}</button>
    </div>
    <div className="shared-sidebar-label">YOUR SPACE</div>
