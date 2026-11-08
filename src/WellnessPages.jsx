@@ -47,7 +47,7 @@ function Shell({ title, subtitle, icon, children }) {
           <ArrowLeft size={18} /> {hi ? "डैशबोर्ड पर वापस जाएँ" : "Back to Dashboard"}
         </Link>
         <span className="wellness-brand">
-          <Sprout size={22} /> Mindora
+          <img className="wellness-brand-favicon" src="/favicon.svg" alt="" /> Mindora
         </span>
       </header>
 
@@ -264,7 +264,7 @@ export function InnerGarden() {
     setCompleted((previous) => previous.includes(index) ? previous.filter((item) => item !== index) : [...previous, index]);
   }
   return (
-    <Shell title={hi ? "आपका अपना बगीचा" : "Your Inner Garden"} subtitle={hi ? "देखभाल के छोटे-छोटे कदम खूबसूरत चीज़ों को बढ़ने में मदद करते हैं।" : "Small acts of care help beautiful things grow."} icon={<Sprout size={28} />}>
+    <Shell title={hi ? "आपका अपना बगीचा" : "Your Inner Garden"} subtitle={hi ? "देखभाल के छोटे-छोटे कदम खूबसूरत चीज़ों को बढ़ने में मदद करते हैं।" : "Small acts of care help beautiful things grow."} icon={<img className="wellness-heading-favicon" src="/favicon.svg" alt="" />}>
       <div className="garden-summary">
         <div className="garden-landscape" aria-label="Six little plants, one for each act of care">
           <span className="garden-sun">☀</span><span className="garden-cloud garden-cloud-one">☁</span><span className="garden-cloud garden-cloud-two">☁</span>
