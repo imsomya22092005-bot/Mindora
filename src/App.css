@@ -4759,5 +4759,5 @@ html[data-mindora-theme="dark"][data-mindora-palette="mood"][data-mindora-mood] 
 /* Small-screen dashboard navigation */
 .mobile-sidebar-toggle{display:none;flex:0 0 38px;width:38px;height:38px;align-items:center;justify-content:center;border:1px solid #e6eae2;border-radius:11px;background:#fafbf8;color:#45634a;cursor:pointer}
 .dark-theme .mobile-sidebar-toggle{background:#263329;border-color:#3b4a3b;color:#e1e9df}
-@media(max-width:800px){.mobile-sidebar-toggle{display:inline-flex}.sidebar{z-index:1200}.sidebar.sidebar-open{transform:translateX(0);box-shadow:12px 0 40px rgba(34,48,36,.18)}.topbar{justify-content:flex-start}.topbar-actions{flex:1 1 auto}}
+@media(max-width:800px){.mobile-sidebar-toggle{display:inline-flex}.sidebar{z-index:1200}.sidebar.sidebar-open{transform:translateX(0);box-shadow:12px 0 40px rgba(34,48,36,.18)}.breadcrumb{display:none}.topbar{justify-content:flex-start}.topbar-actions{flex:1 1 auto}}
 @media(max-width:520px){.mobile-sidebar-toggle{margin-right:1px}.topbar-actions{min-width:0}}
