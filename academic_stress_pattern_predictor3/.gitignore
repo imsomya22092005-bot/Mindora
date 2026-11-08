@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environment
+venv/
+.venv/
+
+# Environment variables
+.env
+
+# Saved models
+stress_model_bundle.pkl
+
+# System files
+.DS_Store
+Thumbs.db
