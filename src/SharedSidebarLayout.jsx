@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LayoutDashboard, BookOpen, BarChart3, Wind, Gamepad2, Settings, ChevronDown, Sparkles, Menu, X, HeartHandshake, StickyNote, Moon, Sun, UserRound, LogOut } from "lucide-react";
 import "./App.css";
@@ -19,6 +19,18 @@ const mainItems = [
 export default function SharedSidebarLayout({children}) {
  const location=useLocation();
  const navigate=useNavigate();
+ // Reset page and nested content scroll whenever the user opens another section.
+ useLayoutEffect(()=>{
+  const resetPageScroll=()=>{
+   window.scrollTo({top:0,left:0,behavior:"instant"});
+   const content=document.querySelector(".shared-dashboard-content");
+   if(content) content.scrollTop=0;
+   document.querySelectorAll(".journal-page,.games-page,.assessment-page,.sticky-wall-page,.mindora-ai-page,.wellness-page").forEach(el=>{el.scrollTop=0;});
+  };
+  resetPageScroll();
+  const frame=window.requestAnimationFrame(resetPageScroll);
+  return ()=>window.cancelAnimationFrame(frame);
+ },[location.pathname,location.search]);
  const [mobileMenuOpen,setMobileMenuOpen]=useState(false);
  const sidebarRef=useRef(null);
  const [settingsOpen,setSettingsOpen]=useState(false);
