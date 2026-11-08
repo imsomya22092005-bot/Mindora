@@ -1,0 +1,23 @@
+# Saved ML Models
+*.pkl
+*.joblib
+*.h5
+*.keras
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.venv/
+
+# IDE
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
