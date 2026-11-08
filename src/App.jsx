@@ -498,30 +498,45 @@ function Dashboard() {
 
   function handleSearchSubmit(event) {
     if (event.key !== "Enter") return;
-    const query = searchText.trim().toLowerCase();
-    if (!query) return;
+    const raw = searchText.trim().toLowerCase();
+    if (!raw) return;
+    const normalize = (value) => value.toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").replace(/[^\\p{L}\\p{N}]+/gu, " ").trim();
+    const query = normalize(raw);
     const destinations = [
-      { path: "/dashboard", keys: ["dashboard", "overview", "home", "डैशबोर्ड", "मुख्य पृष्ठ", "mood", "मूड", "check in", "check-in", "चेक इन", "चेक-इन"] },
-      { path: "/journal", keys: ["journal", "diary", "diaries", "write", "writing", "notes", "डायरी", "जर्नल", "लिखना", "नोट्स"] },
-      { path: "/insights", keys: ["insight", "insights", "chart", "average", "trend", "patterns", "history", "जानकारी", "मूड इतिहास", "चार्ट", "पैटर्न", "रुझान"] },
-      { path: "/mindful-moments", keys: ["mindful", "breathing", "breath", "calm", "pause", "सुकून", "साँस", "सांस", "ध्यान", "विराम"] },
-      { path: "/mindora-ai", keys: ["ai wellbeing", "wellbeing ai", "emotion companion", "coping suggestions", "ai", "भावनात्मक साथी", "सुझाव"] },
-      { path: "/calm-corner", keys: ["calm corner", "comfort", "comfort box", "शांति", "सुकून कोना", "आराम"] },
-      { path: "/profile", keys: ["profile", "account", "my profile", "प्रोफ़ाइल", "खाता"] },
+      { path: "/dashboard", keys: ["dashboard", "overview", "home", "mood tracker", "mood check", "डैशबोर्ड", "मुख्य पृष्ठ", "होम", "मूड ट्रैकर"] },
+      { path: "/journal", keys: ["journal", "diary", "diaries", "write", "writing", "जर्नल", "डायरी", "लिखना"] },
+      { path: "/sticky-wall", keys: ["little notes", "sticky notes", "notes wall", "note wall", "छोटे नोट्स", "नोट्स", "स्टिकी नोट्स"] },
+      { path: "/insights", keys: ["insight", "insights", "mood history", "history", "charts", "जानकारियां", "जानकारी", "मूड इतिहास", "चार्ट"] },
+      { path: "/mindful-moments", keys: ["mindful moments", "mindfulness", "सुकून के पल", "ध्यान के पल"] },
+      { path: "/calm-corner", keys: ["calm corner", "शांति कोना", "सुकून कोना"] },
+      { path: "/inner-garden", keys: ["inner garden", "garden", "आंतरिक बगीचा", "मन का बगीचा"] },
+      { path: "/comfort-box", keys: ["little comfort box", "comfort box", "आराम का डिब्बा", "सुकून का बॉक्स"] },
+      { path: "/soundscape", keys: ["mood soundscape", "soundscape", "sounds", "ध्वनि", "मूड साउंडस्केप"] },
+      { path: "/mindora-ai", keys: ["ai wellbeing", "wellbeing ai", "emotion companion", "coping suggestions", "mindora ai", "ai", "भावनात्मक साथी", "सहायता सुझाव", "एआई वेलबीइंग"] },
+      { path: "/wellbeing-checkin", keys: ["wellbeing check in", "wellbeing checkin", "mental health check", "phq 9", "gad 7", "mood check in", "वेलबीइंग चेक इन", "मानसिक स्वास्थ्य जांच", "मूड जांच"] },
+      { path: "/sleep-check", keys: ["sleep check", "sleep assessment", "sleep", "नींद की जांच", "नींद जांच", "नींद"] },
+      { path: "/academic-stress", keys: ["academic stress predictor", "academic stress", "stress predictor", "student stress", "अकादमिक तनाव", "पढ़ाई का तनाव", "तनाव प्रेडिक्टर"] },
+      { path: "/games", keys: ["play and unwind", "play unwind", "games", "game zone", "खेलें और सुकून पाएं", "गेम", "खेल"] },
+      { path: "/games?game=color-pop", keys: ["color pop", "colour pop", "कलर पॉप"] },
+      { path: "/games?game=starweave", keys: ["starweave", "star weave", "स्टारवीव"] },
+      { path: "/games?game=let-it-burn", keys: ["let it burn", "लेट इट बर्न"] },
+      { path: "/games?game=picture-puzzle", keys: ["picture puzzle", "puzzle", "पहेली", "पिक्चर पज़ल"] },
+      { path: "/profile", keys: ["profile", "my profile", "account", "प्रोफाइल", "मेरी प्रोफाइल", "खाता"] },
       { path: "/settings", keys: ["settings", "setting", "सेटिंग", "सेटिंग्स"] },
     ];
-    const match = destinations.find((item) => item.keys.some((key) => key.includes(query) || query.includes(key)));
+    const match = destinations.find((item) => item.keys.some((key) => {
+      const normalizedKey = normalize(key);
+      return normalizedKey === query || normalizedKey.startsWith(query) || query.startsWith(normalizedKey);
+    }));
     if (match) {
       if (match.path === "/settings") setShowSettings(true);
       else navigate(match.path);
       setSearchText("");
-    } else {
-      const activityMatch = filteredActivity.find((item) => item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query));
-      if (activityMatch?.id.startsWith("journal-")) {
-        navigate("/journal");
-        setSearchText("");
-      }
+      return;
     }
+    const activityMatch = filteredActivity.find((item) => normalize(item.title).includes(query) || normalize(item.description).includes(query));
+    if (activityMatch?.id.startsWith("journal-")) navigate("/journal");
+    setSearchText("");
   }
 
   function navigateTo(section) {
