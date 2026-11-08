@@ -965,3 +965,72 @@ html[data-mindora-palette="default"][data-mindora-theme="dark"] #root .mindora-s
 html[data-mindora-palette="default"][data-mindora-theme="dark"] #root .mindora-section-page.journal-mood-page .journal-diary-cover .journal-open-button{
  background:#ED9455!important;border-color:#ED9455!important;color:#2B211D!important;-webkit-text-fill-color:#2B211D!important;
 }
+
+
+/* Mobile journal: keep the header clear and the writing sheet above the diary. */
+.section-brand-mark img{display:block;width:100%;height:100%;object-fit:contain}
+@media(max-width:600px){
+  .section-page-header{padding-top:12px;margin-bottom:24px}
+  .section-page-brand{
+    position:relative;top:auto;left:auto;transform:none;
+    justify-content:center;gap:9px;margin:14px auto 18px;
+  }
+  .section-brand-mark{width:34px;height:34px;flex:0 0 34px;overflow:hidden}
+  .section-brand-name{font-size:21px;line-height:1}
+  .section-page-title{margin:0 auto;max-width:100%;padding:0 4px}
+  .section-page-title h1{font-size:clamp(29px,8vw,36px);line-height:1.16;overflow-wrap:anywhere}
+  .section-page-title p{font-size:12px;line-height:1.65}
+  .section-page-eyebrow{font-size:9px;letter-spacing:1.15px;justify-content:center;text-align:center}
+  .journal-diary-scene{min-height:370px;padding:8px 0;overflow:visible}
+  .journal-diary-scene.diary-is-open{
+    z-index:40;isolation:isolate;min-height:370px!important;
+  }
+  .journal-diary-scene.diary-is-open .journal-diary-cover,
+  .journal-diary-scene.diary-is-open .journal-cover-content{
+    min-height:350px!important;
+  }
+  .journal-diary-scene.diary-is-open .journal-diary-cover{transform:scale(.97)}
+  .journal-diary-scene.diary-is-open .journal-loose-page{
+    position:absolute!important;z-index:50!important;
+    top:8px!important;left:50%!important;right:auto!important;
+    width:calc(100% - 12px)!important;
+    min-height:0!important;height:auto!important;
+    max-height:min(78dvh,720px)!important;
+    overflow-x:hidden!important;overflow-y:auto!important;
+    margin:0!important;padding:0!important;
+    transform:translateX(-50%)!important;
+    overscroll-behavior:contain;
+    box-shadow:0 18px 48px rgba(39,54,36,.3),0 0 0 100vmax rgba(35,30,28,.16);
+  }
+  .journal-diary-scene.diary-is-open .journal-page-body{padding:16px 13px 18px}
+  .journal-diary-scene.diary-is-open .journal-page-top{
+    position:sticky;top:0;z-index:3;gap:7px;
+    padding:10px 13px;font-size:7px;
+  }
+  .journal-diary-scene.diary-is-open .journal-writing-scrapbook{
+    display:grid;grid-template-columns:minmax(0,1fr)!important;gap:12px;
+  }
+  .journal-diary-scene.diary-is-open .journal-writing-column{min-width:0}
+  .journal-diary-scene.diary-is-open .journal-writing-column textarea{
+    min-height:120px;max-height:190px;margin-top:6px;padding:10px 0;
+  }
+  .journal-diary-scene.diary-is-open .journal-photo-side{min-width:0}
+  .journal-diary-scene.diary-is-open .scrapbook-editor{margin-top:8px;padding:10px}
+  .journal-diary-scene.diary-is-open .scrapbook-tools{
+    align-items:flex-start;flex-direction:column;gap:8px;
+  }
+  .journal-diary-scene.diary-is-open .scrapbook-tools h3{font-size:16px;line-height:1.25}
+  .journal-diary-scene.diary-is-open .scrapbook-tools p{font-size:10px}
+  .journal-diary-scene.diary-is-open .scrapbook-decoration-tools{display:flex;flex-wrap:wrap;gap:7px}
+  .journal-diary-scene.diary-is-open .scrapbook-canvas{min-height:150px!important;height:150px;max-height:150px}
+  .journal-diary-scene.diary-is-open .journal-page-actions{
+    position:sticky;bottom:0;z-index:4;
+    display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
+    gap:8px;margin:12px -13px -18px;padding:10px 13px;
+    background:inherit;border-top:1px solid rgba(130,110,90,.2);
+  }
+  .journal-diary-scene.diary-is-open .journal-page-actions button{
+    min-width:0;min-height:42px;padding:8px 7px;font-size:10px;white-space:normal;
+  }
+  .journal-lower-grid,.diary-entries{position:relative;z-index:0}
+}
