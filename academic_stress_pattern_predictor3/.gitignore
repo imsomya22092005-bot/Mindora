@@ -12,9 +12,6 @@ venv/
 # Environment variables
 .env
 
-# Saved models
-stress_model_bundle.pkl
-
 # System files
 .DS_Store
 Thumbs.db
