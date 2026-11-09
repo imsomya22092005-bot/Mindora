@@ -1,0 +1,22 @@
+{
+  "study_load": 5,
+  "academic_performance": 2,
+  "future_career_concerns": 5,
+  "teacher_student_relationship": 2,
+  "sleep_quality": 1,
+  "headache": 4,
+  "breathing_problem": 4,
+  "blood_pressure": 3,
+  "social_support": 0,
+  "peer_pressure": 4,
+  "extracurricular_activities": 3,
+  "bullying": 3,
+  "noise_level": 4,
+  "living_conditions": 2,
+  "safety": 2,
+  "basic_needs": 2,
+  "anxiety_level": 20,
+  "self_esteem": 8,
+  "depression": 20,
+  "mental_health_history": 1
+}
