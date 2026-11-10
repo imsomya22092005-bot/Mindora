@@ -781,3 +781,32 @@ html[data-mindora-palette="default"] #root .assessment-page :is(.assessment-resu
 html[data-mindora-palette="default"] #root .assessment-page :is(.sleep-reflections-completed,.sleep-reflection-progress-label,.sleep-progress-count){
  color:#49342E!important;-webkit-text-fill-color:#49342E!important;
 }
+
+/* Academic Stress Predictor — API-driven result presentation */
+.academic-result-level{margin:22px 0 14px;padding:20px;border-radius:18px;background:#fffdf4;border:1px solid #f0dfc5}
+.academic-result-level>span{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8a705e}
+.academic-result-level h2{font-size:clamp(30px,5vw,42px);margin:6px 0 0;text-transform:capitalize}
+.academic-level-gauge{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:14px 0 22px}
+.academic-level-segment{min-height:48px;display:grid;place-items:center;padding:8px;border-radius:12px;background:#f1e8d9;border:1px solid #e4d6c3;color:#756555;font-weight:800;font-size:13px}
+.academic-level-segment.is-active{background:#ffec9e;border:2px solid #ed9455;color:#49342e;box-shadow:0 5px 16px #ed945522}
+.academic-factor-section{margin:20px 0}
+.academic-factor-section>b{display:block;margin-bottom:10px}
+.academic-factor-chips{display:flex;flex-wrap:wrap;gap:8px}
+.academic-factor-chip{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:#fff1d1;border:1px solid #edcf9f;color:#694b34;font-size:12px;font-weight:750}
+.academic-api-message{white-space:pre-wrap;line-height:1.7;color:#604c40;margin:18px 0}
+.academic-api-disclaimer{white-space:pre-wrap;margin-top:12px}
+.academic-support-link{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:18px;margin-top:20px;border-radius:16px;background:#fff4df;border:1px solid #edcf9f}
+.academic-support-link b{color:#49342e}
+.academic-support-link p{margin:5px 0 0;color:#806b61;font-size:13px}
+.academic-support-link a{display:inline-flex;align-items:center;gap:7px;color:#8d4f2d;font-weight:850;text-decoration:none}
+.academic-support-link a:hover{text-decoration:underline}
+.academic-result-actions{justify-content:flex-start}
+html[data-mindora-theme="dark"] .academic-result-level{background:#302725;border-color:#705242}
+html[data-mindora-theme="dark"] .academic-result-level>span,html[data-mindora-theme="dark"] .academic-result-level h2{color:#fff3df}
+html[data-mindora-theme="dark"] .academic-level-segment{background:#302725;border-color:#705242;color:#e6d4c3}
+html[data-mindora-theme="dark"] .academic-level-segment.is-active{background:#59443b;border-color:#ed9455;color:#fff3df}
+html[data-mindora-theme="dark"] .academic-factor-chip{background:#45352f;border-color:#705242;color:#fff3df}
+html[data-mindora-theme="dark"] .academic-api-message{color:#e6d4c3}
+html[data-mindora-theme="dark"] .academic-support-link{background:#302725;border-color:#705242}
+html[data-mindora-theme="dark"] .academic-support-link b,html[data-mindora-theme="dark"] .academic-support-link p{color:#fff3df}
+html[data-mindora-theme="dark"] .academic-support-link a{color:#ffcf9a}
