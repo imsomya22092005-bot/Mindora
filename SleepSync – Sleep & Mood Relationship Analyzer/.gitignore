@@ -1,9 +1,3 @@
-# Saved ML Models
-*.pkl
-*.joblib
-*.h5
-*.keras
-
 # Python cache
 __pycache__/
 *.pyc
@@ -21,3 +15,7 @@ venv/
 # System files
 .DS_Store
 Thumbs.db
+
+# Dataset and survey records
+dataset/
+cleaned_data.csv
