@@ -1,27 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
+const CopingFeedback = require('../models/CopingFeedback');
 const { protect } = require('../middleware/auth');
 
 // Base URLs for ML Services
 const EMOTION_API_URL = (process.env.EMOTION_API_URL || 'https://mindora-82go.onrender.com').replace(/\/$/, '');
 const COPING_API_URL = (process.env.COPING_API_URL || 'https://mindora-1-2tup.onrender.com').replace(/\/$/, '');
+const SLEEP_API_URL = (process.env.SLEEP_API_URL || 'https://sleepsync-cq8v.onrender.com').replace(/\/$/, '');
+const STRESS_API_URL = (process.env.STRESS_API_URL || 'https://academic-stress-pattern-predictor3.onrender.com').replace(/\/$/, '');
+const MINDCHECK_API_URL = (process.env.MINDCHECK_API_URL || 'https://mindcheck-api.onrender.com').replace(/\/$/, '');
 
 const MOODS = ['stress', 'anxiety', 'frustration', 'sadness', 'low_energy', 'overwhelmed', 'loneliness', 'restlessness'];
 const TIMES = ['morning', 'afternoon', 'evening', 'night'];
 
-// Inline CopingFeedback model to avoid MODULE_NOT_FOUND errors
-const CopingFeedback = mongoose.models.CopingFeedback || mongoose.model('CopingFeedback', new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  activity_id: { type: String, required: true },
-  action: { type: String, enum: ['completed', 'dropped', 'skipped'], required: true },
-  rating: { type: Number, min: 1, max: 5 },
-  createdAt: { type: Date, default: Date.now }
-}));
-
-/**
- * Robust JSON Forwarder with 60s timeout for Render free-tier cold starts
- */
 async function forwardJson(url, body, res, apiKey = null) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 60000);
@@ -96,12 +87,41 @@ router.get('/coping/health', async (req, res) => {
   }
 });
 
+router.get('/sleep/health', async (req, res) => {
+  try {
+    const response = await fetch(`${SLEEP_API_URL}/health`);
+    const data = await response.json();
+    return res.status(200).json({ success: true, sleepML: data });
+  } catch (err) {
+    return res.status(502).json({ success: false, error: 'SleepSync ML service is offline or sleeping.' });
+  }
+});
+
+router.get('/stress/health', async (req, res) => {
+  try {
+    const response = await fetch(`${STRESS_API_URL}/health`);
+    const data = await response.json();
+    return res.status(200).json({ success: true, stressML: data });
+  } catch (err) {
+    return res.status(502).json({ success: false, error: 'Stress ML service is offline or sleeping.' });
+  }
+});
+
+router.get('/mindcheck/health', async (req, res) => {
+  try {
+    const response = await fetch(`${MINDCHECK_API_URL}/health`);
+    const data = await response.json();
+    return res.status(200).json({ success: true, mindcheckML: data });
+  } catch (err) {
+    return res.status(502).json({ success: false, error: 'MindCheck ML service is offline or sleeping.' });
+  }
+});
+
 /* =======================================================
    2. PROTECTED ROUTES (JWT Required)
    ======================================================= */
 router.use(protect);
 
-// POST /api/ml/coping/recommend
 router.post('/coping/recommend', async (req, res) => {
   try {
     const body = req.body || {};
@@ -131,7 +151,6 @@ router.post('/coping/recommend', async (req, res) => {
   }
 });
 
-// POST /api/ml/coping/feedback
 router.post('/coping/feedback', async (req, res) => {
   try {
     const body = req.body || {};
@@ -176,7 +195,6 @@ router.post('/coping/feedback', async (req, res) => {
   }
 });
 
-// POST /api/ml/emotion/chat
 router.post('/emotion/chat', async (req, res) => {
   const { message } = req.body || {};
   if (!message || typeof message !== 'string') {
@@ -185,14 +203,161 @@ router.post('/emotion/chat', async (req, res) => {
   return forwardJson(`${EMOTION_API_URL}/chat`, req.body, res);
 });
 
-// POST /api/ml/emotion/analyze
 router.post('/emotion/analyze', async (req, res) => {
   return forwardJson(`${EMOTION_API_URL}/analyze`, req.body, res);
 });
 
-// POST /api/ml/emotion/reset
 router.post('/emotion/reset', async (req, res) => {
   return forwardJson(`${EMOTION_API_URL}/reset`, req.body, res);
+});
+
+
+// sleepSync routes
+
+router.get('/sleep/questions', async (req, res) => {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 60000);
+
+  try {
+    const response = await fetch(`${SLEEP_API_URL}/questions`, {
+      signal: controller.signal
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      return res.status(response.status).json({
+        success: false,
+        error: data.error || data.message || 'Failed to fetch SleepSync questions.'
+      });
+    }
+
+    return res.status(200).json({ success: true, ...data });
+  } catch (err) {
+    const timedOut = err && err.name === 'AbortError';
+    return res.status(502).json({
+      success: false,
+      error: timedOut
+        ? 'SleepSync service wake-up timed out.'
+        : 'SleepSync service is temporarily unavailable.'
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
+});
+
+router.post('/sleep/predict', async (req, res) => {
+  const body = req.body;
+  if (!body || typeof body !== 'object' || Object.keys(body).length === 0) {
+    return res.status(400).json({
+      success: false,
+      error: 'Request body with all 15 SleepSync input fields is required.'
+    });
+  }
+
+  return forwardJson(`${SLEEP_API_URL}/predict`, body, res);
+});
+
+
+// Academic stress routes
+
+router.get('/stress/features', async (req, res) => {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 60000);
+
+  try {
+    const response = await fetch(`${STRESS_API_URL}/api/features`, {
+      signal: controller.signal
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      return res.status(response.status).json({
+        success: false,
+        error: data.error || data.message || 'Failed to fetch stress model features.'
+      });
+    }
+
+    return res.status(200).json({ success: true, ...data });
+  } catch (err) {
+    const timedOut = err && err.name === 'AbortError';
+    return res.status(502).json({
+      success: false,
+      error: timedOut
+        ? 'Stress ML service wake-up timed out.'
+        : 'Stress ML service is temporarily unavailable.'
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
+});
+
+router.post('/stress/predict', async (req, res) => {
+  const body = req.body;
+  if (!body || typeof body !== 'object' || Object.keys(body).length === 0) {
+    return res.status(400).json({
+      success: false,
+      error: 'Request body with all 16 input features is required.'
+    });
+  }
+
+  // Strip deprecated fields from the older 20-feature version if sent by mistake
+  const {
+    anxiety_level,
+    self_esteem,
+    depression,
+    mental_health_history,
+    ...cleanPayload
+  } = body;
+
+  return forwardJson(`${STRESS_API_URL}/api/predict`, cleanPayload, res);
+});
+
+
+// Mindcheck routes
+
+router.post('/mindcheck/score', async (req, res) => {
+  const { phq9_answers, gad7_answers } = req.body || {};
+
+  if (!Array.isArray(phq9_answers) || phq9_answers.length !== 9) {
+    return res.status(400).json({
+      success: false,
+      error: 'phq9_answers must be an array of exactly 9 integers (0-3).'
+    });
+  }
+
+  if (!Array.isArray(gad7_answers) || gad7_answers.length !== 7) {
+    return res.status(400).json({
+      success: false,
+      error: 'gad7_answers must be an array of exactly 7 integers (0-3).'
+    });
+  }
+
+  return forwardJson(`${MINDCHECK_API_URL}/api/score`, { phq9_answers, gad7_answers }, res);
+});
+
+router.post('/mindcheck/predict', async (req, res) => {
+  const body = req.body;
+  if (!body || typeof body !== 'object' || Object.keys(body).length === 0) {
+    return res.status(400).json({
+      success: false,
+      error: 'Request body with isi_answers, pss_answers, and demographic fields is required.'
+    });
+  }
+
+  return forwardJson(`${MINDCHECK_API_URL}/api/predict`, body, res);
+});
+
+router.post('/mindcheck/screen', async (req, res) => {
+  const { phq9_answers, gad7_answers } = req.body || {};
+
+  if (!Array.isArray(phq9_answers) || phq9_answers.length !== 9 || !Array.isArray(gad7_answers) || gad7_answers.length !== 7) {
+    return res.status(400).json({
+      success: false,
+      error: 'Valid phq9_answers (9 items) and gad7_answers (7 items) arrays are required.'
+    });
+  }
+
+  return forwardJson(`${MINDCHECK_API_URL}/api/screen`, req.body, res);
 });
 
 module.exports = router;
