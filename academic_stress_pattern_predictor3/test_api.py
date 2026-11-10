@@ -5,8 +5,11 @@ from pathlib import Path
 from app import app, FEATURES
 
 client = app.test_client()
-example = json.loads((Path(__file__).parent / "example_request.json").read_text())
-example = {k: v for k, v in example.items() if k in FEATURES}
+example = json.loads(
+    (Path(__file__).parent / "example_request.json").read_text(encoding="utf-8")
+)
+if set(example) != set(FEATURES):
+    raise ValueError("example_request.json must contain exactly the 16 model features.")
 checks = []
 
 

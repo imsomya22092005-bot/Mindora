@@ -14,9 +14,5 @@
   "noise_level": 4,
   "living_conditions": 2,
   "safety": 2,
-  "basic_needs": 2,
-  "anxiety_level": 20,
-  "self_esteem": 8,
-  "depression": 20,
-  "mental_health_history": 1
+  "basic_needs": 2
 }

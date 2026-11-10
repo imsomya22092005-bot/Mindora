@@ -48,10 +48,6 @@ FEATURE_INFO = {
     "living_conditions": (0, 5, "How comfortable is your living space?"),
     "safety": (0, 5, "How safe do you feel where you live?"),
     "basic_needs": (0, 5, "How well are your basic needs met (food, rest, money)?"),
-    "anxiety_level": (0, 21, "Anxiety score (0 to 21)"),
-    "self_esteem": (0, 30, "Self-esteem score (0 to 30)"),
-    "depression": (0, 27, "Depression score (0 to 27)"),
-    "mental_health_history": (0, 1, "Mental health history (0 = no, 1 = yes)"),
 }
 
 # Same wording as the notebook. Only these factors appear in the advice text.
@@ -72,8 +68,7 @@ PHRASES = {
 }
 # Health and mental health columns can be used by the model but are never shown as advice factors.
 NOT_IN_TEXT = {
-    "blood_pressure", "breathing_problem", "headache",
-    "anxiety_level", "self_esteem", "mental_health_history", "depression",
+    "blood_pressure", "breathing_problem", "headache"
 }
 
 
@@ -94,6 +89,8 @@ def load_bundle(path):
 BUNDLE = load_bundle(MODEL_PATH)
 MODEL = BUNDLE["model"]
 FEATURES = list(BUNDLE["features"])
+if set(FEATURES) != set(FEATURE_INFO):
+    raise RuntimeError("Model features do not match FEATURE_INFO.")
 LABELS = {int(k): v for k, v in BUNDLE["labels"].items()}
 IMPORTANCE = BUNDLE["importance"]
 MEDIANS = BUNDLE["medians"]
