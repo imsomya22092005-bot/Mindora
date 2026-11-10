@@ -34,6 +34,7 @@ function Localized({ children, hi }) {
   if (typeof node === "number" || node == null || typeof node === "boolean") return node;
   if (Array.isArray(node)) return node.map(walk);
   if (!React.isValidElement(node)) return node;
+  if (node.props?.["data-raw-api"]) return node;
   const props = { ...node.props };
   for (const key of ["placeholder","title","aria-label","alt"]) if (typeof props[key] === "string") props[key] = translate(props[key], hi);
   if (props.children !== undefined) props.children = walk(props.children);
@@ -172,9 +173,9 @@ export function AcademicStressPage(){
    <div className="academic-level-gauge" role="img" aria-label={"Stress level: "+levelLabel}>
     {["Low","Moderate","High"].map(level=><div key={level} className={"academic-level-segment"+(level===levelLabel?" is-active":"")}><span>{hi?(level==="Low"?"कम":level==="Moderate"?"मध्यम":"अधिक"):level}</span></div>)}
    </div>
-   {Array.isArray(result.factors)&&result.factors.length>0?<div className="academic-factor-section"><b>{hi?"जुड़े हुए कारक":"Associated factors"}</b><div className="academic-factor-chips">{result.factors.map((factor,index)=><span className="academic-factor-chip" key={index}>{String(factor)}</span>)}</div></div>:null}
-   {result.message!=null?<p className="academic-api-message">{String(result.message)}</p>:null}
-   {result.disclaimer!=null?<p className="assessment-disclaimer academic-api-disclaimer">{String(result.disclaimer)}</p>:null}
+   {Array.isArray(result.factors)&&result.factors.length>0?<div className="academic-factor-section"><b>{hi?"जुड़े हुए कारक":"Associated factors"}</b><div className="academic-factor-chips">{result.factors.map((factor,index)=><span className="academic-factor-chip" data-raw-api="true" key={index}>{String(factor)}</span>)}</div></div>:null}
+   {result.message!=null?<p className="academic-api-message" data-raw-api="true">{String(result.message)}</p>:null}
+   {result.disclaimer!=null?<p className="assessment-disclaimer academic-api-disclaimer" data-raw-api="true">{String(result.disclaimer)}</p>:null}
    {result.support_suggested===true?<div className="academic-support-link"><div><b>{hi?"किसी से बात करना मददगार हो सकता है":"Support is available"}</b><p>{hi?"अपने आसपास सहायता सेवाएँ खोजें।":"Explore confidential support options near you."}</p></div><a href="https://findahelpline.com/countries/in" target="_blank" rel="noreferrer">{hi?"अपने पास सहायता खोजें":"Find support near you"} <ArrowRight size={15}/></a></div>:null}
    <div className="assessment-actions academic-result-actions"><button type="button" className="assessment-primary" onClick={clear}><RotateCcw size={15}/>{hi?"फिर से प्रयास करें":"Try Again / Clear"}</button></div>
   </section>:null}
