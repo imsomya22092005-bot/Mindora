@@ -344,3 +344,64 @@ html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="great"] .sticky-wal
   .sticky-wall-heading h1{font-size:25px!important;letter-spacing:-1px}
   .sticky-wall-heading p{font-size:11px!important}
 }
+
+
+/* DEFAULT palette: Little Notes follows the app-wide yellow/orange theme. */
+.sticky-wall-page[data-mood="default"] {
+  background:var(--ln-page)!important;
+  color:var(--ln-ink)!important;
+}
+.sticky-wall-page[data-mood="default"] .sticky-wall-heading h1,
+.sticky-wall-page[data-mood="default"] .sticky-wall-heading h1 em {color:var(--ln-ink)!important;}
+.sticky-wall-page[data-mood="default"] .sticky-wall-heading h1 em,
+.sticky-wall-page[data-mood="default"] .sticky-wall-eyebrow,
+.sticky-wall-page[data-mood="default"] .sticky-wall-empty-kicker {color:var(--ln-accent)!important;}
+.sticky-wall-page[data-mood="default"] .sticky-wall-heading p,
+.sticky-wall-page[data-mood="default"] .sticky-wall-empty p {color:var(--ln-muted)!important;}
+.sticky-wall-page[data-mood="default"] .sticky-wall-back {
+  background:var(--ln-surface)!important;border-color:var(--ln-line)!important;color:var(--ln-ink)!important;
+}
+.sticky-wall-page[data-mood="default"] :is(.sticky-wall-add,.sticky-wall-empty button,.sticky-wall-pin-button) {
+  background:var(--ln-button)!important;border:1px solid var(--ln-button)!important;color:var(--ln-button-text)!important;
+}
+.sticky-wall-page[data-mood="default"] .sticky-wall-board {
+  background:linear-gradient(135deg,#FFF3C4,#FFEC9E 52%,#FFD49A)!important;
+  border-color:var(--ln-line)!important;
+  box-shadow:inset 0 0 70px rgba(181,108,61,.10),0 18px 42px rgba(94,76,53,.08)!important;
+}
+.sticky-wall-page[data-mood="default"] .sticky-wall-string {background:rgba(115,82,61,.28)!important;}
+.sticky-wall-page[data-mood="default"] .sticky-wall-empty {color:var(--ln-ink)!important;}
+.sticky-wall-page[data-mood="default"] .sticky-wall-empty-icon {
+  background:#FFF8E8!important;border-color:#E8C98F!important;color:#B56C3D!important;
+}
+.sticky-wall-page[data-mood="default"] .sticky-wall-add-tile {
+  background:rgba(255,253,245,.42)!important;border-color:rgba(115,82,61,.35)!important;color:var(--ln-ink)!important;
+}
+.sticky-wall-page[data-mood="default"] .sticky-wall-board-caption {color:#806044!important;}
+.sticky-wall-page[data-mood="default"] .sticky-wall-decor {color:#C7834B!important;}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-board {
+  background:linear-gradient(135deg,#49372F,#382D29 52%,#302725)!important;
+  border-color:#705242!important;
+  box-shadow:inset 0 0 70px rgba(0,0,0,.16),0 18px 42px rgba(0,0,0,.18)!important;
+}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-heading h1,
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-heading p,
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-empty,
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-empty p,
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-board-caption {
+  color:#FFF3DF!important;
+}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-heading h1 em,
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-eyebrow,
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-empty-kicker,
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-decor {
+  color:#FFBB70!important;
+}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-back,
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-empty-icon {
+  background:#45352F!important;border-color:#705242!important;color:#FFF3DF!important;
+}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-add-tile {
+  background:rgba(69,53,47,.72)!important;border-color:#8B654D!important;color:#FFF3DF!important;
+}
+html[data-mindora-theme="dark"] .sticky-wall-page[data-mood="default"] .sticky-wall-board-caption {color:#E6D4C3!important;}
