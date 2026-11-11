@@ -960,3 +960,61 @@ html[data-mindora-theme="dark"] #root .assessment-page .assessment-safety span {
   opacity: 1 !important;
   text-shadow: none !important;
 }
+
+
+/* DEFAULT PALETTE + DARK MODE: Sleep Reflection contrast.
+   Must come after default-light overrides above so dark mode always wins. */
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root .assessment-page.assessment-sleep :is(
+  .dream-lab-intro,.sleep-rhythm-panel,.assessment-panel,.assessment-fieldset,.sleep-overview
+) {
+  background: #382d29 !important;
+  background-image: none !important;
+  border-color: #665043 !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root .assessment-page.assessment-sleep :is(
+  h1,h2,h3,h4,legend,.assessment-muted,.assessment-heading p,.assessment-section-intro span,
+  .overview-kicker,.dream-lab-copy p,.sleep-rhythm-head strong,.sleep-rhythm-head small,
+  .sleep-rhythm-panel > p,.sleep-time-controls label,.assessment-fieldset legend,
+  .assessment-fieldset p,.sleep-overview strong,.sleep-overview small,.sleep-overview p
+) {
+  color: #fff3df !important;
+  -webkit-text-fill-color: #fff3df !important;
+  opacity: 1 !important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root .assessment-page.assessment-sleep .assessment-options button {
+  background: #49372f !important;
+  background-image: none !important;
+  border-color: #765b49 !important;
+  color: #fff3df !important;
+  -webkit-text-fill-color: #fff3df !important;
+  opacity: 1 !important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root .assessment-page.assessment-sleep .assessment-options button.is-selected {
+  background: #73543e !important;
+  border-color: #ffbb70 !important;
+  color: #fff8eb !important;
+  -webkit-text-fill-color: #fff8eb !important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-time-controls input,
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root .assessment-page.assessment-sleep .assessment-profile-grid :is(input,select) {
+  background: #302725 !important;
+  border-color: #765b49 !important;
+  color: #fff3df !important;
+  -webkit-text-fill-color: #fff3df !important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root .assessment-page.assessment-sleep .assessment-profile-grid select option {
+  background: #302725 !important;
+  color: #fff3df !important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-clock-track,
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-overview-track {
+  background: #59483e !important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root .assessment-page.assessment-sleep .dream-window {
+  background: linear-gradient(145deg,#59483e,#2f2926) !important;
+}
+html[data-mindora-theme="dark"][data-mindora-palette="default"] #root .assessment-page.assessment-sleep .dream-window :is(span,i,b) {
+  color: #fff3df !important;
+  -webkit-text-fill-color: #fff3df !important;
+}
