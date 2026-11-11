@@ -44,6 +44,7 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-route
 import { apiRequest } from "./api";
 import LandingPage from "./LandingPage";
 import AuthPage from "./AuthPage";
+import WelcomeTour from "./WelcomeTour";
 import { JournalPage, InsightsPage, MindfulMomentsPage } from "./DashboardPages";
 import ProfilePage from "./ProfilePage";
 import GamesZone from "./GamesZone";
@@ -267,6 +268,23 @@ function Dashboard() {
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const currentUser = (() => { try { return JSON.parse(localStorage.getItem("mindora-user") || "{}"); } catch { return {}; } })();
+  const welcomeAccountKey = String(currentUser.id || currentUser._id || currentUser.email || localStorage.getItem("mindora-token") || "account").trim().toLowerCase();
+  const [showWelcomeTour, setShowWelcomeTour] = useState(() => {
+    try {
+      const pendingAccount = localStorage.getItem("mindora-welcome-tour-pending");
+      const completed = localStorage.getItem(`mindora-welcome-tour-complete:${welcomeAccountKey}`);
+      return pendingAccount === welcomeAccountKey && completed !== "true";
+    } catch { return false; }
+  });
+  const finishWelcomeTour = () => {
+    try {
+      localStorage.setItem(`mindora-welcome-tour-complete:${welcomeAccountKey}`, "true");
+      if (localStorage.getItem("mindora-welcome-tour-pending") === welcomeAccountKey) {
+        localStorage.removeItem("mindora-welcome-tour-pending");
+      }
+    } catch {}
+    setShowWelcomeTour(false);
+  };
   const [bookPage, setBookPage] = useState(0);
   const t = (en, hi) => language === "hi" ? hi : en;
 
@@ -774,6 +792,11 @@ function Dashboard() {
             </div>
           </section>
 
+          {showWelcomeTour ? (
+            <section className="section-block mood-section welcome-tour-section" id="daily-checkin">
+              <WelcomeTour onFinish={finishWelcomeTour} />
+            </section>
+          ) : (
           <section
             className="section-block mood-section"
             id="daily-checkin"
@@ -872,6 +895,7 @@ function Dashboard() {
               )}
             </div>
           </section>
+          )}
 
           <section className="section-block">
             <div className="section-heading">
