@@ -222,7 +222,7 @@ export function SleepCheckPage(){
    <div className="assessment-section-intro"><span className="section-number">01</span><div><span className="overview-kicker">SLEEP REFLECTION · ISI</span><h2>Your sleep</h2></div></div>
    <p className="assessment-muted">Think about the last 2 weeks. For the first three questions, rate the severity of your sleep difficulties.</p>
    {isi.map((q,i)=><fieldset className="assessment-fieldset" key={q.name}><legend>{i+1}. {q.text}</legend><ClinicalOptions options={q.opts} value={answers[q.name]} onChange={v=>setAnswers(current=>({...current,[q.name]:v}))}/></fieldset>)}
-   <p className="mindcheck-copyright">Insomnia Severity Index © Morin, C.M. Used with permission.</p>
+   <p className="mindcheck-copyright">Insomnia Severity Index © Morin, C.M. Permission must be obtained before public launch.</p>
    <div className="assessment-section-intro assessment-stress-intro"><span className="section-number">02</span><div><span className="overview-kicker">STRESS REFLECTION · PSS-14</span><h2>Your stress</h2></div></div>
    <p className="assessment-muted">In the last month, how often have you felt or thought this way? Please answer fairly quickly; your first reasonable estimate is enough.</p>
    {stressQuestions.map((q,i)=><fieldset className="assessment-fieldset" key={q.name}><legend>{i+1}. {q.text}</legend><ClinicalOptions options={stressScale} value={stressAnswers[q.name]===undefined?undefined:stressAnswers[q.name]-1} offset={1} onChange={v=>setStressAnswers(current=>({...current,[q.name]:v}))}/></fieldset>)}
