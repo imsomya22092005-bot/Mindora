@@ -282,7 +282,7 @@ function Dashboard() {
     try {
       const savedMode = localStorage.getItem("mindora-palette-mode");
       const savedLabel = localStorage.getItem("mindora-saved-mood");
-      return savedMode || (savedLabel ? "mood" : "default");
+      return savedMode === "default" ? "default" : savedLabel ? "mood" : "default";
     } catch { return "default"; }
   });
   useEffect(() => {
@@ -1289,8 +1289,11 @@ function MoodThemeSync() {
       }
       let palette = event?.detail?.palette;
       if (!palette) {
-        try { palette = localStorage.getItem("mindora-palette-mode") || "mood"; }
-        catch { palette = "mood"; }
+        try {
+          const savedMode = localStorage.getItem("mindora-palette-mode");
+          const savedMood = localStorage.getItem("mindora-saved-mood");
+          palette = savedMode === "default" ? "default" : savedMood ? "mood" : "default";
+        } catch { palette = "default"; }
       }
       document.documentElement.dataset.mindoraPalette = palette;
       if (palette === "default") {
