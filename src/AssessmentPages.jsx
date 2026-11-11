@@ -53,8 +53,8 @@ const phq = [
  "Feeling tired or having little energy?",
  "Poor appetite or overeating?",
  "Feeling bad about yourself — or that you are a failure or have let yourself or your family down?",
- "Trouble concentrating on things, such as reading or watching television?",
- "Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around more than usual?",
+ "Trouble concentrating on things, such as reading the newspaper or watching television?",
+ "Moving or speaking so slowly that other people could have noticed, or being so fidgety or restless that you have been moving around a lot more than usual?",
  "Thoughts that you would be better off dead or of hurting yourself in some way?"
 ];
 const gad = [
@@ -141,7 +141,7 @@ export function WellbeingCheckinPage(){
  };
  return <Shell eyebrow="A GENTLE SELF-CHECK" title="Wellbeing Check-in" subtitle="16 questions about how you have been feeling over the last two weeks. This is a screening tool, not a diagnosis.">
  {step===-1?<section className="assessment-panel assessment-intro">
-  <div className="wellbeing-journey-hero"><div><span className="overview-kicker">YOUR MIND, YOUR PACE</span><h2>A little pause can tell you a lot.</h2><p>This is your quiet corner to notice what has been happening inside — no judgement, no perfect answers.</p><div className="journey-stamps"><span>✦ 2 gentle check-ins</span><span>◷ about 8–10 minutes</span></div></div><div className="wellbeing-orbit"><i>☼</i><b>YOU</b><span>✦</span><em>♡</em></div></div>
+  <div className="wellbeing-journey-hero"><div><span className="overview-kicker">YOUR MIND, YOUR PACE</span><h2>A little pause can tell you a lot.</h2><p>This is your quiet corner to notice what has been happening inside — no judgement, no perfect answers.</p><div className="journey-stamps"><span>✦ 2 gentle check-ins</span><span>◷ 42 questions across two check-ins</span></div></div><div className="wellbeing-orbit"><i>☼</i><b>YOU</b><span>✦</span><em>♡</em></div></div>
   <div className="assessment-mini-grid"><article><span>01</span><h3>Mood check</h3><p>9 questions about interest, mood, sleep and energy.</p><strong>PHQ-9</strong></article><article><span>02</span><h3>Worry check</h3><p>7 questions about nervousness, worry and restlessness.</p><strong>GAD-7</strong></article></div>
   <p className="assessment-disclaimer">Your answers are not stored on our servers. They stay temporarily in this active browser session and are sent together only when you submit the complete check-in.</p>
   <button className="assessment-primary" onClick={()=>setStep(0)}>Start check-in <ArrowRight size={17}/></button>
