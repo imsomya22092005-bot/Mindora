@@ -92,7 +92,7 @@ const stressQuestions = [
  {name:"pss_14",text:"In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?"}
 ];
 const stressScale = ["Never","Almost never","Sometimes","Fairly often","Very often"];
-const mindCheckSession = { phq9Answers: null };
+const mindCheckSession = { phq9Answers: null, phq9Draft: {}, isiAnswers: {}, pssAnswers: {}, profile: { age: "", gender: "", edu: "", smoke: "", drink: "" }, skipMl: false };
 const academicGroups = [
  {title:"Study and school",items:[
   ["study_load","How heavy is your study load?",["0 - None","1 - Very light","2 - Light","3 - Moderate","4 - Heavy","5 - Very heavy"]],
@@ -129,14 +129,14 @@ function ClinicalOptions({options,value,onChange,offset=0}) {
 }
 export function WellbeingCheckinPage(){
  const [language]=useLanguage(); const hi=language==="hi"; const navigate=useNavigate();
- const [step,setStep]=useState(-1),[answers,setAnswers]=useState(()=>mindCheckSession.phq9Answers||{});
+ const [step,setStep]=useState(-1),[answers,setAnswers]=useState(()=>mindCheckSession.phq9Draft||{});
  const questions=useMemo(()=>[...phq.map((q,i)=>({q,group:"Mood check",n:i+1})),...gad.map((q,i)=>({q,group:"Worry check",n:i+1}))],[]);
- const setAnswer=(v)=>setAnswers(a=>({...a,[step]:v}));
- const reset=()=>{mindCheckSession.phq9Answers=null;setAnswers({});setStep(-1);};
+ const setAnswer=(v)=>setAnswers(a=>{const next={...a,[step]:v};mindCheckSession.phq9Draft=next;return next;});
+ const reset=()=>{mindCheckSession.phq9Answers=null;mindCheckSession.phq9Draft={};setAnswers({});setStep(-1);};
  const finish=()=>{
   const ordered=Array.from({length:16},(_,i)=>answers[i]);
   if(ordered.some(value=>value===undefined))return;
-  mindCheckSession.phq9Answers=ordered;
+  mindCheckSession.phq9Answers=ordered;mindCheckSession.phq9Draft=Object.fromEntries(ordered.map((value,index)=>[index,value]));
   navigate("/sleep-check");
  };
  return <Shell eyebrow="A GENTLE SELF-CHECK" title="Wellbeing Check-in" subtitle="16 questions about how you have been feeling over the last two weeks. This is a screening tool, not a diagnosis.">
@@ -162,9 +162,9 @@ export function WellbeingCheckinPage(){
 }
 export function SleepCheckPage(){
  const [language]=useLanguage(); const hi=language==="hi"; const navigate=useNavigate();
- const [answers,setAnswers]=useState({}),[stressAnswers,setStressAnswers]=useState({});
- const [profile,setProfile]=useState({age:"",gender:"",edu:"",smoke:"",drink:""});
- const [skipMl,setSkipMl]=useState(false),[loading,setLoading]=useState(false),[error,setError]=useState("");
+ const [answers,setAnswers]=useState(()=>mindCheckSession.isiAnswers||{}),[stressAnswers,setStressAnswers]=useState(()=>mindCheckSession.pssAnswers||{});
+ const [profile,setProfile]=useState(()=>mindCheckSession.profile||{age:"",gender:"",edu:"",smoke:"",drink:""});
+ const [skipMl,setSkipMl]=useState(Boolean(mindCheckSession.skipMl)),[loading,setLoading]=useState(false),[error,setError]=useState("");
  const [apiResult,setApiResult]=useState(null),[showSafety,setShowSafety]=useState(false),[showSummary,setShowSummary]=useState(false);
  const [bedtime,setBedtime]=useState("23:00"),[wakeTime,setWakeTime]=useState("07:00");
  const sleepHours=(()=>{const [bh,bm]=bedtime.split(":").map(Number),[wh,wm]=wakeTime.split(":").map(Number);let mins=(wh*60+wm)-(bh*60+bm);if(mins<=0)mins+=1440;return `${Math.floor(mins/60)}h ${mins%60}m`;})();
@@ -173,8 +173,8 @@ export function SleepCheckPage(){
  const age=Number(profile.age),ageInRange=Number.isInteger(age)&&age>=16&&age<=40;
  const profileComplete=ageInRange&&["gender","edu","smoke","drink"].every(key=>Boolean(profile[key]));
  const canSubmit=Boolean(mindCheckSession.phq9Answers)&&isiComplete&&pssComplete&&(skipMl||age<16||age>40||profileComplete);
- const updateProfile=(key,value)=>setProfile(current=>({...current,[key]:value}));
- const clearAll=()=>{mindCheckSession.phq9Answers=null;setAnswers({});setStressAnswers({});setProfile({age:"",gender:"",edu:"",smoke:"",drink:""});setSkipMl(false);setApiResult(null);setShowSafety(false);setShowSummary(false);setError("");};
+ const updateProfile=(key,value)=>setProfile(current=>{const next={...current,[key]:value};mindCheckSession.profile=next;return next;});
+ const clearAll=()=>{mindCheckSession.phq9Answers=null;mindCheckSession.phq9Draft={};mindCheckSession.isiAnswers={};mindCheckSession.pssAnswers={};mindCheckSession.profile={age:"",gender:"",edu:"",smoke:"",drink:""};mindCheckSession.skipMl=false;setAnswers({});setStressAnswers({});setProfile({age:"",gender:"",edu:"",smoke:"",drink:""});setSkipMl(false);setApiResult(null);setShowSafety(false);setShowSummary(false);setError("");};
  const sendRequest=async(payload)=>{
   let lastError=null;
   for(let attempt=0;attempt<2;attempt++){
@@ -221,11 +221,11 @@ export function SleepCheckPage(){
   <div className="assessment-panel">
    <div className="assessment-section-intro"><span className="section-number">01</span><div><span className="overview-kicker">SLEEP REFLECTION · ISI</span><h2>Your sleep</h2></div></div>
    <p className="assessment-muted">Think about the last 2 weeks. For the first three questions, rate the severity of your sleep difficulties.</p>
-   {isi.map((q,i)=><fieldset className="assessment-fieldset" key={q.name}><legend>{i+1}. {q.text}</legend><ClinicalOptions options={q.opts} value={answers[q.name]} onChange={v=>setAnswers(current=>({...current,[q.name]:v}))}/></fieldset>)}
+   {isi.map((q,i)=><fieldset className="assessment-fieldset" key={q.name}><legend>{i+1}. {q.text}</legend><ClinicalOptions options={q.opts} value={answers[q.name]} onChange={v=>setAnswers(current=>{const next={...current,[q.name]:v};mindCheckSession.isiAnswers=next;return next;})}/></fieldset>)}
    <p className="mindcheck-copyright">Insomnia Severity Index © Morin, C.M. Permission must be obtained before public launch.</p>
    <div className="assessment-section-intro assessment-stress-intro"><span className="section-number">02</span><div><span className="overview-kicker">STRESS REFLECTION · PSS-14</span><h2>Your stress</h2></div></div>
    <p className="assessment-muted">In the last month, how often have you felt or thought this way? Please answer fairly quickly; your first reasonable estimate is enough.</p>
-   {stressQuestions.map((q,i)=><fieldset className="assessment-fieldset" key={q.name}><legend>{i+1}. {q.text}</legend><ClinicalOptions options={stressScale} value={stressAnswers[q.name]===undefined?undefined:stressAnswers[q.name]-1} offset={1} onChange={v=>setStressAnswers(current=>({...current,[q.name]:v}))}/></fieldset>)}
+   {stressQuestions.map((q,i)=><fieldset className="assessment-fieldset" key={q.name}><legend>{i+1}. {q.text}</legend><ClinicalOptions options={stressScale} value={stressAnswers[q.name]===undefined?undefined:stressAnswers[q.name]-1} offset={1} onChange={v=>setStressAnswers(current=>{const next={...current,[q.name]:v};mindCheckSession.pssAnswers=next;return next;})}/></fieldset>)}
    <div className="sleep-stress-progress">{stressQuestions.filter(q=>stressAnswers[q.name]!==undefined).length} / 14 stress reflections completed</div>
    <div className="assessment-section-intro"><span className="section-number">03</span><div><span className="overview-kicker">ABOUT YOU</span><h2>A little context</h2></div></div>
    <p className="assessment-muted">These five details are used only for the optional experimental insight. If you prefer not to share them, you can continue without the ML insight.</p>
@@ -236,7 +236,7 @@ export function SleepCheckPage(){
     <label>Smoking<select value={profile.smoke} onChange={e=>updateProfile("smoke",e.target.value)}><option value="">Choose</option><option value="never">Never</option><option value="occasional">Occasional</option><option value="former">Former</option><option value="current">Current</option></select></label>
     <label>Drinking<select value={profile.drink} onChange={e=>updateProfile("drink",e.target.value)}><option value="">Choose</option><option value="never">Never</option><option value="occasional">Occasional</option><option value="past">Past</option><option value="regular">Regular</option></select></label>
    </div>
-   <label className="mindcheck-skip-ml"><input type="checkbox" checked={skipMl} onChange={e=>setSkipMl(e.target.checked)}/> I prefer not to share these details. Continue without the experimental ML insight.</label>
+   <label className="mindcheck-skip-ml"><input type="checkbox" checked={skipMl} onChange={e=>{setSkipMl(e.target.checked);mindCheckSession.skipMl=e.target.checked;}}/> I prefer not to share these details. Continue without the experimental ML insight.</label>
    {!skipMl&&profile.age&&!ageInRange?<p className="assessment-muted">The experimental insight is available only for ages 16–40. You can continue with the questionnaire results without it.</p>:null}
    <div className="assessment-actions">
     <button type="button" className="assessment-secondary" onClick={clearAll}>Clear answers</button>
