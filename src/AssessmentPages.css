@@ -810,3 +810,37 @@ html[data-mindora-theme="dark"] .academic-api-message{color:#e6d4c3}
 html[data-mindora-theme="dark"] .academic-support-link{background:#302725;border-color:#705242}
 html[data-mindora-theme="dark"] .academic-support-link b,html[data-mindora-theme="dark"] .academic-support-link p{color:#fff3df}
 html[data-mindora-theme="dark"] .academic-support-link a{color:#ffcf9a}
+
+
+/* Default light palette readability fixes: sleep reflection + wellbeing check-in. */
+html[data-mindora-palette="default"] #root .assessment-page .assessment-options button,
+html[data-mindora-palette="default"] #root .assessment-page .assessment-options button :is(span,strong,small) {
+  color: #49342E !important;
+  -webkit-text-fill-color: #49342E !important;
+}
+html[data-mindora-palette="default"] #root .assessment-page .assessment-options button {
+  background: #FFFDF5 !important;
+  border-color: #EAD9BC !important;
+}
+html[data-mindora-palette="default"] #root .assessment-page .assessment-options button.is-selected {
+  background: #FFEC9E !important;
+  border-color: #ED9455 !important;
+}
+html[data-mindora-palette="default"] #root .assessment-page .assessment-fieldset legend,
+html[data-mindora-palette="default"] #root .assessment-page .assessment-muted,
+html[data-mindora-palette="default"] #root .assessment-page .assessment-section-intro :is(h2,span),
+html[data-mindora-palette="default"] #root .assessment-page .sleep-rhythm-head :is(h3,strong,small),
+html[data-mindora-palette="default"] #root .assessment-page .sleep-rhythm-panel > p,
+html[data-mindora-palette="default"] #root .assessment-page .sleep-overview :is(.overview-kicker,strong,small,p),
+html[data-mindora-palette="default"] #root .assessment-page .sleep-moon,
+html[data-mindora-palette="default"] #root .assessment-page .sleep-moon span {
+  color: #49342E !important;
+  -webkit-text-fill-color: #49342E !important;
+}
+html[data-mindora-palette="default"] #root .assessment-page .sleep-moon span {
+  color: #C58C43 !important;
+  -webkit-text-fill-color: #C58C43 !important;
+}
+html[data-mindora-palette="default"] #root .assessment-page .sleep-overview-track {
+  background: #F0DFC5 !important;
+}
