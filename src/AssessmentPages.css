@@ -967,3 +967,21 @@ html[data-mindora-theme="dark"] #root .assessment-page .assessment-safety.mindch
 html[data-mindora-theme="dark"] #root .assessment-page .assessment-safety.mindcheck-safety p {
   line-height: 1.7 !important;
 }
+
+
+/* Final override: mood-specific dark palettes must not wash out MindCheck safety copy. */
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme .assessment-page .assessment-safety.mindcheck-safety,
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood] .assessment-page .assessment-safety.mindcheck-safety {
+  background: #49372f !important;
+  background-image: none !important;
+  border: 1px solid #8b654d !important;
+  color: #fff3df !important;
+  opacity: 1 !important;
+}
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme .assessment-page .assessment-safety.mindcheck-safety *,
+html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood] .assessment-page .assessment-safety.mindcheck-safety * {
+  color: #fff3df !important;
+  -webkit-text-fill-color: #fff3df !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
