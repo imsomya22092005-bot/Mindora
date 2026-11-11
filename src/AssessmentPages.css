@@ -872,3 +872,49 @@ html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sl
 html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-overview-track {
   background: #E8D5B9 !important;
 }
+
+
+/* FINAL DEFAULT THEME FIX — Dream Lab illustration and nightly counter.
+   These elements are separate from .sleep-moon/.sleep-overview; target their real markup. */
+html[data-mindora-palette="default"] #root .app-shell .assessment-page.assessment-sleep .dream-window,
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .dream-window {
+  background: linear-gradient(145deg, #59483E, #2F2926) !important;
+}
+html[data-mindora-palette="default"] #root .app-shell .assessment-page.assessment-sleep .dream-window span,
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .dream-window span {
+  color: #FFDFA6 !important;
+  -webkit-text-fill-color: #FFDFA6 !important;
+  text-shadow: 0 2px 10px rgba(255, 207, 131, .22) !important;
+}
+html[data-mindora-palette="default"] #root .app-shell .assessment-page.assessment-sleep .dream-window i,
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .dream-window i {
+  color: #FFCF83 !important;
+  -webkit-text-fill-color: #FFCF83 !important;
+}
+html[data-mindora-palette="default"] #root .app-shell .assessment-page.assessment-sleep .dream-window b,
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .dream-window b {
+  color: #FFF3DF !important;
+  -webkit-text-fill-color: #FFF3DF !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, .35) !important;
+}
+html[data-mindora-palette="default"] #root .app-shell .assessment-page.assessment-sleep .sleep-overview,
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-overview {
+  background: linear-gradient(115deg, #FFF7E8, #FFECCF) !important;
+  color: #49342E !important;
+}
+html[data-mindora-palette="default"] #root .app-shell .assessment-page.assessment-sleep .sleep-overview :is(.overview-kicker, strong, strong small, p),
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-overview :is(.overview-kicker, strong, strong small, p) {
+  color: #49342E !important;
+  -webkit-text-fill-color: #49342E !important;
+}
+html[data-mindora-palette="default"] #root .app-shell .assessment-page.assessment-sleep .sleep-moon,
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-moon {
+  color: #C58C43 !important;
+  -webkit-text-fill-color: #C58C43 !important;
+  text-shadow: none !important;
+}
+html[data-mindora-palette="default"] #root .app-shell .assessment-page.assessment-sleep .sleep-moon span,
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-moon span {
+  color: #E5A94F !important;
+  -webkit-text-fill-color: #E5A94F !important;
+}
