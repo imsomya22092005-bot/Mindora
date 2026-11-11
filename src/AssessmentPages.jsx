@@ -129,10 +129,12 @@ function ClinicalOptions({options,value,onChange,offset=0}) {
 }
 export function WellbeingCheckinPage(){
  const navigate=useNavigate();
- const [step,setStep]=useState(-1),[answers,setAnswers]=useState(()=>mindCheckSession.phq9Draft||{});
+ const [step,setStepState]=useState(()=>{try{const saved=sessionStorage.getItem("mindcheck-wellbeing-step");return saved===null?-1:Number(saved);}catch{return -1;}});
+ const [answers,setAnswers]=useState(()=>{try{return JSON.parse(sessionStorage.getItem("mindcheck-wellbeing-answers")||"null")||mindCheckSession.phq9Draft||{};}catch{return mindCheckSession.phq9Draft||{};}});
+ const setStep=(next)=>setStepState(current=>{const value=typeof next==="function"?next(current):next;try{sessionStorage.setItem("mindcheck-wellbeing-step",String(value));}catch{}return value;});
  const questions=useMemo(()=>[...phq.map((q,i)=>({q,group:"Mood check",n:i+1})),...gad.map((q,i)=>({q,group:"Worry check",n:i+1}))],[]);
- const setAnswer=(v)=>setAnswers(a=>{const next={...a,[step]:v};mindCheckSession.phq9Draft=next;return next;});
- const reset=()=>{mindCheckSession.phq9Answers=null;mindCheckSession.phq9Draft={};setAnswers({});setStep(-1);};
+ const setAnswer=(v)=>setAnswers(a=>{const next={...a,[step]:v};mindCheckSession.phq9Draft=next;try{sessionStorage.setItem("mindcheck-wellbeing-answers",JSON.stringify(next));}catch{}return next;});
+ const reset=()=>{mindCheckSession.phq9Answers=null;mindCheckSession.phq9Draft={};setAnswers({});try{sessionStorage.removeItem("mindcheck-wellbeing-step");sessionStorage.removeItem("mindcheck-wellbeing-answers");}catch{}setStep(-1);};
  const finish=()=>{
   const ordered=Array.from({length:16},(_,i)=>answers[i]);
   if(ordered.some(value=>value===undefined))return;
