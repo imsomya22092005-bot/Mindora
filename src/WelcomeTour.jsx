@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight, Heart, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Heart, Sparkles, X } from "lucide-react";
 import "./WelcomeTour.css";
 
 const tourCards = [
