@@ -53,8 +53,8 @@ const phq = [
  "Feeling tired or having little energy?",
  "Poor appetite or overeating?",
  "Feeling bad about yourself — or that you are a failure or have let yourself or your family down?",
- "Trouble concentrating on things, such as reading or watching television?",
- "Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around more than usual?",
+ "Trouble concentrating on things, such as reading the newspaper or watching television?",
+ "Moving or speaking so slowly that other people could have noticed, or being so fidgety or restless that you have been moving around a lot more than usual?",
  "Thoughts that you would be better off dead or of hurting yourself in some way?"
 ];
 const gad = [
@@ -67,21 +67,32 @@ const gad = [
  "Feeling afraid, as if something awful might happen?"
 ];
 const isi = [
- {name:"isi_1",text:"How much difficulty did you have falling asleep?",opts:["None","Mild","Moderate","Severe","Very severe"],concern:"Difficulty falling asleep"},
- {name:"isi_2",text:"How much difficulty did you have staying asleep?",opts:["None","Mild","Moderate","Severe","Very severe"],concern:"Waking up during the night"},
- {name:"isi_3",text:"How much trouble did you have waking up too early?",opts:["None","Mild","Moderate","Severe","Very severe"],concern:"Waking up too early"},
- {name:"isi_4",text:"How satisfied are you with your current sleep?",opts:["Very satisfied","Satisfied","Neutral","Dissatisfied","Very dissatisfied"],concern:"Not feeling satisfied with your sleep"},
- {name:"isi_5",text:"How noticeable to others is your sleep problem?",opts:["Not at all","A little","Somewhat","Much","Very much"],concern:"Sleep problems others can notice"},
- {name:"isi_6",text:"How worried are you about your sleep?",opts:["Not at all","A little","Somewhat","Much","Very much"],concern:"Worry about your sleep"},
- {name:"isi_7",text:"How much does your sleep affect your daily life?",opts:["Not at all","A little","Somewhat","Much","Very much"],concern:"Sleep affecting your daily life"}
+ {name:"isi_1",text:"Difficulty falling asleep.",opts:["None","Mild","Moderate","Severe","Very Severe"]},
+ {name:"isi_2",text:"Difficulty staying asleep.",opts:["None","Mild","Moderate","Severe","Very Severe"]},
+ {name:"isi_3",text:"Problem waking up too early in the morning.",opts:["None","Mild","Moderate","Severe","Very Severe"]},
+ {name:"isi_4",text:"How SATISFIED/dissatisfied are you with your current sleep pattern?",opts:["Very Satisfied","Satisfied","Neutral","Dissatisfied","Very Dissatisfied"]},
+ {name:"isi_5",text:"To what extent do you consider your sleep problem to INTERFERE with your daily functioning (e.g., daytime fatigue, ability to function at work/daily chores, concentration, memory, mood)?",opts:["Not at all Interfering","A little Interfering","Somewhat Interfering","Very Interfering","Extremely Interfering"]},
+ {name:"isi_6",text:"How NOTICEABLE to others do you think your sleeping problem is in terms of impairing the quality of your life?",opts:["Not at all Noticeable","A little Noticeable","Somewhat Noticeable","Very Noticeable","Extremely Noticeable"]},
+ {name:"isi_7",text:"How WORRIED/distressed are you about your current sleep problem?",opts:["Not at all","A little","Somewhat","Very","Extremely"]}
 ];
 const stressQuestions = [
- {name:"pss_1",text:"How often have you been upset because of something that happened unexpectedly?"},
- {name:"pss_2",text:"How often have you felt unable to control the important things in your life?"},
- {name:"pss_3",text:"How often have you felt nervous and stressed?"},
- {name:"pss_14",text:"How often have you felt that difficulties were piling up so high that you could not overcome them?"}
+ {name:"pss_1",text:"In the last month, how often have you been upset because of something that happened unexpectedly?"},
+ {name:"pss_2",text:"In the last month, how often have you felt that you were unable to control the important things in your life?"},
+ {name:"pss_3",text:"In the last month, how often have you felt nervous and “stressed”?"},
+ {name:"pss_4",text:"In the last month, how often have you dealt successfully with day to day problems and annoyances?"},
+ {name:"pss_5",text:"In the last month, how often have you felt that you were effectively coping with important changes that were occurring in your life?"},
+ {name:"pss_6",text:"In the last month, how often have you felt confident about your ability to handle your personal problems?"},
+ {name:"pss_7",text:"In the last month, how often have you felt that things were going your way?"},
+ {name:"pss_8",text:"In the last month, how often have you found that you could not cope with all the things that you had to do?"},
+ {name:"pss_9",text:"In the last month, how often have you been able to control irritations in your life?"},
+ {name:"pss_10",text:"In the last month, how often have you felt that you were on top of things?"},
+ {name:"pss_11",text:"In the last month, how often have you been angered because of things that happened that were outside of your control?"},
+ {name:"pss_12",text:"In the last month, how often have you found yourself thinking about things that you have to accomplish?"},
+ {name:"pss_13",text:"In the last month, how often have you been able to control the way you spend your time?"},
+ {name:"pss_14",text:"In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?"}
 ];
 const stressScale = ["Never","Almost never","Sometimes","Fairly often","Very often"];
+const mindCheckSession = { phq9Answers: null, phq9Draft: {}, isiAnswers: {}, pssAnswers: {}, profile: { age: "", gender: "", edu: "", smoke: "", drink: "" }, skipMl: false };
 const academicGroups = [
  {title:"Study and school",items:[
   ["study_load","How heavy is your study load?",["0 - None","1 - Very light","2 - Light","3 - Moderate","4 - Heavy","5 - Very heavy"]],
@@ -113,28 +124,141 @@ function Shell({eyebrow,title,subtitle,children,icon:Icon=Heart}) {
  return <main className={`assessment-page assessment-${pageKind}`}><button className="assessment-back" onClick={()=>nav("/dashboard")}><ArrowLeft size={16}/>{tr("Back to dashboard",hi)}</button><header className="assessment-heading"><span className="assessment-mark"><Icon size={22}/></span><div className="assessment-heading-copy"><span className="assessment-eyebrow">{tr(eyebrow,hi)}</span><h1>{tr(title,hi)}</h1><p>{tr(subtitle,hi)}</p></div><div className="assessment-heading-art" aria-hidden="true"><span className="art-orbit orbit-one"/><span className="art-orbit orbit-two"/><span className="art-core"><Icon size={30}/></span><i className="art-spark spark-one">✦</i><i className="art-spark spark-two">✧</i></div></header><Localized hi={hi}>{children}</Localized></main>;
 }
 function OptionList({options,value,onChange}) { const [language]=useLanguage(); const hi=language==="hi"; return <div className="assessment-options">{options.map((o,i)=><button type="button" key={i} className={String(value)===String(i)?"is-selected":""} onClick={()=>onChange(i)}>{tr(o,hi)}</button>)}</div>; }
+function ClinicalOptions({options,value,onChange,offset=0}) {
+ return <div className="assessment-options">{options.map((option,index)=><button type="button" key={option} className={Number(value)===index+offset?"is-selected":""} onClick={()=>onChange(index+offset)}>{option}</button>)}</div>;
+}
 export function WellbeingCheckinPage(){
- const [language]=useLanguage(); const hi=language==="hi";
- const [step,setStep]=useState(-1),[answers,setAnswers]=useState({}),[result,setResult]=useState(false),[safety,setSafety]=useState(false);
+ const navigate=useNavigate();
+ const [step,setStepState]=useState(()=>{try{const saved=sessionStorage.getItem("mindcheck-wellbeing-step");return saved===null?-1:Number(saved);}catch{return -1;}});
+ const [answers,setAnswers]=useState(()=>{try{return JSON.parse(sessionStorage.getItem("mindcheck-wellbeing-answers")||"null")||mindCheckSession.phq9Draft||{};}catch{return mindCheckSession.phq9Draft||{};}});
+ const setStep=(next)=>setStepState(current=>{const value=typeof next==="function"?next(current):next;try{sessionStorage.setItem("mindcheck-wellbeing-step",String(value));}catch{}return value;});
  const questions=useMemo(()=>[...phq.map((q,i)=>({q,group:"Mood check",n:i+1})),...gad.map((q,i)=>({q,group:"Worry check",n:i+1}))],[]);
- const setAnswer=(v)=>setAnswers(a=>({...a,[step]:v}));
- const phqScore=phq.reduce((s,_,i)=>s+(answers[i]??0),0),gadScore=gad.reduce((s,_,i)=>s+(answers[i+9]??0),0);
- const q9=(answers[8]??0)>0;
- const level=(s,kind)=>kind==="phq"?(s<=4?"Minimal":s<=9?"Mild":s<=14?"Moderate":s<=19?"Moderately severe":"Severe"):(s<=4?"Minimal":s<=9?"Mild":s<=14?"Moderate":"Severe");
- const reset=()=>{setAnswers({});setStep(-1);setResult(false);setSafety(false);};
- return <Shell eyebrow="A GENTLE SELF-CHECK" title="Wellbeing Check-in" subtitle="16 short questions about how you have been feeling over the last two weeks. This is a screening tool, not a diagnosis.">
- {step===-1&&!result?<section className="assessment-panel assessment-intro"><div className="wellbeing-journey-hero"><div><span className="overview-kicker">YOUR MIND, YOUR PACE</span><h2>A little pause can tell you a lot.</h2><p>This is your quiet corner to notice what has been happening inside — no judgement, no perfect answers.</p><div className="journey-stamps"><span>✦ 2 gentle check-ins</span><span>◷ about 4 minutes</span></div></div><div className="wellbeing-orbit"><i>☼</i><b>YOU</b><span>✦</span><em>♡</em></div></div><div className="assessment-mini-grid"><article><span>01</span><h3>Mood check</h3><p>9 questions about interest, mood, sleep and energy.</p><strong>PHQ-9</strong></article><article><span>02</span><h3>Worry check</h3><p>7 questions about nervousness, worry and restlessness.</p><strong>GAD-7</strong></article></div><p className="assessment-disclaimer">Only a qualified professional can diagnose or treat a mental health condition.</p><button className="assessment-primary" onClick={()=>setStep(0)}>Start check-in <ArrowRight size={17}/></button></section>:null}
- {step>=0&&!result&&!safety?<section className="assessment-panel"><div className="assessment-progress-line"><span>{tr(questions[step].group,hi)} · {tr("Question",hi)} {step+1} {tr("of",hi)} 16</span><strong>{Math.round((step+1)/16*100)}%</strong></div><div className="assessment-progress"><span style={{width:((step+1)/16*100)+"%"}}/></div><div className="wellbeing-question-meta"><span className="wellbeing-step-bubble">{String(step+1).padStart(2,"0")}</span><div><b>{questions[step].group==="Mood check"?"YOUR INNER WEATHER":"YOUR THOUGHT SPACE"}</b><small>Take your time. There is no right or wrong answer.</small></div><span className="wellbeing-sparkle">✦</span></div><p className="assessment-timeframe">Over the last 2 weeks, how often have you had this problem?</p><h2 className="assessment-question">{questions[step].q}</h2><OptionList options={scale4} value={answers[step]} onChange={setAnswer}/><div className="assessment-actions"><button className="assessment-secondary" onClick={()=>setStep(s=>Math.max(0,s-1))} disabled={step===0}>Back</button><button className="assessment-primary" disabled={answers[step]===undefined} onClick={()=>{if(step===15){if(q9)setSafety(true);else setResult(true);}else setStep(s=>s+1);}}>{step===15?"See my summary":"Next"} <ArrowRight size={16}/></button></div></section>:null}
- {safety&&!result?<section className="assessment-panel"><div className="assessment-safety"><h3>You don’t have to handle this alone</h3><p>One of your answers suggests you may have had thoughts of hurting yourself. These thoughts can be difficult to carry. Talking to someone you trust or a qualified professional can help.</p><p>If you are in immediate danger, contact local emergency services now.</p></div><p className="assessment-disclaimer">You can continue to your summary whenever you feel ready.</p><div className="assessment-actions"><button className="assessment-secondary" onClick={()=>setSafety(false)}>Review answers</button><button className="assessment-primary" onClick={()=>{setSafety(false);setResult(true);}}>Continue to my summary <ArrowRight size={16}/></button></div></section>:null}
- {result?<section className="assessment-panel"><span className="assessment-success"><CheckCircle2 size={20}/> Your check-in summary</span><div className="assessment-result-grid"><article><span>Mood check · PHQ-9</span><strong>{phqScore} <small>/ 27</small></strong><b>{level(phqScore,"phq")}</b><p>Minimal 0–4 · Mild 5–9 · Moderate 10–14 · Moderately severe 15–19 · Severe 20–27</p></article><article><span>Worry check · GAD-7</span><strong>{gadScore} <small>/ 21</small></strong><b>{level(gadScore,"gad")}</b><p>Minimal 0–4 · Mild 5–9 · Moderate 10–14 · Severe 15–21</p></article></div><p className="assessment-disclaimer">These scores describe your answers, not a diagnosis. If the results worry you, consider speaking with a doctor, counsellor or someone you trust.</p>{q9?<div className="assessment-safety"><h3>You don’t have to handle this alone</h3><p>One of your answers suggests you may have had thoughts of hurting yourself. Talking to someone you trust or a qualified professional can help. If you are in immediate danger, contact local emergency services now.</p></div>:null}<div className="assessment-actions"><button className="assessment-secondary" onClick={reset}><RotateCcw size={15}/> Check in again later</button><button className="assessment-primary" onClick={()=>window.location.assign("/mindora-ai")}>See coping suggestions <ArrowRight size={16}/></button></div></section>:null}
+ const setAnswer=(v)=>setAnswers(a=>{const next={...a,[step]:v};mindCheckSession.phq9Draft=next;try{sessionStorage.setItem("mindcheck-wellbeing-answers",JSON.stringify(next));}catch{}return next;});
+ const reset=()=>{mindCheckSession.phq9Answers=null;mindCheckSession.phq9Draft={};setAnswers({});try{sessionStorage.removeItem("mindcheck-wellbeing-step");sessionStorage.removeItem("mindcheck-wellbeing-answers");}catch{}setStep(-1);};
+ const finish=()=>{
+  const ordered=Array.from({length:16},(_,i)=>answers[i]);
+  if(ordered.some(value=>value===undefined))return;
+  mindCheckSession.phq9Answers=ordered;mindCheckSession.phq9Draft=Object.fromEntries(ordered.map((value,index)=>[index,value]));
+  navigate("/sleep-check");
+ };
+ return <Shell eyebrow="A GENTLE SELF-CHECK" title="Wellbeing Check-in" subtitle="16 questions about how you have been feeling over the last two weeks. This is a screening tool, not a diagnosis.">
+ {step===-1?<section className="assessment-panel assessment-intro">
+  <div className="wellbeing-journey-hero"><div><span className="overview-kicker">YOUR MIND, YOUR PACE</span><h2>A little pause can tell you a lot.</h2><p>This is your quiet corner to notice what has been happening inside — no judgement, no perfect answers.</p><div className="journey-stamps"><span>✦ 2 gentle check-ins</span><span>◷ 42 questions across two check-ins</span></div></div><div className="wellbeing-orbit"><i>☼</i><b>YOU</b><span>✦</span><em>♡</em></div></div>
+  <div className="assessment-mini-grid"><article><span>01</span><h3>Mood check</h3><p>9 questions about interest, mood, sleep and energy.</p><strong>PHQ-9</strong></article><article><span>02</span><h3>Worry check</h3><p>7 questions about nervousness, worry and restlessness.</p><strong>GAD-7</strong></article></div>
+  <p className="assessment-disclaimer">Your answers are not stored on our servers. They stay temporarily in this active browser session and are sent together only when you submit the complete check-in.</p>
+  <button className="assessment-primary" onClick={()=>setStep(0)}>Start check-in <ArrowRight size={17}/></button>
+ </section>:null}
+ {step>=0?<section className="assessment-panel">
+  <div className="assessment-progress-line"><span>{questions[step].group} · Question {step+1} of 16</span><strong>{Math.round((step+1)/16*100)}%</strong></div>
+  <div className="assessment-progress"><span style={{width:((step+1)/16*100)+"%"}}/></div>
+  <div className="wellbeing-question-meta"><span className="wellbeing-step-bubble">{String(step+1).padStart(2,"0")}</span><div><b>{questions[step].group==="Mood check"?"YOUR INNER WEATHER":"YOUR THOUGHT SPACE"}</b><small>Take your time. There is no right or wrong answer.</small></div><span className="wellbeing-sparkle">✦</span></div>
+  <p className="assessment-timeframe">Over the last 2 weeks, how often have you been bothered by the following problems?</p>
+  <h2 className="assessment-question">{questions[step].q}</h2>
+  <ClinicalOptions options={scale4} value={answers[step]} onChange={setAnswer}/>
+  <div className="assessment-actions">
+   <button className="assessment-secondary" onClick={()=>setStep(v=>Math.max(0,v-1))} disabled={step===0}>Back</button>
+   <button className="assessment-primary" disabled={answers[step]===undefined} onClick={()=>step===15?finish():setStep(v=>v+1)}>{step===15?"Continue to Sleep Check":"Next"} <ArrowRight size={16}/></button>
+  </div>
+ </section>:null}
  </Shell>;
 }
 export function SleepCheckPage(){
- const [language]=useLanguage(); const hi=language==="hi";
- const [answers,setAnswers]=useState({}),[stressAnswers,setStressAnswers]=useState({}),[profile,setProfile]=useState({age:"20",gender:"female",smoke:"never smokes",drink:"never drinks"}),[result,setResult]=useState(null),[bedtime,setBedtime]=useState("23:00"),[wakeTime,setWakeTime]=useState("07:00");
- const complete=isi.every(q=>answers[q.name]!==undefined)&&stressQuestions.every(q=>stressAnswers[q.name]!==undefined)&&profile.age>=16&&profile.age<=40; const sleepHours=(()=>{const [bh,bm]=bedtime.split(":").map(Number),[wh,wm]=wakeTime.split(":").map(Number);let mins=(wh*60+wm)-(bh*60+bm);if(mins<=0)mins+=1440;return `${Math.floor(mins/60)}h ${mins%60}m`;})();
- const submit=()=>{if(!complete)return;const vals=isi.map(q=>answers[q.name]);const stressVals=stressQuestions.map(q=>stressAnswers[q.name]);const total=vals.reduce((a,b)=>a+b,0)+stressVals.reduce((a,b)=>a+b,0)-stressVals.length;const score=Math.min(100,Math.round(total*2.3));const level=score>=60?"Needs attention":score>=40?"Disturbed":"Steady";const worst=vals.indexOf(Math.max(...vals));setResult({score,level,concern:vals[worst]===0?"None. All your answers are in the healthy range.":isi[worst].concern});};
- return <Shell eyebrow="REST & RECOVERY" title="How has your sleep been?" subtitle="Answer seven questions about the last two weeks and four about stress over the last month." icon={Moon}><div className="dream-lab-intro"><div className="dream-lab-copy"><span className="overview-kicker">THE DREAM LAB</span><h2>Build a picture of your nights.</h2><p>Sleep is more than a number. Explore your rhythm, then reflect on what may be interrupting your rest.</p></div><div className="dream-window"><span>☾</span><i>✦</i><b>REST<br/>MODE</b></div></div><div className="sleep-rhythm-panel"><div className="sleep-rhythm-head"><div><span className="overview-kicker">YOUR SLEEP RHYTHM</span><h3>A night, mapped by you</h3></div><strong>{sleepHours}<small> {hi?"बिस्तर पर":"in bed"}</small></strong></div><div className="sleep-clock-track"><span className="sleep-clock-fill"/></div><div className="sleep-time-controls"><label>Bedtime<input type="time" value={bedtime} onChange={e=>setBedtime(e.target.value)}/></label><span className="sleep-path">→</span><label>Wake-up<input type="time" value={wakeTime} onChange={e=>setWakeTime(e.target.value)}/></label></div><p>Move the times to sketch your usual sleep window. This is a reflection aid, not a sleep measurement.</p></div><div className="sleep-overview"><div><span className="overview-kicker">YOUR NIGHTLY RESET</span><strong>{isi.filter(q=>answers[q.name]!==undefined).length}<small> / 7</small></strong><p>sleep reflections completed</p></div><div className="sleep-moon">☾<span>✦</span></div><div className="sleep-overview-track"><span style={{width:(isi.filter(q=>answers[q.name]!==undefined).length/7*100)+"%"}}/></div></div><div className="assessment-panel"><div className="assessment-section-intro"><span className="section-number">01</span><div><span className="overview-kicker">SLEEP REFLECTION</span><h2>Your sleep</h2></div></div><p className="assessment-muted">Choose the answer that fits you best.</p>{isi.map((q,i)=><fieldset className="assessment-fieldset" key={q.name}><legend>{i+1}. {q.text}</legend><OptionList options={q.opts} value={answers[q.name]} onChange={v=>setAnswers(a=>({...a,[q.name]:v}))}/></fieldset>)}<div className="assessment-section-intro assessment-stress-intro"><span className="section-number">02</span><div><span className="overview-kicker">STRESS REFLECTION</span><h2>{tr("Your stress",hi)}</h2></div></div><p className="assessment-muted">{tr("Think about the last month. Choose how often each statement applied to you.",hi)}</p>{stressQuestions.map((q,i)=><fieldset className="assessment-fieldset" key={q.name}><legend>{i+1}. {tr(q.text,hi)}</legend><OptionList options={stressScale} value={stressAnswers[q.name]===undefined?undefined:stressAnswers[q.name]-1} onChange={v=>setStressAnswers(a=>({...a,[q.name]:v+1}))}/></fieldset>)}<div className="sleep-stress-progress">{stressQuestions.filter(q=>stressAnswers[q.name]!==undefined).length} / 4 {tr("4 stress reflections completed",hi)}</div><h2>About you</h2><p className="assessment-muted">These details are part of the demo form.</p><div className="assessment-profile-grid"><label>Age<input type="number" min="16" max="40" value={profile.age} onChange={e=>setProfile(p=>({...p,age:e.target.value}))}/></label><label>Gender<select value={profile.gender} onChange={e=>setProfile(p=>({...p,gender:e.target.value}))}><option value="female">Female</option><option value="male">Male</option></select></label><label>Smoking<select value={profile.smoke} onChange={e=>setProfile(p=>({...p,smoke:e.target.value}))}><option value="never smokes">Never smokes</option><option value="occasional smoker (cumulative smoking <10 packs)">Occasional smoker</option><option value="current smoker (cumulative smoking >10 packs)">Current smoker</option><option value="former smoker (cumulative smoking >10 packs), but not in the past year">Former smoker</option></select></label><label>Drinking<select value={profile.drink} onChange={e=>setProfile(p=>({...p,drink:e.target.value}))}><option value="never drinks">Never drinks</option><option value="drinks occasionally (less than once a week)">Occasionally (less than once a week)</option><option value="current regular drinker (more than once a week)">Regularly (more than once a week)</option><option value="drank in the past (more than once a week), but not in the past year">In the past</option></select></label></div><div className="assessment-actions"><button className="assessment-secondary" onClick={()=>{setAnswers({});setStressAnswers({});setResult(null);}}>Clear answers</button><button className="assessment-primary" disabled={!complete} onClick={submit}>Check my sleep pattern <ArrowRight size={16}/></button></div>{result?<div className="assessment-sleep-result"><span className="assessment-demo-flag">Demo calculation — not a real model prediction</span><h2>{result.level==="Steady"?"Your sleep pattern looks steady":result.level==="Disturbed"?"Your sleep seems a little disturbed":"Your sleep needs some attention"}</h2><strong>{result.score} <small>/ 100</small></strong><p><b>{hi?"नींद से जुड़ी सबसे बड़ी चिंता:":"Biggest sleep concern:"}</b> {tr(result.concern,hi)}</p><p>{tr("This is a wellness check, not a medical diagnosis. A real model result is not connected yet.",hi)}</p></div>:null}</div></Shell>;
+ const navigate=useNavigate();
+ const [answers,setAnswers]=useState(()=>mindCheckSession.isiAnswers||{}),[stressAnswers,setStressAnswers]=useState(()=>mindCheckSession.pssAnswers||{});
+ const [profile,setProfile]=useState(()=>mindCheckSession.profile||{age:"",gender:"",edu:"",smoke:"",drink:""});
+ const [skipMl,setSkipMl]=useState(Boolean(mindCheckSession.skipMl)),[loading,setLoading]=useState(false),[error,setError]=useState("");
+ const [apiResult,setApiResult]=useState(null),[showSafety,setShowSafety]=useState(false),[showSummary,setShowSummary]=useState(false);
+ const [bedtime,setBedtime]=useState("23:00"),[wakeTime,setWakeTime]=useState("07:00");
+ const sleepHours=(()=>{const [bh,bm]=bedtime.split(":").map(Number),[wh,wm]=wakeTime.split(":").map(Number);let mins=(wh*60+wm)-(bh*60+bm);if(mins<=0)mins+=1440;return `${Math.floor(mins/60)}h ${mins%60}m`;})();
+ const isiComplete=isi.every(q=>answers[q.name]!==undefined);
+ const pssComplete=stressQuestions.every(q=>stressAnswers[q.name]!==undefined);
+ const age=Number(profile.age),ageInRange=Number.isInteger(age)&&age>=16&&age<=40;
+ const profileComplete=ageInRange&&["gender","edu","smoke","drink"].every(key=>Boolean(profile[key]));
+ const canSubmit=Boolean(mindCheckSession.phq9Answers)&&isiComplete&&pssComplete&&(skipMl||age<16||age>40||profileComplete);
+ const updateProfile=(key,value)=>setProfile(current=>{const next={...current,[key]:value};mindCheckSession.profile=next;return next;});
+ const clearAll=()=>{mindCheckSession.phq9Answers=null;mindCheckSession.phq9Draft={};mindCheckSession.isiAnswers={};mindCheckSession.pssAnswers={};mindCheckSession.profile={age:"",gender:"",edu:"",smoke:"",drink:""};mindCheckSession.skipMl=false;setAnswers({});setStressAnswers({});setProfile({age:"",gender:"",edu:"",smoke:"",drink:""});setSkipMl(false);setApiResult(null);setShowSafety(false);setShowSummary(false);setError("");};
+ const sendRequest=async(payload)=>{
+  let lastError=null;
+  for(let attempt=0;attempt<2;attempt++){
+   const controller=new AbortController(); const timeout=setTimeout(()=>controller.abort(),90000);
+   try{
+    const response=await fetch("https://mindcheck-api.onrender.com/api/screen",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),signal:controller.signal});
+    let data=null;try{data=await response.json();}catch{data=null;}
+    if(!response.ok)throw new Error("The screening service could not process these answers.");
+    if(!data||!data.phq9||!data.gad7)throw new Error("The screening service returned an incomplete result.");
+    return data;
+   }catch(err){lastError=err;}
+   finally{clearTimeout(timeout);}
+  }
+  throw lastError||new Error("The screening service is temporarily unavailable.");
+ };
+ const submit=async()=>{
+  if(!canSubmit||loading)return;
+  setLoading(true);setError("");setApiResult(null);setShowSafety(false);setShowSummary(false);
+  const payload={
+   phq9_answers:mindCheckSession.phq9Answers.slice(0,9).map(Number),
+   gad7_answers:mindCheckSession.phq9Answers.slice(9,16).map(Number)
+  };
+  if(!skipMl&&ageInRange&&profileComplete){
+   payload.ml_inputs={
+    isi_answers:isi.map(q=>Number(answers[q.name])),
+    pss_answers:stressQuestions.map(q=>Number(stressAnswers[q.name])),
+    age,gender:profile.gender,edu:profile.edu,smoke:profile.smoke,drink:profile.drink
+   };
+  }
+  try{
+   const data=await sendRequest(payload);setApiResult(data);
+   if(data?.safety?.show_support===true)setShowSafety(true);else setShowSummary(true);
+   mindCheckSession.phq9Answers=null;
+  }catch(err){
+   setError(err?.name==="AbortError"?"The screening service took too long. Your answers are still here — please try again.":"We couldn’t complete your screening right now. Your answers are still here — please try again in a moment.");
+  }finally{setLoading(false);}
+ };
+ const resetToWellbeing=()=>{navigate("/wellbeing-checkin");};
+ return <Shell eyebrow="REST & RECOVERY" title="How has your sleep been?" subtitle="Complete your sleep and stress reflections to receive your combined screening results." icon={Moon}>
+  <div className="dream-lab-intro"><div className="dream-lab-copy"><span className="overview-kicker">THE DREAM LAB</span><h2>Build a picture of your nights.</h2><p>Sleep is more than a number. Explore your rhythm, then reflect on what may be interrupting your rest.</p></div><div className="dream-window"><span>☾</span><i>✦</i><b>REST<br/>MODE</b></div></div>
+  <div className="sleep-rhythm-panel"><div className="sleep-rhythm-head"><div><span className="overview-kicker">YOUR SLEEP RHYTHM</span><h3>A night, mapped by you</h3></div><strong>{sleepHours}<small> in bed</small></strong></div><div className="sleep-clock-track"><span className="sleep-clock-fill"/></div><div className="sleep-time-controls"><label>Bedtime<input type="time" value={bedtime} onChange={e=>setBedtime(e.target.value)}/></label><span className="sleep-path">→</span><label>Wake-up<input type="time" value={wakeTime} onChange={e=>setWakeTime(e.target.value)}/></label></div><p>Move the times to sketch your usual sleep window. This is a reflection aid, not a sleep measurement.</p></div>
+  {!mindCheckSession.phq9Answers?<div className="assessment-panel mindcheck-prerequisite"><h2>Start with your Wellbeing Check-in</h2><p>Complete the 16 PHQ-9 and GAD-7 questions first. Your answers will stay in this active session until the final submission.</p><button className="assessment-primary" onClick={resetToWellbeing}>Go to Wellbeing Check-in <ArrowRight size={16}/></button></div>:null}
+  <div className="sleep-overview"><div><span className="overview-kicker">YOUR NIGHTLY RESET</span><strong>{isi.filter(q=>answers[q.name]!==undefined).length}<small> / 7</small></strong><p>sleep reflections completed</p></div><div className="sleep-moon">☾<span>✦</span></div><div className="sleep-overview-track"><span style={{width:(isi.filter(q=>answers[q.name]!==undefined).length/7*100)+"%"}}/></div></div>
+  <div className="assessment-panel">
+   <div className="assessment-section-intro"><span className="section-number">01</span><div><span className="overview-kicker">SLEEP REFLECTION · ISI</span><h2>Your sleep</h2></div></div>
+   <p className="assessment-muted">Think about the last 2 weeks. For the first three questions, rate the severity of your sleep difficulties.</p>
+   {isi.map((q,i)=><fieldset className="assessment-fieldset" key={q.name}><legend>{i+1}. {q.text}</legend><ClinicalOptions options={q.opts} value={answers[q.name]} onChange={v=>setAnswers(current=>{const next={...current,[q.name]:v};mindCheckSession.isiAnswers=next;return next;})}/></fieldset>)}
+   <p className="mindcheck-copyright">Insomnia Severity Index © Morin, C.M. Permission must be obtained before public launch.</p>
+   <div className="assessment-section-intro assessment-stress-intro"><span className="section-number">02</span><div><span className="overview-kicker">STRESS REFLECTION · PSS-14</span><h2>Your stress</h2></div></div>
+   <p className="assessment-muted">In the last month, how often have you felt or thought this way? Please answer fairly quickly; your first reasonable estimate is enough.</p>
+   {stressQuestions.map((q,i)=><fieldset className="assessment-fieldset" key={q.name}><legend>{i+1}. {q.text}</legend><ClinicalOptions options={stressScale} value={stressAnswers[q.name]===undefined?undefined:stressAnswers[q.name]-1} offset={1} onChange={v=>setStressAnswers(current=>{const next={...current,[q.name]:v};mindCheckSession.pssAnswers=next;return next;})}/></fieldset>)}
+   <div className="sleep-stress-progress">{stressQuestions.filter(q=>stressAnswers[q.name]!==undefined).length} / 14 stress reflections completed</div>
+   <div className="assessment-section-intro"><span className="section-number">03</span><div><span className="overview-kicker">ABOUT YOU</span><h2>A little context</h2></div></div>
+   <p className="assessment-muted">These five details are used only for the optional experimental insight. If you prefer not to share them, you can continue without the ML insight.</p>
+   <div className="assessment-profile-grid mindcheck-profile-grid">
+    <label>Age (16–40)<input type="number" min="16" max="40" value={profile.age} onChange={e=>updateProfile("age",e.target.value)} placeholder="Enter your age"/></label>
+    <label>Gender<select value={profile.gender} onChange={e=>updateProfile("gender",e.target.value)}><option value="">Choose</option><option value="female">Female</option><option value="male">Male</option></select></label>
+    <label>Education<select value={profile.edu} onChange={e=>updateProfile("edu",e.target.value)}><option value="">Choose</option><option value="associate">Associate</option><option value="bachelor">Bachelor</option><option value="master">Master</option><option value="doctorate">Doctorate</option></select></label>
+    <label>Smoking<select value={profile.smoke} onChange={e=>updateProfile("smoke",e.target.value)}><option value="">Choose</option><option value="never">Never</option><option value="occasional">Occasional</option><option value="former">Former</option><option value="current">Current</option></select></label>
+    <label>Drinking<select value={profile.drink} onChange={e=>updateProfile("drink",e.target.value)}><option value="">Choose</option><option value="never">Never</option><option value="occasional">Occasional</option><option value="past">Past</option><option value="regular">Regular</option></select></label>
+   </div>
+   <label className="mindcheck-skip-ml"><input type="checkbox" checked={skipMl} onChange={e=>{setSkipMl(e.target.checked);mindCheckSession.skipMl=e.target.checked;}}/> I prefer not to share these details. Continue without the experimental ML insight.</label>
+   {!skipMl&&profile.age&&!ageInRange?<p className="assessment-muted">The experimental insight is available only for ages 16–40. You can continue with the questionnaire results without it.</p>:null}
+   <div className="assessment-actions">
+    <button type="button" className="assessment-secondary" onClick={clearAll}>Clear answers</button>
+    <button type="button" className="assessment-primary" disabled={!canSubmit||loading} onClick={submit}>{loading?"Preparing your results…":"Submit complete check-in"} <ArrowRight size={16}/></button>
+   </div>
+   {loading?<p className="mindcheck-loading" role="status">Connecting to the screening service. The first request may take up to 90 seconds. If it fails, we’ll retry once automatically.</p>:null}
+   {error?<p className="assessment-error" role="alert"><AlertCircle size={16}/><span>{error}</span></p>:null}
+   {showSafety&&apiResult?<section className="assessment-safety mindcheck-safety" aria-live="polite" style={{background:"#49372f",backgroundImage:"none",border:"1px solid #8b654d",color:"#fff3df"}}><h3 style={{color:"#fff3df",WebkitTextFillColor:"#fff3df",opacity:1}}>You don’t have to handle this alone</h3><p style={{color:"#fff3df",WebkitTextFillColor:"#fff3df",opacity:1}}>One of your answers suggests you may have had thoughts of hurting yourself. These thoughts can be difficult to carry. Consider reaching out to someone you trust or a qualified mental health professional.</p><p style={{color:"#fff3df",WebkitTextFillColor:"#fff3df",opacity:1}}>If you are in immediate danger, contact local emergency services now.</p><button type="button" className="assessment-primary" onClick={()=>{setShowSafety(false);setShowSummary(true);}}>Continue to my results <ArrowRight size={16}/></button></section>:null}
+   {showSummary&&apiResult?<section className="assessment-sleep-result mindcheck-results" aria-live="polite">
+    <span className="assessment-success"><CheckCircle2 size={18}/> Your MindCheck results</span>
+    <div className="assessment-result-grid">
+     <article><span>Mood · PHQ-9</span><strong>{apiResult.phq9.score} <small>/ {apiResult.phq9.max_score}</small></strong><b>{apiResult.phq9.level}</b></article>
+     <article><span>Worry · GAD-7</span><strong>{apiResult.gad7.score} <small>/ {apiResult.gad7.max_score}</small></strong><b>{apiResult.gad7.level}</b></article>
+    </div>
+    {apiResult.ml?.available===true?<div className="mindcheck-ml-card"><span>EXTRA INSIGHT · EXPERIMENTAL</span><div><b>Depression model</b><strong>{apiResult.ml.depression?.risk_score!=null?Number(apiResult.ml.depression.risk_score).toFixed(1):"—"} / 100</strong><p>{apiResult.ml.depression?.alert===true?"A check-in may help":"No flag"}</p></div><div><b>Anxiety model</b><strong>{apiResult.ml.anxiety?.risk_score!=null?Number(apiResult.ml.anxiety.risk_score).toFixed(1):"—"} / 100</strong><p>{apiResult.ml.anxiety?.alert===true?"A check-in may help":"No flag"}</p></div><small>These are experimental model scores, not probabilities or diagnoses.</small></div>:null}
+    <p className="assessment-disclaimer">{apiResult.disclaimer||"This is a screening result, not a diagnosis. Only a qualified mental health professional can diagnose or treat."}</p>
+    <div className="assessment-actions"><button type="button" className="assessment-secondary" onClick={clearAll}><RotateCcw size={15}/> Start again</button><button type="button" className="assessment-primary" onClick={()=>navigate("/mindora-ai")}>Explore coping suggestions <ArrowRight size={16}/></button></div>
+   </section>:null}
+  </div>
+ </Shell>;
 }
 export function AcademicStressPage(){
  const [values,setValues]=useState({}),[result,setResult]=useState(null),[error,setError]=useState(""),[loading,setLoading]=useState(false);
