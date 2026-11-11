@@ -936,3 +936,27 @@ html[data-mindora-theme="dark"] #root .app-shell.dark-theme[data-mood] .assessme
   opacity: 1 !important;
   text-shadow: none !important;
 }
+
+
+/* FINAL: safety support card contrast on standalone assessment routes in dark mode.
+   The global preference toolbar is outside .app-shell, so target the real page wrapper. */
+html[data-mindora-theme="dark"] #root .assessment-page .assessment-safety {
+  background: #49372F !important;
+  background-color: #49372F !important;
+  background-image: none !important;
+  border: 1px solid #8B654D !important;
+  color: #FFF3DF !important;
+  opacity: 1 !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,.18) !important;
+}
+html[data-mindora-theme="dark"] #root .assessment-page .assessment-safety h1,
+html[data-mindora-theme="dark"] #root .assessment-page .assessment-safety h2,
+html[data-mindora-theme="dark"] #root .assessment-page .assessment-safety h3,
+html[data-mindora-theme="dark"] #root .assessment-page .assessment-safety p,
+html[data-mindora-theme="dark"] #root .assessment-page .assessment-safety strong,
+html[data-mindora-theme="dark"] #root .assessment-page .assessment-safety span {
+  color: #FFF3DF !important;
+  -webkit-text-fill-color: #FFF3DF !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
