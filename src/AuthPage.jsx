@@ -25,6 +25,22 @@ export default function AuthPage({ mode = "login" }) {
   const [success, setSuccess] = useState("");
   const googleButtonRef = useRef(null);
 
+  function applyFirstTimeAccountTheme() {
+    if (!isRegister) return;
+    try {
+      localStorage.removeItem("mindora-saved-mood");
+      localStorage.setItem("mindora-palette-mode", "default");
+      localStorage.setItem("mindora-theme", "light");
+    } catch {}
+    setDarkMode(false);
+    delete document.documentElement.dataset.mindoraMood;
+    document.documentElement.dataset.mindoraPalette = "default";
+    document.documentElement.dataset.mindoraTheme = "light";
+    window.dispatchEvent(new CustomEvent("mindora:palette-change", {
+      detail: { palette: "default" },
+    }));
+  }
+
   async function handleGoogleCredential(response) {
     setError("");
     setSuccess("");
@@ -40,6 +56,7 @@ export default function AuthPage({ mode = "login" }) {
       });
       localStorage.setItem("mindora-token", result.token);
       localStorage.setItem("mindora-user", JSON.stringify(result.user));
+      applyFirstTimeAccountTheme();
       setSuccess("Signed in with Google. Opening your space…");
       window.setTimeout(() => navigate("/dashboard"), 450);
     } catch (requestError) {
@@ -118,6 +135,7 @@ export default function AuthPage({ mode = "login" }) {
         });
         localStorage.setItem("mindora-token", result.token);
         localStorage.setItem("mindora-user", JSON.stringify(result.user));
+        applyFirstTimeAccountTheme();
         setSuccess("Verified successfully. Opening your space…");
         window.setTimeout(() => navigate("/dashboard"), 450);
       }
