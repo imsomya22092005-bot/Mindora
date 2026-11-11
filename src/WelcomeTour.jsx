@@ -37,12 +37,12 @@ export default function WelcomeTour({ onFinish }) {
   const total = tourCards.length;
 
   useEffect(() => {
-    if (paused) return undefined;
+    if (paused || active === total - 1) return undefined;
     const timer = window.setInterval(() => {
       setActive((current) => (current + 1) % total);
     }, 3800);
     return () => window.clearInterval(timer);
-  }, [paused, total]);
+  }, [paused, active, total]);
 
   const move = (direction) => setActive((current) => (current + direction + total) % total);
   const current = tourCards[active];
