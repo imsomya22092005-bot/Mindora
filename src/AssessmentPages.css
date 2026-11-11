@@ -844,3 +844,31 @@ html[data-mindora-palette="default"] #root .assessment-page .sleep-moon span {
 html[data-mindora-palette="default"] #root .assessment-page .sleep-overview-track {
   background: #F0DFC5 !important;
 }
+
+
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-overview {
+  background: linear-gradient(115deg, #FFF7E8, #FFECCF) !important;
+  border: 1px solid #F0D8B6 !important;
+  color: #49342E !important;
+  box-shadow: 0 14px 28px rgba(116, 78, 43, .09) !important;
+}
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-overview .overview-kicker {
+  color: #9A704A !important;
+  -webkit-text-fill-color: #9A704A !important;
+}
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-overview :is(strong,small,p) {
+  color: #49342E !important;
+  -webkit-text-fill-color: #49342E !important;
+}
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-moon {
+  color: #C58C43 !important;
+  text-shadow: none !important;
+  -webkit-text-fill-color: #C58C43 !important;
+}
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-moon span {
+  color: #E5A94F !important;
+  -webkit-text-fill-color: #E5A94F !important;
+}
+html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sleep-overview-track {
+  background: #E8D5B9 !important;
+}
