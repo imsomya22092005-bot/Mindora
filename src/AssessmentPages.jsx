@@ -128,7 +128,7 @@ function ClinicalOptions({options,value,onChange,offset=0}) {
  return <div className="assessment-options">{options.map((option,index)=><button type="button" key={option} className={Number(value)===index+offset?"is-selected":""} onClick={()=>onChange(index+offset)}>{option}</button>)}</div>;
 }
 export function WellbeingCheckinPage(){
- const [language]=useLanguage(); const hi=language==="hi"; const navigate=useNavigate();
+ const navigate=useNavigate();
  const [step,setStep]=useState(-1),[answers,setAnswers]=useState(()=>mindCheckSession.phq9Draft||{});
  const questions=useMemo(()=>[...phq.map((q,i)=>({q,group:"Mood check",n:i+1})),...gad.map((q,i)=>({q,group:"Worry check",n:i+1}))],[]);
  const setAnswer=(v)=>setAnswers(a=>{const next={...a,[step]:v};mindCheckSession.phq9Draft=next;return next;});
@@ -161,7 +161,7 @@ export function WellbeingCheckinPage(){
  </Shell>;
 }
 export function SleepCheckPage(){
- const [language]=useLanguage(); const hi=language==="hi"; const navigate=useNavigate();
+ const navigate=useNavigate();
  const [answers,setAnswers]=useState(()=>mindCheckSession.isiAnswers||{}),[stressAnswers,setStressAnswers]=useState(()=>mindCheckSession.pssAnswers||{});
  const [profile,setProfile]=useState(()=>mindCheckSession.profile||{age:"",gender:"",edu:"",smoke:"",drink:""});
  const [skipMl,setSkipMl]=useState(Boolean(mindCheckSession.skipMl)),[loading,setLoading]=useState(false),[error,setError]=useState("");
