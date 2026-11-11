@@ -84,10 +84,30 @@ export default function StickyNoteWall() {
     setIsDark(root.dataset.mindoraTheme === "dark");
     return () => observer.disconnect();
   }, []);
+  const [paletteMode, setPaletteMode] = useState(() => {
+    try { return (localStorage.getItem("mindora-palette-mode") || "default").toLowerCase(); }
+    catch { return "default"; }
+  });
   const [savedMoodTheme, setSavedMoodTheme] = useState(() => {
     try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
     catch { return "default"; }
   });
+  useEffect(() => {
+    const syncPalette = (event) => {
+      const next = event?.detail?.palette;
+      if (next) setPaletteMode(String(next).toLowerCase());
+      else {
+        try { setPaletteMode((localStorage.getItem("mindora-palette-mode") || "default").toLowerCase()); }
+        catch { setPaletteMode("default"); }
+      }
+    };
+    window.addEventListener("mindora:palette-change", syncPalette);
+    window.addEventListener("storage", syncPalette);
+    return () => {
+      window.removeEventListener("mindora:palette-change", syncPalette);
+      window.removeEventListener("storage", syncPalette);
+    };
+  }, []);
 
   useEffect(() => {
     const syncMood = (event) => {
@@ -105,7 +125,13 @@ export default function StickyNoteWall() {
       window.removeEventListener("storage", syncMood);
     };
   }, []);
-  const activePalette = wallPalettes[savedMoodTheme]?.[isDark ? "dark" : "light"] || wallPalettes.okay[isDark ? "dark" : "light"];
+  const defaultWallPalette = {
+    light: { page:"#FFFBDA", surface:"#FFF3C4", board:"#FFEC9E", ink:"#49342E", muted:"#806B61", accent:"#ED9455", line:"#E8C98F", button:"#ED9455", buttonText:"#49342E", paper:"#FFFDF5", paperAlt:"#FFF1D2", pin:"#B56C3D" },
+    dark: { page:"#292321", surface:"#382D29", board:"#49372F", ink:"#FFF3DF", muted:"#E6D4C3", accent:"#FFBB70", line:"#705242", button:"#ED9455", buttonText:"#30231D", paper:"#45352F", paperAlt:"#3D302B", pin:"#FFCF9A" }
+  };
+  const activePalette = paletteMode === "default"
+    ? defaultWallPalette[isDark ? "dark" : "light"]
+    : (wallPalettes[savedMoodTheme]?.[isDark ? "dark" : "light"] || wallPalettes.okay[isDark ? "dark" : "light"]);
   const wallStyle = Object.fromEntries(Object.entries(activePalette).map(([key, value]) => [`--ln-${key.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}`, value]));
   const [composerOpen, setComposerOpen] = useState(false);
   const [noteText, setNoteText] = useState("");
@@ -140,7 +166,7 @@ export default function StickyNoteWall() {
 
   return (
     <NoteLocalized hi={hi}>
-    <div className="sticky-wall-page" data-mood={savedMoodTheme} style={wallStyle}>
+    <div className="sticky-wall-page" data-mood={paletteMode === "default" ? "default" : savedMoodTheme} style={wallStyle}>
       <header className="sticky-wall-header">
         <button className="sticky-wall-back" onClick={() => navigate("/dashboard")} aria-label="Back to dashboard"><ArrowLeft size={17} /></button>
         <div className="sticky-wall-heading">
