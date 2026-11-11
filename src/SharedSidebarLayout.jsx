@@ -34,7 +34,7 @@ export default function SharedSidebarLayout({children}) {
  const [mobileMenuOpen,setMobileMenuOpen]=useState(false);
  const sidebarRef=useRef(null);
  const [settingsOpen,setSettingsOpen]=useState(false);
- const [paletteMode,setPaletteMode]=useState(() => { try { const mode=localStorage.getItem("mindora-palette-mode"); const mood=localStorage.getItem("mindora-saved-mood"); return mode || (mood ? "mood" : "default"); } catch { return "default"; } });
+ const [paletteMode,setPaletteMode]=useState(() => { try { const mode=localStorage.getItem("mindora-palette-mode"); const mood=localStorage.getItem("mindora-saved-mood"); return mode === "default" ? "default" : mood ? "mood" : "default"; } catch { return "default"; } });
  const [darkMode,setDarkMode]=useState(() => { try { return localStorage.getItem("mindora-theme")==="dark"; } catch { return false; } });
  useEffect(() => {
   document.documentElement.dataset.mindoraTheme = darkMode ? "dark" : "light";
