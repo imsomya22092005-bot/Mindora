@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Heart, Sparkles, X } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Heart, Sparkles } from "lucide-react";
 import "./WelcomeTour.css";
 
 const tourCards = [
@@ -77,7 +77,7 @@ export default function WelcomeTour({ onFinish }) {
             <article
               key={card.id}
               className={`welcome-tour-card welcome-tour-card--${card.palette} ${offset === 0 ? "is-active" : "is-side"}`}
-              style={{ "--card-offset": offset, "--card-depth": Math.abs(offset) }}
+              style={{ "--card-offset": offset, "--card-depth": Math.abs(offset), "--offset-x": `${offset * 210}px`, "--offset-x-mobile": `${offset * 150}px`, "--offset-x-small": `${offset * 125}px`, "--rotate-y": `${offset * -23}deg`, "--rotate-z": `${offset * -2}deg`, "--card-scale": 1 - Math.abs(offset) * 0.105, "--card-opacity": 1 - Math.abs(offset) * 0.27, "--card-z": 10 - Math.abs(offset) }}
               aria-hidden={offset !== 0}
               onClick={() => { if (offset !== 0) setActive(index); }}
             >
