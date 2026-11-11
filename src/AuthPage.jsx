@@ -56,7 +56,6 @@ export default function AuthPage({ mode = "login" }) {
       });
       localStorage.setItem("mindora-token", result.token);
       localStorage.setItem("mindora-user", JSON.stringify(result.user));
-      applyFirstTimeAccountTheme();
       setSuccess("Signed in with Google. Opening your space…");
       window.setTimeout(() => navigate("/dashboard"), 450);
     } catch (requestError) {
