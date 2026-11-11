@@ -4763,3 +4763,39 @@ html[data-mindora-theme="dark"][data-mindora-palette="mood"][data-mindora-mood] 
 @media(max-width:520px){.mobile-sidebar-toggle{margin-right:1px}.topbar-actions{min-width:0}}
 
 .shared-brand-mark img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;border-radius:inherit}
+
+
+/* FINAL: global language/theme controls match the dark Mindora palette. */
+html[data-mindora-theme="dark"] #root .global-page-preferences {
+  background: #382D2A !important;
+  border: 1px solid #705242 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.24) !important;
+}
+html[data-mindora-theme="dark"] #root .global-page-preferences label,
+html[data-mindora-theme="dark"] #root .global-page-preferences label span {
+  color: #E8D8D0 !important;
+  -webkit-text-fill-color: #E8D8D0 !important;
+}
+html[data-mindora-theme="dark"] #root .global-page-preferences select {
+  background: #49372F !important;
+  background-color: #49372F !important;
+  border: 1px solid #8B654D !important;
+  color: #FFF3DF !important;
+  -webkit-text-fill-color: #FFF3DF !important;
+  color-scheme: dark;
+}
+html[data-mindora-theme="dark"] #root .global-page-preferences select option {
+  background: #382D2A !important;
+  color: #FFF3DF !important;
+}
+html[data-mindora-theme="dark"] #root .global-page-preferences button {
+  background: #FF9A86 !important;
+  border: 1px solid #FF9A86 !important;
+  color: #292323 !important;
+  -webkit-text-fill-color: #292323 !important;
+}
+html[data-mindora-theme="dark"] #root .global-page-preferences button svg,
+html[data-mindora-theme="dark"] #root .global-page-preferences button span {
+  color: #292323 !important;
+  -webkit-text-fill-color: #292323 !important;
+}
