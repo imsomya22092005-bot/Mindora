@@ -918,3 +918,31 @@ html[data-mindora-palette="default"] #root .assessment-page.assessment-sleep .sl
   color: #E5A94F !important;
   -webkit-text-fill-color: #E5A94F !important;
 }
+
+
+/* MindCheck integration */
+.mindcheck-profile-grid { margin-top: 18px; }
+.mindcheck-profile-grid label { min-width: 0; }
+.mindcheck-profile-grid input,
+.mindcheck-profile-grid select { width: 100%; box-sizing: border-box; }
+.mindcheck-copyright { margin: 18px 0 28px; color: #806b61; font-size: 12px; }
+.mindcheck-skip-ml { display: flex; align-items: flex-start; gap: 10px; margin: 20px 0; color: #654b3e; line-height: 1.5; }
+.mindcheck-skip-ml input { width: 17px; height: 17px; margin-top: 2px; accent-color: #ed9455; flex: 0 0 auto; }
+.mindcheck-prerequisite { margin: 22px 0; }
+.mindcheck-loading { margin: 16px 0 0; color: #795c4c; font-size: 14px; line-height: 1.6; }
+.mindcheck-results { margin-top: 24px; }
+.mindcheck-ml-card { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin: 22px 0; padding: 20px; border: 1px solid rgba(160,112,74,.25); border-radius: 18px; background: rgba(255,236,158,.24); }
+.mindcheck-ml-card > span,
+.mindcheck-ml-card > small { grid-column: 1 / -1; }
+.mindcheck-ml-card > span { color: #8c5d3c; font-size: 11px; letter-spacing: .12em; font-weight: 800; }
+.mindcheck-ml-card > div { padding: 14px; border-radius: 12px; background: rgba(255,255,255,.62); display: flex; flex-direction: column; gap: 7px; }
+.mindcheck-ml-card > div b { color: #684b3b; font-size: 13px; }
+.mindcheck-ml-card > div strong { color: #493126; font-size: 22px; }
+.mindcheck-ml-card > div p { margin: 0; color: #795c4c; font-size: 13px; }
+.mindcheck-ml-card > small { color: #795c4c; line-height: 1.5; }
+.mindcheck-safety { margin-top: 24px; padding: 22px; border-radius: 16px; }
+@media (max-width: 640px) {
+ .mindcheck-ml-card { grid-template-columns: 1fr; }
+ .mindcheck-ml-card > span,
+ .mindcheck-ml-card > small { grid-column: auto; }
+}
