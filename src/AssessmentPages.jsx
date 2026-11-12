@@ -164,10 +164,10 @@ export function SleepCheckPage(){
      if(Array.isArray(root)){
       for(const item of root){
        if(item&&typeof item==="object"){
-        const key=String(item.name||item.field||item.key||item.id||"").toLowerCase();
+        const key=String(item.name||item.field||item.field_name||item.key||item.id||"").toLowerCase();
         if(names.includes(key)){
          const raw=item.options||item.allowed_values||item.values||item.choices||item.enum;
-         if(Array.isArray(raw))return raw.map(option=>typeof option==="object"?{value:String(option.value??option.id??option.code??""),label:String(option.label??option.title??option.name??option.value??"")}:{value:String(option),label:String(option)});
+         if(Array.isArray(raw))return raw.map(option=>typeof option==="object"?{value:String(option.value??option.id??option.code??option.key??""),label:String(option.label??option.title??option.name??option.value??"")}:{value:String(option),label:String(option)});
         }
        }
        const nested=findOptions(item,names);if(nested.length)return nested;
@@ -185,8 +185,8 @@ export function SleepCheckPage(){
      }
      return [];
     };
-    const smoke=findOptions(data,["smoke","smoking","smoking_status"]);
-    const drink=findOptions(data,["drink","drinking","drinking_status","alcohol"]);
+    const smoke=findOptions(data,["smoke","smoking","smoking_status","smoke_options","smoking_options"]);
+    const drink=findOptions(data,["drink","drinking","drinking_status","alcohol","drink_options","drinking_options"]);
     if(!smoke.length||!drink.length)throw new Error("Sleep options were returned in an unexpected format. Please contact the backend team to confirm the smoke and drink values.");
     if(active){setProfileOptions({smoke,drink});setProfile(p=>({...p,smoke:smoke[0].value,drink:drink[0].value}));}
    }catch(err){if(active)setError(err.message||"Could not load sleep assessment options.");}
