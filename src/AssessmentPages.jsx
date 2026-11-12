@@ -153,11 +153,39 @@ export function AcademicStressPage(){
    const response=await fetch("https://academic-stress-pattern-predictor3.onrender.com/api/predict",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
    let data={};try{data=await response.json();}catch{data={};}
    if(!response.ok){
-    const details=data?.details;
+    const fieldNames=all.map(([name])=>name);
+    const invalidFields=new Set();
+    const inspectError=(value)=>{
+     if(typeof value==="string"){
+      fieldNames.forEach(name=>{if(new RegExp("\\b"+name+"\\b","i").test(value))invalidFields.add(name);});
+      return;
+     }
+     if(Array.isArray(value)){value.forEach(inspectError);return;}
+     if(value&&typeof value==="object"){
+      Object.entries(value).forEach(([key,entry])=>{
+       if(fieldNames.includes(key))invalidFields.add(key);
+       if(["field","field_name","name","loc","location","path","param"].includes(key))inspectError(entry);
+       else if(typeof entry==="object")inspectError(entry);
+       else if(typeof entry==="string")inspectError(entry);
+      });
+     }
+    };
+    inspectError(data?.detail);
+    inspectError(data?.details);
+    inspectError(data?.errors);
+    inspectError(data?.fields);
+    inspectError(data?.field);
+    inspectError(data?.field_name);
+    inspectError(data?.message);
+    if(invalidFields.size){
+     const questions=Array.from(invalidFields).map(name=>all.find(([field])=>field===name)?.[1]).filter(Boolean);
+     throw new Error((hi?"कृपया उत्तर दें: ":"Please answer: ")+questions.map(question=>tr(question,hi)).join(" · "));
+    }
+    const details=data?.details??data?.detail??data?.errors;
     const detailMessage=Array.isArray(details)?details.map(item=>typeof item==="string"?item:item?.msg||item?.message||JSON.stringify(item)).join(" · "):typeof details==="string"?details:details&&typeof details==="object"?Object.entries(details).map(([key,value])=>key+": "+(Array.isArray(value)?value.join(", "):String(value))).join(" · "):"";
     throw new Error(detailMessage||data?.message||data?.error||"The predictor could not validate your answers. Please check all 16 responses and try again.");
    }
-   if(!data?.level)throw new Error("The predictor response was incomplete. Please try again.");
+   if(!["low","moderate","high"].includes(String(data?.level||"").toLowerCase()))throw new Error("The predictor response was incomplete. Please try again.");
    setResult(data);
   }catch(err){setError(err.message||"Could not connect to the predictor. Please try again later.");}
   finally{setLoading(false);}
