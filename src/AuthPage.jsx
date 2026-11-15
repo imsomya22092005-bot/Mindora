@@ -25,14 +25,11 @@ export default function AuthPage({ mode = "login" }) {
   const [success, setSuccess] = useState("");
   const googleButtonRef = useRef(null);
 
-  function queueWelcomeTour(result, fallbackEmail = "") {
-    if (!isRegister) return;
-    const user = result?.user || {};
-    const accountKey = String(user.id || user._id || user.email || fallbackEmail || "").trim().toLowerCase();
-    if (!accountKey) return;
+  function queueWelcomeTour() {
+    // Show the tour once for every successful login session, not just first-time signup.
     try {
-      const alreadyCompleted = localStorage.getItem(`mindora-welcome-tour-complete:${accountKey}`) === "true";
-      if (!alreadyCompleted) localStorage.setItem("mindora-welcome-tour-pending", accountKey);
+      sessionStorage.setItem("mindora-welcome-tour-pending", "true");
+      sessionStorage.removeItem("mindora-welcome-tour-seen");
     } catch {}
   }
 
@@ -67,9 +64,9 @@ export default function AuthPage({ mode = "login" }) {
       });
       localStorage.setItem("mindora-token", result.token);
       localStorage.setItem("mindora-user", JSON.stringify(result.user));
+      queueWelcomeTour();
       const isNewGoogleAccount = result?.isNewUser === true || result?.isNew === true || result?.user?.isNewUser === true || result?.user?.isNew === true || result?.created === true;
       if (isRegister && isNewGoogleAccount) {
-        queueWelcomeTour(result, result?.user?.email || email);
         applyFirstTimeAccountTheme();
       }
       setSuccess("Signed in with Google. Opening your space…");
@@ -150,7 +147,7 @@ export default function AuthPage({ mode = "login" }) {
         });
         localStorage.setItem("mindora-token", result.token);
         localStorage.setItem("mindora-user", JSON.stringify(result.user));
-        queueWelcomeTour(result, normalizedEmail);
+        queueWelcomeTour();
         applyFirstTimeAccountTheme();
         setSuccess("Verified successfully. Opening your space…");
         window.setTimeout(() => navigate("/dashboard"), 450);
@@ -170,6 +167,7 @@ export default function AuthPage({ mode = "login" }) {
       const result = await apiRequest("/api/auth/guest", { method: "POST", body: JSON.stringify({}) });
       localStorage.setItem("mindora-token", result.token);
       localStorage.setItem("mindora-user", JSON.stringify(result.user));
+      queueWelcomeTour();
       setSuccess("Your guest space is ready. Opening dashboard…");
       window.setTimeout(() => navigate("/dashboard"), 450);
     } catch (requestError) {
