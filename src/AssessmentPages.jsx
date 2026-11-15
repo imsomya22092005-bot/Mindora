@@ -145,7 +145,7 @@ export function WellbeingCheckinPage(){
      break;
     }catch(requestError){
      const message=requestError?.message||"";
-     const isClientError=/\\b(400|401|403)\\b/.test(message);
+     const isClientError=/\b(400|401|403)\b/.test(message);
      if(attempt===1||isClientError)throw requestError;
      setError("The screening service is taking longer than expected. Retrying once…");
     }finally{
