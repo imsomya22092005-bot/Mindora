@@ -267,21 +267,16 @@ function Dashboard() {
   const [language, setLanguage] = useLanguage();
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
-  const currentUser = (() => { try { return JSON.parse(localStorage.getItem("mindora-user") || "{}"); } catch { return {}; } })();
-  const welcomeAccountKey = String(currentUser.id || currentUser._id || currentUser.email || localStorage.getItem("mindora-token") || "account").trim().toLowerCase();
   const [showWelcomeTour, setShowWelcomeTour] = useState(() => {
     try {
-      const pendingAccount = localStorage.getItem("mindora-welcome-tour-pending");
-      const completed = localStorage.getItem(`mindora-welcome-tour-complete:${welcomeAccountKey}`);
-      return pendingAccount === welcomeAccountKey && completed !== "true";
+      return sessionStorage.getItem("mindora-welcome-tour-pending") === "true"
+        && sessionStorage.getItem("mindora-welcome-tour-seen") !== "true";
     } catch { return false; }
   });
   const finishWelcomeTour = () => {
     try {
-      localStorage.setItem(`mindora-welcome-tour-complete:${welcomeAccountKey}`, "true");
-      if (localStorage.getItem("mindora-welcome-tour-pending") === welcomeAccountKey) {
-        localStorage.removeItem("mindora-welcome-tour-pending");
-      }
+      sessionStorage.setItem("mindora-welcome-tour-seen", "true");
+      sessionStorage.removeItem("mindora-welcome-tour-pending");
     } catch {}
     setShowWelcomeTour(false);
   };
