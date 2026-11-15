@@ -130,10 +130,28 @@ export function WellbeingCheckinPage(){
   try{
    const token=localStorage.getItem("mindora-token");
    if(!token)throw new Error("Please log in again to submit your check-in.");
-   const data=await apiRequest("/api/ml/mindcheck/score",{token,method:"POST",body:JSON.stringify({
+   const requestBody=JSON.stringify({
     phq9_answers:phq.map((_,i)=>Number(answers[i])),
     gad7_answers:gad.map((_,i)=>Number(answers[i+9]))
-   })});
+   });
+   let data;
+   for(let attempt=0;attempt<2;attempt++){
+    const controller=new AbortController();
+    const timeoutId=setTimeout(()=>controller.abort(),75000);
+    try{
+     data=await apiRequest("/api/ml/mindcheck/score",{
+      token,method:"POST",signal:controller.signal,body:requestBody
+     });
+     break;
+    }catch(requestError){
+     const message=requestError?.message||"";
+     const isClientError=/\\b(400|401|403)\\b/.test(message);
+     if(attempt===1||isClientError)throw requestError;
+     setError("The screening service is taking longer than expected. Retrying once…");
+    }finally{
+     clearTimeout(timeoutId);
+    }
+   }
    if(!data?.phq9||!data?.gad7||typeof data.phq9.score!=="number"||typeof data.gad7.score!=="number")throw new Error("The screening service returned an incomplete result. Please try again.");
    setScreeningResult(data);
    if(data?.safety?.show_support===true)setSafety(true);
