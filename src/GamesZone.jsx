@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Gamepad2, Sparkles, RotateCcw, Play, Pause, Target, Star, Lock, Volume2, VolumeX, Trophy, Clock3 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Gamepad2, Sparkles, RotateCcw, Play, Pause, Target, Star, Lock, Volume2, VolumeX, Clock3 } from "lucide-react";
 import { useLanguage } from "./language";
 import "./GamesZone.css";
 
