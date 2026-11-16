@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import {
   ArrowLeft,
   Heart,
-  Sprout,
   CloudRain,
   BookHeart,
   Wind,
