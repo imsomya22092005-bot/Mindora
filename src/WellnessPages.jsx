@@ -24,24 +24,33 @@ function Shell({ title, subtitle, icon, children }) {
     try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
     catch { return "default"; }
   });
+  const [paletteMode, setPaletteMode] = useState(() => {
+    try { return (localStorage.getItem("mindora-palette-mode") || "default").toLowerCase(); }
+    catch { return "default"; }
+  });
   useEffect(() => {
-    const syncMood = (event) => {
-      const nextMood = event?.detail?.mood;
-      if (nextMood) setSavedMoodTheme(nextMood);
-      else {
-        try { setSavedMoodTheme((localStorage.getItem("mindora-saved-mood") || "default").toLowerCase()); }
-        catch { setSavedMoodTheme("default"); }
+    const syncPreferences = (event) => {
+      try {
+        setSavedMoodTheme((localStorage.getItem("mindora-saved-mood") || "default").toLowerCase());
+        setPaletteMode((localStorage.getItem("mindora-palette-mode") || "default").toLowerCase());
+      } catch {
+        setSavedMoodTheme("default");
+        setPaletteMode("default");
       }
+      if (event?.detail?.mood) setSavedMoodTheme(String(event.detail.mood).toLowerCase());
+      if (event?.detail?.palette) setPaletteMode(String(event.detail.palette).toLowerCase());
     };
-    window.addEventListener("mindora:mood-saved", syncMood);
-    window.addEventListener("storage", syncMood);
+    window.addEventListener("mindora:mood-saved", syncPreferences);
+    window.addEventListener("mindora:palette-change", syncPreferences);
+    window.addEventListener("storage", syncPreferences);
     return () => {
-      window.removeEventListener("mindora:mood-saved", syncMood);
-      window.removeEventListener("storage", syncMood);
+      window.removeEventListener("mindora:mood-saved", syncPreferences);
+      window.removeEventListener("mindora:palette-change", syncPreferences);
+      window.removeEventListener("storage", syncPreferences);
     };
   }, []);
   return (
-    <main className="wellness-page" data-mood={savedMoodTheme}>
+    <main className="wellness-page" data-mood={paletteMode === "default" ? "default" : savedMoodTheme}>
       <header className="wellness-topbar">
         <Link to="/dashboard" className="wellness-back">
           <ArrowLeft size={18} /> {hi ? "डैशबोर्ड पर वापस जाएँ" : "Back to Dashboard"}
