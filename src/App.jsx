@@ -15,8 +15,6 @@ import {
   Sparkles,
   Sun,
   Moon,
-  Plus,
-  Clock,
   CalendarDays,
   Smile,
   X,
