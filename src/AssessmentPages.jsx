@@ -78,7 +78,7 @@ const isi = [
 ];
 const stressQuestions = [
  {name:"pss_1",text:"How often have you been upset because of something that happened unexpectedly?"},
- {name:"pss_2",text:"How often have you felt unable to control the important things in your life?"},
+ {name:"pss_2",text:"In the last month, how often have you felt that you were unable to control the important things in your life?"},
  {name:"pss_3",text:"How often have you felt nervous and stressed?"},
  {name:"pss_14",text:"How often have you felt that difficulties were piling up so high that you could not overcome them?"}
 ];
@@ -235,7 +235,7 @@ export function SleepCheckPage(){
    const token=localStorage.getItem("mindora-token");
    if(!token)throw new Error("Please log in again to submit your sleep assessment.");
    const data=await apiRequest("/api/ml/sleep/predict",{token,method:"POST",body:JSON.stringify(payload)});
-   if(typeof data?.risk_score!=="number"||!data?.level)throw new Error("The sleep model returned an incomplete result. Please try again.");
+   if(data?.success!==true||typeof data?.risk_score!=="number"||!data?.level)throw new Error("The sleep model returned an incomplete result. Please try again.");
    setResult(data);
   }catch(err){setError(err.message||"Could not connect to SleepSync. Your answers are still here; please try again.");}
   finally{setLoading(false);}
