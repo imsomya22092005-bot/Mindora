@@ -186,7 +186,6 @@ export default function GamesZone() {
     };
   }, [activeGame, burning, soundOn]);
 
-  const puzzleTimeLimit = puzzleSize === 3 ? 120 : puzzleSize === 4 ? 180 : 240;
   useEffect(() => {
     if (activeGame !== "picture-puzzle" || sessionReminder || !puzzleImage || !puzzleTiles.length || puzzleWon || puzzleTimedOut) return;
     const timer = window.setInterval(() => setPuzzleRemaining(value => {
