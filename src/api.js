@@ -1,13 +1,10 @@
 const configuredApiUrl = import.meta.env.VITE_API_URL?.trim();
 const isProduction = import.meta.env.PROD;
 
-const API_BASE_URL = (configuredApiUrl || (isProduction ? "" : "http://localhost:5000")).replace(/\/$/, "");
+const DEFAULT_PRODUCTION_API_URL = "https://mindora-backend-mdfl.onrender.com";
+const API_BASE_URL = (configuredApiUrl || (isProduction ? DEFAULT_PRODUCTION_API_URL : "http://localhost:5000")).replace(/\/$/, "");
 
 export async function apiRequest(path, { token, ...options } = {}) {
-  if (isProduction && !configuredApiUrl) {
-    throw new Error("Mindora's backend URL is not configured yet. Please set VITE_API_URL in Vercel Environment Variables, then redeploy the frontend.");
-  }
-
   let response;
   try {
     response = await fetch(`${API_BASE_URL}${path}`, {
