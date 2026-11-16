@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { LockKeyhole, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 
 const DB_NAME = "mindora-memory-scrapbook";
 function openDB() {
