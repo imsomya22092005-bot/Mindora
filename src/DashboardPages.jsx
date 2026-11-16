@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { apiRequest } from "./api";
 import ScrapbookEditor, { deleteScrapbookPage } from "./ScrapbookEditor";
 import { Link } from "react-router-dom";
-import { ArrowLeft, BookHeart, CalendarDays, Feather, Heart, Leaf, LockKeyhole, Plus, Save, Sparkles, Trash2, Wind, BarChart3, Sprout, CloudRain, HeartHandshake, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, BookHeart, CalendarDays, Feather, Heart, Save, Sparkles, Trash2, Wind, BarChart3, Sprout, CloudRain, HeartHandshake, ArrowUpRight } from "lucide-react";
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 import "./DashboardPages.css";
 import { useLanguage } from "./language";
