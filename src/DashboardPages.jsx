@@ -8,10 +8,58 @@ import "./DashboardPages.css";
 import { useLanguage } from "./language";
 
 function useThemeClass() {
-  const [dark] = useState(() => {
+  const [dark, setDark] = useState(() => {
     try { return localStorage.getItem("mindora-theme") === "dark"; } catch { return false; }
   });
+  useEffect(() => {
+    const syncTheme = (event) => {
+      const next = event?.detail?.theme;
+      if (next) setDark(next === "dark");
+      else {
+        try { setDark(localStorage.getItem("mindora-theme") === "dark"); } catch { setDark(false); }
+      }
+    };
+    window.addEventListener("mindora:theme-change", syncTheme);
+    window.addEventListener("storage", syncTheme);
+    return () => {
+      window.removeEventListener("mindora:theme-change", syncTheme);
+      window.removeEventListener("storage", syncTheme);
+    };
+  }, []);
   return dark ? "mindora-section-page dark-theme" : "mindora-section-page";
+}
+
+function useMoodPalette() {
+  const [mood, setMood] = useState(() => {
+    try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
+    catch { return "default"; }
+  });
+  const [paletteMode, setPaletteMode] = useState(() => {
+    try { return (localStorage.getItem("mindora-palette-mode") || "default").toLowerCase(); }
+    catch { return "default"; }
+  });
+  useEffect(() => {
+    const sync = (event) => {
+      try {
+        setMood((localStorage.getItem("mindora-saved-mood") || "default").toLowerCase());
+        setPaletteMode((localStorage.getItem("mindora-palette-mode") || "default").toLowerCase());
+      } catch {
+        setMood("default");
+        setPaletteMode("default");
+      }
+      if (event?.detail?.mood) setMood(String(event.detail.mood).toLowerCase());
+      if (event?.detail?.palette) setPaletteMode(String(event.detail.palette).toLowerCase());
+    };
+    window.addEventListener("mindora:mood-saved", sync);
+    window.addEventListener("mindora:palette-change", sync);
+    window.addEventListener("storage", sync);
+    return () => {
+      window.removeEventListener("mindora:mood-saved", sync);
+      window.removeEventListener("mindora:palette-change", sync);
+      window.removeEventListener("storage", sync);
+    };
+  }, []);
+  return paletteMode === "default" ? "default" : mood;
 }
 
 function PageHeader({ eyebrow, title, subtitle, icon: Icon }) {
@@ -45,10 +93,7 @@ export function JournalPage() {
   const [language] = useLanguage();
   const hi = language === "hi";
   const [entries, setEntries] = useState(loadEntries);
-  const [journalMood, setJournalMood] = useState(() => {
-    try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
-    catch { return "default"; }
-  });
+  const moodTheme = useMoodPalette();
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [activePrompt, setActivePrompt] = useState(0);
@@ -94,7 +139,7 @@ export function JournalPage() {
     window.setTimeout(() => setSavedNotice(false), 3000);
   }
   function deleteEntry(id) { setEntries(previous => previous.filter(entry => entry.id !== id)); deleteScrapbookPage(id); }
-  return <main className={theme + " journal-mood-page"} data-mood={journalMood} data-mood-mode={isDark ? "dark" : "light"}>
+  return <main className={theme + " journal-mood-page"} data-mood={moodTheme} data-mood-mode={isDark ? "dark" : "light"}>
     <PageHeader eyebrow={hi ? "आपके निजी पन्ने" : "YOUR PRIVATE PAGES"} title={hi ? <>मन की बातें <em>लिखने की जगह।</em></> : <>A little space to <em>let it out.</em></>} subtitle={hi ? "उन बातों के लिए एक डायरी जिन्हें आप याद रखना, छोड़ देना या समझना चाहते हैं।" : "A diary for the things you want to remember, release, or simply understand."} icon={BookHeart}/>
 
     <section className={`journal-diary-scene ${diaryOpen ? "diary-is-open" : ""}`}>
@@ -154,36 +199,16 @@ export function InsightsPage() {
   const hi = language === "hi";
   const t = (en, hindi) => hi ? hindi : en;
   const [history]=useState(()=>{try{return JSON.parse(localStorage.getItem("mindora-mood-history")||"[]")}catch{return[]}});
-  const [savedMoodTheme, setSavedMoodTheme] = useState(() => {
-    try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); }
-    catch { return "default"; }
-  });
-  useEffect(() => {
-    const syncMood = (event) => {
-      const nextMood = event?.detail?.mood;
-      if (nextMood) setSavedMoodTheme(nextMood);
-      else {
-        try { setSavedMoodTheme((localStorage.getItem("mindora-saved-mood") || "default").toLowerCase()); }
-        catch { setSavedMoodTheme("default"); }
-      }
-    };
-    window.addEventListener("mindora:mood-saved", syncMood);
-    window.addEventListener("storage", syncMood);
-    return () => {
-      window.removeEventListener("mindora:mood-saved", syncMood);
-      window.removeEventListener("storage", syncMood);
-    };
-  }, []);
+  const moodTheme = useMoodPalette();
   const data=history.slice(0,7).reverse().map(item=>({day:item.date,mood:item.value,label:item.label}));
   const average=history.length?(history.reduce((sum,item)=>sum+item.value,0)/history.length).toFixed(1):"—";
-  return <main className={theme + " insights-mood-page"} data-mood={savedMoodTheme}><PageHeader eyebrow="GENTLE SELF-AWARENESS" title={hi ? <>आप कैसे <em>आगे बढ़ रहे हैं</em>, जानें।</> : <>Notice how you're <em>growing.</em></>} subtitle={t("Your feelings are information, not a report card.", "आपकी भावनाएँ आपको समझने का ज़रिया हैं, कोई परीक्षा नहीं।")} icon={BarChart3}/><div className="insight-stat-grid"><article><span>{t("CHECK-INS SAVED", "सेव किए गए चेक-इन")}</span><strong>{history.length}</strong><p>{t("Every check-in counts.", "हर चेक-इन मायने रखता है।")}</p></article><article><span>{t("AVERAGE MOOD", "औसत मूड")}</span><strong>{average}{average!=="—"&&<small>/10</small>}</strong><p>{t("A pattern, never a judgement.", "एक पैटर्न, कोई फैसला नहीं।")}</p></article><article><span>{t("LATEST CHECK-IN", "सबसे नया चेक-इन")}</span><strong>{history[0]?.emoji||"♡"} {history[0]?.label||"Not yet"}</strong><p>{history[0]?.date||"Your first check-in is waiting."}</p></article></div><section className="insight-chart-card"><span className="section-page-eyebrow">{t("YOUR RECENT RHYTHM", "आपका हालिया मूड पैटर्न")}</span><h2>{t("Mood, over time", "समय के साथ मूड")}</h2><p>{t("Look for patterns gently. One day never tells the whole story.", "पैटर्न को प्यार से समझें। एक दिन पूरी कहानी नहीं बताता।")}</p>{data.length?<div className="insight-chart"><ResponsiveContainer width="100%" height="100%"><AreaChart data={data}><defs><linearGradient id="mindoraMoodFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--insight-accent)" stopOpacity={0.35}/><stop offset="100%" stopColor="#ed9455" stopOpacity={0.02}/></linearGradient></defs><CartesianGrid strokeDasharray="3 3" stroke="var(--insight-line)"/><XAxis dataKey="day" tick={{fill:"var(--insight-muted)",fontSize:11}}/><YAxis domain={[0,10]} tick={{fill:"#806b61",fontSize:11}}/><Tooltip/><Area type="monotone" dataKey="mood" stroke="var(--insight-chart-line)" fill="url(#mindoraMoodFill)" strokeWidth={3}/></AreaChart></ResponsiveContainer></div>:<div className="diary-empty"><BarChart3 size={27}/><h3>{t("Your insights will grow with you.", "आपकी समझ आपके साथ बढ़ेगी।")}</h3><p>{t("Save a mood check-in on your dashboard and your personal rhythm will appear here.", "डैशबोर्ड पर अपना मूड सेव करें, आपका निजी पैटर्न यहाँ दिखाई देगा।")}</p><Link to="/dashboard">{t("Go to daily check-in", "आज के चेक-इन पर जाएँ")}<ArrowUpRight size={15}/></Link></div>}</section><div className="insight-kind-note"><Sparkles size={18}/><p><strong>{t("A gentle reminder", "एक प्यारी-सी याद")}</strong><br/>{t("The goal isn't to feel good every day. It's to understand yourself with a little more kindness.", "मकसद हर दिन अच्छा महसूस करना नहीं, बल्कि खुद को थोड़ी और दयालुता से समझना है.")}</p></div></main>;
+  return <main className={theme + " insights-mood-page"} data-mood={moodTheme}><PageHeader eyebrow="GENTLE SELF-AWARENESS" title={hi ? <>आप कैसे <em>आगे बढ़ रहे हैं</em>, जानें।</> : <>Notice how you're <em>growing.</em></>} subtitle={t("Your feelings are information, not a report card.", "आपकी भावनाएँ आपको समझने का ज़रिया हैं, कोई परीक्षा नहीं।")} icon={BarChart3}/><div className="insight-stat-grid"><article><span>{t("CHECK-INS SAVED", "सेव किए गए चेक-इन")}</span><strong>{history.length}</strong><p>{t("Every check-in counts.", "हर चेक-इन मायने रखता है।")}</p></article><article><span>{t("AVERAGE MOOD", "औसत मूड")}</span><strong>{average}{average!=="—"&&<small>/10</small>}</strong><p>{t("A pattern, never a judgement.", "एक पैटर्न, कोई फैसला नहीं।")}</p></article><article><span>{t("LATEST CHECK-IN", "सबसे नया चेक-इन")}</span><strong>{history[0]?.emoji||"♡"} {history[0]?.label||"Not yet"}</strong><p>{history[0]?.date||"Your first check-in is waiting."}</p></article></div><section className="insight-chart-card"><span className="section-page-eyebrow">{t("YOUR RECENT RHYTHM", "आपका हालिया मूड पैटर्न")}</span><h2>{t("Mood, over time", "समय के साथ मूड")}</h2><p>{t("Look for patterns gently. One day never tells the whole story.", "पैटर्न को प्यार से समझें। एक दिन पूरी कहानी नहीं बताता।")}</p>{data.length?<div className="insight-chart"><ResponsiveContainer width="100%" height="100%"><AreaChart data={data}><defs><linearGradient id="mindoraMoodFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--insight-accent)" stopOpacity={0.35}/><stop offset="100%" stopColor="#ed9455" stopOpacity={0.02}/></linearGradient></defs><CartesianGrid strokeDasharray="3 3" stroke="var(--insight-line)"/><XAxis dataKey="day" tick={{fill:"var(--insight-muted)",fontSize:11}}/><YAxis domain={[0,10]} tick={{fill:"#806b61",fontSize:11}}/><Tooltip/><Area type="monotone" dataKey="mood" stroke="var(--insight-chart-line)" fill="url(#mindoraMoodFill)" strokeWidth={3}/></AreaChart></ResponsiveContainer></div>:<div className="diary-empty"><BarChart3 size={27}/><h3>{t("Your insights will grow with you.", "आपकी समझ आपके साथ बढ़ेगी।")}</h3><p>{t("Save a mood check-in on your dashboard and your personal rhythm will appear here.", "डैशबोर्ड पर अपना मूड सेव करें, आपका निजी पैटर्न यहाँ दिखाई देगा।")}</p><Link to="/dashboard">{t("Go to daily check-in", "आज के चेक-इन पर जाएँ")}<ArrowUpRight size={15}/></Link></div>}</section><div className="insight-kind-note"><Sparkles size={18}/><p><strong>{t("A gentle reminder", "एक प्यारी-सी याद")}</strong><br/>{t("The goal isn't to feel good every day. It's to understand yourself with a little more kindness.", "मकसद हर दिन अच्छा महसूस करना नहीं, बल्कि खुद को थोड़ी और दयालुता से समझना है.")}</p></div></main>;
 }
 
 export function MindfulMomentsPage(){
  const theme=useThemeClass();
  const [language] = useLanguage();
- const [savedMoodTheme, setSavedMoodTheme] = useState(() => { try { return (localStorage.getItem("mindora-saved-mood") || "default").toLowerCase(); } catch { return "default"; } });
- useEffect(() => { const syncMood = (event) => { const nextMood = event?.detail?.mood; if (nextMood) setSavedMoodTheme(nextMood); else { try { setSavedMoodTheme((localStorage.getItem("mindora-saved-mood") || "default").toLowerCase()); } catch { setSavedMoodTheme("default"); } } }; window.addEventListener("mindora:mood-saved", syncMood); window.addEventListener("storage", syncMood); return () => { window.removeEventListener("mindora:mood-saved", syncMood); window.removeEventListener("storage", syncMood); }; }, []);
+ const moodTheme = useMoodPalette();
   const hi = language === "hi";
  const mindfulTools=[
  {title:hi ? "शांत कोना" : "Calm Corner",description:hi ? "जब दिन बहुत भारी लगे, तो सुकून का एक पल।" : "A quiet reset when the day feels like too much.",icon:Wind,href:"/calm-corner",tone:"sage"},
@@ -191,7 +216,7 @@ export function MindfulMomentsPage(){
  {title:hi ? "सुकून का डिब्बा" : "Little Comfort Box",description:hi ? "आपकी भावना के लिए एक प्यारा-सा संदेश पाएँ।" : "Find a kind reminder for the feeling you're carrying.",icon:HeartHandshake,href:"/comfort-box",tone:"peach"},
  {title:hi ? "सुकून भरी ध्वनियाँ" : "Mood Soundscape",description:hi ? "हल्की बारिश की आवाज़ के साथ थोड़ा सुकून पाएँ।" : "Let gentle rain create a little breathing room.",icon:CloudRain,href:"/soundscape",tone:"blue"},
  ];
- return <main className={theme + " mindful-moments-mood-page"} data-mood={savedMoodTheme}><PageHeader eyebrow={hi ? "छोटे विराम, सुकून भरे दिन" : "SMALL PAUSES, SOFTER DAYS"} title={hi ? <>अपना सुकून <em>खुद खोजें।</em></> : <>Find your own kind of <em>calm.</em></>} subtitle={hi ? "इस पल आपको जिसकी ज़रूरत है, उसे चुनें। यहाँ कुछ भी पाने के लिए खुद को साबित करने की ज़रूरत नहीं।" : "Choose what you need in this moment. Nothing here needs to be earned."} icon={Wind}/><div className="mindful-intro-card"><div><span className="section-page-eyebrow">{hi ? "अपने लिए एक संदेश" : "A NOTE TO YOURSELF"}</span><h2>{hi ? "आप ठहरने के हक़दार हैं।" : "You are allowed to pause."}</h2><p>{hi ? "आराम करना पीछे रह जाना नहीं है। अपने लिए दयालुता भरा सबसे छोटा कदम उठाएँ।" : "Rest is not falling behind. Take the smallest step that feels kind to you."}</p></div><span className="mindful-big-spark">✳</span></div><div className="mindful-tool-grid">{mindfulTools.map(tool=>{const Icon=tool.icon;return <Link to={tool.href} className="mindful-tool-card" key={tool.title}><span className={"mindful-tool-icon "+tool.tone}><Icon size={22}/></span><span className="mindful-tool-title">{tool.title}<ArrowUpRight size={15}/></span><p>{tool.description}</p><span className="mindful-tool-open">{hi ? "सुकून से देखें →" : "Explore gently →"}</span></Link>})}</div><footer className="section-page-footer"><Heart size={13}/> {hi ? "कोई दबाव नहीं। हर दिन परिपूर्ण होना ज़रूरी नहीं। बस आप।" : "No pressure. No perfect days. Just you."}</footer></main>;
+ return <main className={theme + " mindful-moments-mood-page"} data-mood={moodTheme}><PageHeader eyebrow={hi ? "छोटे विराम, सुकून भरे दिन" : "SMALL PAUSES, SOFTER DAYS"} title={hi ? <>अपना सुकून <em>खुद खोजें।</em></> : <>Find your own kind of <em>calm.</em></>} subtitle={hi ? "इस पल आपको जिसकी ज़रूरत है, उसे चुनें। यहाँ कुछ भी पाने के लिए खुद को साबित करने की ज़रूरत नहीं।" : "Choose what you need in this moment. Nothing here needs to be earned."} icon={Wind}/><div className="mindful-intro-card"><div><span className="section-page-eyebrow">{hi ? "अपने लिए एक संदेश" : "A NOTE TO YOURSELF"}</span><h2>{hi ? "आप ठहरने के हक़दार हैं।" : "You are allowed to pause."}</h2><p>{hi ? "आराम करना पीछे रह जाना नहीं है। अपने लिए दयालुता भरा सबसे छोटा कदम उठाएँ।" : "Rest is not falling behind. Take the smallest step that feels kind to you."}</p></div><span className="mindful-big-spark">✳</span></div><div className="mindful-tool-grid">{mindfulTools.map(tool=>{const Icon=tool.icon;return <Link to={tool.href} className="mindful-tool-card" key={tool.title}><span className={"mindful-tool-icon "+tool.tone}><Icon size={22}/></span><span className="mindful-tool-title">{tool.title}<ArrowUpRight size={15}/></span><p>{tool.description}</p><span className="mindful-tool-open">{hi ? "सुकून से देखें →" : "Explore gently →"}</span></Link>})}</div><footer className="section-page-footer"><Heart size={13}/> {hi ? "कोई दबाव नहीं। हर दिन परिपूर्ण होना ज़रूरी नहीं। बस आप।" : "No pressure. No perfect days. Just you."}</footer></main>;
 }
 
 
