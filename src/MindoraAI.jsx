@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Bot, Send, Sparkles, Heart, Clock3, RefreshCw, ThumbsUp, ThumbsDown, Wind, MessageCircleHeart } from "lucide-react";
 import { useLanguage } from "./language";
-import { analyzeEmotion, sendWellnessChat, resetWellnessChat, getCopingRecommendations, sendCopingFeedback } from "./mlApi";
+import { sendWellnessChat, getCopingRecommendations, sendCopingFeedback } from "./mlApi";
 import "./MindoraAI.css";
 
 
@@ -56,7 +56,6 @@ export default function MindoraAI() {
   }
 
   async function resetChat() {
-    try { await resetWellnessChat(getToken(), sessionId || undefined); } catch {}
     setSessionId("");
     setMessages([{ role: "assistant", content: hi ? "नई शुरुआत। मैं सुनने के लिए यहाँ हूँ।" : "A fresh start. I’m here to listen whenever you’re ready." }]);
     setChatError("");
