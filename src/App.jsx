@@ -1350,24 +1350,22 @@ function MoodThemeSync() {
 function GlobalPagePreferences() {
   const location = useLocation();
   const [language, setLanguage] = useLanguage();
-  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("mindora-theme") === "dark");
-  const [open, setOpen] = useState(false);
   const hi = language === "hi";
-  // The landing page already has its own header; hide only this global duplicate there.
   useEffect(() => {
-    // Landing and dashboard already provide their own language/theme controls.
-    // Don't let this global component overwrite their selected settings.
     if (location.pathname === "/" || location.pathname === "/dashboard") return;
-    localStorage.setItem("mindora-language", language);
-    localStorage.setItem("mindora-theme", darkMode ? "dark" : "light");
-    document.documentElement.dataset.mindoraTheme = darkMode ? "dark" : "light";
     document.documentElement.dataset.mindoraLanguage = language;
-  }, [location.pathname, language, darkMode]);
+  }, [location.pathname, language]);
   if (location.pathname === "/" || location.pathname === "/dashboard") return null;
   return <div className="global-page-preferences">
     <label><span>{hi ? "भाषा" : "Language"}</span><select aria-label={hi ? "भाषा" : "Language"} value={language} onChange={e => setLanguage(e.target.value)}><option value="en">English</option><option value="hi">हिन्दी</option></select></label>
-    <button type="button" onClick={() => setDarkMode(v => !v)}>{darkMode ? <Sun size={16}/> : <Moon size={16}/>}<span>{darkMode ? (hi ? "लाइट मोड" : "Light mode") : (hi ? "डार्क मोड" : "Dark mode")}</span></button>
   </div>;
+}
+
+function RequireAuth({ children }) {
+  const location = useLocation();
+  let token = "";
+  try { token = localStorage.getItem("mindora-token") || ""; } catch {}
+  return token ? children : <Navigate to="/login" replace state={{ from: location }} />;
 }
 
 function App() {
@@ -1384,29 +1382,29 @@ function App() {
         <Route path="/signup" element={<AuthPage mode="register" />} />
 
         {/* Main dashboard — existing features preserved */}
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/practice/:practiceId" element={<SharedSidebarLayout><MindfulPracticePage /></SharedSidebarLayout>} />
-        <Route path="/journal" element={<SharedSidebarLayout><JournalPage /></SharedSidebarLayout>} />
-        <Route path="/insights" element={<SharedSidebarLayout><InsightsPage /></SharedSidebarLayout>} />
-        <Route path="/mindful-moments" element={<SharedSidebarLayout><MindfulMomentsPage /></SharedSidebarLayout>} />
-        <Route path="/sticky-wall" element={<SharedSidebarLayout><StickyNoteWall /></SharedSidebarLayout>} />
-        <Route path="/wellbeing-checkin" element={<SharedSidebarLayout><WellbeingCheckinPage /></SharedSidebarLayout>} />
-        <Route path="/sleep-check" element={<SharedSidebarLayout><SleepCheckPage /></SharedSidebarLayout>} />
-        <Route path="/academic-stress" element={<SharedSidebarLayout><AcademicStressPage /></SharedSidebarLayout>} />
+        <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
+        <Route path="/practice/:practiceId" element={<RequireAuth><SharedSidebarLayout><MindfulPracticePage /></SharedSidebarLayout></RequireAuth>} />
+        <Route path="/journal" element={<RequireAuth><SharedSidebarLayout><JournalPage /></SharedSidebarLayout></RequireAuth>} />
+        <Route path="/insights" element={<RequireAuth><SharedSidebarLayout><InsightsPage /></SharedSidebarLayout></RequireAuth>} />
+        <Route path="/mindful-moments" element={<RequireAuth><SharedSidebarLayout><MindfulMomentsPage /></SharedSidebarLayout></RequireAuth>} />
+        <Route path="/sticky-wall" element={<RequireAuth><SharedSidebarLayout><StickyNoteWall /></SharedSidebarLayout></RequireAuth>} />
+        <Route path="/wellbeing-checkin" element={<RequireAuth><SharedSidebarLayout><WellbeingCheckinPage /></SharedSidebarLayout></RequireAuth>} />
+        <Route path="/sleep-check" element={<RequireAuth><SharedSidebarLayout><SleepCheckPage /></SharedSidebarLayout></RequireAuth>} />
+        <Route path="/academic-stress" element={<RequireAuth><SharedSidebarLayout><AcademicStressPage /></SharedSidebarLayout></RequireAuth>} />
         <Route path="/mood-heatmap" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/profile" element={<SharedSidebarLayout><ProfilePage /></SharedSidebarLayout>} />
-        <Route path="/games" element={<SharedSidebarLayout><GamesZone /></SharedSidebarLayout>} />
+        <Route path="/profile" element={<RequireAuth><SharedSidebarLayout><ProfilePage /></SharedSidebarLayout></RequireAuth>} />
+        <Route path="/games" element={<RequireAuth><SharedSidebarLayout><GamesZone /></SharedSidebarLayout></RequireAuth>} />
 
         {/* Additive AI wellbeing tools */}
-        <Route path="/mindora-ai" element={<SharedSidebarLayout><MindoraAI /></SharedSidebarLayout>} />
+        <Route path="/mindora-ai" element={<RequireAuth><SharedSidebarLayout><MindoraAI /></SharedSidebarLayout></RequireAuth>} />
 
         {/* Mindora wellness pages */}
-        <Route path="/calm-corner" element={<SharedSidebarLayout><CalmCorner /></SharedSidebarLayout>} />
-        <Route path="/inner-garden" element={<SharedSidebarLayout><InnerGarden /></SharedSidebarLayout>} />
-        <Route path="/soundscape" element={<SharedSidebarLayout><MoodSoundscape /></SharedSidebarLayout>} />
+        <Route path="/calm-corner" element={<RequireAuth><SharedSidebarLayout><CalmCorner /></SharedSidebarLayout></RequireAuth>} />
+        <Route path="/inner-garden" element={<RequireAuth><SharedSidebarLayout><InnerGarden /></SharedSidebarLayout></RequireAuth>} />
+        <Route path="/soundscape" element={<RequireAuth><SharedSidebarLayout><MoodSoundscape /></SharedSidebarLayout></RequireAuth>} />
         <Route
           path="/comfort-box"
-          element={<SharedSidebarLayout><LittleComfortBox /></SharedSidebarLayout>}
+          element={<RequireAuth><SharedSidebarLayout><LittleComfortBox /></SharedSidebarLayout></RequireAuth>}
         />
 
         {/* Fallback for unknown routes */}
