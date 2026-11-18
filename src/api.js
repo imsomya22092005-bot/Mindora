@@ -21,7 +21,11 @@ export async function apiRequest(path, { token, ...options } = {}) {
 
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(payload.error || payload.message || `Request failed (${response.status}). Please try again.`);
+    const error = new Error(payload.message || payload.error || `Request failed (${response.status}). Please try again.`);
+    error.code = payload.error || null;
+    error.details = payload.details && typeof payload.details === "object" ? payload.details : null;
+    error.status = response.status;
+    throw error;
   }
   return payload;
 }
