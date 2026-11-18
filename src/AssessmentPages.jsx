@@ -72,9 +72,9 @@ const isi = [
  {name:"isi_2",text:"How much difficulty did you have staying asleep?",opts:["None","Mild","Moderate","Severe","Very severe"],concern:"Waking up during the night"},
  {name:"isi_3",text:"How much trouble did you have waking up too early?",opts:["None","Mild","Moderate","Severe","Very severe"],concern:"Waking up too early"},
  {name:"isi_4",text:"How satisfied/dissatisfied are you with your current sleep pattern?",opts:["Very satisfied","Satisfied","Moderately satisfied","Dissatisfied","Very dissatisfied"],concern:"Not feeling satisfied with your sleep"},
- {name:"isi_5",text:"How noticeable to others do you think your sleep problem is in terms of impairing the quality of your life?",opts:["Not at all noticeable","A little","Somewhat","Much","Very much noticeable"],concern:"Sleep problems others can notice"},
- {name:"isi_6",text:"How worried/distressed are you about your current sleep problem?",opts:["Not at all worried","A little","Somewhat","Much","Very much worried"],concern:"Worry about your sleep"},
- {name:"isi_7",text:"To what extent do you consider your sleep problem to interfere with your daily functioning?",opts:["Not at all interfering","A little","Somewhat","Much","Very much interfering"],concern:"Sleep affecting your daily life"}
+ {name:"isi_5",text:"To what extent do you consider your sleep problem to interfere with your daily functioning?",opts:["Not at all interfering","A little","Somewhat","Much","Very much interfering"],concern:"Sleep affecting your daily life"},
+ {name:"isi_6",text:"How noticeable to others do you think your sleep problem is in terms of impairing the quality of your life?",opts:["Not at all noticeable","A little","Somewhat","Much","Very much noticeable"],concern:"Sleep problems others can notice"},
+ {name:"isi_7",text:"How worried/distressed are you about your current sleep problem?",opts:["Not at all worried","A little","Somewhat","Much","Very much worried"],concern:"Worry about your sleep"}
 ];
 const stressQuestions = [
  {name:"pss_1",text:"How often have you been upset because of something that happened unexpectedly?"},
@@ -254,12 +254,18 @@ export function AcademicStressPage(){
    const token=localStorage.getItem("mindora-token");
    if(!token)throw new Error("Please log in again to submit your academic stress assessment.");
    const data=await apiRequest("/api/ml/stress/predict",{token,method:"POST",body:JSON.stringify(payload)});
-   if(!["low","moderate","high"].includes(String(data?.level||"").toLowerCase()))throw new Error("The predictor response was incomplete. Please try again.");
+   const level=String(data?.level||"").toLowerCase();
+   const expectedCode={low:0,moderate:1,high:2}[level];
+   if(expectedCode===undefined||data?.level_code!==expectedCode||!Array.isArray(data?.factors)||typeof data?.message!=="string"||typeof data?.disclaimer!=="string"||typeof data?.support_suggested!=="boolean"){
+    throw new Error("The predictor response did not match the confirmed ML response format. Please try again.");
+   }
    setResult(data);
   }catch(err){
    const message=err.message||"Could not connect to the academic stress predictor. Please try again later.";
-   const invalid=all.filter(([name])=>new RegExp("\\b"+name+"\\b","i").test(message));
-   if(invalid.length) setError((hi?"कृपया उत्तर दें: ":"Please answer: ")+invalid.map(([,question])=>tr(question,hi)).join(" · "));
+   const details=err.details&&typeof err.details==="object"?err.details:{};
+   const reportedFields=Array.isArray(details.missing)?details.missing:Object.keys(details);
+   const invalid=all.filter(([name])=>reportedFields.includes(name)||new RegExp("\\b"+name+"\\b","i").test(message));
+   if(invalid.length) setError((hi?"कृपया इन जवाबों को जाँचें: ":"Please check these answers: ")+invalid.map(([,question])=>tr(question,hi)).join(" · "));
    else setError(message);
   }finally{setLoading(false);}
  };
